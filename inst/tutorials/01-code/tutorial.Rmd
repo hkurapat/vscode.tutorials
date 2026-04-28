@@ -278,8 +278,6 @@ Loading some packages prints a bunch of messages to the R Terminal. But most pac
 
 Load the **tidyverse** package into your R Terminal using the `library()` function.
 
-If this fails, the most likely cause is that you failed to installed the **tidyverse** package. Run `install.packages('tidyverse')` in the R Terminal to fix this and then try `library(tidyverse)` again.
-
 CP/CR.
 
 ```{r checking-your-setup-8}
