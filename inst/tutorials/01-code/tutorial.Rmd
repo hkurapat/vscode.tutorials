@@ -439,7 +439,7 @@ In Visual Studio Code running in Codespaces, the Application Menu is a dropdown 
 
 ###
 
-<!-- AR: Add note about saving to the getting-started directory, and not .devcontainer? -->
+<!-- AR: Add note about saving to the getting-started directory, and not .devcontainer? - YES!! -->
 
 Type `5 + 5` into your R script file. Save the file. Name it `script-1.R`. (R will provide the `.R` suffix, so you only need to type `script-1`.)
 
@@ -686,6 +686,8 @@ R 4.5.3>
 ````
 
 ###
+
+<!--AR: get rid of environment view -->
 
 `ls()` returns a list of objects present in your environment. These are the same objects displayed in the Environment pane.
 
@@ -1179,6 +1181,7 @@ If the title text flows out of the image, you might want to modify the `scale` a
 ###
 
 <!-- AR: Should students create a new git repo? Or just do script 3 in the same place? -->
+<!-- AR: Make students use integrated Codespace chat when asking AI -->
 
 ### Exercise 1
 
