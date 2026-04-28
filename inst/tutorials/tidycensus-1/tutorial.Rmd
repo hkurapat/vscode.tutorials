@@ -9,7 +9,7 @@ output:
     progressive: true
     allow_skip: true
 runtime: shiny_prerendered
-description: 'Overview tutorial for entire book'
+description: "Overview tutorial for the 'Analyzing US Census Data' book. Walks through three case studies on Texas income, California bachelors degrees, and California median age, using tidycensus to pull ACS data and ggplot2 with geom_sf() for choropleth maps."
 ---
 
 ```{r setup, include = FALSE}

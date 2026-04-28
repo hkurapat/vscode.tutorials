@@ -8,7 +8,7 @@ output:
     progressive: yes
     'allow_skip:': yes
 runtime: shiny_prerendered
-description: More practice with Positron, Git and GitHub.
+description: More practice with Positron, Git and GitHub. Repeats the full workflow across two projects, creating new repos, committing Quarto documents with plots, and publishing them to GitHub Pages.
 ---
 
 ```{r setup, include = FALSE}

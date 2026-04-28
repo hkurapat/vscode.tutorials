@@ -8,7 +8,7 @@ output:
     progressive: yes
     'allow_skip:': yes
 runtime: shiny_prerendered
-description: Introduction to Positron, Git and GitHub.
+description: Introduction to Positron, Git and GitHub. Walks through cloning a repo, creating a personal access token, making commits, pushing, and publishing a Quarto document with GitHub Pages.
 ---
 
 ```{r setup, include = FALSE}

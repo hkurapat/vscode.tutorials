@@ -8,7 +8,7 @@ output:
     progressive: yes
     'allow_skip:': yes
 runtime: shiny_prerendered
-description: Introduction to using Positron with Quarto documents.
+description: Introduction to using Positron with Quarto documents. Covers YAML headers, code chunks with chunk options, inline code evaluation, and controlling what appears in the rendered HTML.
 ---
 
 ```{r setup, include = FALSE}

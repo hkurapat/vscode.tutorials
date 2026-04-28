@@ -8,8 +8,7 @@ output:
     progressive: yes
     'allow_skip:': yes
 runtime: shiny_prerendered
-description: 'Tutorial for Chapter 28: Quarto and Chapter 29: Quarto formats, with
-  a focus on Quarto websites.'
+description: 'Tutorial for Chapter 28: Quarto and Chapter 29: Quarto formats, with a focus on Quarto websites. Uses the quarto CLI to create, render, preview, and publish a multi-page site to GitHub Pages.'
 ---
 
 ```{r setup, include = FALSE}

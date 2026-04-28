@@ -9,7 +9,7 @@ output:
     progressive: true
     allow_skip: true
 runtime: shiny_prerendered
-description:  'This tutorial for "R for Data Science" covers Chapter 23: Hierarchical Data, Chapter 24: Web Scraping, Chapter 25: Functions, and Chapter 26: Iterations.'
+description: 'This tutorial for "R for Data Science" covers Chapter 23: Hierarchical Data, Chapter 24: Web Scraping, Chapter 25: Functions, and Chapter 26: Iterations. Exercises use earthquake and movie datasets to practice nested lists, scraping with rvest, writing functions, and iterating with purrr.'
 ---
 
 ```{r setup, include = FALSE}
