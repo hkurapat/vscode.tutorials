@@ -8,7 +8,7 @@ output:
     progressive: yes
     'allow_skip:': yes
 runtime: shiny_prerendered
-description: 'A second tutorial about Quarto websites.'
+description: 'A second tutorial about Quarto websites. Practices building three sites with About Me pages, customizing themes, and deploying styled output to GitHub Pages.'
 ---
 
 ```{r setup, include = FALSE}

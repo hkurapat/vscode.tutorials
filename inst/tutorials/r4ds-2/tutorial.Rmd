@@ -9,7 +9,7 @@ output:
     progressive: true
     allow_skip: true
 runtime: shiny_prerendered
-description: 'This tutorial for "R for Data Science" covers Chapter 9: Layers, Chapter 10: Exploratory Data Analysis, Chapter 11: Communication, and Chapter 20: Spreadsheets.'
+description: 'This tutorial for "R for Data Science" covers Chapter 9: Layers, Chapter 10: Exploratory Data Analysis, Chapter 11: Communication, and Chapter 20: Spreadsheets. Exercises practice ggplot2 layers, faceting, themes, and reading Excel files with readxl.'
 ---
 
 ```{r setup, include = FALSE}

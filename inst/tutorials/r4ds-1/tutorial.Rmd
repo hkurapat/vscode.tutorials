@@ -9,7 +9,7 @@ output:
     progressive: true
     allow_skip: true
 runtime: shiny_prerendered
-description: 'This tutorial for "R for Data Science" covers Chapter 1: Data visualization, Chapter 3: Data transformation, Chapter 5: Data tidying, and Chapter 7: Data import.'
+description: 'This tutorial for "R for Data Science" covers Chapter 1: Data visualization, Chapter 3: Data transformation, Chapter 5: Data tidying, and Chapter 7: Data import. Exercises build ggplot2 plots and dplyr/tidyr pipelines on real datasets.'
 ---
 
 ```{r setup, include = FALSE}

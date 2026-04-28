@@ -9,7 +9,7 @@ output:
     progressive: true
     allow_skip: true
 runtime: shiny_prerendered
-description: 'This tutorial for "R for Data Science" covers Chapter 16: Factors, Chapter 17: Dates and Times, Chapter 18: Missing Values, Chapter 19: Joins, and Chapter 22: Arrow.'
+description: 'This tutorial for "R for Data Science" covers Chapter 16: Factors, Chapter 17: Dates and Times, Chapter 18: Missing Values, Chapter 19: Joins, and Chapter 22: Arrow. Exercises use NBA and FIFA datasets to practice forcats, lubridate, table joins, and reading parquet files with arrow.'
 ---
 
 ```{r setup, include = FALSE}
