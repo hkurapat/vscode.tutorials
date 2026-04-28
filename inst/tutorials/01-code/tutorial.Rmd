@@ -1,5 +1,5 @@
 ---
-title: Positron and code
+title: R Scripts in Codespaces
 author: David Kane
 tutorial:
   id: 01-code
@@ -8,7 +8,7 @@ output:
     progressive: yes
     'allow_skip:': yes
 runtime: shiny_prerendered
-description: Introduction to using Positron with R scripts.
+description: Introduction to using Codespaces with R scripts.
 ---
 
 ```{r setup, include = FALSE}
@@ -41,9 +41,11 @@ options(tutorial.exercise.timelimit = 60,
 ## Introduction
 ### 
 
-This tutorial teaches you how to use [**Positron**](https://positron.posit.co) with [**R**](https://www.r-project.org/about.html) scripts and how to create [projects](https://docs.posit.co/ide/user/ide/guide/code/projects.html). It assumes two things:
+This tutorial teaches you how to use [**Codespaces**](https://github.com/features/codespaces) with [**R**](https://www.r-project.org/about.html) scripts. It assumes two things:
 
  * You have completed the "Getting Started" tutorial from the [**tutorial.helpers**](https://ppbds.github.io/tutorial.helpers/) package.
+
+<!-- AR: Is the below bullet still true? -->
 
  * You have some knowledge of R code, perhaps at the level of the "Introduction to R" tutorial from [**tutorial.helpers**](https://ppbds.github.io/tutorial.helpers/) package. 
  
@@ -51,9 +53,11 @@ This tutorial includes some information from [*R for Data Science (2e)*](https:/
 
 ###
 
-After starting the tutorial, your Positron window looked something like this:
+After starting the tutorial, your Codespaces window looked something like this:
 
 <!-- DK: Fix these images. No Welcome screen. -->
+
+<!-- AR: Are these tutorials included in the PPBDS.vscode-r-tutorials extension yet? Not totally sure what this screen should look like or if this is a helpful place to start. -->
 
 ```{r}
 include_graphics("images/start-up.png")
@@ -65,6 +69,8 @@ Your R Terminal is currently "busy" running the tutorial. But, you will still wa
 ### 
 
 Again, you should have completed the "Getting Started" tutorial from the [**tutorial.helpers**](https://ppbds.github.io/tutorial.helpers/) package. If not, this section will go poorly for you.
+
+<!-- AR: is this exercise necessary? -->
 
 ### Exercise 1
 
@@ -82,41 +88,18 @@ question_text(NULL,
 ###
 
 ```
-dkane@MacBookPro vscode.tutorials % echo $0
-/bin/zsh
-dkane@MacBookPro vscode.tutorials % 
+@ppbds-student ➜ /workspaces/getting-started (main) $ echo $0
+/bin/bash
+@ppbds-student ➜ /workspaces/getting-started (main) $
 ```
 
 You answer should indicate some sort of UNIX-alike shell. In Windows, you should get something like `/bin/bash`. If not, investigate further, especially if it seems like you are using Powershell.
 
 ### Exercise 2
 
-In the Terminal, run `git --version`. CP/CR.
-
-```{r checking-your-setup-2}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-```
-dkane@MacBookPro vscode.tutorials % git --version
-git version 2.39.3 (Apple Git-146)
-dkane@MacBookPro vscode.tutorials % 
-```
-
-If Git is not installed, figure out how to install it and then restart this tutorial.
-
-### Exercise 3
-
 At the R Terminal, type `show_file()`. CP/CR.
 
-```{r checking-your-setup-3}
+```{r checking-your-setup-2}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -139,7 +122,7 @@ Going forward, we won't bother with boilerplate like "Your answer should look li
 
 In this case, the error is that we have not yet loaded the **tutorial.helpers** package, which is where `show_file()` is located.  If we had specified the package as part of the function call, as with `tutorial.helpers::show_file()`, R would have found the function.
 
-### Exercise 4
+### Exercise 3
 
 Load the **tutorial.helpers** package into your R Terminal using the `library()` function.
 
@@ -147,7 +130,7 @@ Run `search()` in the R Terminal to see the libraries that you've currently load
 
 CP/CR. 
 
-```{r checking-your-setup-4}
+```{r checking-your-setup-3}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -159,17 +142,17 @@ question_text(NULL,
 ### 
 
 ````
-> library(tutorial.helpers)
-> search()
- [1] ".GlobalEnv"               "package:tutorial.helpers" "tools:rstudio"           
- [4] "tools:positron"           "package:stats"            "package:graphics"        
- [7] "package:grDevices"        "package:utils"            "package:datasets"        
-[10] "package:methods"          "Autoloads"                "package:base"            
+R 4.5.3> library(tutorial.helpers)
+R 4.5.3> search()
+ [1] ".GlobalEnv"               "package:tutorial.helpers" "tools:vscode"             "package:stats"            "package:graphics"        
+ [6] "package:grDevices"        "package:utils"            "package:datasets"         "package:methods"          "Autoloads"               
+[11] "package:base"            
+R 4.5.3>             
 ````
 
 The string "package:tutorial.helpers" should be in the output. Don't worry if your answer does not match our answer exactly, either in this question or in any other question.
 
-### Exercise 5
+### Exercise 4
 
 At the R Terminal, run:
 
@@ -177,7 +160,7 @@ At the R Terminal, run:
 show_file(file.path(R.home(), "COPYING"), end = 7)
 ````
 
-```{r checking-your-setup-5}
+```{r checking-your-setup-4}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -189,21 +172,22 @@ question_text(NULL,
 ###
 
 ````
-> show_file(file.path(R.home(), "COPYING"), end = 7)
-		    GNU GENERAL PUBLIC LICENSE
-		       Version 2, June 1991
+R 4.5.3> show_file(file.path(R.home(), "COPYING"), end = 7)
+                    GNU GENERAL PUBLIC LICENSE
+                       Version 2, June 1991
 
  Copyright (C) 1989, 1991 Free Software Foundation, Inc.
                        51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  Everyone is permitted to copy and distribute verbatim copies
  of this license document, but changing it is not allowed.
+R 4.5.3> 
 ````
 
 ###
 
 This command would have failed if we had not loaded the **tutorial.helpers** package already.
 
-### Exercise 6
+### Exercise 5
 
 Restart R within the current R Terminal --- not the R Terminal which is running this tutorial --- by pressing the "Start R Terminal" button, the curling arrow in the R Terminal menu:
 
@@ -213,7 +197,7 @@ include_graphics("images/restart-console.png")
 
 CP/CR the top of the restarted R Terminal.
 
-```{r checking-your-setup-6}
+```{r checking-your-setup-5}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -232,7 +216,7 @@ R 4.5.1 restarted.
 
 As always, it is not important that your answer looks *exactly* like our answer.
 
-### Exercise 7
+### Exercise 6
 
 Let's run this command again:
 
@@ -243,7 +227,7 @@ show_file(file.path(R.home(), "COPYING"), end = 7)
 CP/CR.
 
 
-```{r checking-your-setup-7}
+```{r checking-your-setup-6}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -262,11 +246,11 @@ Error in `show_file()`:
 
 It failed, even though it had just worked before. The reason is that, whenever you restart R, you get a "clean slate," with nothing but the default packages loaded.
 
-### Exercise 8
+### Exercise 7
 
 In the R Terminal, run `library(tutorial.helpers)` again. CP/CR.
 
-```{r checking-your-setup-8}
+```{r checking-your-setup-7}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -283,7 +267,7 @@ question_text(NULL,
 
 Loading some packages prints a bunch of messages to the R Terminal. But most packages, like **tutorial.helpers**, print nothing.
 
-### Exercise 9
+### Exercise 8
 
 Load the **tidyverse** package into your R Terminal using the `library()` function.
 
@@ -291,7 +275,7 @@ If this fails, the most likely cause is that you failed to installed the **tidyv
 
 CP/CR.
 
-```{r checking-your-setup-9}
+```{r checking-your-setup-8}
 question_text(NULL,
     answer(NULL, correct = TRUE),
     allow_retry = TRUE,
@@ -318,13 +302,13 @@ question_text(NULL,
 
 The **tidyverse** package is warning us about various conflicts. Don't worry about those conflicts for now.
 
-### Exercise 10
+### Exercise 9
 
 Look at the upper right of the Positron window. You should see the version of R you are running. 
 
 Type `R.version$version.string` into the R Terminal and hit `Enter`. CP/CR.
 
-```{r checking-your-setup-10}
+```{r checking-your-setup-9}
 question_text(NULL,
     answer(NULL, correct = TRUE),
     allow_retry = TRUE,
@@ -1356,7 +1340,7 @@ In many ways, the `subtitle` is the most important part of any graphic. People a
 ### 
 
 
-This tutorial taught you how to use [**Positron**](https://positron.posit.co) with [**R**](https://www.r-project.org/about.html) scripts and how to create [projects](https://docs.posit.co/ide/user/ide/guide/code/projects.html). It assumed that you have some knowledge of R code, perhaps at the level of the "Introduction" tutorial from [**r4ds.tutorials**](https://ppbds.github.io/r4ds.tutorials/) package. It included some information from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. 
+This tutorial taught you how to use [**Codespaces**](https://github.com/features/codespaces) with [**R**](https://www.r-project.org/about.html) scripts. It assumed that you have some knowledge of R code, perhaps at the level of the "Introduction" tutorial from [**r4ds.tutorials**](https://ppbds.github.io/r4ds.tutorials/) package. It included some information from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. 
 
 
 ```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
