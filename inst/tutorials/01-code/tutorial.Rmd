@@ -194,7 +194,7 @@ This command would have failed if we had not loaded the **tutorial.helpers** pac
 
 To restart R, we can close the current R Terminal by pressing the trash icon in the menu sidebar. Then, open a new R terminal.
 
-```{r, out.width = "300px", out.height = "350px"}
+```{r checking-your-setup-5, out.width = "300px", out.height = "350px"}
 include_graphics("images/cs-delete-r-terminal.png")
 ```
 
@@ -441,6 +441,9 @@ In Visual Studio Code running in Codespaces, the Application Menu is a dropdown 
 
 Type `5 + 5` into your R script file. Save the file. Name it `script-1.R`. (Note that R will provide the `.R` suffix, so you only need to type `script-1`.) 
 
+```{r}
+knitr::include_graphics("images/cs-save-script-1.png")
+```
 In the R Terminal, run:
 
 ````
@@ -476,10 +479,10 @@ R scripts are permanent copies of your code. You can save them and also work wit
 Note the "Source" button, which is in the top right corner of the Editor. 
 
 ```{r}
-include_graphics("images/source-button.png")
+include_graphics("images/cs-source-button.png")
 ```
 
-If you hover your cursor over it, you will see "Source R File." Press the Source button. (We will sometimes shorten the instruction "press the source button" to just "source" the script.)
+If you hover your cursor over it, you will see "Run Source" Press the Source button. (We will sometimes shorten the instruction "press the source button" to just "source" the script.)
 
 Note what happens in the R Terminal. CP/CR.
 
@@ -498,55 +501,25 @@ question_text(NULL,
 You answer should look like this:
 
 ````
-> source("/Users/dkane/Desktop/projects/analysis-1/script-1.R")
+R 4.5.3> source("/workspaces/getting-started/script-1.r", encoding = "UTF-8")
 ````
 
 ### 
 
-Whenever you run an R script file by hitting the "Source" button, Positron will send all the code in the file to the R Terminal. 
+Whenever you run an R script file by hitting the "Source" button, VSCode will send all the code in the file to the R Terminal. 
+
 
 ### Exercise 3
 
-Right next to the Source button is a small downward pointing arrow. Clicking on it produces three options, the top (default) of which is the simple "Source R File" which you ran in the last question.
-
-```{r}
-include_graphics("images/source-options.png")
-```
-
-Select the second option: "Source R File with Echo." CP/CR.
-
-```{r script-1-3}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-```
-> source("/Users/dkane/Desktop/projects/analysis-1/script-1.R", echo = TRUE)
-
-> 5 + 5
-[1] 10
->
-```
-
-The file is sourced, as before. But, this time, each line in the file is "echoed," meaning we see both the code, `5 + 5` in this case, and the return value, if any, which is `10`.
-
-### Exercise 4
-
 <!-- DK: Is this true? -->
 
-There are often "shortcut key" combinations which perform the same task as clicking a button. Placing your cursor inside the R script window and using the keyboard shortcut `(Cmd/Ctrl) + Shift + (Return/Enter)` is the same as hitting the "Source R File with Echo" option. 
+There are often "shortcut key" combinations which perform the same task as clicking a button. Placing your cursor inside the R script window and using the keyboard shortcut `(Cmd/Ctrl) + Shift + (Return/Enter)` this sources the file (like above) and adds the option `echo = TRUE`.
 
 Note that `Return` is the name of a Mac key and `Enter` the name of the corresponding Windows key, just like `Cmd` ("Command") is a Mac key and `Ctrl` ("Control") is the equivalent Windows key. In other words, on the Mac, we hit `Cmd + Shift + Return` while on Windows it is `Ctrl + Shift + Enter`. However, typing `Return/Enter` when writing these tutorials is annoying, so, going forward, we will just use `Enter`. Mac users are expected to remember that this means the `Return` key.
 
 Try it now. CP/CR.
 
-```{r script-1-4}
+```{r script-1-3}
 question_text(NULL,
     answer(NULL, correct = TRUE),
     allow_retry = TRUE,
@@ -557,15 +530,25 @@ question_text(NULL,
 
 ### 
 
+```
+R 4.5.3> source("/workspaces/getting-started/script-1.r", encoding = "UTF-8", echo = TRUE)
+
+> 5 + 5
+[1] 10
+R 4.5.3>
+```
+
+The file is sourced, as before. But, this time, each line in the file is "echoed," meaning we see both the code, `5 + 5` in this case, and the return value, if any, which is `10`.
+
 Using shortcut keys is quicker and more professional than clicking buttons. 
 
-### Exercise 5
+### Exercise 4
 
 In your R script, type `6 * 3` in the line after `5 + 5`. Save the file with `Cmd/Ctrl + S`. 
 
 Source this file with echo. CP/CR.
 
-```{r script-1-5}
+```{r script-1-4}
 question_text(NULL,
     answer(NULL, correct = TRUE),
     allow_retry = TRUE,
@@ -579,14 +562,13 @@ question_text(NULL,
 The answer is what you might expect:
 
 ````
-> source("/Users/dkane/Desktop/projects/analysis-1/script-1.R", echo = TRUE)
+R 4.5.3> source("/workspaces/getting-started/script-1.r", encoding = "UTF-8", echo = TRUE)
 
 > 5 + 5
 [1] 10
 
 > 6 * 3
 [1] 18
->
 ````
 
 ### 
@@ -595,11 +577,11 @@ Each line is *echoed*. Each line is *executed*.  The results of each line, if th
 
 The output you see is the same as what would happen if you copied each line to the R Terminal and hit `Enter` after each one.
 
-### Exercise 6
+### Exercise 5
 
-Instead of sourcing the entire file, we can just execute (or "run") a single line. In `script-1.R`, place your cursor on the same line as `6 * 3` and click the "Run Selection in R Terminal" option, the third choice in the Source button. CP/CR.
+Instead of sourcing the entire file, we can just execute (or "run") a single line. In `script-1.R`, place your cursor on the same line as `6 * 3` and `(Cmd/Ctrl + Enter)`. CP/CR.
 
-```{r script-1-6}
+```{r script-1-5}
 question_text(NULL,
     answer(NULL, correct = TRUE),
     allow_retry = TRUE,
@@ -613,20 +595,20 @@ question_text(NULL,
 You should get:
 
 ````
-> 6 * 3
+R 4.5.3> 6 * 3
 [1] 18
->
+R 4.5.3> 
 ````
 
 ### 
 
 Instead of both lines in the script executing, only the second line does. And the process by which this happens has nothing to do with the entire script. **Run is not the same thing as Source.** With Run, you are just copy/pasting some of the lines from the script to the R Terminal at a time. With Source, you're copy/pasting *all* lines from the script. 
 
-### Exercise 7
+### Exercise 6
 
-The simplest shortcut key for running a single line of code is `Cmd/Ctrl + Enter`. However, we recommend using `Cmd/Ctrl + Enter` because it handles both single line and multi-line commands. In your R script, place your cursor on the same line as `5 + 5` and hit `Cmd/Ctrl + Enter`. CP/CR.
+Using `Cmd/Ctrl + Enter` handles both single line and multi-line commands. In your R script, highlight both lines and press `Cmd/Ctrl + Enter`. CP/CR.
 
-```{r script-1-7}
+```{r script-1-6}
 question_text(NULL,
     answer(NULL, correct = TRUE),
     allow_retry = TRUE,
@@ -638,20 +620,20 @@ question_text(NULL,
 ### 
 
 ````
-> 5 + 5
+R 4.5.3> 5 + 5
++  6 * 3
 [1] 10
->
+[1] 18
+R 4.5.3>
 ````
 
-Only the first line of the script is executed. `Cmd/Ctrl + Enter` is probably the single most commonly used shortcut key because it is very handy to execute your code line-by-line.
+`Cmd/Ctrl + Enter` is "smart" in two ways. First, if you highlight more than one line of code it will execute all the code in that area. Second, even if nothing is highlighted,  if the line with the cursor is part of a block of code which extends over multiple lines --- like creating a plot --- it will execute all the code in that block.
 
-`Cmd/Ctrl + Enter` is "smart" in two ways. First, if you highlight more than one line of code, and then place your cursor within the highlighted area, it will execute all the code in that area. Second, even if nothing is highlighted,  if the line with the cursor is part of a block of code which extends over multiple lines --- like creating a plot --- it will execute all the code in that block.
-
-### Exercise 8
+### Exercise 7
 
 Go back to the first line in your R script. Change `5 + 5` to `x <- 5 + 5`, thereby creating an object named `x` with a value of 10. Save the file. Click the "Source R File with Echo" option. CP/CR.
 
-```{r script-1-8}
+```{r script-1-7}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -680,11 +662,11 @@ Note how the `x <- 5 + 5` is executed (and echoed) but nothing is printed. The a
 
 <!-- Being a little sloppy in using the (correct?) term "return value" here but not above. -->
 
-### Exercise 9
+### Exercise 8
 
 In the R Terminal tab, run `ls()`. CP/CR.
 
-```{r script-1-9}
+```{r script-1-8}
 question_text(NULL,
     answer(NULL, correct = TRUE),
     allow_retry = TRUE,
