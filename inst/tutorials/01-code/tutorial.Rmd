@@ -152,13 +152,15 @@ This command would have failed if we had not loaded the **tutorial.helpers** pac
 
 To restart R, close the current R Terminal by pressing the trash icon in the menu sidebar. Then, open a new R Terminal.
 
-```{r checking-your-setup-4, out.width = "300px", out.height = "350px"}
+<!-- DK: Messed up now? -->
+
+```{r}
 include_graphics("images/cs-delete-r-terminal.png")
 ```
 
 CP/CR the top of the restarted R Terminal.
 
-```{r checking-your-setup-5}
+```{r checking-your-setup-4}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
