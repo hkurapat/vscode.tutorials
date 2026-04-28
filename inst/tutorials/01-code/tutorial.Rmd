@@ -209,9 +209,11 @@ question_text(NULL,
 ###
 
 ````
-R 4.5.1 exited (preparing for restart)
-R 4.5.1 restarted.
->
+# arf console v0.3.1
+# Edit mode: emacs
+# R 4.5.3 is ready.
+# Type :cmds for meta commands list, Ctrl+D to exit.
+R 4.5.3> 
 ````
 
 As always, it is not important that your answer looks *exactly* like our answer.
@@ -239,9 +241,10 @@ question_text(NULL,
 ###
 
 ````
-> show_file(file.path(R.home(), "COPYING"), end = 7)
-Error in `show_file()`:
-! could not find function "show_file"
+R 4.5.3> show_file(file.path(R.home(), "COPYING"), end = 7)
+Error in show_file(file.path(R.home(), "COPYING"), end = 7) : 
+  could not find function "show_file"
+✗ R 4.5.3> 
 ````
 
 It failed, even though it had just worked before. The reason is that, whenever you restart R, you get a "clean slate," with nothing but the default packages loaded.
@@ -262,7 +265,8 @@ question_text(NULL,
 ###
 
 ````
-> library(tutorial.helpers)
+R 4.5.3> library(tutorial.helpers)
+R 4.5.3> 
 ````
 
 Loading some packages prints a bunch of messages to the R Terminal. But most packages, like **tutorial.helpers**, print nothing.
@@ -287,17 +291,18 @@ question_text(NULL,
 ### 
 
 ````
-> library(tidyverse)
-── Attaching core tidyverse packages ───── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.2     ✔ tibble    3.2.1
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.0.4     
-── Conflicts ─────────────────────── tidyverse_conflicts() ──
+R 4.5.3> library(tidyverse)
+── Attaching core tidyverse packages ───────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.0     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.2     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.1     
+── Conflicts ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package to force all conflicts to become errors
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+R 4.5.3> 
 ````
 
 The **tidyverse** package is warning us about various conflicts. Don't worry about those conflicts for now.
