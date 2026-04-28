@@ -302,31 +302,6 @@ question_text(NULL,
 
 The **tidyverse** package is warning us about various conflicts. Don't worry about those conflicts for now.
 
-### Exercise 9
-
-Look at the upper right of the Positron window. You should see the version of R you are running. 
-
-Type `R.version$version.string` into the R Terminal and hit `Enter`. CP/CR.
-
-```{r checking-your-setup-9}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 3)
-```
-
-### 
-
-````
-> R.version$version.string
-[1] "R version 4.5.1 (2025-06-13)"
-````
-
-This should be the same as the version you see at the top left of the R Terminal screen and at the top right on the Positron window. Make sure it is the [most recently released](https://cran.r-project.org/) version of R.
-
-
 ## Projects
 ### 
 
