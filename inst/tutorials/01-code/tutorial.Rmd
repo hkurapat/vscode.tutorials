@@ -189,10 +189,13 @@ This command would have failed if we had not loaded the **tutorial.helpers** pac
 
 ### Exercise 5
 
-Restart R within the current R Terminal --- not the R Terminal which is running this tutorial --- by pressing the "Start R Terminal" button, the curling arrow in the R Terminal menu:
+<!--AR: check terminology below! -->
+<!-- AR: to restart in the same R Terminal, can begin with a bash shell, use the R command and then q() to quit (entering n to not save the workspace). Then restart R using the R command. May be cleaner because there's no clicking involved. -->
 
-```{r}
-include_graphics("images/restart-console.png")
+To restart R, we can close the current R Terminal by pressing the trash icon in the menu sidebar. Then, open a new R terminal.
+
+```{r, out.width = "300px", out.height = "350px"}
+include_graphics("images/cs-delete-r-terminal.png")
 ```
 
 CP/CR the top of the restarted R Terminal.
