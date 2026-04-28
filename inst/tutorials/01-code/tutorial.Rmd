@@ -421,9 +421,23 @@ So far, we have only worked in the R Terminal, but it's quite difficult to type 
 
 ### Exercise 1
 
-The file `Untitled-1` should already be in your Editor window. If it is not, you can create a new file by clicking the `File -> New File ...`, leading to a drop down menu from which you select `R File`.
+Create a new file by clicking the Activity Bar icon with three horizontal bars in the top left of the VSCode window. This opens the Application Menu. Then, select `File -> New File ...`
+
+```{r}
+knitr::include_graphics("images/cs-create-new-file.png")
+```
+
+This leads to a drop down menu from which you select `R File`.
+
+```{r}
+knitr::include_graphics("images/cs-select-new-r-file.png")
+```
+
+In Visual Studio Code running in Codespaces, the Application Menu is a dropdown with options like `File`, `Edit`, and `View`. Unlike a regular app installed on your computer, which has a built-in menu bar, Codespaces puts these options in a dropdown because it runs in a web browser.
 
 ### 
+
+<!-- AR: Add note about saving to the getting-started directory, and not .devcontainer? -->
 
 Type `5 + 5` into your R script file. Save the file. Name it `script-1.R`. (Note that R will provide the `.R` suffix, so you only need to type `script-1`.) 
 
