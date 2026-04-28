@@ -194,7 +194,7 @@ This command would have failed if we had not loaded the **tutorial.helpers** pac
 
 To restart R, we can close the current R Terminal by pressing the trash icon in the menu sidebar. Then, open a new R terminal.
 
-```{r checking-your-setup-5, out.width = "300px", out.height = "350px"}
+```{r, out.width = "300px", out.height = "350px"}
 include_graphics("images/cs-delete-r-terminal.png")
 ```
 
@@ -310,6 +310,8 @@ The **tidyverse** package is warning us about various conflicts. Don't worry abo
 
 ## Projects
 ### 
+
+<!-- AR: Ignoring this section for now - replace with discussion of using Github repos to organize data science projects? Or just delete? -->
 
 Good data scientists keep their work organized. You should place your work in different projects, which are simply folders (that is, directories) on your computer. Each separate project is a folder within your main folder for your data science work, i.e.,  `/Users/dkane/Desktop/projects/`.  
 
@@ -678,17 +680,17 @@ question_text(NULL,
 ### 
 
 ````
-> ls()
-[1] "x"
->
+R 4.5.3> ls()
+[1] "env"  "prev" "x"   
+R 4.5.3> 
 ````
 
 ###
 
-`ls()` returns a list of objects present in your environment. These are the same objects displayed under Variables in your Session tab in the Secondary Side Bar in Positron (on the right side). 
+`ls()` returns a list of objects present in your environment. These are the same objects displayed 
 
-```{r}
-include_graphics("images/source-x.png")
+```{r, out.width = "300px", out.height="400px"}
+include_graphics("images/cs-r-env.png")
 ```
 
 In this case, the object `x`, which has a value of 10, exists in your workspace. As you can confirm by typing `x` at the R Terminal and hitting `Enter`.
@@ -725,7 +727,7 @@ Click `File -> New File ... -> R File`. At the top of the Editor, the file shoul
 
 ### 
 
-Click the "Save current document" icon -- the disk image to the right of the Open dropdown menu. Or use the shortcut `Cmd/Ctrl + S` to save the script. Let's call this file `script-2.R`. The `.R` suffix is not always added automatically. Make sure it is there.
+Use the shortcut `Cmd/Ctrl + S` to save the script. Let's call this file `script-2.R`. The `.R` suffix is not always added automatically. Make sure it is there.
 
 In the R Terminal, run `list.files()`. CP/CR.
 
@@ -745,13 +747,12 @@ question_text(NULL,
 [1] "script-1.R" "script-2.R"
 ````
 
-Save your scripts (with informative names) in the project, edit them, run them line-by-line or in their entirety. Restart R frequently to make sure you’ve captured everything in your scripts.
+Save your scripts (with informative names) in the folder, edit them, run them line-by-line or in their entirety. Restart R frequently to make sure you’ve captured everything in your scripts.
 
-Scripts and projects give you a solid workflow that will serve you well in the future. Always remember to create one project for each data analysis project. That project may contain multiple script files, along with other material.
 
 ### Exercise 2
 
-Restart your R session with `Cmd/Ctrl + Shift + 0`. 
+Restart your R session by deleting your current R Terminal and opening a new one.
 
 From the R Terminal, run `list.files()`. CP/CR.
 
@@ -774,7 +775,7 @@ R 4.5.0 restarted.
 >
 ```
 
-The two files we had from before --- `script-1.R`, and `script-2.R` --- still exist. Our work, if we have saved it, is preserved even when R (or Positron) restarts. 
+The two files we had from before --- `script-1.R`, and `script-2.R` --- still exist. Our work, if we have saved it, is preserved even when R (or the Codespace) restarts. 
 
 ### Exercise 3
 
@@ -1002,7 +1003,7 @@ It would be nice if the numbers on the Y-axis were formatted better, i.e., with 
 scale_y_continuous(labels = scales::comma_format())
 ````
 
-Do so. Run the file. Note that you don't need to save the file first. If you execute a file using either the "Source" button or `Ctrl + Shift + Enter`, Positron will save the file automatically.
+Do so. Run the file. Note that you don't need to save the file first. If you execute a file using either the "Source" button or `Ctrl + Shift + Enter`, VSCode will save the file automatically.
 
 Don't forget that you will need a `+` after the call to `geom_histogram()`.
 
@@ -1025,7 +1026,7 @@ question_text(NULL,
 
 ### 
 
-Note how the histogram in the Positron Plot window has not been updated. When you run and entire file with the "Source" button or `Cmd/Ctrl + Enter" 
+Note how the histogram in the plot window has not been updated. When you run and entire file with the "Source" button or `Cmd/Ctrl + Enter" 
 
 We use `scale_y_continuous()` (and `scale_x_continuous()`) to modify the labels and the breaks in numeric axes. The **scales** package provides a variety of useful formatting tools, including `comma_format()`, `dollar_format()` and others.
 
@@ -1177,86 +1178,17 @@ If the title text flows out of the image, you might want to modify the `scale` a
 ## Script 3
 ### 
 
-Let's create a new project, `analysis-2`, and another script, `script-3`, within it.
+<!-- AR: Should students create a new git repo? Or just do script 3 in the same place? -->
 
 ### Exercise 1
 
-Type `getwd()` into the R Terminal. CP/CR. 
-
-```{r script-3-1}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 5)
-```
-
-### 
-
-```
-"/Users/dkane/Desktop/projects/analysis-1"
-```
-
-Note that "project" has multiple meanings. First, "project" is a generic term for an a project which contains our code/data, generally with a sensible name. Second, `analysis-1` --- note the use of typewriter font --- is the name of a specific project. Third, `analysis-1` --- the same string in the same font --- can refer to the directory in which the project is located. 
-
-For the most part, the names of projects and the directories in which they reside are used interchangeably.
-
-### Exercise 2
-
-From the Positron menu, select `File -> New Folder From Template ...`. (Again, all of this occurs in the Positron window in which you are **not** running this tutorial.) Select  "R Project" and click "Next." 
-
-Use `analysis-2` for the "Project Name." Ensure that "Parent Directory" is set to the location of your `projects` directory. Click "Next" and then "Create." (You might need to select the R version, although it would be best to only have one version installed.)
-
-Choose "Current Window". This will close the `analysis-1` project, which is fine because we are done with it.
-
-### 
-
-One the Positron window has closed and re-opened, you should be in the brand new `analysis-2` project. Type `getwd()` into the R Terminal. CP/CR.
-
-```{r script-3-2}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 5)
-```
-
-### 
-
-```
-"/Users/dkane/Desktop/projects/analysis-2"
-```
-
-It is convenient to leave the other Positron window, the one in which you are doing the tutorial, untouched so that you won't need to restart the tutorial.
-
-### Exercise 3
-
-Type `list.files(path = "..")` into the R Terminal. CP/CR. 
-
-```{r script-3-3}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-By `path = ".."` tells `list.files()` to look in the directory which is one above the current working directory, which should be your `projects` directory and which should contain, at least, the `analysis-1` and `analysis-2` directories.
-
-### Exercise 4
-
 Create a script which we will use to make our plot.
 
-In the Positron menu bar on the top of the screen, select `File -> New File ... -> R File`. Type `5 + 5` and a newline into the file and hit `Cmd/Ctrl + S` to save it. Save it as `script-3.R`. 
+In the Application Menu at the top left of the screen, select `File -> New File ...` then select `R File` from the drop-down. Type `5 + 5` and a newline into the file and hit `Cmd/Ctrl + S` to save it. Save it as `script-3.r`. 
 
 In the console, run `list.files()`. CP/CR. 
 
-```{r script-3-4}
+```{r script-3-1}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -1269,17 +1201,15 @@ question_text(NULL,
 
 ````
 > list.files()
-[1] "script-3.R"
+[1] "script-1.r", "script-2.r", "script-3.r"
 >
 ````
 
-Instead of creating a new file, you could have just saved the *`Untitled-1`* file which was probably in the Editor when the Positron window reappeared after you created `analysis-2`. Regardless, this file probably disappeared when you make the new file explicitly. Positron is just trying to help you by placing a file in the Editor for you to use at the start, if you so choose. It then helps you by making that file disappear once you have created a new file of your own.
+### Exercise 2
 
-### Exercise 5
+Go back to editing `script-3.r`. Remove `5 + 5`.  Ask your favorite AI to make a nice looking plot using data from one of the packages in the **tidyverse** package.
 
-Go back to editing `script-3.R`. Remove `5 + 5`.  Ask your favorite AI to make a nice looking plot using data from one of the packages in the **tidyverse** package.
-
-Paste the code from the AI into `script-3.R`. Run the script interactively, line-by-line, using `Cmd/Ctrl + Enter`. If there are problems, ask the AI for help. It will probably take several iterations to get something you like.
+Paste the code from the AI into `script-3.r`. Run the script interactively, line-by-line, using `Cmd/Ctrl + Enter`. If there are problems, ask the AI for help. It will probably take several iterations to get something you like.
 
 Advice -- and you should feel free to tell this to the AI:
 
@@ -1299,7 +1229,7 @@ When you have something that looks nice, save it in `script-3.R`.
 
 Back in the R Terminal, run `tutorial.helpers::show_file('script-3.r')`. CP/CR. 
 
-```{r script-3-5}
+```{r script-3-2}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
