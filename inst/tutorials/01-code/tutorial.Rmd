@@ -1,5 +1,5 @@
 ---
-title: Positron and code
+title: R Scripts in Codespaces
 author: David Kane
 tutorial:
   id: 01-code
@@ -8,7 +8,7 @@ output:
     progressive: yes
     'allow_skip:': yes
 runtime: shiny_prerendered
-description: Introduction to using Positron with R scripts.
+description: Introduction to using Codespaces with R scripts.
 ---
 
 ```{r setup, include = FALSE}
@@ -19,7 +19,7 @@ library(knitr)
 
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(out.width = '90%')
-options(tutorial.exercise.timelimit = 60, 
+options(tutorial.exercise.timelimit = 60,
         tutorial.storage = "local")
 ```
 
@@ -39,32 +39,38 @@ options(tutorial.exercise.timelimit = 60,
 <!-- DK: There are no projects. Really there are just folders (or directories) and you already get a directory for free when you start in GitHub! And also here. How did the student start this tutorial? By creating (with a template) a repo named after the tutorial. Is that well-defined? Small caps? hyphens in place of spaces. So, they should be in a repo called `01-code`. Summary: Just save script-1.R and friends in the folder in which you are in, which is 01-code, which is a git repo, but we have not learned how to use git yet, which is OK.  -->
 
 ## Introduction
-### 
+###
 
-This tutorial teaches you how to use [**Positron**](https://positron.posit.co) with [**R**](https://www.r-project.org/about.html) scripts and how to create [projects](https://docs.posit.co/ide/user/ide/guide/code/projects.html). It assumes two things:
+This tutorial teaches you how to use [**Codespaces**](https://github.com/features/codespaces) with [**R**](https://www.r-project.org/about.html) scripts. It assumes two things:
 
  * You have completed the "Getting Started" tutorial from the [**tutorial.helpers**](https://ppbds.github.io/tutorial.helpers/) package.
 
- * You have some knowledge of R code, perhaps at the level of the "Introduction to R" tutorial from [**tutorial.helpers**](https://ppbds.github.io/tutorial.helpers/) package. 
- 
-This tutorial includes some information from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. 
+<!-- AR: Is the below bullet still true? -->
+
+ * You have some knowledge of R code, perhaps at the level of the "Introduction to R" tutorial from the [**tutorial.helpers**](https://ppbds.github.io/tutorial.helpers/) package.
+
+This tutorial includes some information from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
 ###
 
-After starting the tutorial, your Positron window looked something like this:
+After starting the tutorial, your Codespaces window looked something like this:
 
 <!-- DK: Fix these images. No Welcome screen. -->
+
+<!-- AR: Are these tutorials included in the PPBDS.vscode-r-tutorials extension yet? Not totally sure what this screen should look like or if this is a helpful place to start. -->
 
 ```{r}
 include_graphics("images/start-up.png")
 ```
 
-Your R Terminal is currently "busy" running the tutorial. But, you will still want to run R commands, so you will need a second R Terminal. Start a new Positron window with `File -> New Window`. You then move back and forth between the two windows. 
+Your R Terminal is currently "busy" running the tutorial. You will still want to run R commands, so you will need a second R Terminal. Start a new Positron window with `File -> New Window`. You will then move back and forth between the two windows.
 
 ## Checking your setup
-### 
+###
 
 Again, you should have completed the "Getting Started" tutorial from the [**tutorial.helpers**](https://ppbds.github.io/tutorial.helpers/) package. If not, this section will go poorly for you.
+
+<!-- AR: is this exercise necessary? -->
 
 ### Exercise 1
 
@@ -82,41 +88,18 @@ question_text(NULL,
 ###
 
 ```
-dkane@MacBookPro vscode.tutorials % echo $0
-/bin/zsh
-dkane@MacBookPro vscode.tutorials % 
+@ppbds-student ➜ /workspaces/getting-started (main) $ echo $0
+/bin/bash
+@ppbds-student ➜ /workspaces/getting-started (main) $
 ```
 
-You answer should indicate some sort of UNIX-alike shell. In Windows, you should get something like `/bin/bash`. If not, investigate further, especially if it seems like you are using Powershell.
+Your answer should indicate some sort of Unix-like shell. In Windows, you should get something like `/bin/bash`. If not, investigate further, especially if it seems like you are using PowerShell.
 
 ### Exercise 2
 
-In the Terminal, run `git --version`. CP/CR.
-
-```{r checking-your-setup-2}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-```
-dkane@MacBookPro vscode.tutorials % git --version
-git version 2.39.3 (Apple Git-146)
-dkane@MacBookPro vscode.tutorials % 
-```
-
-If Git is not installed, figure out how to install it and then restart this tutorial.
-
-### Exercise 3
-
 At the R Terminal, type `show_file()`. CP/CR.
 
-```{r checking-your-setup-3}
+```{r checking-your-setup-2}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -137,17 +120,17 @@ Error in `show_file()`:
 
 Going forward, we won't bother with boilerplate like "Your answer should look like this." Instead, you can assume that any quote directly after a question is our answer to the question.
 
-In this case, the error is that we have not yet loaded the **tutorial.helpers** package, which is where `show_file()` is located.  If we had specified the package as part of the function call, as with `tutorial.helpers::show_file()`, R would have found the function.
+In this case, the error occurs because we have not yet loaded the **tutorial.helpers** package, which is where `show_file()` is located. If we had specified the package as part of the function call, as with `tutorial.helpers::show_file()`, R would have found the function.
 
-### Exercise 4
+### Exercise 3
 
 Load the **tutorial.helpers** package into your R Terminal using the `library()` function.
 
-Run `search()` in the R Terminal to see the libraries that you've currently loaded. 
+Run `search()` in the R Terminal to see the libraries that you have currently loaded.
 
-CP/CR. 
+CP/CR.
 
-```{r checking-your-setup-4}
+```{r checking-your-setup-3}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -156,20 +139,20 @@ question_text(NULL,
 	rows = 5)
 ```
 
-### 
+###
 
 ````
-> library(tutorial.helpers)
-> search()
- [1] ".GlobalEnv"               "package:tutorial.helpers" "tools:rstudio"           
- [4] "tools:positron"           "package:stats"            "package:graphics"        
- [7] "package:grDevices"        "package:utils"            "package:datasets"        
-[10] "package:methods"          "Autoloads"                "package:base"            
+R 4.5.3> library(tutorial.helpers)
+R 4.5.3> search()
+ [1] ".GlobalEnv"               "package:tutorial.helpers" "tools:vscode"             "package:stats"            "package:graphics"
+ [6] "package:grDevices"        "package:utils"            "package:datasets"         "package:methods"          "Autoloads"
+[11] "package:base"
+R 4.5.3>
 ````
 
 The string "package:tutorial.helpers" should be in the output. Don't worry if your answer does not match our answer exactly, either in this question or in any other question.
 
-### Exercise 5
+### Exercise 4
 
 At the R Terminal, run:
 
@@ -177,7 +160,7 @@ At the R Terminal, run:
 show_file(file.path(R.home(), "COPYING"), end = 7)
 ````
 
-```{r checking-your-setup-5}
+```{r checking-your-setup-4}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -189,29 +172,65 @@ question_text(NULL,
 ###
 
 ````
-> show_file(file.path(R.home(), "COPYING"), end = 7)
-		    GNU GENERAL PUBLIC LICENSE
-		       Version 2, June 1991
+R 4.5.3> show_file(file.path(R.home(), "COPYING"), end = 7)
+                    GNU GENERAL PUBLIC LICENSE
+                       Version 2, June 1991
 
  Copyright (C) 1989, 1991 Free Software Foundation, Inc.
                        51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  Everyone is permitted to copy and distribute verbatim copies
  of this license document, but changing it is not allowed.
+R 4.5.3>
 ````
 
 ###
 
 This command would have failed if we had not loaded the **tutorial.helpers** package already.
 
-### Exercise 6
+### Exercise 5
 
-Restart R within the current R Terminal --- not the R Terminal which is running this tutorial --- by pressing the "Start R Terminal" button, the curling arrow in the R Terminal menu:
+<!--AR: check terminology below! -->
+<!-- AR: to restart in the same R Terminal, can begin with a bash shell, use the R command and then q() to quit (entering n to not save the workspace). Then restart R using the R command. May be cleaner because there's no clicking involved. -->
 
-```{r}
-include_graphics("images/restart-console.png")
+To restart R, close the current R Terminal by pressing the trash icon in the menu sidebar. Then, open a new R Terminal.
+
+```{r, out.width = "300px", out.height = "350px"}
+include_graphics("images/cs-delete-r-terminal.png")
 ```
 
 CP/CR the top of the restarted R Terminal.
+
+```{r checking-your-setup-5}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+````
+# arf console v0.3.1
+# Edit mode: emacs
+# R 4.5.3 is ready.
+# Type :cmds for meta commands list, Ctrl+D to exit.
+R 4.5.3>
+````
+
+As always, it is not important that your answer looks *exactly* like our answer.
+
+### Exercise 6
+
+Let's run this command again:
+
+````
+show_file(file.path(R.home(), "COPYING"), end = 7)
+````
+
+CP/CR.
+
 
 ```{r checking-your-setup-6}
 question_text(NULL,
@@ -225,23 +244,17 @@ question_text(NULL,
 ###
 
 ````
-R 4.5.1 exited (preparing for restart)
-R 4.5.1 restarted.
->
+R 4.5.3> show_file(file.path(R.home(), "COPYING"), end = 7)
+Error in show_file(file.path(R.home(), "COPYING"), end = 7) :
+  could not find function "show_file"
+✗ R 4.5.3>
 ````
 
-As always, it is not important that your answer looks *exactly* like our answer.
+It failed, even though it had just worked before. The reason is that, whenever you restart R, you get a "clean slate," with nothing but the default packages loaded.
 
 ### Exercise 7
 
-Let's run this command again:
-
-````
-show_file(file.path(R.home(), "COPYING"), end = 7)
-````
-
-CP/CR.
-
+In the R Terminal, run `library(tutorial.helpers)` again. CP/CR.
 
 ```{r checking-your-setup-7}
 question_text(NULL,
@@ -255,43 +268,19 @@ question_text(NULL,
 ###
 
 ````
-> show_file(file.path(R.home(), "COPYING"), end = 7)
-Error in `show_file()`:
-! could not find function "show_file"
-````
-
-It failed, even though it had just worked before. The reason is that, whenever you restart R, you get a "clean slate," with nothing but the default packages loaded.
-
-### Exercise 8
-
-In the R Terminal, run `library(tutorial.helpers)` again. CP/CR.
-
-```{r checking-your-setup-8}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-````
-> library(tutorial.helpers)
+R 4.5.3> library(tutorial.helpers)
+R 4.5.3>
 ````
 
 Loading some packages prints a bunch of messages to the R Terminal. But most packages, like **tutorial.helpers**, print nothing.
 
-### Exercise 9
+### Exercise 8
 
 Load the **tidyverse** package into your R Terminal using the `library()` function.
 
-If this fails, the most likely cause is that you failed to installed the **tidyverse** package. Run `install.packages('tidyverse')` in the R Terminal to fix this and then try `library(tidyverse)` again.
-
 CP/CR.
 
-```{r checking-your-setup-9}
+```{r checking-your-setup-8}
 question_text(NULL,
     answer(NULL, correct = TRUE),
     allow_retry = TRUE,
@@ -300,61 +289,39 @@ question_text(NULL,
     rows = 12)
 ```
 
-### 
+###
 
 ````
-> library(tidyverse)
-── Attaching core tidyverse packages ───── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.2     ✔ tibble    3.2.1
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.0.4     
-── Conflicts ─────────────────────── tidyverse_conflicts() ──
+R 4.5.3> library(tidyverse)
+── Attaching core tidyverse packages ───────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.0     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.2     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.1
+── Conflicts ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package to force all conflicts to become errors
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+R 4.5.3>
 ````
 
 The **tidyverse** package is warning us about various conflicts. Don't worry about those conflicts for now.
 
-### Exercise 10
-
-Look at the upper right of the Positron window. You should see the version of R you are running. 
-
-Type `R.version$version.string` into the R Terminal and hit `Enter`. CP/CR.
-
-```{r checking-your-setup-10}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 3)
-```
-
-### 
-
-````
-> R.version$version.string
-[1] "R version 4.5.1 (2025-06-13)"
-````
-
-This should be the same as the version you see at the top left of the R Terminal screen and at the top right on the Positron window. Make sure it is the [most recently released](https://cran.r-project.org/) version of R.
-
-
 ## Projects
-### 
+###
 
-Good data scientists keep their work organized. You should place your work in different projects, which are simply folders (that is, directories) on your computer. Each separate project is a folder within your main folder for your data science work, i.e.,  `/Users/dkane/Desktop/projects/`.  
+<!-- AR: Ignoring this section for now - replace with discussion of using Github repos to organize data science projects? Or just delete? -->
+
+Good data scientists keep their work organized. You should place your work in different projects, which are simply folders (that is, directories) on your computer. Each separate project is a folder within your main folder for your data science work, such as `/Users/dkane/Desktop/projects/`.
 
 ### Exercise 1
 
 **Read all the instructions before starting the steps.**
 
-From the `File` menu, select `New Folder From Template ...`. 
+From the `File` menu, select `New Folder From Template ...`.
 
-From the "Folder Template" screen, select "R Project." Click "Next." Doing so brings up the "Create New Project" screen:
+From the "Folder Template" screen, select "R Project." Click "Next." This brings up the "Create New Project" screen:
 
 ```{r}
 include_graphics("images/set-project-1.png")
@@ -368,7 +335,7 @@ include_graphics("images/set-project-2.png")
 
 Click "Next."
 
-The "Set up project configuration" screen should appear. Accept the default option, which should be the version of R which you installed. Click "Create." Then:
+The "Set up project configuration" screen should appear. Accept the default option, which should be the version of R that you installed. Click "Create." Then:
 
 ```{r}
 include_graphics("images/set-project-3.png")
@@ -376,9 +343,9 @@ include_graphics("images/set-project-3.png")
 
 <!-- DK: Update image. -->
 
-**Choose "Current Window."** You only need two Positron windows to work on tutorials. The first one --- this one --- runs the tutorial. The second one is where you do the work. 
+**Choose "Current Window."** You only need two Positron windows to work on tutorials. The first one --- this one --- runs the tutorial. The second one is where you do the work.
 
-The current window (i.e., not the one which runs the tutorial) should look like this:
+The current window (that is, not the one running the tutorial) should look like this:
 
 ```{r}
 include_graphics("images/set-project-4.png")
@@ -386,9 +353,9 @@ include_graphics("images/set-project-4.png")
 
 You are in the `analysis-1` project, as you can see in four ways, indicated by the red arrows.
 
-### 
+###
 
-Run `getwd()` in the R Terminal in the window  which is running the `analysis-1` project.
+Run `getwd()` in the R Terminal in the window that is running the `analysis-1` project.
 
 CP/CR.
 
@@ -401,15 +368,15 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
-This path should now be different than our previous path, similar to the path below. Creating/opening a project moves the R session to that directory.
+This path should now be different from our previous path and similar to the path below. Creating or opening a project moves the R session to that directory.
 
 ````
 /Users/dkane/Desktop/projects/analysis-1/
 ````
 
-### 
+###
 
 If your path does not include your `projects` folder, you probably did not fill in the "Parent Directory" box correctly. It should be the path to your `projects` folder, including `projects` itself.
 
@@ -426,9 +393,9 @@ include_graphics("images/set-project-5.png")
 
 There may be a blank, unsaved file named *`Untitled-1`* in the Editor pane. You can tell it is unsaved because its name is *italicized*. By default, the Explorer button in the Activity Bar on the far left has been activated, showing us that the `analysis-1` directory has no files in it yet.
 
-### 
+###
 
-Run `list.files()`. 
+Run `list.files()`.
 
 CP/CR.
 
@@ -441,27 +408,44 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
-`list.files()` returns files contained in your current project. There are none so far.
+`list.files()` returns the files contained in your current project. There are none so far.
 
-Keeping all the files associated with a given project --- input data, R scripts, analytic results, and figures --- together in one directory is very wise.
+Keeping all the files associated with a given project --- input data, R scripts, analytic results, and figures --- together in one directory is a good practice.
 
 Everything you need is in one place and cleanly separated from all the other projects that you are working on.
 
 ## Script 1
-### 
+###
 
-So far, we have only worked in the R Terminal, but it's quite difficult to type more than a few lines of code into the R Terminal at once. One solution is to use [R scripts](https://r4ds.hadley.nz/workflow-scripts.html#scripts), files which contain a permanent copy of our code.
+So far, we have only worked in the R Terminal, but it is difficult to type more than a few lines of code into the R Terminal at once. One solution is to use [R scripts](https://r4ds.hadley.nz/workflow-scripts.html#scripts), files that contain a permanent copy of our code.
 
 ### Exercise 1
 
-The file `Untitled-1` should already be in your Editor window. If it is not, you can create a new file by clicking the `File -> New File ...`, leading to a drop down menu from which you select `R File`.
+Create a new file by clicking the Activity Bar icon with three horizontal bars in the top left of the VS Code window. This opens the Application Menu. Then, select `File -> New File ...`
 
-### 
+```{r}
+knitr::include_graphics("images/cs-create-new-file.png")
+```
 
-Type `5 + 5` into your R script file. Save the file. Name it `script-1.R`. (Note that R will provide the `.R` suffix, so you only need to type `script-1`.) 
+This opens a drop-down menu from which you select `R File`.
 
+```{r}
+knitr::include_graphics("images/cs-select-new-r-file.png")
+```
+
+In Visual Studio Code running in Codespaces, the Application Menu is a dropdown with options like `File`, `Edit`, and `View`. Unlike a regular app installed on your computer, which has a built-in menu bar, Codespaces puts these options in a dropdown because it runs in a web browser.
+
+###
+
+<!-- AR: Add note about saving to the getting-started directory, and not .devcontainer? -->
+
+Type `5 + 5` into your R script file. Save the file. Name it `script-1.R`. (R will provide the `.R` suffix, so you only need to type `script-1`.)
+
+```{r}
+knitr::include_graphics("images/cs-save-script-1.png")
+```
 In the R Terminal, run:
 
 ````
@@ -479,7 +463,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 You might have gotten this warning:
 
@@ -494,13 +478,13 @@ R scripts are permanent copies of your code. You can save them and also work wit
 
 ### Exercise 2
 
-Note the "Source" button, which is in the top right corner of the Editor. 
+Note the "Source" button, which is in the top right corner of the Editor.
 
 ```{r}
-include_graphics("images/source-button.png")
+include_graphics("images/cs-source-button.png")
 ```
 
-If you hover your cursor over it, you will see "Source R File." Press the Source button. (We will sometimes shorten the instruction "press the source button" to just "source" the script.)
+If you hover your cursor over it, you will see "Run Source." Press the Source button. (We will sometimes shorten the instruction "press the Source button" to just "source" the script.)
 
 Note what happens in the R Terminal. CP/CR.
 
@@ -514,58 +498,57 @@ question_text(NULL,
     rows = 2)
 ```
 
-### 
+###
 
-You answer should look like this:
+Your answer should look like this:
 
 ````
-> source("/Users/dkane/Desktop/projects/analysis-1/script-1.R")
+R 4.5.3> source("/workspaces/getting-started/script-1.r", encoding = "UTF-8")
 ````
 
-### 
+###
 
-Whenever you run an R script file by hitting the "Source" button, Positron will send all the code in the file to the R Terminal. 
+Whenever you run an R script file by pressing the "Source" button, VS Code will send all the code in the file to the R Terminal.
+
 
 ### Exercise 3
 
-Right next to the Source button is a small downward pointing arrow. Clicking on it produces three options, the top (default) of which is the simple "Source R File" which you ran in the last question.
+<!-- DK: Is this true? -->
 
-```{r}
-include_graphics("images/source-options.png")
-```
+There are often keyboard shortcuts that perform the same task as clicking a button. Placing your cursor inside the R script window and using the keyboard shortcut `(Cmd/Ctrl) + Shift + (Return/Enter)` sources the file, as above, and adds the option `echo = TRUE`.
 
-Select the second option: "Source R File with Echo." CP/CR.
+Note that `Return` is the name of a Mac key and `Enter` is the name of the corresponding Windows key, just like `Cmd` ("Command") is a Mac key and `Ctrl` ("Control") is the equivalent Windows key. In other words, on the Mac, we press `Cmd + Shift + Return`, while on Windows we press `Ctrl + Shift + Enter`. However, typing `Return/Enter` when writing these tutorials is annoying, so, going forward, we will just use `Enter`. Mac users are expected to remember that this means the `Return` key.
+
+Try it now. CP/CR.
 
 ```{r script-1-3}
 question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 2)
 ```
 
-### 
+###
 
 ```
-> source("/Users/dkane/Desktop/projects/analysis-1/script-1.R", echo = TRUE)
+R 4.5.3> source("/workspaces/getting-started/script-1.r", encoding = "UTF-8", echo = TRUE)
 
 > 5 + 5
 [1] 10
->
+R 4.5.3>
 ```
 
-The file is sourced, as before. But, this time, each line in the file is "echoed," meaning we see both the code, `5 + 5` in this case, and the return value, if any, which is `10`.
+The file is sourced, as before. This time, each line in the file is "echoed," meaning we see both the code, `5 + 5` in this case, and the return value, if any, which is `10`.
+
+Using shortcut keys is quicker and more professional than clicking buttons.
 
 ### Exercise 4
 
-<!-- DK: Is this true? -->
+In your R script, type `6 * 3` in the line after `5 + 5`. Save the file with `Cmd/Ctrl + S`.
 
-There are often "shortcut key" combinations which perform the same task as clicking a button. Placing your cursor inside the R script window and using the keyboard shortcut `(Cmd/Ctrl) + Shift + (Return/Enter)` is the same as hitting the "Source R File with Echo" option. 
-
-Note that `Return` is the name of a Mac key and `Enter` the name of the corresponding Windows key, just like `Cmd` ("Command") is a Mac key and `Ctrl` ("Control") is the equivalent Windows key. In other words, on the Mac, we hit `Cmd + Shift + Return` while on Windows it is `Ctrl + Shift + Enter`. However, typing `Return/Enter` when writing these tutorials is annoying, so, going forward, we will just use `Enter`. Mac users are expected to remember that this means the `Return` key.
-
-Try it now. CP/CR.
+Source this file with echo. CP/CR.
 
 ```{r script-1-4}
 question_text(NULL,
@@ -576,51 +559,31 @@ question_text(NULL,
     rows = 2)
 ```
 
-### 
-
-Using shortcut keys is quicker and more professional than clicking buttons. 
-
-### Exercise 5
-
-In your R script, type `6 * 3` in the line after `5 + 5`. Save the file with `Cmd/Ctrl + S`. 
-
-Source this file with echo. CP/CR.
-
-```{r script-1-5}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 2)
-```
-
-### 
+###
 
 The answer is what you might expect:
 
 ````
-> source("/Users/dkane/Desktop/projects/analysis-1/script-1.R", echo = TRUE)
+R 4.5.3> source("/workspaces/getting-started/script-1.r", encoding = "UTF-8", echo = TRUE)
 
 > 5 + 5
 [1] 10
 
 > 6 * 3
 [1] 18
->
 ````
 
-### 
+###
 
 Each line is *echoed*. Each line is *executed*.  The results of each line, if there are any, are printed.
 
 The output you see is the same as what would happen if you copied each line to the R Terminal and hit `Enter` after each one.
 
-### Exercise 6
+### Exercise 5
 
-Instead of sourcing the entire file, we can just execute (or "run") a single line. In `script-1.R`, place your cursor on the same line as `6 * 3` and click the "Run Selection in R Terminal" option, the third choice in the Source button. CP/CR.
+Instead of sourcing the entire file, we can execute (or "run") a single line. In `script-1.R`, place your cursor on the same line as `6 * 3` and press `Cmd/Ctrl + Enter`. CP/CR.
 
-```{r script-1-6}
+```{r script-1-5}
 question_text(NULL,
     answer(NULL, correct = TRUE),
     allow_retry = TRUE,
@@ -634,20 +597,20 @@ question_text(NULL,
 You should get:
 
 ````
-> 6 * 3
+R 4.5.3> 6 * 3
 [1] 18
->
+R 4.5.3>
 ````
 
-### 
+###
 
-Instead of both lines in the script executing, only the second line does. And the process by which this happens has nothing to do with the entire script. **Run is not the same thing as Source.** With Run, you are just copy/pasting some of the lines from the script to the R Terminal at a time. With Source, you're copy/pasting *all* lines from the script. 
+Instead of both lines in the script executing, only the second line does. This process has nothing to do with the entire script. **Run is not the same thing as Source.** With Run, you are just copying and pasting some of the lines from the script to the R Terminal at a time. With Source, you are copying and pasting *all* lines from the script.
 
-### Exercise 7
+### Exercise 6
 
-The simplest shortcut key for running a single line of code is `Cmd/Ctrl + Enter`. However, we recommend using `Cmd/Ctrl + Enter` because it handles both single line and multi-line commands. In your R script, place your cursor on the same line as `5 + 5` and hit `Cmd/Ctrl + Enter`. CP/CR.
+`Cmd/Ctrl + Enter` handles both single-line and multi-line commands. In your R script, highlight both lines and press `Cmd/Ctrl + Enter`. CP/CR.
 
-```{r script-1-7}
+```{r script-1-6}
 question_text(NULL,
     answer(NULL, correct = TRUE),
     allow_retry = TRUE,
@@ -656,23 +619,23 @@ question_text(NULL,
     rows = 2)
 ```
 
-### 
+###
 
 ````
-> 5 + 5
+R 4.5.3> 5 + 5
++  6 * 3
 [1] 10
->
+[1] 18
+R 4.5.3>
 ````
 
-Only the first line of the script is executed. `Cmd/Ctrl + Enter` is probably the single most commonly used shortcut key because it is very handy to execute your code line-by-line.
+`Cmd/Ctrl + Enter` is "smart" in two ways. First, if you highlight more than one line of code, it will execute all the code in that area. Second, even if nothing is highlighted, if the line with the cursor is part of a block of code that extends over multiple lines --- like creating a plot --- it will execute all the code in that block.
 
-`Cmd/Ctrl + Enter` is "smart" in two ways. First, if you highlight more than one line of code, and then place your cursor within the highlighted area, it will execute all the code in that area. Second, even if nothing is highlighted,  if the line with the cursor is part of a block of code which extends over multiple lines --- like creating a plot --- it will execute all the code in that block.
-
-### Exercise 8
+### Exercise 7
 
 Go back to the first line in your R script. Change `5 + 5` to `x <- 5 + 5`, thereby creating an object named `x` with a value of 10. Save the file. Click the "Source R File with Echo" option. CP/CR.
 
-```{r script-1-8}
+```{r script-1-7}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -683,7 +646,7 @@ question_text(NULL,
 
 ###
 
-Your answer should look like:
+Your answer should look like this:
 
 ````
 > source("~/Desktop/projects/analysis-1/script-1.R", echo=TRUE)
@@ -692,20 +655,20 @@ Your answer should look like:
 
 > 6 * 3
 [1] 18
-> 
+>
 ````
 
-### 
+###
 
 Note how the `x <- 5 + 5` is executed (and echoed) but nothing is printed. The assignment operator, `<-`, does not generate a return value.
 
 <!-- Being a little sloppy in using the (correct?) term "return value" here but not above. -->
 
-### Exercise 9
+### Exercise 8
 
 In the R Terminal tab, run `ls()`. CP/CR.
 
-```{r script-1-9}
+```{r script-1-8}
 question_text(NULL,
     answer(NULL, correct = TRUE),
     allow_retry = TRUE,
@@ -714,23 +677,23 @@ question_text(NULL,
     rows = 2)
 ```
 
-### 
+###
 
 ````
-> ls()
-[1] "x"
->
+R 4.5.3> ls()
+[1] "env"  "prev" "x"
+R 4.5.3>
 ````
 
 ###
 
-`ls()` returns a list of objects present in your environment. These are the same objects displayed under Variables in your Session tab in the Secondary Side Bar in Positron (on the right side). 
+`ls()` returns a list of objects present in your environment. These are the same objects displayed in the Environment pane.
 
-```{r}
-include_graphics("images/source-x.png")
+```{r, out.width = "300px", out.height="400px"}
+include_graphics("images/cs-r-env.png")
 ```
 
-In this case, the object `x`, which has a value of 10, exists in your workspace. As you can confirm by typing `x` at the R Terminal and hitting `Enter`.
+In this case, the object `x`, which has a value of 10, exists in your workspace. You can confirm this by typing `x` at the R Terminal and hitting `Enter`.
 
 ````
 > x
@@ -739,7 +702,7 @@ In this case, the object `x`, which has a value of 10, exists in your workspace.
 ````
 
 ## Script 2
-### 
+###
 
 Let's create a plot like this one:
 
@@ -760,11 +723,11 @@ hist_p
 
 ### Exercise 1
 
-Click `File -> New File ... -> R File`. At the top of the Editor, the file should be called *`Untitled-1`* (or something similar). 
+Click `File -> New File ... -> R File`. At the top of the Editor, the file should be called *`Untitled-1`* (or something similar).
 
-### 
+###
 
-Click the "Save current document" icon -- the disk image to the right of the Open dropdown menu. Or use the shortcut `Cmd/Ctrl + S` to save the script. Let's call this file `script-2.R`. The `.R` suffix is not always added automatically. Make sure it is there.
+Use the shortcut `Cmd/Ctrl + S` to save the script. Let's call this file `script-2.R`. The `.R` suffix is not always added automatically. Make sure it is there.
 
 In the R Terminal, run `list.files()`. CP/CR.
 
@@ -777,20 +740,19 @@ question_text(NULL,
     rows = 2)
 ```
 
-### 
+###
 
 ````
 > list.files()
 [1] "script-1.R" "script-2.R"
 ````
 
-Save your scripts (with informative names) in the project, edit them, run them line-by-line or in their entirety. Restart R frequently to make sure you’ve captured everything in your scripts.
+Save your scripts, with informative names, in the folder. Edit them and run them line by line or in their entirety. Restart R frequently to make sure you have captured everything in your scripts.
 
-Scripts and projects give you a solid workflow that will serve you well in the future. Always remember to create one project for each data analysis project. That project may contain multiple script files, along with other material.
 
 ### Exercise 2
 
-Restart your R session with `Cmd/Ctrl + Shift + 0`. 
+Restart your R session by deleting your current R Terminal and opening a new one.
 
 From the R Terminal, run `list.files()`. CP/CR.
 
@@ -803,7 +765,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 ```
 R 4.5.0 exited (preparing for restart)
@@ -813,7 +775,7 @@ R 4.5.0 restarted.
 >
 ```
 
-The two files we had from before --- `script-1.R`, and `script-2.R` --- still exist. Our work, if we have saved it, is preserved even when R (or Positron) restarts. 
+The two files we had from before --- `script-1.R` and `script-2.R` --- still exist. Our work, if we have saved it, is preserved even when R or the Codespace restarts.
 
 ### Exercise 3
 
@@ -828,7 +790,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 ````
 > ls()
@@ -836,7 +798,7 @@ character(0)
 >
 ````
 
-`x` is gone! The environment --- the place in the computer where R creates and uses objects --- is cleaned, by default, each time R restarts. This is a good thing! For our work to be "reproducible," we want to be able to start from nothing except our code and raw data.   
+`x` is gone! The environment --- the place in the computer where R creates and uses objects --- is cleaned, by default, each time R restarts. This is a good thing. For our work to be "reproducible," we want to be able to start from nothing except our code and raw data.
 
 ### Exercise 4
 
@@ -846,13 +808,13 @@ At the top of `script-2.R`, type
 library(tidyverse)
 ````
 
-You will see, in the top bar of the Editor, that `script-2.R`, the name of the file, has a black dot next to it. This indicates that there are unsaved changes in the file.
+You will see, in the top bar of the Editor, that the file name `script-2.R` has a black dot next to it. This indicates that there are unsaved changes in the file.
 
-### 
+###
 
-Run the entire file with `Cmd/Ctrl + Enter`. Note how much material --- the "Attaching core tidyverse packages" and so on --- is produced in the R Terminal. 
+Run the entire file with `Cmd/Ctrl + Enter`. Note how much material --- the "Attaching core tidyverse packages" and so on --- is produced in the R Terminal.
 
-### 
+###
 
 Run `search()` in the R Terminal. CP/CR.
 
@@ -865,7 +827,7 @@ question_text(NULL,
     rows = 2)
 ```
 
-### 
+###
 
 This function returns a list of loaded packages. This should include the string `package:tidyverse`.
 
@@ -877,7 +839,7 @@ Skip a line and add the following comment to the file:
 # This is an example of a code comment within an R script.
 ````
 
-Save the file. 
+Save the file.
 
 In the R Terminal, run:
 
@@ -897,29 +859,29 @@ question_text(NULL,
     rows = 2)
 ```
 
-### 
+###
 
 Did you remember to have a blank line at the end of the file? If not, you got a warning. Always have a blank line at the end of any text file.
 
-### 
+###
 
 Comments begin with a hash (also known as a "pound sign"): `#`. R will ignore everything on the line to the right of the hash when running the code.
 
-Comments are an extremely useful tool when writing code. If they're placed well, it becomes much easier to *debug* (find and fix mistakes) if something goes wrong. 
+Comments are an extremely useful tool when writing code. If they are placed well, comments make it much easier to *debug* (find and fix mistakes) when something goes wrong.
 
-There are a few "guidelines" to writing comments, for example:
+There are a few guidelines for writing comments:
 
-  - Comments should be used sparingly. 
-  - Comments are unnecessary and in fact distracting if they state the obvious. 
+  - Comments should be used sparingly.
+  - Comments are unnecessary and in fact distracting if they state the obvious.
   - Comments that contradict the code are worse than no comments. Always make a priority of keeping the comments up-to-date when the code changes!
 
-Typically, when reading code, you should be able to answer 3 questions fairly easily, for every line: 
+Typically, when reading code, you should be able to answer three questions fairly easily for every line:
 
-  - **What** is this code doing, 
+  - **What** is this code doing,
   - **How** is it doing it, and
-  - **Why** is it being done. 
-  
-The **what** and **how** can be deduced from the code itself. The **why**, though, is a bit trickier, and it is highly recommended that you use comments to make it easier to tell **why** something is being done. 
+  - **Why** is it being done.
+
+The **what** and **how** can be deduced from the code itself. The **why**, though, is a bit trickier. Use comments to make it easier to tell **why** something is being done.
 
 ````
 # This is an example of a poor comment:
@@ -935,7 +897,7 @@ x <- x + 1    # Account for borders
 
 ### Exercise 6
 
-Change the code comment in `script-2.R` from "This is an example of a code comment within an R script." to a one sentence description of one of your recent meals. Save the file. 
+Change the code comment in `script-2.R` from "This is an example of a code comment within an R script." to a one-sentence description of one of your recent meals. Save the file.
 
 In the R Terminal, run:
 
@@ -955,7 +917,7 @@ question_text(NULL,
     rows = 2)
 ```
 
-### 
+###
 
 Get in the habit of adding comments.
 
@@ -966,15 +928,15 @@ Figuring out *why* something was done is much more difficult than understanding 
 
 <!-- At this stage, we could just copy/paste in all the code. Or even ask AI for the code? We are no longer in the business of asking students to add one line of code at a time. -->
 
-Skip a line after your comment. Call `ggplot()`, setting `data` to `diamonds` and mapping `x` to `carat` within `aes()`. 
+Skip a line after your comment. Call `ggplot()`, setting `data` to `diamonds` and mapping `x` to `carat` within `aes()`.
 
-Run the entire file again. Note the sloppiness of the word "run" in this instruction. It is not always clear what "run" means. In general, "run" means to "execute" all the code in the file, most commonly by either using `Cmd/Ctrl + Enter` line-by-line or by using `Cmd/Ctrl + Enter` for the whole file at once or by pressing the "Source" button.
+Run the entire file again. Note the sloppiness of the word "run" in this instruction. It is not always clear what "run" means. In general, "run" means to execute all the code in the file, most commonly by using `Cmd/Ctrl + Enter` line by line, using `Cmd/Ctrl + Enter` for the whole file at once, or pressing the "Source" button.
 
-### 
+###
 
-This should generate a blank plot in the Plots tab in bottom of the Secondary Side Bar.
+This should generate a blank plot in the Plots tab at the bottom of the Secondary Side Bar.
 
-### 
+###
 
 In the R Terminal, run:
 
@@ -994,22 +956,22 @@ question_text(NULL,
     rows = 2)
 ```
 
-### 
+###
 
-`ggplot()` will generate a blank plot, at least until a `geom` layer is added. 
+`ggplot()` will generate a blank plot, at least until a `geom` layer is added.
 
 
 ### Exercise 8
 
-Add a layer with `geom_histogram()`. Change the border color in our graph by setting `color` to `"white"` within `geom_histogram`, and change the number of columns in our plot by setting the `bins` argument to `100`. Remember that, to connect the `ggplot()` call to `geom_histogram()`, we need a `+`. 
+Add a layer with `geom_histogram()`. Change the border color in our graph by setting `color` to `"white"` within `geom_histogram()`, and change the number of columns in our plot by setting the `bins` argument to `100`. Remember that, to connect the `ggplot()` call to `geom_histogram()`, we need a `+`.
 
-Run the file. Again, to "run" a script generally means to "execute" it, meaning sending it to the R process. We have learned two ways to (easily) execute an entire file: pressing the "Source" button or hitting the associated shortcut key: `Cmd/Ctrl + Enter`. In interactive work, however, the most common approach is to use `Cmd/Ctrl + Enter` and go through the file line-by-line, while also occasionally restarting R with `Cmd/Ctrl + Shift + 0`.
+Run the file. Again, to "run" a script generally means to execute it, meaning to send it to the R process. We have learned two easy ways to execute an entire file: pressing the "Source" button or hitting the associated shortcut key, `Cmd/Ctrl + Enter`. In interactive work, however, the most common approach is to use `Cmd/Ctrl + Enter` and go through the file line by line, while also occasionally restarting R with `Cmd/Ctrl + Shift + 0`.
 
-### 
+###
 
 This should generate bars on your plot. Did you remember to place a `+` after the `ggplot()` call and before the `geom_histogram()` layer?
 
-### 
+###
 
 In the R Terminal, run:
 
@@ -1029,19 +991,19 @@ question_text(NULL,
     rows = 5)
 ```
 
-### 
+###
 
 The `color` argument used here modifies the *border* color of our columns. To change the *fill* color, use the `fill` argument.
 
 ### Exercise 9
 
-It would be nice if the numbers on the Y-axis were formatted better, i.e., with commas. The easiest way to do that is to add this line to the script.
+It would be nice if the numbers on the y-axis were formatted better, for example with commas. The easiest way to do that is to add this line to the script.
 
 ````
 scale_y_continuous(labels = scales::comma_format())
 ````
 
-Do so. Run the file. Note that you don't need to save the file first. If you execute a file using either the "Source" button or `Ctrl + Shift + Enter`, Positron will save the file automatically.
+Do so. Run the file. You do not need to save the file first. If you execute a file using either the "Source" button or `Ctrl + Shift + Enter`, VS Code will save the file automatically.
 
 Don't forget that you will need a `+` after the call to `geom_histogram()`.
 
@@ -1062,26 +1024,26 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
-Note how the histogram in the Positron Plot window has not been updated. When you run and entire file with the "Source" button or `Cmd/Ctrl + Enter" 
+If the histogram in the plot window has not been updated, make sure the completed `ggplot()` call is the last expression executed.
 
-We use `scale_y_continuous()` (and `scale_x_continuous()`) to modify the labels and the breaks in numeric axes. The **scales** package provides a variety of useful formatting tools, including `comma_format()`, `dollar_format()` and others.
+We use `scale_y_continuous()` (and `scale_x_continuous()`) to modify the labels and breaks in numeric axes. The **scales** package provides a variety of useful formatting tools, including `comma_format()`, `dollar_format()`, and others.
 
 
 ### Exercise 10
 
 Now let's make our graph look a little nicer by adding a `labs()` layer with an appropriate title, subtitle, and axis labels.
 
-Reminder, this is what our graph should look like
+As a reminder, this is what our graph should look like:
 
 ```{r}
 hist_p
 ```
 
-Run your R script to see your completed plot. Again, note the wording here! In casual language, we use the word "run" to generically mean "Tell the computer to execute the commands in this file." We don't necessarily care how that is achieved.
+Run your R script to see your completed plot. Again, note the wording here! In casual language, we use the word "run" to mean "Tell the computer to execute the commands in this file." We do not necessarily care how that is achieved.
 
-### 
+###
 
 In the R Terminal, run:
 
@@ -1100,20 +1062,20 @@ question_text(NULL,
     rows = 8)
 ```
 
-### 
+###
 
-Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread. Even as a very new programmer, it’s a good idea to work on your code style. Using a consistent style makes it easier for others (including future-you!) to read your work and is particularly important if you need to get help from someone else. 
+Good coding style is like correct punctuation: you can manage without it, but it sure makes things easier to read. Even as a very new programmer, it is a good idea to work on your code style. Using a consistent style makes it easier for others, including future-you, to read your work. It is particularly important if you need to get help from someone else.
 
 Note the nice formatting. After the `ggplot()` call, the next two commands --- `geom_histogram()` and `labs()` --- are both indented the same amount. Similarly, arguments to a given function --- like `bins` and `color` --- are lined up with each other.
 
 
 ### Exercise 11
 
-Now we have the code which creates a plot in `script-2.R`. How do we use this plot for other things? Right now we have to run `script-2.R` every time we want to see the plot, which is a little inconvenient.
+Now we have the code that creates a plot in `script-2.R`. How do we use this plot for other things? Right now, we have to run `script-2.R` every time we want to see the plot, which is a little inconvenient.
 
-### 
+###
 
-We can use the `ggsave()` function. Type `?ggsave` in the R Terminal. This will open the help page for `ggsave()`. Copy and paste the Description from the help page into the space below.
+We can use the `ggsave()` function. Type `?ggsave` in the R Terminal. This will open the help page for `ggsave()`. Copy and paste the description from the help page into the space below.
 
 ```{r script-2-11}
 question_text(NULL,
@@ -1124,13 +1086,13 @@ question_text(NULL,
     rows = 5)
 ```
 
-`ggsave()` is used to save a plot as an individual file which is separate from the code which created the plot. In this case we will be using the "png" format.
+`ggsave()` is used to save a plot as an individual file that is separate from the code that created the plot. In this case, we will use the PNG format.
 
 ### Exercise 12
 
-We want to save our entire graph to an object, which can be done by setting our plot equal to a variable. Call this variable `hist_p`.
+We want to save our entire graph to an object, which can be done by assigning our plot to a variable. Call this variable `hist_p`.
 
-Now using the `ggsave()` function we can create a PNG of our plot from our code. In `ggsave()`, set `plot` to `hist_p` and `file` to `"diamonds.png"`.
+Now, using the `ggsave()` function, we can create a PNG of our plot from our code. In `ggsave()`, set `plot` to `hist_p` and `file` to `"diamonds.png"`.
 
 Your entire file should look like:
 
@@ -1142,7 +1104,7 @@ hist_p <- ggplot(data = diamonds,
                  mapping = aes(x = carat)) +
   geom_histogram(bins = 100,
                  color = "white") +
-  scale_y_continuous(labels = scales::comma_format()) +                
+  scale_y_continuous(labels = scales::comma_format()) +
   labs(title = "Histogram of Carat (Weight) among 50,000 Diamonds",
        subtitle = "Carats just at or above meaningful numbers are very common",
        x = "Carat",
@@ -1173,10 +1135,10 @@ Your answer should look something like:
 > library(tidyverse)
 
 > # Had an OK filet mignon at Cheesecake Factory.
-> 
+>
 > hist_p <- ggplot(data = diamonds,
 +                  mapping = aes(x = carat)) +
-+   geom_histo .... [TRUNCATED] 
++   geom_histo .... [TRUNCATED]
 
 > ggsave(plot = hist_p, file = "diamonds.png")
 Saving 3.33 x 3.33 in image
@@ -1199,83 +1161,35 @@ question_text(NULL,
     rows = 2)
 ```
 
-### 
+###
 
 ````
 > list.files()
-[1] "diamonds.png" "script-1.R"   "script-2.R"  
+[1] "diamonds.png" "script-1.R"   "script-2.R"
 >
 ````
 
 ###
 
-You should see the `diamonds.png` file which contains your plot. Click on the Explorer button on the Activity Bar on the left in order to see all the files in the `analysis-1` directory. Click on the `diamonds.png` file to open your plot in the Editor.
+You should see the `diamonds.png` file, which contains your plot. Click the Explorer button on the Activity Bar on the left to see all the files in the `analysis-1` directory. Click the `diamonds.png` file to open your plot in the Editor.
 
 If the title text flows out of the image, you might want to modify the `scale` argument in `ggsave()` to find a better image size. `scale` is set to 1 by default.
 
 ## Script 3
-### 
+###
 
-Let's create a new project, `analysis-2`, and another script, `script-3`, within it.
+<!-- AR: Should students create a new git repo? Or just do script 3 in the same place? -->
 
 ### Exercise 1
 
-Type `getwd()` into the R Terminal. CP/CR. 
+Create a script that we will use to make our plot.
+
+In the Application Menu at the top left of the screen, select `File -> New File ...`, then select `R File` from the drop-down. Type `5 + 5` and a newline into the file, then press `Cmd/Ctrl + S` to save it. Save it as `script-3.r`.
+
+In the console, run `list.files()`. CP/CR.
 
 ```{r script-3-1}
 question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 5)
-```
-
-### 
-
-```
-"/Users/dkane/Desktop/projects/analysis-1"
-```
-
-Note that "project" has multiple meanings. First, "project" is a generic term for an a project which contains our code/data, generally with a sensible name. Second, `analysis-1` --- note the use of typewriter font --- is the name of a specific project. Third, `analysis-1` --- the same string in the same font --- can refer to the directory in which the project is located. 
-
-For the most part, the names of projects and the directories in which they reside are used interchangeably.
-
-### Exercise 2
-
-From the Positron menu, select `File -> New Folder From Template ...`. (Again, all of this occurs in the Positron window in which you are **not** running this tutorial.) Select  "R Project" and click "Next." 
-
-Use `analysis-2` for the "Project Name." Ensure that "Parent Directory" is set to the location of your `projects` directory. Click "Next" and then "Create." (You might need to select the R version, although it would be best to only have one version installed.)
-
-Choose "Current Window". This will close the `analysis-1` project, which is fine because we are done with it.
-
-### 
-
-One the Positron window has closed and re-opened, you should be in the brand new `analysis-2` project. Type `getwd()` into the R Terminal. CP/CR.
-
-```{r script-3-2}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 5)
-```
-
-### 
-
-```
-"/Users/dkane/Desktop/projects/analysis-2"
-```
-
-It is convenient to leave the other Positron window, the one in which you are doing the tutorial, untouched so that you won't need to restart the tutorial.
-
-### Exercise 3
-
-Type `list.files(path = "..")` into the R Terminal. CP/CR. 
-
-```{r script-3-3}
-question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
 	try_again_button = "Edit Answer",
@@ -1283,62 +1197,39 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
-
-By `path = ".."` tells `list.files()` to look in the directory which is one above the current working directory, which should be your `projects` directory and which should contain, at least, the `analysis-1` and `analysis-2` directories.
-
-### Exercise 4
-
-Create a script which we will use to make our plot.
-
-In the Positron menu bar on the top of the screen, select `File -> New File ... -> R File`. Type `5 + 5` and a newline into the file and hit `Cmd/Ctrl + S` to save it. Save it as `script-3.R`. 
-
-In the console, run `list.files()`. CP/CR. 
-
-```{r script-3-4}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
+###
 
 ````
 > list.files()
-[1] "script-3.R"
+[1] "script-1.r", "script-2.r", "script-3.r"
 >
 ````
 
-Instead of creating a new file, you could have just saved the *`Untitled-1`* file which was probably in the Editor when the Positron window reappeared after you created `analysis-2`. Regardless, this file probably disappeared when you make the new file explicitly. Positron is just trying to help you by placing a file in the Editor for you to use at the start, if you so choose. It then helps you by making that file disappear once you have created a new file of your own.
+### Exercise 2
 
-### Exercise 5
+Go back to editing `script-3.r`. Remove `5 + 5`. Ask your favorite AI to make a nice-looking plot using data from one of the packages in the **tidyverse** package.
 
-Go back to editing `script-3.R`. Remove `5 + 5`.  Ask your favorite AI to make a nice looking plot using data from one of the packages in the **tidyverse** package.
+Paste the code from the AI into `script-3.r`. Run the script interactively, line by line, using `Cmd/Ctrl + Enter`. If there are problems, ask the AI for help. It will probably take several iterations to get something you like.
 
-Paste the code from the AI into `script-3.R`. Run the script interactively, line-by-line, using `Cmd/Ctrl + Enter`. If there are problems, ask the AI for help. It will probably take several iterations to get something you like.
+Advice, which you should feel free to give to the AI:
 
-Advice -- and you should feel free to tell this to the AI:
-
-* Begin the script with `library(tidyverse)` at the top. 
+* Begin the script with `library(tidyverse)` at the top.
 
 * The `title` should mention the key variables. Those are, after all, the subjects of the plot.
 
-* The `subtitle` should provide the key takeaway, the one sentence which you want viewers to come away understanding.
+* The `subtitle` should provide the key takeaway, the one sentence that you want viewers to remember.
 
 * The `caption` should mention the data source.
 
-* In empty line at the end of the file. 
+* Include an empty line at the end of the file.
 
 When you have something that looks nice, save it in `script-3.R`.
 
 ###
 
-Back in the R Terminal, run `tutorial.helpers::show_file('script-3.r')`. CP/CR. 
+Back in the R Terminal, run `tutorial.helpers::show_file('script-3.r')`. CP/CR.
 
-```{r script-3-5}
+```{r script-3-2}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -1349,14 +1240,14 @@ question_text(NULL,
 
 ###
 
-In many ways, the `subtitle` is the most important part of any graphic. People are busy. You can't expect them to study your plot closely. You need to help them. You need to highlight the one key lesson, the one fact that you hope people will remember. Spell it out for them clearly.
+In many ways, the `subtitle` is the most important part of any graphic. People are busy. You cannot expect them to study your plot closely. Help them by highlighting the one key lesson, the one fact that you hope people will remember. Spell it out clearly.
 
 
 ## Summary
-### 
+###
 
 
-This tutorial taught you how to use [**Positron**](https://positron.posit.co) with [**R**](https://www.r-project.org/about.html) scripts and how to create [projects](https://docs.posit.co/ide/user/ide/guide/code/projects.html). It assumed that you have some knowledge of R code, perhaps at the level of the "Introduction" tutorial from [**r4ds.tutorials**](https://ppbds.github.io/r4ds.tutorials/) package. It included some information from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. 
+This tutorial taught you how to use [**Codespaces**](https://github.com/features/codespaces) with [**R**](https://www.r-project.org/about.html) scripts. It assumed that you have some knowledge of R code, perhaps at the level of the "Introduction" tutorial from the [**r4ds.tutorials**](https://ppbds.github.io/r4ds.tutorials/) package. It included some information from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
 
 ```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
