@@ -1,5 +1,5 @@
 ---
-title: Positron and Quarto
+title: Quarto
 author: David Kane
 tutorial:
   id: 02-quarto
@@ -8,7 +8,7 @@ output:
     progressive: yes
     'allow_skip:': yes
 runtime: shiny_prerendered
-description: Introduction to using Positron with Quarto documents. Covers YAML headers, code chunks with chunk options, inline code evaluation, and controlling what appears in the rendered HTML.
+description: Introduction to using Quarto documents. Covers YAML headers, code chunks with chunk options, inline code evaluation, and controlling what appears in the rendered HTML.
 ---
 
 ```{r setup, include = FALSE}
@@ -30,16 +30,15 @@ options(tutorial.exercise.timelimit = 60,
 ## Introduction
 ### 
 
-This tutorial covers how to create [Quarto documents](https://docs.posit.co/ide/user/ide/guide/documents/quarto-project.html#creating-new-documents) using [Positron](https://positron.posit.co/). Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
+This tutorial covers how to create [Quarto documents](https://docs.posit.co/ide/user/ide/guide/documents/quarto-project.html#creating-new-documents) using [GitHub Codespaces](https://github.com/features/codespaces). Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
-### 
-
-From the Positron menu, use `File -> New Window` to create a new window in which you will do the work for this tutorial. Having one window for the tutorial (this window) and one window to do the work in is the recommended approach.
 
 ## Quarto 1
 ### 
 
 Quarto is a file format for making dynamic documents with R and other languages, like Python. To learn more about Quarto and how to use it, check out the [official webpage](https://quarto.org/). Quarto is the successor technology to [R Markdown](https://rmarkdown.rstudio.com/). This section introduces Quarto documents.
+
+<!-- AR: can we just delete exercise 1? Does the student already has their git repo for the tutorial set up by this point? -->
 
 ### Exercise 1
 
@@ -78,9 +77,7 @@ Soon, we will stop providing these step-by-step instructions for making a new pr
 
 ### Exercise 2
 
-Click `File -> New File ... -> Quarto Document` in the Positron menu at the top of your screen. 
-
-This will bring up a new file in your Editor, usually named `Untitled-2`. (If there is already an `Untitled-1` document, you can just close it.) 
+Click `File -> New File ...` in the Application Menu (3 horizontal bar icon) at the top-left of your screen. Select `Quarto Document` from the drop-down menu. 
 
 The top of the new document is called the YAML header. It should look like:
 
@@ -114,12 +111,12 @@ character(0)
 
 Since we have not saved the file yet, it does not appear in this listing.
 
-Quarto is a command line interface tool, not an R package. This means that help is, by-and-large, not available through `?` at the R Terminal. Instead, as you work through this tutorial, and use Quarto in the future, you should refer to the [Quarto documentation](https://quarto.org/). Of course, in the modern world, we just ask an AI when we have a problem.
+Quarto is a command line interface tool, not an R package. Therefore, its commands are largely run in a bash terminal. As you work through this tutorial, and use Quarto in the future, you should refer to the [Quarto documentation](https://quarto.org/). Of course, in the modern world, we can also ask an AI when we have a problem.
 
 
 ### Exercise 3
 
-Save the Quarto document with `File -> Save`. You can also click the disk icon toward the upper left of the Source pane or by use the shortcut `Cmd/Ctrl + S`. 
+Save the Quarto document with `File -> Save`. You can also use the shortcut `Cmd/Ctrl + S`.
 
 Name the file `quarto-1.qmd`.
 
@@ -234,11 +231,13 @@ The YAML header includes "metadata" about the document itself, things like the t
 
 ### Exercise 1
 
-To "render" our Quarto document, click the `Preview` button at the top right of the Editor:
+To "render" our Quarto document, select the bash Terminal in the Terminal pane, and type the command `quarto preview quarto-1.qmd` and press `Enter`.
 
 ```{r}
-include_graphics("images/preview.png")
+include_graphics("images/cs-quarto-preview.png")
 ```
+
+You will be able to view the rendered quarto document in a new browser tab by clicking the green "Open in Browser" button in the bottom-right, or `Cmd + click` the URL in the bottom-left.
 
 Even better is to use the shortcut `Cmd/Ctrl + Shift + K`. Professionals don't click buttons.
 
