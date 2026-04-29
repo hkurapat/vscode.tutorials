@@ -226,9 +226,6 @@ This command opens a new bash Terminal titled "Quarto Preview". It also opens a 
 
 Run `list.files()`. CP/CR.
 
-<!--AR: check_current_tutorial() is naming the below chunks / exercises as if they are in a new section!
-There is the ##Running Code header in the example .qmd file above. Could that be a part of the issue? -->
-
 ```{r quarto-1-5}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
@@ -247,8 +244,6 @@ R 4.5.3>
 ```
 
 In the Explorer, you should see a new file, `quarto-1.html`. This is the file created by rendering. The Browser/Viewer tab in the Secondary Side Bar should also display the file.
-
-<!-- AR: Should students actually look at the html code to see .qmd -> .html -> nice rendered document? -->
 
 ### 
 
@@ -371,7 +366,7 @@ Quarto files are designed to be used in three ways:
 
 * For collaborating with other data scientists (including future you!), who are interested in both your conclusions, and how you reached them (i.e. the code).
 
-* As an environment in which to do data science, as a modern-day lab notebook where you can capture not only what you did, but also what you were thinking.
+* As an environment in which to do data science, as a modern-day ∑lab notebook where you can capture not only what you did, but also what you were thinking.
 
 ### Exercise 9
 
@@ -645,8 +640,6 @@ Chunk labels cannot be duplicated. Each chunk label must be unique.
 
 ### Exercise 10
 
-<!-- AR: Tried to update for many worlds of different R Terminals. Thoughts? -->
-
 **Important Point**: There are two different "worlds" with which we are dealing. First is the world of the Quarto document, the QMD file. Second are the worlds of the R Terminals. **These worlds only connect when we connect them**. Something written in a Quarto document --- or an R script --- is not, by default, part of an R Terminal session. The world of a R Terminal session includes only all of the commands executed in that terminal window.
 
 ### 
@@ -676,7 +669,10 @@ If you run this command without running `library(tidyverse)` in the R Terminal, 
 
 ### Exercise 11
 
-<!--AR: Switch for a gen AI exercises? Is there some value in doing it by hand once? -->
+<!--AR: Switch for a gen AI exercises? Is there some value in doing it by hand once?
+
+Yes. Use Gen AI. Ensure that our code is good. Maybe keep the knowledge drop which highlights some one good aspect of our code: use |> instead of %>%.
+-->
 
 Let's create the following scatterplot in our Quarto document:
 
@@ -776,7 +772,10 @@ If you forget the `+`, R treats the next line as a new command instead of part o
 
 We just built the basic graph, but it still looks a little ugly. Titles and axis labels are important for adding context to any graph.
 
-<!-- AR: Could ask AI to improve labels/title/caption for the iris plot, then have students choose/edit the result. -->
+<!-- AR: Could ask AI to improve labels/title/caption for the iris plot, then have students choose/edit the result. 
+
+No. Tutorial long enough already.
+-->
 
 Use the `labs()` function to add an appropriate title and some axis labels to the graph.
 
@@ -827,6 +826,8 @@ ggplot(data = iris,
 ````
 
 We recommend you always start your Quarto documents with the packages you need. That way, if you share your code with others, they can easily see which packages they need to install. 
+
+<!-- DK: Add a second, open-ended, make a cool plot using R and data from the tidyverse package question. -->
 
 **You should never include `install.packages()` in a Quarto document or R script which you share.** Be careful since generative AI tools will often suggest this.
 
@@ -922,8 +923,6 @@ If we are just using a code option for one or two code chunks, then we can just 
 ### Exercise 4
 
 Be careful of the formatting in the YAML header. It is very fussy! For example, if you forget to indent the `echo: false` line with spaces, you will get an error.
-
-<!-- AR: Good place to teach AI debugging: paste the YAML error into AI and ask what indentation mistake caused it. CP/CR response -->
 
 Let's confirm this by editing `quarto-3.qmd` so that `echo: false` is no longer indented. `Cmd/Ctrl + Shift + K`.
 
@@ -1233,8 +1232,6 @@ This should cause the top of the `diamonds` tibble to be printed out in the HTML
 
 Give your favorite generative AI program (Grok, ChatGPT, Claude, DeepSeek, et cetera), or the AI integrated in the Chat Sidebar these instructions:
 
-<!-- AR: Should this require the integrated VS Code Chat Sidebar specifically. More introduction needed for that? -->
-
 > Produce some R code which, using the ggplot2 package, produces a beautiful graphic using the diamonds tibble. You may assume that the command library(tidyverse) has already been issued. 
 
 Replace `diamonds` in the code chunk with this code. `Cmd/Ctrl + Shift + K`. (If rendering the document fails, show your AI the error and ask it to fix the code.) If you can't get it to work, just stop with the last version, even if it fails.
@@ -1286,8 +1283,6 @@ ggplot(diamonds, aes(x = carat, y = price, color = clarity)) +
 ````
 
 Generative AI is the future of coding, and much else. Practice using it as much as you can.
-
-<!-- AR: Maybe add a cautionary AI knowledge drop here: AI is useful, but students must run the code, read errors, remove install.packages(), and understand what they submit. -->
 
 ## Summary
 ### 
