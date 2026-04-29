@@ -672,6 +672,8 @@ If you run this command without running `library(tidyverse)` in the R Terminal, 
 <!--AR: Switch for a gen AI exercises? Is there some value in doing it by hand once?
 
 Yes. Use Gen AI. Ensure that our code is good. Maybe keep the knowledge drop which highlights some one good aspect of our code: use |> instead of %>%.
+
+Ask students to recreate plot below by submitting the image to AI.
 -->
 
 Let's create the following scatterplot in our Quarto document:
