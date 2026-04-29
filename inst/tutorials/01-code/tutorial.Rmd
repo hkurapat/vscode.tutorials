@@ -41,15 +41,17 @@ This tutorial includes some information from [*R for Data Science (2e)*](https:/
 
 ###
 
-After starting the tutorial, your Codespaces window looked something like this:
+After starting the tutorial, your R Terminal is "busy" running the tutorial.
 
-<!-- DK: Fix these images. No Welcome screen. -->
+<!-- DK: Fix these images. No Welcome screen. AR: Done. -->
+
+You will want to run R commands while completing the tutorial. You can do this in a second R Terminal. Click the small down arrow in the top-right of the Terminal panel, right next to the + button. From the drop down, select "R Terminal."
 
 ```{r}
-include_graphics("images/start-up.png")
+include_graphics("images/cs-new-r-terminal.png")
 ```
 
-Your R Terminal is currently "busy" running the tutorial. You will still want to run R commands, so you will need a second R Terminal. Start a new Positron window with `File -> New Window`. You will then move back and forth between the two windows.
+Now, you have a fresh R Terminal, where you can run commands. You can switch between terminals by clicking on the tab names in the terminal panel (such as “bash” or “R Tutorial”) to bring a different terminal into view.
 
 ## Checking your setup
 ###
@@ -400,7 +402,7 @@ In Visual Studio Code running in Codespaces, the Application Menu is a dropdown 
 
 ###
 
-<!-- AR: Add note about saving to the getting-started directory, and not .devcontainer? Yes! 
+<!-- AR: Add note about saving to the 01-code directory, and not .devcontainer? Yes! 
 
 The default directory which VS Code suggests as a location in which to save a file is not necessarily where you should save the file. It is your decision. Be intentional. In this tutorial, we save all the files at the "top" level of the project, in the `01-code` directory. -->
 
@@ -466,7 +468,7 @@ question_text(NULL,
 Your answer should look like this:
 
 ````
-R 4.5.3> source("/workspaces/getting-started/script-1.r", encoding = "UTF-8")
+R 4.5.3> source("/workspaces/01-code/script-1.r", encoding = "UTF-8")
 ````
 
 ###
@@ -494,7 +496,7 @@ question_text(NULL,
 ###
 
 ```
-R 4.5.3> source("/workspaces/getting-started/script-1.r", encoding = "UTF-8", echo = TRUE)
+R 4.5.3> source("/workspaces/01-code/script-1.r", encoding = "UTF-8", echo = TRUE)
 
 > 5 + 5
 [1] 10
@@ -525,7 +527,7 @@ question_text(NULL,
 The answer is what you might expect:
 
 ````
-R 4.5.3> source("/workspaces/getting-started/script-1.r", encoding = "UTF-8", echo = TRUE)
+R 4.5.3> source("/workspaces/01-code/script-1.r", encoding = "UTF-8", echo = TRUE)
 
 > 5 + 5
 [1] 10
