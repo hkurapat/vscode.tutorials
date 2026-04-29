@@ -48,7 +48,7 @@ After starting the tutorial, your R Terminal is "busy" running the tutorial.
 You will want to run R commands while completing the tutorial. You can do this in a second R Terminal. Click the small down arrow in the top right of the Terminal panel, next to the + button. From the drop-down menu, select "R Terminal."
 
 ```{r}
-include_graphics("images/cs-new-r-terminal.png")
+include_graphics("images/new-r-terminal.png")
 ```
 
 Now, you have a fresh R Terminal where you can run commands. You can switch between terminals by clicking the tab names in the Terminal panel, such as "bash" or "R Tutorial," to bring a different terminal into view.
@@ -157,7 +157,7 @@ To restart R, close the current R Terminal by pressing the trash icon in the men
 <!-- DK: Messed up now? AR: All good. -->
 
 ```{r}
-include_graphics("images/cs-delete-r-terminal.png")
+include_graphics("images/delete-r-terminal.png")
 ```
 
 CP/CR the top of the restarted R Terminal.
@@ -288,13 +288,13 @@ So far, we have only worked in the R Terminal, but it is difficult to type more 
 Create a new file by clicking the Activity Bar icon with three horizontal bars in the top left of the VS Code window. This opens the Application Menu. Then, select `File -> New File ...`.
 
 ```{r}
-knitr::include_graphics("images/cs-create-new-file.png")
+knitr::include_graphics("images/create-new-file.png")
 ```
 
 This opens a drop-down menu from which you select `R File`.
 
 ```{r}
-knitr::include_graphics("images/cs-select-new-r-file.png")
+knitr::include_graphics("images/select-new-r-file.png")
 ```
 
 In Visual Studio Code running in Codespaces, the Application Menu is a drop-down menu with options like `File`, `Edit`, and `View`. Unlike a regular app installed on your computer, which has a built-in menu bar, Codespaces puts these options in a drop-down menu because it runs in a web browser.
@@ -304,7 +304,7 @@ In Visual Studio Code running in Codespaces, the Application Menu is a drop-down
 Type `5 + 5` into your R script file. Save the file. Name it `script-1.R`. (R will provide the `.R` suffix, so you only need to type `script-1`.)
 
 ```{r}
-knitr::include_graphics("images/cs-save-script-1.png")
+knitr::include_graphics("images/save-script-1.png")
 ```
 
 ###
@@ -348,7 +348,7 @@ R scripts are permanent copies of your code. You can save them and also work wit
 Note the "Source" button, which is in the top-right corner of the Editor.
 
 ```{r}
-include_graphics("images/cs-source-button.png")
+include_graphics("images/source-button.png")
 ```
 
 If you hover your cursor over it, you will see "Run Source." Press the Source button. (We will sometimes shorten the instruction "press the Source button" to just "source" the script.)
