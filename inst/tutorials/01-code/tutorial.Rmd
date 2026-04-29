@@ -154,7 +154,7 @@ This command would have failed if we had not loaded the **tutorial.helpers** pac
 
 To restart R, close the current R Terminal by pressing the trash icon in the menu sidebar. Then, open a new R Terminal.
 
-<!-- DK: Messed up now? -->
+<!-- DK: Messed up now? AR: All good. -->
 
 ```{r}
 include_graphics("images/cs-delete-r-terminal.png")
@@ -552,13 +552,8 @@ R 4.5.3>
 
 ###
 
-<!--AR: get rid of environment view -->
+`ls()` returns a list of objects present in your environment.
 
-`ls()` returns a list of objects present in your environment. These are the same objects displayed in the Environment pane.
-
-```{r, out.width = "300px", out.height="400px"}
-include_graphics("images/cs-r-env.png")
-```
 
 In this case, the object `x`, which has a value of 10, exists in your workspace. You can confirm this by typing `x` at the R Terminal and hitting `Enter`.
 
