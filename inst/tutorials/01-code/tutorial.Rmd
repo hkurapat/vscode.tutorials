@@ -270,114 +270,11 @@ R 4.5.3>
 
 The **tidyverse** package is warning us about various conflicts. Don't worry about those conflicts for now.
 
-## Projects
-###
+<!-- AR: deleted old projects section.
 
-<!-- AR: Ignoring this section for now - replace with discussion of using Github repos to organize data science projects? Or just delete? Delete! But keep this knowledge drop somewhere.
-
+replace with discussion of using Github repos to organize data science projects? Or just delete? Delete! But keep this knowledge drop somewhere.
 
 A "project" in data science means a collection of files which is usually located in a single folder or directory. -->
-
-Good data scientists keep their work organized. You should place your work in different projects, which are simply folders (that is, directories) on your computer. Each separate project is a folder within your main folder for your data science work, such as `/Users/dkane/Desktop/projects/`.
-
-### Exercise 1
-
-**Read all the instructions before starting the steps.**
-
-From the `File` menu, select `New Folder From Template ...`.
-
-From the "Folder Template" screen, select "R Project." Click "Next." This brings up the "Create New Project" screen:
-
-```{r}
-include_graphics("images/set-project-1.png")
-```
-
-Enter `analysis-1` as your "Project Name." Set the "Parent Directory" to your `projects` directory. (You may have to "Browse" your computer to find it, but, with luck, your `projects` directory is provided as the default.) Do **not** initialize the project as a Git repository.
-
-```{r}
-include_graphics("images/set-project-2.png")
-```
-
-Click "Next."
-
-The "Set up project configuration" screen should appear. Accept the default option, which should be the version of R that you installed. Click "Create." Then:
-
-```{r}
-include_graphics("images/set-project-3.png")
-```
-
-**Choose "Current Window."** You only need two Positron windows to work on tutorials. The first one --- this one --- runs the tutorial. The second one is where you do the work.
-
-The current window (that is, not the one running the tutorial) should look like this:
-
-```{r}
-include_graphics("images/set-project-4.png")
-```
-
-You are in the `analysis-1` project, as you can see in four ways, indicated by the red arrows.
-
-###
-
-Run `getwd()` in the R Terminal in the window that is running the `analysis-1` project.
-
-CP/CR.
-
-```{r projects-1}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 3)
-```
-
-###
-
-This path should now be different from our previous path and similar to the path below. Creating or opening a project moves the R session to that directory.
-
-````
-/Users/dkane/Desktop/projects/analysis-1/
-````
-
-###
-
-If your path does not include your `projects` folder, you probably did not fill in the "Parent Directory" box correctly. It should be the path to your `projects` folder, including `projects` itself.
-
-
-### Exercise 2
-
-The window should look like this:
-
-```{r}
-include_graphics("images/set-project-5.png")
-```
-
-<!-- DK: Is the below correct? -->
-
-There may be a blank, unsaved file named *`Untitled-1`* in the Editor pane. You can tell it is unsaved because its name is *italicized*. By default, the Explorer button in the Activity Bar on the far left has been activated, showing us that the `analysis-1` directory has no files in it yet.
-
-###
-
-Run `list.files()`.
-
-CP/CR.
-
-```{r projects-2}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 3)
-```
-
-###
-
-`list.files()` returns the files contained in your current project. There are none so far.
-
-Keeping all the files associated with a given project --- input data, R scripts, analytic results, and figures --- together in one directory is a good practice.
-
-Everything you need is in one place and cleanly separated from all the other projects that you are working on.
 
 ## Script 1
 ###
