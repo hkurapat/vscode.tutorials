@@ -165,7 +165,7 @@ Again, there is no necessary connection between the **title** of a Quarto docume
 Here is an example of a Quarto file:
 
 
-<pre><code>
+```
 ---
 title: "My First Quarto Document"
 author: "Your Name"
@@ -193,6 +193,7 @@ You can add options to executable code like this
 
 The `echo: false` option disables the printing of code (only output is displayed).
 </code></pre>
+```
 
 ### 
 
@@ -244,6 +245,9 @@ Even better is to use the shortcut `Cmd/Ctrl + Shift + K`. Professionals don't c
 ###
 
 Run `list.files()`. CP/CR.
+
+<!--AR: check_current_tutorial() is naming the below chunks / exercises as if they are in a new section!
+There is the ##Running Code header in the example .qmd file above. Could that be a part of the issue? -->
 
 ```{r running-code-1}
 question_text(NULL,
