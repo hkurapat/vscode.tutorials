@@ -1040,9 +1040,6 @@ If the title text flows out of the image, you might want to modify the `scale` a
 ## Script 3
 ###
 
-<!-- AR: Should students create a new git repo? Or just do script 3 in the same place? Same place. No new repo. -->
-<!-- AR: Make students use integrated Codespace chat when asking AI -->
-
 ### Exercise 1
 
 Create a script that we will use to make our plot.
@@ -1070,9 +1067,9 @@ question_text(NULL,
 
 ### Exercise 2
 
-Go back to editing `script-3.r`. Remove `5 + 5`. Ask your favorite AI to make a nice-looking plot using data from one of the packages in the **tidyverse** package.
+Go back to editing `script-3.r`. Remove `5 + 5`. Open the chat sidebar on the right and ask AI to make a nice-looking plot using data from the **tidyverse** package. Tell it to write the code in `script-3.r`.
 
-Paste the code from the AI into `script-3.r`. Run the script interactively, line by line, using `Cmd/Ctrl + Enter`. If there are problems, ask the AI for help. It will probably take several iterations to get something you like.
+ Run the script interactively, line by line, using `Cmd/Ctrl + Enter`. If there are problems, ask the AI for help. It will probably take several iterations to get something you like.
 
 Advice, which you should feel free to give to the AI:
 
