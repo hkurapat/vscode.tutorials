@@ -30,17 +30,15 @@ options(tutorial.exercise.timelimit = 60,
 ## Introduction
 ### 
 
-This tutorial covers how to create [Quarto documents](https://docs.posit.co/ide/user/ide/guide/documents/quarto-project.html#creating-new-documents) using [GitHub Codespaces](https://github.com/features/codespaces). Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
+This tutorial covers how to create Quarto documents using [GitHub Codespaces](https://github.com/features/codespaces). Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
-<!-- AR: Should we explicitly say this assumes students are already inside a GitHub Codespace running VS Code in the browser? That context matters before any Terminal/Explorer instructions. -->
-
+<!-- AR: Should we explicitly say this assumes students are already inside a GitHub Codespace running VS Code in the browser? That context matters before any Terminal/Explorer instructions. Yes. -->
 
 ## Quarto 1
 ### 
 
 Quarto is a file format for making dynamic documents with R and other languages, like Python. To learn more about Quarto and how to use it, check out the [official webpage](https://quarto.org/). Quarto is the successor technology to [R Markdown](https://rmarkdown.rstudio.com/). This section introduces Quarto documents.
 
-<!-- AR: is there more set up needed here? -->
 
 ### Exercise 1
 
@@ -80,14 +78,14 @@ Since we have not saved the file yet, it does not appear in this listing.
 
 Quarto is a command line interface tool, not an R package. Therefore, its commands are largely run in a bash terminal. As you work through this tutorial, and use Quarto in the future, you should refer to the [Quarto documentation](https://quarto.org/). Of course, in the modern world, we can also ask an AI when we have a problem.
 
-<!-- AR: This is a good first AI mention. Should we give students a concrete prompt, e.g. "What is the difference between quarto render and quarto preview?" -->
-
-
 ### Exercise 2
 
 Save the Quarto document with `File -> Save`. You can also use the shortcut `Cmd/Ctrl + S`.
 
-<!-- AR: In Codespaces, autosave/settings may differ. Should we tell students to use Cmd/Ctrl + S throughout, or configure autosave earlier? -->
+<!-- AR: In Codespaces, autosave/settings may differ. Should we tell students to use Cmd/Ctrl + S throughout, or configure autosave earlier? 
+
+No. You should test it and make sure it works.
+-->
 
 Name the file `quarto-1.qmd`.
 
@@ -136,7 +134,7 @@ Again, there is no necessary connection between the **title** of a Quarto docume
 Here is an example of a Quarto file:
 
 
-```
+````
 ---
 title: "My First Quarto Document"
 author: "Your Name"
@@ -164,7 +162,7 @@ You can add options to executable code like this
 
 The `echo: false` option disables the printing of code (only output is displayed).
 </code></pre>
-```
+````
 
 ### 
 
@@ -211,7 +209,10 @@ include_graphics("images/quarto-preview.png")
 
 You will be able to view the rendered quarto document in a new browser tab by clicking the green "Open in Browser" button in the bottom-right, or `Cmd + click` the URL in the bottom-left.
 
-<!-- AR: In codespaces the shortcut opens an unhelpful pane (in my opinion). Is it important to explain difference between this and just running quarto preview in a bash terminal? -->
+<!-- AR: In codespaces the shortcut opens an unhelpful pane (in my opinion). Is it important to explain difference between this and just running quarto preview in a bash terminal? 
+
+Remove the above call to the shell. Just teach the short cut. Maybe mention, in the knowledge drop, that short cuts call underlying commands.
+-->
 
 Even better is to use the shortcut `Cmd/Ctrl + Shift + K`. Professionals don't click buttons. Try this now.
 

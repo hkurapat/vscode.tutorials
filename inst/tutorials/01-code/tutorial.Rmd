@@ -43,8 +43,6 @@ This tutorial includes some information from [*R for Data Science (2e)*](https:/
 
 After starting the tutorial, your R Terminal is "busy" running the tutorial.
 
-<!-- DK: Fix these images. No Welcome screen. AR: Done. -->
-
 You will want to run R commands while completing the tutorial. You can do this in a second R Terminal. Click the small down arrow in the top right of the Terminal panel, next to the + button. From the drop-down menu, select "R Terminal."
 
 ```{r}
@@ -153,8 +151,6 @@ This command would have failed if we had not loaded the **tutorial.helpers** pac
 ### Exercise 4
 
 To restart R, close the current R Terminal by pressing the trash icon in the menu sidebar. Then, open a new R Terminal.
-
-<!-- DK: Messed up now? AR: All good. -->
 
 ```{r}
 include_graphics("images/delete-r-terminal.png")
@@ -270,18 +266,10 @@ R 4.5.3>
 
 The **tidyverse** package is warning us about various conflicts. Don't worry about those conflicts for now.
 
-<!-- AR: deleted old projects section.
-
-DK: keep knowledge drop below somewhere. AR: DONE - added to ex. 1 below
-
-A "project" in data science means a collection of files which is usually located in a single folder or directory. -->
-
 ## Script 1
 ###
 
 So far, we have only worked in the R Terminal, but it is difficult to type more than a few lines of code into the R Terminal at once. One solution is to use [R scripts](https://r4ds.hadley.nz/workflow-scripts.html#scripts), files that contain a permanent copy of our code.
-
-<!-- AR: This exercise now feels very long! -->
 
 ### Exercise 1
 
@@ -297,7 +285,7 @@ This opens a drop-down menu from which you select `R File`.
 knitr::include_graphics("images/select-new-r-file.png")
 ```
 
-In Visual Studio Code running in Codespaces, the Application Menu is a drop-down menu with options like `File`, `Edit`, and `View`. Unlike a regular app installed on your computer, which has a built-in menu bar, Codespaces puts these options in a drop-down menu because it runs in a web browser.
+In VS Code running in Codespaces, the Application Menu is a drop-down menu with options like `File`, `Edit`, and `View`. Unlike a regular app installed on your computer, which has a built-in menu bar, Codespaces puts these options in a drop-down menu because it runs in a web browser.
 
 ###
 

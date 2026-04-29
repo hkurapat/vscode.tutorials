@@ -1,6 +1,10 @@
 ## Alec
 
-Skip two GitHub tutorials. So, you are doing 1, 2, 3, 6, and 7.
+Skip two GitHub tutorials. So, you are doing 1, 2, 3, 4, 5, 6, and 7.
+
+Use the bash shell as little as possible in tutorials 1 and 2.
+
+Check out check_current_tutorial(). I think you always want 4 backticks around anything which should be ignored by this function.
 
 Get rid of all Positron.
 
