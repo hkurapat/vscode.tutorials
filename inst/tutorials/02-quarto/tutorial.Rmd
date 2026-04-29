@@ -675,7 +675,7 @@ If you run this command without running `library(tidyverse)` in the R Terminal, 
 
 ### Exercise 11
 
-<!--AR: Switch for a gen AI exercise? -->
+<!--AR: Switch for a gen AI exercises? Is there some value in doing it by hand once? -->
 
 Let's create the following scatterplot in our Quarto document:
 
@@ -775,7 +775,7 @@ If you forget the `+`, R treats the next line as a new command instead of part o
 
 We just built the basic graph, but it still looks a little ugly. Titles and axis labels are important for adding context to any graph.
 
-<!-- AR: This is another strong gen AI exercise candidate: ask AI to improve labels/title/caption for the iris plot, then have students choose/edit the result. -->
+<!-- AR: Could ask AI to improve labels/title/caption for the iris plot, then have students choose/edit the result. -->
 
 Use the `labs()` function to add an appropriate title and some axis labels to the graph.
 
@@ -922,7 +922,7 @@ If we are just using a code option for one or two code chunks, then we can just 
 
 Be careful of the formatting in the YAML header. It is very fussy! For example, if you forget to indent the `echo: false` line with spaces, you will get an error.
 
-<!-- AR: Good place to teach AI debugging: paste the YAML error into AI and ask what indentation mistake caused it. -->
+<!-- AR: Good place to teach AI debugging: paste the YAML error into AI and ask what indentation mistake caused it. CP/CR response -->
 
 Let's confirm this by editing `quarto-3.qmd` so that `echo: false` is no longer indented. `Cmd/Ctrl + Shift + K`.
 
@@ -1232,7 +1232,7 @@ This should cause the top of the `diamonds` tibble to be printed out in the HTML
 
 Give your favorite generative AI program (Grok, ChatGPT, Claude, DeepSeek, et cetera), or the AI integrated in the Chat Sidebar these instructions:
 
-<!-- AR: Should this require the integrated VS Code Chat Sidebar specifically, if available, so students practice the target environment rather than external AI tools? -->
+<!-- AR: Should this require the integrated VS Code Chat Sidebar specifically. More introduction needed for that? -->
 
 > Produce some R code which, using the ggplot2 package, produces a beautiful graphic using the diamonds tibble. You may assume that the command library(tidyverse) has already been issued. 
 
