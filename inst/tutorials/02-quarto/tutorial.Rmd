@@ -802,9 +802,9 @@ question_text(NULL,
 
 ### 
 
-<!--AR: consider a different knowledge drop? -->
+The `+` at the end of a **ggplot2** line means "add another layer to this plot." The first line creates the coordinate system and maps variables to aesthetics. `geom_point()` adds the layer that actually draws the points.
 
-It’s a good idea to save your documents often and to give them informative names. Avoid Untitled-1, Untitled-2, Untitled-3, and so on.
+If you forget the `+`, R treats the next line as a new command instead of part of the plot.
 
 ### Exercise 13
 
