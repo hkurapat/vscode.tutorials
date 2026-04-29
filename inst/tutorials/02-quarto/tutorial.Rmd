@@ -38,7 +38,7 @@ This tutorial covers how to create [Quarto documents](https://docs.posit.co/ide/
 
 Quarto is a file format for making dynamic documents with R and other languages, like Python. To learn more about Quarto and how to use it, check out the [official webpage](https://quarto.org/). Quarto is the successor technology to [R Markdown](https://rmarkdown.rstudio.com/). This section introduces Quarto documents.
 
-<!-- AR: can we just delete exercise 1? Does the student already has their git repo for the tutorial set up by this point? -->
+<!-- AR: can we just delete exercise 1 or replace with a Codespaces analog? Does the student already has their git repo and Codespace set up for the tutorial set up by this point? -->
 
 ### Exercise 1
 
@@ -1310,7 +1310,7 @@ Generative AI is the future of coding, and much else. Practice using it as much 
 ## Summary
 ### 
 
-This tutorial covered how to create [Quarto documents](https://docs.posit.co/ide/user/ide/guide/documents/quarto-project.html#creating-new-documents) using [Positron](https://positron.posit.co/). Some material was from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
+This tutorial covered how to create [Quarto documents](https://docs.posit.co/ide/user/ide/guide/documents/quarto-project.html#creating-new-documents) using [GitHub Codespaces](https://github.com/features/codespaces). Some material was from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
 
 ```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
