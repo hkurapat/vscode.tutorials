@@ -905,7 +905,7 @@ David Kane
 x <- 123456789
 ````
 
-Because we have not added any code chunk options, we see the code in the HTML, displayed in the Viewer/browser, along with the title and author. But there is no output because assignment of a value does not result in printed output in R.
+Because we have not added any code chunk options, we see the code in the file displayed in the Viewer/browser, along with the title and author. But there is no output because assignment of a value does not result in printed output in R.
 
 Remember that variable names (those created by `<-` and those created by `mutate()`) should use only lowercase letters, numbers, and `_`. Use `_` to separate words within a name.
  
@@ -920,7 +920,7 @@ execute:
   echo: false
 ````
 
-to the bottom of the YAML header. This sets `echo` to `false` throughout the document. `Cmd/Ctrl + Shift + K`. The resulting HTML is empty, other than the title and author.
+to the bottom of the YAML header. This sets `echo` to `false` throughout the document. `Cmd/Ctrl + Shift + K`. This results in no changes to the rendered file's appearance.
 
 In the R Terminal, run:
 
@@ -1013,7 +1013,7 @@ Replace the `?` in your sentence with:
 r x
 ````
 
-surrounded by backticks. They `r` tells Quarto that you want to evaluate the code using the R language. In this case, that code is just the letter `x`, which evaluates to (i.e., prints out) the number we have assigned to it. 
+**surrounded by backticks**. The `r` tells Quarto that you want to evaluate the code using the R language. In this case, that code is just the variable `x`, which evaluates to (i.e., prints out) the number we have assigned to it. 
 
 `Cmd/Ctrl + Shift + K`.
 
