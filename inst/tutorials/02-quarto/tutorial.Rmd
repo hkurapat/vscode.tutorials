@@ -235,12 +235,20 @@ The YAML header includes "metadata" about the document itself, things like the t
 To "render" our Quarto document, select the bash Terminal in the Terminal pane, and type the command `quarto preview quarto-1.qmd` and press `Enter`.
 
 ```{r}
-include_graphics("images/cs-quarto-preview.png")
+include_graphics("images/quarto-preview.png")
 ```
 
 You will be able to view the rendered quarto document in a new browser tab by clicking the green "Open in Browser" button in the bottom-right, or `Cmd + click` the URL in the bottom-left.
 
-Even better is to use the shortcut `Cmd/Ctrl + Shift + K`. Professionals don't click buttons.
+<!-- AR: In codespaces the shortcut opens an unhelpful pane (in my opinion). Is it important to explain difference between this and just running quarto preview in a bash terminal? -->
+
+Even better is to use the shortcut `Cmd/Ctrl + Shift + K`. Professionals don't click buttons. Try this now.
+
+```{r}
+include_graphics("images/quarto-preview-keyboard-shortcut.png")
+```
+
+This command opens a new bash Terminal titled "Quarto Preview". It also opens a pane to the right of the editor that provides a preview. This pane is not very great for viewing the rendered document. It's often best to preview the document in a seperate browser tab or window. Like before, either click on the green "Open in Browser" button in the bottom-right, or `Cmd + click` the green URL in the bottom left. You can also close the "Quarto Preview" pane in the editor and still view the preview in the browser.
 
 ###
 
