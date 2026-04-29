@@ -45,18 +45,18 @@ After starting the tutorial, your R Terminal is "busy" running the tutorial.
 
 <!-- DK: Fix these images. No Welcome screen. AR: Done. -->
 
-You will want to run R commands while completing the tutorial. You can do this in a second R Terminal. Click the small down arrow in the top-right of the Terminal panel, right next to the + button. From the drop down, select "R Terminal."
+You will want to run R commands while completing the tutorial. You can do this in a second R Terminal. Click the small down arrow in the top right of the Terminal panel, next to the + button. From the drop-down menu, select "R Terminal."
 
 ```{r}
 include_graphics("images/cs-new-r-terminal.png")
 ```
 
-Now, you have a fresh R Terminal, where you can run commands. You can switch between terminals by clicking on the tab names in the terminal panel (such as “bash” or “R Tutorial”) to bring a different terminal into view.
+Now, you have a fresh R Terminal where you can run commands. You can switch between terminals by clicking the tab names in the Terminal panel, such as "bash" or "R Tutorial," to bring a different terminal into view.
 
 ## Checking your setup
 ###
 
-Again, you should have completed the "Getting Started" tutorial from the [**tutorial.helpers**](https://ppbds.github.io/tutorial.helpers/) package. If not, this section will go poorly for you.
+Again, you should have completed the "Getting Started" tutorial from the [**tutorial.helpers**](https://ppbds.github.io/tutorial.helpers/) package. If not, this section may be difficult.
 
 ### Exercise 1
 
@@ -81,9 +81,9 @@ Error in `show_file()`:
 ! could not find function "show_file"
 ````
 
-Going forward, we won't bother with boilerplate like "Your answer should look like this." Instead, you can assume that any quote directly after a question is our answer to the question.
+Going forward, we will not include boilerplate like "Your answer should look like this." Instead, you can assume that any quote directly after a question is our answer to the question.
 
-In this case, the error occurs because we have not yet loaded the **tutorial.helpers** package, which is where `show_file()` is located. If we had specified the package as part of the function call, as with `tutorial.helpers::show_file()`, R would have found the function.
+In this case, the error occurs because we have not yet loaded the **tutorial.helpers** package, where `show_file()` is located. If we had specified the package as part of the function call, as with `tutorial.helpers::show_file()`, R would have found the function.
 
 ### Exercise 2
 
@@ -285,7 +285,7 @@ So far, we have only worked in the R Terminal, but it is difficult to type more 
 
 ### Exercise 1
 
-Create a new file by clicking the Activity Bar icon with three horizontal bars in the top left of the VS Code window. This opens the Application Menu. Then, select `File -> New File ...`
+Create a new file by clicking the Activity Bar icon with three horizontal bars in the top left of the VS Code window. This opens the Application Menu. Then, select `File -> New File ...`.
 
 ```{r}
 knitr::include_graphics("images/cs-create-new-file.png")
@@ -297,7 +297,7 @@ This opens a drop-down menu from which you select `R File`.
 knitr::include_graphics("images/cs-select-new-r-file.png")
 ```
 
-In Visual Studio Code running in Codespaces, the Application Menu is a dropdown with options like `File`, `Edit`, and `View`. Unlike a regular app installed on your computer, which has a built-in menu bar, Codespaces puts these options in a dropdown because it runs in a web browser.
+In Visual Studio Code running in Codespaces, the Application Menu is a drop-down menu with options like `File`, `Edit`, and `View`. Unlike a regular app installed on your computer, which has a built-in menu bar, Codespaces puts these options in a drop-down menu because it runs in a web browser.
 
 ###
 
@@ -309,7 +309,7 @@ knitr::include_graphics("images/cs-save-script-1.png")
 
 ###
 
-The default directory which VS Code suggests as a location in which to save a file is not necessarily where you should save the file. It is your decision. Be intentional. In this tutorial, we save all the files at the "top" level of the project, in the `01-code` directory.
+The default directory that VS Code suggests for saving a file is not necessarily where you should save it. Be intentional. In this tutorial, we save all files at the top level of the project, in the `01-code` directory.
 
 ###
 
@@ -345,7 +345,7 @@ R scripts are permanent copies of your code. You can save them and also work wit
 
 ### Exercise 2
 
-Note the "Source" button, which is in the top right corner of the Editor.
+Note the "Source" button, which is in the top-right corner of the Editor.
 
 ```{r}
 include_graphics("images/cs-source-button.png")
@@ -407,7 +407,7 @@ R 4.5.3>
 
 The file is sourced, as before. This time, each line in the file is "echoed," meaning we see both the code, `5 + 5` in this case, and the return value, if any, which is `10`.
 
-Using shortcut keys is quicker and more professional than clicking buttons.
+Using keyboard shortcuts is quicker and more professional than clicking buttons.
 
 ### Exercise 4
 
@@ -440,7 +440,7 @@ R 4.5.3> source("/workspaces/01-code/script-1.r", encoding = "UTF-8", echo = TRU
 
 ###
 
-Each line is *echoed*. Each line is *executed*.  The results of each line, if there are any, are printed.
+Each line is *echoed*. Each line is *executed*. The results of each line, if there are any, are printed.
 
 The output you see is the same as what would happen if you copied each line to the R Terminal and hit `Enter` after each one.
 
@@ -531,7 +531,7 @@ Note how the `x <- 5 + 5` is executed (and echoed) but nothing is printed. The a
 
 ### Exercise 8
 
-In the R Terminal tab, run `ls()`. CP/CR.
+In the R Terminal, run `ls()`. CP/CR.
 
 ```{r script-1-8}
 question_text(NULL,
@@ -555,7 +555,7 @@ R 4.5.3>
 `ls()` returns a list of objects present in your environment.
 
 
-In this case, the object `x`, which has a value of 10, exists in your workspace. You can confirm this by typing `x` at the R Terminal and hitting `Enter`.
+In this case, the object `x`, which has a value of 10, exists in your workspace. You can confirm this by typing `x` at the R Terminal and pressing `Enter`.
 
 ````
 > x
@@ -578,7 +578,7 @@ hist_p <- ggplot(data = diamonds,
        subtitle = "Carats just at or above meaningful numbers are very common",
        x = "Carat",
        y = "Number",
-       caption = "diamonds data set from ggplot2 package")
+       caption = "diamonds dataset from ggplot2 package")
 
 hist_p
 ```
@@ -783,7 +783,7 @@ question_text(NULL,
 
 Get in the habit of adding comments.
 
-Figuring out *why* something was done is much more difficult than understanding *how* it was done. For example, `geom_smooth()` has an argument called `span`, which controls the smoothness of the curve, with larger values yielding a smoother curve. Suppose you decide to change the value of `span` from its default of 0.75 to 0.9: it’s easy for a future reader to understand what is happening, but unless you note your thinking in a comment, no one will understand *why* you changed from the default.
+Figuring out *why* something was done is much more difficult than understanding *how* it was done. For example, `geom_smooth()` has an argument called `span`, which controls the smoothness of the curve. Larger values yield a smoother curve. Suppose you decide to change the value of `span` from its default of 0.75 to 0.9. It is easy for a future reader to understand what is happening, but unless you note your thinking in a comment, no one will understand *why* you changed from the default.
 
 
 ### Exercise 7
@@ -827,7 +827,7 @@ question_text(NULL,
 
 Add a layer with `geom_histogram()`. Change the border color in our graph by setting `color` to `"white"` within `geom_histogram()`, and change the number of columns in our plot by setting the `bins` argument to `100`. Remember that, to connect the `ggplot()` call to `geom_histogram()`, we need a `+`.
 
-Run the file. Again, to "run" a script generally means to execute it, meaning to send it to the R process. We have learned two easy ways to execute an entire file: pressing the "Source" button or hitting the associated shortcut key, `Cmd/Ctrl + Enter`. In interactive work, however, the most common approach is to use `Cmd/Ctrl + Enter` and go through the file line by line, while also occasionally restarting R with `Cmd/Ctrl + Shift + 0`.
+Run the file. Again, to "run" a script generally means to execute it, meaning to send it to the R process. We have learned two easy ways to execute an entire file: pressing the "Source" button or pressing the associated keyboard shortcut, `Cmd/Ctrl + Enter`. In interactive work, however, the most common approach is to use `Cmd/Ctrl + Enter` and go through the file line by line, while also occasionally restarting the R Terminal.
 
 ###
 
@@ -933,7 +933,7 @@ Note the nice formatting. After the `ggplot()` call, the next two commands --- `
 
 ### Exercise 11
 
-Now we have the code that creates a plot in `script-2.R`. How do we use this plot for other things? Right now, we have to run `script-2.R` every time we want to see the plot, which is a little inconvenient.
+Now we have the code that creates a plot in `script-2.R`. How do we use this plot for other things? Right now, we have to run `script-2.R` every time we want to see the plot, which is inconvenient.
 
 ###
 
@@ -952,9 +952,9 @@ question_text(NULL,
 
 ### Exercise 12
 
-We want to save our entire graph to an object, which can be done by assigning our plot to a variable. Call this variable `hist_p`.
+We want to save our entire graph to an object. We can do this by assigning our plot to a variable. Call this variable `hist_p`.
 
-Now, using the `ggsave()` function, we can create a PNG of our plot from our code. In `ggsave()`, set `plot` to `hist_p` and `file` to `"diamonds.png"`.
+Now, using the `ggsave()` function, we can save our plot as a PNG file. In `ggsave()`, set `plot` to `hist_p` and `file` to `"diamonds.png"`.
 
 Your entire file should look like:
 
@@ -971,7 +971,7 @@ hist_p <- ggplot(data = diamonds,
        subtitle = "Carats just at or above meaningful numbers are very common",
        x = "Carat",
        y = "Count",
-       caption = "diamonds data set from ggplot2 package")
+       caption = "diamonds dataset from ggplot2 package")
 
 ggsave(plot = hist_p, file = "diamonds.png")
 ````
@@ -1033,7 +1033,7 @@ question_text(NULL,
 
 ###
 
-You should see the `diamonds.png` file, which contains your plot. Click the Explorer button on the Activity Bar on the left to see all the files in the `analysis-1` directory. Click the `diamonds.png` file to open your plot in the Editor.
+You should see the `diamonds.png` file, which contains your plot. Click the Explorer button on the Activity Bar on the left to see all the files in the `analysis-1` directory. Click `diamonds.png` to open your plot in the Editor.
 
 If the title text flows out of the image, you might want to modify the `scale` argument in `ggsave()` to find a better image size. `scale` is set to 1 by default.
 
@@ -1044,7 +1044,7 @@ If the title text flows out of the image, you might want to modify the `scale` a
 
 Create a script that we will use to make our plot.
 
-In the Application Menu at the top left of the screen, select `File -> New File ...`, then select `R File` from the drop-down. Type `5 + 5` and a newline into the file, then press `Cmd/Ctrl + S` to save it. Save it as `script-3.r`.
+In the Application Menu at the top left of the screen, select `File -> New File ...`, then select `R File` from the drop-down menu. Type `5 + 5` and a newline into the file, then press `Cmd/Ctrl + S` to save it. Save it as `script-3.r`.
 
 In the console, run `list.files()`. CP/CR.
 
@@ -1067,11 +1067,11 @@ question_text(NULL,
 
 ### Exercise 2
 
-Go back to editing `script-3.r`. Remove `5 + 5`. Open the chat sidebar on the right and ask AI to make a nice-looking plot using data from the **tidyverse** package. Tell it to write the code in `script-3.r`.
+Go back to editing `script-3.r`. Remove `5 + 5`. Open the chat sidebar on the right and ask the AI to make a nice-looking plot using data from the **tidyverse** package. Tell it to write the code in `script-3.r`.
 
- Run the script interactively, line by line, using `Cmd/Ctrl + Enter`. If there are problems, ask the AI for help. It will probably take several iterations to get something you like.
+Run the script interactively, line by line, using `Cmd/Ctrl + Enter`. If there are problems, ask the AI for help. It will probably take several iterations to get something you like.
 
-Advice, which you should feel free to give to the AI:
+Advice you should feel free to give to the AI:
 
 * Begin the script with `library(tidyverse)` at the top.
 
