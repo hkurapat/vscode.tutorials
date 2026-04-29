@@ -1211,14 +1211,9 @@ question_text(NULL,
 
 ### 
 
-There is a great pair of keyboard shortcuts that will work together to make sure you’ve captured the important parts of your code in the editor:
+Chunk options are instructions for Quarto, not R code. Lines that start with `#|` tell Quarto how to handle a chunk when the document is rendered.
 
-* Press `Cmd/Ctrl + Shift + 0` to restart R.
-* Press `Cmd/Ctrl + Shift + K` to re-render the current Quarto document.
-
-We collectively use this pattern hundreds of times a week.
-
-Alternatively, if you don’t use keyboard shortcuts, you can press the "Restart console" button.
+Use `echo: false` when readers should see the result of your code but not the code itself. Use `message: false` when package startup messages or other messages distract from the document you are trying to create.
 
 ### Exercise 5
 
