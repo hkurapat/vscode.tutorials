@@ -1080,7 +1080,7 @@ With *inline* code, we can insert R code of arbitrary complexity directly in the
 ## Quarto 4
 ### 
 
-Restart your R session with `Cmd/Ctrl + Shift + 0`. As always, you are doing this work in your *other* Positron window, the one in which this tutorial is *not* running. If you mistakenly restart R in this window, this tutorial will quit. Which is OK! You can just restart it with `learnr::run_tutorial(name = "02-quarto", package = "vscode.tutorials")`.
+Restart your R session by opening a new R Terminal and closing your previous one. As always, you are doing this work in an R Terminal different from the one that is running this tutorial. If you mistakenly restart R in this terminal, this tutorial will quit. Which is OK! You can just restart it with `learnr::run_tutorial(name = "02-quarto", package = "vscode.tutorials")`.
 
 <!-- I don't think that Positron, unlike RStudio, does anything special with a code chunk labeled `setup`. So, maybe redo this example completely, teaching something different? -->
 
@@ -1099,7 +1099,7 @@ question_text(NULL,
 
 ### 
 
-The shortcut key to restart R is `Cmd/Ctrl + Shift + 0`. You should restart your R session regularly. Indeed, one of our catch phrases is:
+One of our catch phrases is:
 
 **You can't restart R too often.**
 
@@ -1161,7 +1161,7 @@ Put `library(tidyverse)` in the code chunk.
 
 ### 
 
-**Notice the sloppy language!** There are two ways in which we can "load" **tidyverse** corresponding to the two worlds we are working in simultaneous: QMD World and R Terminal World.
+**Notice the sloppy language!** There are two ways in which we can "load" **tidyverse** corresponding to the two worlds we are working in simultaneously: QMD World and R Terminal World.
 
 ### 
 
@@ -1190,7 +1190,7 @@ The key lesson is that we are operating in two worlds simultaneously: QMD World 
 
 ### Exercise 4
 
-Our HTML file looks ugly, both because of the annoying message and because it shows the R code. We want neither. Add `echo: false` and `message: false` to the code chunk options. `Cmd/Ctrl + Shift + K`. 
+Our preview file looks ugly, both because of the annoying message and because it shows the R code. We want neither. Add `echo: false` and `message: false` to the code chunk options. `Cmd/Ctrl + Shift + K`. 
 
 In the R Terminal, run:
 
@@ -1253,7 +1253,7 @@ This should cause the top of the `diamonds` tibble to be printed out in the HTML
 
 ### Exercise 6
 
-Give your favorite generative AI program (Grok, ChatGPT, Claude, DeepSeek, et cetera) these instructions:
+Give your favorite generative AI program (Grok, ChatGPT, Claude, DeepSeek, et cetera), or the AI integrated in the Chat Sidebar these instructions:
 
 > Produce some R code which, using the ggplot2 package, produces a beautiful graphic using the diamonds tibble. You may assume that the command library(tidyverse) has already been issued. 
 
