@@ -272,7 +272,7 @@ The **tidyverse** package is warning us about various conflicts. Don't worry abo
 
 <!-- AR: deleted old projects section.
 
-replace with discussion of using Github repos to organize data science projects? Or just delete? Delete! But keep this knowledge drop somewhere.
+DK: keep knowledge drop below somewhere. AR: DONE - added to ex. 1 below
 
 A "project" in data science means a collection of files which is usually located in a single folder or directory. -->
 
@@ -280,6 +280,8 @@ A "project" in data science means a collection of files which is usually located
 ###
 
 So far, we have only worked in the R Terminal, but it is difficult to type more than a few lines of code into the R Terminal at once. One solution is to use [R scripts](https://r4ds.hadley.nz/workflow-scripts.html#scripts), files that contain a permanent copy of our code.
+
+<!-- AR: This exercise now feels very long! -->
 
 ### Exercise 1
 
@@ -299,15 +301,18 @@ In Visual Studio Code running in Codespaces, the Application Menu is a dropdown 
 
 ###
 
-<!-- AR: Add note about saving to the 01-code directory, and not .devcontainer? Yes! 
-
-The default directory which VS Code suggests as a location in which to save a file is not necessarily where you should save the file. It is your decision. Be intentional. In this tutorial, we save all the files at the "top" level of the project, in the `01-code` directory. -->
-
 Type `5 + 5` into your R script file. Save the file. Name it `script-1.R`. (R will provide the `.R` suffix, so you only need to type `script-1`.)
 
 ```{r}
 knitr::include_graphics("images/cs-save-script-1.png")
 ```
+
+###
+
+The default directory which VS Code suggests as a location in which to save a file is not necessarily where you should save the file. It is your decision. Be intentional. In this tutorial, we save all the files at the "top" level of the project, in the `01-code` directory.
+
+###
+
 In the R Terminal, run:
 
 ````
