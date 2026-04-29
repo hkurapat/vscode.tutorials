@@ -1050,7 +1050,7 @@ Replace the inline code in your sentence with
 r scales::comma(x)
 ````
 
-surrounded by backticks. `Cmd/Ctrl + Shift + K`. Notice that, strictly speaking, you do not need to save the document before you render it. With the usual default settings, Positron will automatically save a document which you try to render. But it's always a good idea to hit save, just to be on the safe side. 
+surrounded by backticks. `Cmd/Ctrl + Shift + K`. Notice that, strictly speaking, you do not need to save the document before you render it. Quarto preview will automatically save a document when you try to render. But it's always a good idea to hit save, just to be on the safe side. 
 
 Copy/paste the resulting HTML.
 
