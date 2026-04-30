@@ -1770,6 +1770,8 @@ rm: cannot remove 'wildcards': Is a directory
 
 Note that both `wildcards` and `wildcards/` refer to the same entity, the `wildcards` directory. The Terminal often "adds" a forward slash (`/`) to the end of directory names to indicate that the object is a directory, not simply a file.
 
+<!-- AR: Okay to remove section? Not sure how to adapt for Codespaces -->
+
 ## Files
 ###
 
@@ -1835,6 +1837,8 @@ My answer looks like:
 My `Downloads` directory is empty right now, so the Terminal just prints a new prompt.
 
 ### Exercise 3
+
+<!-- AR: How to handle this? -->
 
 In your browser, go to `https://github.com/PPBDS/vscode.tutorials`.
 
@@ -2081,6 +2085,8 @@ ate.txt
 
 ### Exercise 5
 
+<!-- AR: How to handle downloads? Drag and drop into workspace? Just ignore? -->
+
 Download this file and move it from your `Downloads` file to your current directory, which is `grepping`.
 
 ````
@@ -2271,7 +2277,9 @@ It is always a good idea to clean up after yourself. As the sign says when takin
 ## Summary
 ###
 
-This tutorial introduced the structure and uses of the Terminal from within VS Code running on GitHub Codespaces. The older, more general term for the terminal is the "command line." All modern operating systems provide a command line, from which sophisticated users can modify files and directories, using commands like `pwd`, `ls`, `echo`, `mkdir`, `mv`, `rm`, and `cd`. We also discuss regular expressions as well as some of the metacharacters (like, `*`, `^` and `$`) from which they are constructed. Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
+This tutorial introduced the structure and uses of the Terminal from within VS Code running on GitHub Codespaces.
+
+ The older, more general term for the terminal is the "command line." All modern operating systems provide a command line, from which sophisticated users can modify files and directories, using commands like `pwd`, `ls`, `echo`, `mkdir`, `mv`, `rm`, and `cd`. We also discuss regular expressions as well as some of the metacharacters (like, `*`, `^` and `$`) from which they are constructed. Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
 Learn more about the command line and related topics by reading [*The Unix Workbench*](https://seankross.com/the-unix-workbench/) by Sean Kross.
 
