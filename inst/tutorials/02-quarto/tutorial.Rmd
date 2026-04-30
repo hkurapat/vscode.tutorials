@@ -32,7 +32,7 @@ options(tutorial.exercise.timelimit = 60,
 
 This tutorial covers how to create Quarto documents using [GitHub Codespaces](https://github.com/features/codespaces). Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
-<!-- AR: Should we explicitly say this assumes students are already inside a GitHub Codespace running VS Code in the browser? That context matters before any Terminal/Explorer instructions. Yes. -->
+This tutorial assumes that you are working inside a GitHub Codespace running VS Code in the browser. For help with setting this up, see the [Getting Started](https://ppbds.github.io/primer/getting-started.html) chapter.
 
 ## Quarto 1
 ### 
@@ -81,11 +81,6 @@ Quarto is a command line interface tool, not an R package. Therefore, its comman
 ### Exercise 2
 
 Save the Quarto document with `File -> Save`. You can also use the shortcut `Cmd/Ctrl + S`.
-
-<!-- AR: In Codespaces, autosave/settings may differ. Should we tell students to use Cmd/Ctrl + S throughout, or configure autosave earlier? 
-
-No. You should test it and make sure it works.
--->
 
 Name the file `quarto-1.qmd`.
 
@@ -773,11 +768,6 @@ If you forget the `+`, R treats the next line as a new command instead of part o
 ### Exercise 13
 
 We just built the basic graph, but it still looks a little ugly. Titles and axis labels are important for adding context to any graph.
-
-<!-- AR: Could ask AI to improve labels/title/caption for the iris plot, then have students choose/edit the result. 
-
-No. Tutorial long enough already.
--->
 
 Use the `labs()` function to add an appropriate title and some axis labels to the graph.
 
