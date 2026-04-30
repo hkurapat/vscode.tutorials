@@ -664,9 +664,11 @@ If you run this command without running `library(tidyverse)` in the R Terminal, 
 
 <!--AR: Switch for a gen AI exercises? Is there some value in doing it by hand once?
 
-Yes. Use Gen AI. Ensure that our code is good. Maybe keep the knowledge drop which highlights some one good aspect of our code: use |> instead of %>%.
+Yes. Use Gen AI. Ensure that our code is good. Maybe keep the knowledge drop which highlights one good aspect of our code: use |> instead of %>%.
 
 Ask students to recreate plot below by submitting the image to AI.
+
+Done.
 -->
 
 Let's create the following scatterplot in our Quarto document:
@@ -687,19 +689,13 @@ scat_p
 
 ### 
 
-Create a new code chunk. Add this code.
+Create a new code chunk. 
 
-````
-ggplot(data = iris,
-       mapping = aes(x = Sepal.Width,
-                     y = Sepal.Length,
-                     color = Species))
-````
+Ask your favorite AI to recreate the chart you see above using R. You can use words, or even use the image of the chart itself (ask AI to help you with this if needed). Then paste the code you get back into your new code chunk.
 
 ### 
 
-Render the file. You should now see your R code (since we did not set `echo: false`), as well as a blank plot (since we have not added a geom layer).
-
+Preview the file. You should now see your R code (since we did not set `echo: false`), as well as your plot.
 In the R Terminal, run:
 
 ````
@@ -719,105 +715,29 @@ question_text(NULL,
 
 ### 
 
-Make sure to format your code so that it looks neat and tidy. Specifically:
-
-* Put spaces on either side of mathematical operators apart from `^` (i.e. `+`, `-`, `==`, `<`, `…`), and around the assignment operator (`<-`).
-
-* Don’t put spaces inside or outside parentheses for regular function calls. Always put a space after a comma, just like in standard English.
-
-* `|>` should always have a space before it and should typically be the last thing on a line.
-
-* If the function you’re piping into has named arguments (like `mutate()` or `summarize()`), put each argument on a new line. If the function doesn’t have named arguments (like `select()` or `filter()`), keep everything on one line unless it doesn’t fit, in which case you should put each argument on its own line.
-
-A good resource on neat code is the [Tidyverse Style Guide](https://style.tidyverse.org/syntax.html). 
+AI code is not perfect! A new piping character `|>` was introduced to replace `$>$`. But, AI often uses the older version. If your AI used `%>%`, tell it to replace those characters with the newer `|>`. This can help "teach" your AI to write better code for you.
 
 <!-- Need to decide whether to teach manual formatting, VS Code format document, or Air. If Air is installed/configured in Codespaces, this is a natural place to introduce it. -->
 
-
 ### Exercise 12
 
-Add `geom_point()` to your plot. Render the file again. Now our plot isn't empty! It shows a scatterplot!
+<!-- DK: Add a second, open-ended, make a cool plot using R and data from the tidyverse package question.
 
-### 
+AR: Done. -->
+Insert a new code chunk.
 
-In the R Terminal, run:
-
-````
-tutorial.helpers::show_file("quarto-2.qmd", chunk = "Last")
-````
-
-CP/CR.
+Ask your favorite AI to make another cool plot using R and data from the `tidyverse` package. Insert the code you get into the chunk and preview the chart. Ask the AI to make some changes, then update the code chunk and preview again. Do this a few more times until you get a chart that is beautiful and interesting.
 
 ```{r quarto-2-12}
 question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 10)
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
 ```
 
-### 
-
-The `+` at the end of a **ggplot2** line means "add another layer to this plot." The first line creates the coordinate system and maps variables to aesthetics. `geom_point()` adds the layer that actually draws the points.
-
-If you forget the `+`, R treats the next line as a new command instead of part of the plot.
-
-### Exercise 13
-
-We just built the basic graph, but it still looks a little ugly. Titles and axis labels are important for adding context to any graph.
-
-Use the `labs()` function to add an appropriate title and some axis labels to the graph.
-
-Reminder, this is what our plot should look like:
-
-```{r}
-scat_p
-```
-
-### 
-
-Render the file again to see your completed graph.
-
-### 
-
-In the R Terminal, run:
-
-````
-tutorial.helpers::show_file("quarto-2.qmd", chunk = "Last")
-````
-
-CP/CR.
-
-```{r quarto-2-13}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 2)
-```
-
-### 
-
-The code for our version of the plot looks like this:
-
-````
-ggplot(data = iris,
-       mapping = aes(x = Sepal.Width,
-                     y = Sepal.Length,
-                     color = Species)) +
-  geom_point() +
-  labs(title = "Measurements for Different Species of Iris",
-       subtitle = "Virginica has the longest sepals",
-        x = "Sepal Width",
-        y = "Sepal Length",
-       caption = "Fisher (1936)")
-````
-
-We recommend you always start your Quarto documents with the packages you need. That way, if you share your code with others, they can easily see which packages they need to install. 
-
-<!-- DK: Add a second, open-ended, make a cool plot using R and data from the tidyverse package question. -->
+###
 
 **You should never include `install.packages()` in a Quarto document or R script which you share.** Be careful since generative AI tools will often suggest this.
 
