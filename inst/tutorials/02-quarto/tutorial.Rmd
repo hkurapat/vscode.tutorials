@@ -196,26 +196,24 @@ The YAML header includes "metadata" about the document itself, things like the t
 
 ### Exercise 5
 
-To "render" our Quarto document, select the bash Terminal in the Terminal pane, and type the command `quarto preview quarto-1.qmd` and press `Enter`.
+<!-- DK: Remove the above call to the shell. Just teach the short cut. Maybe mention, in the knowledge drop, that short cuts call underlying commands.
 
-```{r}
-include_graphics("images/quarto-preview.png")
-```
-
-You will be able to view the rendered quarto document in a new browser tab by clicking the green "Open in Browser" button in the bottom-right, or `Cmd + click` the URL in the bottom-left.
-
-<!-- AR: In codespaces the shortcut opens an unhelpful pane (in my opinion). Is it important to explain difference between this and just running quarto preview in a bash terminal? 
-
-Remove the above call to the shell. Just teach the short cut. Maybe mention, in the knowledge drop, that short cuts call underlying commands.
+AR: Done.
 -->
 
-Even better is to use the shortcut `Cmd/Ctrl + Shift + K`. Professionals don't click buttons. Try this now.
+To "render" our Quarto document, use the shortcut `Cmd/Ctrl + Shift + K`. You're screen should look something like this:
 
 ```{r}
 include_graphics("images/quarto-preview-keyboard-shortcut.png")
 ```
 
-This command opens a new bash Terminal titled "Quarto Preview". It also opens a pane to the right of the editor that provides a preview. This pane is not very great for viewing the rendered document. It's often best to preview the document in a seperate browser tab or window. Like before, either click on the green "Open in Browser" button in the bottom-right, or `Cmd + click` the green URL in the bottom left. You can also close the "Quarto Preview" pane in the editor and still view the preview in the browser.
+This command splits the Editor and opens a new tab titled "Quarto Preview" on the right. This displays the rendered document. It's often better to preview the document in a seperate browser window. To do this, either click on the green "Open in Browser" button in the bottom-right, or `Cmd/Ctrl + click` the green URL in the bottom left. You can close the "Quarto Preview" viewer in the editor and still view the preview in the browser, if you prefer.
+
+###
+
+ Professionals don't click buttons. They save time by using keyboard shortcuts!
+
+ Under the hood, this shortcut opens a new bash Terminal titled "Quarto Preview". There, it executes the `quarto preview` command. You don't need to worry about this now, just use `Cmd/Ctrl + Shift + K` to preview your quarto documents.
 
 ###
 
