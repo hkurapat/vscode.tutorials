@@ -21,8 +21,8 @@ library(pkgbuild)
 
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(out.width = '90%')
-options(tutorial.exercise.timelimit = 60, 
-        tutorial.storage = "local") 
+options(tutorial.exercise.timelimit = 60,
+        tutorial.storage = "local")
 ```
 
 
@@ -45,71 +45,22 @@ options(tutorial.exercise.timelimit = 60,
 <!-- Could have test cases which confirm that these commands match what I think they should, I think. -->
 
 ## Introduction
-### 
-
-This tutorial introduces the structure and uses of the Terminal from within Positron. The older, more general term for the Terminal is the "command line." All modern operating systems provide a command line, from which sophisticated users can modify files and directories, using commands like `pwd`, `ls`, `echo`, `mkdir`, `mv`, `rm`, and `cd`. We also discuss regular expressions as well as some of the metacharacters (like, `*`, `^` and `$`) from which they are constructed. Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
-
 ###
 
-Windows users should use a Unix-like shell rather than the default PowerShell. With luck, this will be automatic because you have already done three things.
+This tutorial introduces the structure and uses of the Terminal from within VS Code running on GitHub Codespaces.
 
-First, you installed [Git for Windows](https://gitforwindows.org/), including Git Bash, which will provide the shell we need.
+The older, more general term for the Terminal is the "command line." All modern operating systems provide a command line, from which sophisticated users can modify files and directories, using commands like `pwd`, `ls`, `echo`, `mkdir`, `mv`, `rm`, and `cd`. We also discuss regular expressions as well as some of the metacharacters (like, `*`, `^` and `$`) from which they are constructed.
 
-Second, from the R Terminal, you have run:
-
-````
-tutorial.helpers::set_positron_settings(
-  positron_settings = 
-   list("terminal.integrated.defaultProfile.windows" = 
-        "Git Bash"))
-````
-
-Third, you have restarted Positron. 
-
-###
-
-When you first click on "Terminal," you should see something like this:
-
-```{r}
-knitr::include_graphics("images/tut-terminal-1.png")
-```
-
-Because I am using a Mac, the shell being used is already a "Unix-like." If you are on Windows, and are lucky, then the set up work you have already done will also, by default, give you a Unix-like shell. You can test this by entering `pwd` and hitting `Enter`. A Unix-like shell will give you something like:
-
-````
-dkane@macbook ~ % pwd
-/Users/dkane
-dkane@macbook ~ % 
-````
-
-PowerShell, the default Williams shell (in modern systems), will give you an error. If so, you should be able to access a Unix-like shell by clicking the downward arrow next to the `+` on the Terminal menu. When you do, Positron should provide you with a list of shells to choose from. Look for something called "Git Bash" or "bash" or, really, anything other than PowerShell. 
-
-```{r}
-knitr::include_graphics("images/tut-terminal-2.png")
-```
-
-Once that is pulled up, see if `pwd` works. If it does, you are all set. If not, ask AI to help you. To complete this tutorial, you should be using a Unix-like shell.
-
-### 
-
-If, for whatever reason, you are a Windows user still using PowerShell, then keep the following in mind.
-
-For the most part, Windows works like Mac/Unix. There are three main exceptions which are important for this tutorial:
-
-* Environment variables look like `$PATH` on Mac/Unix and `%PATH%` on Windows. That is, in both cases, we are using the `PATH` environment variable. We just access this variable differently depending on the operating system. Mac/Unix prefaces environment variables with `$` while Windows surrounds them with `%`. 
-
-* The names of some environment variables differ across operating systems. For example, `$HOME` (Mac/Linux) and `%USERPROFILE%` (Windows) are both environment variables which refer to the user's home directory.
-
-* Directory separators are forward slashes -- `/` -- on Max/Unix and backward slashes -- `\` -- on Windows.
-
-###
-
-But, again, if you are a Windows user, everything will work the same for you as it does on Mac, as long as you are using a Unix-like shell like bash.
+Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
 ## Terminal
-### 
+###
 
-The Terminal tab is next to the R Terminal tab within the Panel in the lower left portion of the Positron window.  We use the R Terminal tab to talk to R. We use the Terminal tab to talk directly with the computer. Sadly, the R Terminal and the Terminal speak different languages.
+The Terminal view is in the Panel in the lower section of the VS Code window. We use terminals to talk directly with the computer. Different types of terminals use different languages to do this. The initial terminal uses the bash language.
+
+```{r}
+include_graphics("images/terminal-on-open.png")
+```
 
 ### Exercise 1
 
@@ -124,25 +75,25 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 Your answer should look something like:
 
 ````
-Davids-MacBook-Pro-2:averages dkane$ 
-Davids-MacBook-Pro-2:averages dkane$ 
-Davids-MacBook-Pro-2:averages dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal (main) $
+@ppbds-student ➜ /workspaces/03-terminal (main) $
+@ppbds-student ➜ /workspaces/03-terminal (main) $
 ````
 
-Your answer will look different from mine. Default prompts vary from computer to computer. In my case, the first part of the prompt is the name of my computer: `Davids-MacBook-Pro-2`. The second part, separated with a colon, is the name of the directory, `averages`, in which I am running the tutorial. The third part, separated by a space, is `dkane`, my username. The dollar sign indicates the end of the prompt.
+Your answer will look different from mine. Default prompts vary from computer to computer. In my case, the first part of the prompt is the name of my GitHub account: `@ppbds-student`. The second part, after the arrow, is the path to the directory, `/workspaces/03-terminal`, in which I am running the tutorial. The third part, separated by a space and in parenthesis, is `main`, the current git branch (more on this in an upcoming tutorial). The dollar sign indicates the end of the prompt.
 
-### 
+###
 
-My prompt acts as a quick way to tell you where in the computer you are. The Terminal is sensitive to which folder location you are in, just like the R Terminal is.
+The prompt acts as a quick way to tell you where in the computer you are. The Terminal is sensitive to which folder location you are in, keep this in mind!
 
 ### Exercise 2
 
-Let's figure out the location of the folder in which we currently are. (Note that the terms "folder" and "directory" mean the same thing.) To see your current location within your computer, type the command `pwd` (**p**resent **w**orking **d**irectory) in the Terminal. Hit the `Enter` (Windows) or `Return` (Mac) key to run the command. 
+Let's figure out the location of the folder in which we currently are. (Note that the terms "folder" and "directory" mean the same thing.) To see your current location within your computer, type the command `pwd` (**p**resent **w**orking **d**irectory) in the Terminal. Hit the `Enter` (Windows) or `Return` (Mac) key to run the command.
 
 Going forward, we will instruct you to "run" a given command. You do this by typing the command at the prompt and then hitting the `Enter` or `Return` key.
 
@@ -157,17 +108,17 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 Your answer should look something like mine:
 
 ````
-Davids-MacBook-Pro-2:averages dkane$ pwd
-/Users/dkane/Desktop/projects/averages
-Davids-MacBook-Pro-2:averages dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal (main) $ pwd
+/workspaces/03-terminal
+@ppbds-student ➜ /workspaces/03-terminal (main) $
 ````
 
-Notice how the last directory (folder) in the path is included in the my prompt. But, again, prompts vary, so yours may behave differently.
+The `pwd` command prints the full path to your current working directory. When in more complex file systems, the prompt usually only shows a shorter reminder of your location.
 
 ### Exercise 3
 
@@ -199,7 +150,7 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 `mkdir` creates an empty directory. We --- and most other people --- use the terms "folder" and "directory" interchangeably.
 
@@ -217,22 +168,23 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 Your answer should look like:
 
 ````
-Davids-MacBook-Pro-2:averages dkane$ cd example
-Davids-MacBook-Pro-2:example dkane$ pwd
-/Users/dkane/Desktop/projects/averages/example
-Davids-MacBook-Pro-2:example dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal (main) $ mkdir example
+@ppbds-student ➜ /workspaces/03-terminal (main) $ cd example
+@ppbds-student ➜ /workspaces/03-terminal/example (main) $ pwd
+/workspaces/03-terminal/example
+@ppbds-student ➜ /workspaces/03-terminal/example (main) $
 ````
 
 The `example` directory is one level below the directory in which you started.
 
 ### Exercise 6
 
-Let's create a file called `my.txt`. Run `echo "" > my.txt`. 
+Let's create a file called `my.txt`. Run `echo "" > my.txt`.
 
 Run `ls` to confirm that the new file exists inside the current directory. CP/CR.
 
@@ -245,13 +197,13 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:example dkane$ echo "" > my.txt
-Davids-MacBook-Pro-2:example dkane$ ls
+@ppbds-student ➜ /workspaces/03-terminal/example (main) $ echo "" > my.txt
+@ppbds-student ➜ /workspaces/03-terminal/example (main) $ ls
 my.txt
-Davids-MacBook-Pro-2:example dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/example (main) $
 ````
 
 `echo "" > my.txt` creates an empty file. `echo` just repeats whatever follows, which is an empty quote in this case. `>`, which we will discuss more later, "pipes" whatever comes before it into whatever comes after.
@@ -270,15 +222,15 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 Your answer should look like:
 
 ````
-Davids-MacBook-Pro-2:example dkane$ cp my.txt my_2.text
-Davids-MacBook-Pro-2:example dkane$ ls
-my.txt          my_2.text
-Davids-MacBook-Pro-2:example dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/example (main) $ cp my.txt my_2.txt
+@ppbds-student ➜ /workspaces/03-terminal/example (main) $ ls
+my_2.txt  my.txt
+@ppbds-student ➜ /workspaces/03-terminal/example (main) $
 ````
 
 ### Exercise 8
@@ -296,18 +248,18 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 Your answer should look like:
 
 ````
-Davids-MacBook-Pro-2:example dkane$ mv my.txt fake.txt
-Davids-MacBook-Pro-2:example dkane$ ls
-fake.txt          my_2.text
-Davids-MacBook-Pro-2:example dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/example (main) $ mv my.txt fake.txt
+@ppbds-student ➜ /workspaces/03-terminal/example (main) $ ls
+fake.txt  my_2.txt
+@ppbds-student ➜ /workspaces/03-terminal/example (main) $
 ````
 
-### 
+###
 
 From the computer's point of view, **renaming** a file is the same thing as **moving** a file. In fact, moving is more general since it allows us to change both the name *and* the location of a file.
 
@@ -324,22 +276,22 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 Your answer should look like:
 
 ````
-Davids-MacBook-Pro-2:example dkane$ rm fake.txt
-Davids-MacBook-Pro-2:example dkane$ ls
-my_2.text
-Davids-MacBook-Pro-2:example dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/example (main) $ rm fake.txt
+@ppbds-student ➜ /workspaces/03-terminal/example (main) $ ls
+my_2.txt
+@ppbds-student ➜ /workspaces/03-terminal/example (main) $
 ````
 
 Be careful with the `rm` command in the Terminal. Unlike moving files to Trash on your computer, it is (usually) irreversible.
 
 ### Exercise 10
 
-We want to remove the `example` directory. But we can't do that while we are "located" in that directory. That is, the computer is aware that our Terminal process --- the entity which is executing our commands like `ls` and `cp` --- is currently working from the `example` directory. 
+We want to remove the `example` directory. But we can't do that while we are "located" in that directory. That is, the computer is aware that our Terminal process --- the entity which is executing our commands like `ls` and `cp` --- is currently working from the `example` directory.
 
 Run `cd ..`. The "dot-dot" symbol --- `..` --- references the directory which contains the current directory. Run `pwd` to confirm. CP/CR.
 
@@ -352,15 +304,15 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 Your answer should look like:
 
 ````
-Davids-MacBook-Pro-2:example dkane$ cd ..
-Davids-MacBook-Pro-2:averages dkane$ pwd
-/Users/dkane/Desktop/projects/averages
-Davids-MacBook-Pro-2:averages dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/example (main) $ cd ..
+@ppbds-student ➜ /workspaces/03-terminal (main) $ pwd
+/workspaces/03-terminal
+@ppbds-student ➜ /workspaces/03-terminal (main) $
 ````
 
 Again, note how the prompt changed because we moved directories. The `..` symbol --- two periods --- always indicates the directory one level up, i.e., the directory in which `example` is located.
@@ -383,13 +335,13 @@ question_text(NULL,
 It is good to clean up. Don't leave junk files lying around.
 
 ## Paths
-### 
+###
 
 You will practice using paths both inside and outside the current working directory. You will learn a few shortcuts to make this easier.
 
 ### Exercise 1
 
-By default, the Terminal in Positron starts with a working directory which is the same as the folder you created for the project. That is, both the R Terminal and the Terminal *start* in the same place.
+By default, the Terminal in VS Code starts in the root folder of your GitHub repo for this tutorial.
 
 Run `pwd` to show your current working directory. CP/CR.
 
@@ -402,11 +354,11 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
-The Actvity Bar (left side, colored blue) in Positron includes several buttons. When you click on of these buttons, a "pane" of some sort is opened next to the Activty Bar. (Pressing the button again closes the pane.)
+The Activity Bar on the left side of VS Code includes several buttons. When you click one of these buttons, a view opens next to the Activity Bar. Pressing the button again closes the view.
 
-The top button is the Explorer. Pressing it opens the Explorer pane, also called Project Explorer. This functions like the Mac Finder or the Windows Explorer. 
+The top button is the Explorer. Pressing it opens the Explorer pane, also called Project Explorer. This functions like the Mac Finder or the Windows Explorer.
 
 ### Exercise 2
 
@@ -421,7 +373,7 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 The new directory is created directly inside the working directory.
 
@@ -438,18 +390,18 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 Your answer should look something like:
 
 ````
-Davids-MacBook-Pro-2:averages dkane$ cd paths
-Davids-MacBook-Pro-2:paths dkane$ pwd
-/Users/dkane/Desktop/projects/averages/paths
-Davids-MacBook-Pro-2:paths dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal (main) $ cd paths
+@ppbds-student ➜ /workspaces/03-terminal/paths (main) $ pwd
+/workspaces/03-terminal/paths
+@ppbds-student ➜ /workspaces/03-terminal/paths (main) $
 ````
 
-Note how the prompt changed after I ran the `cd paths` command. Before, the prompt included `averages` because that was the name of the current working directory. Using `cd` changed the current working directory to `paths`, causing the prompt to change as well.
+Note how the prompt changed after I ran the `cd paths` command. Before, the prompt included `/workspaces/03-terminal` because that was the current working directory. Using `cd` changed the current working directory to `paths`, causing the prompt to change as well.
 
 ### Exercise 4
 
@@ -464,22 +416,22 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:paths dkane$ mkdir lessons
-Davids-MacBook-Pro-2:paths dkane$ ls
+@ppbds-student ➜ /workspaces/03-terminal/paths (main) $ mkdir lessons
+@ppbds-student ➜ /workspaces/03-terminal/paths (main) $ ls
 lessons
-Davids-MacBook-Pro-2:paths dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/paths (main) $
 ````
 
 Because we have changed working directories, the `lessons` directory is created inside the `paths` directory. It is the only object in the `paths` directory.
 
 ### Exercise 5
 
-<!-- DK: Delete the Windows option? -->
+<!-- DK: Delete the Windows option? AR: Done. -->
 
-Make a directory within `lessons` called `fruits` by running `mkdir lessons/fruits`. In Windows with Powershell, this would be `mkdir lessons\fruits`. The only difference between the Mac/Linux command and the Windows command is that the former uses a forward slash, `/`, to separate out directories while the latter uses a back slash, `\`.
+Make a directory within `lessons` called `fruits` by running `mkdir lessons/fruits`.
 
 Run `ls lessons` to check to see if `fruits` exists inside the `lessons` directory. CP/CR.
 
@@ -492,24 +444,24 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:paths dkane$ mkdir lessons/fruits
-Davids-MacBook-Pro-2:paths dkane$ ls lessons/
+@ppbds-student ➜ /workspaces/03-terminal/paths (main) $ mkdir lessons/fruits
+@ppbds-student ➜ /workspaces/03-terminal/paths (main) $ ls lessons/
 fruits
-Davids-MacBook-Pro-2:paths dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/paths (main) $
 ````
 
-### 
+###
 
 We could not, as before, simply give `fruits` as an argument to `mkdir` because then the directory would be created directly inside `paths`, the current working directory, rather than within `lessons`. To refer to a location other than the working directory, we need to use a **path**, which describes the location directory by directory. The path above is called a **relative path** because it assumes the working directory as its starting point.
 
 ### Exercise 6
 
-Let's change our working directory to `fruits`. Run `cd lessons/fruits`. 
+Let's change our working directory to `fruits`. Run `cd lessons/fruits`.
 
-As you are typing this command, type only the `f` in `fruits` and then press the tab key (twice may be necessary on some computers). Pressing tab autocompletes the name of a file or directory. 
+As you are typing this command, type only the `f` in `fruits` and then press the tab key (twice may be necessary on some computers). Pressing tab autocompletes the name of a file or directory.
 
 CP/CR.
 
@@ -522,7 +474,7 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 Get in the practice of using the tab key. Avoid typing whenever possible. Be lazy!
 
@@ -530,7 +482,7 @@ Get in the practice of using the tab key. Avoid typing whenever possible. Be laz
 
 Use `echo "" >` to make a text file inside `fruits`, named `pineapple.txt`. Recall that your current location --- i.e., your working directory --- is now `fruits`. So, to make a new file within `fruits`, you just need `echo "" > pineapple.txt`. Run `ls` to confirm. CP/CR.
 
-### 
+###
 
 ```{r paths-7}
 question_text(NULL,
@@ -544,12 +496,12 @@ question_text(NULL,
 ###
 
 ````
-Davids-MacBook-Pro-2:fruits dkane$ echo "" > pineapple.txt
-Davids-MacBook-Pro-2:fruits dkane$ ls
+@ppbds-student ➜ /workspaces/03-terminal/paths/lessons/fruits (main) $ echo "" > pineapple.txt
+@ppbds-student ➜ /workspaces/03-terminal/paths/lessons/fruits (main) $ ls
 pineapple.txt
-Davids-MacBook-Pro-2:fruits dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/paths/lessons/fruits (main) $
 ````
-### 
+###
 
 `pineapple.txt` is still a relative path, but since the location is directly inside the assumed starting point, i.e. the working directory, the name of the file is all we need. If we had used `lessons/fruits/apple.txt`, as we would have had to do if our working directory were `paths`, we would have gotten an error because those directories would not be recognized within our actual starting point of `fruits`.
 
@@ -559,7 +511,7 @@ Read this paragraph again. No skimming!
 
 Use `echo` to make two more text files inside `fruits`, named `pear.txt` and `does-not-belong`. That is, run `echo "" > pear.txt & echo "" > does-not-belong`. Confirm by running `ls`. CP/CR.
 
-### 
+###
 
 ```{r paths-8}
 question_text(NULL,
@@ -573,10 +525,10 @@ question_text(NULL,
 ###
 
 ````
-Davids-MacBook-Pro-2:fruits dkane$ echo "" > pear.txt & echo "" > does-not-belong
-Davids-MacBook-Pro-2:fruits dkane$ ls
+@ppbds-student ➜ /workspaces/03-terminal/paths/lessons/fruits (main) $ echo "" > pear.txt & echo "" > does-not-belong
+@ppbds-student ➜ /workspaces/03-terminal/paths/lessons/fruits (main) $ ls
 does-not-belong pear.txt        pineapple.txt
-Davids-MacBook-Pro-2:fruits dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/paths/lessons/fruits (main) $
 ````
 
 The `&` symbol simply tells the operating system to do both the command which came before it and the command which comes after.
@@ -597,13 +549,13 @@ question_text(NULL,
 Your answer should look like this:
 
 ````
-Davids-MacBook-Pro-2:fruits dkane$ cd ..
-Davids-MacBook-Pro-2:lessons dkane$ pwd
-/Users/dkane/Desktop/projects/averages/paths/lessons
-Davids-MacBook-Pro-2:lessons dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/paths/lessons/fruits (main) $ cd ..
+@ppbds-student ➜ /workspaces/03-terminal/paths/lessons (main) $ pwd
+/workspaces/03-terminal/paths/lessons
+@ppbds-student ➜ /workspaces/03-terminal/paths/lessons (main) $
 ````
 
-### 
+###
 
 `..` is shorthand for the directory immediately above the current working directory. The phrase "current working directory" is a bit redundant. You don't need the word "current."
 
@@ -620,20 +572,20 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:lessons dkane$ mkdir tbd
-Davids-MacBook-Pro-2:lessons dkane$ ls
+@ppbds-student ➜ /workspaces/03-terminal/paths/lessons (main) $ mkdir tbd
+@ppbds-student ➜ /workspaces/03-terminal/paths/lessons (main) $ ls
 fruits  tbd
-Davids-MacBook-Pro-2:lessons dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/paths/lessons (main) $
 ````
 
 In the same way that `..` refers to the directory above the current directory, `.` --- a single period --- refers to the current directory, the one in which we are currently located.
 
 ### Exercise 11
 
-Use `mv` to **m**o**v**e the file `does-not-belong` from the `fruits` directory to the `tbd` directory by running `mv fruits/does-not-belong tbd`. Run `ls tbd` to confirm. 
+Use `mv` to **m**o**v**e the file `does-not-belong` from the `fruits` directory to the `tbd` directory by running `mv fruits/does-not-belong tbd`. Run `ls tbd` to confirm.
 
 CP/CR.
 
@@ -646,16 +598,16 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:lessons dkane$ mv fruits/does-not-belong tbd
-Davids-MacBook-Pro-2:lessons dkane$ ls tbd
+@ppbds-student ➜ /workspaces/03-terminal/paths/lessons (main) $ mv fruits/does-not-belong tbd
+@ppbds-student ➜ /workspaces/03-terminal/paths/lessons (main) $ ls tbd
 does-not-belong
-Davids-MacBook-Pro-2:lessons dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/paths/lessons (main) $
 ````
 
-### 
+###
 
 We can act on files which are not in the working directory as long as we provide a path --- either relative, as here, or absolute --- to those files. In this case, neither `mv` nor `ls` are acting on the current directory. Instead, they are acting on lower directories: `fruits` and `tbd`.
 
@@ -672,16 +624,16 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:lessons dkane$ cd ..
-Davids-MacBook-Pro-2:paths dkane$ pwd
-/Users/dkane/Desktop/projects/averages/paths
-Davids-MacBook-Pro-2:paths dkane$ mv lessons/tbd .
-Davids-MacBook-Pro-2:paths dkane$ ls
+@ppbds-student ➜ /workspaces/03-terminal/paths/lessons (main) $ cd ..
+@ppbds-student ➜ /workspaces/03-terminal/paths (main) $ pwd
+/workspaces/03-terminal/paths
+@ppbds-student ➜ /workspaces/03-terminal/paths (main) $ mv lessons/tbd .
+@ppbds-student ➜ /workspaces/03-terminal/paths (main) $ ls
 lessons tbd
-Davids-MacBook-Pro-2:paths dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/paths (main) $
 ````
 
 When using `mv`, there is no difference between moving a directory and moving a file. A command like `mv lessons/tbd .` seems like a bit of witchcraft. But, all that it is really say is to move (`mv`) the `tbd` directory (which is located in the `lessons` directory) to here (`.`), meaning to the current directory.
@@ -702,21 +654,21 @@ question_text(NULL,
 ###
 
 ````
-Davids-MacBook-Pro-2:paths dkane$ cd ..
-Davids-MacBook-Pro-2:averages dkane$ pwd
-/Users/dkane/Desktop/projects/averages
-Davids-MacBook-Pro-2:averages dkane$ rm -r paths
-Davids-MacBook-Pro-2:averages dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/paths (main) $ cd ..
+@ppbds-student ➜ /workspaces/03-terminal (main) $ pwd
+/workspaces/03-terminal
+@ppbds-student ➜ /workspaces/03-terminal (main) $ rm -r paths
+@ppbds-student ➜ /workspaces/03-terminal (main) $
 ````
 
-### 
+###
 
 In olden times, professional programmers would spend a lot of time learning the various options to commands like `rm`. Now, we just ask ChatGPT or a similar tool.
 
 <!-- Could have them ask ChatGPT to do something and then do it. -->
 
 ## Important symbols
-### 
+###
 
 We have seen two important symbols --- `..` and `.` --- already. This section will explore those along with `~`.  The most common English terms for these symbols are "dot" for `.`, "dot dot" for `..`, and "tilde" for `~`. The `.` symbol indicates the current directory. The `..` symbol is for the directory one above the current directory. The `~` symbol is for your "home" directory.
 
@@ -735,15 +687,15 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:averages dkane$ mkdir symbols
-Davids-MacBook-Pro-2:averages dkane$ cd symbols
-Davids-MacBook-Pro-2:symbols dkane$ pwd
-/Users/dkane/Desktop/projects/averages/symbols
-Davids-MacBook-Pro-2:symbols dkane$ ls
-Davids-MacBook-Pro-2:symbols dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal (main) $ mkdir symbols
+@ppbds-student ➜ /workspaces/03-terminal (main) $ cd symbols
+@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ pwd
+/workspaces/03-terminal/symbols
+@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ ls
+@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $
 ````
 
 The more practice we get with command line commands --- often called "shell" commands --- the easier it is to string together several of them in a row.
@@ -763,17 +715,17 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 Your answer should look like:
 
 ````
-Davids-MacBook-Pro-2:symbols dkane$ ls -a
+@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ ls -a
 .       ..
-Davids-MacBook-Pro-2:symbols dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $
 ````
 
-Every directory, even an "empty" one includes `.` and `..`. The `.` is link to the current directory, i.e., to the `symbols` directory in which we are currently located. The `..` is a link to the directory one level up, which is the `averages` directory in my case.
+Every directory, even an "empty" one includes `.` and `..`. The `.` is link to the current directory, i.e., to the `symbols` directory in which we are currently located. The `..` is a link to the directory one level up, which is `/workspaces/03-terminal` in my case.
 
 ### Exercise 3
 
@@ -788,15 +740,14 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 My answer looks like this:
 
 ````
-Davids-MacBook-Pro-2:symbols dkane$ ls ..
-R               averages.Rproj  theory.html     theory_files
-README.md       symbols         theory.qmd
-Davids-MacBook-Pro-2:symbols dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ ls ..
+images  symbols  tutorial.Rmd  tutorial.html
+@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $
 ````
 
 Your answer will look different because you started this tutorial in a different directory, with different contents, than I did.
@@ -814,24 +765,17 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 My answer looks like this:
 
 ````
-Davids-MacBook-Pro-2:symbols dkane$ ls ../..
-GBBO-Analysis                   mtc                             simmons
-averages                        ncf                             soccer_player_birth_months
-bootcamp                        numerai                         syllabi
-boston-college                  organization                    tidycensus.tutorials
-coordination                    primer                          tidymodels.tutorials
-...
-Davids-MacBook-Pro-2:symbols dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ ls ../..
+03-terminal
+@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $
 ````
 
-I cut off the long list of directories in my `projects` directory. The `symbols` directory, in which we are current located, is in that longer list.
-
-Your answer will look different because you have a different collection of projects, presumably many fewer.
+Your answer may look different if your Codespace includes other folders inside `/workspaces`.
 
 ### Exercise 5
 
@@ -846,23 +790,23 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 My answer looks like this:
 
 ````
-Davids-MacBook-Pro-2:symbols dkane$ pwd
-/Users/dkane/Desktop/projects/averages/symbols
-Davids-MacBook-Pro-2:symbols dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ pwd
+/workspaces/03-terminal/symbols
+@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $
 ````
 
-The absolute path for my current location, meaning my current working directory, contains these locations. 
+The absolute path for my current location, meaning my current working directory, contains these locations.
 
-* The starting `/` --- which would usually be a `C:\` in Windows --- indicates the root, or origin of the file systems. There is no directory higher than the root directory.
+* The starting `/`, indicates the root, or origin of the file systems. There is no directory higher than the root directory.
 
-* `Users` followed by my user name, `dkane`. Most Mac/Linux machines follow this organization. 
+* `workspaces`, which is where GitHub Codespaces stores workspace folders.
 
-* The next four directories are `Desktop`, followed by `projects`, which is where I store all my R projects. Then comes `averages`, which just happens to be the name of the directory in which I started this tutorial, and, finally, `symbols`, which is the directory we just created.
+* `03-terminal`, which is the name of the folder in which I started this tutorial, followed by `symbols`, which is the directory we just created.
 
 ### Exercise 6
 
@@ -880,13 +824,13 @@ question_text(NULL,
 My answer looks like this:
 
 ````
-Davids-MacBook-Pro-2:symbols dkane$ cd
-Davids-MacBook-Pro-2:~ dkane$ pwd
-/Users/dkane
-Davids-MacBook-Pro-2:~ dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ cd
+@ppbds-student ➜ ~ $ pwd
+/home/codespace
+@ppbds-student ➜ ~ $
 ````
 
-In Mac/Linux, the most common location for a user's home directory is within the `Users` directory. Note how, after we run `cd`, the prompt changes to report `~` as the current working directory. `~` is the symbol for the current user's home directory.
+In Codespaces, the home directory is usually `/home/codespace`. Note how, after we run `cd`, the prompt changes to report `~` as the current working directory. `~` is the symbol for the current user's home directory.
 
 ### Exercise 7
 
@@ -901,20 +845,20 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:~ dkane$ cd /Users/dkane/Desktop/projects/averages/symbols
-Davids-MacBook-Pro-2:symbols dkane$ pwd
-/Users/dkane/Desktop/projects/averages/symbols
-Davids-MacBook-Pro-2:symbols dkane$ 
+@ppbds-student ➜ ~ $ cd /workspaces/03-terminal/symbols
+@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ pwd
+/workspaces/03-terminal/symbols
+@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $
 ````
 
 This is an example of using a "absolute" path to change locations.
 
 ### Exercise 8
 
-Run `ls ~`. The list should be identical to the list you generated above in the home directory. Because the home directory is used in the absolute path of so many files, its path --- generally something like `/Users/your-user-name-here` on a Mac --- can be written with the shorthand `~`, which is a tilde, pronounced TIL-D. CP/CR.
+Run `ls ~`. The list should be identical to the list you generated above in the home directory. Because the home directory is used in the absolute path of so many files, its path --- generally something like `/home/codespace` in Codespaces --- can be written with the shorthand `~`, which is a tilde, pronounced TIL-D. CP/CR.
 
 
 ```{r important-symbols-8}
@@ -926,7 +870,7 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 The shorthands we have learned so far, `.`, `..`, `~`, stand for the text of the paths for the corresponding directory. They are not specific to any function and can be used in any situation where the text of the relevant path could be used.
 
@@ -943,22 +887,22 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 Your answer should look like:
 
 ````
-Davids-MacBook-Pro-2:symbols dkane$ pwd
-/Users/dkane/Desktop/projects/averages/symbols
-Davids-MacBook-Pro-2:symbols dkane$ cd ..
-Davids-MacBook-Pro-2:averages dkane$ rm -rf symbols
-Davids-MacBook-Pro-2:averages dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ pwd
+/workspaces/03-terminal/symbols
+@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ cd ..
+@ppbds-student ➜ /workspaces/03-terminal (main) $ rm -rf symbols
+@ppbds-student ➜ /workspaces/03-terminal (main) $
 ````
 
 Note that `rm -rf symbols` and `rm -rf symbols/`, with the trailing slash, have the same effect. Except in unusual circumstances, including (or not including) the trailing slash in the name of a directory does not matter.
 
 ## Options
-### 
+###
 
 Options modify the behavior of command line functions like `ls`, as we saw with `ls -a` above.
 
@@ -976,15 +920,15 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:averages dkane$ pwd
-/Users/dkane/Desktop/projects/averages
-Davids-MacBook-Pro-2:averages dkane$ mkdir options
-Davids-MacBook-Pro-2:averages dkane$ cd options/
-Davids-MacBook-Pro-2:options dkane$ ls
-Davids-MacBook-Pro-2:options dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal (main) $ pwd
+/workspaces/03-terminal
+@ppbds-student ➜ /workspaces/03-terminal (main) $ mkdir options
+@ppbds-student ➜ /workspaces/03-terminal (main) $ cd options/
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $ ls
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $
 ````
 
 Note how easy it is to string together several commands in order to accomplish our goals.
@@ -1002,7 +946,7 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 Other than `.`, avoid using special characters or spaces anywhere in file names. These are difficult to work with in the Terminal.
 
@@ -1019,13 +963,13 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 Your answer should be something like:
 
 ````
-Davids-MacBook-Pro-2:options dkane$ ls
-Davids-MacBook-Pro-2:options dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $ ls
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $
 ````
 
 If you did the previous exercise correctly, you should **not** see the new file. This is because we prefixed the name with `.`, which hides the file from normal view. Files whose name begins with a `.` are called "hidden" files for this reason.
@@ -1044,25 +988,25 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 Options are preceded by a `-` and come before the argument. Your answer should look like:
 
 ````
-Davids-MacBook-Pro-2:options dkane$ ls -a
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $ ls -a
 .               ..              .my-hidden.txt
-Davids-MacBook-Pro-2:options dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $
 ````
 
 The `.` file refers to the `options` directory itself. The `..` refers to the directory in which the options directory is located. Every directory has both a `.` and a `..` file inside of it, but we only see those files if we use the `-a` option.
 
-### 
+###
 
-Hidden files live all over your computer. 
+Hidden files live all over your computer.
 
 ### Exercise 5
 
-The **environment variable** `HOME` represents the path to your home directory. Type and enter `echo $HOME` alone to make sure we are telling you the truth. 
+The **environment variable** `HOME` represents the path to your home directory. Type and enter `echo $HOME` alone to make sure we are telling you the truth.
 
 CP/CR.
 
@@ -1075,21 +1019,21 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 Your answer should look like:
 
 ````
-Davids-MacBook-Pro-2:options dkane$ echo $HOME
-/Users/dkane
-Davids-MacBook-Pro-2:options dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $ echo $HOME
+/home/codespace
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $
 ````
 
 Note how the prompt has changed because I am now in the `options` directory.
 
 ### Exercise 6
 
-Run `ls $HOME`. This should generate a list of the items in your home directory. 
+Run `ls $HOME`. This should generate a list of the items in your home directory.
 
 CP/CR.
 
@@ -1102,22 +1046,21 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 There are many different environmental variables. You can also make your own. My answer looks like:
 
 ````
-Davids-MacBook-Pro-2:options dkane$ ls $HOME
-AppData         Desktop         Downloads       Movies          Pictures        miniconda3
-Applications    Documents       Library         Music           Public          temp
-Davids-MacBook-Pro-2:options dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $ ls $HOME
+Downloads
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $
 ````
 
 Don't worry about the details of these files. Our main point is that environmental variables are very handy because they make it easy to refer to a specific location on a computer, like where R is installed, even though the absolute path to this location is different on every person's computer.
 
 ### Exercise 7
 
-In the Terminal, run `ls -l $HOME`, so that we can see more information in a **l**ong list.  
+In the Terminal, run `ls -l $HOME`, so that we can see more information in a **l**ong list.
 
 CP/CR.
 
@@ -1130,26 +1073,15 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 My answer looks like this:
 
 ````
-Davids-MacBook-Pro-2:options dkane$ ls -l $HOME
-total 0
-drwxr-xr-x@   3 dkane  staff    96 Feb 25 11:05 AppData
-drwx------@   4 dkane  staff   128 Sep  9 10:14 Applications
-drwx------@  11 dkane  staff   352 Mar  8 15:46 Desktop
-drwx------+  23 dkane  staff   736 Feb 23 18:20 Documents
-drwx------@ 125 dkane  staff  4000 Mar  4 16:45 Downloads
-drwx------@ 103 dkane  staff  3296 May 14  2024 Library
-drwx------    6 dkane  staff   192 May 17  2022 Movies
-drwx------+   4 dkane  staff   128 Aug 19  2023 Music
-drwx------+   4 dkane  staff   128 Dec  6  2021 Pictures
-drwxr-xr-x+   4 dkane  staff   128 Dec  6  2021 Public
-drwxr-xr-x   18 dkane  staff   576 Mar  7 16:02 miniconda3
-drwxr-xr-x    2 dkane  staff    64 Aug 30  2022 temp
-Davids-MacBook-Pro-2:options dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $ ls -l $HOME
+total 4
+drwxr-xr-x 2 codespace codespace 4096 Apr 30 12:00 Downloads
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $
 ````
 
 In a long list, names are in the last column and file type is in the first: if the string in the first column begins with `d` it is a **d**irectory; if it begins with `-` it is a file; if it begins with `l` it is a **l**ink to another file or directory on the computer. The middle columns give, from left to right, the number of files, author, permission, file size (in bytes), and the date/time last modified.
@@ -1178,9 +1110,9 @@ question_text(NULL,
 My answer looks like this:
 
 ````
-Davids-MacBook-Pro-2:options dkane$ ls ~/Downloads/A*
-/Users/dkane/Downloads/AUTHORS.txt
-Davids-MacBook-Pro-2:options dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $ ls ~/Downloads/A*
+/home/codespace/Downloads/AUTHORS.txt
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $
 ````
 
 Note how my computer has added a `.txt` suffix to the file. Your computer might or might not do the same. Many operating systems think that every file should have a suffix which describes what it is, and so they add one if it is not present.
@@ -1192,10 +1124,10 @@ Move the `AUTHORS` file to the current directory, which is `options`, using `mv`
 For me, this looks like:
 
 ````
-Davids-MacBook-Pro-2:options dkane$ mv /Users/dkane/Downloads/AUTHORS.txt .
-Davids-MacBook-Pro-2:options dkane$ ls
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $ mv /home/codespace/Downloads/AUTHORS.txt .
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $ ls
 AUTHORS.txt
-Davids-MacBook-Pro-2:options dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $
 ````
 
 ```{r options-9}
@@ -1224,7 +1156,7 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 Now you know how R got its name. If your operating system did not add `.txt` as a suffix, then you should just use `AUTHORS` in this command and those that follow.
 
@@ -1241,7 +1173,7 @@ question_text(NULL,
     rows = 20)
 ```
 
-### 
+###
 
 The option `-n` takes an argument which allows head to display any number of initial lines.
 
@@ -1259,7 +1191,7 @@ question_text(NULL,
     rows = 20)
 ```
 
-### 
+###
 
 If the argument of `-n`is greater than the number of lines in the file, `head` or `tail` will just print the whole file.
 
@@ -1276,7 +1208,7 @@ question_text(NULL,
     rows = 25)
 ```
 
-### 
+###
 
 `cat` stands for con**cat**enate, which means "to chain together." While it is often used on a single text file, the command can take two arguments and print the files together.
 
@@ -1294,9 +1226,9 @@ question_text(NULL,
     rows = 20)
 ```
 
-### 
+###
 
-`cat -n` prints the text file with line numbers. 
+`cat -n` prints the text file with line numbers.
 
 ### Exercise 15
 
@@ -1311,14 +1243,14 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 For me, this looks like:
 
 ````
-Davids-MacBook-Pro-2:options dkane$ echo "David Kane"
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $ echo "David Kane"
 David Kane
-Davids-MacBook-Pro-2:options dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $
 ````
 
 `echo` can also take a string that is not in quotes as its argument.
@@ -1336,18 +1268,18 @@ question_text(NULL,
     rows = 8)
 ```
 
-### 
+###
 
 That is a lot of steps! An important goal of this tutorial is teach you to be *comfortable* at the command line. My answer looks like:
 
 ````
-Davids-MacBook-Pro-2:options dkane$  options % echo "David Kane" > test.txt
-Davids-MacBook-Pro-2:options dkane$  options % ls
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $ echo "David Kane" > test.txt
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $ ls
 AUTHORS.txt     test.txt
-Davids-MacBook-Pro-2:options dkane$  options % cat test.txt 
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $ cat test.txt
 David Kane
-Davids-MacBook-Pro-2:options dkane$  options % rm test.txt 
-Davids-MacBook-Pro-2:options dkane$  options % 
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $ rm test.txt
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $
 ````
 
 ### Exercise 17
@@ -1364,13 +1296,13 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:options dkane$ head -n 25 AUTHORS.txt > AUTHORS-fake
-Davids-MacBook-Pro-2:options dkane$ ls
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $ head -n 25 AUTHORS.txt > AUTHORS-fake
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $ ls
 AUTHORS-fake    AUTHORS.txt
-Davids-MacBook-Pro-2:options dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $
 ````
 
 ### Exercise 18
@@ -1393,13 +1325,13 @@ question_text(NULL,
     rows = 10)
 ```
 
-### 
+###
 
 My answer looks like:
 
 ````
-Davids-MacBook-Pro-2:options dkane$ echo "David Kane" >> AUTHORS-fake
-Davids-MacBook-Pro-2:options dkane$ tail AUTHORS-fake 
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $ echo "David Kane" >> AUTHORS-fake
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $ tail AUTHORS-fake
 Thomas Lumley
 Martin Maechler
 Sebastian Meyer
@@ -1410,7 +1342,7 @@ Deepayan Sarkar
 Duncan Temple Lang
 Luke Tierney
 David Kane
-Davids-MacBook-Pro-2:options dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $
 ````
 
 Like `>`, `>>` is not limited to `echo`, but can be used to append the output of any command.
@@ -1429,21 +1361,21 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 Your answer should look like:
 
 ````
-Davids-MacBook-Pro-2:options dkane$ cd ..
-Davids-MacBook-Pro-2:averages dkane$ rm -r options
-Davids-MacBook-Pro-2:averages dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/options (main) $ cd ..
+@ppbds-student ➜ /workspaces/03-terminal (main) $ rm -r options
+@ppbds-student ➜ /workspaces/03-terminal (main) $
 ````
 
-As usual, note how the prompt changes from `Davids-MacBook-Pro-2:options dkane$` to `Davids-MacBook-Pro-2:averages dkane$` as we move from the `options` directory to directory from which we started this tutorial, which is the `averages` directory in my case.
+As usual, note how the prompt changes from `@ppbds-student ➜ /workspaces/03-terminal/options (main) $` to `@ppbds-student ➜ /workspaces/03-terminal (main) $` as we move from the `options` directory to the directory from which we started this tutorial.
 
 
 ## Wildcards
-### 
+###
 
 You will learn how to search for files by using **wildcards** to form **regular expressions**.
 
@@ -1460,16 +1392,16 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:averages dkane$ pwd
-/Users/dkane/Desktop/projects/averages
-Davids-MacBook-Pro-2:averages dkane$ mkdir wildcards
-Davids-MacBook-Pro-2:averages dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal (main) $ pwd
+/workspaces/03-terminal
+@ppbds-student ➜ /workspaces/03-terminal (main) $ mkdir wildcards
+@ppbds-student ➜ /workspaces/03-terminal (main) $
 ````
 
-The `mkdir` command does not produce any output. To confirm that it had the desired effect, you could run `ls`. 
+The `mkdir` command does not produce any output. To confirm that it had the desired effect, you could run `ls`.
 
 ### Exercise 2
 
@@ -1484,13 +1416,13 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:averages dkane$ cd wildcards/
-Davids-MacBook-Pro-2:wildcards dkane$ pwd
-/Users/dkane/Desktop/projects/averages/wildcards
-Davids-MacBook-Pro-2:wildcards dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal (main) $ cd wildcards/
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ pwd
+/workspaces/03-terminal/wildcards
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
 Note how the prompt changed after we switched directories.
@@ -1499,13 +1431,13 @@ Keep track of your current location. There is a difference between being in the 
 
 ### Exercise 3
 
-Using `echo`, make three text files named `hat.txt`, `cat.txt`, and `ate.txt` by running: 
+Using `echo`, make three text files named `hat.txt`, `cat.txt`, and `ate.txt` by running:
 
 ````
 echo "" > hat.txt & echo "" > cat.txt & echo "" > ate.txt
 ````
 
-Confirm that you have done so by running `ls`. (No worries if you make a mistake. Just fix it by removing the misnamed file.) 
+Confirm that you have done so by running `ls`. (No worries if you make a mistake. Just fix it by removing the misnamed file.)
 
 CP/CR.
 
@@ -1518,17 +1450,17 @@ question_text(NULL,
     rows = 5)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:wildcards dkane$ echo "" > hat.txt & echo "" > cat.txt & echo "" > ate.txt 
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ echo "" > hat.txt & echo "" > cat.txt & echo "" > ate.txt
 [1] 59474
 [2] 59475
-[1]  - done       echo "" > hat.txt                                                                                
+[1]  - done       echo "" > hat.txt
 [2]  + done       echo "" > cat.txt
-Davids-MacBook-Pro-2:wildcards dkane$ ls
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls
 ate.txt cat.txt hat.txt
-Davids-MacBook-Pro-2:wildcards dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
 If you are curious about how those commands work, ask your favorite AI. The more you interact with AI, the better.
@@ -1537,7 +1469,7 @@ If you are curious about how those commands work, ask your favorite AI. The more
 
 Terminal commands allow the use of **wildcards**. A wildcard `*` represents zero or more of any character, and it is used to work with similarly named files as a grouping.
 
-### 
+###
 
 Let's generate a list of all our files whose names contain the letter `a`. First simply try to run `ls a`. You will get an error message --- "No such file or directory" --- because there is no file named `a` in the working directory. CP/CR.
 
@@ -1550,12 +1482,12 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:wildcards dkane$ ls a
-ls: a: No such file or directory
-Davids-MacBook-Pro-2:wildcards dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls a
+ls: cannot access 'a': No such file or directory
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
 Though we have been using `ls` to return all the content of a directory, `ls` can also take a name as an argument, as above.
@@ -1573,12 +1505,12 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:wildcards dkane$ ls a*
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls a*
 ate.txt
-Davids-MacBook-Pro-2:wildcards dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
 Though `*` will match strings of any length, its positioning matters. `a*` is not the same thing as `*a`. The first matches any string (i.e., any filename) which starts with `a`. The second matches any filename which ends with `a`.
@@ -1599,9 +1531,9 @@ question_text(NULL,
 ###
 
 ````
-Davids-MacBook-Pro-2:wildcards dkane$ ls *a*
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls *a*
 ate.txt cat.txt hat.txt
-Davids-MacBook-Pro-2:wildcards dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
 Note that these **regular expressions** are case-sensitive. A regular expression is a "pattern" which you can use for many purposes, including as a search criteria.
@@ -1619,12 +1551,12 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:wildcards dkane$ ls *t.*
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls *t.*
 cat.txt hat.txt
-Davids-MacBook-Pro-2:wildcards dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
 This should return `hat.txt` and `cat.txt`. Read this regular expression --- `*t.*` --- as matching any string which includes a `t` followed directly by a period, regardless of any characters which are also included, before or after. `ate.txt` is not matched because the `t` and the `.` are separated by `e`.
@@ -1633,7 +1565,7 @@ This should return `hat.txt` and `cat.txt`. Read this regular expression --- `*t
 
 Save the output of our list of all the file names that contained `a` to a new file names `afiles.txt`. Keep pressing the **up** arrow key to navigate through your previous commands until you get to the command you used above: `ls *a*`. Then add `> afiles.txt` afterwards and run the command. That is, you are running `ls *a* > afiles.txt`.
 
-Then, run `ls` to confirm that it worked. 
+Then, run `ls` to confirm that it worked.
 
 CP/CR.
 
@@ -1646,22 +1578,22 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:wildcards dkane$ ls *a* > afiles.txt
-Davids-MacBook-Pro-2:wildcards dkane$ ls
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls *a* > afiles.txt
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls
 afiles.txt      ate.txt         cat.txt         hat.txt
-Davids-MacBook-Pro-2:wildcards dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
 You can use your `up` and `down` arrow keys to navigate command history. The `>` symbol outputs the result of the lefthand side command into the righthand side location.
 
 ### Exercise 9
 
-Wildcards can be used with more than `ls`. Let's move `hat.txt` and `cat.txt` together into one directory. 
+Wildcards can be used with more than `ls`. Let's move `hat.txt` and `cat.txt` together into one directory.
 
-First, make a new directory called `seuss` within the `wildcards` directory in which you are currently located. 
+First, make a new directory called `seuss` within the `wildcards` directory in which you are currently located.
 
 Run `ls` to confirm. CP/CR
 
@@ -1674,15 +1606,15 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 You answer should look like:
 
 ````
-Davids-MBP:wildcards dkane$ mkdir seuss
-Davids-MBP:wildcards dkane$ ls
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ mkdir seuss
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls
 afiles.txt      ate.txt         cat.txt         hat.txt         seuss
-Davids-MBP:wildcards dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
 The `wildcards` directory, in which you are currently located, now includes 5 items, one of which is the `seuss` directory.
@@ -1700,20 +1632,20 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MBP:wildcards dkane$ ls -l
-total 32
--rw-r--r--@ 1 dkane  staff  24 May 26 20:20 afiles.txt
--rw-r--r--@ 1 dkane  staff   1 May 26 20:15 ate.txt
--rw-r--r--@ 1 dkane  staff   1 May 26 20:15 cat.txt
--rw-r--r--@ 1 dkane  staff   1 May 26 20:15 hat.txt
-drwxr-xr-x@ 2 dkane  staff  64 May 26 20:22 seuss
-Davids-MBP:wildcards dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls -l
+total 16
+-rw-r--r-- 1 codespace codespace 24 Apr 30 12:00 afiles.txt
+-rw-r--r-- 1 codespace codespace  1 Apr 30 12:00 ate.txt
+-rw-r--r-- 1 codespace codespace  1 Apr 30 12:00 cat.txt
+-rw-r--r-- 1 codespace codespace  1 Apr 30 12:00 hat.txt
+drwxr-xr-x 2 codespace codespace 4096 Apr 30 12:00 seuss
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
-The `-l` option provides a **l**ong-format listing of the contents of the directory, including information about the type of content (file versus directory) and creation date/times. The leading `d` in the line for `seuss` indicates that it is a directory. 
+The `-l` option provides a **l**ong-format listing of the contents of the directory, including information about the type of content (file versus directory) and creation date/times. The leading `d` in the line for `seuss` indicates that it is a directory.
 
 <!-- Give a tour of what the different columns mean? Note this is the second time we have used ls -l. -->
 
@@ -1730,12 +1662,12 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MBP:wildcards dkane$ ls *t.*
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls *t.*
 cat.txt hat.txt
-Davids-MBP:wildcards dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
 Before moving or otherwise acting on a group of files, we often want to ensure that we have the correct grouping. Running `ls` with the appropriate regular expression is an easy way to test.
@@ -1753,11 +1685,11 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MBP:wildcards dkane$ mv *t.* seuss
-Davids-MBP:wildcards dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ mv *t.* seuss
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
 The `mv` command, like `mkdir`, does not produce any output. You need to check by hand to ensure it has done what you wanted.
@@ -1775,17 +1707,17 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 Your answer should look like:
 
 ````
-Davids-MBP:wildcards dkane$ ls -R
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls -R
 afiles.txt      ate.txt         seuss
 
 ./seuss:
 cat.txt hat.txt
-Davids-MBP:wildcards dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
 The `-R` option to the `ls` command stands for **r**ecursive. We see, not simply the contents of the current directory (two files and the `seuss` directory) but also the contents of the `seuss` directory itself.
@@ -1803,20 +1735,20 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MBP:wildcards dkane$ cd ..
-Davids-MBP:wildcards dkane$ pwd
-/Users/dkane/Desktop/projects/averages
-Davids-MBP:averages dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ cd ..
+@ppbds-student ➜ /workspaces/03-terminal (main) $ pwd
+/workspaces/03-terminal
+@ppbds-student ➜ /workspaces/03-terminal (main) $
 ````
 
-In order to delete a directory, you can not be located within that directory. We want to delete (that is, "remove") the `wildcards` directory since we always want to --- at least for this tutorial --- clean up any temporary files/directories which we have created.
+In order to delete a directory, you cannot be located within that directory. We want to delete (that is, "remove") the `wildcards` directory since we always want to --- at least for this tutorial --- clean up any temporary files/directories which we have created.
 
 ### Exercise 15
 
-Run `rm wildcards`. That command will fail because "wildcards: is a directory". You can't just `rm` directories in the same way that you `rm` files. Instead, you need to use `rm -r`, where the `-r` indicates **r**ecursive. Run `rm -r wildcards`. CP/CR.
+Run `rm wildcards`. That command will fail because `wildcards` is a directory. You can't just `rm` directories in the same way that you `rm` files. Instead, you need to use `rm -r`, where the `-r` indicates **r**ecursive. Run `rm -r wildcards`. CP/CR.
 
 ```{r wildcards-15}
 question_text(NULL,
@@ -1827,19 +1759,21 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MBP:averages dkane$  rm wildcards 
-rm: wildcards: is a directory
-Davids-MBP:averages dkane$  rm -rf wildcards/
-Davids-MBP:averages dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal (main) $ rm wildcards
+rm: cannot remove 'wildcards': Is a directory
+@ppbds-student ➜ /workspaces/03-terminal (main) $ rm -rf wildcards/
+@ppbds-student ➜ /workspaces/03-terminal (main) $
 ````
 
-Note that both `wildcards` and `wildcards/` refer to the same entity, the `wildcards` directory. The Terminal often "adds" a forward slash (`/`) --- or, on Windows, a backward slash (`\`) --- to the end of directory names to indicate that the object is a directory, not simply a file.
+Note that both `wildcards` and `wildcards/` refer to the same entity, the `wildcards` directory. The Terminal often "adds" a forward slash (`/`) to the end of directory names to indicate that the object is a directory, not simply a file.
+
+<!-- AR: Okay to remove section? Not sure how to adapt for Codespaces -->
 
 ## Files
-### 
+###
 
 Downloading files and moving them to a sensible location is a core skill for data scientists.
 
@@ -1856,24 +1790,24 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:averages dkane$ pwd
-/Users/dkane/Desktop/projects/averages
-Davids-MacBook-Pro-2:averages dkane$ mkdir files
-Davids-MacBook-Pro-2:averages dkane$ cd files/
-Davids-MacBook-Pro-2:files dkane$ ls
-Davids-MacBook-Pro-2:files dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal (main) $ pwd
+/workspaces/03-terminal
+@ppbds-student ➜ /workspaces/03-terminal (main) $ mkdir files
+@ppbds-student ➜ /workspaces/03-terminal (main) $ cd files/
+@ppbds-student ➜ /workspaces/03-terminal/files (main) $ ls
+@ppbds-student ➜ /workspaces/03-terminal/files (main) $
 ````
 
-We often, as here, move to the directory in which we will be working. But we could have stayed in the starting directory, which is `/Users/dkane/Desktop/projects/averages` for me, and then worked from there, using `files/` in the various commands to come.
+We often, as here, move to the directory in which we will be working. But we could have stayed in the starting directory, which is `/workspaces/03-terminal` for me, and then worked from there, using `files/` in the various commands to come.
 
 ### Exercise 2
 
 Every computer has a default directory in which files are downloaded. The most common name for this directory is `Downloads` and its most common location is your home directory.
 
-Run `ls ~/Downloads` to examine the most likely location for that directory. 
+Run `ls ~/Downloads` to examine the most likely location for that directory.
 
 CP/CR.
 
@@ -1891,31 +1825,28 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 My answer looks like:
 
 ````
-Davids-MacBook-Pro-2:files dkane$ ls ~/Downloads/
-113-6439507-9501836.pdf
-113-6441072-0767436.pdf
-2024_11_06_10_29_42.pdf
-223591000809.JPEG
-Bassett.jpg
-...
+@ppbds-student ➜ /workspaces/03-terminal/files (main) $ ls ~/Downloads/
+@ppbds-student ➜ /workspaces/03-terminal/files (main) $
 ````
 
-The `...` indicates that there are many more files in this directory. I am not as organized as I ought to be. Try not to have your `Downloads` directory overrun with old files.
+My `Downloads` directory is empty right now, so the Terminal just prints a new prompt.
 
 ### Exercise 3
 
-In your browser, go to `https://github.com/PPBDS/vscode.tutorials`. 
+<!-- AR: How to handle this? -->
+
+In your browser, go to `https://github.com/PPBDS/vscode.tutorials`.
 
 This is the location for the R package which contains this tutorial. Click on the `TODO.txt` file, which should bring you to this URL:
 
-`https://github.com/PPBDS/vscode.tutorials/blob/main/TODO.txt`. 
+`https://github.com/PPBDS/vscode.tutorials/blob/main/TODO.txt`.
 
-Click on the "Download raw file" symbol to download the `TODO.txt` file to your computer.  
+Click on the "Download raw file" symbol to download the `TODO.txt` file to your computer.
 
 ```{r}
 knitr:: include_graphics("images/download-file.png")
@@ -1933,18 +1864,17 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 My answer looks like:
 
 ````
-Davids-MacBook-Pro-2:files dkane$ ls ~/Downloads/T*
-/Users/dkane/Downloads/TODO.txt         /Users/dkane/Downloads/Toronto.jpg
-/Users/dkane/Downloads/TOM.pdf
-Davids-MacBook-Pro-2:files dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/files (main) $ ls ~/Downloads/T*
+/home/codespace/Downloads/TODO.txt
+@ppbds-student ➜ /workspaces/03-terminal/files (main) $
 ````
 
-The `*` is a wildcard character, meaning that the `ls` command should return all the files which begin with a capital `T`. For me, there are three such files in the `Downloads` directory. 
+The `*` is a wildcard character, meaning that the `ls` command should return all the files which begin with a capital `T`. For me, there is one such file in the `Downloads` directory.
 
 ### Exercise 4
 
@@ -1959,21 +1889,21 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 Your answer should look like:
 
 ````
-Davids-MacBook-Pro-2:files dkane$ ls ~/Downloads/TODO.txt
-/Users/dkane/Downloads/TODO.txt
-Davids-MacBook-Pro-2:files dkane$
+@ppbds-student ➜ /workspaces/03-terminal/files (main) $ ls ~/Downloads/TODO.txt
+/home/codespace/Downloads/TODO.txt
+@ppbds-student ➜ /workspaces/03-terminal/files (main) $
 ````
 
 I often use `ls` to confirm that a file exists in the location in which I think it should. `ls` also returns the absolute path to the file.
 
 ### Exercise 5
 
-Run ` mv /Users/dkane/Downloads/TODO.txt .`. Run `ls` to confirm that you have moved the `TODO.txt` file from the `Downloads` directory to the current working directory. CP/CR.
+Run ` mv /home/codespace/Downloads/TODO.txt .`. Run `ls` to confirm that you have moved the `TODO.txt` file from the `Downloads` directory to the current working directory. CP/CR.
 
 ```{r files-5}
 question_text(NULL,
@@ -1984,21 +1914,21 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 Your answer should look like:
 
 ````
-Davids-MacBook-Pro-2:files dkane$ mv /Users/dkane/Downloads/TODO.txt .
-Davids-MacBook-Pro-2:files dkane$ ls
+@ppbds-student ➜ /workspaces/03-terminal/files (main) $ mv /home/codespace/Downloads/TODO.txt .
+@ppbds-student ➜ /workspaces/03-terminal/files (main) $ ls
 TODO.txt
-Davids-MacBook-Pro-2:files dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/files (main) $
 ````
 
 Recall that the `.` symbol indicates the current directory. Since we did not give a new name for the file, the old name is retained. We could have give the file a new name by running:
 
 ````
-mv /Users/dkane/Downloads/TODO.txt TODO_2.txt
+mv /home/codespace/Downloads/TODO.txt TODO_2.txt
 ````
 
 We also could have used `~` to avoid providing the absolute path by running:
@@ -2022,20 +1952,20 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 Your answer should look like:
 
 ````
-Davids-MacBook-Pro-2:files dkane$ rm TODO.txt 
-Davids-MacBook-Pro-2:files dkane$ cd ..
-Davids-MacBook-Pro-2:averages dkane$ rm -r files/
-Davids-MacBook-Pro-2:averages dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/files (main) $ rm TODO.txt
+@ppbds-student ➜ /workspaces/03-terminal/files (main) $ cd ..
+@ppbds-student ➜ /workspaces/03-terminal (main) $ rm -r files/
+@ppbds-student ➜ /workspaces/03-terminal (main) $
 ````
 
 
 ## grep
-### 
+###
 
 In a previous section, we used **wildcards** to create **regular expressions** in order to generate lists of file names which matched a specific pattern. In this section, we will use `grep` to look for words *inside* of files. Fortunately, wildcards and regular expressions work the same with `grep`.
 
@@ -2052,7 +1982,7 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 We call this folder `grepping` rather than `grep` because you should not use a command, like `grep`, as the name of a file or a directory. It is possible to do this, just like it is possible to jump off a bridge. But, in both cases, you will probably regret it.
 
@@ -2077,29 +2007,29 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 When I run this, I see:
 
 ````
-Davids-MacBook-Pro-2:averages dkane$ cd grepping
-Davids-MacBook-Pro-2:grepping dkane$ echo hat.txt > files.txt & echo cat.txt >> files.txt & echo ate.txt >> files.txt & echo "" >> files.txt
+@ppbds-student ➜ /workspaces/03-terminal (main) $ cd grepping
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ echo hat.txt > files.txt & echo cat.txt >> files.txt & echo ate.txt >> files.txt & echo "" >> files.txt
 [1] 98048
 [2] 98049
 [3] 98050
 [1]    done       echo hat.txt > files.txt
-[3]  + done       echo ate.txt >> files.txt                                                                      
+[3]  + done       echo ate.txt >> files.txt
 [2]  + done       echo cat.txt >> files.txt
-Davids-MacBook-Pro-2:grepping dkane$ cat files.txt 
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ cat files.txt
 hat.txt
 cat.txt
 ate.txt
-Davids-MacBook-Pro-2:grepping dkane$
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
 ````
 
 This is showing how three different commands are run, one after the other.
 
-The extra `""` toward the end of the command ensures that there is a blank line at the end of the file, which is always a good idea when working with text files. 
+The extra `""` toward the end of the command ensures that there is a blank line at the end of the file, which is always a good idea when working with text files.
 
 ### Exercise 3
 
@@ -2114,14 +2044,14 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:grepping dkane$ grep a files.txt
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ grep a files.txt
 hat.txt
 cat.txt
 ate.txt
-Davids-MacBook-Pro-2:grepping dkane$
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
 ````
 
 Remember to use the *tab* key to take advantage of auto-completion. Don't type! Tab complete!
@@ -2143,19 +2073,21 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:grepping dkane$ grep ^a files.txt
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ grep ^a files.txt
 ate.txt
-Davids-MacBook-Pro-2:grepping dkane$
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
 ````
 
 `^` is put at the beginning of a regular expression to indicate that the expression must occur at the beginning of a line. A dollar sign --- `$` --- at the end of a regular expression indicates that the expression must occur at the end of the line.
 
 ### Exercise 5
 
-Download this file and move it from your `Downloads` file to your current directory, which is `grepping`. 
+<!-- AR: How to handle downloads? Drag and drop into workspace? Just ignore? -->
+
+Download this file and move it from your `Downloads` file to your current directory, which is `grepping`.
 
 ````
 https://github.com/PPBDS/vscode.tutorials/blob/main/inst/tutorials/03-terminal/images/grepping.txt
@@ -2174,15 +2106,15 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 My answer looks like:
 
 ````
-Davids-MacBook-Pro-2:grepping dkane$ mv ~/Downloads/grepping.txt .
-Davids-MacBook-Pro-2:grepping dkane$ ls
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ mv ~/Downloads/grepping.txt .
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ ls
 files.txt       grepping.txt
-Davids-MacBook-Pro-2:grepping dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
 ````
 
 There are now two files in `grepping`: `files.txt` and `grepping.txt`.
@@ -2200,12 +2132,12 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:grepping dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ wc grepping.txt
        7       7      38 grepping.txt
-Davids-MacBook-Pro-2:grepping dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
 ````
 
 The first number returned by `wc` is the number of lines in the file. The second is the total number of words. The third is the number of characters. In this case, the number of lines is the same as the number of words.
@@ -2227,21 +2159,21 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:grepping dkane$ grep R grepping.txt
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ grep R grepping.txt
 R
 Robert
 aRe
-Davids-MacBook-Pro-2:grepping dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
 ````
 
 `aRe` is included because the pattern `R` matches any line which includes an `R`, regardless of where that `R` is on the line.
 
 ### Exercise 8
 
-Use `grep` and `^` to search `RHOME.txt` for lines that **begin** with `R`. That is, run:
+Use `grep` and `^` to search `grepping.txt` for lines that **begin** with `R`. That is, run:
 
 `grep ^R grepping.txt`
 
@@ -2256,13 +2188,13 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:grepping dkane$ grep ^R grepping.txt
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ grep ^R grepping.txt
 R
 Robert
-Davids-MacBook-Pro-2:grepping dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
 ````
 
 `^` and `$` are called metacharacters. It is often useful to put quotes around a regular expression which includes metacharacters.
@@ -2284,14 +2216,14 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:grepping dkane$ grep e$ grepping.txt
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ grep e$ grepping.txt
 whose
 these
 aRe
-Davids-MacBook-Pro-2:grepping dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
 ````
 
 `egrep` is an even more powerful version of `grep`.  Learning more about `egrep` is beyond the scope of this tutorial.
@@ -2309,15 +2241,16 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:grepping dkane$ cd ..
-/Users/dkane/Desktop/projects/averages
-Davids-MacBook-Pro-2:averages dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ cd ..
+@ppbds-student ➜ /workspaces/03-terminal (main) $ pwd
+/workspaces/03-terminal
+@ppbds-student ➜ /workspaces/03-terminal (main) $
 ````
 
-If you keep your R projects in the same place on your computer, only the last directory in the path for the default working directory will change between projects.
+If your tutorials are organized in the same place, only the last directory in the path for the default working directory will change between tutorials.
 
 ### Exercise 11
 
@@ -2332,19 +2265,21 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 ````
-Davids-MacBook-Pro-2:grepping dkane$ rm -r grepping
-Davids-MacBook-Pro-2:grepping dkane$ 
+@ppbds-student ➜ /workspaces/03-terminal (main) $ rm -r grepping
+@ppbds-student ➜ /workspaces/03-terminal (main) $
 ````
 
 It is always a good idea to clean up after yourself. As the sign says when taking a hike in the forest: "Take only photos. Leave only footprints."
 
 ## Summary
-### 
+###
 
-This tutorial introduced the structure and uses of the Terminal from within Positron. The older, more general term for the terminal is the "command line." All modern operating systems provide a command line, from which sophisticated users can modify files and directories, using commands like `pwd`, `ls`, `echo`, `mkdir`, `mv`, `rm`, and `cd`. We also discuss regular expressions as well as some of the metacharacters (like, `*`, `^` and `$`) from which they are constructed. Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
+This tutorial introduced the structure and uses of the Terminal from within VS Code running on GitHub Codespaces.
+
+ The older, more general term for the terminal is the "command line." All modern operating systems provide a command line, from which sophisticated users can modify files and directories, using commands like `pwd`, `ls`, `echo`, `mkdir`, `mv`, `rm`, and `cd`. We also discuss regular expressions as well as some of the metacharacters (like, `*`, `^` and `$`) from which they are constructed. Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
 Learn more about the command line and related topics by reading [*The Unix Workbench*](https://seankross.com/the-unix-workbench/) by Sean Kross.
 
