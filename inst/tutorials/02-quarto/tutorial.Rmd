@@ -30,9 +30,7 @@ options(tutorial.exercise.timelimit = 60,
 ## Introduction
 ### 
 
-This tutorial covers how to create Quarto documents using [GitHub Codespaces](https://github.com/features/codespaces). Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
-
-This tutorial assumes that you are working inside a GitHub Codespace running VS Code in the browser. For help with setting this up, see the [Getting Started](https://ppbds.github.io/primer/getting-started.html) chapter.
+This tutorial covers how to create Quarto documents using Visual Studio Code in [GitHub Codespaces](https://github.com/features/codespaces). For help with setting this up, see [Getting Started](https://ppbds.github.io/primer/getting-started.html). Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
 ## Quarto 1
 ### 
@@ -195,11 +193,6 @@ format: html
 The YAML header includes "metadata" about the document itself, things like the title and the author. In this case, `format: html` means that the document will be rendered as an HTML file.
 
 ### Exercise 5
-
-<!-- DK: Remove the above call to the shell. Just teach the short cut. Maybe mention, in the knowledge drop, that short cuts call underlying commands.
-
-AR: Done.
--->
 
 To "render" our Quarto document, use the shortcut `Cmd/Ctrl + Shift + K`. Your screen should look something like this:
 
@@ -662,15 +655,6 @@ If you run this command without running `library(tidyverse)` in the R Terminal, 
 
 ### Exercise 11
 
-<!--AR: Switch for a gen AI exercise? Is there some value in doing it by hand once?
-
-Yes. Use Gen AI. Ensure that our code is good. Maybe keep the knowledge drop which highlights one good aspect of our code: use |> instead of %>%.
-
-Ask students to recreate plot below by submitting the image to AI.
-
-Done.
--->
-
 Let's create the following scatterplot in our Quarto document:
 
 ```{r}
@@ -721,9 +705,6 @@ AI code is not perfect! A new piping character, `|>`, was introduced to replace 
 
 ### Exercise 12
 
-<!-- DK: Add a second, open-ended, make a cool plot using R and data from the tidyverse package question.
-
-AR: Done. -->
 Insert a new code chunk.
 
 Ask your favorite AI to make another cool plot using R and data from the `tidyverse` package. Insert the code you get into the chunk and preview the chart. Ask the AI to make some changes, then update the code chunk and preview again. Do this a few more times until you get a chart that is beautiful and interesting.
