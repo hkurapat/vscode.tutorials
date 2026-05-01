@@ -1807,7 +1807,10 @@ We often, as here, move to the directory in which we will be working. But we cou
 
 ### Exercise 3
 
-<!-- AR: How to handle this? Use this as an occasion to teach the command line. Students could download to their computer and then upload, but a command from bash is quicker. -->
+<!-- AR: Added two upload exercises using right click + upload, and drag and drop from local machine. Also added a curl method directly downloading from GitHub.
+
+Lot's of exercises. Delete some?
+ -->
 
 In your browser, go to `https://github.com/PPBDS/vscode.tutorials`.
 
@@ -1864,6 +1867,63 @@ question_text(NULL,
 	rows = 3)
 ```
 
+### Exercise 7
+
+Delete the file by running `rm TODO.txt`. 
+
+Now, instead of downloading `TODO.txt` to your machine and uploading it to your Codespace, you'll download this file directly from Github using the `curl` command. First, we'll return to the Github webpage where this file is located:
+
+````
+https://github.com/PPBDS/vscode.tutorials/blob/main/TODO.txt
+````
+
+The above URL links to a webpage, but for our `curl` command we want the link to download the raw text file. To get this from the webpage press the "Raw" button in the top right.
+
+```{r}
+include_graphics("images/todo-gh-webpage.png")
+```
+
+This will bring you a page which displays the raw text file. Copy the URL in your address bar. It will look something like this:
+
+````
+https://raw.githubusercontent.com/PPBDS/vscode.tutorials/refs/heads/main/TODO.txt
+````
+
+Back in your Codespace, run the following command while in your `files` directory:
+
+````
+curl -O https://raw.githubusercontent.com/PPBDS/vscode.tutorials/refs/heads/main/TODO.txt
+````
+
+Run `ls` to confirm the file has been downloaded. CP/CR.
+
+
+```{r files-7}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+My answer looks like this:
+
+````
+@ppbds-student ➜ /workspaces/03-terminal/files (main) $ curl -O https://raw.githubusercontent.com/PPBDS/vscode.tutorials/refs/heads/main/TODO.txt
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  7876  100  7876    0     0   111k      0 --:--:-- --:--:-- --:--:--  111k
+@ppbds-student ➜ /workspaces/03-terminal/files (main) $ ls
+TODO.txt
+@ppbds-student ➜ /workspaces/03-terminal/files (main) $ 
+````
+
+###
+
+`curl` downloads the file from the URL. The `-O` option indicates that the downloaded file should take use the file's original name `grepping.txt`.
 
 ### Exercise 7
 
@@ -2016,7 +2076,7 @@ ate.txt
 
 <!-- DK: Useful to try two different downloads from the shell. One downloads the file into the directory in which you are currently location. The second downloads a different file into a different directory (generally one just below you) in one command. 
 
-AR: Completed first download using curl below. I will move this to the Files section. Then here can take opportunity to do a curl download to a subdirectory grepping here. -->
+AR: Introduced curl in Files section. Will update curl exercise below to download to a subdirectory. -->
 
 Now, we'll download another text file. You can view the file on the following webpage.
 
