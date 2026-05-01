@@ -42,9 +42,9 @@ options(tutorial.exercise.timelimit = 60,
 ## Introduction
 ### 
 
-This tutorial covers [Git](https://git-scm.com/), a program for keeping track of changes in your code, and [GitHub](https://github.com/), the leading company for storing your code in the cloud. Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
+This tutorial covers [Git](https://git-scm.com/), a program for keeping track of changes in your code, and [GitHub](https://github.com/), the leading company for storing your code in the cloud. Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. 
 
-The most useful reference for Git/GitHub is [*Happy Git and GitHub for the useR*](https://happygitwithr.com/). Refer to that book whenever you have a problem.
+The most useful references for Git/GitHub are [*Happy Git and GitHub for the useR*](https://happygitwithr.com/) and [*Pro Git*](https://git-scm.com/book/en/v2). Refer to these for questions and further learning. Or ask AI!
 
 <!-- DK: This should all be cut. But maybe more of these details belong in Getting Started chapter and the Getting Started tutorial.
 
@@ -59,7 +59,7 @@ Or, rather, students need to learn how to create a new repo, not the one they ar
 
 GitHub is an online drive for all your R code and projects. In the professional world, what you have on your GitHub account is sometimes more important than what you have on your resume. It is a verifiable demonstration of your abilities.
 
-[*Pro Git*](https://git-scm.com/book/en/v2) is the best reference book for Git and GitHub.
+You've already been creating and storing git repositories on Github. Now, we'll practice using the Git program.
 
 [Git](https://en.wikipedia.org/wiki/Git) is "software for tracking changes in any set of files, usually used for coordinating work among programmers collaboratively developing source code during software development."
 
@@ -82,12 +82,12 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-dkane@MacBookPro First-Repo % pwd
-/Users/dkane/Desktop/projects/First-Repo
-dkane@MacBookPro First-Repo % 
+@ppbds-student ➜ /workspaces/04-github-1 (main) $ pwd
+/workspaces/04-github-1
+@ppbds-student ➜ /workspaces/04-github-1 (main) $
 ````
 
-You should be in a directory named `First-Repo`. By default, the "New Folder from Git" process places you in the directory of the project which you have just created. The prompt, assuming that you have a reasonable one, should show your current working directory, as mine does.
+You should be in a directory named `04-github-1`. By default, the creating a repo from the Codespace starter and opening a Codespace creates this root directory.
 
 ### Exercise 2
 
@@ -107,12 +107,11 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-dkane@MacBookPro First-Repo % ls
-README.md
-dkane@MacBookPro First-Repo % 
+@ppbds-student ➜ /workspaces/04-github-1 (main) $ ls
+@ppbds-student ➜ /workspaces/04-github-1 (main) $ 
 ````
 
-There is only one (non-hidden) file in the directory, `README.md`. It was created when we initially started the repo. Recall how we set the "Add README" toggle switch to "On." If we had not done so, there would not be any files in the directory. 
+There are no non-hidden files or directories in the repository so far.
 
 ### Exercise 3
 
@@ -132,18 +131,38 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-dkane@MacBookPro First-Repo % ls -a
-.               ..              .git            README.md
-dkane@MacBookPro First-Repo % 
+@ppbds-student ➜ /workspaces/04-github-1 (main) $ ls -a
+.  ..  .devcontainer  .git
+@ppbds-student ➜ /workspaces/04-github-1 (main) $
 ````
 
-`.` refers to the current directory. `..` stands for the parent directory. These two links are present in (almost) every directory on your computer. `.git` is a hidden directory used by the program Git to keep track of all the files in your project. 
+`.` refers to the current directory. `..` stands for the parent directory. These two links are present in (almost) every directory on your computer.
+
+`.git` is a hidden directory used by the program Git to keep track of all the files in your project. 
 
 Unless you have a good reason, you should never mess with the contents of a hidden directory like `.git`.
 
 ### Exercise 4
 
-At the Terminal, run `cat README.md`. CP/CR.
+At the Terminal, create a new quarto document. From the three horizontal bar icon in the Activity Bar, select `File -> New File...` then select `Quarto Document` from the drop-down menu. This opens the new file in the Editor.
+
+```{r}
+include_graphics("images/create-analysis.png")
+```
+
+Notice how there is a black dot next in the `analysis-1.qmd` tab in the Editor. This indicates that file is unsaved.
+
+Change the title to "First Analysis" add your name as an author. Save the file with `Cmd/Ctrl + S` as `analysis-1.qmd`.
+
+```{r}
+include_graphics("images/save-analysis.png")
+```
+
+Notice how after saving, the `analysis-1.qmd` tab in the Editor is now green with a "U". This indicates that the file is saved, but the file is **U**ntracked by Git.
+
+Then run `cat analysis-1.qmd`.
+
+CP/CR.
 
 ```{r using-git-4}
 question_text(NULL,
@@ -156,52 +175,35 @@ question_text(NULL,
 
 ###
 
-Your answer should have one line: `# First-Repo`.
+You should have something like this:
 
-The `README.md` file is a markdown file with only one line, a header with the name of the repo. It, unfortunately, lacks an empty line at the end of the file, thereby probably causing your prompt to "wrap" around after the `cat` command.
+````
+@ppbds-student ➜ /workspaces/04-github-1 (main) $ cat analysis-1.qmd 
+---
+title: "Analysis 1"
+author: "PPBDS Student"
+format: html
+---
+
+@ppbds-student ➜ /workspaces/04-github-1 (main) $
+````
+
 
 ### Exercise 5
-
-Open `README.md` in the Editor. The easiest way to do so is to click the Explorer button in the Activity Bar on the left-hand side of the Positron window. This opens the Explorer pane, in which you can see the files in the current directory.
-
-```{r}
-include_graphics("images/README-1.png")
-```
-
-Edit the `README.md` by skipping a line after the header and adding this sentence: "David Kane is a data maestro!" Replace my name with yours, obviously. Add a blank line after your sentence. Save the file.
-
-At the Terminal, run `cat README.md`. CP/CR.
-
-```{r using-git-5}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-Your answer should now have three lines.
-
-You can close the Files pane by clicking the Explorer button again. Each of the buttons in the Activity Bar opens up a different pane.
-
-### Exercise 6
 
 Click the Source Control button in the Activity Bar. This opens the Source Control pane, which is an interface to using Git and GitHub.
 
 ```{r}
-include_graphics("images/README-2.png")
+include_graphics("images/analysis-git.png")
 ```
 
-The top part of the pane shows the files that have been added/modified. This is Git telling you what it thinks has changed. In this case, the "M" next to the end of the line for `README.md` indicates that Git thinks that we have **M**odified the file, which is, in fact, what we have done.
+The top part of the pane shows the files that have been added/modified. This is Git telling you what it thinks has changed. Again, the "U" next to the end of the line for `analysis-1.qmd` indicates that Git has noticed changes to the file but that they are **U**ntracked.
 
-Render `README.md` by either typing `Cmd/Cntrl + Shift + K` or by clicking the "Preview" button in the upper right of the Editor.
+Render `analysis-1.qmd` with `Cmd/Cntrl + Shift + K`.
 
 The Terminal tab is filled with a bunch of commands. Copy/paste the last few lines.
 
-```{r using-git-6}
+```{r using-git-5}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -227,21 +229,16 @@ Watching files for changes
 Browse at http://localhost:7383/
 ````
 
-Rendering `README.md` is like rendering a Quarto document. Positron, in the Viewer tab, shows you the resulting HTML. Quarto, via the Terminal, continues to monitor `README.md`. If you change it again, Quarto will automatically update the HTML.
+### Exercise 6
 
-### Exercise 7
+The VS Code window has changed quite a bit. The Viewer tab has appeared, showing the HTML. The Source Control pane now includes many new files. The Terminal tab is not showing us a prompt.
 
-The Positron window has changed quite a bit. The Viewer tab has appeared, showing the HTML. The Source Control pane now includes many new files. The Terminal tab is not showing us a prompt.
 
-```{r}
-include_graphics("images/README-3.png")
-```
-
-We can stop the monitoring of `README.md` by using `Ctrl + c`.  Once we do, the Viewer tab is empty, so we can close the entire Secondary Activity Bar.
+We can stop the previewing of `analysis-1.qmd` by typing `Ctrl + c` in the Terminal.  Once we do, the Viewer tab is empty, so we can close the entire Secondary Activity Bar.
 
 From the Terminal, run `ls`. CP/CR.
 
-```{r using-git-7}
+```{r using-git-6}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -255,25 +252,72 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-dkane@MacBookPro First-Repo % ls
-README.html     README.md       README_files
-dkane@MacBookPro First-Repo % 
+@ppbds-student ➜ /workspaces/04-github-1 (main) $ ls
+analysis-1_files  analysis-1.html  analysis-1.qmd
+@ppbds-student ➜ /workspaces/04-github-1 (main) $ 
 ````
 
 The bottom part of the Source Control pane shows the history of changes in this repo.
 
-### Exercise 8
+### Exercise 7
 
 Look more closely at the Source Control pane:
 
 ```{r}
-include_graphics("images/README-4.png")
+include_graphics("images/analysis-git-2.png")
 ```
 
-We have `README.md`, which has been modified by us, hence the "M" indicator. We have a new file, `README.html`, created when we rendered `README.md`. It has a "U" indicator because, according to git, it is **U**ntracked. We also have many weird, confusing files. It turns out that all these files live in the `README_files` directory.
+We have a many new files like, `analysis.html`, created when we rendered `analysis-1.qmd`. They have "U" indicators because, according to git, they are **U**ntracked. Many of these files are weird and confusing. It turns out that all these files live in the `analysis-1_files` directory.
 
-From the Terminal, run `ls -R README_files`. The `-R` option means **r**ecursive. CP/CR.
+From the Terminal, run `ls -R analysis-1_files`. The `-R` option means **r**ecursive. CP/CR.
 
+
+```{r using-git-7}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+Your answer should look like:
+
+````
+@ppbds-student ➜ /workspaces/04-github-1 (main) $ ls -R analysis-1_files
+analysis-1_files:
+libs
+
+analysis-1_files/libs:
+bootstrap  clipboard  quarto-html
+
+analysis-1_files/libs/bootstrap:
+bootstrap-e86e2b27d647aa2d7222437750a2ec6e.min.css  bootstrap-icons.css  bootstrap-icons.woff  bootstrap.min.js
+
+analysis-1_files/libs/clipboard:
+clipboard.min.js
+
+analysis-1_files/libs/quarto-html:
+anchor.min.js  popper.min.js  quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css  tippy.css
+axe            quarto.js      tabsets                                                          tippy.umd.min.js
+
+analysis-1_files/libs/quarto-html/axe:
+axe-check.js
+
+analysis-1_files/libs/quarto-html/tabsets:
+tabsets.js
+@ppbds-student ➜ /workspaces/04-github-1 (main) $ 
+````
+
+Whenever you render a document using Quarto, it creates a directory called `base-name-of-your-file_files`. Since the base name of `analysis-1.qmd` is `analysis-1`, the new directory created is `analysis-1_files`. This directory is filled with the programs/information/etc which helped to turn `analysis-1.qmd` into `analysis-1.html`. This is mostly confusing stuff that we should ignore. In fact, we usually don't even want it monitored by Git or stored on GitHub.
+
+### Exercise 8
+
+From the three horizontal bar icon, `File -> New Text File`. Save this new file as `.gitignore`. (Don't forget the leading period.) 
+
+From the Terminal, r un `ls -a`. CP/CR.
 
 ```{r using-git-8}
 question_text(NULL,
@@ -289,38 +333,18 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-dkane@MacBookPro First-Repo % ls -R README_files
-libs
-
-README_files/libs:
-bootstrap       clipboard       quarto-html
-
-README_files/libs/bootstrap:
-bootstrap-973236bd072d72a04ee9cd82dcc9cb29.min.css
-bootstrap-icons.css
-bootstrap-icons.woff
-bootstrap.min.js
-
-README_files/libs/clipboard:
-clipboard.min.js
-
-README_files/libs/quarto-html:
-anchor.min.js
-popper.min.js
-quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css
-quarto.js
-tippy.css
-tippy.umd.min.js
-dkane@MacBookPro First-Repo % 
+@ppbds-student ➜ /workspaces/04-github-1 (main) $ ls -a
+.  ..  analysis-1_files  analysis-1.html  analysis-1.qmd  .devcontainer  .git  .gitignore
+@ppbds-student ➜ /workspaces/04-github-1 (main) $ 
 ````
 
-Whenever you render a document using Quarto, it creates a directory called `base-name-of-your-file_files`. Since the base name of `README.md` is `README`, the new directory created is `README_files`. This directory is filled with the programs/information/etc which helped to turn `README.md` into `README.html`. This is mostly confusing stuff that we should ignore. In fact, we usually don't even want it monitored by Git or stored on GitHub.
+Because `.gitignore` begins with a `.`, it is a hidden file. It would not appear if we just used `ls`. Note that the Source Control pane now shows a new file, `.gitignore` with an associated "U", meaning it is also untracked.
 
 ### Exercise 9
 
-From the main Positron menu, `File -> New Text File`. (You can accomplish the same thing from the File bar menu item `New -> New File... -> Text File`.) Save this new file as `.gitignore`. (Don't forget the leading period.) 
+The purpose of the `.gitignore` file is to specify those files/directories which **git** should **ignore**. Add a new line to the file, `analysis-1_files`, followed by an empty line. Save your changes.
 
-From the Terminal, run `ls -a`. CP/CR.
+From the Terminal, run `cat .gitignore`. CP/CR.
 
 ```{r using-git-9}
 question_text(NULL,
@@ -336,37 +360,9 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-dkane@MacBookPro First-Repo % ls -a
-.               .git            README.html     README_files
-..              .gitignore      README.md
-dkane@MacBookPro First-Repo % 
-````
-
-Because `.gitignore` begins with a `.`, it is a hidden file. It would not appear if we just used `ls`. Note that the Source Control pane now shows a new file, `.gitignore` with an associated "U", meaning it is also untracked.
-
-### Exercise 10
-
-The purpose of the `.gitignore` file is to specify those files/directories which **git** should **ignore**. Add a new line to the file, `README_files`, followed by an empty line. Save your changes.
-
-From the Terminal, run `cat .gitignore`. CP/CR.
-
-```{r using-git-10}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-Your answer should look like:
-
-````
-dkane@MacBookPro First-Repo % cat .gitignore 
-README_files
-dkane@MacBookPro First-Repo % 
+@ppbds-student ➜ /workspaces/04-github-1 (main) $ cat .gitignore
+analysis-1_files
+@ppbds-student ➜ /workspaces/04-github-1 (main) $ 
 ````
 
 The `README_files` line in `.gitignore` tells Git to ignore the `README_files` directory and everything in it.
@@ -374,71 +370,17 @@ The `README_files` line in `.gitignore` tells Git to ignore the `README_files` d
 Note the change in the Source Control pane!
 
 ```{r}
-include_graphics("images/README-5.png")
+include_graphics("images/analysis-git-3.png")
 ```
 
-Now, according to Git, there have been only three changes to the repo. (Of course, there have been more changes, but Git is ignoring anything which resides in `README_files`.) One file, `README.md`, has been modified (M). Two files, `README.html` and `.gitigore`, are untracked (U).
+Now, according to Git, there have been only three changes to the repo. (Of course, there have been more changes, but Git is ignoring anything which resides in `analysis-1_files`.) Three files: `analysis-1.qmd`, `README.html` and `.gitigore`, are untracked (U).
 
-### Exercise 11
 
-Within the Source Control pane, press the "Open File" button for `README.md`, which is the first of four symbols to the right of the file name. 
-
-```{r}
-include_graphics("images/README-6.png")
-```
-
-This does two things. First, it brings the `README.md` file to the focus of the Editor. Second, it changes the format of the file so that you can see how it has been modified. The vertical green line to left side of lines 2 through 4 indicate that those lines are new. If any lines had been deleted, they would be highlighted in red.
-
-Hold your cursor over the symbol (a curved arrow) next to the "Open File" button. What is the name for this button?
-
-```{r using-git-11}
-question_text(NULL,
-	message = "Discard Changes",
-	answer(NULL, correct = TRUE),
-	allow_retry = FALSE,
-	incorrect = NULL,
-	rows = 6)
-```
-
-###
-
-Clicking this button gets rid of your changes since the last time you told Git to save them. 
-
-### Exercise 12
-
-Hold your cursor over the symbol --- `+`, a plus sign --- next to the "Discard Changes" button. What is the name for this button?
-
-```{r using-git-12}
-question_text(NULL,
-	message = "Stage Changes",
-	answer(NULL, correct = TRUE),
-	allow_retry = FALSE,
-	incorrect = NULL,
-	rows = 2)
-```
-
-###
-
-Saving changes in Git is, in theory, a two-step process. The first step is to "stage" the changes. The second step is to "commit" the changes. For the most part, we don't stage. We just "commit," which incorporates the staging process automatically.
-
-### Exercise 13
-
-The letters at the end of the line for the file names indicate that `.gitignore` and `README.html` are **U**ntracked and that `README.md` is **M**odified. We can "commit" these files by hitting the Commit button. Before doing so, hold your cursor over the button. What does it say?
-
-```{r using-git-13}
-question_text(NULL,
-	message = 'Commit Changes on "main"',
-	answer(NULL, correct = TRUE),
-	allow_retry = FALSE,
-	incorrect = NULL,
-	rows = 2)
-```
-
-The word `main` references the "branch" of your repo that you are currently working on. We won't worry about branches for a while yet, but they are an important part of using Git.
-
-### Exercise 14
+### Exercise 10
 
 In the box above the "Commit" button, add "initial version" as your commit comment. Press the "Commit" button. You will see a dialogue box like this:
+
+<!-- AR: clean up image -->
 
 ```{r}
 include_graphics("images/README-7.png")
@@ -448,7 +390,7 @@ Press "Yes". In the future, you might click on "Always" so that this dialogue st
 
 From the Terminal, run `git log`. CP/CR.
 
-```{r using-git-14}
+```{r using-git-10}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -462,28 +404,130 @@ question_text(NULL,
 Your answer should look like this:
 
 ````
-dkane@MacBookPro First-Repo % git log
-commit 61722f1b6a67d4e297eeff4ba77675ea3dae77ba (HEAD -> main)
-Author: David Kane <dave.kane@gmail.com>
-Date:   Tue Mar 11 11:27:15 2025 -0400
+@ppbds-student ➜ /workspaces/04-github-1 (main) $ git log
+commit e6e05d17847846e0fda9ceedb9cce3b58fd0a024
+Author: ppbds-student <acrogers362+ppbds-student@gmail.com>
+Date:   Fri May 1 19:22:33 2026 +0000
 
     initial version
 
-commit 969819f5c16d3776254121570a4853da45f174ba (origin/main, origin/HEAD)
-Author: David Kane <dave.kane@gmail.com>
-Date:   Sun Mar 9 15:46:04 2025 -0400
+commit c6ef687e00ddff16f0274cba6949ee470ef3e5ec (origin/main, origin/HEAD)
+Author: ppbds-student <acrogers362+ppbds-student@gmail.com>
+Date:   Fri May 1 13:28:01 2026 -0400
 
     Initial commit
-dkane@MacBookPro First-Repo % 
 ````
 
-`git log` generates a record --- a "log" --- of all the Git actions we have taken. In this case, you can see that we have committed changes twice. The first changes involved the initial acceptance of `README.md`. This was done behind the scenes when we created the project by connecting to GitHub. The second change is the commit which we just pushed, the one which adds `.gitignore` and `README.html`, and also modifies `README.md`. 
+`git log` generates a record --- a "log" --- of all the Git actions we have taken. In this case, you can see that we have committed changes twice. The first was done behind the scenes when we created the project by connecting to GitHub. The second change is the commit which we just pushed, the one which adds `analysis-1.qmd`, `.gitignore` and `analysis-1.html`. 
 
+<!--AR: after committing files, make change and then commit again-->
+
+### Exercise 11
+
+Return to editing `analysis-1.qmd`. Add the line beggining with your actual name "[Your name] is a data maestro!". Make sure there is a blank line at the end of the document and save.
+
+run `cat analysis-1.qmd`. CP/CR.
+
+```{r using-git-11}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+
+###
+
+Your answer should look something like this:
+
+````
+@ppbds-student ➜ /workspaces/04-github-1 (main) $ cat analysis-1.qmd
+---
+title: "Analysis 1"
+author: "PPBDS Student"
+format: html
+---
+
+PPBDS student is a data maestro!
+@ppbds-student ➜ /workspaces/04-github-1 (main) $ 
+````
+
+
+### Exercise 12
+
+Within the Source Control pane, press the "Open File" button for `analysis-1.qmd`, which is the first of four symbols to the right of the file name. 
+
+```{r}
+include_graphics("images/analysis-git-4.png")
+```
+
+Hold your cursor over the symbol (a curved arrow) next to the "Open File" button. What is the name for this button?
+
+```{r using-git-12}
+question_text(NULL,
+	message = "Discard Changes",
+	answer(NULL, correct = TRUE),
+	allow_retry = FALSE,
+	incorrect = NULL,
+	rows = 6)
+```
+
+###
+
+Clicking this button gets rid of your changes since the last time you told Git to save them. 
+
+### Exercise 13
+
+Hold your cursor over the symbol --- `+`, a plus sign --- next to the "Discard Changes" button. What is the name for this button?
+
+```{r using-git-13}
+question_text(NULL,
+	message = "Stage Changes",
+	answer(NULL, correct = TRUE),
+	allow_retry = FALSE,
+	incorrect = NULL,
+	rows = 2)
+```
+
+###
+
+Saving changes in Git is, in theory, a two-step process. The first step is to "stage" the changes. The second step is to "commit" the changes. For the most part, we don't stage. We just "commit," which incorporates the staging process automatically.
+
+### Exercise 14
+
+Commit the changes with a comment like "added sentence". 
+
+Run `git log`. CP/CR the latest entry.
+
+```{r using-git-14}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your answer should look something like:
+
+````
+@ppbds-student ➜ /workspaces/04-github-1 (main) $ git log
+commit b81019c11410adc933cdb256649ee4cf66f9026f (HEAD -> main)
+Author: ppbds-student <acrogers362+ppbds-student@gmail.com>
+Date:   Fri May 1 19:41:05 2026 +0000
+
+    added sentence
+````
 
 ### Exercise 15
 
 The Source Control pane now looks like this:
 
+<!--AR: Clean up image. -->
 ```{r}
 include_graphics("images/README-8.png")
 ```
@@ -508,13 +552,7 @@ Note how the bottom portion of the pane, the Source Control Graph now has two it
 
 ### Exercise 16
 
-Press the "Sync Changes" button. Doing so, brings up this dialogue box:
-
-```{r}
-include_graphics("images/README-9.png")
-```
-
-Click "OK." Eventually, you might select "OK. Don't Show Again," since you almost always want to just push your changes whenever you click the "Sync Changes" button. Settings like this are saved in the Positron `settings.json` file.
+Press the "Sync Changes" button.
 
 From the Terminal, run `git log` again. CP/CR.
 
@@ -528,6 +566,8 @@ question_text(NULL,
 ```
 
 ###
+
+<!--AR: needs to be cleaned up both output and knowledge drop-->
 
 Your answer should look like:
 
@@ -551,7 +591,9 @@ This looks the same as before, except that "(HEAD -> main)" in the top line has 
 
 A term like "commit 969819f5c16d3776254121570a4853da45f174ba" gives us the address of that commit. We can revert to the code base as it looked after that commit by using that string.
 
-If you look at the GitHub page for `First-Repo`, you will see that the changes have been pushed to GitHub. If your computer blows up, you won't lose any of your work.
+If you look at the GitHub page for `04-github-1`, you will see that the changes have been pushed to GitHub. If your computer blows up, you won't lose any of your work.
+
+
 
 ## Publishing with GitHub Pages
 ### 
@@ -654,7 +696,7 @@ From the Positron menu, `File -> New File... -> Quarto Document`.
 include_graphics("images/second-repo-2.png")
 ```
 
-The black dot next to "Untitled-1" indicates that there are unsaved changes in this file. Save the file, naming it `analysis.qmd`.
+The black dot next to "Untitled-1" indicates that there are unsaved changes in this file. Save the file, naming it `analysis-1.qmd`.
 
 At the R Terminal, run `list.files()`. CP/CR.
 
@@ -671,7 +713,7 @@ question_text(NULL,
 
 ````
 > list.files()
-[1] "analysis.qmd" "README.md"   
+[1] "analysis-1.qmd" "README.md"   
 >
 ````
 
@@ -679,7 +721,7 @@ Many Terminal commands, like `ls`, have R command counterparts, like `list.files
 
 ### Exercise 5
 
-Click the Source Control button to bring up the Source Control pane. The only file listed is `analysis.qmd`, which is **U**ntracked.  
+Click the Source Control button to bring up the Source Control pane. The only file listed is `analysis-1.qmd`, which is **U**ntracked.  
 
 ```{r}
 include_graphics("images/second-repo-2-b.png")
@@ -702,7 +744,7 @@ question_text(NULL,
 
 ````
 dkane@macbook repo-2 % ls -a
-.               ..              .git            README.md       analysis.qmd
+.               ..              .git            README.md       analysis-1.qmd
 dkane@macbook repo-2 % 
 ````
 
@@ -711,7 +753,7 @@ The `-a` flag shows us **a**ll files/directories, including the hidden ones like
 
 ### Exercise 6
 
-Render `analysis.qmd` with `Cmd/Cntrl + Shift + K`, or by clicking the "Preview" button.
+Render `analysis-1.qmd` with `Cmd/Cntrl + Shift + K`, or by clicking the "Preview" button.
 
 ```{r}
 include_graphics("images/second-repo-3-a.png")
@@ -734,15 +776,15 @@ question_text(NULL,
 
 ````
 dkane@macbook repo-2 % ls   
-README.md       analysis.html   analysis.qmd    analysis_files
+README.md       analysis.html   analysis-1.qmd    analysis-1_files
 dkane@macbook repo-2 % 
 ````
 
-All the junk files that we don't really care about, and which are cluttering up the Source Control pane, are located in the `analysis_files` directory.
+All the junk files that we don't really care about, and which are cluttering up the Source Control pane, are located in the `analysis-1_files` directory.
 
 ### Exercise 7
 
-Quarto is "Watching files for changes" at the Terminal. If you change and then render `analysis.qmd`, Quarto will automatically display the updated HTML in the Viewer. It is watching `analysis.html`. You can't use this Terminal until you stop this process.
+Quarto is "Watching files for changes" at the Terminal. If you change and then render `analysis-1.qmd`, Quarto will automatically display the updated HTML in the Viewer. It is watching `analysis.html`. You can't use this Terminal until you stop this process.
 
 ```{r}
 include_graphics("images/second-repo-3-b.png")
@@ -780,7 +822,7 @@ There are 13 files now listed under "Changes" in the top half of the Source Cont
 include_graphics("images/second-repo-3-c.png")
 ```
 
-From the Terminal, run `ls -R analysis_files`. CP/CR.
+From the Terminal, run `ls -R analysis-1_files`. CP/CR.
 
 ```{r publishing-with-github-pages-8}
 question_text(NULL,
@@ -794,22 +836,22 @@ question_text(NULL,
 ###
 
 ````
-dkane@macbook repo-2 % ls -R analysis_files
+dkane@macbook repo-2 % ls -R analysis-1_files
 libs
 
-analysis_files/libs:
+analysis-1_files/libs:
 bootstrap       clipboard       quarto-html
 
-analysis_files/libs/bootstrap:
+analysis-1_files/libs/bootstrap:
 bootstrap-973236bd072d72a04ee9cd82dcc9cb29.min.css
 bootstrap-icons.css
 bootstrap-icons.woff
 bootstrap.min.js
 
-analysis_files/libs/clipboard:
+analysis-1_files/libs/clipboard:
 clipboard.min.js
 
-analysis_files/libs/quarto-html:
+analysis-1_files/libs/quarto-html:
 anchor.min.js
 popper.min.js
 quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css
@@ -823,13 +865,13 @@ If you know something about web pages, you will recognize some of these files. B
 
 ### Exercise 9
 
-Use `File -> New Text File` to create a new `.gitignore`. Add `analysis_files` and an empty line to the file. Save it in the highest level of the project, i.e., in the same location as `analysis.qmd`.
+Use `File -> New Text File` to create a new `.gitignore`. Add `analysis-1_files` and an empty line to the file. Save it in the highest level of the project, i.e., in the same location as `analysis-1.qmd`.
 
 ```{r}
 include_graphics("images/second-repo-4.png")
 ```
 
-There are now only three changed files: `analysis.qmd`, `analysis.html`, and `.gitgnore`.
+There are now only three changed files: `analysis-1.qmd`, `analysis.html`, and `.gitgnore`.
 
 From the Terminal, run `cat .gitignore`. CP/CR.
 
@@ -846,7 +888,7 @@ question_text(NULL,
 
 ````
 dkane@macbook repo-2 % cat .gitignore
-analysis_files
+analysis-1_files
 dkane@macbook repo-2 % 
 ````
 
@@ -926,7 +968,7 @@ The commit itself has not changed. It has the same date/author/comment as before
 
 ### Exercise 12
 
-Add an R code chunk in `analysis.qmd` by using the shortcut key `Cmd/Ctrl + option + i`. (Recall that "code chunk" and "code cell" mean the same thing.) In that chunk, put `library(tidyverse)`. `Cmd/Ctrl + Shift + K` to render the the document. Your Positron window should look like:
+Add an R code chunk in `analysis-1.qmd` by using the shortcut key `Cmd/Ctrl + option + i`. (Recall that "code chunk" and "code cell" mean the same thing.) In that chunk, put `library(tidyverse)`. `Cmd/Ctrl + Shift + K` to render the the document. Your Positron window should look like:
 
 ```{r}
 include_graphics("images/second-repo-7.png")
@@ -934,7 +976,7 @@ include_graphics("images/second-repo-7.png")
 
 As usual, the HTML file is displayed in the Viewer tab and, in the Panel, the focus switches to the Terminal, in which Quarto is "Watching files for changes."
 
-In the R Terminal, run `tutorial.helpers::show_file("analysis.qmd", chunk = "Last")`. CP/CR.
+In the R Terminal, run `tutorial.helpers::show_file("analysis-1.qmd", chunk = "Last")`. CP/CR.
 
 ```{r publishing-with-github-pages-12}
 question_text(NULL,
@@ -948,7 +990,7 @@ question_text(NULL,
 ###
 
 ````
-> tutorial.helpers::show_file("analysis.qmd", chunk = "Last")
+> tutorial.helpers::show_file("analysis-1.qmd", chunk = "Last")
 library(tidyverse)
 >
 ````
@@ -969,7 +1011,7 @@ Make sure to use spaces (not tabs) in YAML headers.
 
 `Cmd/Ctrl + Shift + K` to render the the document. The HTML should now be clean.
 
-In the R Terminal, run `tutorial.helpers::show_file("analysis.qmd", end = 8)`. CP/CR.
+In the R Terminal, run `tutorial.helpers::show_file("analysis-1.qmd", end = 8)`. CP/CR.
 
 ```{r publishing-with-github-pages-13}
 question_text(NULL,
@@ -983,7 +1025,7 @@ question_text(NULL,
 ###
 
 ````
-> tutorial.helpers::show_file("analysis.qmd", end = 8)
+> tutorial.helpers::show_file("analysis-1.qmd", end = 8)
 ---
 title: "A Beautiful Graphic"
 author: David Kane
@@ -1022,7 +1064,7 @@ Wrap the library(tidyverse) call with suppressPackageStartupMessages() to silenc
 
 ### Exercise 15
 
-Edit `analysis.qmd` so that `library(tidyverse)` is replaced by `suppressPackageStartupMessages(library(tidyverse))`. Remove `warning: false` from the YAML header. `Cmd/Ctrl + Shift + K`.
+Edit `analysis-1.qmd` so that `library(tidyverse)` is replaced by `suppressPackageStartupMessages(library(tidyverse))`. Remove `warning: false` from the YAML header. `Cmd/Ctrl + Shift + K`.
 
 Copy/paste whatever appears in your HTML below:
 
@@ -1058,7 +1100,7 @@ Create a new R code chunk with `Cmd/Ctrl + option + i`. Ask [Grok](https://grok.
 
 Paste that code into the new code chunk. `Cmd/Ctrl + shift + K` to render. If there is an error, or if the graphic is ugly, iterate with your AI until you have a graphic of which you are proud.
 
-In the R Terminal, run `tutorial.helpers::show_file("analysis.qmd", chunk = "Last")`. CP/CR.
+In the R Terminal, run `tutorial.helpers::show_file("analysis-1.qmd", chunk = "Last")`. CP/CR.
 
 ```{r publishing-with-github-pages-16}
 question_text(NULL,
@@ -1072,7 +1114,7 @@ question_text(NULL,
 ###
 
 ````
-> tutorial.helpers::show_file("analysis.qmd", chunk = "Last")
+> tutorial.helpers::show_file("analysis-1.qmd", chunk = "Last")
 ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
   geom_point(alpha = 0.7) +
   scale_color_brewer(palette = "Set2") +
@@ -1172,7 +1214,7 @@ include_graphics("images/second-repo-9.png")
 
 We won't modify these options by hand. But it is useful to know where the details are located.
 
-From the Terminal, run `quarto publish gh-pages analysis.qmd`. Respond with "Y" when it checks that you want to. (This might take a minute to run.) 
+From the Terminal, run `quarto publish gh-pages analysis-1.qmd`. Respond with "Y" when it checks that you want to. (This might take a minute to run.) 
 
 CP/CR just the first 10 or so lines of what results.
 
@@ -1191,7 +1233,7 @@ question_text(NULL,
 Here is what I see, broken up to allow for comments:
 
 ````
-kane@macbook repo-2 % quarto publish gh-pages analysis.qmd
+kane@macbook repo-2 % quarto publish gh-pages analysis-1.qmd
 ? Publish site to https://davidkane9.github.io/repo-2/ using gh-pages? (Y/n) › Yes
 ````
 
@@ -1217,7 +1259,7 @@ From https://github.com/davidkane9/repo-2
  * branch            gh-pages   -> FETCH_HEAD
 Rendering for publish:
 
-processing file: analysis.qmd
+processing file: analysis-1.qmd
 1/4                  
 2/4 [unnamed-chunk-1]
 3/4                  
@@ -1225,7 +1267,7 @@ processing file: analysis.qmd
 output file: analysis.knit.md
 ````
 
-`quarto publish` processes `analysis.qmd` in the same way that `quarto preview` or `quarto render` does.
+`quarto publish` processes `analysis-1.qmd` in the same way that `quarto preview` or `quarto render` does.
 
 ### Exercise 19
 
