@@ -1883,16 +1883,12 @@ The URL above links to a webpage, but for our `curl` command, we want the link t
 include_graphics("images/todo-gh-webpage.png")
 ```
 
-This will bring you to a page that displays the raw text file. Copy the URL in your address bar. It will look something like this:
+This will bring you to a page that displays the raw text file. Copy the URL in your address bar. It should begin with: `https://raw.githubusercontent.com/`.
+
+Back in your Codespace, run the following command while in your `files` directory, replacing `URL` with the URL you found. 
 
 ````
-https://raw.githubusercontent.com/PPBDS/vscode.tutorials/refs/heads/main/TODO.txt
-````
-
-Back in your Codespace, run the following command while in your `files` directory:
-
-````
-curl -O https://raw.githubusercontent.com/PPBDS/vscode.tutorials/refs/heads/main/TODO.txt
+curl -O URL
 ````
 
 Run `ls` to confirm that the file has been downloaded. CP/CR.
@@ -2089,16 +2085,12 @@ Then navigate to the URL for the raw text file.
 include_graphics("images/grepping-gh-webpage.png")
 ```
 
-Copy the URL in your address bar. It will look something like this:
+Copy the URL in your address bar. It will should begin with `https://raw.githubusercontent.com/`.
+
+Back in your Codespace, move to the `03-terminal` directory. Then run the following command, replacing `URL` with the URL for the raw file:
 
 ````
-https://raw.githubusercontent.com/PPBDS/vscode.tutorials/refs/heads/main/inst/tutorials/03-terminal/images/grepping.txt
-````
-
-Back in your Codespace, move to the `03-terminal` directory. Then run the following command, replacing `[URL]` with the URL for the raw file:
-
-````
-curl -o grepping/grepping.txt [URL]
+curl -o grepping/grepping.txt URL
 ````
 
 Then run `ls grepping` to verify that the file has been downloaded to the correct location.
