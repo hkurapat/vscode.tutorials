@@ -49,14 +49,14 @@ options(tutorial.exercise.timelimit = 60,
 
 This tutorial introduces the structure and uses of the Terminal from within VS Code running on GitHub Codespaces.
 
-The older, more general term for the Terminal is the "command line." All modern operating systems provide a command line, from which sophisticated users can modify files and directories, using commands like `pwd`, `ls`, `echo`, `mkdir`, `mv`, `rm`, and `cd`. We also discuss regular expressions as well as some of the metacharacters (like, `*`, `^` and `$`) from which they are constructed.
+The older, more general term for the Terminal is the "command line." All modern operating systems provide a command line, which sophisticated users can use to modify files and directories with commands like `pwd`, `ls`, `echo`, `mkdir`, `mv`, `rm`, and `cd`. We also discuss regular expressions as well as some of the metacharacters (like `*`, `^`, and `$`) from which they are constructed.
 
 Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
 ## Terminal
 ###
 
-The Terminal view is in the Panel in the lower section of the VS Code window. We use terminals to talk directly with the computer. Different types of terminals use different languages to do this. The initial terminal uses the bash language.
+The Terminal view is in the Panel in the lower section of the VS Code window. We use terminals to talk directly with the computer. Different types of terminals use different languages to do this. The initial terminal uses the Bash language.
 
 ```{r}
 include_graphics("images/terminal-on-open.png")
@@ -64,7 +64,7 @@ include_graphics("images/terminal-on-open.png")
 
 ### Exercise 1
 
-Hit the `Enter` key (the `Return` key on Mac) two times in the Terminal to see what happens. The Terminal has a string of characters called the **prompt**. After a command has been executed, a prompt will be generated on a new line to let you know that Terminal is ready for a new command. Copy and paste the three (blank) lines from the Terminal as your answer below. We do a lot of **c**opy/**p**asting of **c**ommands/**r**esponses, so we abbreviate those instructions as CP/CR.
+Hit the `Enter` key (the `Return` key on Mac) two times in the Terminal to see what happens. The Terminal has a string of characters called the **prompt**. After a command has been executed, a prompt appears on a new line to let you know that the Terminal is ready for a new command. Copy and paste the three prompt lines from the Terminal as your answer below. We do a lot of **c**opy/**p**asting of **c**ommands/**r**esponses, so we abbreviate those instructions as CP/CR.
 
 ```{r terminal-1}
 question_text(NULL,
@@ -85,15 +85,15 @@ Your answer should look something like:
 @ppbds-student ➜ /workspaces/03-terminal (main) $
 ````
 
-Your answer will look different from mine. Default prompts vary from computer to computer. In my case, the first part of the prompt is the name of my GitHub account: `@ppbds-student`. The second part, after the arrow, is the path to the directory, `/workspaces/03-terminal`, in which I am running the tutorial. The third part, separated by a space and in parenthesis, is `main`, the current git branch (more on this in an upcoming tutorial). The dollar sign indicates the end of the prompt.
+Your answer will look different from mine. Default prompts vary from computer to computer. In my case, the first part of the prompt is the name of my GitHub account: `@ppbds-student`. The second part, after the arrow, is the path to the directory, `/workspaces/03-terminal`, in which I am running the tutorial. The third part, separated by a space and in parentheses, is `main`, the current Git branch (more on this in an upcoming tutorial). The dollar sign indicates the end of the prompt.
 
 ###
 
-The prompt acts as a quick way to tell you where in the computer you are. The Terminal is sensitive to which folder location you are in, keep this in mind!
+The prompt acts as a quick way to tell you where you are in the computer. The Terminal is sensitive to your current folder location, so keep this in mind.
 
 ### Exercise 2
 
-Let's figure out the location of the folder in which we currently are. (Note that the terms "folder" and "directory" mean the same thing.) To see your current location within your computer, type the command `pwd` (**p**resent **w**orking **d**irectory) in the Terminal. Hit the `Enter` (Windows) or `Return` (Mac) key to run the command.
+Let's figure out the location of the folder we are currently in. (Note that the terms "folder" and "directory" mean the same thing.) To see your current location within your computer, type the command `pwd` (**p**resent **w**orking **d**irectory) in the Terminal. Hit the `Enter` (Windows) or `Return` (Mac) key to run the command.
 
 Going forward, we will instruct you to "run" a given command. You do this by typing the command at the prompt and then hitting the `Enter` or `Return` key.
 
@@ -122,7 +122,7 @@ The `pwd` command prints the full path to your current working directory. When i
 
 ### Exercise 3
 
-Let's see a **l**i**s**t of what is where we are, i.e. in our working directory. Run `ls`. Note that this is the letter "L" and the letter "S", both in lowercase. It is not the number "1". CP/CR.
+Let's see a **l**i**s**t of what is in our working directory, where we are currently located. Run `ls`. Note that this is the letter "L" and the letter "S", both in lowercase. It is not the number "1". CP/CR.
 
 ```{r terminal-3}
 question_text(NULL,
@@ -139,7 +139,7 @@ If you do not give it any more information, `ls` assumes that you want a list of
 
 ### Exercise 4
 
-Let's **m**a**k**e a **dir**ectory called `example`. Run `mkdir example`. Run `ls` to confirm that the new directory exists inside of the current working directory. CP/CR.
+Let's **m**a**k**e a **dir**ectory called `example`. Run `mkdir example`. Run `ls` to confirm that the new directory exists inside the current working directory. CP/CR.
 
 ```{r terminal-4}
 question_text(NULL,
@@ -206,7 +206,7 @@ my.txt
 @ppbds-student ➜ /workspaces/03-terminal/example (main) $
 ````
 
-`echo "" > my.txt` creates an empty file. `echo` just repeats whatever follows, which is an empty quote in this case. `>`, which we will discuss more later, "pipes" whatever comes before it into whatever comes after.
+`echo "" > my.txt` creates an empty file. `echo` just repeats whatever follows, which is an empty quote in this case. `>`, which we will discuss more later, pipes whatever comes before it into whatever comes after it.
 
 
 ### Exercise 7
@@ -235,7 +235,7 @@ my_2.txt  my.txt
 
 ### Exercise 8
 
-We rename files with the `mv` command, which is derived from **m**o**v**e. The first argument is the file we want to rename, the second argument is the new name
+We rename files with the `mv` command, which is derived from **m**o**v**e. The first argument is the file we want to rename, and the second argument is the new name.
 
 Rename `my.txt` to `fake.txt` by running `mv my.txt fake.txt`. Run `ls` to confirm. CP/CR.
 
@@ -291,9 +291,9 @@ Be careful with the `rm` command in the Terminal. Unlike moving files to Trash o
 
 ### Exercise 10
 
-We want to remove the `example` directory. But we can't do that while we are "located" in that directory. That is, the computer is aware that our Terminal process --- the entity which is executing our commands like `ls` and `cp` --- is currently working from the `example` directory.
+We want to remove the `example` directory. But we can't do that while we are "located" in that directory. That is, the computer is aware that our Terminal process --- the entity that is executing our commands like `ls` and `cp` --- is currently working from the `example` directory.
 
-Run `cd ..`. The "dot-dot" symbol --- `..` --- references the directory which contains the current directory. Run `pwd` to confirm. CP/CR.
+Run `cd ..`. The "dot-dot" symbol --- `..` --- references the directory that contains the current directory. Run `pwd` to confirm. CP/CR.
 
 ```{r terminal-10}
 question_text(NULL,
@@ -333,7 +333,7 @@ question_text(NULL,
 ````
 @ppbds-student ➜ /workspaces/03-terminal (main) $ rm -r example
 @ppbds-student ➜ /workspaces/03-terminal (main) $ ls
-@ppbds-student ➜ /workspaces/03-terminal (main) $ 
+@ppbds-student ➜ /workspaces/03-terminal (main) $
 ````
 
 `-r` is an **option** that allows us to delete a directory. The `r` stands for **r**ecursive because, in order to delete a directory, you must also (recursively) delete every directory and file within that directory.
@@ -362,7 +362,7 @@ question_text(NULL,
 
 ###
 
-The Activity Bar on the left side of VS Code includes several buttons. When you click one of these buttons, a view opens next to the Activity Bar. Pressing the button again closes the view.
+The Activity Bar on the left side of VS Code includes several buttons. When you click one of these buttons, a view opens next to the Activity Bar. Pressing the button again closes that view.
 
 The top button is the Explorer. Pressing it opens the Explorer pane, also called Project Explorer. This functions like the Mac Finder or the Windows Explorer.
 
@@ -459,7 +459,7 @@ fruits
 
 ###
 
-We could not, as before, simply give `fruits` as an argument to `mkdir` because then the directory would be created directly inside `paths`, the current working directory, rather than within `lessons`. To refer to a location other than the working directory, we need to use a **path**, which describes the location directory by directory. The path above is called a **relative path** because it assumes the working directory as its starting point.
+We could not, as before, simply give `fruits` as an argument to `mkdir` because then the directory would be created directly inside `paths`, the current working directory, rather than within `lessons`. To refer to a location other than the working directory, we need to use a **path**, which describes the location directory by directory. The path above is called a **relative path** because it uses the working directory as its starting point.
 
 ### Exercise 6
 
@@ -507,7 +507,7 @@ pineapple.txt
 ````
 ###
 
-`pineapple.txt` is still a relative path, but since the location is directly inside the assumed starting point, i.e. the working directory, the name of the file is all we need. If we had used `lessons/fruits/apple.txt`, as we would have had to do if our working directory were `paths`, we would have gotten an error because those directories would not be recognized within our actual starting point of `fruits`.
+`pineapple.txt` is still a relative path, but since the file is directly inside the assumed starting point, i.e. the working directory, the name of the file is all we need. If we had used `lessons/fruits/apple.txt`, as we would have had to do if our working directory were `paths`, we would have gotten an error because those directories would not be recognized from our actual starting point of `fruits`.
 
 Read this paragraph again. No skimming!
 
@@ -535,7 +535,7 @@ does-not-belong pear.txt        pineapple.txt
 @ppbds-student ➜ /workspaces/03-terminal/paths/lessons/fruits (main) $
 ````
 
-The `&` symbol simply tells the operating system to do both the command which came before it and the command which comes after.
+The `&` symbol tells the operating system to run both the command that came before it and the command that comes after it.
 
 ### Exercise 9
 
@@ -613,7 +613,7 @@ does-not-belong
 
 ###
 
-We can act on files which are not in the working directory as long as we provide a path --- either relative, as here, or absolute --- to those files. In this case, neither `mv` nor `ls` are acting on the current directory. Instead, they are acting on lower directories: `fruits` and `tbd`.
+We can act on files that are not in the working directory as long as we provide a path --- either relative, as here, or absolute --- to those files. In this case, neither `mv` nor `ls` is acting on the current directory. Instead, they are acting on lower directories: `fruits` and `tbd`.
 
 ### Exercise 12
 
@@ -640,11 +640,11 @@ lessons tbd
 @ppbds-student ➜ /workspaces/03-terminal/paths (main) $
 ````
 
-When using `mv`, there is no difference between moving a directory and moving a file. A command like `mv lessons/tbd .` seems like a bit of witchcraft. But, all that it is really say is to move (`mv`) the `tbd` directory (which is located in the `lessons` directory) to here (`.`), meaning to the current directory.
+When using `mv`, there is no difference between moving a directory and moving a file. A command like `mv lessons/tbd .` seems like a bit of witchcraft. But all it really says is to move (`mv`) the `tbd` directory (which is located in the `lessons` directory) to here (`.`), meaning to the current directory.
 
 ### Exercise 13
 
-Move up one more directory, back to the original working directory, by running `cd ..`. Confirm with `pwd`. Run `rm -r paths` to remove all the directories and files with which we have been working. CP/CR.
+Move up one more directory, back to the original working directory, by running `cd ..`. Confirm with `pwd`. Run `rm -r paths` to remove all the directories and files that we have been working with. CP/CR.
 
 ```{r paths-13}
 question_text(NULL,
@@ -702,11 +702,11 @@ question_text(NULL,
 @ppbds-student ➜ /workspaces/03-terminal/symbols (main) $
 ````
 
-The more practice we get with command line commands --- often called "shell" commands --- the easier it is to string together several of them in a row.
+The more practice we get with command-line commands --- often called "shell" commands --- the easier it is to string together several of them in a row.
 
 ### Exercise 2
 
-But is the `symbols` directory really empty? Run `ls -a` to check. The `-` indicates an "option" to the `ls` command. The `a` option tells `ls` to return *a*ll the members of the directory.
+But is the `symbols` directory really empty? Run `ls -a` to check. The `-` indicates an option to the `ls` command. The `a` option tells `ls` to return *a*ll the members of the directory.
 
 CP/CR.
 
@@ -729,7 +729,7 @@ Your answer should look like:
 @ppbds-student ➜ /workspaces/03-terminal/symbols (main) $
 ````
 
-Every directory, even an "empty" one includes `.` and `..`. The `.` is link to the current directory, i.e., to the `symbols` directory in which we are currently located. The `..` is a link to the directory one level up, which is `/workspaces/03-terminal` in my case.
+Every directory, even an "empty" one, includes `.` and `..`. The `.` is a link to the current directory, i.e., to the `symbols` directory in which we are currently located. The `..` is a link to the directory one level up, which is `/workspaces/03-terminal` in my case.
 
 ### Exercise 3
 
@@ -806,7 +806,7 @@ My answer looks like this:
 
 The absolute path for my current location, meaning my current working directory, contains these locations.
 
-* The starting `/`, indicates the root, or origin of the file systems. There is no directory higher than the root directory.
+* The starting `/` indicates the root, or origin, of the file system. There is no directory higher than the root directory.
 
 * `workspaces`, which is where GitHub Codespaces stores workspace folders.
 
@@ -838,7 +838,7 @@ In Codespaces, the home directory is usually `/home/codespace`. Note how, after 
 
 ### Exercise 7
 
-Use `cd`, along with the full path to the `symbols` directory which you determined above, to change the the working directory back to the `symbols` directory. Run `pwd` to confirm. CP/CR.
+Use `cd`, along with the full path to the `symbols` directory that you determined above, to change the working directory back to the `symbols` directory. Run `pwd` to confirm. CP/CR.
 
 ```{r important-symbols-7}
 question_text(NULL,
@@ -858,11 +858,11 @@ question_text(NULL,
 @ppbds-student ➜ /workspaces/03-terminal/symbols (main) $
 ````
 
-This is an example of using a "absolute" path to change locations.
+This is an example of using an absolute path to change locations.
 
 ### Exercise 8
 
-Run `ls ~`. The list should be identical to the list you generated above in the home directory. Because the home directory is used in the absolute path of so many files, its path --- generally something like `/home/codespace` in Codespaces --- can be written with the shorthand `~`, which is a tilde, pronounced TIL-D. CP/CR.
+Run `ls ~`. The list should be identical to the list you generated above in the home directory. Because the home directory is used in the absolute path of so many files, its path --- generally something like `/home/codespace` in Codespaces --- can be written with the shorthand `~`, which is a tilde, pronounced "TIL-duh." CP/CR.
 
 
 ```{r important-symbols-8}
@@ -876,7 +876,7 @@ question_text(NULL,
 
 ###
 
-The shorthands we have learned so far, `.`, `..`, `~`, stand for the text of the paths for the corresponding directory. They are not specific to any function and can be used in any situation where the text of the relevant path could be used.
+The shorthands we have learned so far, `.`, `..`, and `~`, stand for the paths to the corresponding directories. They are not specific to any function and can be used in any situation where the text of the relevant path could be used.
 
 ### Exercise 9
 
@@ -908,7 +908,7 @@ Note that `rm -rf symbols` and `rm -rf symbols/`, with the trailing slash, have 
 ## Options
 ###
 
-Options modify the behavior of command line functions like `ls`, as we saw with `ls -a` above.
+Options modify the behavior of command-line functions like `ls`, as we saw with `ls -a` above.
 
 ### Exercise 1
 
@@ -939,7 +939,7 @@ Note how easy it is to string together several commands in order to accomplish o
 
 ### Exercise 2
 
-Add a text file to the `options` directory, named `.my-hidden.txt` --- make sure to include the `.` at the front of the file name --- by running `echo "" > .my-hidden.txt`.  CP/CR.
+Add a text file to the `options` directory, named `.my-hidden.txt` --- make sure to include the `.` at the front of the file name --- by running `echo "" > .my-hidden.txt`. CP/CR.
 
 ```{r options-2}
 question_text(NULL,
@@ -980,7 +980,7 @@ If you did the previous exercise correctly, you should **not** see the new file.
 
 ### Exercise 4
 
-Run `ls -a`. Using the **option** `-a`, you should be able to see **a**ll the files in the directory.  CP/CR.
+Run `ls -a`. Using the **option** `-a`, you should be able to see **a**ll the files in the directory. CP/CR.
 
 
 ```{r options-4}
@@ -1002,7 +1002,7 @@ Options are preceded by a `-` and come before the argument. Your answer should l
 @ppbds-student ➜ /workspaces/03-terminal/options (main) $
 ````
 
-The `.` file refers to the `options` directory itself. The `..` refers to the directory in which the options directory is located. Every directory has both a `.` and a `..` file inside of it, but we only see those files if we use the `-a` option.
+The `.` file refers to the `options` directory itself. The `..` refers to the directory in which the `options` directory is located. Every directory has both a `.` and a `..` file inside it, but we only see those files if we use the `-a` option.
 
 ###
 
@@ -1010,7 +1010,7 @@ Hidden files live all over your computer.
 
 ### Exercise 5
 
-The **environment variable** `HOME` represents the path to your home directory. Type and enter `echo $HOME` alone to make sure we are telling you the truth.
+The **environment variable** `HOME` represents the path to your home directory. Type and enter `echo $HOME` to make sure we are telling you the truth.
 
 CP/CR.
 
@@ -1052,7 +1052,7 @@ question_text(NULL,
 
 ###
 
-There are many different environmental variables. You can also make your own. My answer looks like:
+There are many different environment variables. You can also make your own. My answer looks like:
 
 ````
 @ppbds-student ➜ /workspaces/03-terminal/options (main) $ ls $HOME
@@ -1060,11 +1060,11 @@ Downloads
 @ppbds-student ➜ /workspaces/03-terminal/options (main) $
 ````
 
-Don't worry about the details of these files. Our main point is that environmental variables are very handy because they make it easy to refer to a specific location on a computer, like where R is installed, even though the absolute path to this location is different on every person's computer.
+Don't worry about the details of these files. Our main point is that environment variables are very handy because they make it easy to refer to a specific location on a computer, like where R is installed, even though the absolute path to this location is different on every person's computer.
 
 ### Exercise 7
 
-In the Terminal, run `ls -l $HOME`, so that we can see more information in a **l**ong list.
+In the Terminal, run `ls -l $HOME` so that we can see more information in a **l**ong list.
 
 CP/CR.
 
@@ -1088,7 +1088,7 @@ drwxr-xr-x 2 codespace codespace 4096 Apr 30 12:00 Downloads
 @ppbds-student ➜ /workspaces/03-terminal/options (main) $
 ````
 
-In a long list, names are in the last column and file type is in the first: if the string in the first column begins with `d` it is a **d**irectory; if it begins with `-` it is a file; if it begins with `l` it is a **l**ink to another file or directory on the computer. The middle columns give, from left to right, the number of files, author, permission, file size (in bytes), and the date/time last modified.
+In a long list, names are in the last column and file type is in the first. If the string in the first column begins with `d`, it is a **d**irectory; if it begins with `-`, it is a file; if it begins with `l`, it is a **l**ink to another file or directory on the computer. The middle columns give, from left to right, the number of files, author, permission, file size (in bytes), and the date/time last modified.
 
 ### Exercise 8
 
@@ -1098,7 +1098,7 @@ Let's download a copy of the `AUTHORS` document from the R source code. It is av
 https://github.com/wch/r-source/blob/trunk/doc/AUTHORS
 ````
 
-Press the "Download raw file" button. This should place a copy of the file in your `Downloads` directory. At the Terminal, run `ls ~/Downloads/A*`. If this command does not work for you, use AI to figure out a command which does.
+Press the "Download raw file" button. This should place a copy of the file in your `Downloads` directory. At the Terminal, run `ls ~/Downloads/A*`. If this command does not work for you, use AI to figure out a command that does.
 
 CP/CR.
 
@@ -1119,11 +1119,11 @@ My answer looks like this:
 @ppbds-student ➜ /workspaces/03-terminal/options (main) $
 ````
 
-Note how my computer has added a `.txt` suffix to the file. Your computer might or might not do the same. Many operating systems think that every file should have a suffix which describes what it is, and so they add one if it is not present.
+Note how my computer has added a `.txt` suffix to the file. Your computer might or might not do the same. Many operating systems think that every file should have a suffix that describes what it is, and so they add one if it is not present.
 
 ### Exercise 9
 
-Move the `AUTHORS` file to the current directory, which is `options`, using `mv`. Check with `ls` to confirm that it has worked. CP/CR.
+Move the `AUTHORS` file to the current directory, which is `options`, using `mv`. Check with `ls` to confirm that it worked. CP/CR.
 
 For me, this looks like:
 
@@ -1149,7 +1149,7 @@ Like `mv`, `cp` can change a file name. Like `mv`, if the destination file name 
 
 ### Exercise 10
 
-Let's view just the initial lines of the `AUTHORS.txt`. Run `head AUTHORS`.  CP/CR.
+Let's view just the initial lines of `AUTHORS.txt`. Run `head AUTHORS.txt`. CP/CR.
 
 ```{r options-10}
 question_text(NULL,
@@ -1166,7 +1166,7 @@ Now you know how R got its name. If your operating system did not add `.txt` as 
 
 ### Exercise 11
 
-Let's view more than just the initial 10 lines. The option `-n` allows you to specify the number of initial lines you want to see. Run `head -n 18 AUTHORS.txt`.  CP/CR.
+Let's view more than just the initial 10 lines. The option `-n` allows you to specify the number of initial lines you want to see. Run `head -n 18 AUTHORS.txt`. CP/CR.
 
 ```{r options-11}
 question_text(NULL,
@@ -1179,11 +1179,11 @@ question_text(NULL,
 
 ###
 
-The option `-n` takes an argument which allows head to display any number of initial lines.
+The option `-n` takes an argument that allows `head` to display any number of initial lines.
 
 ### Exercise 12
 
-Use the command `tail` and the same `-n` option to view the last 15 lines by running `tail -n 15 AUTHORS.txt`.  CP/CR.
+Use the command `tail` and the same `-n` option to view the last 15 lines by running `tail -n 15 AUTHORS.txt`. CP/CR.
 
 
 ```{r options-12}
@@ -1197,11 +1197,11 @@ question_text(NULL,
 
 ###
 
-If the argument of `-n`is greater than the number of lines in the file, `head` or `tail` will just print the whole file.
+If the argument of `-n` is greater than the number of lines in the file, `head` or `tail` will just print the whole file.
 
 ### Exercise 13
 
-Let's view the whole file at once. Run `cat AUTHORS.txt`.  CP/CR.
+Let's view the whole file at once. Run `cat AUTHORS.txt`. CP/CR.
 
 ```{r options-13}
 question_text(NULL,
@@ -1218,7 +1218,7 @@ question_text(NULL,
 
 ### Exercise 14
 
-Run `cat -n AUTHORS.txt`. Notice that `-n` has no argument.  CP/CR.
+Run `cat -n AUTHORS.txt`. Notice that `-n` has no argument. CP/CR.
 
 
 ```{r options-14}
@@ -1236,7 +1236,7 @@ question_text(NULL,
 
 ### Exercise 15
 
-Let's make our own text file. Start by running `echo` which takes a quoted string, for example, "Your First and Last Name Here" as its argument. This "echoes" the argument by printing it in the next line of the terminal.  CP/CR.
+Let's make our own text file. Start by running `echo`, which takes a quoted string such as "Your First and Last Name Here" as its argument. This "echoes" the argument by printing it in the next line of the Terminal. CP/CR.
 
 ```{r options-15}
 question_text(NULL,
@@ -1261,7 +1261,7 @@ David Kane
 
 ### Exercise 16
 
-We can change the place that we `echo` to, from the Terminal to a text file, using `>` to redirect the output Run `echo "Your First and Last Name Here" > test.txt`. Then use `ls` to see if the file `test.txt` exists within your working directory. Then use `cat` to read this file. After you have confirmed that the file contains your name, use `rm` to remove `test.txt`.  CP/CR.
+We can use `>` to redirect the output of `echo` from the Terminal to a text file. Run `echo "Your First and Last Name Here" > test.txt`. Then use `ls` to see if the file `test.txt` exists within your working directory. Then use `cat` to read this file. After you have confirmed that the file contains your name, use `rm` to remove `test.txt`. CP/CR.
 
 ```{r options-16}
 question_text(NULL,
@@ -1274,7 +1274,7 @@ question_text(NULL,
 
 ###
 
-That is a lot of steps! An important goal of this tutorial is teach you to be *comfortable* at the command line. My answer looks like:
+That is a lot of steps! An important goal of this tutorial is to teach you to be *comfortable* at the command line. My answer looks like:
 
 ````
 @ppbds-student ➜ /workspaces/03-terminal/options (main) $ echo "David Kane" > test.txt
@@ -1311,7 +1311,7 @@ AUTHORS-fake    AUTHORS.txt
 
 ### Exercise 18
 
-Using `>>`, a command whose syntax is the same as `>`, we can append output to an existing document. Use `echo` and `>>` to append your name to the list of `AUTHORS-fake`. That is, run (with your name in place of mine):
+Using `>>`, whose syntax is the same as `>`, we can append output to an existing document. Use `echo` and `>>` to append your name to the list in `AUTHORS-fake`. That is, run (with your name in place of mine):
 
 ````
 echo "David Kane" >> AUTHORS-fake
@@ -1471,11 +1471,11 @@ If you are curious about how those commands work, ask your favorite AI. The more
 
 ### Exercise 4
 
-Terminal commands allow the use of **wildcards**. A wildcard `*` represents zero or more of any character, and it is used to work with similarly named files as a grouping.
+Terminal commands allow the use of **wildcards**. A wildcard `*` represents zero or more of any character, and it is used to work with similarly named files as a group.
 
 ###
 
-Let's generate a list of all our files whose names contain the letter `a`. First simply try to run `ls a`. You will get an error message --- "No such file or directory" --- because there is no file named `a` in the working directory. CP/CR.
+Let's generate a list of all our files whose names contain the letter `a`. First, try to run `ls a`. You will get an error message --- "No such file or directory" --- because there is no file named `a` in the working directory. CP/CR.
 
 ```{r wildcards-4}
 question_text(NULL,
@@ -1494,11 +1494,11 @@ ls: cannot access 'a': No such file or directory
 @ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
-Though we have been using `ls` to return all the content of a directory, `ls` can also take a name as an argument, as above.
+Although we have been using `ls` to return all the contents of a directory, `ls` can also take a name as an argument, as above.
 
 ### Exercise 5
 
-Let's try again. Run `ls a*`. The only return will be `ate.txt`. Because you put `*` after `a`, `ls` returns only files that began with `a`. The "star" wildcard --- `*` --- matches anything. CP/CR.
+Let's try again. Run `ls a*`. The only return will be `ate.txt`. Because you put `*` after `a`, `ls` returns only files that begin with `a`. The "star" wildcard --- `*` --- matches anything. CP/CR.
 
 ```{r wildcards-5}
 question_text(NULL,
@@ -1517,7 +1517,7 @@ ate.txt
 @ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
-Though `*` will match strings of any length, its positioning matters. `a*` is not the same thing as `*a`. The first matches any string (i.e., any filename) which starts with `a`. The second matches any filename which ends with `a`.
+Although `*` will match strings of any length, its positioning matters. `a*` is not the same thing as `*a`. The first matches any string (i.e., any filename) that starts with `a`. The second matches any filename that ends with `a`.
 
 ### Exercise 6
 
@@ -1540,11 +1540,11 @@ ate.txt cat.txt hat.txt
 @ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
-Note that these **regular expressions** are case-sensitive. A regular expression is a "pattern" which you can use for many purposes, including as a search criteria.
+Note that these **regular expressions** are case-sensitive. A regular expression is a pattern that you can use for many purposes, including as a search criterion.
 
 ### Exercise 7
 
-Make a list of all the files with names, before the suffix, which end in `t` by running `ls *t.*` CP/CR.
+Make a list of all the files with names, before the suffix, that end in `t` by running `ls *t.*`. CP/CR.
 
 ```{r wildcards-7}
 question_text(NULL,
@@ -1563,11 +1563,11 @@ cat.txt hat.txt
 @ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
-This should return `hat.txt` and `cat.txt`. Read this regular expression --- `*t.*` --- as matching any string which includes a `t` followed directly by a period, regardless of any characters which are also included, before or after. `ate.txt` is not matched because the `t` and the `.` are separated by `e`.
+This should return `hat.txt` and `cat.txt`. Read this regular expression --- `*t.*` --- as matching any string that includes a `t` followed directly by a period, regardless of any characters before or after. `ate.txt` is not matched because the `t` and the `.` are separated by `e`.
 
 ### Exercise 8
 
-Save the output of our list of all the file names that contained `a` to a new file names `afiles.txt`. Keep pressing the **up** arrow key to navigate through your previous commands until you get to the command you used above: `ls *a*`. Then add `> afiles.txt` afterwards and run the command. That is, you are running `ls *a* > afiles.txt`.
+Save the output of our list of all the file names that contain `a` to a new file named `afiles.txt`. Keep pressing the **up** arrow key to navigate through your previous commands until you get to the command you used above: `ls *a*`. Then add `> afiles.txt` afterward and run the command. That is, you are running `ls *a* > afiles.txt`.
 
 Then, run `ls` to confirm that it worked.
 
@@ -1591,15 +1591,15 @@ afiles.txt      ate.txt         cat.txt         hat.txt
 @ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
-You can use your `up` and `down` arrow keys to navigate command history. The `>` symbol outputs the result of the lefthand side command into the righthand side location.
+You can use your `up` and `down` arrow keys to navigate command history. The `>` symbol outputs the result of the left-hand command into the right-hand location.
 
 ### Exercise 9
 
 Wildcards can be used with more than `ls`. Let's move `hat.txt` and `cat.txt` together into one directory.
 
-First, make a new directory called `seuss` within the `wildcards` directory in which you are currently located.
+First, make a new directory called `seuss` within the `wildcards` directory, where you are currently located.
 
-Run `ls` to confirm. CP/CR
+Run `ls` to confirm. CP/CR.
 
 ```{r wildcards-9}
 question_text(NULL,
@@ -1612,7 +1612,7 @@ question_text(NULL,
 
 ###
 
-You answer should look like:
+Your answer should look like:
 
 ````
 @ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ mkdir seuss
@@ -1621,11 +1621,11 @@ afiles.txt      ate.txt         cat.txt         hat.txt         seuss
 @ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
-The `wildcards` directory, in which you are currently located, now includes 5 items, one of which is the `seuss` directory.
+The `wildcards` directory, in which you are currently located, now includes five items, one of which is the `seuss` directory.
 
 ### Exercise 10
 
-Run `ls -l`. CP/CR
+Run `ls -l`. CP/CR.
 
 ```{r wildcards-10}
 question_text(NULL,
@@ -1649,7 +1649,7 @@ drwxr-xr-x 2 codespace codespace 4096 Apr 30 12:00 seuss
 @ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
-The `-l` option provides a **l**ong-format listing of the contents of the directory, including information about the type of content (file versus directory) and creation date/times. The leading `d` in the line for `seuss` indicates that it is a directory.
+The `-l` option provides a **l**ong-format listing of the contents of the directory, including information about the type of content (file versus directory) and creation dates/times. The leading `d` in the line for `seuss` indicates that it is a directory.
 
 <!-- Give a tour of what the different columns mean? Note this is the second time we have used ls -l. -->
 
@@ -1674,11 +1674,11 @@ cat.txt hat.txt
 @ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
-Before moving or otherwise acting on a group of files, we often want to ensure that we have the correct grouping. Running `ls` with the appropriate regular expression is an easy way to test.
+Before moving or otherwise acting on a group of files, we often want to ensure that we have the correct group. Running `ls` with the appropriate regular expression is an easy way to test.
 
 ### Exercise 12
 
-Use the previous command (since we have confirmed that it generates the list of files we want to move) but replace `ls` with `mv` and then add `seuss`, which indicates the location to which we want to move the files. In other words, run `mv *t.* seuss`. CP/CR.
+Use the previous command (since we have confirmed that it generates the list of files we want to move), but replace `ls` with `mv` and then add `seuss`, which indicates where we want to move the files. In other words, run `mv *t.* seuss`. CP/CR.
 
 ```{r wildcards-12}
 question_text(NULL,
@@ -1724,7 +1724,7 @@ cat.txt hat.txt
 @ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
 ````
 
-The `-R` option to the `ls` command stands for **r**ecursive. We see, not simply the contents of the current directory (two files and the `seuss` directory) but also the contents of the `seuss` directory itself.
+The `-R` option to the `ls` command stands for **r**ecursive. We see not simply the contents of the current directory (two files and the `seuss` directory) but also the contents of the `seuss` directory itself.
 
 ### Exercise 14
 
@@ -1748,7 +1748,7 @@ question_text(NULL,
 @ppbds-student ➜ /workspaces/03-terminal (main) $
 ````
 
-In order to delete a directory, you cannot be located within that directory. We want to delete (that is, "remove") the `wildcards` directory since we always want to --- at least for this tutorial --- clean up any temporary files/directories which we have created.
+In order to delete a directory, you cannot be located within that directory. We want to delete (that is, "remove") the `wildcards` directory since we always want to --- at least for this tutorial --- clean up any temporary files/directories that we have created.
 
 ### Exercise 15
 
@@ -1781,7 +1781,7 @@ Downloading files and moving them to a sensible location is a core skill for dat
 
 ### Exercise 1
 
-Confirm your location with `pwd`. Run `mkdir files` to create in a temporary directory in which to work. `cd` to that directory with `cd files`. Confirm that it is empty with `ls`. CP/CR.
+Confirm your location with `pwd`. Run `mkdir files` to create a temporary directory in which to work. `cd` to that directory with `cd files`. Confirm that it is empty with `ls`. CP/CR.
 
 ```{r files-1}
 question_text(NULL,
@@ -1803,18 +1803,18 @@ question_text(NULL,
 @ppbds-student ➜ /workspaces/03-terminal/files (main) $
 ````
 
-We often, as here, move to the directory in which we will be working. But we could have stayed in the starting directory, which is `/workspaces/03-terminal` for me, and then worked from there, using `files/` in the various commands to come.
+We often, as here, move to the directory in which we will be working. But we could have stayed in the starting directory, which is `/workspaces/03-terminal` for me, and then worked from there using `files/` in the commands to come.
 
 ### Exercise 2
 
 <!-- AR: Added two upload exercises using right click + upload, and drag and drop from local machine. Also added a curl method directly downloading from GitHub.
 
-Lot's of exercises. Delete some?
+Lots of exercises. Delete some?
  -->
 
 In your browser, go to `https://github.com/PPBDS/vscode.tutorials`.
 
-This is the location for the R package which contains this tutorial. Click on the `TODO.txt` file, which should bring you to this URL:
+This is the location for the R package that contains this tutorial. Click on the `TODO.txt` file, which should bring you to this URL:
 
 `https://github.com/PPBDS/vscode.tutorials/blob/main/TODO.txt`.
 
@@ -1828,7 +1828,7 @@ Find the location of the file using Finder (Mac) or File Explorer (Windows). You
 
 ![](images/drag-drop.gif)
 
-Run `ls` to confirm that you have moved the `TODO.txt` to the proper directory. CP/CR.
+Run `ls` to confirm that you have moved `TODO.txt` to the correct directory. CP/CR.
 
 ```{r files-2}
 question_text(NULL,
@@ -1842,21 +1842,21 @@ question_text(NULL,
 
 ### Exercise 3
 
-Delete the file by running `rm TODO.txt`. 
+Delete the file by running `rm TODO.txt`.
 
-Alternatively, you can upload the file by:
+Alternatively, you can upload the file this way:
 
-1. Right click the `files` directory. The option to `paste` will appear. Don't click this.
+1. Right-click the `files` directory. The option to `paste` will appear. Don't click this.
 
-2. Then left click the `files` directory. A drop-down menu will appear.
+2. Then left-click the `files` directory. A drop-down menu will appear.
 
 3. Select `Upload` from the menu.
 
-4. Select `TODO.txt` from file selection window.
+4. Select `TODO.txt` from the file selection window.
 
 ![](images/cs-upload.gif)
 
-Run `ls` to confirm that you have moved the `TODO.txt` to the proper directory. CP/CR.
+Run `ls` to confirm that you have moved `TODO.txt` to the correct directory. CP/CR.
 
 ```{r files-3}
 question_text(NULL,
@@ -1869,21 +1869,21 @@ question_text(NULL,
 
 ### Exercise 4
 
-Delete the file by running `rm TODO.txt`. 
+Delete the file by running `rm TODO.txt`.
 
-Now, instead of downloading `TODO.txt` to your machine and uploading it to your Codespace, you'll download this file directly from Github using the `curl` command. First, we'll return to the Github webpage where this file is located:
+Now, instead of downloading `TODO.txt` to your machine and uploading it to your Codespace, you'll download this file directly from GitHub using the `curl` command. First, we'll return to the GitHub webpage where this file is located:
 
 ````
 https://github.com/PPBDS/vscode.tutorials/blob/main/TODO.txt
 ````
 
-The above URL links to a webpage, but for our `curl` command we want the link to download the raw text file. To get this from the webpage press the "Raw" button in the top right.
+The URL above links to a webpage, but for our `curl` command, we want the link to download the raw text file. To get this from the webpage, press the "Raw" button in the top right.
 
 ```{r}
 include_graphics("images/todo-gh-webpage.png")
 ```
 
-This will bring you a page which displays the raw text file. Copy the URL in your address bar. It will look something like this:
+This will bring you to a page that displays the raw text file. Copy the URL in your address bar. It will look something like this:
 
 ````
 https://raw.githubusercontent.com/PPBDS/vscode.tutorials/refs/heads/main/TODO.txt
@@ -1895,7 +1895,7 @@ Back in your Codespace, run the following command while in your `files` director
 curl -O https://raw.githubusercontent.com/PPBDS/vscode.tutorials/refs/heads/main/TODO.txt
 ````
 
-Run `ls` to confirm the file has been downloaded. CP/CR.
+Run `ls` to confirm that the file has been downloaded. CP/CR.
 
 
 ```{r files-4}
@@ -1918,12 +1918,12 @@ My answer looks like this:
 100  7876  100  7876    0     0   111k      0 --:--:-- --:--:-- --:--:--  111k
 @ppbds-student ➜ /workspaces/03-terminal/files (main) $ ls
 TODO.txt
-@ppbds-student ➜ /workspaces/03-terminal/files (main) $ 
+@ppbds-student ➜ /workspaces/03-terminal/files (main) $
 ````
 
 ###
 
-`curl` downloads the file from the URL. The `-O` option names the downloaded file with its **O**riginal name: `grepping.txt`.
+`curl` downloads the file from the URL. The `-O` option names the downloaded file with its **O**riginal name: `TODO.txt`.
 
 ### Exercise 5
 
@@ -1956,7 +1956,7 @@ Your answer should look like:
 ## grep
 ###
 
-In a previous section, we used **wildcards** to create **regular expressions** in order to generate lists of file names which matched a specific pattern. In this section, we will use `grep` to look for words *inside* of files. Fortunately, wildcards and regular expressions work the same with `grep`.
+In a previous section, we used **wildcards** to generate lists of file names that matched a specific pattern. In this section, we will use `grep` to look for words *inside* files. The idea of matching patterns carries over to `grep`.
 
 ### Exercise 1
 
@@ -1973,7 +1973,7 @@ question_text(NULL,
 
 ###
 
-We call this folder `grepping` rather than `grep` because you should not use a command, like `grep`, as the name of a file or a directory. It is possible to do this, just like it is possible to jump off a bridge. But, in both cases, you will probably regret it.
+We call this folder `grepping` rather than `grep` because you should not use a command, like `grep`, as the name of a file or a directory. It is possible to do this, just like it is possible to jump off a bridge. But in both cases, you will probably regret it.
 
 ### Exercise 2
 
@@ -1983,7 +1983,7 @@ We call this folder `grepping` rather than `grep` because you should not use a c
 echo hat.txt > files.txt & echo cat.txt >> files.txt & echo ate.txt >> files.txt & echo "" >> files.txt
 ```
 
-The trick with this command is the `>` pipes the results into a file, deleting anything already in the file, while `>>` appends to an already existing file. So, we are creating `files.txt` line-by-line.
+The trick with this command is that `>` redirects the results into a file, deleting anything already in the file, while `>>` appends to an existing file. So, we are creating `files.txt` line by line.
 
 Run `cat files.txt`. CP/CR.
 
@@ -2016,7 +2016,7 @@ ate.txt
 @ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
 ````
 
-This is showing how three different commands are run, one after the other.
+This shows how three different commands can be run from one command line.
 
 The extra `""` toward the end of the command ensures that there is a blank line at the end of the file, which is always a good idea when working with text files.
 
@@ -2045,9 +2045,9 @@ ate.txt
 
 Remember to use the *tab* key to take advantage of auto-completion. Don't type! Tab complete!
 
-This should return all three lines from the file, which are the names of the three files we created earlier in the tutorial. The blank line is not returned because it does not include an "a".
+This should return all three lines from the file, which are the names of the three files we created earlier in the tutorial. The blank line is not returned because it does not include an `a`.
 
-`grep` is used to search for a string of characters within a text file. When it finds a match, it prints the line. You can put the regular expression, in this case `a`, in quotes but that is not required.
+`grep` is used to search for a string of characters within a text file. When it finds a match, it prints the line. You can put the regular expression, in this case `a`, in quotes, but that is not required.
 
 ### Exercise 4
 
@@ -2074,11 +2074,11 @@ ate.txt
 
 ### Exercise 5
 
-<!-- DK: Useful to try two different downloads from the shell. One downloads the file into the directory in which you are currently location. The second downloads a different file into a different directory (generally one just below you) in one command. 
+<!-- DK: Useful to try two different downloads from the shell. One downloads the file into the directory in which you are currently located. The second downloads a different file into a different directory (generally one just below you) in one command.
 
-AR: Introduced curl download from Github initially in Files section. Here, use curl to download grepping.txt from Github to the grepping subdirectory. -->
+AR: Introduced curl download from GitHub initially in Files section. Here, use curl to download grepping.txt from GitHub to the grepping subdirectory. -->
 
-Now, we'll download another text file. You can view the file on the following webpage.
+Now, we'll download another text file. You can view the file on the following webpage:
 
 ````
 https://github.com/PPBDS/vscode.tutorials/blob/main/inst/tutorials/03-terminal/images/grepping.txt
@@ -2095,13 +2095,13 @@ Copy the URL in your address bar. It will look something like this:
 https://raw.githubusercontent.com/PPBDS/vscode.tutorials/refs/heads/main/inst/tutorials/03-terminal/images/grepping.txt
 ````
 
-Back in your Codespace, move to the `03-terminal` directory. Then run the following command replacing [URL] with the URL for the raw file:
+Back in your Codespace, move to the `03-terminal` directory. Then run the following command, replacing `[URL]` with the URL for the raw file:
 
 ````
-curl -o grepping/grepping.txt [URL] grepping
+curl -o grepping/grepping.txt [URL]
 ````
 
-Then run `ls grepping` to verify the file has been downloaded to the correct location.
+Then run `ls grepping` to verify that the file has been downloaded to the correct location.
 
 CP/CR.
 
@@ -2132,11 +2132,11 @@ There are now two files in `grepping`: `files.txt` and `grepping.txt`.
 
 ###
 
-The `-o` (lowercase "o") option lets you specify the **o**utput name. By renaming, we can place the downloaded file in any filepath. In this case rename the downloaded file to `grepping.txt` and place in the `grepping` directory.
+The `-o` (lowercase "o") option lets you specify the **o**utput name. By renaming, we can place the downloaded file in any file path. In this case, we rename the downloaded file to `grepping.txt` and place it in the `grepping` directory.
 
 ### Exercise 6
 
-Run `wc grepping.txt`. The `wc` command stands for **w**ord **c**ount. CP/CR.
+Move back into the `grepping` directory with `cd grepping`. Then run `wc grepping.txt`. The `wc` command stands for **w**ord **c**ount. CP/CR.
 
 ```{r grep-6}
 question_text(NULL,
@@ -2150,6 +2150,7 @@ question_text(NULL,
 ###
 
 ````
+@ppbds-student ➜ /workspaces/03-terminal (main) $ cd grepping
 @ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ wc grepping.txt
        7       7      38 grepping.txt
 @ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
@@ -2184,7 +2185,7 @@ aRe
 @ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
 ````
 
-`aRe` is included because the pattern `R` matches any line which includes an `R`, regardless of where that `R` is on the line.
+`aRe` is included because the pattern `R` matches any line that includes an `R`, regardless of where that `R` is on the line.
 
 ### Exercise 8
 
@@ -2212,7 +2213,7 @@ Robert
 @ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
 ````
 
-`^` and `$` are called metacharacters. It is often useful to put quotes around a regular expression which includes metacharacters.
+`^` and `$` are called metacharacters. It is often useful to put quotes around a regular expression that includes metacharacters.
 
 ### Exercise 9
 
@@ -2245,7 +2246,7 @@ aRe
 
 ### Exercise 10
 
-Use `cd ..` to change the working directory to the directory which is one level above your current location. This should be the default working directory from which we started. Run `pwd`. CP/CR.
+Use `cd ..` to change the working directory to the directory that is one level above your current location. This should be the default working directory from which we started. Run `pwd`. CP/CR.
 
 ```{r grep-10}
 question_text(NULL,
@@ -2294,7 +2295,7 @@ It is always a good idea to clean up after yourself. As the sign says when takin
 
 This tutorial introduced the structure and uses of the Terminal from within VS Code running on GitHub Codespaces.
 
- The older, more general term for the terminal is the "command line." All modern operating systems provide a command line, from which sophisticated users can modify files and directories, using commands like `pwd`, `ls`, `echo`, `mkdir`, `mv`, `rm`, and `cd`. We also discuss regular expressions as well as some of the metacharacters (like, `*`, `^` and `$`) from which they are constructed. Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
+The older, more general term for the terminal is the "command line." All modern operating systems provide a command line, which sophisticated users can use to modify files and directories with commands like `pwd`, `ls`, `echo`, `mkdir`, `mv`, `rm`, and `cd`. We also discussed regular expressions as well as some of the metacharacters (like `*`, `^`, and `$`) from which they are constructed. Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
 Learn more about the command line and related topics by reading [*The Unix Workbench*](https://seankross.com/the-unix-workbench/) by Sean Kross.
 
