@@ -1,5 +1,5 @@
 ---
-title: Positron and GitHub Introduction
+title: GitHub Introduction
 author: David Kane
 tutorial:
   id: 04-github-1
@@ -8,7 +8,7 @@ output:
     progressive: yes
     'allow_skip:': yes
 runtime: shiny_prerendered
-description: Introduction to Positron, Git and GitHub. Walks through cloning a repo, creating a personal access token, making commits, pushing, and publishing a Quarto document with GitHub Pages.
+description: Introduction to Git and GitHub, using Codespaces. Walks through cloning a repo, creating a personal access token, making commits, pushing, and publishing a Quarto document with GitHub Pages.
 ---
 
 ```{r setup, include = FALSE}
@@ -47,72 +47,9 @@ This tutorial covers [Git](https://git-scm.com/), a program for keeping track of
 The most useful reference for Git/GitHub is [*Happy Git and GitHub for the useR*](https://happygitwithr.com/). Refer to that book whenever you have a problem.
 
 ### 
+<!-- AR: Verify if below is true -->
 
 Open a new R Terminal. This new terminal is the location in which you will do all the work for the tutorial. The current R terminal is just used to run this tutorial. 
-
-
-## Terminal Overview
-### 
-
-We use the bash shell to communicate with the codespace computer. Bash is an example of a UNIX shell. There are others, including zsh, but they all behave very similarly. Regardless of the specific program, we often use the word "shell" or "terminal" to refer to them.
-
-This section will help introduce you to the shell if you have not worked at the command line before, or it will serves as a refresher if you have.
-
-### Exercise 1
-
-Start by clicking on the bash terminal. This brings the shell to the foreground.
-
-You should see some text, which is a portion of the path to the current working directory, followed by a prompt such as `%` or `$`. Copy and paste the entire prompt into the box below.
-
-We abbreviate the instructions **c**opy/**p**aste the **c**ommand/**r**esponse as CP/CR throughout this tutorial.
-
-```{r terminal-overview-1}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 2)
-```
-
-### 
-
-Your answer might be something like:
-
-```         
-@davidkane9 ➜ /workspaces/github-1 (main) $ 
-```
-
-Prompts differ. They often include the username, which is `davidkane9` for me. They also usually specify the current directory, which is `github-1` in this case because we this work by creating a new repo: `github-1`. Prompts usually end with a character like `$` or `%`. 
-
-### Exercise 2
-
-Type the command `pwd` in your Terminal and hit `enter`. CP/CR.
-
-```{r terminal-overview-2}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 2)
-```
-
-### 
-
-Your answer should look like:
-
-```         
-@davidkane9 ➜ /workspaces/github-1 (main) $ pwd
-/workspaces/github-1
-@davidkane9 ➜ /workspaces/github-1 (main) $ 
-```
-
-Your answer will be different, not least because your username is unlikely to be `dkane`. This result of `pwd` is the location on your computer in which the R program started up when you opened Positron.
-
-Going forward, make sure to pay special attention to whether given commands are supposed to be run in the *bash terminal* or the *R Terminal*.
-
-<!-- DK: Capitalization above? -->
 
 ## Setting up Git
 ### 
