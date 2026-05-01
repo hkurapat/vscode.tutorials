@@ -51,7 +51,7 @@ The most useful references for Git/GitHub are [*Happy Git and GitHub for the use
 
 Or, rather, students need to learn how to create a new repo, not the one they are in, which is 04-github-1, from scratch.
  
- AR: All cut.
+ AR: We'll teach to create a new repo in 05-github-2 and focus on git fundamentals and publishing here - right? Cut all git setup sections.
  -->
 
 ## Using Git
@@ -463,6 +463,8 @@ Within the Source Control pane, press the "Open File" button for `analysis-1.qmd
 include_graphics("images/analysis-git-4.png")
 ```
 
+Notice how there's now an orange "M" next to the file name. This indicates that Git is now tracking the file's changes and that it has been **M**modified.
+
 Hold your cursor over the symbol (a curved arrow) next to the "Open File" button. What is the name for this button?
 
 ```{r using-git-12}
@@ -475,6 +477,8 @@ question_text(NULL,
 ```
 
 ###
+
+<!-- AR: Add exercise to make a new change and actually revert? -->
 
 Clicking this button gets rid of your changes since the last time you told Git to save them. 
 
@@ -537,7 +541,7 @@ Although you have committed your changes to Git --- i.e., the changes have been 
 
 ```{r using-git-15}
 question_text(NULL,
-	message = "Push 1 commits to origin/main",
+	message = "Push 2 commits to origin/main",
 	answer(NULL, correct = TRUE),
 	allow_retry = FALSE,
 	incorrect = NULL,
@@ -598,373 +602,7 @@ If you look at the GitHub page for `04-github-1`, you will see that the changes 
 ## Publishing with GitHub Pages
 ### 
 
-Let's create a new GitHub repo, connect it our computer, create a Quarto document, publish it to the internet using [GitHub Pages](https://pages.github.com/), and then ensure our work is backed up to GitHub. 
-
-### Exercise 1
-
-On your GitHub account, create a new repo named `repo-2`. Make sure it is public. Make sure to check the box for a README file. After clicking "Create," copy the URL after clicking on the "Code" button.
-
-What is the URL for the project?
-
-```{r publishing-with-github-pages-1}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-My answer:
-
-````
-https://github.com/davidkane9/repo-2.git
-````
-
-No worries if you did not include the `.git` ending. The URL you go to when you want to look at the repo does not include `.git`, obviously. But, for connecting the repo to your computer, you need the `.git` suffix.
-
-### Exercise 2
-
-In Positron, `File -> New Folder from Git...`. Use the project URL (with `.git`) to create a new project in your `projects` directory. 
-
-Close the Positron welcome screen, if any.
-
-Start latest version of R as your interpreter, if necessary.
-
-From the R Terminal, run `getwd()`. CP/CR.
-
-```{r publishing-with-github-pages-2}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-````
-> getwd()
-[1] "/Users/dkane/Desktop/projects/repo-2"
-````
-
-Going forward, we will just write "Start a new project named `X`," with the understanding that this always means to follow the above steps.
-
-### Exercise 3
-
-Click on the Source Control button to pull up the Source Control pane. 
-
-```{r}
-include_graphics("images/second-repo-1.png")
-```
-
-No files are listed in the top half because you have not done anything yet. In the Source Control Graph in the lower panel, we have just the first commit, completed by Positron itself when we created the project.
-
-From the Terminal, run `git log`. CP/CR.
-
-```{r publishing-with-github-pages-3}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-````
-dkane@macbook repo-2 % git log
-commit a3f605b1e44bccc834ebd569c982040855c0cab9 (HEAD -> main, origin/main, origin/HEAD)
-Author: David Kane <dave.kane@gmail.com>
-Date:   Tue Mar 11 16:45:52 2025 -0400
-
-    Initial commit
-dkane@macbook repo-2 % 
-````
-
-This is an individual commit message. As [*Pro Git*](https://git-scm.com/book/en/v2) [explains](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F), the weird string `a3f605b1e44bccc834ebd569c982040855c0cab9` is a hash which identifies this specific commit. Every change in a repo has an associated hash.
-
-### Exercise 4
-
-From the Positron menu, `File -> New File... -> Quarto Document`. 
-
-```{r}
-include_graphics("images/second-repo-2.png")
-```
-
-The black dot next to "Untitled-1" indicates that there are unsaved changes in this file. Save the file, naming it `analysis-1.qmd`.
-
-At the R Terminal, run `list.files()`. CP/CR.
-
-```{r publishing-with-github-pages-4}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-````
-> list.files()
-[1] "analysis-1.qmd" "README.md"   
->
-````
-
-Many Terminal commands, like `ls`, have R command counterparts, like `list.files()`.
-
-### Exercise 5
-
-Click the Source Control button to bring up the Source Control pane. The only file listed is `analysis-1.qmd`, which is **U**ntracked.  
-
-```{r}
-include_graphics("images/second-repo-2-b.png")
-```
-
-Look in the far upper right of the image. Those icons turn off-and-on various portions of the Positron. Try them out!
-
-In the Terminal run `ls -a`. CP/CR.
-
-```{r publishing-with-github-pages-5}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-````
-dkane@macbook repo-2 % ls -a
-.               ..              .git            README.md       analysis-1.qmd
-dkane@macbook repo-2 % 
-````
-
-The `-a` flag shows us **a**ll files/directories, including the hidden ones like `.git`. 
-
-
-### Exercise 6
-
-Render `analysis-1.qmd` with `Cmd/Cntrl + Shift + K`, or by clicking the "Preview" button.
-
-```{r}
-include_graphics("images/second-repo-3-a.png")
-```
-
-The rendered document `analysis.html` appears in the Viewer tab. It is empty except for the title, which is "Untitled." The title of the document and the name of the file have no necessary connection with each other.
-
-In the Terminal, run `ls`. CP/CR.
-
-```{r publishing-with-github-pages-6}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-````
-dkane@macbook repo-2 % ls   
-README.md       analysis.html   analysis-1.qmd    analysis-1_files
-dkane@macbook repo-2 % 
-````
-
-All the junk files that we don't really care about, and which are cluttering up the Source Control pane, are located in the `analysis-1_files` directory.
-
-### Exercise 7
-
-Quarto is "Watching files for changes" at the Terminal. If you change and then render `analysis-1.qmd`, Quarto will automatically display the updated HTML in the Viewer. It is watching `analysis.html`. You can't use this Terminal until you stop this process.
-
-```{r}
-include_graphics("images/second-repo-3-b.png")
-```
-
-We want to "free up" the Terminal so that we can issue some commands. So, when in the Terminal, use `Ctrl + c` to exit Quarto watching mode. CP/CR, but include the few lines above the `Ctrl + c` as well.
-
-```{r publishing-with-github-pages-7}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 5)
-```
-
-###
-
-````
-Output created: analysis.html
-
-Watching files for changes
-Browse at http://localhost:3859/
-^C%                                               
-dkane@macbook repo-2 % 
-````
-
-The `http` location of `analysis.html` does not refer to a web address. `localhost` is your local machine. The number, which will different for you, is arbitrary.
-
-### Exercise 8
-
-There are 13 files now listed under "Changes" in the top half of the Source Control page. You can see the same number (13) in red on the Source Control button. This allows you to know how many files have changes even if the entire Source Control pane is not visible.
-
-```{r}
-include_graphics("images/second-repo-3-c.png")
-```
-
-From the Terminal, run `ls -R analysis-1_files`. CP/CR.
-
-```{r publishing-with-github-pages-8}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 10)
-```
-
-###
-
-````
-dkane@macbook repo-2 % ls -R analysis-1_files
-libs
-
-analysis-1_files/libs:
-bootstrap       clipboard       quarto-html
-
-analysis-1_files/libs/bootstrap:
-bootstrap-973236bd072d72a04ee9cd82dcc9cb29.min.css
-bootstrap-icons.css
-bootstrap-icons.woff
-bootstrap.min.js
-
-analysis-1_files/libs/clipboard:
-clipboard.min.js
-
-analysis-1_files/libs/quarto-html:
-anchor.min.js
-popper.min.js
-quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css
-quarto.js
-tippy.css
-tippy.umd.min.js
-dkane@macbook repo-2 % 
-````
-
-If you know something about web pages, you will recognize some of these files. But we won't worry about those details.
-
-### Exercise 9
-
-Use `File -> New Text File` to create a new `.gitignore`. Add `analysis-1_files` and an empty line to the file. Save it in the highest level of the project, i.e., in the same location as `analysis-1.qmd`.
-
-```{r}
-include_graphics("images/second-repo-4.png")
-```
-
-There are now only three changed files: `analysis-1.qmd`, `analysis.html`, and `.gitgnore`.
-
-From the Terminal, run `cat .gitignore`. CP/CR.
-
-```{r publishing-with-github-pages-9}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-````
-dkane@macbook repo-2 % cat .gitignore
-analysis-1_files
-dkane@macbook repo-2 % 
-````
-
-One of the biggest changes in coding caused by generative AI is that writing code becomes less important but understanding all the individual parts of a project --- files like `.gitignore` --- becomes more important.
-
-### Exercise 10
-
-Add a commit message like "first version" and press the "Commit" button on the Source Control pane.
-
-```{r}
-include_graphics("images/second-repo-5.png")
-```
-
-Note how the Source Control pane has changed. There are no "Changes" listed because you have committed them all. The Source Control Graph in the lower half shows the second commit, along with its comment. But, the "Sync Changes 1" button indicates that we have not pushed the changes to GitHub yet.
-
-From the Terminal, run `git log -n 1`. CP/CR.
-
-```{r publishing-with-github-pages-10}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-````
-dkane@macbook repo-2 % git log -n 1
-commit 85ff22c4f4c31deadbd893f2c7d4af358faf12cd (HEAD -> main)
-Author: David Kane <dave.kane@gmail.com>
-Date:   Thu Mar 13 14:31:30 2025 -0400
-
-    first version
-dkane@macbook repo-2 % 
-````
-
-The `n` argument allows us to specify how many commit messages we want to see. Using `1` gives us just the most recent message. The "Author" and "Date" for the commit message should, obviously, match you and the time when you are doing the tutorial. It is OK if your commit message is different from mine. You should always have a commit message, but it can be quite concise. You don't even need a complete sentence.
-
-### Exercise 11
-
-Press the "Sync Changes 1" button. This pushes your changes to GitHub. By default, the main repo is refered to as the "origin" repo, whether or not it happens to be on GitHub.
-
-The Source Control Graph now looks like this:
-
-```{r}
-include_graphics("images/second-repo-6.png")
-```
-
-The change between this image and the previous one is subtle: the "origin/main" cloud symbol has moved from the first commit to the second. That shows that the two repos are now in sync.
-
-From the Terminal, run `git log -n 1`. CP/CR.
-
-```{r publishing-with-github-pages-11}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-````
-dkane@macbook repo-2 % git log -n 1
-commit 85ff22c4f4c31deadbd893f2c7d4af358faf12cd (HEAD -> main, origin/main, origin/HEAD)
-Author: David Kane <dave.kane@gmail.com>
-Date:   Thu Mar 13 14:31:30 2025 -0400
-
-    first version
-dkane@macbook repo-2 % 
-````
-
-The commit itself has not changed. It has the same date/author/comment as before. But the "header" information has changed from `HEAD -> main` to `HEAD -> main, origin/main, origin/HEAD`. `HEAD` is a special reference that points to the current position in your repository --- essentially, it represents "where you are" in your Git history. By pushing, we ensure that `HEAD` is pointing to the same place on our computer as it is in GitHub, i.e., at the "origin."
+<!-- AR: Don't create a new repo! -->
 
 ### Exercise 12
 
@@ -1167,8 +805,8 @@ ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
 
 Generative AI is the future of coding. You need to practice more.
 
-<!-- Maybe we should publish first and then do the final commit. -->
-
+<!-- AR: Maybe we should publish first and then do the final commit. -->
+<!-- AR: Then add another visualization. Publish again. Do another commit. -->
 ### Exercise 17
 
 If you click the Source Control button, your Postitron window should look something like this:
