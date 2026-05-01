@@ -1776,8 +1776,6 @@ rm: cannot remove 'wildcards': Is a directory
 
 Note that both `wildcards` and `wildcards/` refer to the same entity, the `wildcards` directory. The Terminal often "adds" a forward slash (`/`) to the end of directory names to indicate that the object is a directory, not simply a file.
 
-<!-- AR: Okay to remove section? Not sure how to adapt for Codespaces -->
-
 ## Files
 ###
 
@@ -1809,42 +1807,7 @@ question_text(NULL,
 
 We often, as here, move to the directory in which we will be working. But we could have stayed in the starting directory, which is `/workspaces/03-terminal` for me, and then worked from there, using `files/` in the various commands to come.
 
-### Exercise 2
-
-Every computer has a default directory in which files are downloaded. The most common name for this directory is `Downloads` and its most common location is your home directory.
-
-Run `ls ~/Downloads` to examine the most likely location for that directory.
-
-CP/CR.
-
-If this command fails for you, then figure out where your default download location is and then adjust this command, and future commands, accordingly.
-
-If, for some reason, you can't locate your `Downloads` directory, then just answer all the exercises in this section of the tutorial with "I could not find my Downloads directory."
-
-
-```{r files-2}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-My answer looks like:
-
-````
-@ppbds-student ➜ /workspaces/03-terminal/files (main) $ ls ~/Downloads/
-@ppbds-student ➜ /workspaces/03-terminal/files (main) $
-````
-
-My `Downloads` directory is empty right now, so the Terminal just prints a new prompt.
-
 ### Exercise 3
-
-<!-- AR: How to handle this? -->
 
 In your browser, go to `https://github.com/PPBDS/vscode.tutorials`.
 
@@ -1852,64 +1815,17 @@ This is the location for the R package which contains this tutorial. Click on th
 
 `https://github.com/PPBDS/vscode.tutorials/blob/main/TODO.txt`.
 
-Click on the "Download raw file" symbol to download the `TODO.txt` file to your computer.
+Click on the "Download raw file" symbol to download the `TODO.txt` file to your computer. Most computers have a `Downloads` directory.
 
 ```{r}
 knitr:: include_graphics("images/download-file.png")
 ```
 
-Run `ls ~/Downloads/T*`. CP/CR.
+Find the location of the file using Finder (Mac) or File Explorer (Windows). You'll need to know where this file exists on your computer in order to upload it to your Codespace. Back in your Codespace, drag and drop `TODO.txt` into the `files` directory in the File Explorer.
 
+![](images/drag-drop.gif)
 
-```{r files-3}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-My answer looks like:
-
-````
-@ppbds-student ➜ /workspaces/03-terminal/files (main) $ ls ~/Downloads/T*
-/home/codespace/Downloads/TODO.txt
-@ppbds-student ➜ /workspaces/03-terminal/files (main) $
-````
-
-The `*` is a wildcard character, meaning that the `ls` command should return all the files which begin with a capital `T`. For me, there is one such file in the `Downloads` directory.
-
-### Exercise 4
-
-Run `ls ~/Downloads/TODO.txt`. CP/CR.
-
-```{r files-4}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-Your answer should look like:
-
-````
-@ppbds-student ➜ /workspaces/03-terminal/files (main) $ ls ~/Downloads/TODO.txt
-/home/codespace/Downloads/TODO.txt
-@ppbds-student ➜ /workspaces/03-terminal/files (main) $
-````
-
-I often use `ls` to confirm that a file exists in the location in which I think it should. `ls` also returns the absolute path to the file.
-
-### Exercise 5
-
-Run ` mv /home/codespace/Downloads/TODO.txt .`. Run `ls` to confirm that you have moved the `TODO.txt` file from the `Downloads` directory to the current working directory. CP/CR.
+Run `ls` to confirm that you have moved the `TODO.txt` to the proper directory. CP/CR.
 
 ```{r files-5}
 question_text(NULL,
@@ -1920,34 +1836,24 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
-
-Your answer should look like:
-
-````
-@ppbds-student ➜ /workspaces/03-terminal/files (main) $ mv /home/codespace/Downloads/TODO.txt .
-@ppbds-student ➜ /workspaces/03-terminal/files (main) $ ls
-TODO.txt
-@ppbds-student ➜ /workspaces/03-terminal/files (main) $
-````
-
-Recall that the `.` symbol indicates the current directory. Since we did not give a new name for the file, the old name is retained. We could have give the file a new name by running:
-
-````
-mv /home/codespace/Downloads/TODO.txt TODO_2.txt
-````
-
-We also could have used `~` to avoid providing the absolute path by running:
-
-````
-mv ~/Downloads/TODO.txt .
-````
-
-<!-- Could use `cp` instead of `mv` and turn this into several questions. Start by copying the file to a new name. Then just use `.` to understand the default behavior.  -->
 
 ### Exercise 6
 
-Delete the file by running `rm TODO.txt`. Go one level up with `cd ..`. Delete the `files` directory with `rm -r files`. CP/CR.
+Delete the file by running `rm TODO.txt`. 
+
+Alternatively, you can upload the file by:
+
+1. Right click the `files` directory. The option to `paste` will appear. Don't click this.
+
+2. Then left click the `files` directory. A drop-down menu will appear.
+
+3. Select `Upload` from the menu.
+
+4. Select `TODO.txt` from file selection window.
+
+![](images/cs-upload.gif)
+
+Run `ls` to confirm that you have moved the `TODO.txt` to the proper directory. CP/CR.
 
 ```{r files-6}
 question_text(NULL,
@@ -1958,16 +1864,33 @@ question_text(NULL,
 	rows = 3)
 ```
 
+
+### Exercise 7
+
+Go one level up with `cd ..`. Delete the `files` directory with `rm -r files`. CP/CR.
+
+```{r files-7}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
 ###
 
 Your answer should look like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/files (main) $ rm TODO.txt
 @ppbds-student ➜ /workspaces/03-terminal/files (main) $ cd ..
 @ppbds-student ➜ /workspaces/03-terminal (main) $ rm -r files/
 @ppbds-student ➜ /workspaces/03-terminal (main) $
 ````
+
+###
+
+
 
 
 ## grep
