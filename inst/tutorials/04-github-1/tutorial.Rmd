@@ -156,12 +156,13 @@ If this fails, you need to install [Git](https://git-scm.com/) by following the 
 
 [Git](https://en.wikipedia.org/wiki/Git) is "software for tracking changes in any set of files, usually used for coordinating work among programmers collaboratively developing source code during software development."
 
-
-
-
 ### Exercise 4
 
-<!-- DK: This should all be cut. But maybe more of these details belong in Getting Started chapter and the Getting Started tutorial. -->
+<!-- DK: This should all be cut. But maybe more of these details belong in Getting Started chapter and the Getting Started tutorial.
+
+
+Or, rather, students need to learn how to create a new repo, not the one they are in, which is 04-github-1, from scratch.
+ -->
 
 **Note:** Make sure you received the expected outputs of the name and email associated with your GitHub account in the previous two exercises.
 

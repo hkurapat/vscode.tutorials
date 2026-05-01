@@ -217,6 +217,7 @@ question_text(NULL,
 
 ### 
 <!-- AR: These final knowledge drop paragraphs at the ends of most exercises seem unrelated and often, distracting. -->
+
 List-columns tend to come in two basic forms: named and unnamed. When the children are named, they tend to have the same names in every row.
 When the children are unnamed, the number of elements tends to vary from row-to-row. **`tidyr`** provides two functions for these two cases: `unnest_wider()` and `unnest_longer()`.
 

@@ -435,8 +435,6 @@ Because we have changed working directories, the `lessons` directory is created 
 
 ### Exercise 5
 
-<!-- DK: Delete the Windows option? AR: Done. -->
-
 Make a directory within `lessons` called `fruits` by running `mkdir lessons/fruits`.
 
 Run `ls lessons` to check to see if `fruits` exists inside the `lessons` directory. CP/CR.
@@ -1809,6 +1807,8 @@ We often, as here, move to the directory in which we will be working. But we cou
 
 ### Exercise 3
 
+<!-- AR: How to handle this? Use this as an occasion to teach the command line. Students could download to their computer and then upload, but a command from bash is quicker. -->
+
 In your browser, go to `https://github.com/PPBDS/vscode.tutorials`.
 
 This is the location for the R package which contains this tutorial. Click on the `TODO.txt` file, which should bring you to this URL:
@@ -2014,7 +2014,9 @@ ate.txt
 
 ### Exercise 5
 
-<!-- AR: How to handle downloads? Drag and drop into workspace? Just ignore? -->
+<!-- AR: How to handle downloads? Drag and drop into workspace? Just ignore? Download it from the command line into the correct location.  -->
+
+<!-- DK: Useful to try two different downloads from the shell. One downloads the file into the directory in which you are currently location. The second downloads a different file into a different directory (generally one just below you) in one command. -->
 
 Download this file and move it from your `Downloads` file to your current directory, which is `grepping`.
 
