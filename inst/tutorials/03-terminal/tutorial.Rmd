@@ -2014,17 +2014,37 @@ ate.txt
 
 ### Exercise 5
 
-<!-- AR: How to handle downloads? Drag and drop into workspace? Just ignore? Download it from the command line into the correct location.  -->
+<!-- DK: Useful to try two different downloads from the shell. One downloads the file into the directory in which you are currently location. The second downloads a different file into a different directory (generally one just below you) in one command. 
 
-<!-- DK: Useful to try two different downloads from the shell. One downloads the file into the directory in which you are currently location. The second downloads a different file into a different directory (generally one just below you) in one command. -->
+AR: Completed first download using curl below. I will move this to the Files section. Then here can take opportunity to do a curl download to a subdirectory grepping here. -->
 
-Download this file and move it from your `Downloads` file to your current directory, which is `grepping`.
+Now, we'll download another text file. You can view the file on the following webpage.
 
 ````
 https://github.com/PPBDS/vscode.tutorials/blob/main/inst/tutorials/03-terminal/images/grepping.txt
 ````
 
-Run `ls` to confirm.
+Instead of downloading to your machine and uploading it to your Codespace, this time we'll download this file directly from Github using the `curl` command.
+
+The above URL links to a webpage, but for our `curl` command we want to download the raw text file. From the webpage press the "Raw" button in the top right.
+
+```{r}
+include_graphics("images/grepping-gh-webpage.png")
+```
+
+This will bring you a page which displays the raw text file. Copy the URL in your address bar. It will look something like this:
+
+````
+https://raw.githubusercontent.com/PPBDS/vscode.tutorials/refs/heads/main/inst/tutorials/03-terminal/images/grepping.txt
+````
+
+Back in your Codespace run the following command while in your `grepping` directory:
+
+````
+curl -O https://raw.githubusercontent.com/PPBDS/vscode.tutorials/refs/heads/main/inst/tutorials/03-terminal/images/grepping.txt
+````
+
+`curl` downloads the file from the URL. The `-O` option indicates that the downloaded file should take use the file's original name `grepping.txt`.
 
 CP/CR.
 
@@ -2042,10 +2062,13 @@ question_text(NULL,
 My answer looks like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ mv ~/Downloads/grepping.txt .
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ curl -O https://raw.githubusercontent.com/PPBDS/vscode.tutorials/refs/heads/main/inst/tutorials/03-terminal/images/grepping.txt
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    38  100    38    0     0    871      0 --:--:-- --:--:-- --:--:--   883
 @ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ ls
-files.txt       grepping.txt
-@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
+files.txt  grepping.txt
+@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ 
 ````
 
 There are now two files in `grepping`: `files.txt` and `grepping.txt`.
