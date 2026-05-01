@@ -46,14 +46,6 @@ This tutorial covers [Git](https://git-scm.com/), a program for keeping track of
 
 The most useful references for Git/GitHub are [*Happy Git and GitHub for the useR*](https://happygitwithr.com/) and [*Pro Git*](https://git-scm.com/book/en/v2). Refer to these for questions and further learning. Or ask AI!
 
-<!-- DK: This should all be cut. But maybe more of these details belong in Getting Started chapter and the Getting Started tutorial.
-
-
-Or, rather, students need to learn how to create a new repo, not the one they are in, which is 04-github-1, from scratch.
- 
- AR: We'll teach to create a new repo in 05-github-2 and focus on git fundamentals and publishing here - right? Cut all git setup sections.
- -->
-
 ## Using Git
 ### 
 
@@ -805,7 +797,7 @@ ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
 
 Generative AI is the future of coding. You need to practice more.
 
-<!-- AR: Maybe we should publish first and then do the final commit. -->
+<!-- AR: We should publish first and then do the final commit. -->
 <!-- AR: Then add another visualization. Publish again. Do another commit. -->
 ### Exercise 17
 
