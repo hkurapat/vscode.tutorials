@@ -319,7 +319,7 @@ Again, note how the prompt changed because we moved directories. The `..` symbol
 
 ### Exercise 11
 
-Run `rm -r example` to remove the directory `example`. CP/CR.
+Run `rm -r example` to remove the directory `example`. Then run `ls` to confirm. CP/CR.
 
 ```{r terminal-11}
 question_text(NULL,
@@ -329,6 +329,12 @@ question_text(NULL,
     incorrect = NULL,
     rows = 3)
 ```
+
+````
+@ppbds-student ➜ /workspaces/03-terminal (main) $ rm -r example
+@ppbds-student ➜ /workspaces/03-terminal (main) $ ls
+@ppbds-student ➜ /workspaces/03-terminal (main) $ 
+````
 
 `-r` is an **option** that allows us to delete a directory. The `r` stands for **r**ecursive because, in order to delete a directory, you must also (recursively) delete every directory and file within that directory.
 
