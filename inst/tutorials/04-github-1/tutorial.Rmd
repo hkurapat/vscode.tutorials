@@ -653,7 +653,7 @@ As AI writes more and more of our code, it's becoming increasingly important to 
 
 <!-- AR: Don't create a new repo! -->
 
-### Exercise 12
+### Exercise 1
 
 Add an R code chunk in `analysis-1.qmd` by using the shortcut key `Cmd/Ctrl + option + i`. (Recall that "code chunk" and "code cell" mean the same thing.) In that chunk, put `library(tidyverse)`. `Cmd/Ctrl + Shift + K` to render the the document. Your Positron window should look like:
 
@@ -665,7 +665,7 @@ As usual, the HTML file is displayed in the Viewer tab and, in the Panel, the fo
 
 In the R Terminal, run `tutorial.helpers::show_file("analysis-1.qmd", chunk = "Last")`. CP/CR.
 
-```{r publishing-with-github-pages-12}
+```{r publishing-with-github-pages-1}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -684,7 +684,7 @@ library(tidyverse)
 
 The HTML shows both our code and some annoying messages. No viewer wants to see that!
 
-### Exercise 13
+### Exercise 2
 
 Change the title of the document to "A Beautiful Graphic". Add your name as the author by adding `author: Your Name` to the YAML header, along with:
 
@@ -700,7 +700,7 @@ Make sure to use spaces (not tabs) in YAML headers.
 
 In the R Terminal, run `tutorial.helpers::show_file("analysis-1.qmd", end = 8)`. CP/CR.
 
-```{r publishing-with-github-pages-13}
+```{r publishing-with-github-pages-2}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -728,11 +728,11 @@ Turning off warnings with `warning: false` is dangerous. In general, if this nee
 
 It is better to figure out the cause of any warnings and then address that cause directly. Simply closing your eyes and pretending that the warnings aren't there is a bad strategy. 
 
-### Exercise 14
+### Exercise 3
 
 Ask your favorite AI how to make the warnings from using `library(tidyverse)` in a code chunk in a Quarto document disappear. Copy/paste the key part of the answer you receive here:
 
-```{r publishing-with-github-pages-14}
+```{r publishing-with-github-pages-3}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -749,13 +749,13 @@ From [Grok](https://grok.com/chat/d17d86c4-1740-4ff4-94a4-bd4aafd50be0):
 Wrap the library(tidyverse) call with suppressPackageStartupMessages() to silence the startup messages. This keeps your output clean while still loading the package.
 ````
 
-### Exercise 15
+### Exercise 4
 
 Edit `analysis-1.qmd` so that `library(tidyverse)` is replaced by `suppressPackageStartupMessages(library(tidyverse))`. Remove `warning: false` from the YAML header. `Cmd/Ctrl + Shift + K`.
 
 Copy/paste whatever appears in your HTML below:
 
-```{r publishing-with-github-pages-15}
+```{r publishing-with-github-pages-4}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -779,7 +779,7 @@ include_graphics("images/second-repo-7-b.png")
 ```
 
 
-### Exercise 16
+### Exercise 5
 
 Create a new R code chunk with `Cmd/Ctrl + option + i`. Ask [Grok](https://grok.com/) (or a generative AI of your choice) this question:
 
@@ -789,7 +789,7 @@ Paste that code into the new code chunk. `Cmd/Ctrl + shift + K` to render. If th
 
 In the R Terminal, run `tutorial.helpers::show_file("analysis-1.qmd", chunk = "Last")`. CP/CR.
 
-```{r publishing-with-github-pages-16}
+```{r publishing-with-github-pages-5}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -856,7 +856,7 @@ Generative AI is the future of coding. You need to practice more.
 
 <!-- AR: We should publish first and then do the final commit. -->
 <!-- AR: Then add another visualization. Publish again. Do another commit. -->
-### Exercise 17
+### Exercise 6
 
 If you click the Source Control button, your Postitron window should look something like this:
 
@@ -868,7 +868,7 @@ Commit your files and push them to GitHub. Don't forget the commit message. Don'
 
 Using `Ctrl + c` to stop the Quarto watching process. From the Terminal, run `git log -n 1`. CP/CR.
 
-```{r publishing-with-github-pages-17}
+```{r publishing-with-github-pages-6}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -891,7 +891,7 @@ dkane@macbook repo-2 %
 
 We are being a little sloppy to equate "pushing" with "syncing." Strictly speaking, "syncing" does two things: it "pushes" your changes to GitHun *and* it "pulls" any changes made on GitHub to your local computer. But, in this case, because no one else but you can change the GitHub repo, there is nothing to "pull." 
 
-### Exercise 18
+### Exercise 7
 
 Let's publish our results to [GitHub Pages](https://pages.github.com/). Before we do, go to the GitHub repo for `repo-2`, click on the "Settings" top menu item and, after that, click on the "Pages" side menu item.
 
@@ -906,7 +906,7 @@ From the Terminal, run `quarto publish gh-pages analysis-1.qmd`. Respond with "Y
 CP/CR just the first 10 or so lines of what results.
 
 
-```{r publishing-with-github-pages-18}
+```{r publishing-with-github-pages-7}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -956,12 +956,12 @@ output file: analysis.knit.md
 
 `quarto publish` processes `analysis-1.qmd` in the same way that `quarto preview` or `quarto render` does.
 
-### Exercise 19
+### Exercise 8
 
 Go to your `repo-2` page on GitHub. Refresh the page. `quarto publish` has changed some of the items. Copy/paste all the text in the "Visit site" box.
 
 
-```{r publishing-with-github-pages-19}
+```{r publishing-with-github-pages-8}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
