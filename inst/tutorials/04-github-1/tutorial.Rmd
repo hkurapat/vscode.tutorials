@@ -522,7 +522,7 @@ Date:   Fri May 1 19:41:05 2026 +0000
 The Source Control pane now looks like this:
 
 ```{r}
-include_graphics("images/analysis-1-post-ciommit.png")
+include_graphics("images/analysis-1-post-commit.png")
 ```
 
 Although you have committed your changes to Git --- i.e., the changes have been made locally --- you still need to "push" the changes to GitHub.  Hover your cursor over the "Sync Changes" button. What does the pop-up say?
@@ -551,7 +551,7 @@ Press the "Sync Changes" button.
 The Source Control View should now look like this:
 
 ```{r}
-include_graphics("images/analysis-1-post-sync")
+include_graphics("images/analysis-1-post-sync.png")
 ```
 
 Notice how the purple cloud icon, representing the remote tracking branch on GitHub called "origin/main", has moved the most recent commit along with the local main branch.
