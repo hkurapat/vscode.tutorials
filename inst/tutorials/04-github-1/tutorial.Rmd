@@ -372,10 +372,8 @@ Now, according to Git, there have been only three changes to the repo. (Of cours
 
 In the box above the "Commit" button, add "initial version" as your commit comment. Press the "Commit" button. You will see a dialogue box like this:
 
-<!-- AR: clean up image -->
-
 ```{r}
-include_graphics("images/README-7.png")
+include_graphics("images/commit-stage-changes-pop-up.png")
 ```
 
 Press "Yes". In the future, you might click on "Always" so that this dialogue stops appearing. It will be months, at least, before you make active use of staging in your Git workflow.
