@@ -215,7 +215,7 @@ metadata
   date-format: long
   lang: en
   
-Output created: README.html
+Output created: analysis-1.html
 
 Watching files for changes
 Browse at http://localhost:7383/
@@ -357,7 +357,7 @@ analysis-1_files
 @ppbds-student ➜ /workspaces/04-github-1 (main) $ 
 ````
 
-The `README_files` line in `.gitignore` tells Git to ignore the `README_files` directory and everything in it.
+The `analysis-1_files` line in `.gitignore` tells Git to ignore the `analysis-1_files` directory and everything in it.
 
 Note the change in the Source Control pane!
 
@@ -365,7 +365,7 @@ Note the change in the Source Control pane!
 include_graphics("images/analysis-git-3.png")
 ```
 
-Now, according to Git, there have been only three changes to the repo. (Of course, there have been more changes, but Git is ignoring anything which resides in `analysis-1_files`.) Three files: `analysis-1.qmd`, `README.html` and `.gitigore`, are untracked (U).
+Now, according to Git, there have been only three changes to the repo. (Of course, there have been more changes, but Git is ignoring anything which resides in `analysis-1_files`.) Three files: `analysis-1.qmd`, `analysis-1.html` and `.gitigore`, are untracked (U).
 
 
 ### Exercise 10
@@ -523,7 +523,7 @@ The Source Control pane now looks like this:
 
 <!--AR: Clean up image. -->
 ```{r}
-include_graphics("images/README-8.png")
+include_graphics("images/analysis-1-8.png")
 ```
 
 Although you have committed your changes to Git --- i.e., the changes have been made locally --- you still need to "push" the changes to GitHub.  Hover your cursor over the "Sync Changes" button. What does the pop-up say?
