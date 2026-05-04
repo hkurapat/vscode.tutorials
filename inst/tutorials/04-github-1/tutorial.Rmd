@@ -50,16 +50,16 @@ options(tutorial.exercise.timelimit = 60,
 
 -->
 
-This tutorial covers [Git](https://git-scm.com/), a program for keeping track of changes in your code, and [GitHub](https://github.com/), the leading company for storing your code in the cloud. Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. 
+This tutorial covers [Git](https://git-scm.com/), a program for keeping track of changes in your code, and [GitHub](https://github.com/), the leading platform for storing your code in the cloud. Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. 
 
 The most useful references for Git/GitHub are [*Happy Git and GitHub for the useR*](https://happygitwithr.com/) and [*Pro Git*](https://git-scm.com/book/en/v2). Refer to these for questions and further learning. Or ask AI!
 
 ## Using Git
 ### 
 
-GitHub is an online drive for all your R code and projects. In the professional world, what you have on your GitHub account is sometimes more important than what you have on your resume. It is a verifiable demonstration of your abilities.
+GitHub is an online drive for all your R code and projects. In the professional world, what you have in your GitHub account is sometimes more important than what you have on your resume. It is a verifiable demonstration of your abilities.
 
-You've already been creating and storing git repositories on GitHub. Now, we'll practice using the Git program.
+You've already been creating and storing Git repositories on GitHub. Now, we'll practice using the Git program.
 
 [Git](https://en.wikipedia.org/wiki/Git) is "software for tracking changes in any set of files, usually used for coordinating work among programmers collaboratively developing source code during software development."
 
@@ -87,7 +87,7 @@ Your answer should look like:
 @ppbds-student ➜ /workspaces/04-github-1 (main) $
 ````
 
-You should be in a directory named `04-github-1`. By default, the creating a repo from the Codespace starter and opening a Codespace creates this root directory.
+You should be in a directory named `04-github-1`. By default, creating a repo from the Codespace starter and opening a Codespace creates this root directory.
 
 ### Exercise 2
 
@@ -115,7 +115,7 @@ There are no non-hidden files or directories in the repository so far.
 
 ### Exercise 3
 
-At the Terminal, run `ls -a`. The `a` option tells `ls` to show all directories/files, including ones that are hidden, i.e., which start with a dot, meaning a `.`. CP/CR.
+At the Terminal, run `ls -a`. The `a` option tells `ls` to show all directories and files, including hidden ones, which start with a dot (`.`). CP/CR.
 
 ```{r using-git-3}
 question_text(NULL,
@@ -144,15 +144,15 @@ Unless you have a good reason, you should never mess with the contents of a hidd
 
 ### Exercise 4
 
-At the Terminal, create a new quarto document. From the three horizontal bar icon in the Activity Bar, select `File -> New File...` then select `Quarto Document` from the drop-down menu. This opens the new file in the Editor.
+At the Terminal, create a new Quarto document. From the three horizontal bar icon in the Activity Bar, select `File -> New File...`, then select `Quarto Document` from the drop-down menu. This opens the new file in the Editor.
 
 ```{r}
 include_graphics("images/create-analysis.png")
 ```
 
-Notice how there is a black dot next in the `analysis-1.qmd` tab in the Editor. This indicates that file is unsaved.
+Notice how there is a black dot in the `analysis-1.qmd` tab in the Editor. This indicates that the file is unsaved.
 
-Change the title to "First Analysis" add your name as an author. Save the file with `Cmd/Ctrl + S` as `analysis-1.qmd`.
+Change the title to "First Analysis" and add your name as the author. Save the file with `Cmd/Ctrl + S` as `analysis-1.qmd`.
 
 ```{r}
 include_graphics("images/save-analysis.png")
@@ -197,9 +197,9 @@ Click the Source Control button in the Activity Bar. This opens the Source Contr
 include_graphics("images/analysis-git.png")
 ```
 
-The top part of the pane shows the files that have been added/modified. This is Git telling you what it thinks has changed. Again, the "U" next to the end of the line for `analysis-1.qmd` indicates that Git has noticed changes to the file but that they are **U**ntracked.
+The top part of the pane shows the files that have been added or modified. This is Git telling you what it thinks has changed. Again, the "U" at the end of the line for `analysis-1.qmd` indicates that Git has noticed the file but that it is **U**ntracked.
 
-Render `analysis-1.qmd` with `Cmd/Cntrl + Shift + K`.
+Render `analysis-1.qmd` with `Cmd/Ctrl + Shift + K`.
 
 The Terminal tab is filled with a bunch of commands. Copy/paste the last few lines.
 
@@ -231,10 +231,10 @@ Browse at http://localhost:7383/
 
 ### Exercise 6
 
-The VS Code window has changed quite a bit. The Viewer tab has appeared, showing the HTML. The Source Control pane now includes many new files. The Terminal tab is not showing us a prompt.
+The VS Code window has changed quite a bit. The Viewer tab has appeared, showing the HTML. The Source Control pane now includes many new files. The Terminal tab is not showing a prompt.
 
 
-We can stop the previewing of `analysis-1.qmd` by typing `Ctrl + c` in the Terminal.  Once we do, the Viewer tab is empty, so we can close the entire Secondary Activity Bar.
+We can stop the preview of `analysis-1.qmd` by typing `Ctrl + c` in the Terminal. Once we do, the Viewer tab is empty, so we can close the entire Secondary Activity Bar.
 
 From the Terminal, run `ls`. CP/CR.
 
@@ -267,7 +267,7 @@ Look more closely at the Source Control pane:
 include_graphics("images/analysis-git-2.png")
 ```
 
-We have a many new files like, `analysis.html`, created when we rendered `analysis-1.qmd`. They have "U" indicators because, according to git, they are **U**ntracked. Many of these files are weird and confusing. It turns out that all these files live in the `analysis-1_files` directory.
+We have many new files, like `analysis-1.html`, created when we rendered `analysis-1.qmd`. They have "U" indicators because, according to Git, they are **U**ntracked. Many of these files are weird and confusing. It turns out that all these files live in the `analysis-1_files` directory.
 
 From the Terminal, run `ls -R analysis-1_files`. The `-R` option means **r**ecursive. CP/CR.
 
@@ -311,13 +311,13 @@ tabsets.js
 @ppbds-student ➜ /workspaces/04-github-1 (main) $ 
 ````
 
-Whenever you render a document using Quarto, it creates a directory called `base-name-of-your-file_files`. Since the base name of `analysis-1.qmd` is `analysis-1`, the new directory created is `analysis-1_files`. This directory is filled with the programs/information/etc which helped to turn `analysis-1.qmd` into `analysis-1.html`. This is mostly confusing stuff that we should ignore. In fact, we usually don't even want it monitored by Git or stored on GitHub.
+Whenever you render a document using Quarto, it creates a directory called `base-name-of-your-file_files`. Since the base name of `analysis-1.qmd` is `analysis-1`, the new directory is `analysis-1_files`. This directory is filled with the programs, information, and other files that helped turn `analysis-1.qmd` into `analysis-1.html`. This is mostly confusing stuff that we should ignore. In fact, we usually don't even want it monitored by Git or stored on GitHub.
 
 ### Exercise 8
 
 From the three horizontal bar icon, `File -> New Text File`. Save this new file as `.gitignore`. (Don't forget the leading period.) 
 
-From the Terminal, r un `ls -a`. CP/CR.
+From the Terminal, run `ls -a`. CP/CR.
 
 ```{r using-git-8}
 question_text(NULL,
@@ -342,7 +342,7 @@ Because `.gitignore` begins with a `.`, it is a hidden file. It would not appear
 
 ### Exercise 9
 
-The purpose of the `.gitignore` file is to specify those files/directories which **git** should **ignore**. Add a new line to the file, `analysis-1_files`, followed by an empty line. Save your changes.
+The purpose of the `.gitignore` file is to specify the files and directories that **Git** should **ignore**. Add a new line to the file, `analysis-1_files`, followed by an empty line. Save your changes.
 
 From the Terminal, run `cat .gitignore`. CP/CR.
 
@@ -373,18 +373,18 @@ Note the change in the Source Control pane!
 include_graphics("images/analysis-git-3.png")
 ```
 
-Now, according to Git, there have been only three changes to the repo. (Of course, there have been more changes, but Git is ignoring anything which resides in `analysis-1_files`.) Three files: `analysis-1.qmd`, `analysis-1.html` and `.gitigore`, are untracked (U).
+Now, according to Git, there have been only three changes to the repo. (Of course, there have been more changes, but Git is ignoring anything that resides in `analysis-1_files`.) Three files, `analysis-1.qmd`, `analysis-1.html`, and `.gitignore`, are untracked (U).
 
 
 ### Exercise 10
 
-In the box above the "Commit" button, add "initial version" as your commit comment. Press the "Commit" button. You will see a dialogue box like this:
+In the box above the "Commit" button, add "initial version" as your commit comment. Press the "Commit" button. You will see a dialog box like this:
 
 ```{r}
 include_graphics("images/commit-stage-changes-pop-up.png")
 ```
 
-Press "Yes". In the future, you might click on "Always" so that this dialogue stops appearing. It will be months, at least, before you make active use of staging in your Git workflow.
+Press "Yes". In the future, you might click on "Always" so that this dialog stops appearing. It will be months, at least, before you make active use of staging in your Git workflow.
 
 From the Terminal, run `git log`. CP/CR.
 
@@ -416,13 +416,13 @@ Date:   Fri May 1 13:28:01 2026 -0400
     Initial commit
 ````
 
-`git log` generates a record --- a "log" --- of all the Git actions we have taken. In this case, you can see that we have committed changes twice. The first was done behind the scenes when we created the project by connecting to GitHub. The second change is the commit which we just pushed, the one which adds `analysis-1.qmd`, `.gitignore` and `analysis-1.html`. 
+`git log` generates a record --- a "log" --- of all the Git actions we have taken. In this case, you can see that we have committed changes twice. The first commit was done behind the scenes when we created the project by connecting to GitHub. The second commit is the one we just made, which adds `analysis-1.qmd`, `.gitignore`, and `analysis-1.html`. 
 
 ### Exercise 11
 
-Return to editing `analysis-1.qmd`. Add the line beggining with your actual name "[Your name] is a data maestro!". Make sure there is a blank line at the end of the document and save.
+Return to editing `analysis-1.qmd`. Add a line beginning with your actual name: "[Your name] is a data maestro!" Make sure there is a blank line at the end of the document, and save.
 
-run `cat analysis-1.qmd`. CP/CR.
+Run `cat analysis-1.qmd`. CP/CR.
 
 ```{r using-git-11}
 question_text(NULL,
@@ -459,7 +459,7 @@ Within the Source Control pane, press the "Open File" button for `analysis-1.qmd
 include_graphics("images/analysis-git-4.png")
 ```
 
-Notice how there's now an orange "M" next to the file name. This indicates that Git is now tracking the file's changes and that it has been **M**modified.
+Notice how there is now an orange "M" next to the file name. This indicates that Git is now tracking the file's changes and that it has been **M**odified.
 
 Hold your cursor over the symbol (a curved arrow) next to the "Open File" button. What is the name for this button?
 
@@ -476,7 +476,7 @@ question_text(NULL,
 
 <!-- AR: Add exercise to make a new change and actually revert? -->
 
-Clicking this button gets rid of your changes since the last time you told Git to save them. 
+Clicking this button gets rid of any changes made since the last time you told Git to save them. 
 
 ### Exercise 13
 
@@ -546,7 +546,7 @@ question_text(NULL,
 
 The term "origin/main" refers to the "main" branch on the "origin" repo, which is the GitHub repo. 
 
-Note how the bottom portion of the pane, the Source Control Graph now has two items. Before you committed, it had just one. The Source Control Graph shows a Git history of this repo.
+Note how the bottom portion of the pane, the Source Control Graph, now has two items. Before you committed, it had just one. The Source Control Graph shows the Git history of this repo.
 
 ### Exercise 16
 
@@ -560,7 +560,7 @@ The Source Control View should now look like this:
 include_graphics("images/analysis-1-post-sync.png")
 ```
 
-Notice how the purple cloud icon, representing the remote tracking branch on GitHub called "origin/main", has moved the most recent commit along with the local main branch.
+Notice how the purple cloud icon, representing the remote tracking branch on GitHub called "origin/main", has moved to the most recent commit along with the local main branch.
 
 From the Terminal, run `git log` again. CP/CR.
 
@@ -596,19 +596,19 @@ Author: ppbds-student <acrogers362+ppbds-student@gmail.com>
 Date:   Fri May 1 13:28:01 2026 -0400
 ````
 
-This looks the same as before, except that "(HEAD -> main)" in the top line has changed to "(HEAD -> main, origin/main, origin/HEAD)".  This tells us that our changes have been pushed to GitHub, and not simply committed locally. We will save a discussion of what `"HEAD" means for later.
+This looks the same as before, except that "(HEAD -> main)" in the top line has changed to "(HEAD -> main, origin/main, origin/HEAD)". This tells us that our changes have been pushed to GitHub, not simply committed locally. We will save a discussion of what `"HEAD"` means for later.
 
-A term like "commit be56bbaedd692a6d29bba410f0a6fd5b1d844a64" gives us the address of that commit. We can revert to the code base as it looked after that commit by using that string.
+A term like "commit be56bbaedd692a6d29bba410f0a6fd5b1d844a64" gives us the address of that commit. We can use that string to revert to the codebase as it looked after that commit.
 
 ### Exercise 17
 
-If you look at the GitHub page for `04-github-1`, you will see that the changes have been pushed to GitHub. If your computer blows up, you won't lose any of your work.
+If you look at the GitHub page for `04-github-1`, you will see that the changes have been pushed to GitHub. If your computer stops working, you won't lose any of your work.
 
 ```{r}
 include_graphics("images/analysis-1-gh-1.png")
 ```
 
-This page shows you the files from your project that have been pushed to GitHub. Click on the commit history button (in red box above). This will show a page with the history of commits that you have pushed to GitHub.
+This page shows the files from your project that have been pushed to GitHub. Click on the commit history button (in the red box above). This will show a page with the history of commits that you have pushed to GitHub.
 
 ```{r}
 include_graphics("images/analysis-1-gh-2.png")
@@ -661,7 +661,7 @@ As AI writes more and more of our code, it's becoming increasingly important to 
 
 ### Exercise 1
 
-Add an R code chunk in `analysis-1.qmd` by using the shortcut key `Cmd/Ctrl + option + i`. (Recall that "code chunk" and "code cell" mean the same thing.) In that chunk, put `library(tidyverse)`. `Cmd/Ctrl + Shift + K` to render the the document. Your preview file should look something like this:
+Add an R code chunk in `analysis-1.qmd` by using the shortcut key `Cmd/Ctrl + Option + I`. (Recall that "code chunk" and "code cell" mean the same thing.) In that chunk, put `library(tidyverse)`. Use `Cmd/Ctrl + Shift + K` to render the document. Your preview file should look something like this:
 
 ```{r}
 include_graphics("images/analysis-1-preview-start-gh-pages.png")
@@ -698,9 +698,9 @@ Change the title of the document to "A Beautiful Graphic". Add your name as the 
 execute:
   echo: false
 ````
-Make sure to use two spaces and not a tab when indenting YAML headers. Tabs will sometimes work but it's best to use two spaces instead.
+Make sure to use two spaces, not a tab, when indenting YAML headers. Tabs will sometimes work, but it's best to use two spaces instead.
 
-`Cmd/Ctrl + Shift + K` to render the the document. The HTML should now no longer show the `library(tidyverse)` code.
+Use `Cmd/Ctrl + Shift + K` to render the document. The HTML should no longer show the `library(tidyverse)` code.
 
 In the R Terminal, run `tutorial.helpers::show_file("analysis-1.qmd", end = 8)`. CP/CR.
 
@@ -752,7 +752,7 @@ Wrap the library(tidyverse) call with suppressPackageStartupMessages() to silenc
 
 ### Exercise 4
 
-Edit `analysis-1.qmd` so that `library(tidyverse)` is replaced by `suppressPackageStartupMessages(library(tidyverse))`. Remove `warning: false` from the YAML header. `Cmd/Ctrl + Shift + K`.
+Edit `analysis-1.qmd` so that `library(tidyverse)` is replaced by `suppressPackageStartupMessages(library(tidyverse))`. Remove `warning: false` from the YAML header. Render with `Cmd/Ctrl + Shift + K`.
 
 Copy/paste whatever appears in your HTML below:
 
@@ -777,7 +777,7 @@ PPBDS Student
 PPBDS student is a data maestro!
 ````
 
-Don't worry about formatting when you copy/paste from an HTML. Your screen should look something like:
+Don't worry about formatting when you copy and paste from HTML. Your screen should look something like this:
 
 ```{r}
 include_graphics("images/analysis-1-preview.png")
@@ -786,11 +786,11 @@ include_graphics("images/analysis-1-preview.png")
 
 ### Exercise 5
 
-Create a new R code chunk with `Cmd/Ctrl + option + i`. Ask [Grok](https://grok.com/) (or a generative AI of your choice) this question:
+Create a new R code chunk with `Cmd/Ctrl + Option + I`. Ask [Grok](https://grok.com/) (or a generative AI of your choice) this question:
 
-> I have loaded the tidyverse package. Give me some R code which uses ggplot and a built-in data set to create a beautiful graphic.
+> I have loaded the tidyverse package. Give me some R code that uses ggplot and a built-in data set to create a beautiful graphic.
 
-Paste that code into the new code chunk. `Cmd/Ctrl + shift + K` to render. If there is an error, or if the graphic is ugly, iterate with your AI until you have a graphic of which you are proud.
+Paste that code into the new code chunk. Use `Cmd/Ctrl + Shift + K` to render. If there is an error, or if the graphic is ugly, iterate with your AI until you have a graphic of which you are proud.
 
 In the R Terminal, run `tutorial.helpers::show_file("analysis-1.qmd", chunk = "Last")`. CP/CR.
 
@@ -869,7 +869,7 @@ include_graphics("images/analysis-1-git-post-graph.png")
 
 Commit your files and push them to GitHub. Don't forget the commit message. Don't forget that "push" means the same thing as "sync."
 
-Using `Ctrl + c` to stop the Quarto watching process. From the Terminal, run `git log -n 1`. CP/CR.
+Use `Ctrl + c` to stop the Quarto watching process. From the Terminal, run `git log -n 1`. CP/CR.
 
 ```{r publishing-with-github-pages-6}
 question_text(NULL,
@@ -892,11 +892,11 @@ Date:   Mon May 4 19:30:10 2026 +0000
 @ppbds-student ➜ /workspaces/04-github-1 (main) $
 ````
 
-We are being a little sloppy to equate "pushing" with "syncing." Strictly speaking, "syncing" does two things: it "pushes" your changes to GitHun *and* it "pulls" any changes made on GitHub to your local computer. But, in this case, because no one else but you can change the GitHub repo, there is nothing to "pull." 
+We are being a little sloppy to equate "pushing" with "syncing." Strictly speaking, "syncing" does two things: it "pushes" your changes to GitHub *and* it "pulls" any changes made on GitHub to your local computer. But, in this case, because no one else but you can change the GitHub repo, there is nothing to "pull." 
 
 ### Exercise 7
 
-Let's publish our results to [GitHub Pages](https://pages.github.com/). Before we do, go to the GitHub repo for `04-github-1`, click on the "Settings" top menu item and, after that, click on the "Pages" side menu item.
+Let's publish our results to [GitHub Pages](https://pages.github.com/). Before we do, go to the GitHub repo for `04-github-1`, click on the "Settings" top menu item, and then click on the "Pages" side menu item.
 
 ```{r}
 include_graphics("images/repo-settings-pages.png")
@@ -904,9 +904,9 @@ include_graphics("images/repo-settings-pages.png")
 
 We won't modify these options by hand. But it is useful to know where the details are located.
 
-From the Terminal, run `quarto publish gh-pages analysis-1.qmd`. Respond with "Y" when it checks that you want to. (This might take a minute to run.) 
+From the Terminal, run `quarto publish gh-pages analysis-1.qmd`. Respond with "Y" when it asks whether you want to publish. (This might take a minute to run.) 
 
-CP/CR just the first 10 or so lines of what results.
+CP/CR just the first 10 or so lines of the output.
 
 
 ```{r publishing-with-github-pages-7}
@@ -927,7 +927,7 @@ Here is what I see, broken up to allow for comments:
 ? Publish site to https://ppbds-student.github.io/04-github-1/ using gh-pages? (Y/n) › Yes
 ````
 
-There are settings which will cause this question to not be asked every time we update the website. Otherwise, Quarto will check each time.
+There are settings that will prevent this question from being asked every time we update the website. Otherwise, Quarto will check each time.
 
 ````
 Saved working directory and index state WIP on main: d848620 added chart
@@ -941,7 +941,7 @@ To https://github.com/ppbds-student/04-github-1
  * [new branch]      HEAD -> gh-pages
  ````
 
-By default, `quarto publish` follows the standard GitHub Pages approach of creating a new Git "branch" called `gh-pages`. Branches are lightweight pointers to specific commits, allowing you to isolate work in progress, experiment with new features, and collaborate effectively without affecting the main codebase. 
+By default, `quarto publish` follows the standard GitHub Pages approach of creating a new Git "branch" called `gh-pages`. Branches are lightweight pointers to specific commits. They allow you to isolate work in progress, experiment with new features, and collaborate effectively without affecting the main codebase. 
 
  ````
 Switched to branch 'main'
@@ -965,7 +965,7 @@ output file: analysis-1.knit.md
 
 ### Exercise 8
 
-Go to your `04-github-1` page on GitHub. Refresh the page. `quarto publish` has changed some of the items. Copy/paste all the text in the "Visit site" box.
+Go to your `04-github-1` page on GitHub. Refresh the page. `quarto publish` has changed some of the items. Copy and paste all the text in the "Visit site" box.
 
 
 ```{r publishing-with-github-pages-8}
@@ -990,7 +990,7 @@ Here is my whole page:
 include_graphics("images/gh-pages-published.png")
 ```
 
-We could have made these changes "by hand" but it is much easier to just let `quarto publish` handle things.
+We could have made these changes by hand, but it is much easier to let `quarto publish` handle them.
 
 Publishing to GitHub Pages has not changed any of the files in our repo, so the "Source Control" button does not show any changes for us to deal with. Our local repo matches our `04-github-1` on GitHub. We are done!
 
@@ -998,9 +998,9 @@ Publishing to GitHub Pages has not changed any of the files in our repo, so the 
 ## Summary
 ### 
 
-This tutorial covered [git](https://git-scm.com/), a program for keeping track of changes in your code, and [GitHub](https://github.com/), the leading company for storing your code in the cloud. Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
+This tutorial covered [Git](https://git-scm.com/), a program for keeping track of changes in your code, and [GitHub](https://github.com/), the leading platform for storing your code in the cloud. Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
-The most useful reference for Git/GitHub is [*Happy Git and GitHub for the useR*](https://happygitwithr.com/). Refer to that book whenever you have a problem.
+The most useful reference for Git/GitHub is [*Happy Git and GitHub for the useR*](https://happygitwithr.com/). Refer to that book whenever you have a question.
 
 ```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
 ```
