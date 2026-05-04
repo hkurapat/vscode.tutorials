@@ -51,7 +51,7 @@ The most useful references for Git/GitHub are [*Happy Git and GitHub for the use
 
 GitHub is an online drive for all your R code and projects. In the professional world, what you have on your GitHub account is sometimes more important than what you have on your resume. It is a verifiable demonstration of your abilities.
 
-You've already been creating and storing git repositories on Github. Now, we'll practice using the Git program.
+You've already been creating and storing git repositories on GitHub. Now, we'll practice using the Git program.
 
 [Git](https://en.wikipedia.org/wiki/Git) is "software for tracking changes in any set of files, usually used for coordinating work among programmers collaboratively developing source code during software development."
 
@@ -546,6 +546,16 @@ Note how the bottom portion of the pane, the Source Control Graph now has two it
 
 Press the "Sync Changes" button.
 
+###
+
+The Source Control View should now look like this:
+
+```{r}
+include_graphics("images/analysis-1-post-sync")
+```
+
+Notice how the purple cloud icon, representing the remote tracking branch on GitHub called "origin/main", has moved the most recent commit along with the local main branch.
+
 From the Terminal, run `git log` again. CP/CR.
 
 ```{r using-git-16}
@@ -559,33 +569,84 @@ question_text(NULL,
 
 ###
 
-<!--AR: needs to be cleaned up both output and knowledge drop-->
-
 Your answer should look like:
 
 ````
-dkane@MacBookPro First-Repo % git log
-commit 61722f1b6a67d4e297eeff4ba77675ea3dae77ba (HEAD -> main, origin/main, origin/HEAD)
-Author: David Kane <dave.kane@gmail.com>
-Date:   Tue Mar 11 11:27:15 2025 -0400
+@ppbds-student ➜ /workspaces/04-github-1 (main) $ git log
+commit be56bbaedd692a6d29bba410f0a6fd5b1d844a64 (HEAD -> main, origin/main, origin/HEAD)
+Author: ppbds-student <acrogers362+ppbds-student@gmail.com>
+Date:   Mon May 4 16:57:38 2026 +0000
+
+    added sentence
+
+commit 5fc089ec356a2f91dc447a86e76533f443bdb080
+Author: ppbds-student <acrogers362+ppbds-student@gmail.com>
+Date:   Mon May 4 16:57:08 2026 +0000
 
     initial version
 
-commit 969819f5c16d3776254121570a4853da45f174ba
-Author: David Kane <dave.kane@gmail.com>
-Date:   Sun Mar 9 15:46:04 2025 -0400
-
-    Initial commit
-dkane@MacBookPro First-Repo % 
+commit c6ef687e00ddff16f0274cba6949ee470ef3e5ec
+Author: ppbds-student <acrogers362+ppbds-student@gmail.com>
+Date:   Fri May 1 13:28:01 2026 -0400
 ````
 
 This looks the same as before, except that "(HEAD -> main)" in the top line has changed to "(HEAD -> main, origin/main, origin/HEAD)".  This tells us that our changes have been pushed to GitHub, and not simply committed locally. We will save a discussion of what `"HEAD" means for later.
 
-A term like "commit 969819f5c16d3776254121570a4853da45f174ba" gives us the address of that commit. We can revert to the code base as it looked after that commit by using that string.
+A term like "commit be56bbaedd692a6d29bba410f0a6fd5b1d844a64" gives us the address of that commit. We can revert to the code base as it looked after that commit by using that string.
+
+### Exercise 17
 
 If you look at the GitHub page for `04-github-1`, you will see that the changes have been pushed to GitHub. If your computer blows up, you won't lose any of your work.
 
+```{r}
+include_graphics("images/analysis-1-gh-1.png")
+```
 
+This page shows you the files from your project that have been pushed to GitHub. Click on the commit history button (in red box above). This will show a page with the history of commits that you have pushed to GitHub.
+
+```{r}
+include_graphics("images/analysis-1-gh-2.png")
+```
+
+Copy and paste the text of this page.
+
+```{r using-git-17}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+You should have something like this:
+
+````
+Commit History
+Commits on May 4, 2026
+
+    added sentence
+    ppbds-student
+    ppbds-student
+    committed
+    3 minutes ago
+    initial version
+    ppbds-student
+    ppbds-student
+    committed
+    6 minutes ago
+    Initial commit
+    ppbds-student
+    ppbds-student
+    authored
+    15 days ago
+
+````
+###
+
+As AI writes more and more of our code, it's becoming increasingly important to get good at managing this code with Git and GitHub.
 
 ## Publishing with GitHub Pages
 ### 
