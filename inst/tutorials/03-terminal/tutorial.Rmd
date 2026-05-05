@@ -85,7 +85,7 @@ Your answer should look something like:
 @ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
-Your answer will look different from mine. Default prompts vary from computer to computer. In my case, the first part of the prompt is the name of my GitHub account: `@ppbds-student`. The second part, after the arrow, is the path to the directory, `/workspaces/codespace-starter`, in which I am running the tutorial. The third part, separated by a space and in parentheses, is `main`, the current Git branch (more on this in an upcoming tutorial). The dollar sign indicates the end of the prompt.
+Your answer will look different from mine. Default prompts vary from computer to computer. In my case, the first part of the prompt is the name of my GitHub account: `@ppbds-student`. The second part, after the arrow, is the path to the directory, `/workspaces/codespace-starter`, in which I am running the tutorial. The third part, separated by a space and in parentheses, is `main`, the current git branch (more on this in an upcoming tutorial). The dollar sign indicates the end of the prompt.
 
 ###
 
@@ -750,11 +750,11 @@ My answer looks like this:
 
 ````
 @ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $ ls ..
-diamonds.png  quarto-1.qmd  script-1.R  script-2.R  symbols
+symbols
 @ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $
 ````
 
-Your answer will look different because you started this tutorial in a different directory, with different contents, than I did.
+At this point in the tutorial, `symbols` is the only item in `codespace-starter`. `ls ..` lets you view the contents of the parent directory without navigating away from where you are.
 
 ### Exercise 4
 
@@ -2273,7 +2273,7 @@ question_text(NULL,
 
 It is always a good idea to clean up after yourself. As the sign says when taking a hike in the forest: "Take only photos. Leave only footprints."
 
-## Git
+## git
 ###
 
 Now that you are comfortable with the Terminal, let's look at one more feature of your Codespace. The `codespace-starter` directory is not just a folder --- it is also a **git repository**.
@@ -2295,13 +2295,11 @@ question_text(NULL,
 
 ````
 @ppbds-student ➜ /workspaces/codespace-starter (main) $ ls -a
-.  ..  .git  script-1.R  script-2.R
+.  ..  .git
 @ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
-Notice the `.git` directory. This hidden directory is what makes `codespace-starter` a **git repository**. **Git** is a version control system --- software that tracks changes to files over time, allowing you to save snapshots of your work and collaborate with others. The `(main)` you see in your prompt is git indicating which **branch** you are on. You will learn more about branches later on.
-
-Your output may look different depending on which files you have created while working through previous tutorials.
+Notice the `.git` directory. This hidden directory is what makes `codespace-starter` a **git repository**. **git** is a version control system --- software that tracks changes to files over time, allowing you to save snapshots of your work and collaborate with others. The `(main)` you see in your prompt is git indicating which **branch** you are on. You will learn more about branches in the next tutorial.
 
 ### Exercise 2
 
@@ -2344,17 +2342,83 @@ question_text(NULL,
 ````
 @ppbds-student ➜ /workspaces/codespace-starter (main) $ git status
 On branch main
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-	diamonds.png
-	script-1.R
-	script-2.R
-
-nothing added to commit but untracked files present (use "git add" to track)
+nothing to commit, working tree clean
 @ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
-`git status` is one of the most commonly used git commands. It shows the current state of your repository. Your exact output will vary depending on which files you have created while working through previous tutorials. **Untracked files** are files that exist in the directory but that git has not been asked to watch. Git is aware of them --- it lists them here --- but it is not recording changes to them. You will learn how to track files in git in the next tutorial.
+`git status` is one of the most commonly used git commands. It shows the current state of your repository. "Nothing to commit, working tree clean" means git is not aware of any new or changed files since the last commit. You will learn more about commits and tracking files in the next tutorial.
+
+### Exercise 4
+
+So far, your work lives only in this Codespace. If the Codespace were deleted, your files would be gone. **GitHub** is a platform that hosts git repositories in the cloud, giving your work a permanent, accessible home.
+
+Go to:
+
+````
+https://github.com/PPBDS/codespace-starter
+````
+
+Click the green "Use this template" button and select "Create a new repository."
+
+```{r}
+include_graphics("images/create-repo-from-template.png")
+```
+
+ame the repository `04-github-1` and make sure it is set to **Public**. Leave all other settings as their defaults. Click "Create repository."
+
+```{r}
+include_graphics("images/create-new-repo.png")
+```
+
+Once the repository is created, paste the URL of your new repository below.
+
+```{r git-4}
+question_text(NULL,
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 2)
+```
+
+###
+
+It should look something like `https://github.com/your-username/04-github-1`.
+
+###
+
+A **GitHub repository** is a copy of your git repository hosted in the cloud. It serves as a permanent backup of your work and makes it accessible from anywhere. It also makes collaboration possible --- others can view, copy, or contribute to your code. Every GitHub repository has a unique URL based on your username and the repository name.
+
+### Exercise 5
+
+Now create a Codespace from your new `04-github-1` repository. From your repository page on GitHub, click the green "Code" button, select the "Codespaces" tab, and click "Create codespace on main."
+
+```{r}
+include_graphics("images/create-codespace.png")
+```
+
+A new VS Code environment will open in your browser. Once it has loaded, paste the URL of your new Codespace below.
+
+```{r git-5}
+question_text(NULL,
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 2)
+```
+
+###
+
+It should look something like `https://your-username-04-github-1-randomstring.github.dev`.
+
+```{r}
+include_graphics("images/new-gh-repo-cs.png")
+```
+
+###
+
+A **Codespace** is a cloud development environment linked to a specific GitHub repository. Creating one from `04-github-1` gives you a fresh VS Code environment with that repository's files already available. This will be your workspace for the next tutorial. You can always return to it from your `04-github-1` repository page on GitHub.
 
 ## Summary
 ###
