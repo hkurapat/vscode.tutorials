@@ -1194,6 +1194,35 @@ ggplot(diamonds, aes(x = carat, y = price, color = clarity)) +
 
 Generative AI is the future of coding, and much else. Practice using it as much as you can.
 
+## Cleanup
+###
+
+Before moving on, delete the files you have created in this tutorial so that `codespace-starter` is clean for the next one.
+
+### Exercise 1
+
+In the R Terminal, run `unlink(list.files(), recursive = TRUE)` to delete all files and directories in `codespace-starter`. Then run `list.files()` to confirm the directory is empty. CP/CR.
+
+```{r cleanup-1}
+question_text(NULL,
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 3)
+```
+
+###
+
+````
+R 4.5.3> unlink(list.files(), recursive = TRUE)
+R 4.5.3> list.files()
+character(0)
+R 4.5.3>
+````
+
+`character(0)` means the vector is empty --- there are no files in `codespace-starter`. The `recursive = TRUE` argument is needed here because `unlink()` must also remove the `_files` directories created when rendering Quarto documents.
+
 ## Summary
 ### 
 
