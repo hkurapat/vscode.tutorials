@@ -291,7 +291,7 @@ Create a new file by clicking the Activity Bar icon with three horizontal bars i
 knitr::include_graphics("images/create-new-file.png")
 ```
 
-This opens a drop-down menu from which you select `R File`.
+This opens a drop-down menu from which you select `R Document`.
 
 ```{r}
 knitr::include_graphics("images/select-new-r-file.png")
@@ -301,7 +301,7 @@ In Visual Studio Code running in Codespaces, the Application Menu is a drop-down
 
 ###
 
-Type `5 + 5` into your R script file. Save the file. Name it `script-1.R`. (R will provide the `.R` suffix, so you only need to type `script-1`.)
+Type `5 + 5` into your R script file. Save the file. Name it `script-1.r`.
 
 ```{r}
 knitr::include_graphics("images/save-script-1.png")
