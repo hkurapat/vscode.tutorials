@@ -1807,11 +1807,6 @@ We often, as here, move to the directory in which we will be working. But we cou
 
 ### Exercise 2
 
-<!-- AR: Added two upload exercises using right click + upload, and drag and drop from local machine. Also added a curl method directly downloading from GitHub.
-
-Lots of exercises. Delete some?
- -->
-
 In your browser, go to `https://github.com/PPBDS/vscode.tutorials`.
 
 This is the location for the R package that contains this tutorial. Click on the `TODO.txt` file, which should bring you to this URL:
@@ -2069,10 +2064,6 @@ ate.txt
 `^` is put at the beginning of a regular expression to indicate that the expression must occur at the beginning of a line. A dollar sign --- `$` --- at the end of a regular expression indicates that the expression must occur at the end of the line.
 
 ### Exercise 5
-
-<!-- DK: Useful to try two different downloads from the shell. One downloads the file into the directory in which you are currently located. The second downloads a different file into a different directory (generally one just below you) in one command.
-
-AR: Introduced curl download from GitHub initially in Files section. Here, use curl to download grepping.txt from GitHub to the grepping subdirectory. -->
 
 Now, we'll download another text file. You can view the file on the following webpage:
 
