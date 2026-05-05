@@ -2282,6 +2282,89 @@ question_text(NULL,
 
 It is always a good idea to clean up after yourself. As the sign says when taking a hike in the forest: "Take only photos. Leave only footprints."
 
+## Git
+###
+
+Now that you are comfortable with the Terminal, let's look at one more feature of your Codespace. The `codespace-starter` directory is not just a folder --- it is also a **git repository**.
+
+### Exercise 1
+
+Use `pwd` to confirm that you are in `workspaces/codespace-starter`. Then run `ls -a`. CP/CR.
+
+```{r git-1}
+question_text(NULL,
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 5)
+```
+
+###
+
+````
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ ls -a
+.  ..  .git  script-1.R  script-2.R
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
+````
+
+Notice the `.git` directory. This hidden directory is what makes `codespace-starter` a **git repository**. **Git** is a version control system --- software that tracks changes to files over time, allowing you to save snapshots of your work and collaborate with others. The `(main)` you see in your prompt is git indicating which **branch** you are on. You will learn more about branches later on.
+
+Your output may look different depending on which files you have created while working through previous tutorials.
+
+### Exercise 2
+
+Run `ls .git`. CP/CR.
+
+```{r git-2}
+question_text(NULL,
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 5)
+```
+
+###
+
+````
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ ls .git
+COMMIT_EDITMSG  HEAD  branches  config  description  hooks  index  info  logs  objects  packed-refs  refs
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
+````
+
+This is where git stores everything it needs to track your work: commit history, configuration, object storage, and more. You should never modify these files directly. Git manages them entirely on its own.
+
+### Exercise 3
+
+Run `git status`. CP/CR.
+
+```{r git-3}
+question_text(NULL,
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 5)
+```
+
+###
+
+````
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ git status
+On branch main
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	diamonds.png
+	script-1.R
+	script-2.R
+
+nothing added to commit but untracked files present (use "git add" to track)
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
+````
+
+`git status` is one of the most commonly used git commands. It shows the current state of your repository. Your exact output will vary depending on which files you have created while working through previous tutorials. **Untracked files** are files that exist in the directory but that git has not been asked to watch. Git is aware of them --- it lists them here --- but it is not recording changes to them. You will learn how to track files in git in the next tutorial.
+
 ## Summary
 ###
 
