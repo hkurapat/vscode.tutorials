@@ -26,7 +26,11 @@ options(tutorial.exercise.timelimit = 60,
 ```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
 ```
 
-<!-- DK: There are no projects. Really there are just folders (or directories) and you already get a directory for free when you start in GitHub! And also here. How did the student start this tutorial? By creating (with a template) a repo named after the tutorial. Is that well-defined? Small caps? hyphens in place of spaces. So, they should be in a repo called `01-code`. Summary: Just save script-1.R and friends in the folder in which you are in, which is 01-code, which is a git repo, but we have not learned how to use git yet, which is OK.  -->
+<!-- DK: There are no projects. Really there are just folders (or directories) and you already get a directory for free when you start in GitHub! And also here. How did the student start this tutorial? By creating (with a template) a repo named after the tutorial. Is that well-defined? Small caps? hyphens in place of spaces. So, they should be in a repo called `01-code`. Summary: Just save script-1.R and friends in the folder in which you are in, which is 01-code, which is a git repo, but we have not learned how to use git yet, which is OK.  
+
+AR: shared repo is now codespace-starter - should students create a subdirectory for each tutorial's files?
+
+-->
 
 ## Introduction
 ###
@@ -279,7 +283,7 @@ Create a new file by clicking the Activity Bar icon with three horizontal bars i
 knitr::include_graphics("images/create-new-file.png")
 ```
 
-This opens a drop-down menu from which you select `R File`.
+This opens a drop-down menu from which you select `R Document`.
 
 ```{r}
 knitr::include_graphics("images/select-new-r-file.png")
@@ -289,7 +293,7 @@ In VS Code running in Codespaces, the Application Menu is a drop-down menu with 
 
 ###
 
-Type `5 + 5` into your R script file. Save the file. Name it `script-1.R`. (R will provide the `.R` suffix, so you only need to type `script-1`.)
+Type `5 + 5` into your R script file. Save the file. Name it `script-1.r`.
 
 ```{r}
 knitr::include_graphics("images/save-script-1.png")
@@ -297,7 +301,7 @@ knitr::include_graphics("images/save-script-1.png")
 
 ###
 
-The default directory that VS Code suggests for saving a file is not necessarily where you should save it. Be intentional. In this tutorial, we save all files at the top level of the project, in the `01-code` directory.
+The default directory that VS Code suggests for saving a file is not necessarily where you should save it. Be intentional. In this tutorial, we save all files at the top level of the project, in the `codespace-starter` directory.
 
 ###
 
@@ -358,7 +362,7 @@ question_text(NULL,
 Your answer should look like this:
 
 ````
-R 4.5.3> source("/workspaces/01-code/script-1.r", encoding = "UTF-8")
+R 4.5.3> source("/workspaces/codespace-starter/script-1.r", encoding = "UTF-8")
 ````
 
 ###
@@ -386,7 +390,7 @@ question_text(NULL,
 ###
 
 ```
-R 4.5.3> source("/workspaces/01-code/script-1.r", encoding = "UTF-8", echo = TRUE)
+R 4.5.3> source("/workspaces/codespace-starter/script-1.r", encoding = "UTF-8", echo = TRUE)
 
 > 5 + 5
 [1] 10
@@ -417,7 +421,7 @@ question_text(NULL,
 The answer is what you might expect:
 
 ````
-R 4.5.3> source("/workspaces/01-code/script-1.r", encoding = "UTF-8", echo = TRUE)
+R 4.5.3> source("/workspaces/codespace-starter/script-1.r", encoding = "UTF-8", echo = TRUE)
 
 > 5 + 5
 [1] 10
@@ -502,7 +506,7 @@ question_text(NULL,
 Your answer should look like this:
 
 ````
-> source("~/Desktop/projects/analysis-1/script-1.R", echo=TRUE)
+> source("/workspaces/codespace-starter/script-1.R", echo=TRUE)
 
 > x <- 5 + 5
 
@@ -980,7 +984,7 @@ question_text(NULL,
 Your answer should look something like:
 
 ```
-> source("/Users/dkane/Desktop/projects/analysis-1/script-2.R", echo = TRUE)
+> source("/workspaces/codespace-starter/script-2.R", echo = TRUE)
 
 > library(tidyverse)
 
@@ -1021,7 +1025,7 @@ question_text(NULL,
 
 ###
 
-You should see the `diamonds.png` file, which contains your plot. Click the Explorer button on the Activity Bar on the left to see all the files in the `analysis-1` directory. Click `diamonds.png` to open your plot in the Editor.
+You should see the `diamonds.png` file, which contains your plot. Click the Explorer button on the Activity Bar on the left to see all the files in the `codespace-starter` directory. Click `diamonds.png` to open your plot in the Editor.
 
 If the title text flows out of the image, you might want to modify the `scale` argument in `ggsave()` to find a better image size. `scale` is set to 1 by default.
 
