@@ -1106,6 +1106,34 @@ question_text(NULL,
 
 In many ways, the `subtitle` is the most important part of any graphic. People are busy. You cannot expect them to study your plot closely. Help them by highlighting the one key lesson, the one fact that you hope people will remember. Spell it out clearly.
 
+## Cleanup
+###
+
+Before moving on, delete the files you have created in this tutorial so that `codespace-starter` is clean for the next one.
+
+### Exercise 1
+
+In the R Terminal, run `unlink(list.files(), recursive = TRUE)` to delete all files in `codespace-starter`. Then run `list.files()` to confirm the directory is empty. CP/CR.
+
+```{r cleanup-1}
+question_text(NULL,
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 3)
+```
+
+###
+
+````
+R 4.5.3> unlink(list.files(), recursive = TRUE)
+R 4.5.3> list.files()
+character(0)
+R 4.5.3>
+````
+
+`character(0)` means the vector is empty --- there are no files in `codespace-starter`. Keeping your workspace tidy ensures that the next tutorial starts from a clean state.
 
 ## Summary
 ###
