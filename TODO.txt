@@ -1,5 +1,10 @@
 ## Alec
 
+Delete all files the student created at the end 01-code and 02-quarto.
+
+Add a sentence or two at top of 02-quarto about files which might be left over.
+
+
 Skip two GitHub tutorials. So, you are doing 1, 2, 3, 4, 5, 6, and 7.
 
 Use the bash shell as little as possible in tutorials 1 and 2.

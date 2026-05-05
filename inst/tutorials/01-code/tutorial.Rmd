@@ -26,12 +26,6 @@ options(tutorial.exercise.timelimit = 60,
 ```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
 ```
 
-<!-- DK: There are no projects. Really there are just folders (or directories) and you already get a directory for free when you start in GitHub! And also here. How did the student start this tutorial? By creating (with a template) a repo named after the tutorial. Is that well-defined? Small caps? hyphens in place of spaces. So, they should be in a repo called `01-code`. Summary: Just save script-1.R and friends in the folder in which you are in, which is 01-code, which is a git repo, but we have not learned how to use git yet, which is OK.  
-
-AR: shared repo is now codespace-starter - should students create a subdirectory for each tutorial's files?
-
--->
-
 ## Introduction
 ###
 
