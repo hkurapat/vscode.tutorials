@@ -1,6 +1,17 @@
 ## Alec
 
-Skip two GitHub tutorials. So, you are doing 1, 2, 3, 6, and 7.
+Delete all files the student created at the end 01-code and 02-quarto.
+
+Add a sentence or two at top of 02-quarto about files which might be left over.
+
+
+Skip two GitHub tutorials. So, you are doing 1, 2, 3, 4, 5, 6, and 7.
+
+Use the bash shell as little as possible in tutorials 1 and 2.
+
+We should only have 2 R Terminals, at least in the first 4 (7) tutorials. One runs the tutorial. The second is for interactive use.
+
+Check out check_current_tutorial(). I think you always want 4 backticks around anything which should be ignored by this function.
 
 Get rid of all Positron.
 
