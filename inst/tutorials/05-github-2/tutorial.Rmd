@@ -701,7 +701,7 @@ GitHub repos are either **public** or **private**. A public repo is visible to a
 
 Create a Codespace connected to the `project-2` repo. Click the green "Code" button in the upper right, select the "Codespaces" tab, and click the green "Create Codespace on main." Copy and paste the link from your new Codespace.
 
-```{r project-2-2-codespace}
+```{r project-2-2}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
