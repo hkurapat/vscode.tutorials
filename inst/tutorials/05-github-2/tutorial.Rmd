@@ -30,21 +30,21 @@ options(tutorial.exercise.timelimit = 60,
 ```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
 ```
 
-<!-- Ought to use #| in the first tutorial and tricks like suppress() and execute in the second. -->
+<!-- Ought to use #| in the first tutorial and tricks like suppress() and execute in the second. AR: done. -->
 
-<!-- Add more about R Terminal/QMD world in the first example. It works well in the second already. Really ought to just switch the first example with the second! AR: Should I do this? -->
+<!-- Add more about R Terminal/QMD world in the first example. It works well in the second already. Really ought to just switch the first example with the second! AR: Still in second, is that okay? -->
 
-<!-- Should there be more projects, each moving more quickly during the creation phase, the core coding is done with AI? Only if this current tutorial only takes 45 minutes. -->
+<!-- Should there be more projects, each moving more quickly during the creation phase, the core coding is done with AI? Only if this current tutorial only takes 45 minutes. AR: I can test and see how long this takes. -->
 
 <!-- Project 1 should be slightly less sophisticated and project 2 should be slightly more. Project 1 should only use code chunk options. It should not use execute or suppressPackage. Project 2 should be the reverse. Project 3 should do what Project 2 does, but without explicit instructions. Project 4 should fork. Or maybe 3 forks? Should any project use the GitHub created .gitignore and discuss stuff there. 
 
-AR: How relevant is this comment still? What should we do from it?-->
+AR: How relevant is this comment still? Should I test how long current for takes, then decide? -->
 
-<!-- More explicit emphasis on QMD world versus R Terminal world. -->
+<!-- More explicit emphasis on QMD world versus R Terminal world. AR: Two exercises in P2 do this now. -->
 
-<!-- Consider getting rid of palmerpenguins. AR: Why? What would be better?-->
+<!-- Consider getting rid of palmerpenguins. AR: use mpg in P2 - okay to keep penguins in P1 ?-->
 
-<!-- AR: Ask AI to compare 04-github-1 with this tutorial. Ask to find repeat concepts and how to level it up slightly between the two. -->
+<!-- AR: Future task? -> Compare 04-github-1 with this tutorial. Ask to find repeat concepts and how to level it up slightly between the two. -->
 
 ## Introduction
 ### 
@@ -61,8 +61,10 @@ For the tutorial Codespace, use one that is opened directly from the `codespace-
 
 If you deleted that Codespace, you can create a new one by going to this [link to the codespace-starter template](https://github.com/PPBDS/codespace-starter) and then clicking the green "Use this Template" button in the top right. Then select "Open in a Codespace".
 
+<!-- AR: Is 15 exercises per project the right length? I can test and see -->
+
 ## Project 1
-### 
+###
 
 This first project will simply review the steps which we have already learned. Making the data science work cycle second nature requires practice.
 
@@ -70,7 +72,7 @@ We'll create a GitHub repo from `codespace-starter` and then a Codespace associa
 
 ### Exercise 1
 
-<!-- AR: Add photos? -->
+<!-- AR: Add photos? Show photos in previous tutorial -->
 
 Go to [codespace-starter](https://github.com/PPBDS/codespace-starter). Click on the green "Use this Template" button in the top right. Then select "Create a new repository."
 
@@ -97,7 +99,7 @@ Always start a new data science project with a new GitHub repo.
 
 ### Exercise 2
 
-<!-- AR: add photos? -->
+<!-- AR: add photos? Show photos in previous tutorial -->
 
 Now, let's create a Codespace connected to the new repo. Click the green "Code" button in the upper right. Select the "Codespaces" tab and then click the green "Create Codespace on main".
 
@@ -552,6 +554,8 @@ R 4.4.3>
 
 Generative AI is the biggest change in the day-to-day work of data scientists in the last 30 years. Use it every chance you get.
 
+<!-- AR: We moved the commit to before `quarto publish` in both projects to make them consistent. P1 originally committed after publishing. Does this ordering make sense, or should I keep the post-publish commit? -->
+
 ### Exercise 13
 
 Commit and sync `quarto-1.qmd` and `quarto-1.html` with the message "add AI graphic". Then from the Terminal, run `git log --oneline`. CP/CR.
@@ -595,6 +599,20 @@ question_text(NULL,
 	incorrect = NULL,
 	rows = 7)
 ```
+
+###
+
+Your output should begin something like this:
+
+````
+@ppbds-student ➜ /workspaces/project-1 (main) $ quarto publish gh-pages quarto-1.qmd
+? Update site at https://ppbds-student.github.io/project-1/? (Y/n) › Yes
+Rendering for gh-pages:
+
+[1/1] quarto-1.qmd
+
+Output created: quarto-1.html
+````
 
 ###
 
@@ -652,7 +670,7 @@ With `project-1`, we went through all the steps of a data science project: creat
 
 Let's do it all again with a new repo and a fresh Codespace.
 
-<!-- AR: Okay to repeat repo and Codespace setup? -->
+<!-- AR: Okay to repeat repo and Codespace setup? No pics okay? -->
 
 ### Exercise 1
 
@@ -810,6 +828,8 @@ Date:   Wed May 6 08:31:03 2026 -0400
 ```
 
 There have been two commits in this repo. The first was generated automatically when we created the repo. The second was the one we just committed by hand, along with the commit message "initial version." Note how, next to the word "commit," there is a 40 character string of letters and numbers. This is the "hash" by which Git identifies each commit. The hash is always unique.
+
+<!-- AR: Replaced palmerpenguins with `mpg` in Project 2 (mpg is built into ggplot2, no NAs, no extra library needed). Is `mpg` the right dataset here, or is there a better option for this context? -->
 
 ### Exercise 6
 
@@ -978,6 +998,8 @@ mpg |>
 ###
 
 AI tools are remarkably good at generating **ggplot2** code. You describe what you want in plain English --- the dataset, the variables, the type of plot --- and the AI produces working code. This is one of the most practical uses of AI for data science: not replacing your judgment about *what* to visualize, but handling the mechanical work of translating that intent into code.
+
+<!-- AR: The QMD World / R Terminal World concept is emphasized across Ex 10 and Ex 11. Is this the right amount of emphasis, or is it too much? -->
 
 ### Exercise 10
 
