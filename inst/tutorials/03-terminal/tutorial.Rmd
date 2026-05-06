@@ -30,6 +30,21 @@ options(tutorial.exercise.timelimit = 60,
 ```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
 ```
 
+<!-- DK: Add at end 
+
+Change repo name to `my-repo`. 
+
+They need to show you the url.
+
+No need to create codespace.
+
+Make sure that they delete this repo at the end, show them the Settings tab and the Delete button at the bottom.
+
+Make sure you tell them that every tutorial going forward will be run from a repo you create at the start, example `04-github-1`, `07-website-2` and so on.
+
+-->
+
+
 <!-- Won't just about everyone doing this tutorial be in their projects directory? So I should be too! -->
 
 <!-- The second time we use echo, we act like we haven't explained it before. -->
