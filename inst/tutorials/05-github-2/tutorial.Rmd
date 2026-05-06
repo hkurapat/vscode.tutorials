@@ -42,6 +42,8 @@ options(tutorial.exercise.timelimit = 60,
 
 <!-- Consider getting rid of palmerpenguins. -->
 
+<!-- AR: Ask AI to compare 04-github-1 with this tutorial. Ask to find repeat concepts and how to level it up slightly between the two. -->
+
 ## Introduction
 ### 
 
@@ -51,18 +53,28 @@ The most useful reference for Git/GitHub is [*Happy Git and GitHub for the useR*
 
 ### 
 
-Start a new window with `File -> New Window`. This new window is the location in which you will do all the work for the tutorial, including the creation of new projects. The current window, the one in which you are reading these words, is just used to run this tutorial. 
+<!-- AR: Where should student "be" when running the tutorial? -->
+
+During this tutorial you will create two seperate GitHub repos, one for each project. For each project, you will also create a Codespace to work on that project. You should complete this tutorial in its own Codespace. 
+
+For the tutorial Codespace, use one that is opened directly from the `codespace-starter` template. This could be the same Codespace that you used for the `01-code`, `02-quarto`, and `03-terminal` tutorials. 
+
+If you deleted that Codespace, you can create a new one by going to this [link to the codespace-starter template](https://github.com/PPBDS/codespace-starter) and then clicking the green "Use this Template" button in the top right. Then select "Open in a Codespace".
 
 ## Project 1
 ### 
 
 This first project will simply review the steps which we have already learned. Making the data science work cycle second nature requires practice.
 
-We don't need to set up Git and Github again, having already done so. In this project, our goal is to publish a nice graphic about penguins.
+We'll create a Github repo from `codespace-starter` and then a Codespace associated with that repo.
 
 ### Exercise 1
 
-Create a Github repo (called `project-1`). Set the "Add README" toggle switch to "On." Copy/paste the URL for its Github location.
+<!-- AR: Add photos? -->
+
+Go to [codespace-starter](https://github.com/PPBDS/codespace-starter). Click on the green "Use this Template" button in the top right. Then select "Create a new repository."
+
+Create a Github repo (called `project-1`). Then click the green "Create repository" button. Copy/paste the URL for the new Github repo's web page.
 
 ```{r project-1-1}
 question_text(NULL,
@@ -76,24 +88,20 @@ question_text(NULL,
 ### 
 
 ```         
-https://github.com/davidkane9/project-1
+https://github.com/ppbds-student/project-1
 ```
 
-As a reminder, we often provide our answer to a question right after asking you for your answer, as we do above. In many cases, our answer will be different because, as here, we have a different user name on GitHub.
+The URL for a github repository takes the form https://github.com/[user name]/[repo name].
 
 Always start a new data science project with a new Github repo.
 
 ### Exercise 2
 
-Connect the `project-1` Github repo to a project on your computer using the other Positron window, not the one in which you are reading these words. Recall the steps:
+<!-- AR: add photos? -->
 
-- `File -> New Folder from Git ...`
+Now, let's create a Codespace connected to the new repo. Click the green "Code" button in the upper right. Select the "Codespaces" tab and then click the green "Create Codespace on main".
 
-- Paste the repo URL (ending in `.git`) into the "Git repository URL" box.
-
-- Click "OK"
-
-From the R Terminal in the new Positron window, run `list.files()`. (You might need to select R for the interpreter first.) CP/CR.
+Copy and paste the link from your new Codespace.
 
 ```{r project-1-2}
 question_text(NULL,
@@ -106,21 +114,23 @@ question_text(NULL,
 
 ### 
 
-```         
-> list.files()
-[1] "README.md"
->
+Your link should look something like this:
+
+```
+https://legendary-carnival-vpvrv9p59jxpc66v6.github.dev/
 ```
 
-The default README has an "md" suffix to indicate that it is a **M**ark**d**own document.
+A Codespace is a full development environment --- editor, terminal, R installation, and all --- running on a computer owned by GitHub, not you. This one is tied directly to your repo, so the files in the Codespace and the files on GitHub can stay in sync using git. This means you can close the browser tab, come back days later on a completely different machine, and pick up exactly where you left off. 
 
-Positron has automatically placed you within the `project-1` project. The `project-1` directory should be in the location in which you store your all your projects.
+The random-looking words in the URL (like `legendary-carnival`) are just GitHub's way of giving each Codespace a unique address.
 
 ### Exercise 3
 
-Go to `File -> New File ...-> Quarto Document`. Title it "Quarto 1". You are the author. Save it with the name `quarto-1.qmd`. 
+Click the hamburger menu (three horizontal lines) in the top-left corner to open the Application Menu. Select `File -> New File ...-> Quarto Document`. 
 
-From the R Terminal, run `list.files()`. CP/CR.
+Title it "Quarto 1". Under the title line in the YAML header, type "author: [YOUR NAME]". Save the file with the name `quarto-1.qmd`. 
+
+Create an R Terminal, then run `list.files()`. CP/CR.
 
 ```{r project-1-3}
 question_text(NULL,
@@ -136,16 +146,18 @@ question_text(NULL,
 Your answer should look like this:
 
 ```         
-> list.files()
-[1] "quarto-1.qmd" "README.md"   
->  
+R 4.4.3> list.files()
+[1] "quarto-1.qmd"
+R 4.4.3> 
 ```
+
+###
 
 Titles should be in title case, obviously. File names are usually all lower case. Spaces in titles are fine, but there should never be spaces (or other weird characters --- other than underlines, `_`, and, less commonly, dashes, `-`) in file names.
 
 ### Exercise 4
 
-Click the “Preview” button or, better, press `Cmd/Ctrl + Shift + K`.
+Press `Cmd/Ctrl + Shift + K`.
 
 This will create an HTML file and display it in the Viewer tab in the Secondary Activity Bar.
 
@@ -163,8 +175,7 @@ question_text(NULL,
 ### 
 
 ```         
-dkane@macbook project-1 % quarto preview /Users/dkane/Desktop/projects/project-1/quarto-1.qmd --no-bro
-wser --no-watch-inputs
+@ppbds-student ➜ /workspaces/project-1 (main) $ quarto preview /workspaces/project-1/quarto-1.qmd --no-browser --no-watch-inputs
 pandoc 
   to: html
   output-file: quarto-1.html
@@ -173,30 +184,34 @@ pandoc
   html-math-method: mathjax
   wrap: none
   default-image-extension: png
+  variables: {}
   
 metadata
   document-css: false
   link-citations: true
   date-format: long
   lang: en
+  engines:
+    - path: /opt/quarto/share/extension-subtrees/julia-engine/_extensions/julia-engine/julia-engine.js
   title: Quarto 1
-  author: David Kane
+  author: ppbds-student
   
 Output created: quarto-1.html
 
 Watching files for changes
-Browse at http://localhost:4817/
+Browse at http://localhost:5456/
+Listening on http://127.0.0.1:5456/
 ```
 
-<!-- Is the below true? -->
+###
 
-Clicking the "Preview" button runs, behind the scenes on the Terminal, the `quarto preview` command. This command does two things. First, it "renders" `quarto-1.qmd`, taking this QMD file as input and producing `quarto-1.html` as output. Second, it "watches" the QMD file. If something changes in that file, Positron will render it and then show the new HTML in the Viewer tab.
+The `.qmd` is your source of truth --- it is the file you edit. The `.html` is a *product* of it, rendered by `quarto preview`.
+
+Never edit the `.html` directly; any change you make there will be overwritten the next time you render. If you want to update what the world sees, update the `.qmd` and run `quarto preview` again.
 
 ### Exercise 5
 
-The `pandoc` and `metadata` portions of the previous output give more details on the process. Positron itself is not doing the main work. That is Quarto's job. Instead, Positron is managing Quarto and other processes.
-
-At the Terminal, use `Ctrl + c` to stop the watching process. Then, run `ls`. CP/CR.
+Use `Ctrl + C` to stop the watching process. Then, run `ls`. CP/CR.
 
 ```{r project-1-5}
 question_text(NULL,
@@ -211,11 +226,11 @@ question_text(NULL,
 
 ````
 Watching files for changes
-Browse at http://localhost:4817/
-^C%                                                                                                   
-dkane@macbook project-1 % ls
-README.md       quarto-1.html   quarto-1.qmd    quarto-1_files
-dkane@macbook project-1 % 
+Browse at http://localhost:5456/
+Listening on http://127.0.0.1:5456/
+^C@ppbds-student ➜ /workspaces/project-1 (main) $ ls
+quarto-1_files  quarto-1.html  quarto-1.qmd
+@ppbds-student ➜ /workspaces/project-1 (main) $ 
 ````
 
 Note that `^C` symbol, which is how `Ctrl + c` is recorded.
@@ -224,7 +239,31 @@ The `quarto-1.html` is our rendered file, as expected. The `quarto-1_files` dire
 
 ### Exercise 6
 
-Create a `.gitignore` file with two lines: `quarto-1_files` and a blank line. Save the file. Make sure to save it at the top of the project, **not inside of the `quarto-1_files` directory**.
+Click the source control icon in the Activity Bar (in red box below) to open the Source Control view. This provides information about how git is tracking changes to to this project.
+
+```{r}
+include_graphics("images/p1-pre-ignore-sc.png")
+```
+
+There are 14 files that git has recognized as changed. The green U next to the files indicates that these files are **U**ntracked. Untracked means Git can see the file exists, but has never been told to record its history.
+
+###
+
+Many of these files are in the `quarto-1_files` directory. The material in this directory is not worth backing up. They are neither the original source material (`quarto-1.qmd`) which we will edit to make changes nor the final product (`quarto-1.html`) which we will show to others.
+
+###
+
+To ignore these intermediate files, we'll create a `.gitignore` file. This is a special file that git recognizes automatically. It uses the file to know which files should not be tracked.
+
+###
+
+To do this, select the File Explorer icon in the Activity Bar. Then, click the new document button to the right of the "PROJECT-1" heading. 
+
+```{r}
+include_graphics("images/p1-create-ignore.png")
+```
+
+Title the file .gitignore. with two lines: `quarto-1_files` and a blank line. Save the file. Make sure to save it at the top of the project, **not inside of the `quarto-1_files` directory**.
 
 In the Terminal, run `cat .gitignore`. CP/CR.
 
@@ -240,14 +279,12 @@ question_text(NULL,
 ### 
 
 ```         
-dkane@macbook project-1 % cat .gitignore
+@ppbds-student ➜ /workspaces/project-1 (main) $ cat .gitignore
 quarto-1_files
-dkane@macbook project-1 % 
+@ppbds-student ➜ /workspaces/project-1 (main) $ 
 ```
 
-Every time that you render a Quarto document, Quarto creates a directory in which it places the supporting files which we used in that rendering. The name of that directory is `name-of-your-file-without-the-suffx` plus `_files`. The material in this directory is not worth backing up on GitHub. They are neither the original source material (`quarto-1.qmd`) which we will edit to make changes nor the final product (`quarto-1.html`) which we will show to others. 
-
-**However**, we need to ensure that the HTML file looks how we want it to look when we publish it on the web.
+Now the blue badge on the Source Control icon in the Activity Bar shows a 3 instead of 14. This means that `.gitignore` is working and that `quarto_files` are now ignored by git.
 
 ### Exercise 7
 
@@ -266,24 +303,28 @@ question_text(NULL,
 
 ### 
 
+Your answer should look something like this:
+
 ````
-dkane@macbook project-1 % git log
-commit 71e6d06fd555096d79719e267412d51856a0e515 (HEAD -> main, origin/main, origin/HEAD)
-Author: David Kane <dave.kane@gmail.com>
-Date:   Fri Mar 14 15:20:50 2025 -0400
+@ppbds-student ➜ /workspaces/project-1 (main) $ git log
+commit 05d03bf26fd9cc79ec1a6754ea750fb5ef84531f (HEAD -> main, origin/main, origin/HEAD)
+Author: ppbds-student <acrogers362+ppbds-student@gmail.com>
+Date:   Wed May 6 13:31:50 2026 +0000
 
     initial version
 
-commit 6fcbf60866ba728132c94f0c0496f3770006fd42
-Author: David Kane <dave.kane@gmail.com>
-Date:   Fri Mar 14 13:18:01 2025 -0400
+commit e3b01ee67e435cf241b375065536630da8ae7f7d
+Author: ppbds-student <acrogers362+ppbds-student@gmail.com>
+Date:   Wed May 6 08:31:03 2026 -0400
 
-    Initial commit
-dkane@macbook project-1 % 
+    Initial commit 
 ````
 
 You should see your commit message in the top (most recent) commit.
 
+###
+
+The 40-character string next to "commit" (like `05d03bf26fd9cc79ec1a6754ea750fb5ef84531f`) is called a **commit hash**. It is a unique fingerprint for that exact snapshot of your project --- no two commits, anywhere in the history of any Git repo, will ever share the same hash.
 
 ### Exercise 8
 
@@ -309,9 +350,9 @@ question_text(NULL,
 ###
 
 ````
-> tutorial.helpers::show_file("quarto-1.qmd", chunk = "Last")
+R 4.4.3> tutorial.helpers::show_file("quarto-1.qmd", chunk = "Last")
 library(tidyverse)
->
+R 4.4.3> 
 ````
 
 Anytime you use `show_file()` without having a blank line at the end of the file, you will get a warning message.
@@ -323,6 +364,8 @@ You could also manually type the chunk delimiters ```` ```{r} ```` and ```` ``` 
 ### Exercise 9
 
 Add `library(palmerpenguins)` to the code chunk. Render the document to ensure that everything works. (Fix any errors if it doesn't.)
+
+If you get an error like: "There is no package called `palmerpenguins`" run `install.packages("palmerpenguins") in the R terminal.
 
 In the R Terminal, run:
 
@@ -347,14 +390,19 @@ Your answer should look like:
 
 
 ````
-> tutorial.helpers::show_file("quarto-1.qmd", chunk = "Last")
+R 4.4.3> tutorial.helpers::show_file("quarto-1.qmd", chunk = "Last")
 library(tidyverse)
 library(palmerpenguins)
+R 4.4.3>
 ````
 
 ### 
 
-When you render the document, Quarto sends the QMD file to **knitr**, which executes all of the code chunks and creates a new Markdown (`.md`) document which includes the code and its output. The Markdown file generated by **knitr** is then processed by [pandoc](https://pandoc.org/), which is responsible for creating the finished HTML file.
+There is an important distinction between `install.packages()` and `library()`. You only need to install a package once --- it downloads and saves the package to your machine. `library()` loads an already-installed package into your current R session and must be called every time you start a new session.
+
+###
+
+Because of this, `library()` belongs in your `.qmd`, but `install.packages()` does not. A `.qmd` is an analysis document meant to be shared and re-rendered; including `install.packages()` would silently modify the R package library of anyone who renders it, which is not your call to make.
 
 ### Exercise 10
 
@@ -407,33 +455,33 @@ question_text(NULL,
 
 ###
 
-<pre><code>
-> tutorial.helpers::show_file("quarto-1.qmd")
+````
+R 4.4.3> tutorial.helpers::show_file("quarto-1.qmd")
 ---
 title: "Quarto 1"
-author: David Kane
+author: ppbds-student
 format: html
-execute: 
-  echo: false
+execute:
+    echo: false
 ---
 
-<pre><code>```{r}
+```{r}
 suppressPackageStartupMessages(library(tidyverse))
 library(palmerpenguins)
-```</code></pre>
-<pre><code>```{r}
+```
+
+```{r}
 penguins
-```</code></pre>
->
-</code></pre>
+```
+````
 
 ### Exercise 12
 
-Ask your favorite AI to create a beautiful graphic using the `penguins` data. Phrase the question however you like. I [asked](https://chatgpt.com/c/67d4e9fb-48cc-8002-abe5-dc29fba775e7) [chatGPT](https://chatgpt.com/):
+Ask your favorite AI to create a beautiful graphic using the `penguins` data. Phrase the question however you like. I asked [chatGPT](https://chatgpt.com/):
 
 > Using R and the tidyverse package, create a beautiful graphic using the penguins data from the palmerpenguins package.
 
-Replace `penguins` in the second code chunk with the graphics code generated by the AI. (I had to make three changes in the code I got in order to get rid of some annoying messages and warnings. I could also have just asked the AI to do so for me.) My graphic:
+Replace `penguins` in the second code chunk with the graphics code generated by the AI. (I had to make three changes in the code in order to get rid of some annoying messages and warnings. I could also have just asked the AI to do so for me.) My graphic:
 
 ```{r}
 theme_custom <- theme_minimal(base_size = 14) +
@@ -467,7 +515,7 @@ penguins |>
   theme_custom
 ```
 
-Render `quarto-1.qmd`, either by hitting the "Preview" button or by using `Cmd/Ctrl + Shift + K`.
+Render `quarto-1.qmd`, using `Cmd/Ctrl + Shift + K`.
 
 From the R Terminal, run `tutorial.helpers::show_file("quarto-1.qmd", chunk = "Last")`. CP/CR.
 
@@ -485,7 +533,7 @@ question_text(NULL,
 My answer looks like this, but yours will be different, of course.
 
 ````
-> tutorial.helpers::show_file("quarto-1.qmd", chunk = "Last")
+R 4.4.3> tutorial.helpers::show_file("quarto-1.qmd", chunk="Last")
 theme_custom <- theme_minimal(base_size = 14) +
   theme(
     plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
@@ -515,7 +563,7 @@ penguins |>
       caption = "Data from the palmerpenguins package"
     ) +
   theme_custom
->
+R 4.4.3> 
 ````
 
 Generative AI is the biggest change in the day-to-day work of data scientists in the last 30 years. Use it every chance you get.
@@ -524,7 +572,7 @@ Generative AI is the biggest change in the day-to-day work of data scientists in
 
 Our plot looks nice! Let's share it with the world!
 
-From the Terminal, run `quarto publish gh-pages quarto-1.qmd`. CP/CR.
+From the Terminal, run `quarto publish gh-pages quarto-1.qmd`. Copy and paste the link to your new website:
 
 ```{r project-1-13}
 question_text(NULL,
@@ -537,45 +585,21 @@ question_text(NULL,
 
 ###
 
-That command generates a lot of text. Let me highlight some key parts:
-
-<!-- This looks a little ugly in that you can't easily see what is the original output and what is my comments. Not sure why we can't just use four backticks. The text includes neither a hash mark nor triple backticks, the usual culprits.  -->
+My link is:
 
 ````
-dkane@macbook project-1 % quarto publish gh-pages quarto-1.qmd
-? Publish site to https://davidkane9.github.io/project-1/ using gh-pages? (Y/n) › Yes
+https://github.com/ppbds-student/project-1
 ````
 
-The first time you publish, Quarto will confirm the location, which is just the standard GitHub Pages address, using your user name and the repo name.
+###
 
-````
-Saved working directory and index state WIP on main: 71e6d06 initial version
-Switched to a new branch 'gh-pages'
-[gh-pages (root-commit) b8263f3] Initializing gh-pages branch
-remote: 
-remote: Create a pull request for 'gh-pages' on GitHub by visiting:        
-remote:  https://github.com/davidkane9/project-1/pull/new/gh-pages        
-remote: 
-To https://github.com/davidkane9/project-1.git
- * [new branch]      HEAD -> gh-pages
- ````
+Notice the shift in URLs: your repo lives at `github.com/username/project-1`, but the published website is at `username.github.io/project-1`. These are two distinct things --- the first is where your source code is stored, the second is a website GitHub is hosting on your behalf. The `github.io` domain is GitHub's way of signaling "this is a website, not a repository."
 
- Quarto interacts with your GitHub repo directly, creating a new branch, `gh-pages`, which will be used to construct the website. 
 
-````
-[✓] Deploying gh-pages branch to website (this may take a few minutes)
-[✓] Published to https://davidkane9.github.io/project-1/
-
-dkane@macbook project-1 % 
-```` 
-
-Quarto keeps you informed as it completes the work.
-
-<!-- Could add some screen shots from GitHub Pages site to help understand what is going on. -->
 
 ### Exercise 14
 
-Commit and sync all the files in the project. Report the URL for the new webpage.
+Commit and sync all the files in the project. Your message should be something like: "add penguin plot." From the Terminal, run `git log --oneline`. CP/CR.
 
 ```{r project-1-14}
 question_text(NULL,
@@ -588,13 +612,65 @@ question_text(NULL,
 
 ###
 
-Your URL should look like this:
+Your answer should look something like this:
 
 ````
-https://davidkane9.github.io/project-1/
+05d03bf (HEAD -> main, origin/main, origin/HEAD) add penguin plot
+e3b01ee Initial commit
 ````
 
-Note that the name of the file, `quarto-1.html`, plays no part in the URL. We told Quarto that we wanted a website with just one page, not a collection of pages. So, it could simplify by making `quarto-1.html` the default page for the `project-1` directory.
+###
+
+`git log --oneline` is just `git log` with each commit compressed to a single line: the first 7 characters of the hash, followed by the commit message. It shows the exact same history as `git log`, but without the author and date details --- useful when you just want a quick overview of what has been committed.
+
+###
+
+You might wonder why we commit *after* `quarto publish` --- the site is already live, after all. The reason is that `quarto publish` only pushed the rendered HTML to a separate `gh-pages` branch, which GitHub uses to serve the website. Your source files --- `quarto-1.qmd`, `.gitignore`, and `quarto-1.html` --- still need to be committed and synced to `main` so that your work is fully backed up on GitHub.
+
+### Exercise 15
+
+Let's verify that your work lives on GitHub independently of the Codespace. Go to your `project-1` repo on GitHub. Click the green "Code" button, then select the "Codespaces" tab. Click the `...` next to your Codespace and select "Delete".
+
+Once it is deleted, stay on the GitHub repo page and look at the file list under the `<> Code` tab. You can see that allof the files you had created are here. In the upper right of this table, you can see that there have been 3 commits to the repo and that the last commit was made recently. Click on the "3 commits" button.
+
+```{r}
+include_graphics("images/p1-gh-repo-code.png")
+```
+
+Now you can see the history of commits to this repo. Copy and past this table.	
+
+```{r project-1-15}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your answer should show something like:
+
+```
+add penguin plot
+ppbds-student
+ppbds-student
+committed
+5 minutes ago
+initial version
+ppbds-student
+ppbds-student
+committed
+53 minutes ago
+Initial commit
+ppbds-student
+ppbds-student
+authored
+1 hour ago
+```
+
+The Codespace is gone, but every file you committed is still here. The Codespace was just a temporary workspace --- a computer GitHub lent you to do your work. GitHub itself was always the permanent home for your project. This is why we commit and sync so often: not to save our work *to* the Codespace, but to save it *through* the Codespace to GitHub.
 
 ## Project 2
 ### 
