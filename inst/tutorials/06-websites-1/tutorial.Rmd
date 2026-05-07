@@ -39,10 +39,14 @@ And I also think it is bundled with Positron somehow?
 
 AR: not my comment, but is this no longer relevant with Codespaces changes? -->
 
+<!-- AR: No longer creating a README - is that okay? -->
+
 ## Introduction
 ### 
 
 This tutorial introduces the process of creating and organizing [Quarto websites](https://quarto.org/docs/websites/) using the [Quarto CLI](https://quarto.org/docs/get-started/) (command line interface) and commands like `quarto create`, `quarto render`, `quarto preview`, and `quarto publish`. Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
+
+This [video](https://www.youtube.com/watch?v=uimdXPZc40I) provides an overview of creating Quarto websites using GitHub Pages, which is what we will do in this tutorial.
 
 ### 
 
@@ -55,7 +59,9 @@ Let's make a [Quarto website](https://quarto.org/docs/websites/).
 
 ### Exercise 1
 
-On Github create a new public Github repo (called `first-website`). Set the "Add README" toggle switch to "On." Copy/paste the URL for its Github location.
+<!-- AR: is this exercise helpful? -->
+
+Verify that you have created a new public Github repo (called `06-websites-1`). Copy/paste the URL for the repo.
 
 ```{r creating-files-1}
 question_text(NULL,
@@ -71,38 +77,10 @@ question_text(NULL,
 Your answer should look something like:
 
 ```
-https://github.com/davidkane9/first-website
+https://github.com/ppbds-student/06-websites-1
 ```
 
 Always start a new data science project with a new Github repo.
-
-
-### Exercise 2
-
-In the other window, connect the `first-website` Github repo to a project on your computer using the usual procedure: `File -> New Folder from Git...` and so on.  
-
-You may need to close the "Welcome" window and start an R interpreter for the R Terminal. 
-
-From the Terminal (in the other window), run `ls`. CP/CR.
-
-```{r creating-files-2}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-```
-dkane@macbook first-website % ls
-README.md
-dkane@macbook first-website % 
-```
-
-This [video](https://www.youtube.com/watch?v=uimdXPZc40I) provides an overview of creating Quarto websites using GitHub Pages, which is what we will do in this tutorial.
 
 ### Exercise 3
 
@@ -156,8 +134,8 @@ question_text(NULL,
 
 ````
 dkane@macbook first-website % ls
-README.md       _quarto.yml     about.qmd       index.qmd       styles.css
-dkane@macbook first-website %     
+_quarto.yml     about.qmd       index.qmd       styles.css
+dkane@macbook first-website %
 ````
 
 The basic set of files necessary for making a Quarto website has been added to the current directory. But recall that `ls` does not show any "hidden" files, i.e., those beginning with a `.`.
@@ -179,9 +157,9 @@ question_text(NULL,
 
 ````
 dkane@macbook first-website % ls -a
-.               .git            README.md       about.qmd       styles.css
+.               .git            about.qmd       styles.css
 ..              .gitignore      _quarto.yml     index.qmd
-dkane@macbook first-website % 
+dkane@macbook first-website %
 ````
 
 In general, we do not touch/manipulate "dot" directories, meaning directories whose names begin with a period. Such directories are meant to be used by the operating system and/or other programs. For example, the program Git uses the `.git` directory to store information about changes in all the files in the project.  Also, note that `quarto create` added a `.gitignore` file, which we did not see after issuing the simple `ls` command.
@@ -453,9 +431,9 @@ question_text(NULL,
 
 ````
 dkane@macbook first-website % ls
-README.md       _site           index.qmd
+_site           index.qmd
 _quarto.yml     about.qmd       styles.css
-dkane@macbook first-website % 
+dkane@macbook first-website %
 ````
 
 Note the addition of a `_site` directory. This is the location in which the HTML files that make up the website are located. The web pages which make up a website are often placed in a directory named either `_site` or `docs`, depending on the setup of your web hosting service.
