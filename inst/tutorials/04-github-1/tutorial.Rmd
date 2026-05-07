@@ -31,13 +31,13 @@ options(tutorial.exercise.timelimit = 60,
 ```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
 ```
 
-<!-- Change First-Repo to `repo-1`. Then, update all the relevant PNG files. -->
+<!-- Change First-Repo to `repo-1`. Then, update all the relevant PNG files. AR: repo now named 04-github-1 that's what's in the images. Okay? -->
 
 <!-- Stop being afraid of the command line. Use lots of git commands.  -->
 
-<!-- Should we be using suppressPack..() and execute: trickery in our publishing example? Or should we make it simpler, just using code chunk options?  -->
+<!-- Should we be using suppressPack..() and execute: trickery in our publishing example? Or should we make it simpler, just using code chunk options? -->
 
-<!-- Should we have a repo-3? Only if this tutorial only takes 45 minutes now, which I doubt. -->
+<!-- Should we have a repo-3? Only if this tutorial only takes 45 minutes now, which I doubt. AR: Check timing, then decide? or close this out? -->
 
 ## Introduction
 ### 

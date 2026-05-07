@@ -45,9 +45,9 @@ Make sure you tell them that every tutorial going forward will be run from a rep
 -->
 
 
-<!-- Won't just about everyone doing this tutorial be in their projects directory? So I should be too! -->
+<!-- Won't just about everyone doing this tutorial be in their projects directory? So I should be too! AR: no longer relevant for codespaces-->
 
-<!-- The second time we use echo, we act like we haven't explained it before. -->
+<!-- The second time we use echo, we act like we haven't explained it before. AR: now we explain in knowledge drop after its first use. -->
 
 <!-- Might be useful to add a test which confirms that those files exist, before we ask students to download them. Of course, that will only work if we have web access. -->
 
@@ -1660,7 +1660,7 @@ drwxr-xr-x 2 codespace codespace 4096 Apr 30 12:00 seuss
 
 The `-l` option provides a **l**ong-format listing of the contents of the directory, including information about the type of content (file versus directory) and creation dates/times. The leading `d` in the line for `seuss` indicates that it is a directory.
 
-<!-- Give a tour of what the different columns mean? Note this is the second time we have used ls -l. -->
+<!-- Give a tour of what the different columns mean? Note this is the second time we have used ls -l. AR: now explain columns after its first use. -->
 
 ### Exercise 11
 
