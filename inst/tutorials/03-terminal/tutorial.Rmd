@@ -104,7 +104,7 @@ Your answer will look different from mine. Default prompts vary from computer to
 
 ###
 
-The prompt acts as a quick way to tell you where you are in the computer. The Terminal is sensitive to your current folder location, so keep this in mind.
+The prompt acts as a quick way to tell you where you are on the computer. The Terminal is sensitive to your current folder location, so keep this in mind.
 
 ### Exercise 2
 
@@ -501,8 +501,6 @@ Get in the habit of using the tab key. Avoid typing whenever possible. Be lazy!
 
 Use `echo "" >` to make a text file inside `fruits`, named `pineapple.txt`. Recall that your current location --- i.e., your working directory --- is now `fruits`. So, to make a new file within `fruits`, you just need `echo "" > pineapple.txt`. Run `ls` to confirm. CP/CR.
 
-###
-
 ```{r paths-7}
 question_text(NULL,
     answer(NULL, correct = TRUE),
@@ -522,15 +520,13 @@ pineapple.txt
 ````
 ###
 
-`pineapple.txt` is still a relative path, but since the file is directly inside the assumed starting point, i.e. the working directory, the name of the file is all we need. If we had used `lessons/fruits/apple.txt`, as we would have had to do if our working directory were `paths`, we would have gotten an error because those directories would not be recognized from our actual starting point of `fruits`.
+`pineapple.txt` is still a relative path, but since the file is directly inside the assumed starting point, i.e., the working directory, the name of the file is all we need. If we had used `lessons/fruits/apple.txt`, as we would have had to do if our working directory were `paths`, we would have gotten an error because those directories would not be recognized from our actual starting point of `fruits`.
 
 Read this paragraph again. No skimming!
 
 ### Exercise 8
 
 Use `echo` to make two more text files inside `fruits`, named `pear.txt` and `does-not-belong`. That is, run `echo "" > pear.txt & echo "" > does-not-belong`. Confirm by running `ls`. CP/CR.
-
-###
 
 ```{r paths-8}
 question_text(NULL,
@@ -576,7 +572,8 @@ Your answer should look like this:
 
 ###
 
-`..` is shorthand for the directory immediately above the current working directory. 
+`..` is shorthand for the directory immediately above the current working directory.
+
 ### Exercise 10
 
 Use `mkdir` to make a directory within `lessons`, named `tbd`. Run `ls` to confirm. CP/CR.
@@ -681,14 +678,14 @@ question_text(NULL,
 
 ###
 
-In olden times, professional programmers would spend a lot of time learning the various options to commands like `rm`. Now, we just ask ChatGPT or a similar tool.
+In olden times, professional programmers would spend a lot of time learning the various options for commands like `rm`. Now, we just ask ChatGPT or a similar tool.
 
 <!-- Could have them ask ChatGPT to do something and then do it. -->
 
 ## Important symbols
 ###
 
-We have seen two important symbols --- `..` and `.` --- already. This section will explore those along with `~`.  The most common English terms for these symbols are "dot" for `.`, "dot dot" for `..`, and "tilde" for `~`. The `.` symbol indicates the current directory. The `..` symbol is for the directory one above the current directory. The `~` symbol is for your "home" directory.
+We have seen two important symbols --- `..` and `.` --- already. This section will explore those along with `~`. The most common English terms for these symbols are "dot" for `.`, "dot dot" for `..`, and "tilde" for `~`. The `.` symbol indicates the current directory. The `..` symbol is for the directory one level above the current directory. The `~` symbol is for your "home" directory.
 
 ### Exercise 1
 
@@ -2021,7 +2018,7 @@ ate.txt
 
 This shows how three different commands can be run from one command line.
 
-The extra `""` toward the end of the command ensures that there is a blank line at the end of the file, which is always a good idea when working with text files.
+The extra `""` at the end of the command ensures that there is a blank line at the end of the file, which is always a good idea when working with text files.
 
 ### Exercise 3
 
@@ -2090,7 +2087,7 @@ include_graphics("images/grepping-gh-webpage.png")
 
 Copy the URL in your address bar. It should begin with `https://raw.githubusercontent.com/`.
 
-Back in your Codespace, move to the `03-terminal` directory. Then run the following command, replacing `URL` with the URL for the raw file:
+Back in your Codespace, run `cd ..` to return to `codespace-starter`. Then run the following command, replacing `URL` with the URL for the raw file:
 
 ````
 curl -o grepping/grepping.txt URL
@@ -2237,7 +2234,7 @@ aRe
 @ppbds-student ➜ /workspaces/codespace-starter/grepping (main) $
 ````
 
-`egrep` is an even more powerful version of `grep`.  Learning more about `egrep` is beyond the scope of this tutorial.
+`egrep` is an even more powerful version of `grep`. Learning more about `egrep` is beyond the scope of this tutorial.
 
 ### Exercise 10
 
