@@ -221,7 +221,7 @@ my.txt
 @ppbds-student ➜ /workspaces/codespace-starter/example (main) $
 ````
 
-`echo "" > my.txt` creates an empty file. `echo` just repeats whatever follows, which is an empty quote in this case. `>`, which we will discuss more later, pipes whatever comes before it into whatever comes after it.
+`echo "" > my.txt` creates an empty file. `echo` just repeats whatever follows, which is an empty quote in this case. `>`, which we will discuss more later, redirects whatever comes before it into whatever comes after it.
 
 
 ### Exercise 7
@@ -495,7 +495,7 @@ question_text(NULL,
 
 ###
 
-Get in the practice of using the tab key. Avoid typing whenever possible. Be lazy!
+Get in the habit of using the tab key. Avoid typing whenever possible. Be lazy!
 
 ### Exercise 7
 
@@ -576,8 +576,7 @@ Your answer should look like this:
 
 ###
 
-`..` is shorthand for the directory immediately above the current working directory. The phrase "current working directory" is a bit redundant. You don't need the word "current."
-
+`..` is shorthand for the directory immediately above the current working directory. 
 ### Exercise 10
 
 Use `mkdir` to make a directory within `lessons`, named `tbd`. Run `ls` to confirm. CP/CR.
@@ -600,7 +599,7 @@ fruits  tbd
 @ppbds-student ➜ /workspaces/codespace-starter/paths/lessons (main) $
 ````
 
-In the same way that `..` refers to the directory above the current directory, `.` --- a single period --- refers to the current directory, the one in which we are currently located.
+In the same way that `..` refers to the directory above the current directory, `.` --- a single period --- refers to the current directory.
 
 ### Exercise 11
 
@@ -819,7 +818,7 @@ My answer looks like this:
 @ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $
 ````
 
-The absolute path for my current location, meaning my current working directory, contains these locations.
+The absolute path for my current working directory breaks down into these components.
 
 * The starting `/` indicates the root, or origin, of the file system. There is no directory higher than the root directory.
 
@@ -1048,8 +1047,6 @@ Your answer should look like:
 @ppbds-student ➜ /workspaces/codespace-starter/options (main) $
 ````
 
-Note how the prompt has changed because I am now in the `options` directory.
-
 ### Exercise 6
 
 Run `ls $HOME`. This should generate a list of the items in your home directory.
@@ -1140,15 +1137,6 @@ Note how my computer has added a `.txt` suffix to the file. Your computer might 
 
 Move the `AUTHORS` file to the current directory, which is `options`, using `mv`. Check with `ls` to confirm that it worked. CP/CR.
 
-For me, this looks like:
-
-````
-@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ mv /home/codespace/Downloads/AUTHORS.txt .
-@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ ls
-AUTHORS.txt
-@ppbds-student ➜ /workspaces/codespace-starter/options (main) $
-````
-
 ```{r options-9}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
@@ -1160,7 +1148,16 @@ question_text(NULL,
 
 ###
 
-Like `mv`, `cp` can change a file name. Like `mv`, if the destination file name is omitted, `cp` will retain the same name by default.
+For me, this looks like:
+
+````
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ mv /home/codespace/Downloads/AUTHORS.txt .
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ ls
+AUTHORS.txt
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $
+````
+
+Like `mv`, `cp` can change a file name; if the destination file name is omitted, both commands retain the original name by default.
 
 ### Exercise 10
 
@@ -1606,7 +1603,7 @@ afiles.txt      ate.txt         cat.txt         hat.txt
 @ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $
 ````
 
-You can use your `up` and `down` arrow keys to navigate command history. The `>` symbol outputs the result of the left-hand command into the right-hand location.
+You can use your `up` and `down` arrow keys to navigate command history. The `>` symbol redirects the result of the left-hand command into the specified file.
 
 ### Exercise 9
 
@@ -1831,7 +1828,7 @@ This is the location for the R package that contains this tutorial. Click on the
 Click on the "Download raw file" symbol to download the `TODO.txt` file to your computer. Most computers have a `Downloads` directory.
 
 ```{r}
-knitr:: include_graphics("images/download-file.png")
+knitr::include_graphics("images/download-file.png")
 ```
 
 Find the location of the file using Finder (Mac) or File Explorer (Windows). You'll need to know where this file exists on your computer in order to upload it to your Codespace. Back in your Codespace, drag and drop `TODO.txt` into the `files` directory in the File Explorer.
@@ -2091,7 +2088,7 @@ Then navigate to the URL for the raw text file.
 include_graphics("images/grepping-gh-webpage.png")
 ```
 
-Copy the URL in your address bar. It will should begin with `https://raw.githubusercontent.com/`.
+Copy the URL in your address bar. It should begin with `https://raw.githubusercontent.com/`.
 
 Back in your Codespace, move to the `03-terminal` directory. Then run the following command, replacing `URL` with the URL for the raw file:
 
@@ -2264,7 +2261,7 @@ question_text(NULL,
 @ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
-All tutorials in this series use `/workspaces/codespace-starter` as the default working directory.
+This tutorial uses `/workspaces/codespace-starter` as the default working directory.
 
 ### Exercise 11
 
@@ -2430,7 +2427,7 @@ question_text(NULL,
 
 ###
 
-In **all future tutorials**, you will create a new Github repo from the codespace starter and then open a new Codespace from the new repo's page by clicking the green "Code" drop-down button in the upper right, selecting "Codespaces," and then clicking "Create Codespace on main".
+In **all future tutorials**, you will create a new GitHub repo from the codespace starter and then open a new Codespace from the new repo's page by clicking the green "Code" drop-down button in the upper right, selecting "Codespaces," and then clicking "Create Codespace on main".
 
 ## Summary
 ###
