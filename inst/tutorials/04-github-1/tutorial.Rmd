@@ -31,13 +31,13 @@ options(tutorial.exercise.timelimit = 60,
 ```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
 ```
 
-<!-- Change First-Repo to `repo-1`. Then, update all the relevant PNG files. -->
+<!-- Change First-Repo to `repo-1`. Then, update all the relevant PNG files. AR: repo now named 04-github-1 that's what's in the images. Okay? -->
 
 <!-- Stop being afraid of the command line. Use lots of git commands.  -->
 
-<!-- Should we be using suppressPack..() and execute: trickery in our publishing example? Or should we make it simpler, just using code chunk options?  -->
+<!-- Should we be using suppressPack..() and execute: trickery in our publishing example? Or should we make it simpler, just using code chunk options? -->
 
-<!-- Should we have a repo-3? Only if this tutorial only takes 45 minutes now, which I doubt. -->
+<!-- Should we have a repo-3? Only if this tutorial only takes 45 minutes now, which I doubt. AR: Check timing, then decide? or close this out? -->
 
 ## Introduction
 ### 
@@ -55,12 +55,51 @@ You've already been creating and storing Git repositories on GitHub. Now, we'll 
 
 [Git](https://en.wikipedia.org/wiki/Git) is "software for tracking changes in any set of files, usually used for coordinating work among programmers collaboratively developing source code during software development."
 
-
 ### Exercise 1
+
+You must do this tutorial in a Codespace created from a Github repo named '04-github-1'. If you haven't already done this, follow these steps:
+
+1. Create a GitHub Repo: go to the [codespace-starter repo] (https://github.com/ppbds-student/codespace-starter). Click the green "Use this Template" drop-down button and select "Create a new repository". On the next page name the repo `04-github-1`. Then click "Create repository".
+
+2. Create a Codespace from `04-github-1`: From this repo's page, click the green "Code" drop down button, in the top right, then select the "Codespaces" tab and then click "Create Codespace on main".
+
+```{r}
+include_graphics("images/create-codespace.png")
+```
+
+Copy and paste the URLS for:
+
+1. Your `04-github-1` repository.
+
+2. Your Codespace.
+
+```{r using-git-1}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your answer should look something like:
+
+````
+https://github.com/ppbds-student/04-github-1
+https://congenial-chainsaw-wv757pv4pp67cpw.github.dev/
+````
+
+###
+
+Notice the two URLs look quite different. Your repo URL (`github.com/...`) is where your code lives — think of it as the filing cabinet. Your Codespace URL (`*.github.dev`) is where you work on that code — the desk you sit at to open, edit, and run files. The filing cabinet exists permanently on GitHub; the desk is spun up on demand and shut down when you're done.
+
+### Exercise 2
 
 At the Terminal, run `pwd`. CP/CR.
 
-```{r using-git-1}
+```{r using-git-2}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -81,11 +120,11 @@ Your answer should look like:
 
 You should be in a directory named `04-github-1`. By default, creating a repo from the Codespace starter and opening a Codespace creates this root directory.
 
-### Exercise 2
+### Exercise 3
 
 At the Terminal, run `ls`. CP/CR.
 
-```{r using-git-2}
+```{r using-git-3}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -105,11 +144,11 @@ Your answer should look like:
 
 There are no non-hidden files or directories in the repository so far.
 
-### Exercise 3
+### Exercise 4
 
 At the Terminal, run `ls -a`. The `a` option tells `ls` to show all directories and files, including hidden ones, which start with a dot (`.`). CP/CR.
 
-```{r using-git-3}
+```{r using-git-4}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -134,7 +173,7 @@ Your answer should look like:
 
 Unless you have a good reason, you should never mess with the contents of a hidden directory like `.git`.
 
-### Exercise 4
+### Exercise 5
 
 At the Terminal, create a new Quarto document. From the three horizontal bar icon in the Activity Bar, select `File -> New File...`, then select `Quarto Document` from the drop-down menu. This opens the new file in the Editor.
 
@@ -156,7 +195,7 @@ Then run `cat analysis-1.qmd`.
 
 CP/CR.
 
-```{r using-git-4}
+```{r using-git-5}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -181,7 +220,7 @@ format: html
 ````
 
 
-### Exercise 5
+### Exercise 6
 
 Click the Source Control button in the Activity Bar. This opens the Source Control pane, which is an interface to using Git and GitHub.
 
@@ -195,7 +234,7 @@ Render `analysis-1.qmd` with `Cmd/Ctrl + Shift + K`.
 
 The Terminal tab is filled with a bunch of commands. Copy/paste the last few lines.
 
-```{r using-git-5}
+```{r using-git-6}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -221,7 +260,7 @@ Watching files for changes
 Browse at http://localhost:7383/
 ````
 
-### Exercise 6
+### Exercise 7
 
 The VS Code window has changed quite a bit. The Viewer tab has appeared, showing the HTML. The Source Control pane now includes many new files. The Terminal tab is not showing a prompt.
 
@@ -230,7 +269,7 @@ We can stop the preview of `analysis-1.qmd` by typing `Ctrl + c` in the Terminal
 
 From the Terminal, run `ls`. CP/CR.
 
-```{r using-git-6}
+```{r using-git-7}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -251,7 +290,7 @@ analysis-1_files  analysis-1.html  analysis-1.qmd
 
 The bottom part of the Source Control pane shows the history of changes in this repo.
 
-### Exercise 7
+### Exercise 8
 
 Look more closely at the Source Control pane:
 
@@ -264,7 +303,7 @@ We have many new files, like `analysis-1.html`, created when we rendered `analys
 From the Terminal, run `ls -R analysis-1_files`. The `-R` option means **r**ecursive. CP/CR.
 
 
-```{r using-git-7}
+```{r using-git-8}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -305,13 +344,13 @@ tabsets.js
 
 Whenever you render a document using Quarto, it creates a directory called `base-name-of-your-file_files`. Since the base name of `analysis-1.qmd` is `analysis-1`, the new directory is `analysis-1_files`. This directory is filled with the programs, information, and other files that helped turn `analysis-1.qmd` into `analysis-1.html`. This is mostly confusing stuff that we should ignore. In fact, we usually don't even want it monitored by Git or stored on GitHub.
 
-### Exercise 8
+### Exercise 9
 
 From the three horizontal bar icon, `File -> New Text File`. Save this new file as `.gitignore`. (Don't forget the leading period.) 
 
 From the Terminal, run `ls -a`. CP/CR.
 
-```{r using-git-8}
+```{r using-git-9}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -332,13 +371,13 @@ Your answer should look like:
 
 Because `.gitignore` begins with a `.`, it is a hidden file. It would not appear if we just used `ls`. Note that the Source Control pane now shows a new file, `.gitignore` with an associated "U", meaning it is also untracked.
 
-### Exercise 9
+### Exercise 10
 
 The purpose of the `.gitignore` file is to specify the files and directories that **Git** should **ignore**. Add a new line to the file, `analysis-1_files`, followed by an empty line. Save your changes.
 
 From the Terminal, run `cat .gitignore`. CP/CR.
 
-```{r using-git-9}
+```{r using-git-10}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -368,7 +407,7 @@ include_graphics("images/analysis-git-3.png")
 Now, according to Git, there have been only three changes to the repo. (Of course, there have been more changes, but Git is ignoring anything that resides in `analysis-1_files`.) Three files, `analysis-1.qmd`, `analysis-1.html`, and `.gitignore`, are untracked (U).
 
 
-### Exercise 10
+### Exercise 11
 
 In the box above the "Commit" button, add "initial version" as your commit comment. Press the "Commit" button. You will see a dialog box like this:
 
@@ -380,7 +419,7 @@ Press "Yes". In the future, you might click on "Always" so that this dialog stop
 
 From the Terminal, run `git log`. CP/CR.
 
-```{r using-git-10}
+```{r using-git-11}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -410,13 +449,13 @@ Date:   Fri May 1 13:28:01 2026 -0400
 
 `git log` generates a record --- a "log" --- of all the Git actions we have taken. In this case, you can see that we have committed changes twice. The first commit was done behind the scenes when we created the project by connecting to GitHub. The second commit is the one we just made, which adds `analysis-1.qmd`, `.gitignore`, and `analysis-1.html`. 
 
-### Exercise 11
+### Exercise 12
 
 Return to editing `analysis-1.qmd`. Add a line beginning with your actual name: "[Your name] is a data maestro!" Make sure there is a blank line at the end of the document, and save.
 
 Run `cat analysis-1.qmd`. CP/CR.
 
-```{r using-git-11}
+```{r using-git-12}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -443,7 +482,7 @@ PPBDS student is a data maestro!
 ````
 
 
-### Exercise 12
+### Exercise 13
 
 Within the Source Control pane, press the "Open File" button for `analysis-1.qmd`, which is the first of four symbols to the right of the file name. 
 
@@ -455,7 +494,7 @@ Notice how there is now an orange "M" next to the file name. This indicates that
 
 Hold your cursor over the symbol (a curved arrow) next to the "Open File" button. What is the name for this button?
 
-```{r using-git-12}
+```{r using-git-13}
 question_text(NULL,
 	message = "Discard Changes",
 	answer(NULL, correct = TRUE),
@@ -468,11 +507,11 @@ question_text(NULL,
 
 Clicking this button gets rid of any changes made since the last time you told Git to save them. 
 
-### Exercise 13
+### Exercise 14
 
 Hold your cursor over the symbol --- `+`, a plus sign --- next to the "Discard Changes" button. What is the name for this button?
 
-```{r using-git-13}
+```{r using-git-14}
 question_text(NULL,
 	message = "Stage Changes",
 	answer(NULL, correct = TRUE),
@@ -485,13 +524,13 @@ question_text(NULL,
 
 Saving changes in Git is, in theory, a two-step process. The first step is to "stage" the changes. The second step is to "commit" the changes. For the most part, we don't stage. We just "commit," which incorporates the staging process automatically.
 
-### Exercise 14
+### Exercise 15
 
 Commit the changes with a comment like "added sentence". 
 
 Run `git log`. CP/CR the latest entry.
 
-```{r using-git-14}
+```{r using-git-15}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -513,7 +552,7 @@ Date:   Fri May 1 19:41:05 2026 +0000
     added sentence
 ````
 
-### Exercise 15
+### Exercise 16
 
 The Source Control pane now looks like this:
 
@@ -523,7 +562,7 @@ include_graphics("images/analysis-1-post-commit.png")
 
 Although you have committed your changes to Git --- i.e., the changes have been made locally --- you still need to "push" the changes to GitHub.  Hover your cursor over the "Sync Changes" button. What does the pop-up say?
 
-```{r using-git-15}
+```{r using-git-16}
 question_text(NULL,
 	message = "Push 2 commits to origin/main",
 	answer(NULL, correct = TRUE),
@@ -538,7 +577,7 @@ The term "origin/main" refers to the "main" branch on the "origin" repo, which i
 
 Note how the bottom portion of the pane, the Source Control Graph, now has two items. Before you committed, it had just one. The Source Control Graph shows the Git history of this repo.
 
-### Exercise 16
+### Exercise 17
 
 Press the "Sync Changes" button.
 
@@ -554,7 +593,7 @@ Notice how the purple cloud icon, representing the remote tracking branch on Git
 
 From the Terminal, run `git log` again. CP/CR.
 
-```{r using-git-16}
+```{r using-git-17}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -590,7 +629,7 @@ This looks the same as before, except that "(HEAD -> main)" in the top line has 
 
 A term like "commit be56bbaedd692a6d29bba410f0a6fd5b1d844a64" gives us the address of that commit. We can use that string to revert to the codebase as it looked after that commit.
 
-### Exercise 17
+### Exercise 18
 
 If you look at the GitHub page for `04-github-1`, you will see that the changes have been pushed to GitHub. If your computer stops working, you won't lose any of your work.
 
@@ -606,7 +645,7 @@ include_graphics("images/analysis-1-gh-2.png")
 
 Copy and paste the text of this page.
 
-```{r using-git-17}
+```{r using-git-18}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -647,7 +686,11 @@ As AI writes more and more of our code, it's becoming increasingly important to 
 ## Publishing with GitHub Pages
 ### 
 
-<!-- DK: Put something. Something about Netifly and other services. -->
+<!-- DK: Put something. Something about Netifly and other services. AR: done.-->
+
+An HTML file rendered by Quarto only lives on your computer (or Codespace) — it isn't accessible to anyone else. [GitHub Pages](https://pages.github.com/) solves this by serving the static files from your GitHub repository as a public website, giving you a real URL you can share with anyone.
+
+GitHub Pages isn't the only option. [Netlify](https://www.netlify.com/), [Quarto Pub](https://quartopub.com/), and [Posit Connect](https://posit.co/products/enterprise/connect/) are some popular alternatives for hosting HTML files and websites.
 
 ### Exercise 1
 

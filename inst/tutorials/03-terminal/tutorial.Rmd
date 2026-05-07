@@ -32,22 +32,22 @@ options(tutorial.exercise.timelimit = 60,
 
 <!-- DK: Add at end 
 
-Change repo name to `my-repo`. 
+Change repo name to `my-repo`. AR: done in text and pic.
 
-They need to show you the url.
+They need to show you the url. AR: Done.
 
-No need to create codespace.
+No need to create codespace. AR: Done.
 
-Make sure that they delete this repo at the end, show them the Settings tab and the Delete button at the bottom.
+Make sure that they delete this repo at the end, show them the Settings tab and the Delete button at the bottom. AR: done.
 
-Make sure you tell them that every tutorial going forward will be run from a repo you create at the start, example `04-github-1`, `07-website-2` and so on.
+Make sure you tell them that every tutorial going forward will be run from a repo you create at the start, example `04-github-1`, `07-website-2` and so on. AR: done.
 
 -->
 
 
-<!-- Won't just about everyone doing this tutorial be in their projects directory? So I should be too! -->
+<!-- Won't just about everyone doing this tutorial be in their projects directory? So I should be too! AR: no longer relevant for codespaces-->
 
-<!-- The second time we use echo, we act like we haven't explained it before. -->
+<!-- The second time we use echo, we act like we haven't explained it before. AR: now we explain in knowledge drop after its first use. -->
 
 <!-- Might be useful to add a test which confirms that those files exist, before we ask students to download them. Of course, that will only work if we have web access. -->
 
@@ -104,7 +104,7 @@ Your answer will look different from mine. Default prompts vary from computer to
 
 ###
 
-The prompt acts as a quick way to tell you where you are in the computer. The Terminal is sensitive to your current folder location, so keep this in mind.
+The prompt acts as a quick way to tell you where you are on the computer. The Terminal is sensitive to your current folder location, so keep this in mind.
 
 ### Exercise 2
 
@@ -221,7 +221,7 @@ my.txt
 @ppbds-student ➜ /workspaces/codespace-starter/example (main) $
 ````
 
-`echo "" > my.txt` creates an empty file. `echo` just repeats whatever follows, which is an empty quote in this case. `>`, which we will discuss more later, pipes whatever comes before it into whatever comes after it.
+`echo "" > my.txt` creates an empty file. `echo` just repeats whatever follows, which is an empty quote in this case. `>`, which we will discuss more later, redirects whatever comes before it into whatever comes after it.
 
 
 ### Exercise 7
@@ -495,13 +495,11 @@ question_text(NULL,
 
 ###
 
-Get in the practice of using the tab key. Avoid typing whenever possible. Be lazy!
+Get in the habit of using the tab key. Avoid typing whenever possible. Be lazy!
 
 ### Exercise 7
 
 Use `echo "" >` to make a text file inside `fruits`, named `pineapple.txt`. Recall that your current location --- i.e., your working directory --- is now `fruits`. So, to make a new file within `fruits`, you just need `echo "" > pineapple.txt`. Run `ls` to confirm. CP/CR.
-
-###
 
 ```{r paths-7}
 question_text(NULL,
@@ -522,15 +520,13 @@ pineapple.txt
 ````
 ###
 
-`pineapple.txt` is still a relative path, but since the file is directly inside the assumed starting point, i.e. the working directory, the name of the file is all we need. If we had used `lessons/fruits/apple.txt`, as we would have had to do if our working directory were `paths`, we would have gotten an error because those directories would not be recognized from our actual starting point of `fruits`.
+`pineapple.txt` is still a relative path, but since the file is directly inside the assumed starting point, i.e., the working directory, the name of the file is all we need. If we had used `lessons/fruits/apple.txt`, as we would have had to do if our working directory were `paths`, we would have gotten an error because those directories would not be recognized from our actual starting point of `fruits`.
 
 Read this paragraph again. No skimming!
 
 ### Exercise 8
 
 Use `echo` to make two more text files inside `fruits`, named `pear.txt` and `does-not-belong`. That is, run `echo "" > pear.txt & echo "" > does-not-belong`. Confirm by running `ls`. CP/CR.
-
-###
 
 ```{r paths-8}
 question_text(NULL,
@@ -576,7 +572,7 @@ Your answer should look like this:
 
 ###
 
-`..` is shorthand for the directory immediately above the current working directory. The phrase "current working directory" is a bit redundant. You don't need the word "current."
+`..` is shorthand for the directory immediately above the current working directory.
 
 ### Exercise 10
 
@@ -600,7 +596,7 @@ fruits  tbd
 @ppbds-student ➜ /workspaces/codespace-starter/paths/lessons (main) $
 ````
 
-In the same way that `..` refers to the directory above the current directory, `.` --- a single period --- refers to the current directory, the one in which we are currently located.
+In the same way that `..` refers to the directory above the current directory, `.` --- a single period --- refers to the current directory.
 
 ### Exercise 11
 
@@ -682,14 +678,14 @@ question_text(NULL,
 
 ###
 
-In olden times, professional programmers would spend a lot of time learning the various options to commands like `rm`. Now, we just ask ChatGPT or a similar tool.
+In olden times, professional programmers would spend a lot of time learning the various options for commands like `rm`. Now, we just ask ChatGPT or a similar tool.
 
 <!-- Could have them ask ChatGPT to do something and then do it. -->
 
 ## Important symbols
 ###
 
-We have seen two important symbols --- `..` and `.` --- already. This section will explore those along with `~`.  The most common English terms for these symbols are "dot" for `.`, "dot dot" for `..`, and "tilde" for `~`. The `.` symbol indicates the current directory. The `..` symbol is for the directory one above the current directory. The `~` symbol is for your "home" directory.
+We have seen two important symbols --- `..` and `.` --- already. This section will explore those along with `~`. The most common English terms for these symbols are "dot" for `.`, "dot dot" for `..`, and "tilde" for `~`. The `.` symbol indicates the current directory. The `..` symbol is for the directory one level above the current directory. The `~` symbol is for your "home" directory.
 
 ### Exercise 1
 
@@ -819,7 +815,7 @@ My answer looks like this:
 @ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $
 ````
 
-The absolute path for my current location, meaning my current working directory, contains these locations.
+The absolute path for my current working directory breaks down into these components.
 
 * The starting `/` indicates the root, or origin, of the file system. There is no directory higher than the root directory.
 
@@ -1048,8 +1044,6 @@ Your answer should look like:
 @ppbds-student ➜ /workspaces/codespace-starter/options (main) $
 ````
 
-Note how the prompt has changed because I am now in the `options` directory.
-
 ### Exercise 6
 
 Run `ls $HOME`. This should generate a list of the items in your home directory.
@@ -1140,15 +1134,6 @@ Note how my computer has added a `.txt` suffix to the file. Your computer might 
 
 Move the `AUTHORS` file to the current directory, which is `options`, using `mv`. Check with `ls` to confirm that it worked. CP/CR.
 
-For me, this looks like:
-
-````
-@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ mv /home/codespace/Downloads/AUTHORS.txt .
-@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ ls
-AUTHORS.txt
-@ppbds-student ➜ /workspaces/codespace-starter/options (main) $
-````
-
 ```{r options-9}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
@@ -1160,7 +1145,16 @@ question_text(NULL,
 
 ###
 
-Like `mv`, `cp` can change a file name. Like `mv`, if the destination file name is omitted, `cp` will retain the same name by default.
+For me, this looks like:
+
+````
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ mv /home/codespace/Downloads/AUTHORS.txt .
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ ls
+AUTHORS.txt
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $
+````
+
+Like `mv`, `cp` can change a file name; if the destination file name is omitted, both commands retain the original name by default.
 
 ### Exercise 10
 
@@ -1606,7 +1600,7 @@ afiles.txt      ate.txt         cat.txt         hat.txt
 @ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $
 ````
 
-You can use your `up` and `down` arrow keys to navigate command history. The `>` symbol outputs the result of the left-hand command into the right-hand location.
+You can use your `up` and `down` arrow keys to navigate command history. The `>` symbol redirects the result of the left-hand command into the specified file.
 
 ### Exercise 9
 
@@ -1666,7 +1660,7 @@ drwxr-xr-x 2 codespace codespace 4096 Apr 30 12:00 seuss
 
 The `-l` option provides a **l**ong-format listing of the contents of the directory, including information about the type of content (file versus directory) and creation dates/times. The leading `d` in the line for `seuss` indicates that it is a directory.
 
-<!-- Give a tour of what the different columns mean? Note this is the second time we have used ls -l. -->
+<!-- Give a tour of what the different columns mean? Note this is the second time we have used ls -l. AR: now explain columns after its first use. -->
 
 ### Exercise 11
 
@@ -1831,7 +1825,7 @@ This is the location for the R package that contains this tutorial. Click on the
 Click on the "Download raw file" symbol to download the `TODO.txt` file to your computer. Most computers have a `Downloads` directory.
 
 ```{r}
-knitr:: include_graphics("images/download-file.png")
+knitr::include_graphics("images/download-file.png")
 ```
 
 Find the location of the file using Finder (Mac) or File Explorer (Windows). You'll need to know where this file exists on your computer in order to upload it to your Codespace. Back in your Codespace, drag and drop `TODO.txt` into the `files` directory in the File Explorer.
@@ -2024,7 +2018,7 @@ ate.txt
 
 This shows how three different commands can be run from one command line.
 
-The extra `""` toward the end of the command ensures that there is a blank line at the end of the file, which is always a good idea when working with text files.
+The extra `""` at the end of the command ensures that there is a blank line at the end of the file, which is always a good idea when working with text files.
 
 ### Exercise 3
 
@@ -2091,9 +2085,9 @@ Then navigate to the URL for the raw text file.
 include_graphics("images/grepping-gh-webpage.png")
 ```
 
-Copy the URL in your address bar. It will should begin with `https://raw.githubusercontent.com/`.
+Copy the URL in your address bar. It should begin with `https://raw.githubusercontent.com/`.
 
-Back in your Codespace, move to the `03-terminal` directory. Then run the following command, replacing `URL` with the URL for the raw file:
+Back in your Codespace, run `cd ..` to return to `codespace-starter`. Then run the following command, replacing `URL` with the URL for the raw file:
 
 ````
 curl -o grepping/grepping.txt URL
@@ -2240,7 +2234,7 @@ aRe
 @ppbds-student ➜ /workspaces/codespace-starter/grepping (main) $
 ````
 
-`egrep` is an even more powerful version of `grep`.  Learning more about `egrep` is beyond the scope of this tutorial.
+`egrep` is an even more powerful version of `grep`. Learning more about `egrep` is beyond the scope of this tutorial.
 
 ### Exercise 10
 
@@ -2264,7 +2258,7 @@ question_text(NULL,
 @ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
-All tutorials in this series use `/workspaces/codespace-starter` as the default working directory.
+This tutorial uses `/workspaces/codespace-starter` as the default working directory.
 
 ### Exercise 11
 
@@ -2361,7 +2355,7 @@ nothing to commit, working tree clean
 @ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
-`git status` is one of the most commonly used git commands. It shows the current state of your repository. "Nothing to commit, working tree clean" means git is not aware of any new or changed files since the last commit. You will learn more about commits and tracking files in the next tutorial.
+`git status` shows the current state of your repository. "Nothing to commit, working tree clean" means git is not aware of any new or changed files since the last commit. You will learn more about commits and tracking files in the next tutorial.
 
 ### Exercise 4
 
@@ -2379,7 +2373,7 @@ Click the green "Use this template" button and select "Create a new repository."
 include_graphics("images/create-repo-from-template.png")
 ```
 
-ame the repository `04-github-1` and make sure it is set to **Public**. Leave all other settings as their defaults. Click "Create repository."
+Name the repository `my-repo` and make sure it is set to **Public**. Leave all other settings as their defaults. Click "Create repository."
 
 ```{r}
 include_graphics("images/create-new-repo.png")
@@ -2398,7 +2392,7 @@ question_text(NULL,
 
 ###
 
-It should look something like `https://github.com/your-username/04-github-1`.
+It should look something like `https://github.com/your-username/my-repo`.
 
 ###
 
@@ -2406,34 +2400,31 @@ A **GitHub repository** is a copy of your git repository hosted in the cloud. It
 
 ### Exercise 5
 
-Now create a Codespace from your new `04-github-1` repository. From your repository page on GitHub, click the green "Code" button, select the "Codespaces" tab, and click "Create codespace on main."
+Since you won't be using this repository, let's delete it. To do this go to the settings tab for `my-repo`.
 
 ```{r}
-include_graphics("images/create-codespace.png")
+include_graphics("images/repo-settings.png")
 ```
 
-A new VS Code environment will open in your browser. Once it has loaded, paste the URL of your new Codespace below.
+Then scroll to the bottom and click "Delete this repository". Follow the steps in the pop-up window to confirm deletion.
+
+```{r}
+include_graphics("images/delete-repo.png")
+```
+
 
 ```{r git-5}
 question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 2)
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
 ```
 
 ###
 
-It should look something like `https://your-username-04-github-1-randomstring.github.dev`.
-
-```{r}
-include_graphics("images/new-gh-repo-cs.png")
-```
-
-###
-
-A **Codespace** is a cloud development environment linked to a specific GitHub repository. Creating one from `04-github-1` gives you a fresh VS Code environment with that repository's files already available. This will be your workspace for the next tutorial. You can always return to it from your `04-github-1` repository page on GitHub.
+In **all future tutorials**, you will create a new GitHub repo from the codespace starter and then open a new Codespace from the new repo's page by clicking the green "Code" drop-down button in the upper right, selecting "Codespaces," and then clicking "Create Codespace on main".
 
 ## Summary
 ###
