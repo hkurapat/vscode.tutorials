@@ -104,15 +104,15 @@ question_text(NULL,
 Your answer should look like this:
 
 ````
-dkane@macbook first-website % quarto create project website .
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ quarto create project website .
 ? Title (website) › A New Website
-Creating project at /Users/dkane/Desktop/projects/first-website:
+Creating project at /workspaces/06-websites-1:
   - Created _quarto.yml
   - Created .gitignore
   - Created index.qmd
   - Created about.qmd
   - Created styles.css
-dkane@macbook first-website % 
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
 Quarto is telling you what it did: creating 5 new files and placing them in the *current* directory. Recall that, on the command line, a `.` refers to the current directory. 
@@ -133,9 +133,9 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook first-website % ls
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ ls
 _quarto.yml     about.qmd       index.qmd       styles.css
-dkane@macbook first-website %
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
 The basic set of files necessary for making a Quarto website has been added to the current directory. But recall that `ls` does not show any "hidden" files, i.e., those beginning with a `.`.
@@ -156,10 +156,10 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook first-website % ls -a
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ ls -a
 .               .git            about.qmd       styles.css
 ..              .gitignore      _quarto.yml     index.qmd
-dkane@macbook first-website %
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
 In general, we do not touch/manipulate "dot" directories, meaning directories whose names begin with a period. Such directories are meant to be used by the operating system and/or other programs. For example, the program Git uses the `.git` directory to store information about changes in all the files in the project.  Also, note that `quarto create` added a `.gitignore` file, which we did not see after issuing the simple `ls` command.
@@ -366,13 +366,13 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook first-website % git log -n 1
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ git log -n 1
 commit 658eedd63f2c3e2734484a2397935e854f5008f7 (HEAD -> main, origin/main, origin/HEAD)
-Author: David Kane <dave.kane@gmail.com>
+Author: ppbds-student <ppbds-student@users.noreply.github.com>
 Date:   Sat Mar 15 22:41:22 2025 -0400
 
     initial version
-dkane@macbook first-website % 
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
 If you want to learn more about how to work with Git/Github and R, check out [Happy Git with R](https://happygitwithr.com/existing-github-last.html), a very useful resource.
@@ -399,20 +399,20 @@ question_text(NULL,
 ### 
 
 ````
-kane@macbook first-website % quarto render
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ quarto render
 [1/2] index.qmd
 [2/2] about.qmd
 
 Output created: _site/index.html
 
-dkane@macbook first-website % 
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
 Quarto reports to us what it has done, working on our two QMD files and creating a new directory, `_site`, in which it has placed an `index.html` file. 
 
 ### 
 
-If you look at the `_site` directory in the Explorer pane, you will see lots of new files, including `about.hmtl`. Quarto just tells you about the home page for the site, which is `index.html` by default, since that is the file that browsers like Google Chrome always look for.
+If you look at the `_site` directory in the Explorer pane, you will see lots of new files, including `about.html`. Quarto just tells you about the home page for the site, which is `index.html` by default, since that is the file that browsers like Google Chrome always look for.
 
 ### Exercise 2
 
@@ -430,10 +430,10 @@ question_text(NULL,
 ###
 
 ````
-dkane@macbook first-website % ls
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ ls
 _site           index.qmd
 _quarto.yml     about.qmd       styles.css
-dkane@macbook first-website %
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
 Note the addition of a `_site` directory. This is the location in which the HTML files that make up the website are located. The web pages which make up a website are often placed in a directory named either `_site` or `docs`, depending on the setup of your web hosting service.
@@ -456,9 +456,9 @@ question_text(NULL,
 Your answer will probably look something like:
 
 ````
-dkane@macbook first-website % ls _site 
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ ls _site
 about.html      index.html      search.json     site_libs       styles.css
-dkane@macbook first-website % 
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
 The `about.html` and `index.html` files are simply the rendered `about.qmd` and `index.qmd` input files. They are placed into the `_site` directory because the convention, when constructing websites and other large projects, is to separate the outputs (HTML files) from the inputs (QMD files, in this case).
@@ -469,7 +469,7 @@ We won't discuss the `search.json` and `styles.css` files. The `site_libs` direc
 
 ### Exercise 4
 
-Look the Source Control button. Note how many new files there are. Most of this is garbage which does not belong on GitHub.
+Look at the Source Control button. Note how many new files there are. Most of this is garbage which does not belong on GitHub.
 
 Add `_site` to the `.gitignore`. Don't forget that the last line of `.gitignore` should always be blank. Save the file. 
 
@@ -499,7 +499,7 @@ _site
 >
 ````
 
-This command is [convenient](https://quarto.org/docs/publishing/github-pages.html) because the `_site` directory contains of lot of weird files that change often enough to annoy us. We don't create any of them directly, so we don't really need to back them up. Moreover, they will still get published directly to the web from our computer.
+This command is [convenient](https://quarto.org/docs/publishing/github-pages.html) because the `_site` directory contains of lot of weird files that change often enough to annoy us. We don't create any of them directly, so we don't really need to back them up. Moreover, they will still get published directly to the web from your Codespace.
 
 ### Exercise 5
 
@@ -517,7 +517,7 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook first-website % quarto preview
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ quarto preview
 Preparing to preview
 
 Watching files for changes
@@ -549,7 +549,7 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook first-website % quarto preview
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ quarto preview
 Preparing to preview
 
 Watching files for changes
@@ -692,7 +692,7 @@ To make your website publicly visible, you need to "publish" it to the web. The 
 
 ### Exercise 1
 
-Go to your `first-website` Github repository. 
+Go to your `06-websites-1` Github repository.
 
 Click on the "Settings" option on the right side of the top menu.
 
@@ -714,7 +714,7 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-https://github.com/davidkane9/first-website/settings/pages
+https://github.com/ppbds-student/06-websites-1/settings/pages
 ````
 
 This page shows the settings which control the behavior of Github pages. It should look something like this:
@@ -747,16 +747,16 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook first-website % quarto publish gh-pages
-? Publish site to https://davidkane9.github.io/first-website/ using gh-pages? (Y/n) › Yes
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ quarto publish gh-pages
+? Publish site to https://ppbds-student.github.io/06-websites-1/ using gh-pages? (Y/n) › Yes
 Saved working directory and index state WIP on main: 658eedd initial version
 Switched to a new branch 'gh-pages'
 [gh-pages (root-commit) c05d288] Initializing gh-pages branch
-remote: 
-remote: Create a pull request for 'gh-pages' on GitHub by visiting:        
-remote:      https://github.com/davidkane9/first-website/pull/new/gh-pages        
-remote: 
-To https://github.com/davidkane9/first-website.git
+remote:
+remote: Create a pull request for 'gh-pages' on GitHub by visiting:
+remote:      https://github.com/ppbds-student/06-websites-1/pull/new/gh-pages
+remote:
+To https://github.com/ppbds-student/06-websites-1.git
  * [new branch]      HEAD -> gh-pages
  ...
 ````
@@ -807,13 +807,13 @@ question_text(NULL,
 ###
 
 ````
-To https://github.com/davidkane9/first-website.git
+To https://github.com/ppbds-student/06-websites-1.git
    c05d288..0396c20  HEAD -> gh-pages
 
 [✓] Deploying gh-pages branch to website (this may take a few minutes)
-[✓] Published to https://davidkane9.github.io/first-website/
+[✓] Published to https://ppbds-student.github.io/06-websites-1/
 
-dkane@macbook first-website % 
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
 The publishing process may take a minute or two to complete. The URL for your website is provided at the end.
@@ -834,7 +834,7 @@ question_text(NULL,
 ### 
 
 ````
-https://davidkane9.github.io/first-website/
+https://ppbds-student.github.io/06-websites-1/
 ````
 
 When using GitHub Pages, the URL will always have the same base: your GitHub user name followed by `github.io`. The second part of the URL will be the name of the repo. So, use non-stupid names for your repos.
@@ -857,9 +857,9 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook first-website % ls .quarto
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ ls .quarto
 idx     preview xref
-dkane@macbook first-website % 
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
 The `.quarto` directory is like the `.git` directory. We will never look at or change the files inside of these directories. Only the relevant programs --- Quarto and Git --- should work with the contents of these directories. 
@@ -943,9 +943,9 @@ question_text(NULL,
 ### 
 
 ````
-Davids-MacBook-Pro-2:first-website dkane$ quarto publish
-? Publish update to: › https://davidkane9.github.io/first-website/ (GitHub Pages)
-From https://github.com/davidkane9/first-website
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ quarto publish
+? Publish update to: › https://ppbds-student.github.io/06-websites-1/ (GitHub Pages)
+From https://github.com/ppbds-student/06-websites-1
  * branch            gh-pages   -> FETCH_HEAD
 Rendering for publish:
 
@@ -957,18 +957,18 @@ branch 'gh-pages' set up to track 'origin/gh-pages'.
 HEAD is now at 2576ffd Built site for gh-pages
 [gh-pages f262006] Built site for gh-pages
  3 files changed, 5 insertions(+), 5 deletions(-)
-origin  https://github.com/davidkane9/first-website (fetch)
-origin  https://github.com/davidkane9/first-website (push)
-To https://github.com/davidkane9/first-website
+origin  https://github.com/ppbds-student/06-websites-1 (fetch)
+origin  https://github.com/ppbds-student/06-websites-1 (push)
+To https://github.com/ppbds-student/06-websites-1
    2576ffd..f262006  HEAD -> gh-pages
 
 NOTE: GitHub Pages sites use caching so you might need to click the refresh
 button within your web browser to see changes after deployment.
 
 [✓] Deploying gh-pages branch to website (this may take a few minutes)
-[✓] Published to https://davidkane9.github.io/first-website/
+[✓] Published to https://ppbds-student.github.io/06-websites-1/
 
-Davids-MacBook-Pro-2:first-website dkane$ 
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
 This output is much shorter because you have already created the `gh-pages` branch when you first published to GitHub Pages.
