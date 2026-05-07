@@ -2,8 +2,6 @@
 
 Add a sentence or two at top of 02-quarto about files which might be left over.
 
-Use the bash shell as little as possible in tutorials 1 and 2.
-
 We should only have 2 R Terminals, at least in the first 4 (7) tutorials. One runs the tutorial. The second is for interactive use.
 
 Get rid of all Positron.

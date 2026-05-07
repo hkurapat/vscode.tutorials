@@ -32,15 +32,15 @@ options(tutorial.exercise.timelimit = 60,
 
 <!-- DK: Add at end 
 
-Change repo name to `my-repo`. 
+Change repo name to `my-repo`. AR: done in text and pic.
 
-They need to show you the url.
+They need to show you the url. AR: Done.
 
-No need to create codespace.
+No need to create codespace. AR: Done.
 
-Make sure that they delete this repo at the end, show them the Settings tab and the Delete button at the bottom.
+Make sure that they delete this repo at the end, show them the Settings tab and the Delete button at the bottom. AR: done.
 
-Make sure you tell them that every tutorial going forward will be run from a repo you create at the start, example `04-github-1`, `07-website-2` and so on.
+Make sure you tell them that every tutorial going forward will be run from a repo you create at the start, example `04-github-1`, `07-website-2` and so on. AR: done.
 
 -->
 
@@ -2361,7 +2361,7 @@ nothing to commit, working tree clean
 @ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
-`git status` is one of the most commonly used git commands. It shows the current state of your repository. "Nothing to commit, working tree clean" means git is not aware of any new or changed files since the last commit. You will learn more about commits and tracking files in the next tutorial.
+`git status` shows the current state of your repository. "Nothing to commit, working tree clean" means git is not aware of any new or changed files since the last commit. You will learn more about commits and tracking files in the next tutorial.
 
 ### Exercise 4
 
@@ -2379,7 +2379,7 @@ Click the green "Use this template" button and select "Create a new repository."
 include_graphics("images/create-repo-from-template.png")
 ```
 
-ame the repository `04-github-1` and make sure it is set to **Public**. Leave all other settings as their defaults. Click "Create repository."
+Name the repository `my-repo` and make sure it is set to **Public**. Leave all other settings as their defaults. Click "Create repository."
 
 ```{r}
 include_graphics("images/create-new-repo.png")
@@ -2398,7 +2398,7 @@ question_text(NULL,
 
 ###
 
-It should look something like `https://github.com/your-username/04-github-1`.
+It should look something like `https://github.com/your-username/my-repo`.
 
 ###
 
@@ -2406,34 +2406,31 @@ A **GitHub repository** is a copy of your git repository hosted in the cloud. It
 
 ### Exercise 5
 
-Now create a Codespace from your new `04-github-1` repository. From your repository page on GitHub, click the green "Code" button, select the "Codespaces" tab, and click "Create codespace on main."
+Since you won't be using this repository, let's delete it. To do this go to the settings tab for `my-repo`.
 
 ```{r}
-include_graphics("images/create-codespace.png")
+include_graphics("images/repo-settings.png")
 ```
 
-A new VS Code environment will open in your browser. Once it has loaded, paste the URL of your new Codespace below.
+Then scroll to the bottom and click "Delete this repository". Follow the steps in the pop-up window to confirm deletion.
+
+```{r}
+include_graphics("images/delete-repo.png")
+```
+
 
 ```{r git-5}
 question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 2)
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
 ```
 
 ###
 
-It should look something like `https://your-username-04-github-1-randomstring.github.dev`.
-
-```{r}
-include_graphics("images/new-gh-repo-cs.png")
-```
-
-###
-
-A **Codespace** is a cloud development environment linked to a specific GitHub repository. Creating one from `04-github-1` gives you a fresh VS Code environment with that repository's files already available. This will be your workspace for the next tutorial. You can always return to it from your `04-github-1` repository page on GitHub.
+In **all future tutorials**, you will create a new Github repo from the codespace starter and then open a new Codespace from the new repo's page by clicking the green "Code" drop-down button in the upper right, selecting "Codespaces," and then clicking "Create Codespace on main".
 
 ## Summary
 ###
