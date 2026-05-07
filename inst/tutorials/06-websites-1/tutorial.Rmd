@@ -82,7 +82,7 @@ https://github.com/ppbds-student/06-websites-1
 
 Always start a new data science project with a new Github repo.
 
-### Exercise 3
+### Exercise 2
 
 In the Terminal, run `quarto create project website .`.  Don't forget the `.` at the end of the command. This indicates that the new files should be placed in the current working directory. 
 
@@ -90,7 +90,7 @@ If you are asked for a "Title," use `A New Website`.
 
 CP/CR.
 
-```{r creating-files-3}
+```{r creating-files-2}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -117,11 +117,11 @@ dkane@macbook first-website %
 
 Quarto is telling you what it did: creating 5 new files and placing them in the *current* directory. Recall that, on the command line, a `.` refers to the current directory. 
 
-### Exercise 4
+### Exercise 3
 
 In the Terminal, run `ls`. CP/CR.
 
-```{r creating-files-4}
+```{r creating-files-3}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -140,11 +140,11 @@ dkane@macbook first-website %
 
 The basic set of files necessary for making a Quarto website has been added to the current directory. But recall that `ls` does not show any "hidden" files, i.e., those beginning with a `.`.
 
-### Exercise 5
+### Exercise 4
 
 In the Terminal, run `ls -a`. CP/CR. 
 
-```{r creating-files-5}
+```{r creating-files-4}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
