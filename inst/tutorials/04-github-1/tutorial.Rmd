@@ -54,6 +54,8 @@ This tutorial covers [Git](https://git-scm.com/), a program for keeping track of
 
 The most useful references for Git/GitHub are [*Happy Git and GitHub for the useR*](https://happygitwithr.com/) and [*Pro Git*](https://git-scm.com/book/en/v2). Refer to these for questions and further learning. Or ask AI!
 
+You should be doing this tutorial in a Codespace created from a Github repo named '04-github-1'.
+
 ## Using Git
 ### 
 
@@ -653,8 +655,6 @@ Commits on May 4, 2026
 ###
 
 As AI writes more and more of our code, it's becoming increasingly important to get good at managing this code with Git and GitHub.
-
-<!--AR: Git reset exercise here? Too complicated after push? Local only run `git reset HEAD~1`, to push to remote and override history next would need to run `git push --force` -->
 
 ## Publishing with GitHub Pages
 ### 
