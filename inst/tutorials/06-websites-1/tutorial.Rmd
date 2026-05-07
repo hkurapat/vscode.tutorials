@@ -46,9 +46,13 @@ AR: not my comment, but is this no longer relevant with Codespaces changes? -->
 
 This tutorial introduces the process of creating and organizing [Quarto websites](https://quarto.org/docs/websites/) using the [Quarto CLI](https://quarto.org/docs/get-started/) (command line interface) and commands like `quarto create`, `quarto render`, `quarto preview`, and `quarto publish`. Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
+<!-- AR: This video provides a helpful overview of the quarto publish process but uses R Studio as IDE - is it worthwile to keep this link? -->
+
 This [video](https://www.youtube.com/watch?v=uimdXPZc40I) provides an overview of creating Quarto websites using GitHub Pages, which is what we will do in this tutorial.
 
 ### 
+
+<!-- AR: Is this repo name okay? It's not super descriptive of the actual site and shows up. -->
 
 If you haven't already, start a new Github repository named `06-websites-1` and create a new Codespace where you will run this tutorial and complete all your work.
 
@@ -83,6 +87,8 @@ https://github.com/ppbds-student/06-websites-1
 Always start a new data science project with a new Github repo.
 
 ### Exercise 2
+
+<!-- AR: okay to use terminal? Show file menu path as well? -->
 
 In the Terminal, run `quarto create project website .`. Don't forget the `.` at the end of the command — it tells Quarto to place the new files in the current directory.
 
