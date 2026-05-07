@@ -28,23 +28,33 @@ library(tidyverse)
 ```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
 ```
 
-<!-- Confirm that quarto publish gh-pages works on Windows. -->
+<!-- Confirm that quarto publish gh-pages works on Windows. AR: not my comment, but is necessary with Codespaces? -->
 
 <!-- Should I learn more about where Quarto is installed? Does it matter? I currently find it in at least two places on my computer:
 
 /Applications/quarto/bin/quarto
 /usr/local/bin/quarto
 
-And I also think it is bundled with Positron somehow? -->
+And I also think it is bundled with Positron somehow? 
+
+AR: not my comment, but is this no longer relevant with Codespaces changes? -->
+
+<!-- AR: No longer creating a README - is that okay? -->
 
 ## Introduction
 ### 
 
 This tutorial introduces the process of creating and organizing [Quarto websites](https://quarto.org/docs/websites/) using the [Quarto CLI](https://quarto.org/docs/get-started/) (command line interface) and commands like `quarto create`, `quarto render`, `quarto preview`, and `quarto publish`. Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
+<!-- AR: This video provides a helpful overview of the quarto publish process but uses R Studio as IDE - is it worthwile to keep this link? -->
+
+This [video](https://www.youtube.com/watch?v=uimdXPZc40I) provides an overview of creating Quarto websites using GitHub Pages, which is what we will do in this tutorial.
+
 ### 
 
-Start a new window with `File -> New Window`. This new window is the location in which you will do all the work for the tutorial, including the creation of new projects. The current window, the one in which you are reading these words, is just used to run this tutorial. 
+<!-- AR: Is this repo name okay? It's not super descriptive of the actual site and shows up. -->
+
+If you haven't already, start a new Github repository named `06-websites-1` and create a new Codespace where you will run this tutorial and complete all your work.
 
 ## Creating files
 ### 
@@ -53,56 +63,11 @@ Let's make a [Quarto website](https://quarto.org/docs/websites/).
 
 ### Exercise 1
 
-Run `quarto --version` from the Terminal inside of the new Positron window. CP/CR.
+<!-- AR: is this exercise helpful? -->
+
+Verify that you have created a new public Github repo (called `06-websites-1`). Copy/paste the URL for the repo.
 
 ```{r creating-files-1}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-A failure would look something like:
-
-```
-Davids-MBP:r4ds.tutorials dkane$ quarto --version
-bash: quarto: command not found
-```
-
-If it works for you --- i.e., if this command returns a Quarto version number --- then don't worry.
-
-### Exercise 2
-
-If `quarto --version` failed in the previous Exercise, install [Quarto CLI](https://quarto.org/docs/get-started/) on your computer. Restart Positron after installing Quarto. Then, run `quarto --version` again from the Terminal. CP/CR.
-
-```{r creating-files-2}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-```
-dkane@macbook vscode.tutorials % quarto --version
-1.6.39
-dkane@macbook vscode.tutorials % 
-```
-
-As long as the version is at least 1.6, you are OK. 
-
-### Exercise 3
-
-On Github create a new public Github repo (called `first-website`). Set the "Add README" toggle switch to "On." Copy/paste the URL for its Github location.
-
-```{r creating-files-3}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -116,48 +81,22 @@ question_text(NULL,
 Your answer should look something like:
 
 ```
-https://github.com/davidkane9/first-website
+https://github.com/ppbds-student/06-websites-1
 ```
 
 Always start a new data science project with a new Github repo.
 
+### Exercise 2
 
-### Exercise 4
+<!-- AR: okay to use terminal? Show file menu path as well? -->
 
-In the other window, connect the `first-website` Github repo to a project on your computer using the usual procedure: `File -> New Folder from Git...` and so on.  
-
-You may need to close the "Welcome" window and start an R interpreter for the R Terminal. 
-
-From the Terminal (in the other window), run `ls`. CP/CR.
-
-```{r creating-files-4}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-```
-dkane@macbook first-website % ls
-README.md
-dkane@macbook first-website % 
-```
-
-This [video](https://www.youtube.com/watch?v=uimdXPZc40I) provides an overview of creating Quarto websites using GitHub Pages, which is what we will do in this tutorial.
-
-### Exercise 5
-
-In the Terminal, run `quarto create project website .`.  Don't forget the `.` at the end of the command. This indicates that the new files should be placed in the current working directory. 
+In the Terminal, run `quarto create project website .`. Don't forget the `.` at the end of the command — it tells Quarto to place the new files in the current directory.
 
 If you are asked for a "Title," use `A New Website`.
 
 CP/CR.
 
-```{r creating-files-5}
+```{r creating-files-2}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -171,24 +110,24 @@ question_text(NULL,
 Your answer should look like this:
 
 ````
-dkane@macbook first-website % quarto create project website .
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ quarto create project website .
 ? Title (website) › A New Website
-Creating project at /Users/dkane/Desktop/projects/first-website:
+Creating project at /workspaces/06-websites-1:
   - Created _quarto.yml
   - Created .gitignore
   - Created index.qmd
   - Created about.qmd
   - Created styles.css
-dkane@macbook first-website % 
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
-Quarto is telling you what it did: creating 5 new files and placing them in the *current* directory. Recall that, on the command line, a `.` refers to the current directory. 
+Quarto created 5 new files in the current directory. On the command line, `.` always refers to the current directory.
 
-### Exercise 6
+### Exercise 3
 
 In the Terminal, run `ls`. CP/CR.
 
-```{r creating-files-6}
+```{r creating-files-3}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -200,18 +139,18 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook first-website % ls
-README.md       _quarto.yml     about.qmd       index.qmd       styles.css
-dkane@macbook first-website %     
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ ls
+_quarto.yml     about.qmd       index.qmd       styles.css
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
-The basic set of files necessary for making a Quarto website has been added to the current directory. But recall that `ls` does not show any "hidden" files, i.e., those beginning with a `.`.
+These are the basic files needed to build a Quarto website. Note that `ls` does not show "hidden" files — those beginning with a `.`.
 
-### Exercise 7
+### Exercise 4
 
 In the Terminal, run `ls -a`. CP/CR. 
 
-```{r creating-files-7}
+```{r creating-files-4}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -223,19 +162,19 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook first-website % ls -a
-.               .git            README.md       about.qmd       styles.css
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ ls -a
+.               .git            about.qmd       styles.css
 ..              .gitignore      _quarto.yml     index.qmd
-dkane@macbook first-website % 
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
-In general, we do not touch/manipulate "dot" directories, meaning directories whose names begin with a period. Such directories are meant to be used by the operating system and/or other programs. For example, the program Git uses the `.git` directory to store information about changes in all the files in the project.  Also, note that `quarto create` added a `.gitignore` file, which we did not see after issuing the simple `ls` command.
+In general, do not touch or modify "dot" directories — those whose names begin with a period. They are managed by the operating system or other programs. For example, Git uses `.git` to track all changes in the project. Also note that `quarto create` added a `.gitignore` file, which was hidden from the plain `ls` output.
 
 
 ## Examining files
 ### 
 
-Now that we have created the necessary files, it is useful to examine them one-by-one. Our goal is to provide you with a good introduction to how websites are put together.
+Now that we have created the necessary files, let's examine them one by one to understand how a Quarto website is structured.
 
 ### Exercise 1
 
@@ -247,7 +186,7 @@ show_file("_quarto.yml")
 
 CP/CR.
 
-Did you get an error when you ran this? Something about 'could not find function "show_file"'? This is because you need run `library(tutorial.helpers)` in the R Terminal to have direct access to `show_file()`, which is a function in the **tutorial.helpers** package. Of course, you could use the double colon notation --- `tutorial.helpers::show_file("_quarto.yml")` --- as we did in previous tutorials. But, at this stage in your R education, we want you to become more comfortable with packages, and knowing yourself when they need to be loaded.
+Did you get an error along the lines of 'could not find function "show_file"'? You need to run `library(tutorial.helpers)` in the R Terminal first to load `show_file()`. You could also use `tutorial.helpers::show_file("_quarto.yml")`, as in previous tutorials, but at this stage we want you to practice loading packages explicitly.
 
 
 ```{r examining-files-1}
@@ -261,7 +200,7 @@ question_text(NULL,
 
 ### 
 
-YAML files are how [Quarto projects](https://quarto.org/docs/projects/quarto-projects.html) tell the world what they are. You can tell that `_quarto.yml` is a YAML file by both its `yml` file name suffix and by its content. The first two lines specify that this is a website.
+YAML files are how [Quarto projects](https://quarto.org/docs/projects/quarto-projects.html) describe themselves. You can identify `_quarto.yml` as a YAML file from its `.yml` extension and its content. The first two lines specify that this is a website.
 
 ````
 project:                                   
@@ -291,7 +230,7 @@ question_text(NULL,
 
 ### 
 
-These lines provide meta-information about the website and its organization. 
+These lines provide metadata about the website and its organization.
 
 ````
 website:
@@ -337,7 +276,7 @@ format:
     toc: true
 ````
 
-The `css` line tells Quarto to use the `styles.css` file, located in the same directory, for the "style" of the pages.
+The `css` line tells Quarto to use the `styles.css` file, located in the same directory, for the styling of the pages.
 
 ### Exercise 4
 
@@ -379,9 +318,9 @@ Whenever a web browser goes to a directory on the internet, it looks for an `ind
 
 ### 
 
-Note that the `title` (`"A New Website"`) in `_quarto.yml` has no necessary connection to the `title` (`"A New Website"`) in `index.qmd`. The former is the title for the entire website. The latter is the title for just the (yet-to-be-created) `index.html` page. They are set to the same values by default when we use `quarto create project website .` and answer the question about the title. 
+Note that the `title` (`"A New Website"`) in `_quarto.yml` is independent of the `title` (`"A New Website"`) in `index.qmd`. The former is the title for the entire website; the latter is the title for just the `index.html` page. They are set to the same value by default when you run `quarto create project website .` and provide a title.
 
-If you do not answer the question or if you are using an old version of Quarto which does not ask the question, then the title will be `.` in both locations.
+If you skip the title prompt titles will be set to `.`.
 
 ### Exercise 5
 
@@ -417,7 +356,7 @@ In fact, the `.quarto` directory does not yet exist. But the `quarto create proj
 
 ### Exercise 6
 
-Commit (with the commit message "initial version") and then sync all the files in the project. (Recall that the "Sync" button both pushes and pulls from GitHub. Since no one else is adding material to our GitHub, there is nothing to pull. So, we will sometimes just use the word "push," although you can just press the "Sync" button.)
+Commit all files with the message "initial version" and then sync.
 
 Run `git log -n 1` in the Terminal. CP/CR.
 
@@ -433,22 +372,22 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook first-website % git log -n 1
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ git log -n 1
 commit 658eedd63f2c3e2734484a2397935e854f5008f7 (HEAD -> main, origin/main, origin/HEAD)
-Author: David Kane <dave.kane@gmail.com>
+Author: ppbds-student <ppbds-student@users.noreply.github.com>
 Date:   Sat Mar 15 22:41:22 2025 -0400
 
     initial version
-dkane@macbook first-website % 
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
-If you want to learn more about how to work with Git/Github and R, check out [Happy Git with R](https://happygitwithr.com/existing-github-last.html), a very useful resource.
+To learn more about Git, GitHub, and R, see [Happy Git with R](https://happygitwithr.com/existing-github-last.html).
 
 
 ## Rendering and previewing
 ### 
 
-We now have the infrastructure for our website. We want to create (or "render") the web pages themselves and then "preview" them to see what they will look like when we place them on the web.
+We now have the infrastructure for our website. Next, we will "render" the web pages and then "preview" them to see what the site looks like before publishing it.
 
 ### Exercise 1
 
@@ -466,20 +405,20 @@ question_text(NULL,
 ### 
 
 ````
-kane@macbook first-website % quarto render
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ quarto render
 [1/2] index.qmd
 [2/2] about.qmd
 
 Output created: _site/index.html
 
-dkane@macbook first-website % 
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
-Quarto reports to us what it has done, working on our two QMD files and creating a new directory, `_site`, in which it has placed an `index.html` file. 
+Quarto tells us what it did: it processed both QMD files and created a `_site` directory containing `index.html`.
 
 ### 
 
-If you look at the `_site` directory in the Explorer pane, you will see lots of new files, including `about.hmtl`. Quarto just tells you about the home page for the site, which is `index.html` by default, since that is the file that browsers like Google Chrome always look for.
+If you look at the `_site` directory in the Explorer pane, you will see many new files, including `about.html`. Quarto only reports the home page (`index.html`), since that is the file browsers look for by default.
 
 ### Exercise 2
 
@@ -497,13 +436,13 @@ question_text(NULL,
 ###
 
 ````
-dkane@macbook first-website % ls
-README.md       _site           index.qmd
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ ls
+_site           index.qmd
 _quarto.yml     about.qmd       styles.css
-dkane@macbook first-website % 
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
-Note the addition of a `_site` directory. This is the location in which the HTML files that make up the website are located. The web pages which make up a website are often placed in a directory named either `_site` or `docs`, depending on the setup of your web hosting service.
+Note the addition of a `_site` directory. This is where the HTML files that make up the website are stored. Website output files are often placed in a directory named `_site` or `docs`, depending on your web hosting service.
 
 ### Exercise 3
 
@@ -523,20 +462,20 @@ question_text(NULL,
 Your answer will probably look something like:
 
 ````
-dkane@macbook first-website % ls _site 
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ ls _site
 about.html      index.html      search.json     site_libs       styles.css
-dkane@macbook first-website % 
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
-The `about.html` and `index.html` files are simply the rendered `about.qmd` and `index.qmd` input files. They are placed into the `_site` directory because the convention, when constructing websites and other large projects, is to separate the outputs (HTML files) from the inputs (QMD files, in this case).
+The `about.html` and `index.html` files are the rendered versions of `about.qmd` and `index.qmd`. They go into `_site` because the convention is to separate outputs (HTML files) from inputs (QMD files).
 
 ### 
 
-We won't discuss the `search.json` and `styles.css` files. The `site_libs` directory includes many files beyond the scope of this tutorial. The basic idea is that the entire `_site` directory is a functioning website, ready to be deployed.
+We won't discuss the `search.json`, `styles.css`, or `site_libs` files — they are beyond the scope of this tutorial. The entire `_site` directory is a self-contained website, ready to deploy.
 
 ### Exercise 4
 
-Look the Source Control button. Note how many new files there are. Most of this is garbage which does not belong on GitHub.
+Look at the Source Control button. Note how many new files there are. Most of this is generated output that does not belong on GitHub.
 
 Add `_site` to the `.gitignore`. Don't forget that the last line of `.gitignore` should always be blank. Save the file. 
 
@@ -566,7 +505,7 @@ _site
 >
 ````
 
-This command is [convenient](https://quarto.org/docs/publishing/github-pages.html) because the `_site` directory contains of lot of weird files that change often enough to annoy us. We don't create any of them directly, so we don't really need to back them up. Moreover, they will still get published directly to the web from our computer.
+Ignoring `_site` is [recommended](https://quarto.org/docs/publishing/github-pages.html) because it contains many generated files that change frequently. We never edit them directly, so there is no need to back them up. They will still be published to the web from your Codespace.
 
 ### Exercise 5
 
@@ -584,7 +523,7 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook first-website % quarto preview
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ quarto preview
 Preparing to preview
 
 Watching files for changes
@@ -593,15 +532,16 @@ GET: /
 
 ````
 
-The `quarto preview` command does two things. First, it renders the QMD files, just like `quarto render` does. Second, it sets up a viewer --- probably your default web browser but possibly the "Viewer" tab in the Secondary Activity Bar  --- so that you can see what the website looks like. Click around and check it out!
+The `quarto preview` command does two things. First, it renders the QMD files, just like `quarto render` does. Second, it opens the website in your browser so that you can see what it looks like. Click around and check it out!
 
-The message at the end indicates that Quarto is now "watching" your files to see if you make any changes. If you do, it will automatically update the website.
+In Codespaces, a pop-up notification should appear automatically offering to open the site in your browser. If it does not, click the URL shown in the terminal output.
+
 
 ### Exercise 6
 
-Look at your website in the browser. (You might need to enter the URL by hand. It is `http://localhost:7412/` in my case, but yours will be different.) Click on the "About" link. 
+Look at your website in the browser. Click on the "About" link.
 
-Go to the Terminal. Copy-and-paste everything from the previous invocation of `quarto preview`.
+Go to the Terminal. Copy and paste all the output from `quarto preview`.
 
 ```{r rendering-and-previewing-6}
 question_text(NULL,
@@ -615,7 +555,7 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook first-website % quarto preview
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ quarto preview
 Preparing to preview
 
 Watching files for changes
@@ -624,11 +564,11 @@ GET: /
 GET: /about.html
 ````
 
-Quarto is hanging out, still running in the background, monitoring your website. So, when you clicked the "About" link, it went to "GET" the `about.html` page to show to you.
+Quarto continues running in the background, watching your files. When you clicked "About," it fetched `about.html` to display it.
 
 ### Exercise 7
 
-Look again at your website in the Viewer/browser. Click on the "Home" link and then copy/paste the entire HTML screen.
+Look again at your website in the browser. Click on the "Home" link and then copy/paste the entire HTML screen.
 
 ```{r rendering-and-previewing-7}
 question_text(NULL,
@@ -650,9 +590,9 @@ This is a Quarto website.
 To learn more about Quarto websites visit https://quarto.org/docs/websites.
 ````
 
-The title of the entire project ("A New Website"), taken from the `_quarto.yml` file, appears in the upper left hand corner. The title of the main home page ("A New Website"), taken from the `index.qmd` file, appears at the top of the Home page, which, by default, is always the `index.html` file. 
+The site title ("A New Website"), from `_quarto.yml`, appears in the upper-left corner. The page title ("A New Website"), from `index.qmd`, appears at the top of the home page.
 
-(Depending on your browser and other settings, the copy/paste might also capture the "Home" and "About" links. No worry either way.)
+(Depending on your browser and settings, the copy/paste may also capture the "Home" and "About" links. Either way is fine.)
 
 ### Exercise 8
 
@@ -672,10 +612,10 @@ question_text(NULL,
 Your answer should be something like:
 
 ````
-http://localhost:7193/
+https://your-codespace-name-7193.app.github.dev/
 ````
 
-The website is being "hosted" on your computer. That is what the word "localhost" refers to. It is not available on the web.
+The website is being "hosted" inside your Codespace container and forwarded to your browser by GitHub. It is not publicly available on the web.
 
 ### Exercise 9
 
@@ -724,7 +664,7 @@ Quarto has noticed that you changed/saved the `about.qmd` file. It rendered the 
 
 ### Exercise 10
 
-Copy/paste the About page from the Viewer pane or your browser. (We will just say "browser" going forward, but we mean wherever your website appears.)
+Copy/paste the About page from your browser.
 
 ```{r rendering-and-previewing-10}
 question_text(NULL,
@@ -746,23 +686,23 @@ About
 David Kane
 ````
 
-If you want to stop `quarto preview` you can cancel the command with `Ctrl + c` if the Terminal is the active pane, i.e, where your cursor is. This is always the command to use whenever you want the Terminal to stop doing whatever it is doing.
+To stop `quarto preview`, press `Ctrl + c` in the Terminal. This cancels any running terminal command.
 
-Run `Ctrl + c`.
+Press `Ctrl + c`.
 
 ## Publishing
 ### 
 
-To make your website publicly visible, you need to "publish" it to the web. The Quarto documentation provides a [thorough discussion](https://quarto.org/docs/publishing/).  We will be using [GitHub Pages](https://quarto.org/docs/publishing/github-pages.html). 
+To make your website publicly visible, you need to "publish" it to the web. The Quarto documentation provides a [thorough discussion](https://quarto.org/docs/publishing/). We will be using [GitHub Pages](https://quarto.org/docs/publishing/github-pages.html).
 
 
 ### Exercise 1
 
-Go to your `first-website` Github repository. 
+Go to your `06-websites-1` Github repository.
 
-Click on the "Settings" option on the right side of the top menu.
+Click "Settings" on the right side of the top menu.
 
-Click on the "Pages" option on the left-hand side menu.  
+Click "Pages" on the left-hand menu.
 
 Copy/paste the resulting URL.
 
@@ -780,10 +720,10 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-https://github.com/davidkane9/first-website/settings/pages
+https://github.com/ppbds-student/06-websites-1/settings/pages
 ````
 
-This page shows the settings which control the behavior of Github pages. It should look something like this:
+This page shows the settings that control GitHub Pages. It should look something like this:
 
 ```{r}
 knitr::include_graphics("images/pages.png")
@@ -793,13 +733,13 @@ Sam Csik provides an [excellent overview](https://ucsb-meds.github.io/creating-q
 
 ### Exercise 2
 
-We won't edit the settings on the GitHub Pages page by hand. Instead, we will allow Quarto to make changes for us. The process for publishing an entire website is similar to the one for publishing a single document.
+We won't edit the GitHub Pages settings by hand — Quarto will handle that. Publishing a website works the same way as publishing a single document.
 
 At the Terminal, run `quarto publish gh-pages`. 
 
 You will then need to type "Yes" to accept the default settings. 
 
-CP/CR the first 10 or lines of the output.
+CP/CR the first 10 or so lines of the output.
 
 ```{r publishing-2}
 question_text(NULL,
@@ -813,25 +753,27 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook first-website % quarto publish gh-pages
-? Publish site to https://davidkane9.github.io/first-website/ using gh-pages? (Y/n) › Yes
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ quarto publish gh-pages
+? Publish site to https://ppbds-student.github.io/06-websites-1/ using gh-pages? (Y/n) › Yes
 Saved working directory and index state WIP on main: 658eedd initial version
 Switched to a new branch 'gh-pages'
 [gh-pages (root-commit) c05d288] Initializing gh-pages branch
-remote: 
-remote: Create a pull request for 'gh-pages' on GitHub by visiting:        
-remote:      https://github.com/davidkane9/first-website/pull/new/gh-pages        
-remote: 
-To https://github.com/davidkane9/first-website.git
+remote:
+remote: Create a pull request for 'gh-pages' on GitHub by visiting:
+remote:      https://github.com/ppbds-student/06-websites-1/pull/new/gh-pages
+remote:
+To https://github.com/ppbds-student/06-websites-1.git
  * [new branch]      HEAD -> gh-pages
  ...
 ````
 
-[Git branches](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell) help us work with multiple people and/or on complex projects. "Git encourages workflows that branch and merge often, even multiple times in a day." Although it is not required, it is standard practice to use a branch named `gh-pages` for publishing with GitHub Pages.
+Quarto creates a new git branch named `gh-pages` when publishing.
+
+[Git branches](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell) allow multiple people to work on a project simultaneously and then recombine their work in a sensible manner.
 
 ### Exercise 3
 
-`quarto publish`, like `quarto preview`, renders all the files on the project. Note the phrase "Rendering for publish" in the middle of the output. 
+`quarto publish`, like `quarto preview`, renders all the files in the project. Note the phrase "Rendering for publish" in the output.
 
 Copy/paste the 5 or so lines of the output which include the phrase "Rendering for publish".
 
@@ -853,11 +795,11 @@ Rendering for publish:
 [2/2] about.qmd
 ````
 
-All pages are rendered whenever you publish. This can be problematic if some of your pages include code which takes minutes, or even hours, to run. In that case, you need to re-arrange your code so that it is only run when you want to run it, not automatically whenever it is rendered.
+All pages are rendered every time you publish. This can be problematic if some pages include code that takes minutes or hours to run. In that case, you will need to rearrange your code to avoid re-running it on every publish.
 
 ### Exercise 4
 
-There are other options for publishing besides GitHub Pages. Those would replace `gh-pages` in the call to `quarto publish` with options like `quarto-pub` or `netlify`.  
+There are other publishing options besides GitHub Pages. You would replace `gh-pages` in `quarto publish` with options like `quarto-pub` or `netlify` to use those services.
 
 Copy/paste the last 10 or so lines of the output.
 
@@ -873,20 +815,20 @@ question_text(NULL,
 ###
 
 ````
-To https://github.com/davidkane9/first-website.git
+To https://github.com/ppbds-student/06-websites-1.git
    c05d288..0396c20  HEAD -> gh-pages
 
 [✓] Deploying gh-pages branch to website (this may take a few minutes)
-[✓] Published to https://davidkane9.github.io/first-website/
+[✓] Published to https://ppbds-student.github.io/06-websites-1/
 
-dkane@macbook first-website % 
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
 The publishing process may take a minute or two to complete. The URL for your website is provided at the end.
 
 ### Exercise 5
 
-A link to your new website should be brought up in a browser. Copy/paste the URL for your website. 
+View your website in the browser. Copy/paste its URL.
 
 ```{r publishing-5}
 question_text(NULL,
@@ -900,10 +842,10 @@ question_text(NULL,
 ### 
 
 ````
-https://davidkane9.github.io/first-website/
+https://ppbds-student.github.io/06-websites-1/
 ````
 
-When using GitHub Pages, the URL will always have the same base: your GitHub user name followed by `github.io`. The second part of the URL will be the name of the repo. So, use non-stupid names for your repos.
+When using GitHub Pages, the URL always follows the same pattern: your GitHub username followed by `github.io`, then the repo name. Use descriptive names for your repos.
 
 ### Exercise 6
 
@@ -923,12 +865,12 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook first-website % ls .quarto
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ ls .quarto
 idx     preview xref
-dkane@macbook first-website % 
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
-The `.quarto` directory is like the `.git` directory. We will never look at or change the files inside of these directories. Only the relevant programs --- Quarto and Git --- should work with the contents of these directories. 
+The `.quarto` directory is like `.git`. Never look at or edit the files inside either — they are managed by Quarto and Git respectively.
 
 ### Exercise 7
 
@@ -961,7 +903,7 @@ website:
 >
 ````
 
-Keep track of the three different places that the title of our project now exists. First, it is present in `_quarto.yml`. We have changed it there. But we have not changed it in the `_site` files which constitute the website (once published) nor in files uploaded to Github Pages.
+The project title now exists in three places. We changed it in `_quarto.yml`, but we have not yet updated it in the `_site` files that constitute the rendered website, nor in the files already published to GitHub Pages.
 
 ### Exercise 8
 
@@ -1009,9 +951,9 @@ question_text(NULL,
 ### 
 
 ````
-Davids-MacBook-Pro-2:first-website dkane$ quarto publish
-? Publish update to: › https://davidkane9.github.io/first-website/ (GitHub Pages)
-From https://github.com/davidkane9/first-website
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $ quarto publish
+? Publish update to: › https://ppbds-student.github.io/06-websites-1/ (GitHub Pages)
+From https://github.com/ppbds-student/06-websites-1
  * branch            gh-pages   -> FETCH_HEAD
 Rendering for publish:
 
@@ -1023,21 +965,21 @@ branch 'gh-pages' set up to track 'origin/gh-pages'.
 HEAD is now at 2576ffd Built site for gh-pages
 [gh-pages f262006] Built site for gh-pages
  3 files changed, 5 insertions(+), 5 deletions(-)
-origin  https://github.com/davidkane9/first-website (fetch)
-origin  https://github.com/davidkane9/first-website (push)
-To https://github.com/davidkane9/first-website
+origin  https://github.com/ppbds-student/06-websites-1 (fetch)
+origin  https://github.com/ppbds-student/06-websites-1 (push)
+To https://github.com/ppbds-student/06-websites-1
    2576ffd..f262006  HEAD -> gh-pages
 
 NOTE: GitHub Pages sites use caching so you might need to click the refresh
 button within your web browser to see changes after deployment.
 
 [✓] Deploying gh-pages branch to website (this may take a few minutes)
-[✓] Published to https://davidkane9.github.io/first-website/
+[✓] Published to https://ppbds-student.github.io/06-websites-1/
 
-Davids-MacBook-Pro-2:first-website dkane$ 
+@ppbds-student ➜ /workspaces/06-websites-1 (main) $
 ````
 
-This output is much shorter because you have already created the `gh-pages` branch when you first published to GitHub Pages.
+This output is shorter because Quarto already created the `gh-pages` branch when you first published.
 
 The `gh-pages` branch is a special branch in GitHub repositories used to host static websites via GitHub Pages. It serves as the deployment source for your website, which GitHub publishes at a URL like `https://<username>.github.io/<repository-name>`.
 
@@ -1058,12 +1000,12 @@ question_text(NULL,
 
 ### 
 
-Note both the simplicity *and* the complexity of your project. It is simple in that, even if our computer blew up we would be able to recreate everything from the files on Github. It is complex in that there are a lot of files, interacting in a fairly sophisticated fashion.
+Note both the simplicity *and* the complexity of your project. It is simple in that, even if your Codespace were deleted, you could recreate everything from the files on GitHub. It is complex in that there are many files interacting in sophisticated ways.
 
 ## Summary
 ### 
 
-This tutorial introduced the process of creating and organizing the [Quarto websites](https://quarto.org/docs/websites/) using the [Quarto CLI](https://quarto.org/docs/get-started/) (command line interface) and commands like `quarto create`, `quarto render`, `quarto preview`, and `quarto publish`. Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
+This tutorial introduced the process of creating and publishing [Quarto websites](https://quarto.org/docs/websites/) using the [Quarto CLI](https://quarto.org/docs/get-started/) (command line interface) and commands like `quarto create`, `quarto render`, `quarto preview`, and `quarto publish`. Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
 Sam Csik provides an [excellent overview](https://ucsb-meds.github.io/creating-quarto-websites/) of the entire process of creating Quarto websites.
 
