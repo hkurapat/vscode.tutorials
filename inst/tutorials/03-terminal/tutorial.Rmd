@@ -30,6 +30,21 @@ options(tutorial.exercise.timelimit = 60,
 ```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
 ```
 
+<!-- DK: Add at end 
+
+Change repo name to `my-repo`. 
+
+They need to show you the url.
+
+No need to create codespace.
+
+Make sure that they delete this repo at the end, show them the Settings tab and the Delete button at the bottom.
+
+Make sure you tell them that every tutorial going forward will be run from a repo you create at the start, example `04-github-1`, `07-website-2` and so on.
+
+-->
+
+
 <!-- Won't just about everyone doing this tutorial be in their projects directory? So I should be too! -->
 
 <!-- The second time we use echo, we act like we haven't explained it before. -->
@@ -80,12 +95,12 @@ question_text(NULL,
 Your answer should look something like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal (main) $
-@ppbds-student ➜ /workspaces/03-terminal (main) $
-@ppbds-student ➜ /workspaces/03-terminal (main) $
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
-Your answer will look different from mine. Default prompts vary from computer to computer. In my case, the first part of the prompt is the name of my GitHub account: `@ppbds-student`. The second part, after the arrow, is the path to the directory, `/workspaces/03-terminal`, in which I am running the tutorial. The third part, separated by a space and in parentheses, is `main`, the current Git branch (more on this in an upcoming tutorial). The dollar sign indicates the end of the prompt.
+Your answer will look different from mine. Default prompts vary from computer to computer. In my case, the first part of the prompt is the name of my GitHub account: `@ppbds-student`. The second part, after the arrow, is the path to the directory, `/workspaces/codespace-starter`, in which I am running the tutorial. The third part, separated by a space and in parentheses, is `main`, the current git branch (more on this in an upcoming tutorial). The dollar sign indicates the end of the prompt.
 
 ###
 
@@ -113,9 +128,9 @@ question_text(NULL,
 Your answer should look something like mine:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal (main) $ pwd
-/workspaces/03-terminal
-@ppbds-student ➜ /workspaces/03-terminal (main) $
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ pwd
+/workspaces/codespace-starter
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
 The `pwd` command prints the full path to your current working directory. When in more complex file systems, the prompt usually only shows a shorter reminder of your location.
@@ -173,11 +188,11 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal (main) $ mkdir example
-@ppbds-student ➜ /workspaces/03-terminal (main) $ cd example
-@ppbds-student ➜ /workspaces/03-terminal/example (main) $ pwd
-/workspaces/03-terminal/example
-@ppbds-student ➜ /workspaces/03-terminal/example (main) $
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ mkdir example
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ cd example
+@ppbds-student ➜ /workspaces/codespace-starter/example (main) $ pwd
+/workspaces/codespace-starter/example
+@ppbds-student ➜ /workspaces/codespace-starter/example (main) $
 ````
 
 The `example` directory is one level below the directory in which you started.
@@ -200,10 +215,10 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/example (main) $ echo "" > my.txt
-@ppbds-student ➜ /workspaces/03-terminal/example (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/example (main) $ echo "" > my.txt
+@ppbds-student ➜ /workspaces/codespace-starter/example (main) $ ls
 my.txt
-@ppbds-student ➜ /workspaces/03-terminal/example (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/example (main) $
 ````
 
 `echo "" > my.txt` creates an empty file. `echo` just repeats whatever follows, which is an empty quote in this case. `>`, which we will discuss more later, pipes whatever comes before it into whatever comes after it.
@@ -227,10 +242,10 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/example (main) $ cp my.txt my_2.txt
-@ppbds-student ➜ /workspaces/03-terminal/example (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/example (main) $ cp my.txt my_2.txt
+@ppbds-student ➜ /workspaces/codespace-starter/example (main) $ ls
 my_2.txt  my.txt
-@ppbds-student ➜ /workspaces/03-terminal/example (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/example (main) $
 ````
 
 ### Exercise 8
@@ -253,10 +268,10 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/example (main) $ mv my.txt fake.txt
-@ppbds-student ➜ /workspaces/03-terminal/example (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/example (main) $ mv my.txt fake.txt
+@ppbds-student ➜ /workspaces/codespace-starter/example (main) $ ls
 fake.txt  my_2.txt
-@ppbds-student ➜ /workspaces/03-terminal/example (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/example (main) $
 ````
 
 ###
@@ -281,10 +296,10 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/example (main) $ rm fake.txt
-@ppbds-student ➜ /workspaces/03-terminal/example (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/example (main) $ rm fake.txt
+@ppbds-student ➜ /workspaces/codespace-starter/example (main) $ ls
 my_2.txt
-@ppbds-student ➜ /workspaces/03-terminal/example (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/example (main) $
 ````
 
 Be careful with the `rm` command in the Terminal. Unlike moving files to Trash on your computer, it is (usually) irreversible.
@@ -309,10 +324,10 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/example (main) $ cd ..
-@ppbds-student ➜ /workspaces/03-terminal (main) $ pwd
-/workspaces/03-terminal
-@ppbds-student ➜ /workspaces/03-terminal (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/example (main) $ cd ..
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ pwd
+/workspaces/codespace-starter
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
 Again, note how the prompt changed because we moved directories. The `..` symbol --- two periods --- always indicates the directory one level up, i.e., the directory in which `example` is located.
@@ -331,9 +346,9 @@ question_text(NULL,
 ```
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal (main) $ rm -r example
-@ppbds-student ➜ /workspaces/03-terminal (main) $ ls
-@ppbds-student ➜ /workspaces/03-terminal (main) $
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ rm -r example
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
 `-r` is an **option** that allows us to delete a directory. The `r` stands for **r**ecursive because, in order to delete a directory, you must also (recursively) delete every directory and file within that directory.
@@ -347,7 +362,7 @@ You will practice using paths both inside and outside the current working direct
 
 ### Exercise 1
 
-By default, the Terminal in VS Code starts in the root folder of your GitHub repo for this tutorial.
+By default, the Terminal in VS Code starts in `/workspaces/codespace-starter`, the root folder of this Codespace.
 
 Run `pwd` to show your current working directory. CP/CR.
 
@@ -401,13 +416,13 @@ question_text(NULL,
 Your answer should look something like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal (main) $ cd paths
-@ppbds-student ➜ /workspaces/03-terminal/paths (main) $ pwd
-/workspaces/03-terminal/paths
-@ppbds-student ➜ /workspaces/03-terminal/paths (main) $
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ cd paths
+@ppbds-student ➜ /workspaces/codespace-starter/paths (main) $ pwd
+/workspaces/codespace-starter/paths
+@ppbds-student ➜ /workspaces/codespace-starter/paths (main) $
 ````
 
-Note how the prompt changed after I ran the `cd paths` command. Before, the prompt included `/workspaces/03-terminal` because that was the current working directory. Using `cd` changed the current working directory to `paths`, causing the prompt to change as well.
+Note how the prompt changed after I ran the `cd paths` command. Before, the prompt included `/workspaces/codespace-starter` because that was the current working directory. Using `cd` changed the current working directory to `paths`, causing the prompt to change as well.
 
 ### Exercise 4
 
@@ -425,10 +440,10 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/paths (main) $ mkdir lessons
-@ppbds-student ➜ /workspaces/03-terminal/paths (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/paths (main) $ mkdir lessons
+@ppbds-student ➜ /workspaces/codespace-starter/paths (main) $ ls
 lessons
-@ppbds-student ➜ /workspaces/03-terminal/paths (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/paths (main) $
 ````
 
 Because we have changed working directories, the `lessons` directory is created inside the `paths` directory. It is the only object in the `paths` directory.
@@ -451,10 +466,10 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/paths (main) $ mkdir lessons/fruits
-@ppbds-student ➜ /workspaces/03-terminal/paths (main) $ ls lessons/
+@ppbds-student ➜ /workspaces/codespace-starter/paths (main) $ mkdir lessons/fruits
+@ppbds-student ➜ /workspaces/codespace-starter/paths (main) $ ls lessons/
 fruits
-@ppbds-student ➜ /workspaces/03-terminal/paths (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/paths (main) $
 ````
 
 ###
@@ -500,10 +515,10 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/paths/lessons/fruits (main) $ echo "" > pineapple.txt
-@ppbds-student ➜ /workspaces/03-terminal/paths/lessons/fruits (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/paths/lessons/fruits (main) $ echo "" > pineapple.txt
+@ppbds-student ➜ /workspaces/codespace-starter/paths/lessons/fruits (main) $ ls
 pineapple.txt
-@ppbds-student ➜ /workspaces/03-terminal/paths/lessons/fruits (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/paths/lessons/fruits (main) $
 ````
 ###
 
@@ -529,10 +544,10 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/paths/lessons/fruits (main) $ echo "" > pear.txt & echo "" > does-not-belong
-@ppbds-student ➜ /workspaces/03-terminal/paths/lessons/fruits (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/paths/lessons/fruits (main) $ echo "" > pear.txt & echo "" > does-not-belong
+@ppbds-student ➜ /workspaces/codespace-starter/paths/lessons/fruits (main) $ ls
 does-not-belong pear.txt        pineapple.txt
-@ppbds-student ➜ /workspaces/03-terminal/paths/lessons/fruits (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/paths/lessons/fruits (main) $
 ````
 
 The `&` symbol tells the operating system to run both the command that came before it and the command that comes after it.
@@ -553,10 +568,10 @@ question_text(NULL,
 Your answer should look like this:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/paths/lessons/fruits (main) $ cd ..
-@ppbds-student ➜ /workspaces/03-terminal/paths/lessons (main) $ pwd
-/workspaces/03-terminal/paths/lessons
-@ppbds-student ➜ /workspaces/03-terminal/paths/lessons (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/paths/lessons/fruits (main) $ cd ..
+@ppbds-student ➜ /workspaces/codespace-starter/paths/lessons (main) $ pwd
+/workspaces/codespace-starter/paths/lessons
+@ppbds-student ➜ /workspaces/codespace-starter/paths/lessons (main) $
 ````
 
 ###
@@ -579,10 +594,10 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/paths/lessons (main) $ mkdir tbd
-@ppbds-student ➜ /workspaces/03-terminal/paths/lessons (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/paths/lessons (main) $ mkdir tbd
+@ppbds-student ➜ /workspaces/codespace-starter/paths/lessons (main) $ ls
 fruits  tbd
-@ppbds-student ➜ /workspaces/03-terminal/paths/lessons (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/paths/lessons (main) $
 ````
 
 In the same way that `..` refers to the directory above the current directory, `.` --- a single period --- refers to the current directory, the one in which we are currently located.
@@ -605,10 +620,10 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/paths/lessons (main) $ mv fruits/does-not-belong tbd
-@ppbds-student ➜ /workspaces/03-terminal/paths/lessons (main) $ ls tbd
+@ppbds-student ➜ /workspaces/codespace-starter/paths/lessons (main) $ mv fruits/does-not-belong tbd
+@ppbds-student ➜ /workspaces/codespace-starter/paths/lessons (main) $ ls tbd
 does-not-belong
-@ppbds-student ➜ /workspaces/03-terminal/paths/lessons (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/paths/lessons (main) $
 ````
 
 ###
@@ -631,13 +646,13 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/paths/lessons (main) $ cd ..
-@ppbds-student ➜ /workspaces/03-terminal/paths (main) $ pwd
-/workspaces/03-terminal/paths
-@ppbds-student ➜ /workspaces/03-terminal/paths (main) $ mv lessons/tbd .
-@ppbds-student ➜ /workspaces/03-terminal/paths (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/paths/lessons (main) $ cd ..
+@ppbds-student ➜ /workspaces/codespace-starter/paths (main) $ pwd
+/workspaces/codespace-starter/paths
+@ppbds-student ➜ /workspaces/codespace-starter/paths (main) $ mv lessons/tbd .
+@ppbds-student ➜ /workspaces/codespace-starter/paths (main) $ ls
 lessons tbd
-@ppbds-student ➜ /workspaces/03-terminal/paths (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/paths (main) $
 ````
 
 When using `mv`, there is no difference between moving a directory and moving a file. A command like `mv lessons/tbd .` seems like a bit of witchcraft. But all it really says is to move (`mv`) the `tbd` directory (which is located in the `lessons` directory) to here (`.`), meaning to the current directory.
@@ -658,11 +673,11 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/paths (main) $ cd ..
-@ppbds-student ➜ /workspaces/03-terminal (main) $ pwd
-/workspaces/03-terminal
-@ppbds-student ➜ /workspaces/03-terminal (main) $ rm -r paths
-@ppbds-student ➜ /workspaces/03-terminal (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/paths (main) $ cd ..
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ pwd
+/workspaces/codespace-starter
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ rm -r paths
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
 ###
@@ -694,12 +709,12 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal (main) $ mkdir symbols
-@ppbds-student ➜ /workspaces/03-terminal (main) $ cd symbols
-@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ pwd
-/workspaces/03-terminal/symbols
-@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ ls
-@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ mkdir symbols
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ cd symbols
+@ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $ pwd
+/workspaces/codespace-starter/symbols
+@ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $
 ````
 
 The more practice we get with command-line commands --- often called "shell" commands --- the easier it is to string together several of them in a row.
@@ -724,12 +739,12 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ ls -a
+@ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $ ls -a
 .       ..
-@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $
 ````
 
-Every directory, even an "empty" one, includes `.` and `..`. The `.` is a link to the current directory, i.e., to the `symbols` directory in which we are currently located. The `..` is a link to the directory one level up, which is `/workspaces/03-terminal` in my case.
+Every directory, even an "empty" one, includes `.` and `..`. The `.` is a link to the current directory, i.e., to the `symbols` directory in which we are currently located. The `..` is a link to the directory one level up, which is `/workspaces/codespace-starter` in my case.
 
 ### Exercise 3
 
@@ -749,12 +764,12 @@ question_text(NULL,
 My answer looks like this:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ ls ..
-images  symbols  tutorial.Rmd  tutorial.html
-@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $ ls ..
+symbols
+@ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $
 ````
 
-Your answer will look different because you started this tutorial in a different directory, with different contents, than I did.
+At this point in the tutorial, `symbols` is the only item in `codespace-starter`. `ls ..` lets you view the contents of the parent directory without navigating away from where you are.
 
 ### Exercise 4
 
@@ -774,9 +789,9 @@ question_text(NULL,
 My answer looks like this:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ ls ../..
-03-terminal
-@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $ ls ../..
+codespace-starter
+@ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $
 ````
 
 Your answer may look different if your Codespace includes other folders inside `/workspaces`.
@@ -799,9 +814,9 @@ question_text(NULL,
 My answer looks like this:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ pwd
-/workspaces/03-terminal/symbols
-@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $ pwd
+/workspaces/codespace-starter/symbols
+@ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $
 ````
 
 The absolute path for my current location, meaning my current working directory, contains these locations.
@@ -810,7 +825,7 @@ The absolute path for my current location, meaning my current working directory,
 
 * `workspaces`, which is where GitHub Codespaces stores workspace folders.
 
-* `03-terminal`, which is the name of the folder in which I started this tutorial, followed by `symbols`, which is the directory we just created.
+* `codespace-starter`, which is the name of the folder in which I started this tutorial, followed by `symbols`, which is the directory we just created.
 
 ### Exercise 6
 
@@ -828,7 +843,7 @@ question_text(NULL,
 My answer looks like this:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ cd
+@ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $ cd
 @ppbds-student ➜ ~ $ pwd
 /home/codespace
 @ppbds-student ➜ ~ $
@@ -852,10 +867,10 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ ~ $ cd /workspaces/03-terminal/symbols
-@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ pwd
-/workspaces/03-terminal/symbols
-@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $
+@ppbds-student ➜ ~ $ cd /workspaces/codespace-starter/symbols
+@ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $ pwd
+/workspaces/codespace-starter/symbols
+@ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $
 ````
 
 This is an example of using an absolute path to change locations.
@@ -896,11 +911,11 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ pwd
-/workspaces/03-terminal/symbols
-@ppbds-student ➜ /workspaces/03-terminal/symbols (main) $ cd ..
-@ppbds-student ➜ /workspaces/03-terminal (main) $ rm -rf symbols
-@ppbds-student ➜ /workspaces/03-terminal (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $ pwd
+/workspaces/codespace-starter/symbols
+@ppbds-student ➜ /workspaces/codespace-starter/symbols (main) $ cd ..
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ rm -rf symbols
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
 Note that `rm -rf symbols` and `rm -rf symbols/`, with the trailing slash, have the same effect. Except in unusual circumstances, including (or not including) the trailing slash in the name of a directory does not matter.
@@ -927,12 +942,12 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal (main) $ pwd
-/workspaces/03-terminal
-@ppbds-student ➜ /workspaces/03-terminal (main) $ mkdir options
-@ppbds-student ➜ /workspaces/03-terminal (main) $ cd options/
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $ ls
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ pwd
+/workspaces/codespace-starter
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ mkdir options
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ cd options/
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $
 ````
 
 Note how easy it is to string together several commands in order to accomplish our goals.
@@ -972,8 +987,8 @@ question_text(NULL,
 Your answer should be something like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $ ls
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $
 ````
 
 If you did the previous exercise correctly, you should **not** see the new file. This is because we prefixed the name with `.`, which hides the file from normal view. Files whose name begins with a `.` are called "hidden" files for this reason.
@@ -997,9 +1012,9 @@ question_text(NULL,
 Options are preceded by a `-` and come before the argument. Your answer should look like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $ ls -a
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ ls -a
 .               ..              .my-hidden.txt
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $
 ````
 
 The `.` file refers to the `options` directory itself. The `..` refers to the directory in which the `options` directory is located. Every directory has both a `.` and a `..` file inside it, but we only see those files if we use the `-a` option.
@@ -1028,9 +1043,9 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $ echo $HOME
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ echo $HOME
 /home/codespace
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $
 ````
 
 Note how the prompt has changed because I am now in the `options` directory.
@@ -1055,9 +1070,9 @@ question_text(NULL,
 There are many different environment variables. You can also make your own. My answer looks like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $ ls $HOME
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ ls $HOME
 Downloads
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $
 ````
 
 Don't worry about the details of these files. Our main point is that environment variables are very handy because they make it easy to refer to a specific location on a computer, like where R is installed, even though the absolute path to this location is different on every person's computer.
@@ -1082,10 +1097,10 @@ question_text(NULL,
 My answer looks like this:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $ ls -l $HOME
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ ls -l $HOME
 total 4
 drwxr-xr-x 2 codespace codespace 4096 Apr 30 12:00 Downloads
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $
 ````
 
 In a long list, names are in the last column and file type is in the first. If the string in the first column begins with `d`, it is a **d**irectory; if it begins with `-`, it is a file; if it begins with `l`, it is a **l**ink to another file or directory on the computer. The middle columns give, from left to right, the number of files, author, permission, file size (in bytes), and the date/time last modified.
@@ -1114,9 +1129,9 @@ question_text(NULL,
 My answer looks like this:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $ ls ~/Downloads/A*
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ ls ~/Downloads/A*
 /home/codespace/Downloads/AUTHORS.txt
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $
 ````
 
 Note how my computer has added a `.txt` suffix to the file. Your computer might or might not do the same. Many operating systems think that every file should have a suffix that describes what it is, and so they add one if it is not present.
@@ -1128,10 +1143,10 @@ Move the `AUTHORS` file to the current directory, which is `options`, using `mv`
 For me, this looks like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $ mv /home/codespace/Downloads/AUTHORS.txt .
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ mv /home/codespace/Downloads/AUTHORS.txt .
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ ls
 AUTHORS.txt
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $
 ````
 
 ```{r options-9}
@@ -1252,9 +1267,9 @@ question_text(NULL,
 For me, this looks like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $ echo "David Kane"
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ echo "David Kane"
 David Kane
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $
 ````
 
 `echo` can also take a string that is not in quotes as its argument.
@@ -1277,13 +1292,13 @@ question_text(NULL,
 That is a lot of steps! An important goal of this tutorial is to teach you to be *comfortable* at the command line. My answer looks like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $ echo "David Kane" > test.txt
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ echo "David Kane" > test.txt
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ ls
 AUTHORS.txt     test.txt
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $ cat test.txt
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ cat test.txt
 David Kane
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $ rm test.txt
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ rm test.txt
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $
 ````
 
 ### Exercise 17
@@ -1303,10 +1318,10 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $ head -n 25 AUTHORS.txt > AUTHORS-fake
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ head -n 25 AUTHORS.txt > AUTHORS-fake
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ ls
 AUTHORS-fake    AUTHORS.txt
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $
 ````
 
 ### Exercise 18
@@ -1334,8 +1349,8 @@ question_text(NULL,
 My answer looks like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $ echo "David Kane" >> AUTHORS-fake
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $ tail AUTHORS-fake
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ echo "David Kane" >> AUTHORS-fake
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ tail AUTHORS-fake
 Thomas Lumley
 Martin Maechler
 Sebastian Meyer
@@ -1346,7 +1361,7 @@ Deepayan Sarkar
 Duncan Temple Lang
 Luke Tierney
 David Kane
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $
 ````
 
 Like `>`, `>>` is not limited to `echo`, but can be used to append the output of any command.
@@ -1370,12 +1385,12 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/options (main) $ cd ..
-@ppbds-student ➜ /workspaces/03-terminal (main) $ rm -r options
-@ppbds-student ➜ /workspaces/03-terminal (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/options (main) $ cd ..
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ rm -r options
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
-As usual, note how the prompt changes from `@ppbds-student ➜ /workspaces/03-terminal/options (main) $` to `@ppbds-student ➜ /workspaces/03-terminal (main) $` as we move from the `options` directory to the directory from which we started this tutorial.
+As usual, note how the prompt changes from `@ppbds-student ➜ /workspaces/codespace-starter/options (main) $` to `@ppbds-student ➜ /workspaces/codespace-starter (main) $` as we move from the `options` directory to the directory from which we started this tutorial.
 
 
 ## Wildcards
@@ -1399,10 +1414,10 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal (main) $ pwd
-/workspaces/03-terminal
-@ppbds-student ➜ /workspaces/03-terminal (main) $ mkdir wildcards
-@ppbds-student ➜ /workspaces/03-terminal (main) $
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ pwd
+/workspaces/codespace-starter
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ mkdir wildcards
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
 The `mkdir` command does not produce any output. To confirm that it had the desired effect, you could run `ls`.
@@ -1423,10 +1438,10 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal (main) $ cd wildcards/
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ pwd
-/workspaces/03-terminal/wildcards
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ cd wildcards/
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $ pwd
+/workspaces/codespace-starter/wildcards
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $
 ````
 
 Note how the prompt changed after we switched directories.
@@ -1457,14 +1472,14 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ echo "" > hat.txt & echo "" > cat.txt & echo "" > ate.txt
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $ echo "" > hat.txt & echo "" > cat.txt & echo "" > ate.txt
 [1] 59474
 [2] 59475
 [1]  - done       echo "" > hat.txt
 [2]  + done       echo "" > cat.txt
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $ ls
 ate.txt cat.txt hat.txt
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $
 ````
 
 If you are curious about how those commands work, ask your favorite AI. The more you interact with AI, the better.
@@ -1489,9 +1504,9 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls a
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $ ls a
 ls: cannot access 'a': No such file or directory
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $
 ````
 
 Although we have been using `ls` to return all the contents of a directory, `ls` can also take a name as an argument, as above.
@@ -1512,9 +1527,9 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls a*
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $ ls a*
 ate.txt
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $
 ````
 
 Although `*` will match strings of any length, its positioning matters. `a*` is not the same thing as `*a`. The first matches any string (i.e., any filename) that starts with `a`. The second matches any filename that ends with `a`.
@@ -1535,9 +1550,9 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls *a*
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $ ls *a*
 ate.txt cat.txt hat.txt
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $
 ````
 
 Note that these **regular expressions** are case-sensitive. A regular expression is a pattern that you can use for many purposes, including as a search criterion.
@@ -1558,9 +1573,9 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls *t.*
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $ ls *t.*
 cat.txt hat.txt
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $
 ````
 
 This should return `hat.txt` and `cat.txt`. Read this regular expression --- `*t.*` --- as matching any string that includes a `t` followed directly by a period, regardless of any characters before or after. `ate.txt` is not matched because the `t` and the `.` are separated by `e`.
@@ -1585,10 +1600,10 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls *a* > afiles.txt
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $ ls *a* > afiles.txt
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $ ls
 afiles.txt      ate.txt         cat.txt         hat.txt
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $
 ````
 
 You can use your `up` and `down` arrow keys to navigate command history. The `>` symbol outputs the result of the left-hand command into the right-hand location.
@@ -1615,10 +1630,10 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ mkdir seuss
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $ mkdir seuss
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $ ls
 afiles.txt      ate.txt         cat.txt         hat.txt         seuss
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $
 ````
 
 The `wildcards` directory, in which you are currently located, now includes five items, one of which is the `seuss` directory.
@@ -1639,14 +1654,14 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls -l
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $ ls -l
 total 16
 -rw-r--r-- 1 codespace codespace 24 Apr 30 12:00 afiles.txt
 -rw-r--r-- 1 codespace codespace  1 Apr 30 12:00 ate.txt
 -rw-r--r-- 1 codespace codespace  1 Apr 30 12:00 cat.txt
 -rw-r--r-- 1 codespace codespace  1 Apr 30 12:00 hat.txt
 drwxr-xr-x 2 codespace codespace 4096 Apr 30 12:00 seuss
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $
 ````
 
 The `-l` option provides a **l**ong-format listing of the contents of the directory, including information about the type of content (file versus directory) and creation dates/times. The leading `d` in the line for `seuss` indicates that it is a directory.
@@ -1669,9 +1684,9 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls *t.*
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $ ls *t.*
 cat.txt hat.txt
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $
 ````
 
 Before moving or otherwise acting on a group of files, we often want to ensure that we have the correct group. Running `ls` with the appropriate regular expression is an easy way to test.
@@ -1692,8 +1707,8 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ mv *t.* seuss
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $ mv *t.* seuss
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $
 ````
 
 The `mv` command, like `mkdir`, does not produce any output. You need to check by hand to ensure it has done what you wanted.
@@ -1716,12 +1731,12 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ ls -R
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $ ls -R
 afiles.txt      ate.txt         seuss
 
 ./seuss:
 cat.txt hat.txt
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $
 ````
 
 The `-R` option to the `ls` command stands for **r**ecursive. We see not simply the contents of the current directory (two files and the `seuss` directory) but also the contents of the `seuss` directory itself.
@@ -1742,10 +1757,10 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/wildcards (main) $ cd ..
-@ppbds-student ➜ /workspaces/03-terminal (main) $ pwd
-/workspaces/03-terminal
-@ppbds-student ➜ /workspaces/03-terminal (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $ cd ..
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ pwd
+/workspaces/codespace-starter
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
 In order to delete a directory, you cannot be located within that directory. We want to delete (that is, "remove") the `wildcards` directory since we always want to --- at least for this tutorial --- clean up any temporary files/directories that we have created.
@@ -1766,10 +1781,10 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal (main) $ rm wildcards
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ rm wildcards
 rm: cannot remove 'wildcards': Is a directory
-@ppbds-student ➜ /workspaces/03-terminal (main) $ rm -rf wildcards/
-@ppbds-student ➜ /workspaces/03-terminal (main) $
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ rm -rf wildcards/
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
 Note that both `wildcards` and `wildcards/` refer to the same entity, the `wildcards` directory. The Terminal often "adds" a forward slash (`/`) to the end of directory names to indicate that the object is a directory, not simply a file.
@@ -1795,15 +1810,15 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal (main) $ pwd
-/workspaces/03-terminal
-@ppbds-student ➜ /workspaces/03-terminal (main) $ mkdir files
-@ppbds-student ➜ /workspaces/03-terminal (main) $ cd files/
-@ppbds-student ➜ /workspaces/03-terminal/files (main) $ ls
-@ppbds-student ➜ /workspaces/03-terminal/files (main) $
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ pwd
+/workspaces/codespace-starter
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ mkdir files
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ cd files/
+@ppbds-student ➜ /workspaces/codespace-starter/files (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/files (main) $
 ````
 
-We often, as here, move to the directory in which we will be working. But we could have stayed in the starting directory, which is `/workspaces/03-terminal` for me, and then worked from there using `files/` in the commands to come.
+We often, as here, move to the directory in which we will be working. But we could have stayed in the starting directory, which is `/workspaces/codespace-starter` for me, and then worked from there using `files/` in the commands to come.
 
 ### Exercise 2
 
@@ -1903,13 +1918,13 @@ question_text(NULL,
 My answer looks like this:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/files (main) $ curl -O https://raw.githubusercontent.com/PPBDS/vscode.tutorials/refs/heads/main/TODO.txt
+@ppbds-student ➜ /workspaces/codespace-starter/files (main) $ curl -O https://raw.githubusercontent.com/PPBDS/vscode.tutorials/refs/heads/main/TODO.txt
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100  7876  100  7876    0     0   111k      0 --:--:-- --:--:-- --:--:--  111k
-@ppbds-student ➜ /workspaces/03-terminal/files (main) $ ls
+@ppbds-student ➜ /workspaces/codespace-starter/files (main) $ ls
 TODO.txt
-@ppbds-student ➜ /workspaces/03-terminal/files (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/files (main) $
 ````
 
 ###
@@ -1934,9 +1949,9 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/files (main) $ cd ..
-@ppbds-student ➜ /workspaces/03-terminal (main) $ rm -r files/
-@ppbds-student ➜ /workspaces/03-terminal (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/files (main) $ cd ..
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ rm -r files/
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
 ###
@@ -1992,19 +2007,19 @@ question_text(NULL,
 When I run this, I see:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal (main) $ cd grepping
-@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ echo hat.txt > files.txt & echo cat.txt >> files.txt & echo ate.txt >> files.txt & echo "" >> files.txt
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ cd grepping
+@ppbds-student ➜ /workspaces/codespace-starter/grepping (main) $ echo hat.txt > files.txt & echo cat.txt >> files.txt & echo ate.txt >> files.txt & echo "" >> files.txt
 [1] 98048
 [2] 98049
 [3] 98050
 [1]    done       echo hat.txt > files.txt
 [3]  + done       echo ate.txt >> files.txt
 [2]  + done       echo cat.txt >> files.txt
-@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ cat files.txt
+@ppbds-student ➜ /workspaces/codespace-starter/grepping (main) $ cat files.txt
 hat.txt
 cat.txt
 ate.txt
-@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/grepping (main) $
 ````
 
 This shows how three different commands can be run from one command line.
@@ -2027,11 +2042,11 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ grep a files.txt
+@ppbds-student ➜ /workspaces/codespace-starter/grepping (main) $ grep a files.txt
 hat.txt
 cat.txt
 ate.txt
-@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/grepping (main) $
 ````
 
 Remember to use the *tab* key to take advantage of auto-completion. Don't type! Tab complete!
@@ -2056,9 +2071,9 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ grep ^a files.txt
+@ppbds-student ➜ /workspaces/codespace-starter/grepping (main) $ grep ^a files.txt
 ate.txt
-@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/grepping (main) $
 ````
 
 `^` is put at the beginning of a regular expression to indicate that the expression must occur at the beginning of a line. A dollar sign --- `$` --- at the end of a regular expression indicates that the expression must occur at the end of the line.
@@ -2102,13 +2117,13 @@ question_text(NULL,
 My answer looks like:
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal (main) $ curl -o grepping/grepping.txt https://raw.githubusercontent.com/PPBDS/vscode.tutorials/refs/heads/main/inst/tutorials/03-terminal/images/grepping.txt
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ curl -o grepping/grepping.txt https://raw.githubusercontent.com/PPBDS/vscode.tutorials/refs/heads/main/inst/tutorials/03-terminal/images/grepping.txt
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100    38  100    38    0     0    455      0 --:--:-- --:--:-- --:--:--   457
-@ppbds-student ➜ /workspaces/03-terminal (main) $ ls grepping
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ ls grepping
 files.txt  grepping.txt
-@ppbds-student ➜ /workspaces/03-terminal (main) $
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
 There are now two files in `grepping`: `files.txt` and `grepping.txt`.
@@ -2133,10 +2148,10 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal (main) $ cd grepping
-@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ wc grepping.txt
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ cd grepping
+@ppbds-student ➜ /workspaces/codespace-starter/grepping (main) $ wc grepping.txt
        7       7      38 grepping.txt
-@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/grepping (main) $
 ````
 
 The first number returned by `wc` is the number of lines in the file. The second is the total number of words. The third is the number of characters. In this case, the number of lines is the same as the number of words.
@@ -2161,11 +2176,11 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ grep R grepping.txt
+@ppbds-student ➜ /workspaces/codespace-starter/grepping (main) $ grep R grepping.txt
 R
 Robert
 aRe
-@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/grepping (main) $
 ````
 
 `aRe` is included because the pattern `R` matches any line that includes an `R`, regardless of where that `R` is on the line.
@@ -2190,10 +2205,10 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ grep ^R grepping.txt
+@ppbds-student ➜ /workspaces/codespace-starter/grepping (main) $ grep ^R grepping.txt
 R
 Robert
-@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/grepping (main) $
 ````
 
 `^` and `$` are called metacharacters. It is often useful to put quotes around a regular expression that includes metacharacters.
@@ -2218,11 +2233,11 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ grep e$ grepping.txt
+@ppbds-student ➜ /workspaces/codespace-starter/grepping (main) $ grep e$ grepping.txt
 whose
 these
 aRe
-@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/grepping (main) $
 ````
 
 `egrep` is an even more powerful version of `grep`.  Learning more about `egrep` is beyond the scope of this tutorial.
@@ -2243,13 +2258,13 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal/grepping (main) $ cd ..
-@ppbds-student ➜ /workspaces/03-terminal (main) $ pwd
-/workspaces/03-terminal
-@ppbds-student ➜ /workspaces/03-terminal (main) $
+@ppbds-student ➜ /workspaces/codespace-starter/grepping (main) $ cd ..
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ pwd
+/workspaces/codespace-starter
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
-If your tutorials are organized in the same place, only the last directory in the path for the default working directory will change between tutorials.
+All tutorials in this series use `/workspaces/codespace-starter` as the default working directory.
 
 ### Exercise 11
 
@@ -2267,11 +2282,158 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/03-terminal (main) $ rm -r grepping
-@ppbds-student ➜ /workspaces/03-terminal (main) $
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ rm -r grepping
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
 ````
 
 It is always a good idea to clean up after yourself. As the sign says when taking a hike in the forest: "Take only photos. Leave only footprints."
+
+## git
+###
+
+Now that you are comfortable with the Terminal, let's look at one more feature of your Codespace. The `codespace-starter` directory is not just a folder --- it is also a **git repository**.
+
+### Exercise 1
+
+Use `pwd` to confirm that you are in `workspaces/codespace-starter`. Then run `ls -a`. CP/CR.
+
+```{r git-1}
+question_text(NULL,
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 5)
+```
+
+###
+
+````
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ ls -a
+.  ..  .git
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
+````
+
+Notice the `.git` directory. This hidden directory is what makes `codespace-starter` a **git repository**. **git** is a version control system --- software that tracks changes to files over time, allowing you to save snapshots of your work and collaborate with others. The `(main)` you see in your prompt is git indicating which **branch** you are on. You will learn more about branches in the next tutorial.
+
+### Exercise 2
+
+Run `ls .git`. CP/CR.
+
+```{r git-2}
+question_text(NULL,
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 5)
+```
+
+###
+
+````
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ ls .git
+COMMIT_EDITMSG  HEAD  branches  config  description  hooks  index  info  logs  objects  packed-refs  refs
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
+````
+
+This is where git stores everything it needs to track your work: commit history, configuration, object storage, and more. You should never modify these files directly. Git manages them entirely on its own.
+
+### Exercise 3
+
+Run `git status`. CP/CR.
+
+```{r git-3}
+question_text(NULL,
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 5)
+```
+
+###
+
+````
+@ppbds-student ➜ /workspaces/codespace-starter (main) $ git status
+On branch main
+nothing to commit, working tree clean
+@ppbds-student ➜ /workspaces/codespace-starter (main) $
+````
+
+`git status` is one of the most commonly used git commands. It shows the current state of your repository. "Nothing to commit, working tree clean" means git is not aware of any new or changed files since the last commit. You will learn more about commits and tracking files in the next tutorial.
+
+### Exercise 4
+
+So far, your work lives only in this Codespace. If the Codespace were deleted, your files would be gone. **GitHub** is a platform that hosts git repositories in the cloud, giving your work a permanent, accessible home.
+
+Go to:
+
+````
+https://github.com/PPBDS/codespace-starter
+````
+
+Click the green "Use this template" button and select "Create a new repository."
+
+```{r}
+include_graphics("images/create-repo-from-template.png")
+```
+
+ame the repository `04-github-1` and make sure it is set to **Public**. Leave all other settings as their defaults. Click "Create repository."
+
+```{r}
+include_graphics("images/create-new-repo.png")
+```
+
+Once the repository is created, paste the URL of your new repository below.
+
+```{r git-4}
+question_text(NULL,
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 2)
+```
+
+###
+
+It should look something like `https://github.com/your-username/04-github-1`.
+
+###
+
+A **GitHub repository** is a copy of your git repository hosted in the cloud. It serves as a permanent backup of your work and makes it accessible from anywhere. It also makes collaboration possible --- others can view, copy, or contribute to your code. Every GitHub repository has a unique URL based on your username and the repository name.
+
+### Exercise 5
+
+Now create a Codespace from your new `04-github-1` repository. From your repository page on GitHub, click the green "Code" button, select the "Codespaces" tab, and click "Create codespace on main."
+
+```{r}
+include_graphics("images/create-codespace.png")
+```
+
+A new VS Code environment will open in your browser. Once it has loaded, paste the URL of your new Codespace below.
+
+```{r git-5}
+question_text(NULL,
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 2)
+```
+
+###
+
+It should look something like `https://your-username-04-github-1-randomstring.github.dev`.
+
+```{r}
+include_graphics("images/new-gh-repo-cs.png")
+```
+
+###
+
+A **Codespace** is a cloud development environment linked to a specific GitHub repository. Creating one from `04-github-1` gives you a fresh VS Code environment with that repository's files already available. This will be your workspace for the next tutorial. You can always return to it from your `04-github-1` repository page on GitHub.
 
 ## Summary
 ###
