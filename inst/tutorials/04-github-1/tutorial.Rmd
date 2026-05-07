@@ -26,18 +26,8 @@ options(tutorial.exercise.timelimit = 60,
         tutorial.storage = "local")
 ```
 
-
-
 ```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
 ```
-
-<!-- Change First-Repo to `repo-1`. Then, update all the relevant PNG files. AR: repo now named 04-github-1 that's what's in the images. Okay? -->
-
-<!-- Stop being afraid of the command line. Use lots of git commands.  -->
-
-<!-- Should we be using suppressPack..() and execute: trickery in our publishing example? Or should we make it simpler, just using code chunk options? -->
-
-<!-- Should we have a repo-3? Only if this tutorial only takes 45 minutes now, which I doubt. AR: Check timing, then decide? or close this out? -->
 
 ## Introduction
 ### 
@@ -685,8 +675,6 @@ As AI writes more and more of our code, it's becoming increasingly important to 
 
 ## Publishing with GitHub Pages
 ### 
-
-<!-- DK: Put something. Something about Netifly and other services. AR: done.-->
 
 An HTML file rendered by Quarto only lives on your computer (or Codespace) — it isn't accessible to anyone else. [GitHub Pages](https://pages.github.com/) solves this by serving the static files from your GitHub repository as a public website, giving you a real URL you can share with anyone.
 

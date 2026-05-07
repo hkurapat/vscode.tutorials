@@ -30,32 +30,11 @@ options(tutorial.exercise.timelimit = 60,
 ```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
 ```
 
-<!-- DK: Add at end 
-
-Change repo name to `my-repo`. AR: done in text and pic.
-
-They need to show you the url. AR: Done.
-
-No need to create codespace. AR: Done.
-
-Make sure that they delete this repo at the end, show them the Settings tab and the Delete button at the bottom. AR: done.
-
-Make sure you tell them that every tutorial going forward will be run from a repo you create at the start, example `04-github-1`, `07-website-2` and so on. AR: done.
-
--->
-
-
-<!-- Won't just about everyone doing this tutorial be in their projects directory? So I should be too! AR: no longer relevant for codespaces-->
-
-<!-- The second time we use echo, we act like we haven't explained it before. AR: now we explain in knowledge drop after its first use. -->
-
-<!-- Might be useful to add a test which confirms that those files exist, before we ask students to download them. Of course, that will only work if we have web access. -->
+<!-- DK: Add a test which checks that the files which are downloaded exist. -->
 
 <!-- Add a brief discussion of environment variables? -->
 
 <!-- Consider adding a third files download exercise and/or making the current one more like the actual work that students do on this topic, which generally involves an R project, making data/ directory, putting a new file there and so on. -->
-
-<!-- Consider adding a bunch more images. Might be very useful in the paths section, especially taking images from the Explorer and showing how they correspond to the commands. -->
 
 <!-- Could have test cases which confirm that these commands match what I think they should, I think. -->
 
@@ -1659,8 +1638,6 @@ drwxr-xr-x 2 codespace codespace 4096 Apr 30 12:00 seuss
 ````
 
 The `-l` option provides a **l**ong-format listing of the contents of the directory, including information about the type of content (file versus directory) and creation dates/times. The leading `d` in the line for `seuss` indicates that it is a directory.
-
-<!-- Give a tour of what the different columns mean? Note this is the second time we have used ls -l. AR: now explain columns after its first use. -->
 
 ### Exercise 11
 
