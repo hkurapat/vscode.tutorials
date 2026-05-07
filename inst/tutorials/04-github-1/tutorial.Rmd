@@ -659,6 +659,12 @@ As AI writes more and more of our code, it's becoming increasingly important to 
 ## Publishing with GitHub Pages
 ### 
 
+<!-- DK: Put something. Something about Netifly and other services. AR: done.-->
+
+An HTML file rendered by Quarto only lives on your computer (or Codespace) — it isn't accessible to anyone else. [GitHub Pages](https://pages.github.com/) solves this by serving the static files from your GitHub repository as a public website, giving you a real URL you can share with anyone.
+
+GitHub Pages isn't the only option. [Netlify](https://www.netlify.com/), [Quarto Pub](https://quartopub.com/), and [Posit Connect](https://posit.co/products/enterprise/connect/) are some popular alternatives for hosting HTML files and websites.
+
 ### Exercise 1
 
 Add an R code chunk in `analysis-1.qmd` by using the shortcut key `Cmd/Ctrl + Option + I`. (Recall that "code chunk" and "code cell" mean the same thing.) In that chunk, put `library(tidyverse)`. Use `Cmd/Ctrl + Shift + K` to render the document. Your preview file should look something like this:
