@@ -28,14 +28,16 @@ library(tidyverse)
 ```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
 ```
 
-<!-- Confirm that quarto publish gh-pages works on Windows. -->
+<!-- Confirm that quarto publish gh-pages works on Windows. AR: not my comment, but is necessary with Codespaces? -->
 
 <!-- Should I learn more about where Quarto is installed? Does it matter? I currently find it in at least two places on my computer:
 
 /Applications/quarto/bin/quarto
 /usr/local/bin/quarto
 
-And I also think it is bundled with Positron somehow? -->
+And I also think it is bundled with Positron somehow? 
+
+AR: not my comment, but is this no longer relevant with Codespaces changes? -->
 
 ## Introduction
 ### 
@@ -44,7 +46,7 @@ This tutorial introduces the process of creating and organizing [Quarto websites
 
 ### 
 
-Start a new window with `File -> New Window`. This new window is the location in which you will do all the work for the tutorial, including the creation of new projects. The current window, the one in which you are reading these words, is just used to run this tutorial. 
+If you haven't already, start a new Github repository named `06-websites-1` and create a new Codespace where you will run this tutorial and complete all of your work.
 
 ## Creating files
 ### 
