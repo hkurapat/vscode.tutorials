@@ -1,16 +1,27 @@
 ## Alec
 
-Publish is second to last step. Committing is last step.
+Read https://ppbds.github.io/tutorial.helpers/articles/ai.html
 
-Add a sentence or two at top of 02-quarto about files which might be left over. - AR: done
+Send a PR (via the tutorial.helpers package!).
+  
+  * Include typo fixes and questions.
 
-We should only have 2 R Terminals, at least in the first 4 (7) tutorials. One runs the tutorial. The second is for interactive use.
+  * Update templates so that we use the new VS Code and Codespaces approach. This is most (only?) relevant for exercise 2. (And it is nice that it only matters there.)
 
-Get rid of all Positron.
+Fixing r4ds 1-5 and tidycensus-1. 
 
-Many of the images are different.
+  * Publish is second to last step. Committing is last step.
 
-What is the cool way of adding images?
+  * Get rid of all Positron. 
+
+  * Rewrite Exercise 1 creation to be Codespace.
+
+  * Maybe the Summary sections OK? Commit after publish!
+
+  * r4ds-2 is too long. cheese download is messed up?
+
+
+
 
 ## Priorities
 
@@ -23,8 +34,6 @@ Options for VScode/Codespaces?
 * Put an introductory section in r4ds-1 which reminds people how the Positron and Codespace/VS Code approaches differ, most importantly in which directory you start in, both for bash and for R.
 
 * Design changes which make all r4ds tutorials work well for both IDEs.
-
-* Change the names from 01-code to positron-01-code, and so on.
 
 * Create copies of all 7 of the 0* tutorials, named vscode-01-code and so on. Or maybe we don't need to do that since they are very similar for both IDEs.
 

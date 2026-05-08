@@ -952,8 +952,6 @@ With *inline* code, we can insert R code of arbitrary complexity directly in the
 
 Restart your R session by opening a new R Terminal and closing your previous one. As always, you are doing this work in an R Terminal different from the one that is running this tutorial. If you mistakenly restart R in this terminal, this tutorial will quit. That is OK! You can restart it with `learnr::run_tutorial(name = "02-quarto", package = "vscode.tutorials")`.
 
-<!-- I don't think that Positron, unlike RStudio, does anything special with a code chunk labeled `setup`. So, maybe redo this example completely, teaching something different? -->
-
 ### Exercise 1
 
 Run `search()` in the R Terminal. CP/CR.
