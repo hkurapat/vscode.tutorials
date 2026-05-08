@@ -478,7 +478,38 @@ Date:   Sun Mar 16 11:59:04 2025 -0400
 @ppbds-student ➜ /workspaces/website-1 $ 
 ````
 
-We recommend that you use a Quarto project for your websites, books, dashboards and so on. 
+We recommend that you use a Quarto project for your websites, books, dashboards and so on.
+
+### Exercise 15
+
+Navigate to your `website-1` GitHub repo. Copy and paste the repository file listing.
+
+```{r website-1-15}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 6)
+```
+
+###
+
+Your file listing should look something like:
+
+````
+.gitignore      initial version     2 days ago
+_quarto.yml     initial version     2 days ago
+about.qmd       initial version     2 days ago
+index.qmd       initial version     2 days ago
+styles.css      initial version     2 days ago
+````
+
+Once you have confirmed your files are on GitHub, delete your Codespace. Click the green **Code** button on the repo page, go to the **Codespaces** tab, click **...** next to your Codespace, and select **Delete**.
+
+###
+
+Quarto is more than a website tool — it is a unified scientific publishing system. The same `.qmd` source files you used to build `website-1` can, with just a few YAML changes, be rendered as a PDF, a Word document, a slide deck, or a book.
 
 ## Website 2
 ### 
@@ -1369,7 +1400,40 @@ Date:   Mon Mar 17 18:03:23 2025 -0400
 
 Type `quarto publish` in the Terminal and hit "Enter." Note how you did not need to specify `gh-pages`. Quarto is smart enough to know that, since GitHub Pages is what you used last time, it is probably what you want now.  
 
-Explore the use of the "Sources" menu on your website. 
+Explore the use of the "Sources" menu on your website.
+
+### Exercise 23
+
+Navigate to your `website-2` GitHub repo. Copy and paste the repository file listing.
+
+```{r website-2-23}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 8)
+```
+
+###
+
+Your file listing should look something like:
+
+````
+.gitignore      initial version         2 days ago
+_quarto.yml     Added source pages      2 hours ago
+about.qmd       Added plot to home page 3 hours ago
+index.qmd       Added plot to home page 3 hours ago
+source-1.qmd    Added source pages      2 hours ago
+source-2.qmd    Added source pages      2 hours ago
+styles.css      initial version         2 days ago
+````
+
+Once you have confirmed your files are on GitHub, delete your Codespace. Click the green **Code** button on the repo page, go to the **Codespaces** tab, click **...** next to your Codespace, and select **Delete**.
+
+###
+
+When you ran `quarto publish gh-pages` for `website-1` and `website-2`, Quarto was doing something behind the scenes worth understanding. It created (or updated) a separate `gh-pages` branch in your repo containing only the rendered HTML files from `_site`. Your `main` branch stays clean with just the source files. This is exactly why you added `_site` to `.gitignore` — the rendered files do live on GitHub, but in a different branch that GitHub Pages serves automatically. If you visit your repo on GitHub and click the branch dropdown, you will see both `main` and `gh-pages`.
 
 ## Website 3
 ### 
@@ -2244,6 +2308,45 @@ Graphics on the web often appear differently than graphics on your computer, so 
 When saving graphics for web display, it is often useful to specify their exact size with a command like `ggsave("your-file.png", your-plot, width = 4, height = 3)`. An earlier edition of [*ggplot2: Elegant Graphics for Data Analysis*](https://ggplot2-book.org/) also [notes](https://bookdown.dongzhuoer.com/hadley/ggplot2-book/saving) that:
 
 > For raster graphics (i.e. .png, .jpg), the dpi argument controls the resolution of the plot. It defaults to 300, which is appropriate for most printers, but you may want to use 600 for particularly high-resolution output, or 96 for on-screen (e.g., web) display.
+
+### Exercise 26
+
+Navigate to your `website-3` GitHub repo. Copy and paste the repository file listing.
+
+```{r website-3-26}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 10)
+```
+
+###
+
+Your file listing should look something like:
+
+````
+.gitignore          initial version     2 days ago
+_quarto.yml         initial version     2 days ago
+about.qmd           initial version     2 days ago
+clean_data.rds      update main page    1 hour ago
+index.qmd           update main page    1 hour ago
+make_plot.R         update main page    1 hour ago
+process_data.R      update main page    1 hour ago
+size_v_weight.png   update main page    1 hour ago
+styles.css          initial version     2 days ago
+````
+
+Once you have confirmed your files are on GitHub, delete your Codespace. Click the green **Code** button on the repo page, go to the **Codespaces** tab, click **...** next to your Codespace, and select **Delete**.
+
+###
+
+In `website-1` and `website-2`, all R code lived inside `index.qmd` and re-ran every time you rendered the site. `website-3` introduced a more scalable pattern: `process_data.R` runs once and saves its result to `clean_data.rds`, then `make_plot.R` reads that file and saves `size_v_weight.png`, and `index.qmd` simply displays the image. 
+
+Notice that the `gh-pages` branch you learned about in `website-2` still handles publishing — what changed is only the structure of `main`.
+
+In professional data science projects, this separation of data cleaning, modeling, visualization, and reporting into distinct scripts makes pipelines faster to iterate on, easier for collaborators to understand, and simpler to debug when something goes wrong.
 
 ## Summary
 ### 
