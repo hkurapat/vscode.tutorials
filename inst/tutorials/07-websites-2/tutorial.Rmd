@@ -520,7 +520,7 @@ Let's create a new website with a beautiful plot of the data from the `billboard
 
 Create a public GitHub repo called `website-2` and create a Codespace for it.
 
-From the Terminal, run `ls`. CP/CR.
+Paste the URLs from the repo and the Codespace.
 
 ```{r website-2-1}
 question_text(NULL,
@@ -533,12 +533,21 @@ question_text(NULL,
 
 ### 
 
-````
-@ppbds-student ➜ /workspaces/website-2 $ ls
-@ppbds-student ➜ /workspaces/website-2 $
-````
+Your GitHub repo link should look something like:
 
-Recall that the `index.qmd` file will always create our "home" page because it is rendered to `index.html`. Browsers, by default, show `index.html`, if one exists, when they visit a new directory. 
+```
+https://github.com/ppbds-student/website-2
+```
+
+The link to the Codespace associated should look like:
+
+```
+https://codespaces.new/ppbds-student/website-2
+```
+
+###
+
+Each website gets its own GitHub repo. This keeps projects independent: separate commit histories, separate collaborators, and separate deployment settings. It also means you can delete or archive a project without affecting anything else. This is good practice for any data science project, not just websites.
 
 ### Exercise 2
 
