@@ -39,10 +39,6 @@ The most useful reference for Git/GitHub is [*Happy Git and GitHub for the useR*
 
 During this tutorial, you will create two GitHub repos and Codespaces --- one for each project. You should complete the tutorial itself in a separate Codespace.
 
-For the tutorial Codespace, use one that is opened directly from the `codespace-starter` template. This could be the same Codespace that you used for the `01-code`, `02-quarto`, and `03-terminal` tutorials. 
-
-If you deleted that Codespace, you can create a new one by going to this [link to the codespace-starter template](https://github.com/PPBDS/codespace-starter) and then clicking the green "Use this Template" button in the top right. Then select "Open in a Codespace".
-
 ## Project 1
 ###
 
