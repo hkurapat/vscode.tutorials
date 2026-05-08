@@ -1706,7 +1706,7 @@ A line of code, like `library(tidyverse)`, might exist in a script, but unless/u
 
 ### Exercise 9
 
-"Source" the entire script with echo by clicking the dropdown arrow next to the Run button (▷) at the top right of the editor and selecting "Source File with Echo". This takes all the code from the script and feeds it, line-by-line, to the R Terminal. CP/CR.
+"Source" the entire script with echo by clicking the dropdown arrow next to the Run button (▷) at the top right of the editor. This takes all the code from the script and feeds it, line-by-line, to the R Terminal. CP/CR.
 
 ```{r website-3-9}
 question_text(NULL,
