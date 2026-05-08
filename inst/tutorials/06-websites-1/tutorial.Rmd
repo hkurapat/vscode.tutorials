@@ -70,6 +70,12 @@ Always start a new data science project with a new Github repo.
 
 In the Terminal, run `quarto create project website .`. Don't forget the `.` at the end of the command — it tells Quarto to place the new files in the current directory.
 
+You can also do this using the Application Menu. Start by clicking the hamburger icon (three horizontal bars) in the Activity Bar:
+
+```{r}
+knitr::include_graphics("images/make-quarto-website.gif")
+```
+
 If you are asked for a "Title," use `A New Website`.
 
 CP/CR.
