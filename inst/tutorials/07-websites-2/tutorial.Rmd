@@ -39,7 +39,7 @@ This tutorial practices the process of creating and organizing the [Quarto websi
 
 ### 
 
-Start a new window with `File -> New Window`. This new window is the location in which you will do all the work for the tutorial, including the creation of new projects. The current window, the one in which you are reading these words, is just used to run this tutorial. 
+We will create three websites each using a new GitHub repo and Codespace. Run this tutorial in a seperate Codespace.
 
 ## Website 1
 ### 
@@ -48,7 +48,7 @@ Let's create and publish a [Quarto website](https://quarto.org/docs/websites/).
 
 ### Exercise 1
 
-Create a public GitHub repo (called `website-1`). Set the "Add README" toggle switch to "On." Copy/paste the URL for its GitHub location.
+Create a public GitHub repo (called `website-1`) and then create a Codespace for the repo. Copy/paste the URLs for both.
 
 ```{r website-1-1}
 question_text(NULL,
@@ -61,11 +61,19 @@ question_text(NULL,
 
 ### 
 
-Your answer should look something like:
+Your Github repo link should look something like:
 
 ```
-https://github.com/davidkane9/website-1
+https://github.com/ppbds-student/website-1
 ```
+
+The link to the Codespace associated should look like:
+
+```
+https://codespaces.new/ppbds-student/website-1
+```
+
+###
 
 Always start a new data science project with a new GitHub repo.
 
