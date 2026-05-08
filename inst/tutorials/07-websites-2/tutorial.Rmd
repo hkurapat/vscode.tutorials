@@ -39,7 +39,7 @@ This tutorial practices the process of creating and organizing the [Quarto websi
 
 ### 
 
-We will create three websites each using a new GitHub repo and Codespace. Run this tutorial in a seperate Codespace.
+We will create three websites each using a new GitHub repo and Codespace. Run this tutorial in a separate Codespace.
 
 ## Website 1
 ### 
@@ -61,7 +61,7 @@ question_text(NULL,
 
 ### 
 
-Your Github repo link should look something like:
+Your GitHub repo link should look something like:
 
 ```
 https://github.com/ppbds-student/website-1
@@ -80,8 +80,6 @@ Always start a new data science project with a new GitHub repo.
 ### Exercise 2
 
 In the Terminal, run `quarto create project website .`.  Don't forget the `.` at the end of the command. If asked for a title, use "Website 1".
-
-Depending on your computer setup, this command will require you to answer some questions. Do so as best you can.
 
 CP/CR.
 
@@ -157,7 +155,7 @@ question_text(NULL,
 @ppbds-student ➜ /workspaces/website-1 $ 
 ````
 
-The `.quarto` directory does not yet exist because we haven't rendered any of our QMD files yet. But when we do, we don't any of the junk in that file to be backed up with Git.
+The `.quarto` directory does not yet exist because we haven't rendered any of our QMD files yet. But when we do, we don't want any of the junk in that file to be backed up with Git.
 
 ### Exercise 5
 
@@ -244,7 +242,7 @@ Note that the `title` (`"Website 1"`) in `_quarto.yml` has no necessary connecti
 
 ### Exercise 7
 
-Commit and push all the files in the project. (Recall that the "Sync" button both pushes and pulls from GitHub. Since no one else is adding material to our GitHub, there is nothing to pull. So, we will sometimes just use the word "push," although you can just press the "Sync" button.)
+Commit and push all the files in the project. (The "Sync" button both pushes and pulls, but since no one else is adding material to our repo, you can think of it as simply pushing.)
 
 Run `git log -n 1` in the Terminal. CP/CR.
 
@@ -340,7 +338,7 @@ About
 About this site
 ````
 
-Your answer might not match ours. That is OK! How the html display varies by browser and screen dimension. The important thing is that, once we have rendered a website, a working version appears in the `_site` directory. 
+Your answer might not match ours. That is OK! How the HTML displays varies by browser and screen dimension. The important thing is that, once we have rendered a website, a working version appears in the `_site` directory. 
 
 ### Exercise 10
 
@@ -446,6 +444,8 @@ question_text(NULL,
 ````
 https://davidkane9.github.io/website-1/
 ````
+
+###
 
 You can also use Quarto to produce presentations. You get less visual control than with a tool like Keynote or PowerPoint, but automatically inserting the results of your R code into a presentation can save a huge amount of time. Presentations work by dividing your content into slides, with a new slide beginning at each second (`##`) level header. Additionally, first (`#`) level headers indicate the beginning of a new section with a section title slide that is, by default, centered in the middle.
 
@@ -570,8 +570,6 @@ Creating project at /workspaces/website-2:
 @ppbds-student ➜ /workspaces/website-2 $ 
 ````
 
-The `.` in the `quarto create` command refers to the current working directory. That is, we are telling Quarto to put all the necessary files right here.
-
 We are moving faster in the creation of Website 2 than we did when making Website 1 because you should already be familiar with the steps. We will go even faster when we make Website 3.
 
 ### Exercise 3
@@ -656,7 +654,7 @@ suppressPackageStartupMessages(library(tidyverse))
 >
 ````
 
-Although we did not tell you explicitly to use `suppressPackageStartupMessages()`, you should have done so on your own. You *know* that we won't want to have all those annoying messages on the home page, right? Fix it.
+Notice that the package startup messages will appear on the home page. Wrap `library(tidyverse)` in `suppressPackageStartupMessages()` to keep the output clean.
 
 ### Exercise 6
 
@@ -693,7 +691,7 @@ Note how changing `index.qmd` causes the `index.html` to be re-rendered, leading
 
 ### Exercise 7
 
-Create another code chunk. Ask AI to create a some code which makes a cool looking plot using the `billboard` tibble from the **tidyr** package and `ggplot()`. Make sure you understand what the plot is showing. Work with the AI to solve any errors, improve the code, make the graphic better and so on. 
+Create another code chunk. Ask AI to create some code which makes a cool looking plot using the `billboard` tibble from the **tidyr** package and `ggplot()`. Make sure you understand what the plot is showing. Work with the AI to solve any errors, improve the code, make the graphic better and so on. 
 
 `Cmd/Ctrl + Shift + K` to ensure that the plot looks good. If it looks bad, or there are some weird messages/warnings, use the AI to fix things.
 
@@ -834,17 +832,9 @@ Your answer should look like this, but with your username instead of mine.
 https://davidkane9.github.io/website-2/
 ````
 
-Keep track of the three different versions of the website. 
-
-First, we have the QMD files in the project directory which are used to create the website. This is the original source, the place where changes should be made. 
-
-Second, we have the rendered version of the files which reside in the `_site` directory on our computer. We do not edit these files directly, but we do look at them when we are "previewing" the website.
-
-Third, we have the website itself, the files which other people can see. These reside on GitHub, in this case, but we could put them on a different hosting service.
+Keep track of the three versions of the website. The QMD files in the project directory are the source — always make changes here. The rendered HTML files in `_site` are what you preview locally; never edit them directly. The published website on GitHub is what the world sees.
 
 ### Exercise 9
-
-Quarto allows for a combination of plain text and R code. This same feature allows you to add plain text to your website.
 
 Open `about.qmd `. Delete all the current text, except for the YAML header. Ensure that the `title` is `"About"`. Add `## About Me` as the first (and only) line of text. Render the QMD. 
 
@@ -875,7 +865,7 @@ title: "About"
 ## About Me
 ````
 
-Hash signs in front of text makes the text into a header. The organization of headers is determined by the number of hash signs. Fewer hash signs make higher level headers, i.e. bigger text. More hash signs make lower level headers, i.e. smaller text. 
+Hash signs in front of text make the text into a header. The organization of headers is determined by the number of hash signs. Fewer hash signs make higher level headers, i.e. bigger text. More hash signs make lower level headers, i.e. smaller text. 
 
 ### Exercise 10
 
@@ -957,7 +947,7 @@ My name is **David Kane**, and I graduated from *Williams College*.
 
 Quarto, which is based on the Markdown language, has a variety of [formatting options](https://quarto.org/docs/authoring/markdown-basics.html).
 
-Examples of Quarto formatting options incclude:
+Examples of Quarto formatting options include:
 
 ````
 **bold** *italic* ~~strikeout~~ `code`
@@ -1130,9 +1120,9 @@ An overview of sources used in my project.
 These are my sources. Here are some challenges. Quarto websites are awesome.
 ````
 
-A website, when you first look closely, may appear overwhelming in its complexity. But it is usually created from of a small collection of text files, each of them quite simple.
+A website, when you first look closely, may appear overwhelming in its complexity. But it is usually created from a small collection of text files, each of them quite simple.
 
-You may be directed to the `localhost` version of your website, showing the "Sources" page. You have rendered the QMD into HTML. But notice that there is no way to get to this page via the website menu . . . That is a problem!
+You may be directed to the `localhost` version of your website, showing the "Sources" page. You have rendered the QMD into HTML. But notice that there is no way to navigate to this page from the website menu — it still needs to be added to `_quarto.yml`.
 
 ### Exercise 17
 
@@ -1305,11 +1295,11 @@ In many Terminal commands, you can provide more than one file as the target of t
 
 Let's create a drop-down menu called "Sources" through which one could visit either the page for "Source 1" or "Source 2" from the top menu.
 
-We will be changing YAML settings to enable this, so pay very close attention
+We will be changing YAML settings to enable this, so pay very close attention.
 
-The Quarto [documentation](https://quarto.org/) provides an [excellent overview](https://quarto.org/docs/websites/website-navigation.html) of approaches to website navigation. 
+The Quarto [documentation](https://quarto.org/) provides an [excellent overview](https://quarto.org/docs/websites/website-navigation.html) of approaches to website navigation.
 
-Change `_quarto.yml` so that the `navbar` section looks like this
+Change `_quarto.yml` so that the `navbar` section looks like this.
 
 ````
   navbar:
@@ -1507,7 +1497,7 @@ Date:   Mon Mar 17 18:27:19 2025 -0400
 @ppbds-student ➜ /workspaces/website-3 $ 
 ````
 
-There are some subtleties in whether we add `_site` or `/_site`. The former matches any directory named `_site` regardless of where in the repo it is located, even if it is nested several levels down.  `/_site`, on the other hand, is "anchored" to the same directory as the `.gitgnore` in which it lives which, in this case, is at the top of the repo. 
+There are some subtleties in whether we add `_site` or `/_site`. The former matches any directory named `_site` regardless of where in the repo it is located, even if it is nested several levels down.  `/_site`, on the other hand, is "anchored" to the same directory as the `.gitignore` in which it lives which, in this case, is at the top of the repo. 
 
 ### Exercise 3
 
@@ -1971,7 +1961,7 @@ The value returned by `read_rds()` is whatever is contained in the RDS object. I
 
 ### Exercise 16
 
-Open the `process_data`.R` script. At the bottom, skip a line after the pipe and then add this line (the same one we just executed at the R Terminal):
+Open the `process_data.R` script. At the bottom, skip a line after the pipe and then add this line (the same one we just executed at the R Terminal):
 
 ````
 write_rds(D_diamonds, file = "clean_data.rds")
@@ -2004,7 +1994,7 @@ write_rds(D_diamonds, file = "clean_data.rds")
 @ppbds-student ➜ /workspaces/website-3 $ 
 ````
 
-This is a common approach to scripts which are a part of a larger projects. They finish by saving an object which is then used by other code in the project.
+This is a common approach in larger projects: each script finishes by saving an object that other scripts then use.
 
 ### Exercise 17
 
@@ -2096,7 +2086,9 @@ library(tidyverse)
 @ppbds-student ➜ /workspaces/website-3 $ 
 ````
 
-Naming conventions are important. It is fine to have dashes in a code chunk label. However, any object which might be used from the Terminal, like the name of a script, should avoid dashes because the Terminal sometimes interprets a dash as a special character, not necessarily as part of the file name. Then again, we have totally violated this advice by calling this project --- and hence the directory in which it is stored --- `website-3`!
+###
+
+Avoid dashes in script names that you'll run from the Terminal — the shell sometimes interprets a dash as a special character. (Code chunk labels are fine with dashes; it's only Terminal-facing filenames that can cause trouble.)
 
 ### Exercise 20
 
@@ -2149,7 +2141,7 @@ The code does two things.
 
 First, it reads the tibble from `clean_data.rds` and assigns that tibble to `x`. (The fact that, in our `process_data.R` script, this data was named `D_diamonds` is irrelevant. `write_rds()` just saves the tibble, not the *name* of the tibble.)
 
-Second, it starts a new pipe with `x` and then creates our plot. Because the plot is not assigned to an object, it is just spat back out, and then shows up in the Plots tab.
+Second, it starts a new pipe with `x` and creates the plot. Because the plot is not assigned to an object, it is printed directly and shows up in the Plots tab.
 
 ### Exercise 21
 
@@ -2216,7 +2208,7 @@ D_plot <- x |>
 ggsave("size_v_weight.png", D_plot)
 ````
 
-As with `clean_data.R`, we have created a script which encapsulates, from start-to-finish, a discrete part of our analysis. In this case, we start from the tibble saved in `clean_data.rds` and finish by saving a graphic in `size_v_weight.png`.
+As with `process_data.R`, we have created a script which encapsulates, from start-to-finish, a discrete part of our analysis. In this case, we start from the tibble saved in `clean_data.rds` and finish by saving a graphic in `size_v_weight.png`.
 
 ### Exercise 23
 
