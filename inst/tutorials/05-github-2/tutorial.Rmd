@@ -28,7 +28,10 @@ options(tutorial.exercise.timelimit = 60,
 ```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
 ```
 
-<!-- DK: Add an exercise or two where, after creating project-1, the student looks in github.com/codespaces, and sees that she has two codespaces operating. Important to keep track of the codespaces. Once done with project-1, delete the codespace. And then, at end, delete the codespace for project-2. Leave it to them to delete the codespace with the tutorial running in it.  -->
+<!-- DK: Add an exercise or two where, after creating project-1, the student looks in github.com/codespaces, and sees that she has two codespaces operating. Important to keep track of the codespaces. Once done with project-1, delete the codespace. And then, at end, delete the codespace for project-2. Leave it to them to delete the codespace with the tutorial running in it.  
+
+AR: Done.
+-->
 
 ## Introduction
 ### 
@@ -523,46 +526,18 @@ penguins |>
   theme_custom
 R 4.4.3> 
 ````
+###
 
 Generative AI is the biggest change in the day-to-day work of data scientists in the last 30 years. Use it every chance you get.
 
 
 ### Exercise 13
 
-Commit and sync `quarto-1.qmd` and `quarto-1.html` with the message "add AI graphic". Then from the Terminal, run `git log --oneline`. CP/CR.
-
-```{r project-1-13}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 6)
-```
-
-###
-
-Your answer should look something like this:
-
-````
-@ppbds-student ➜ /workspaces/project-1 (main) $ git log --oneline
-a7c3e91 (HEAD -> main, origin/main, origin/HEAD) add AI graphic
-05d03bf initial version
-e3b01ee Initial commit
-@ppbds-student ➜ /workspaces/project-1 (main) $
-````
-
-###
-
-`git log --oneline` is just `git log` with each commit compressed to a single line: the first 7 characters of the hash, followed by the commit message. It shows the exact same history as `git log`, but without the author and date details --- useful when you just want a quick overview of what has been committed.
-
-### Exercise 14
-
 Our plot looks nice! Let's share it with the world!
 
 From the Terminal, run `quarto publish gh-pages quarto-1.qmd`. Respond with "Y" when prompted. CP/CR just the first 5 or so lines of what results.
 
-```{r project-1-14}
+```{r project-1-13}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -589,11 +564,101 @@ Output created: quarto-1.html
 
 Notice the shift in URLs: your repo lives at `github.com/username/project-1`, but the published website is at `username.github.io/project-1`. These are two distinct things --- the first is where your source code is stored, the second is a website GitHub is hosting on your behalf. The `github.io` domain is GitHub's way of signaling "this is a website, not a repository."
 
+### Exercise 14
+
+Commit and sync `quarto-1.qmd` and `quarto-1.html` with the message "add AI graphic". Then from the Terminal, run `git log --oneline`. CP/CR.
+
+```{r project-1-14}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 6)
+```
+
+###
+
+Your answer should look something like this:
+
+````
+@ppbds-student ➜ /workspaces/project-1 (main) $ git log --oneline
+a7c3e91 (HEAD -> main, origin/main, origin/HEAD) add AI graphic
+05d03bf initial version
+e3b01ee Initial commit
+@ppbds-student ➜ /workspaces/project-1 (main) $
+````
+
+###
+
+`git log --oneline` is just `git log` with each commit compressed to a single line: the first 7 characters of the hash, followed by the commit message. It shows the exact same history as `git log`, but without the author and date details --- useful when you just want a quick overview of what has been committed.
+
 ### Exercise 15
 
-Let's verify that your work lives on GitHub independently of the Codespace. Go to your `project-1` repo on GitHub. Click the green "Code" button, then select the "Codespaces" tab. Click the `...` next to your Codespace and select "Delete".
+Now that you've successfully published your website and committed all of your work. It's time to clean up your Codespaces. Go to the `https://github.com/codespaces` where you can view all your Codespaces. You should see a table that looks like this:
 
-Once it is deleted, stay on the GitHub repo page and look at the file list under the `<> Code` tab. You can see that all of the files you had created are here. In the upper right of this table, you can see that there have been 3 commits to the repo and that the last commit was made recently. Click on the "3 commits" button.
+```{r}
+include_graphics("images/gh-codespaces.png")
+```
+
+There should be two active Codespaces. One where you are running this tutorial and the other where you have been working on this website. Copy and paste the text from the table.
+
+```{r project-1-15}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your submission should look something like this. Don't worry about differences in formatting.
+
+````
+
+Owned by ppbds-student
+ppbds-student
+ppbds-student/project-1
+upgraded robot
+main
+
+No changes
+
+2-core • 8GB RAM • 32GB
+•
+
+Retrieving…
+•
+
+Active
+ppbds-student
+ppbds-student/05-github-2
+automatic funicular
+main
+
+No changes
+
+2-core • 8GB RAM • 32GB
+•
+
+Retrieving…
+•
+
+Active
+
+````
+
+###
+
+Both Codespaces are counting against your available Codespace time. It's good to get in the habit of stopping and deleting Codespaces once you are done with them.
+
+### Exercise 16
+
+Click the `...` next to your Codespace where you were working on the website and select "Delete".
+
+Once it is deleted, go to the GitHub repo page for your website and look at the file list under the `<> Code` tab. You can see that all of the files you had created are here. In the upper right of this table, you can see that there have been 3 commits to the repo and that the last commit was made recently. Click on the "3 commits" button.
 
 ```{r}
 include_graphics("images/p1-gh-repo-code.png")
@@ -601,7 +666,7 @@ include_graphics("images/p1-gh-repo-code.png")
 
 Now you can see the history of commits to this repo. Copy and paste this table.	
 
-```{r project-1-15}
+```{r project-1-16}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -631,6 +696,8 @@ ppbds-student
 authored
 1 hour ago
 ```
+
+###
 
 The Codespace is gone, but every file you committed is still here. The Codespace was just a temporary workspace --- a computer GitHub lent you to do your work. GitHub itself was always the permanent home for your project. This is why we commit and sync so often: not to save our work *to* the Codespace, but to save it *through* the Codespace to GitHub.
 
