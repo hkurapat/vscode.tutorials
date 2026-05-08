@@ -39,7 +39,7 @@ This tutorial practices the process of creating and organizing the [Quarto websi
 
 ### 
 
-Start a new window with `File -> New Window`. This new window is the location in which you will do all the work for the tutorial, including the creation of new projects. The current window, the one in which you are reading these words, is just used to run this tutorial. 
+We will create three websites each using a new GitHub repo and Codespace. Run this tutorial in a separate Codespace.
 
 ## Website 1
 ### 
@@ -48,7 +48,7 @@ Let's create and publish a [Quarto website](https://quarto.org/docs/websites/).
 
 ### Exercise 1
 
-Create a public GitHub repo (called `website-1`). Set the "Add README" toggle switch to "On." Copy/paste the URL for its GitHub location.
+Create a public GitHub repo (called `website-1`) and then create a Codespace for the repo. Copy/paste the URLs for both.
 
 ```{r website-1-1}
 question_text(NULL,
@@ -61,19 +61,27 @@ question_text(NULL,
 
 ### 
 
-Your answer should look something like:
+Your GitHub repo link should look something like:
 
 ```
-https://github.com/davidkane9/website-1
+https://github.com/ppbds-student/website-1
 ```
+
+The link to the Codespace associated should look like:
+
+```
+https://codespaces.new/ppbds-student/website-1
+```
+
+###
 
 Always start a new data science project with a new GitHub repo.
 
 ### Exercise 2
 
-Connect the `website-1` GitHub repo to a project on your computer. Close the Positron welcome page in the Editor and then start the interpreter using R, if necessary.
+In the Terminal, run `quarto create project website .`.  Don't forget the `.` at the end of the command. If asked for a title, use "Website 1".
 
-From the Terminal, run `ls`. CP/CR.
+CP/CR.
 
 ```{r website-1-2}
 question_text(NULL,
@@ -86,21 +94,23 @@ question_text(NULL,
 
 ### 
 
-Your answer should look something like this:
+````
+@ppbds-student ➜ /workspaces/website-1 $ quarto create project website .
+? Title (website) › Website 1
+Creating project at /workspaces/website-1:
+  - Created _quarto.yml
+  - Created .gitignore
+  - Created index.qmd
+  - Created about.qmd
+  - Created styles.css
+@ppbds-student ➜ /workspaces/website-1 $ 
+````
 
-````
-dkane@macbook website-1 % ls
-README.md
-dkane@macbook website-1 % 
-````
+Quarto is telling you what it did: creating 5 new files and placing them in the *current* directory. Recall that, on the command line, a `.` refers to the current directory. 
 
 ### Exercise 3
 
-In the Terminal, run `quarto create project website .`.  Don't forget the `.` at the end of the command. If asked for a title, use "Website 1".
-
-Depending on your computer setup, this command will require you to answer some questions. Do so as best you can.
-
-CP/CR.
+In the Terminal, run `ls -a`. CP/CR.
 
 ```{r website-1-3}
 question_text(NULL,
@@ -114,50 +124,21 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-1 % quarto create project website .
-? Title (website) › Website 1
-Creating project at /Users/dkane/Desktop/projects/website-1:
-  - Created _quarto.yml
-  - Created .gitignore
-  - Created index.qmd
-  - Created about.qmd
-  - Created styles.css
-dkane@macbook website-1 % 
-````
-
-Quarto is telling you what it did: creating 5 new files and placing them in the *current* directory. Recall that, on the command line, a `.` refers to the current directory. 
-
-### Exercise 4
-
-In the Terminal, run `ls -a`. CP/CR.
-
-```{r website-1-4}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-````
-dkane@macbook website-1 % ls -a
-.               .git            README.md       about.qmd       styles.css
+@ppbds-student ➜ /workspaces/website-1 $ ls -a
+.               .git            about.qmd       styles.css
 ..              .gitignore      _quarto.yml     index.qmd
-dkane@macbook website-1 % 
+@ppbds-student ➜ /workspaces/website-1 $
 ````
 
 The basic set of files necessary for making a Quarto website has been added to the current directory. 
 
-### Exercise 5
+### Exercise 4
 
 Note that a `.gitignore` file has already been created for you. Quarto knows that any well-designed website needs that file, so it just provides it for you.
 
 From the Terminal, run `cat .gitignore`. CP/CR.
 
-```{r website-1-5}
+```{r website-1-4}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -169,14 +150,14 @@ question_text(NULL,
 ###
 
 ````
-dkane@macbook website-1 % cat .gitignore
+@ppbds-student ➜ /workspaces/website-1 $ cat .gitignore
 /.quarto/
-dkane@macbook website-1 % 
+@ppbds-student ➜ /workspaces/website-1 $ 
 ````
 
-The `.quarto` directory does not yet exist because we haven't rendered any of our QMD files yet. But when we do, we don't any of the junk in that file to be backed up with Git.
+The `.quarto` directory does not yet exist because we haven't rendered any of our QMD files yet. But when we do, we don't want any of the junk in that file to be backed up with Git.
 
-### Exercise 6
+### Exercise 5
 
 In the R Terminal, run:
 
@@ -187,7 +168,7 @@ show_file("_quarto.yml")
 
 CP/CR.
 
-```{r website-1-6}
+```{r website-1-5}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -222,7 +203,7 @@ format:
 
 Quarto offers a wide range of output formats. You can find the complete list at https://quarto.org/docs/output-formats/all-formats.html. Many formats share some output options (e.g., `toc: true` for including a table of contents), but others have options that are format specific e.g., `code-fold: true` collapses code chunks into a `<details>` tag for HTML output so the user can display it on demand. It’s not applicable in a PDF or Word document.
 
-### Exercise 7
+### Exercise 6
 
 Open the `index.qmd` file using the Explorer pane. Replace the title with `"Homepage"`. Save the file.
 
@@ -234,7 +215,7 @@ show_file("index.qmd")
 
 CP/CR.
 
-```{r website-1-7}
+```{r website-1-6}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -259,13 +240,13 @@ To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
 
 Note that the `title` (`"Website 1"`) in `_quarto.yml` has no necessary connection to the `title` (`"Homepage"`) in `index.qmd`. The former is the title for the entire website. The latter is the title for just the (yet-to-be-created) `index.html` page, which will be the home page for the website.
 
-### Exercise 8
+### Exercise 7
 
-Commit and push all the files in the project. (Recall that the "Sync" button both pushes and pulls from GitHub. Since no one else is adding material to our GitHub, there is nothing to pull. So, we will sometimes just use the word "push," although you can just press the "Sync" button.)
+Commit and push all the files in the project. (The "Sync" button both pushes and pulls, but since no one else is adding material to our repo, you can think of it as simply pushing.)
 
 Run `git log -n 1` in the Terminal. CP/CR.
 
-```{r website-1-8}
+```{r website-1-7}
 question_text(NULL,
     answer(NULL, correct = TRUE),
     allow_retry = TRUE,
@@ -277,24 +258,24 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-1 % git log -n 1
+@ppbds-student ➜ /workspaces/website-1 $ git log -n 1
 commit a84054404f314acd719a89005253fb004c95a540 (HEAD -> main, origin/main, origin/HEAD)
 Author: David Kane <dave.kane@gmail.com>
 Date:   Sun Mar 16 10:16:34 2025 -0400
 
     initial version
-dkane@macbook website-1 % 
+@ppbds-student ➜ /workspaces/website-1 $ 
 ````
 
 <!-- not exactly the best link ... -->
 
 The output from the `git log` command is too complex for us to fully parse. If you want to learn more about how to work with Git/GitHub and R, check out [Happy Git with R](https://happygitwithr.com/existing-github-last.html), a very useful resource.
 
-### Exercise 9
+### Exercise 8
 
 From the Terminal, run `quarto render`. CP/CR.
 
-```{r website-1-9}
+```{r website-1-8}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -308,18 +289,18 @@ question_text(NULL,
 Your answer should look something like:
 
 ````
-dkane@macbook website-1 % quarto render
+@ppbds-student ➜ /workspaces/website-1 $ quarto render
 [1/2] index.qmd
 [2/2] about.qmd
 
 Output created: _site/index.html
 
-dkane@macbook website-1 % 
+@ppbds-student ➜ /workspaces/website-1 $ 
 ````
 
 `render` just creates the website. It does not "watch" the website, as `preview` does.
 
-### Exercise 10
+### Exercise 9
 
 <!-- Not click but two finger click, right? -->
 
@@ -329,7 +310,7 @@ You can view a rendered website by hand. Go to the Explorer pane, look in the `_
 include_graphics("images/view-index.png")
 ```
 
-You can view the file in either your browser or in the Viewer tab. In the browser, you would see something like this:
+You can view the file in your browser. You would see something like this:
 
 ```{r}
 include_graphics("images/initial-view.png")
@@ -337,7 +318,7 @@ include_graphics("images/initial-view.png")
 
 Click on the "About" link. Copy/paste the material from the webpage.
 
-```{r website-1-10}
+```{r website-1-9}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -357,11 +338,36 @@ About
 About this site
 ````
 
-Your answer might not match ours. That is OK! How the html display varies by browser and screen dimension. The important thing is that, once we have rendered a website, a working version appears in the `_site` directory. 
+Your answer might not match ours. That is OK! How the HTML displays varies by browser and screen dimension. The important thing is that, once we have rendered a website, a working version appears in the `_site` directory. 
+
+### Exercise 10
+
+From the Terminal, run `ls _site`. CP/CR.
+
+```{r website-1-10}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+### 
+
+````
+@ppbds-student ➜ /workspaces/website-1 $ ls _site
+about.html      index.html      search.json     site_libs       styles.css
+@ppbds-student ➜ /workspaces/website-1 $ 
+````
+
+Again, we never edit files in the `_site` directory directly. We run commands, like `quarto render`, which manipulate these files.
 
 ### Exercise 11
 
-From the Terminal, run `ls _site`. CP/CR.
+Add `_site` to the `.gitignore`. Don't forget that the last line of `.gitignore` should always be blank. Save the file. 
+
+In the Terminal, run `cat .gitignore`. CP/CR.
 
 ```{r website-1-11}
 question_text(NULL,
@@ -375,44 +381,19 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-1 % ls _site
-about.html      index.html      search.json     site_libs       styles.css
-dkane@macbook website-1 % 
-````
-
-Again, we never edit files in the `_site` directory directly. We run commands, like `quarto render`, which manipulate these files.
-
-### Exercise 12
-
-Add `_site` to the `.gitignore`. Don't forget that the last line of `.gitignore` should always be blank. Save the file. 
-
-In the Terminal, run `cat .gitignore`. CP/CR.
-
-```{r website-1-12}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-````
-dkane@macbook website-1 % cat .gitignore 
+@ppbds-student ➜ /workspaces/website-1 $ cat .gitignore 
 /.quarto/
 _site
-dkane@macbook website-1 % 
+@ppbds-student ➜ /workspaces/website-1 $ 
 ````
 
 Note that `_site` ignores any file or directory named `_site` anywhere in the repository, which is generally what we want.
 
-### Exercise 13
+### Exercise 12
 
 From the Terminal, run `quarto preview`. CP/CR.
 
-```{r website-1-13}
+```{r website-1-12}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -426,7 +407,7 @@ question_text(NULL,
 Your answer should look something like this:
 
 ````
-dkane@macbook website-1 % quarto preview
+@ppbds-student ➜ /workspaces/website-1 $ quarto preview
 Preparing to preview
 [1/1] index.qmd
 
@@ -435,13 +416,13 @@ Browse at http://localhost:7412/
 GET: /
 ````
 
-The `quarto preview` command does two things. First, it renders the  files, just like `quarto render` does. Second, it sets up a viewer --- probably your default web browser but possibly the "Viewer" tab in the Secondary Activity Bar  --- so that you can see what the website looks like. Click around and check it out!
+The `quarto preview` command does two things. First, it renders the files, just like `quarto render` does. Second, it sets up a viewer so that you can see what the website looks like. In a Codespace, VS Code will show a notification to open the forwarded port in your browser. Click around and check it out!
 
 The message at the end indicates that Quarto is now "watching" your files to see if you make any changes. If you do, it will automatically update the website.
 
-Use `Ctrl + c` to end the `quarto preview` command, although this will only work if the Terminal is the "active" area of the Positron window.
+Use `Ctrl + c` to end the `quarto preview` command.
 
-### Exercise 14
+### Exercise 13
 
 Ensure that all the files in the project have been committed and pushed. 
 
@@ -449,7 +430,7 @@ At the Terminal, run `quarto publish gh-pages`. Accept the default settings.
 
 Copy/paste the final URL for your website. 
 
-```{r website-1-14}
+```{r website-1-13}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -464,9 +445,11 @@ question_text(NULL,
 https://davidkane9.github.io/website-1/
 ````
 
+###
+
 You can also use Quarto to produce presentations. You get less visual control than with a tool like Keynote or PowerPoint, but automatically inserting the results of your R code into a presentation can save a huge amount of time. Presentations work by dividing your content into slides, with a new slide beginning at each second (`##`) level header. Additionally, first (`#`) level headers indicate the beginning of a new section with a section title slide that is, by default, centered in the middle.
 
-### Exercise 15
+### Exercise 14
 
 Press the Source Control button and confirm that there are no changes. There shouldn't be since publishing does not (usually) change any of the files in the project, assuming that you have recently rendered them.
 
@@ -474,7 +457,7 @@ Run `git log -n 1` in the Terminal. CP/CR.
 
 The `-n 1` option causes Git to just provide the information on the last commit.
 
-```{r website-1-15}
+```{r website-1-14}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -486,16 +469,47 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-1 % git log -n 1
+@ppbds-student ➜ /workspaces/website-1 $ git log -n 1
 commit 766d1ad5d4838f2851fd372432c74e2bad8eb17a (HEAD -> main, origin/main, origin/HEAD)
 Author: David Kane <dave.kane@gmail.com>
 Date:   Sun Mar 16 11:59:04 2025 -0400
 
     last commit
-dkane@macbook website-1 % 
+@ppbds-student ➜ /workspaces/website-1 $ 
 ````
 
-We recommend that you use a Quarto project for your websites, books, dashboards and so on. 
+We recommend that you use a Quarto project for your websites, books, dashboards and so on.
+
+### Exercise 15
+
+Navigate to your `website-1` GitHub repo. Copy and paste the repository file listing.
+
+```{r website-1-15}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 6)
+```
+
+###
+
+Your file listing should look something like:
+
+````
+.gitignore      initial version     2 days ago
+_quarto.yml     initial version     2 days ago
+about.qmd       initial version     2 days ago
+index.qmd       initial version     2 days ago
+styles.css      initial version     2 days ago
+````
+
+Once you have confirmed your files are on GitHub, delete your Codespace. Click the green **Code** button on the repo page, go to the **Codespaces** tab, click **...** next to your Codespace, and select **Delete**.
+
+###
+
+Quarto is more than a website tool — it is a unified scientific publishing system. The same `.qmd` source files you used to build `website-1` can, with just a few YAML changes, be rendered as a PDF, a Word document, a slide deck, or a book.
 
 ## Website 2
 ### 
@@ -504,11 +518,9 @@ Let's create a new website with a beautiful plot of the data from the `billboard
 
 ### Exercise 1
 
-Create a public GitHub repo called `website-2`. Set the "Add README" toggle switch to "On."
+Create a public GitHub repo called `website-2` and create a Codespace for it.
 
-Connect the `website-2` GitHub repo to a project on your computer. 
-
-From the Terminal, run `ls`. CP/CR.
+Paste the URLs from the repo and the Codespace.
 
 ```{r website-2-1}
 question_text(NULL,
@@ -521,13 +533,21 @@ question_text(NULL,
 
 ### 
 
-````
-dkane@macbook website-2 % ls
-README.md
-dkane@macbook website-2 % 
-````
+Your GitHub repo link should look something like:
 
-Recall that the `index.qmd` file will always create our "home" page because it is rendered to `index.html`. Browsers, by default, show `index.html`, if one exists, when they visit a new directory. 
+```
+https://github.com/ppbds-student/website-2
+```
+
+The link to the Codespace associated should look like:
+
+```
+https://codespaces.new/ppbds-student/website-2
+```
+
+###
+
+Each website gets its own GitHub repo. This keeps projects independent: separate commit histories, separate collaborators, and separate deployment settings. It also means you can delete or archive a project without affecting anything else. This is good practice for any data science project, not just websites.
 
 ### Exercise 2
 
@@ -547,18 +567,16 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-2 % quarto create project website .
+@ppbds-student ➜ /workspaces/website-2 $ quarto create project website .
 ? Title (website) › Website 2
-Creating project at /Users/dkane/Desktop/projects/website-2:
+Creating project at /workspaces/website-2:
   - Created _quarto.yml
   - Created .gitignore
   - Created index.qmd
   - Created about.qmd
   - Created styles.css
-dkane@macbook website-2 % 
+@ppbds-student ➜ /workspaces/website-2 $ 
 ````
-
-The `.` in the `quarto create` command refers to the current working directory. That is, we are telling Quarto to put all the necessary files right here.
 
 We are moving faster in the creation of Website 2 than we did when making Website 1 because you should already be familiar with the steps. We will go even faster when we make Website 3.
 
@@ -580,10 +598,10 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-2 % cat .gitignore
+@ppbds-student ➜ /workspaces/website-2 $ cat .gitignore
 /.quarto/
 _site
-dkane@macbook website-2 % 
+@ppbds-student ➜ /workspaces/website-2 $ 
 ````
 
 Keeping track of all the different files and understanding how they work together is the central skill in creating larger projects.
@@ -606,11 +624,11 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-2 % cat index.qmd 
+@ppbds-student ➜ /workspaces/website-2 $ cat index.qmd 
 ---
 title: "Billboard Graphic"
 ---
-dkane@macbook website-2 % 
+@ppbds-student ➜ /workspaces/website-2 $ 
 ````
 
 Because this is a Quarto website project, the format for all the `qmd` files is `html` by default. So the YAML header does not need to specify that explicitly. 
@@ -644,7 +662,7 @@ suppressPackageStartupMessages(library(tidyverse))
 >
 ````
 
-Although we did not tell you explicitly to use `suppressPackageStartupMessages()`, you should have done so on your own. You *know* that we won't want to have all those annoying messages on the home page, right? Fix it.
+Notice that the package startup messages will appear on the home page. Wrap `library(tidyverse)` in `suppressPackageStartupMessages()` to keep the output clean.
 
 ### Exercise 6
 
@@ -681,7 +699,7 @@ Note how changing `index.qmd` causes the `index.html` to be re-rendered, leading
 
 ### Exercise 7
 
-Create another code chunk. Ask AI to create a some code which makes a cool looking plot using the `billboard` tibble from the **tidyr** package and `ggplot()`. Make sure you understand what the plot is showing. Work with the AI to solve any errors, improve the code, make the graphic better and so on. 
+Create another code chunk. Ask AI to create some code which makes a cool looking plot using the `billboard` tibble from the **tidyr** package and `ggplot()`. Make sure you understand what the plot is showing. Work with the AI to solve any errors, improve the code, make the graphic better and so on. 
 
 `Cmd/Ctrl + Shift + K` to ensure that the plot looks good. If it looks bad, or there are some weird messages/warnings, use the AI to fix things.
 
@@ -822,17 +840,9 @@ Your answer should look like this, but with your username instead of mine.
 https://davidkane9.github.io/website-2/
 ````
 
-Keep track of the three different versions of the website. 
-
-First, we have the QMD files in the project directory which are used to create the website. This is the original source, the place where changes should be made. 
-
-Second, we have the rendered version of the files which reside in the `_site` directory on our computer. We do not edit these files directly, but we do look at them when we are "previewing" the website.
-
-Third, we have the website itself, the files which other people can see. These reside on GitHub, in this case, but we could put them on a different hosting service.
+Keep track of the three versions of the website. The QMD files in the project directory are the source — always make changes here. The rendered HTML files in `_site` are what you preview locally; never edit them directly. The published website on GitHub is what the world sees.
 
 ### Exercise 9
-
-Quarto allows for a combination of plain text and R code. This same feature allows you to add plain text to your website.
 
 Open `about.qmd `. Delete all the current text, except for the YAML header. Ensure that the `title` is `"About"`. Add `## About Me` as the first (and only) line of text. Render the QMD. 
 
@@ -863,7 +873,7 @@ title: "About"
 ## About Me
 ````
 
-Hash signs in front of text makes the text into a header. The organization of headers is determined by the number of hash signs. Fewer hash signs make higher level headers, i.e. bigger text. More hash signs make lower level headers, i.e. smaller text. 
+Hash signs in front of text make the text into a header. The organization of headers is determined by the number of hash signs. Fewer hash signs make higher level headers, i.e. bigger text. More hash signs make lower level headers, i.e. smaller text. 
 
 ### Exercise 10
 
@@ -945,7 +955,7 @@ My name is **David Kane**, and I graduated from *Williams College*.
 
 Quarto, which is based on the Markdown language, has a variety of [formatting options](https://quarto.org/docs/authoring/markdown-basics.html).
 
-Examples of Quarto formatting options incclude:
+Examples of Quarto formatting options include:
 
 ````
 **bold** *italic* ~~strikeout~~ `code`
@@ -1024,7 +1034,7 @@ If the errors are due to the R code in the document, the first thing you should 
 
 Let's create new pages for your website, accessible via the navigation bar at the top.
 
-Go to `File -> New File -> Quarto Document...`. Title it "Sources".  Save the file, changing the file name from `Untitled.qmd` to `sources.qmd`. 
+Go to `File -> New File...` and select `Quarto Document`. Title it "Sources". Save the file as `sources.qmd`. 
 
 ### 
 
@@ -1042,9 +1052,9 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-2 % ls *qmd
+@ppbds-student ➜ /workspaces/website-2 $ ls *qmd
 about.qmd       index.qmd       sources.qmd
-dkane@macbook website-2 % 
+@ppbds-student ➜ /workspaces/website-2 $ 
 ````
 
 You should see `index.qmd`, `about.qmd`, and `sources.qmd` in the output. If not, make sure you are in the `website-2` directory. The `*qmd` regular expression selects only files with names which end with the letters `qmd`.
@@ -1118,9 +1128,9 @@ An overview of sources used in my project.
 These are my sources. Here are some challenges. Quarto websites are awesome.
 ````
 
-A website, when you first look closely, may appear overwhelming in its complexity. But it is usually created from of a small collection of text files, each of them quite simple.
+A website, when you first look closely, may appear overwhelming in its complexity. But it is usually created from a small collection of text files, each of them quite simple.
 
-You may be directed to the `localhost` version of your website, showing the "Sources" page. You have rendered the QMD into HTML. But notice that there is no way to get to this page via the website menu . . . That is a problem!
+You may be directed to the `localhost` version of your website, showing the "Sources" page. You have rendered the QMD into HTML. But notice that there is no way to navigate to this page from the website menu — it still needs to be added to `_quarto.yml`.
 
 ### Exercise 17
 
@@ -1223,10 +1233,10 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-2 % ls _site/*html
+@ppbds-student ➜ /workspaces/website-2 $ ls _site/*html
 _site/about.html        _site/sources.html
 _site/index.html
-dkane@macbook website-2 % 
+@ppbds-student ➜ /workspaces/website-2 $ 
 ````
 
 You should see `sources.html`. Quarto websites, like many similar frameworks, place all the pages which appear on the web into a single directory, like `_site`, and then move that directory onto a hosting service like GitHub Pages.
@@ -1270,7 +1280,7 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-2 % head source-1.qmd source-2.qmd 
+@ppbds-student ➜ /workspaces/website-2 $ head source-1.qmd source-2.qmd 
 ==> source-1.qmd <==
 ---
 title: "Source 1"
@@ -1284,7 +1294,7 @@ title: "Source 2"
 format: html
 ---
 
-dkane@macbook website-2 % 
+@ppbds-student ➜ /workspaces/website-2 $ 
 ````
 
 In many Terminal commands, you can provide more than one file as the target of the command. In this case, `head` will be applied to `source-1.qmd` and then `source-2.qmd` sequentially.
@@ -1293,11 +1303,11 @@ In many Terminal commands, you can provide more than one file as the target of t
 
 Let's create a drop-down menu called "Sources" through which one could visit either the page for "Source 1" or "Source 2" from the top menu.
 
-We will be changing YAML settings to enable this, so pay very close attention
+We will be changing YAML settings to enable this, so pay very close attention.
 
-The Quarto [documentation](https://quarto.org/) provides an [excellent overview](https://quarto.org/docs/websites/website-navigation.html) of approaches to website navigation. 
+The Quarto [documentation](https://quarto.org/) provides an [excellent overview](https://quarto.org/docs/websites/website-navigation.html) of approaches to website navigation.
 
-Change `_quarto.yml` so that the `navbar` section looks like this
+Change `_quarto.yml` so that the `navbar` section looks like this.
 
 ````
   navbar:
@@ -1377,29 +1387,60 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-2 % git log -n 1
+@ppbds-student ➜ /workspaces/website-2 $ git log -n 1
 commit f0973447485da8bb8e8e36f65e39b5640519dccc (HEAD -> main, origin/main, origin/HEAD)
 Author: David Kane <dave.kane@gmail.com>
 Date:   Mon Mar 17 18:03:23 2025 -0400
 
     Added source pages
-dkane@macbook website-2 % 
+@ppbds-student ➜ /workspaces/website-2 $ 
 ````
 
 Type `quarto publish` in the Terminal and hit "Enter." Note how you did not need to specify `gh-pages`. Quarto is smart enough to know that, since GitHub Pages is what you used last time, it is probably what you want now.  
 
-Explore the use of the "Sources" menu on your website. 
+Explore the use of the "Sources" menu on your website.
+
+### Exercise 23
+
+Navigate to your `website-2` GitHub repo. Copy and paste the repository file listing.
+
+```{r website-2-23}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 8)
+```
+
+###
+
+Your file listing should look something like:
+
+````
+.gitignore      initial version         2 days ago
+_quarto.yml     Added source pages      2 hours ago
+about.qmd       Added plot to home page 3 hours ago
+index.qmd       Added plot to home page 3 hours ago
+source-1.qmd    Added source pages      2 hours ago
+source-2.qmd    Added source pages      2 hours ago
+styles.css      initial version         2 days ago
+````
+
+Once you have confirmed your files are on GitHub, delete your Codespace. Click the green **Code** button on the repo page, go to the **Codespaces** tab, click **...** next to your Codespace, and select **Delete**.
+
+###
+
+When you ran `quarto publish gh-pages` for `website-1` and `website-2`, Quarto was doing something behind the scenes worth understanding. It created (or updated) a separate `gh-pages` branch in your repo containing only the rendered HTML files from `_site`. Your `main` branch stays clean with just the source files. This is exactly why you added `_site` to `.gitignore` — the rendered files do live on GitHub, but in a different branch that GitHub Pages serves automatically. If you visit your repo on GitHub and click the branch dropdown, you will see both `main` and `gh-pages`.
 
 ## Website 3
 ### 
 
-Let's make one more website using the same repo/project/quarto approach as above. We will also learn about storing R objects in RDS files.
+Let's make one more website using the same repo/quarto approach as above. We will also learn about storing R objects in RDS files.
 
 ### Exercise 1
 
-Create a public GitHub repo called `website-3`. Set the "Add README" toggle switch to "On."
-
-Connect the `website-3` GitHub repo to a project on your computer. 
+Create a public GitHub repo called `website-3` and create a Codespace for it.
 
 In the Terminal, run `quarto create project website .`.  Use "Website 3" as the title.
 
@@ -1419,18 +1460,18 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-3 % quarto create project website .
+@ppbds-student ➜ /workspaces/website-3 $ quarto create project website .
 ? Title (website) › Website 3
-Creating project at /Users/dkane/Desktop/projects/website-3:
+Creating project at /workspaces/website-3:
   - Created _quarto.yml
   - Created .gitignore
   - Created index.qmd
   - Created about.qmd
   - Created styles.css
-dkane@macbook website-3 % ls -a
-.               .git            README.md       about.qmd       styles.css
+@ppbds-student ➜ /workspaces/website-3 $ ls -a
+.               .git            about.qmd       styles.css
 ..              .gitignore      _quarto.yml     index.qmd
-dkane@macbook website-3 % 
+@ppbds-student ➜ /workspaces/website-3 $
 ````
 
 The `title` in `_quarto.yml` determines the title of the entire website. The `title` at the top of `index.qmd` specifies the title of just that page.
@@ -1455,16 +1496,16 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-3 % git log -n 1
+@ppbds-student ➜ /workspaces/website-3 $ git log -n 1
 commit 06a1895d5d8a3b1780a91777577026fdc76ef1fa (HEAD -> main, origin/main, origin/HEAD)
 Author: David Kane <dave.kane@gmail.com>
 Date:   Mon Mar 17 18:27:19 2025 -0400
 
     initial version
-dkane@macbook website-3 % 
+@ppbds-student ➜ /workspaces/website-3 $ 
 ````
 
-There are some subtleties in whether we add `_site` or `/_site`. The former matches any directory named `_site` regardless of where in the repo it is located, even if it is nested several levels down.  `/_site`, on the other hand, is "anchored" to the same directory as the `.gitgnore` in which it lives which, in this case, is at the top of the repo. 
+There are some subtleties in whether we add `_site` or `/_site`. The former matches any directory named `_site` regardless of where in the repo it is located, even if it is nested several levels down.  `/_site`, on the other hand, is "anchored" to the same directory as the `.gitignore` in which it lives which, in this case, is at the top of the repo. 
 
 ### Exercise 3
 
@@ -1536,13 +1577,13 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-3 % git log -n 1
+@ppbds-student ➜ /workspaces/website-3 $ git log -n 1
 commit b83259042267be2d6b64b5ad4bb3115c2ade9c00 (HEAD -> main, origin/main, origin/HEAD)
 Author: David Kane <dave.kane@gmail.com>
 Date:   Mon Mar 17 18:36:03 2025 -0400
 
     first plot
-dkane@macbook website-3 % 
+@ppbds-student ➜ /workspaces/website-3 $ 
 ````
 
 ### Exercise 5
@@ -1551,9 +1592,9 @@ One problem with this approach is that all our code is run every time we rebuild
 
 The RDS format allows us to save any R object in a file. When we read from an RDS, we avoid having to run the code which created the object again. Instead, we simply have access to the object. This is very convenient for any code which takes a long time to run, such as intensive data manipulation.
 
-Restart your R session with `Cmd/Ctrl + Shift + 0`.
+Close your R Terminal and open a new one to start fresh.
 
-Go to `File -> New File ... -> R File`. Save the file. Name the file `process_data.R`.
+Use `File -> New File...` to create a new file. Save it as `process_data.R`.
 
 In the Terminal, run `ls`. CP/CR.
 
@@ -1569,10 +1610,10 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-3 % ls
-README.md       _site           index.qmd       styles.css
-_quarto.yml     about.qmd       process_data.R
-dkane@macbook website-3 % 
+@ppbds-student ➜ /workspaces/website-3 $ ls
+_quarto.yml     _site           index.qmd       styles.css
+about.qmd       process_data.R
+@ppbds-student ➜ /workspaces/website-3 $ 
 ````
 
 Make sure that `process_data.R` is one of these files. We often use scripts to record the exact steps we used in working with some data or in creating a graphic. We want our work to be reproducible. We will often need to perform the same work again, albeit with some changes. A script can make that much simpler.
@@ -1597,9 +1638,9 @@ question_text(NULL,
 ###
 
 ````
-dkane@macbook website-3 % cat process_data.R
+@ppbds-student ➜ /workspaces/website-3 $ cat process_data.R
 library(tidyverse)
-dkane@macbook website-3 % 
+@ppbds-student ➜ /workspaces/website-3 $ 
 ````
 
 Because this is a script, you don't need to create a code chunk. Scripts are most useful for work which simply creates an object, often a new data set or a graphic. You also don't need `suppressPackageStartupMessages()` since this is a script, not a Quarto document which will produce an HTML that people will see.
@@ -1628,13 +1669,13 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-3 % cat process_data.R
+@ppbds-student ➜ /workspaces/website-3 $ cat process_data.R
 library(tidyverse)
 
 diamonds |> 
   filter(z != 0) |> 
   filter(color == "D") 
-dkane@macbook website-3 % 
+@ppbds-student ➜ /workspaces/website-3 $ 
 ````
 
 You should try to learn how to work in two ways. First is *interactively*, trying things at the R Terminal. Seeing what happens. Going line-by-line. Second is *writtenly* --- yes, I just made up this word --- adding code to your script/QMD and then executing all the code at once. 
@@ -1674,7 +1715,7 @@ A line of code, like `library(tidyverse)`, might exist in a script, but unless/u
 
 ### Exercise 9
 
-"Source" the entire script by choosing the "Source R File with Echo" menu option from the "Source" button the upper right (the right-pointing right triangle). This takes all the code from the script and feeds it, line-by-line, to the R Terminal. CP/CR.
+"Source" the entire script with echo by clicking the dropdown arrow next to the Run button (▷) at the top right of the editor. This takes all the code from the script and feeds it, line-by-line, to the R Terminal. CP/CR.
 
 ```{r website-3-9}
 question_text(NULL,
@@ -1690,7 +1731,7 @@ question_text(NULL,
 Your answer should look like this:
 
 ````
-> source("/Users/dkane/Desktop/projects/website-3/process_data.R", echo = TRUE)
+> source("/workspaces/website-3/process_data.R", echo = TRUE)
 
 > library(tidyverse)
 ── Attaching core tidyverse packages ──────────────────────────────── tidyverse 2.0.0 ──
@@ -1788,11 +1829,11 @@ question_text(NULL,
 >
 ````
 
-We have created a new object in the environment, called `D_diamonds`. You can also see this object if you look in the Session tab in the Secondary Activity Bar. The name `D_diamonds` is meant to remind us that all the diamonds in this tibble are of color "D."
+We have created a new object in the environment, called `D_diamonds`. The name `D_diamonds` is meant to remind us that all the diamonds in this tibble are of color "D."
 
 ### Exercise 12
 
-Restart your R session again. You can never restart your R session too often! The best way to do this is with the shortcut command: `Cmd/Ctrl + Shift + 0`. (This is the number zero, not the letter "O.")
+Restart your R session by closing your R Terminal and opening a new one.
 
 From the R Terminal, run `ls()`. CP/CR.
 
@@ -1808,8 +1849,6 @@ question_text(NULL,
 ### 
 
 ````
-R 4.4.3 exited (preparing for restart)
-R 4.4.3 restarted.
 > ls()
 character(0)
 >
@@ -1833,7 +1872,7 @@ question_text(NULL,
 ### 
 
 ````
-> source("/Users/dkane/Desktop/projects/website-3/process_data.R")
+> source("/workspaces/website-3/process_data.R")
 ── Attaching core tidyverse packages ──────────────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
@@ -1873,9 +1912,9 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-3 % ls clean*
+@ppbds-student ➜ /workspaces/website-3 $ ls clean*
 clean_data.rds
-dkane@macbook website-3 % 
+@ppbds-student ➜ /workspaces/website-3 $ 
 ````
 
 There are now three objects associated with our tibble: 
@@ -1889,7 +1928,7 @@ There are now three objects associated with our tibble:
 
 ### Exercise 15
 
-Restart your R session with `Cmd/Ctrl + Shift + 0`. When R restarts, you should still be in the `website-3` project. At the R Terminal, run `library(tidyverse)`. We need to reload the **tidyverse** every time we restart R.
+Close your R Terminal and open a new one to restart R. At the R Terminal, run `library(tidyverse)`. We need to reload the **tidyverse** every time we restart R.
 
 At the R Terminal, run `read_rds("clean_data.rds")`. CP/CR.
 
@@ -1930,7 +1969,7 @@ The value returned by `read_rds()` is whatever is contained in the RDS object. I
 
 ### Exercise 16
 
-Open the `process_data`.R` script. At the bottom, skip a line after the pipe and then add this line (the same one we just executed at the R Terminal):
+Open the `process_data.R` script. At the bottom, skip a line after the pipe and then add this line (the same one we just executed at the R Terminal):
 
 ````
 write_rds(D_diamonds, file = "clean_data.rds")
@@ -1952,7 +1991,7 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-3 % cat process_data.R
+@ppbds-student ➜ /workspaces/website-3 $ cat process_data.R
 library(tidyverse)
 
 D_diamonds <- diamonds |> 
@@ -1960,16 +1999,16 @@ D_diamonds <- diamonds |>
   filter(color == "D") 
 
 write_rds(D_diamonds, file = "clean_data.rds")
-dkane@macbook website-3 % 
+@ppbds-student ➜ /workspaces/website-3 $ 
 ````
 
-This is a common approach to scripts which are a part of a larger projects. They finish by saving an object which is then used by other code in the project.
+This is a common approach in larger projects: each script finishes by saving an object that other scripts then use.
 
 ### Exercise 17
 
 In the Terminal, run `rm clean_data.rds`. You are starting your workflow with nothing but the code.
 
-Source `process_data.R`. The easiest way of doing so, as before, is to open the file in the Source pane and then click the "Source" button.
+Source `process_data.R`. Open the file and click the Run button (▷) at the top right of the editor.
 
 In the Terminal, run `ls clean*`. CP/CR.
 
@@ -1987,9 +2026,9 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-dkane@macbook website-3 % ls clean*
+@ppbds-student ➜ /workspaces/website-3 $ ls clean*
 clean_data.rds
-dkane@macbook website-3 % 
+@ppbds-student ➜ /workspaces/website-3 $ 
 ````
 
 `clean*` is a regular expression which matches any file which starts with the letters `clean`. 
@@ -2006,7 +2045,7 @@ Think about the overall workflow.
 
 A PNG file allows us to save any R graphic in a file. When we use a PNG, we avoid having to re-run the code which created it. This is very convenient for graphics which take a long time to create.
 
-Go to `File -> New File ... -> R File`. Name the file `make_plot.R`. 
+Use `File -> New File...` to create a new file. Save it as `make_plot.R`.
 
 In the Terminal, run `ls`. CP/CR.
 
@@ -2022,10 +2061,10 @@ question_text(NULL,
 ###
 
 ````
-dkane@macbook website-3 % ls
-README.md       _site           clean_data.rds  make_plot.R     styles.css
-_quarto.yml     about.qmd       index.qmd       process_data.R
-dkane@macbook website-3 % 
+@ppbds-student ➜ /workspaces/website-3 $ ls
+_quarto.yml     _site           clean_data.rds  make_plot.R     styles.css
+about.qmd       index.qmd       process_data.R
+@ppbds-student ➜ /workspaces/website-3 $ 
 ````
 
 Make sure that `make_plot.R` is one of these files. We often use scripts to record the exact steps we used in creating a graphic. We want our work to be reproducible. We will often need to perform the same work again, albeit with some small changes. A script can make that much simpler.
@@ -2050,12 +2089,14 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-3 % cat make_plot.R
+@ppbds-student ➜ /workspaces/website-3 $ cat make_plot.R
 library(tidyverse)
-dkane@macbook website-3 % 
+@ppbds-student ➜ /workspaces/website-3 $ 
 ````
 
-Naming conventions are important. It is fine to have dashes in a code chunk label. However, any object which might be used from the Terminal, like the name of a script, should avoid dashes because the Terminal sometimes interprets a dash as a special character, not necessarily as part of the file name. Then again, we have totally violated this advice by calling this project --- and hence the directory in which it is stored --- `website-3`!
+###
+
+Avoid dashes in script names that you'll run from the Terminal — the shell sometimes interprets a dash as a special character. (Code chunk labels are fine with dashes; it's only Terminal-facing filenames that can cause trouble.)
 
 ### Exercise 20
 
@@ -2088,7 +2129,7 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-3 % cat make_plot.R
+@ppbds-student ➜ /workspaces/website-3 $ cat make_plot.R
 library(tidyverse)
 
 x <- read_rds("clean_data.rds")
@@ -2101,14 +2142,14 @@ x |>
          subtitle = "'Round' carat values like 1, 1.5 and 2 are more common.",
          x = "Carat",
          y = "Price")
-dkane@macbook website-3 % 
+@ppbds-student ➜ /workspaces/website-3 $ 
 ````
 
 The code does two things. 
 
 First, it reads the tibble from `clean_data.rds` and assigns that tibble to `x`. (The fact that, in our `process_data.R` script, this data was named `D_diamonds` is irrelevant. `write_rds()` just saves the tibble, not the *name* of the tibble.)
 
-Second, it starts a new pipe with `x` and then creates our plot. Because the plot is not assigned to an object, it is just spat back out, and then shows up in the Plots tab.
+Second, it starts a new pipe with `x` and creates the plot. Because the plot is not assigned to an object, it is printed directly and shows up in the Plots tab.
 
 ### Exercise 21
 
@@ -2126,7 +2167,7 @@ question_text(NULL,
 ### 
 
 ````
-> source("/Users/dkane/Desktop/projects/website-3/make_plot.R", echo = TRUE)
+> source("/workspaces/website-3/make_plot.R", echo = TRUE)
 
 > library(tidyverse)
 
@@ -2175,7 +2216,7 @@ D_plot <- x |>
 ggsave("size_v_weight.png", D_plot)
 ````
 
-As with `clean_data.R`, we have created a script which encapsulates, from start-to-finish, a discrete part of our analysis. In this case, we start from the tibble saved in `clean_data.rds` and finish by saving a graphic in `size_v_weight.png`.
+As with `process_data.R`, we have created a script which encapsulates, from start-to-finish, a discrete part of our analysis. In this case, we start from the tibble saved in `clean_data.rds` and finish by saving a graphic in `size_v_weight.png`.
 
 ### Exercise 23
 
@@ -2193,13 +2234,13 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-3 % ls
-README.md               index.qmd
+@ppbds-student ➜ /workspaces/website-3 $ ls
 _quarto.yml             make_plot.R
 _site                   process_data.R
 about.qmd               size_v_weight.png
 clean_data.rds          styles.css
-dkane@macbook website-3 % 
+index.qmd
+@ppbds-student ➜ /workspaces/website-3 $ 
 ````
 
 There are a lot of files! Note the new script `make_plot.R`, the object with which it starts, `clean_data.rds`, and the object which it creates, `size_v_weight.png`. 
@@ -2243,7 +2284,7 @@ question_text(NULL,
 ### 
 
 ````
-dkane@macbook website-3 % git show --name-status HEAD
+@ppbds-student ➜ /workspaces/website-3 $ git show --name-status HEAD
 commit 5ff52befc37ba1a3ac87dac781f48d6c6251c225 (HEAD -> main, origin/main, origin/HEAD)
 Author: David Kane <dave.kane@gmail.com>
 Date:   Mon Mar 17 20:08:52 2025 -0400
@@ -2255,7 +2296,7 @@ M       index.qmd
 A       make_plot.R
 A       process_data.R
 A       size_v_weight.png
-dkane@macbook website-3 % 
+@ppbds-student ➜ /workspaces/website-3 $ 
 ````
 
 Note the workflow. At the start, we created a pipe in `index.qmd` which does everything and then, later, we moved the code into separate scripts so that we don't need to run all the analysis each time we render the website. This is a very common approach. First, get something working. Second, organize and clean it all up. 
@@ -2267,6 +2308,45 @@ Graphics on the web often appear differently than graphics on your computer, so 
 When saving graphics for web display, it is often useful to specify their exact size with a command like `ggsave("your-file.png", your-plot, width = 4, height = 3)`. An earlier edition of [*ggplot2: Elegant Graphics for Data Analysis*](https://ggplot2-book.org/) also [notes](https://bookdown.dongzhuoer.com/hadley/ggplot2-book/saving) that:
 
 > For raster graphics (i.e. .png, .jpg), the dpi argument controls the resolution of the plot. It defaults to 300, which is appropriate for most printers, but you may want to use 600 for particularly high-resolution output, or 96 for on-screen (e.g., web) display.
+
+### Exercise 26
+
+Navigate to your `website-3` GitHub repo. Copy and paste the repository file listing.
+
+```{r website-3-26}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 10)
+```
+
+###
+
+Your file listing should look something like:
+
+````
+.gitignore          initial version     2 days ago
+_quarto.yml         initial version     2 days ago
+about.qmd           initial version     2 days ago
+clean_data.rds      update main page    1 hour ago
+index.qmd           update main page    1 hour ago
+make_plot.R         update main page    1 hour ago
+process_data.R      update main page    1 hour ago
+size_v_weight.png   update main page    1 hour ago
+styles.css          initial version     2 days ago
+````
+
+Once you have confirmed your files are on GitHub, delete your Codespace. Click the green **Code** button on the repo page, go to the **Codespaces** tab, click **...** next to your Codespace, and select **Delete**.
+
+###
+
+In `website-1` and `website-2`, all R code lived inside `index.qmd` and re-ran every time you rendered the site. `website-3` introduced a more scalable pattern: `process_data.R` runs once and saves its result to `clean_data.rds`, then `make_plot.R` reads that file and saves `size_v_weight.png`, and `index.qmd` simply displays the image. 
+
+Notice that the `gh-pages` branch you learned about in `website-2` still handles publishing — what changed is only the structure of `main`.
+
+In professional data science projects, this separation of data cleaning, modeling, visualization, and reporting into distinct scripts makes pipelines faster to iterate on, easier for collaborators to understand, and simpler to debug when something goes wrong.
 
 ## Summary
 ### 
