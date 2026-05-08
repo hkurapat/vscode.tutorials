@@ -79,38 +79,13 @@ Always start a new data science project with a new GitHub repo.
 
 ### Exercise 2
 
-Connect the `website-1` GitHub repo to a project on your computer. Close the Positron welcome page in the Editor and then start the interpreter using R, if necessary.
-
-From the Terminal, run `ls`. CP/CR.
-
-```{r website-1-2}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-Your answer should look something like this:
-
-````
-dkane@macbook website-1 % ls
-README.md
-dkane@macbook website-1 % 
-````
-
-### Exercise 3
-
 In the Terminal, run `quarto create project website .`.  Don't forget the `.` at the end of the command. If asked for a title, use "Website 1".
 
 Depending on your computer setup, this command will require you to answer some questions. Do so as best you can.
 
 CP/CR.
 
-```{r website-1-3}
+```{r website-1-2}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -135,11 +110,11 @@ dkane@macbook website-1 %
 
 Quarto is telling you what it did: creating 5 new files and placing them in the *current* directory. Recall that, on the command line, a `.` refers to the current directory. 
 
-### Exercise 4
+### Exercise 3
 
 In the Terminal, run `ls -a`. CP/CR.
 
-```{r website-1-4}
+```{r website-1-3}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -159,13 +134,13 @@ dkane@macbook website-1 %
 
 The basic set of files necessary for making a Quarto website has been added to the current directory. 
 
-### Exercise 5
+### Exercise 4
 
 Note that a `.gitignore` file has already been created for you. Quarto knows that any well-designed website needs that file, so it just provides it for you.
 
 From the Terminal, run `cat .gitignore`. CP/CR.
 
-```{r website-1-5}
+```{r website-1-4}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -184,7 +159,7 @@ dkane@macbook website-1 %
 
 The `.quarto` directory does not yet exist because we haven't rendered any of our QMD files yet. But when we do, we don't any of the junk in that file to be backed up with Git.
 
-### Exercise 6
+### Exercise 5
 
 In the R Terminal, run:
 
@@ -195,7 +170,7 @@ show_file("_quarto.yml")
 
 CP/CR.
 
-```{r website-1-6}
+```{r website-1-5}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -230,7 +205,7 @@ format:
 
 Quarto offers a wide range of output formats. You can find the complete list at https://quarto.org/docs/output-formats/all-formats.html. Many formats share some output options (e.g., `toc: true` for including a table of contents), but others have options that are format specific e.g., `code-fold: true` collapses code chunks into a `<details>` tag for HTML output so the user can display it on demand. It’s not applicable in a PDF or Word document.
 
-### Exercise 7
+### Exercise 6
 
 Open the `index.qmd` file using the Explorer pane. Replace the title with `"Homepage"`. Save the file.
 
@@ -242,7 +217,7 @@ show_file("index.qmd")
 
 CP/CR.
 
-```{r website-1-7}
+```{r website-1-6}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -267,13 +242,13 @@ To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
 
 Note that the `title` (`"Website 1"`) in `_quarto.yml` has no necessary connection to the `title` (`"Homepage"`) in `index.qmd`. The former is the title for the entire website. The latter is the title for just the (yet-to-be-created) `index.html` page, which will be the home page for the website.
 
-### Exercise 8
+### Exercise 7
 
 Commit and push all the files in the project. (Recall that the "Sync" button both pushes and pulls from GitHub. Since no one else is adding material to our GitHub, there is nothing to pull. So, we will sometimes just use the word "push," although you can just press the "Sync" button.)
 
 Run `git log -n 1` in the Terminal. CP/CR.
 
-```{r website-1-8}
+```{r website-1-7}
 question_text(NULL,
     answer(NULL, correct = TRUE),
     allow_retry = TRUE,
@@ -298,11 +273,11 @@ dkane@macbook website-1 %
 
 The output from the `git log` command is too complex for us to fully parse. If you want to learn more about how to work with Git/GitHub and R, check out [Happy Git with R](https://happygitwithr.com/existing-github-last.html), a very useful resource.
 
-### Exercise 9
+### Exercise 8
 
 From the Terminal, run `quarto render`. CP/CR.
 
-```{r website-1-9}
+```{r website-1-8}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -327,7 +302,7 @@ dkane@macbook website-1 %
 
 `render` just creates the website. It does not "watch" the website, as `preview` does.
 
-### Exercise 10
+### Exercise 9
 
 <!-- Not click but two finger click, right? -->
 
@@ -345,7 +320,7 @@ include_graphics("images/initial-view.png")
 
 Click on the "About" link. Copy/paste the material from the webpage.
 
-```{r website-1-10}
+```{r website-1-9}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -367,11 +342,11 @@ About this site
 
 Your answer might not match ours. That is OK! How the html display varies by browser and screen dimension. The important thing is that, once we have rendered a website, a working version appears in the `_site` directory. 
 
-### Exercise 11
+### Exercise 10
 
 From the Terminal, run `ls _site`. CP/CR.
 
-```{r website-1-11}
+```{r website-1-10}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -390,13 +365,13 @@ dkane@macbook website-1 %
 
 Again, we never edit files in the `_site` directory directly. We run commands, like `quarto render`, which manipulate these files.
 
-### Exercise 12
+### Exercise 11
 
 Add `_site` to the `.gitignore`. Don't forget that the last line of `.gitignore` should always be blank. Save the file. 
 
 In the Terminal, run `cat .gitignore`. CP/CR.
 
-```{r website-1-12}
+```{r website-1-11}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -416,11 +391,11 @@ dkane@macbook website-1 %
 
 Note that `_site` ignores any file or directory named `_site` anywhere in the repository, which is generally what we want.
 
-### Exercise 13
+### Exercise 12
 
 From the Terminal, run `quarto preview`. CP/CR.
 
-```{r website-1-13}
+```{r website-1-12}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -449,7 +424,7 @@ The message at the end indicates that Quarto is now "watching" your files to see
 
 Use `Ctrl + c` to end the `quarto preview` command, although this will only work if the Terminal is the "active" area of the Positron window.
 
-### Exercise 14
+### Exercise 13
 
 Ensure that all the files in the project have been committed and pushed. 
 
@@ -457,7 +432,7 @@ At the Terminal, run `quarto publish gh-pages`. Accept the default settings.
 
 Copy/paste the final URL for your website. 
 
-```{r website-1-14}
+```{r website-1-13}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -474,7 +449,7 @@ https://davidkane9.github.io/website-1/
 
 You can also use Quarto to produce presentations. You get less visual control than with a tool like Keynote or PowerPoint, but automatically inserting the results of your R code into a presentation can save a huge amount of time. Presentations work by dividing your content into slides, with a new slide beginning at each second (`##`) level header. Additionally, first (`#`) level headers indicate the beginning of a new section with a section title slide that is, by default, centered in the middle.
 
-### Exercise 15
+### Exercise 14
 
 Press the Source Control button and confirm that there are no changes. There shouldn't be since publishing does not (usually) change any of the files in the project, assuming that you have recently rendered them.
 
@@ -482,7 +457,7 @@ Run `git log -n 1` in the Terminal. CP/CR.
 
 The `-n 1` option causes Git to just provide the information on the last commit.
 
-```{r website-1-15}
+```{r website-1-14}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -512,9 +487,7 @@ Let's create a new website with a beautiful plot of the data from the `billboard
 
 ### Exercise 1
 
-Create a public GitHub repo called `website-2`. Set the "Add README" toggle switch to "On."
-
-Connect the `website-2` GitHub repo to a project on your computer. 
+Create a public GitHub repo called `website-2` and create a Codespace for it.
 
 From the Terminal, run `ls`. CP/CR.
 
@@ -1401,13 +1374,11 @@ Explore the use of the "Sources" menu on your website.
 ## Website 3
 ### 
 
-Let's make one more website using the same repo/project/quarto approach as above. We will also learn about storing R objects in RDS files.
+Let's make one more website using the same repo/quarto approach as above. We will also learn about storing R objects in RDS files.
 
 ### Exercise 1
 
-Create a public GitHub repo called `website-3`. Set the "Add README" toggle switch to "On."
-
-Connect the `website-3` GitHub repo to a project on your computer. 
+Create a public GitHub repo called `website-3` and create a Codespace for it.
 
 In the Terminal, run `quarto create project website .`.  Use "Website 3" as the title.
 
