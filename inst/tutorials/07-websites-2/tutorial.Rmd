@@ -125,9 +125,9 @@ question_text(NULL,
 
 ````
 @ppbds-student ➜ /workspaces/website-1 $ ls -a
-.               .git            README.md       about.qmd       styles.css
+.               .git            about.qmd       styles.css
 ..              .gitignore      _quarto.yml     index.qmd
-@ppbds-student ➜ /workspaces/website-1 $ 
+@ppbds-student ➜ /workspaces/website-1 $
 ````
 
 The basic set of files necessary for making a Quarto website has been added to the current directory. 
@@ -535,8 +535,7 @@ question_text(NULL,
 
 ````
 @ppbds-student ➜ /workspaces/website-2 $ ls
-README.md
-@ppbds-student ➜ /workspaces/website-2 $ 
+@ppbds-student ➜ /workspaces/website-2 $
 ````
 
 Recall that the `index.qmd` file will always create our "home" page because it is rendered to `index.html`. Browsers, by default, show `index.html`, if one exists, when they visit a new directory. 
@@ -1461,9 +1460,9 @@ Creating project at /workspaces/website-3:
   - Created about.qmd
   - Created styles.css
 @ppbds-student ➜ /workspaces/website-3 $ ls -a
-.               .git            README.md       about.qmd       styles.css
+.               .git            about.qmd       styles.css
 ..              .gitignore      _quarto.yml     index.qmd
-@ppbds-student ➜ /workspaces/website-3 $ 
+@ppbds-student ➜ /workspaces/website-3 $
 ````
 
 The `title` in `_quarto.yml` determines the title of the entire website. The `title` at the top of `index.qmd` specifies the title of just that page.
@@ -1603,8 +1602,8 @@ question_text(NULL,
 
 ````
 @ppbds-student ➜ /workspaces/website-3 $ ls
-README.md       _site           index.qmd       styles.css
-_quarto.yml     about.qmd       process_data.R
+_quarto.yml     _site           index.qmd       styles.css
+about.qmd       process_data.R
 @ppbds-student ➜ /workspaces/website-3 $ 
 ````
 
@@ -2054,8 +2053,8 @@ question_text(NULL,
 
 ````
 @ppbds-student ➜ /workspaces/website-3 $ ls
-README.md       _site           clean_data.rds  make_plot.R     styles.css
-_quarto.yml     about.qmd       index.qmd       process_data.R
+_quarto.yml     _site           clean_data.rds  make_plot.R     styles.css
+about.qmd       index.qmd       process_data.R
 @ppbds-student ➜ /workspaces/website-3 $ 
 ````
 
@@ -2227,11 +2226,11 @@ question_text(NULL,
 
 ````
 @ppbds-student ➜ /workspaces/website-3 $ ls
-README.md               index.qmd
 _quarto.yml             make_plot.R
 _site                   process_data.R
 about.qmd               size_v_weight.png
 clean_data.rds          styles.css
+index.qmd
 @ppbds-student ➜ /workspaces/website-3 $ 
 ````
 
