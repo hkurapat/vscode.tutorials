@@ -32,6 +32,8 @@ options(tutorial.exercise.timelimit = 60,
 
 This tutorial covers how to create Quarto documents using Visual Studio Code in [GitHub Codespaces](https://github.com/features/codespaces). For help with setting this up, see [Getting Started](https://ppbds.github.io/primer/getting-started.html). Some material is from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
+You should be running this tutorial from a Codespace created from the [Codespace starter](https://github.com/PPBDS/codespace-starter). You may reuse the Codespace that you used for the `01-code` tutorial. If you do this, there may be some leftover files. Feel free to delete them.
+
 ## Quarto 1
 ### 
 
