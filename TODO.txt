@@ -2,7 +2,7 @@
 
 Publish is second to last step. Committing is last step.
 
-Add a sentence or two at top of 02-quarto about files which might be left over.
+Add a sentence or two at top of 02-quarto about files which might be left over. - AR: done
 
 We should only have 2 R Terminals, at least in the first 4 (7) tutorials. One runs the tutorial. The second is for interactive use.
 
