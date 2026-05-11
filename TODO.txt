@@ -2,11 +2,11 @@
 
 Read https://ppbds.github.io/tutorial.helpers/articles/ai.html
 
-Send a PR (via the tutorial.helpers package!).
+Send a PR (via the tutorial.helpers package!). -- AR: Done.
   
-  * Include typo fixes and questions.
+  * Include typo fixes and questions. -- AR: Done.
 
-  * Update templates so that we use the new VS Code and Codespaces approach. This is most (only?) relevant for exercise 2. (And it is nice that it only matters there.)
+  * Update templates so that we use the new VS Code and Codespaces approach. This is most (only?) relevant for exercise 2. (And it is nice that it only matters there.) -- AR: Done. No changes needed.
 
 Fixing r4ds 1-5 and tidycensus-1. 
 

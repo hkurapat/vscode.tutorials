@@ -79,13 +79,13 @@ You will learn about importing, organizing, and visualizing data using core pack
 
 ### Exercise 1
 
-Create a Github repo called `r4ds-1`. Set the "Add README" toggle switch to "On."
+<!-- AR: Okay to have this check here? Or intro? This is in line with the AI vignette in tutorial.helpers as of 05.11 pre meeting. -->
 
-Connect the repo to a project on your computer using `File -> New Folder from Git ...`.  Make sure to select the "Open in a new window" box. Start an R interpreter, if necessary.
+If you haven't already, use the `codespace-starter` template to create a new repo on GitHub and rename it `r4ds-1`. Then, open the `r4ds-1` repo on GitHub and create a Codespace from it.
 
-You need two Positron windows: this one for running the tutorial and the one you just created for writing your code and interacting with the R Terminal.
+You need two R Terminals: one for running this tutorial and one for your exercises.
 
-In the new window, select `File -> New File -> Quarto Document ...`. Provide a title -- `"Analyzing the Billboard 100"` -- and an author (you). Render the document and save it as `analysis.qmd`.
+Create a new Quarto Document and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Analyzing the Billboard 100"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
 
 Create a `.gitignore` file with `analysis_files` on the first line and then a blank line. Save and push.
 
@@ -113,6 +113,8 @@ question_text(NULL,
 Professionals keep their data science work in the cloud because laptops fail.
 
 ### Exercise 2
+
+<!-- AR: Should this chunk be labelled setup? -->
 
 In your QMD, put `library(tidyverse)` in a new code chunk. Render the file using `Cmd/Ctrl + Shift + K`.
 
@@ -205,10 +207,10 @@ Your answer should look something like this, although your path will be differen
 
 ````
 > getwd()
-[1] "/Users/dkane/Desktop/projects/r4ds-1"
+[1] "/workspaces/r4ds-1"
 > dir.create("data")
 > list.files()
- [1] "analysis_files" "analysis.html"  "analysis.qmd"   "data"           "README.md"  
+ [1] "analysis_files" "analysis.html"  "analysis.qmd"   "data"
 >
 ````
 
@@ -237,7 +239,7 @@ question_text(NULL,
 
 ###
 
-You should get a tibble that looks like the below. Note that the code that appears after your submit a question is our answer to the question. It is OK if it differs from your answer.
+You should get a tibble that looks like the below. Note that the code that appears after you submit a question is our answer to the question. It is OK if it differs from your answer.
 
 ```{r billboard-100-1-test, echo = TRUE}
 billboard
@@ -316,9 +318,9 @@ ggplot(billboard, aes(x = wk1, y = wk2)) +
 
 ### Exercise 4
 
-In a new prompt for AI provide a tibble of `billboard` again.
+In a new prompt for AI, provide a tibble of `billboard` again.
 
-Ask AI: Create a simple graph plotting a line graph showing the rank of 3 songs over the first 5 weeks, mainly using the functions `ggplot()`, `aes()`, and `geom_line()`. 
+Ask AI: Create a line graph showing the rank of 3 songs over the first 5 weeks, mainly using the functions `ggplot()`, `aes()`, and `geom_line()`. 
 
 Copy and paste the AI generated code into a new code chunk with your QMD. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
 
@@ -350,7 +352,7 @@ billboard |>
 
 ###
 
-The code that the AI produced like contained the symbol `%>%` or `|>`, which are pipe operators. **Replace** `%>%` with `|>` using `Cmd/Ctrl + H` because `|>` is a base R function, which helps ensure better performance. The pipe `|>` passes the left side as input to the right side function. Remember: use `|>` between data steps and `+` between ggplot layers.
+The code that the AI produced likely contained the symbol `%>%` or `|>`, which are pipe operators. **Replace** `%>%` with `|>` using `Cmd/Ctrl + H` because `|>` is a base R function, which helps ensure better performance. The pipe `|>` passes the left side as input to the right side function. Remember: use `|>` between data steps and `+` between ggplot layers.
 
 
 ### Exercise 5
@@ -396,7 +398,7 @@ Provide the AI with your current code.
 
 Ask AI: Continue the code by assigning the plot to the variable `line_graph`, and then save `line_graph` with `ggsave()`.
 
-Update your code in `analysis.qmd`. Place your cursor on the first line of this code and run `Cmd/Ctrl + Enter` in order to run the code in the R Terminal. You may need to do this twice so that both the plot creation code and `ggsave()` are executed.
+Update your code in `analysis.qmd`. Place your cursor on the first line of this code and press `Cmd/Ctrl + Enter` to run each line in the R Terminal — since `Cmd/Ctrl + Enter` runs one line at a time, press it repeatedly until both the plot creation code and `ggsave()` are executed.
 
 CP/CR.
 
@@ -433,7 +435,7 @@ This creates the plot object `line_graph` which you can view by typing its name 
 
 ### Exercise 7
 
-In a new prompt for AI provide a tibble of `billboard` again.
+In a new prompt for AI, provide a tibble of `billboard` again.
 
 Ask AI: Create a simple graph with boxplots showing the distribution of ranks of 3 songs, mainly using the functions `ggplot()`, `aes()`, and `geom_boxplot()`. 
 
@@ -471,7 +473,7 @@ To visualize the relationship between a numerical and a categorical variable, we
 
 ### Exercise 8
 
-In a new prompt for AI provide a tibble of `billboard` again.
+In a new prompt for AI, provide a tibble of `billboard` again.
 
 Ask AI: Create a simple bar graph with bars showing the count of weeks 3 songs were ranked in the top 100, mainly using the functions `ggplot()`, `aes()`, and `geom_bar()`. 
 
@@ -512,11 +514,11 @@ billboard |>
 
 ### Exercise 9
 
-Now, we'll move onto functions from the **dplyr** package.
+Now, we'll move on to functions from the **dplyr** package.
 
-In a new prompt for AI provide a tibble of `billboard` again.
+In a new prompt for AI, provide a tibble of `billboard` again.
 
-Ask AI: Create a pipe with `billboard` to filter for the rows where the values in `wk1` are less than 101. Continue the pipe with `billboard` to arrange the rows by `wk1` rank values.
+Ask AI: Create a pipe with `billboard` to filter for the rows where the values in `wk1` are less than 101. Continue the pipe to arrange the rows by `wk1` rank values.
 
 Copy and paste the AI generated code into a new code chunk with your QMD. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
 
@@ -545,7 +547,7 @@ billboard |>
 
 ### Exercise 10
 
-Ask AI: Continue the pipe with `billboard` to create a new column titled `improvement` that contains the difference between `wk1` and `wk2` rankings, and place it after the `wk2` column.
+Ask AI: Continue the pipe to create a new column titled `improvement` that contains the difference between `wk1` and `wk2` rankings, and place it after the `wk2` column.
 
 If you're using a different AI, provide the `billboard` tibble again and the previous code.
 
@@ -577,7 +579,7 @@ billboard |>
 
 ### Exercise 11
 
-Ask AI: Continue the pipe with `billboard` to select the columns `artist` through `improvement`.
+Ask AI: Continue the pipe to select the columns `artist` through `improvement`.
 
 If you're using a different AI, provide the `billboard` tibble again and the previous code.
 
@@ -612,7 +614,7 @@ billboard |>
 
 ### Exercise 12
 
-Ask AI: Continue the pipe with `billboard` to rename the columns `wk1` and `wk2` to be `week1` and `week2` respectively.
+Ask AI: Continue the pipe to rename the columns `wk1` and `wk2` to be `week1` and `week2` respectively.
 
 If you're using a different AI, provide the `billboard` tibble again and the previous code.
 
@@ -644,7 +646,7 @@ billboard |>
 
 `rename()` changes the names of the columns with no impact on the other variables.
 
-You can also rename variables as you `select()` them by using `=`. The new name appears on the left hand side of the `=`, and the old variable appears on the right hand side. 
+You can also rename variables as you `select()` them by using `=`. The new name appears on the left-hand side of the `=`, and the old variable appears on the right-hand side. 
 
 ### Exercise 13
 
@@ -679,7 +681,7 @@ Within the latest code chunk, add the option: `#| cache: true`. Assign the resul
 
 `Cmd/Ctrl + Shift + K`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
 
-If you have not done so already, you should add `analysis_cache` to the `.gitginore`. The content of the cache file does not belong on GitHub.
+If you have not done so already, you should add `analysis_cache` to the `.gitignore`. The content of the cache file does not belong on GitHub.
 
 Place your cursor on the line where the pipe is assigned to `billboard_clean`, run `Cmd/Ctrl + Enter`, thus ensuring that the workspace also includes a copy of `billboard_clean`.
 
@@ -844,7 +846,7 @@ Key functions you'll learn:
 
 ### Exercise 1
 
-We begin by downloading our CSV file `music.csv` to our the `data` directory directly from the internet using `download.file()`. 
+We begin by downloading our CSV file `music.csv` to the `data` directory directly from the internet using `download.file()`. 
 
 In the R Terminal, run:
 
@@ -869,7 +871,7 @@ question_text(NULL,
 
 ###
 
-"CSV" stands for **C**omma-**S**eparated **V**alues, meaning that the variable names and data values are separated by commas in the file. CSV files are just one type of text file. A text file is any file which includes plain text. The contents of such files are easy to look at in any text editor, or in RStudio.
+"CSV" stands for **C**omma-**S**eparated **V**alues, meaning that the variable names and data values are separated by commas in the file. CSV files are just one type of text file. A text file is any file which includes plain text. The contents of such files are easy to look at in any text editor, or in VSCode.
 
 ### Exercise 2
 
@@ -899,7 +901,7 @@ read_csv("data/music.csv")
 
 ###
 
-When you run `read_csv()`, it prints information about the rows, columns, and data types you used. The **readr** package includes similar functions for other file formats like `read_tsv()` for tabs and `read_delim()` for custom separators. These functions help read different types of structured data files.
+When you run `read_csv()`, it prints information about the rows, columns, and data types it detected. The **readr** package includes similar functions for other file formats like `read_tsv()` for tabs and `read_delim()` for custom separators. These functions help read different types of structured data files.
 
 ### Exercise 3
 
@@ -934,7 +936,7 @@ The argument `skip` is used to skip rows, but to skip columns, you can use the `
 
 ### Exercise 4
 
-Ask AI: Edit the code so that the `read_csv()` is assigned to an object `df` and `read_csv()` is told with `col_types` that the column type of `artist.familiarity` is a double and to check if it fails. Then run `problems(df)`.
+Ask AI: Edit the code so that the `read_csv()` is assigned to an object `df` and `read_csv()` is told with `col_types` that the column type of `artist.familiarity` is a double. Then run `problems(df)` to check for parsing failures.
 
 If you're using a different AI, provide the `music.csv` tibble again and the previous code.
 
@@ -974,7 +976,7 @@ CSV files don't specify data types, so **readr** automatically guesses whether c
 
 Now delete `df` along with the code. The chunk should be empty.
 
-Ask AI: Edit the code `read_csv("data/music.csv")` so that the `read_csv()` only selects the columns `artist.familiarity`, `artist.hotttnesss`, and `artist.id` with `cols_only()`, and then overrides the code type to be a string.
+Ask AI: Edit the code `read_csv("data/music.csv")` so that the `read_csv()` only selects the columns `artist.familiarity`, `artist.hotttnesss`, and `artist.id` with `cols_only()`, and then overrides the column type to be a string.
 
 If you're using a different AI, provide the `music.csv` tibble again and the previous code.
 
@@ -1008,19 +1010,15 @@ read_csv(
 
 ###
 
-Assign this code to the object `music_1`.
-
-###
-
 The **readr** package provides column type functions like `col_character()`, `col_double()`, `col_integer()`, and `col_logical()` to control data import. Use these when readr guesses incorrectly or you need specific types.
 
 The [help page](https://readr.tidyverse.org/reference/cols.html) for `cols()` includes more details and discussion.
 
 ### Exercise 6
 
-Provide AI with a tibble of `music_1`.
+Assign this code to the object `music_1`. Then, provide AI with a tibble of `music_1`.
 
-Ask AI: Based off of the `music_1` tibble previously provided, create a similar tibble with only 3 rows of data using `tibble()`, and with the same 3 columns. Don't assign the tibble to an object.
+Ask AI: Based on the `music_1` tibble previously provided, create a similar tibble with only 3 rows of data using `tibble()`, and with the same 3 columns. Don't assign the tibble to an object.
 
 Copy and paste the AI generated code below the previous code. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
 
@@ -1049,7 +1047,7 @@ tibble(
 
 ###
 
-Sometimes you’ll need to assemble a tibble “by hand,” doing a little data entry in your R script. There are two useful functions to help you do this which differ in whether you layout the tibble by columns [`tibble()`](https://tibble.tidyverse.org/reference/tibble.html) or by rows [`tribble()`](https://tibble.tidyverse.org/reference/tribble.html).
+Sometimes you’ll need to assemble a tibble “by hand,” doing a little data entry in your R script. There are two useful functions that differ in whether you lay out the tibble by columns [`tibble()`](https://tibble.tidyverse.org/reference/tibble.html) or by rows [`tribble()`](https://tibble.tidyverse.org/reference/tribble.html).
 
 ### Exercise 7
 
@@ -1118,13 +1116,13 @@ read_csv(c("data/music_1.csv", "data/music_fake.csv"), id = "file")
 
 ###
 
-With `read_csv()` you can read these multiple CSV files in at once and stack them on top of each other in a single data frame. The code above will only work if you have the CSV files in a data folder in your project.
+With `read_csv()` you can read multiple CSV files at once and stack them on top of each other in a single data frame. The code above will only work if you have the CSV files in a data folder in your project.
 
 ###
 
 Now, delete all code regarding the CSV file.
 
-We will now move on to learn how to make our data tidy.
+We will now learn how to make our data tidy.
 
 ### Exercise 9
 
@@ -1164,14 +1162,14 @@ billboard |>
 
 There are three key arguments:
 
-`cols` specifies which columns need to be pivoted, i.e. which columns aren’t variables. This argument uses the same syntax as `select()` so here we could use `!c(artist, track, date.entered)` or `starts_with("wk")`.
-`names_to` names the variable stored in the column names, we named that variable week.
-`values_to` names the variable stored in the cell values, we named that variable rank.
+`cols` specifies which columns need to be pivoted, i.e. which columns aren’t variables. This argument uses the same syntax as `select()`, so here we could use `!c(artist, track, date.entered)` or `starts_with("wk")`.
+`names_to` names the variable stored in the column names; we named that variable `week`.
+`values_to` names the variable stored in the cell values; we named that variable `rank`.
 
 
 ### Exercise 10
 
-Ask AI: Continue the previous code with `billboard` so that NA values are dropped, and the pipe continues so that the number within the week column is parsed.
+Ask AI: Continue the previous code so that NA values are dropped, and the pipe continues so that the number within the week column is parsed.
 
 If you're using a different AI, provide the `billboard` tibble again and the previous code.
 
@@ -1209,7 +1207,7 @@ This data is now tidy as NA values are removed, but we could make future computa
 
 ### Exercise 11
 
-In the R Terminal, type out `household` and press enter. The result should be a tibble that is a part of **tidyverse**.
+In the R Terminal, type `household` and press `Enter`. The result should be a tibble that is a part of **tidyverse**.
 
 Provide AI with the first 3 lines of the `household` tibble.
 
@@ -1248,7 +1246,7 @@ household |>
 
 ### Exercise 12
 
-Before creating a plot, we need to ensure that your data matches our data. In the QMD, replace your code from exercise 12 with our code and place it within a new code chunk.
+Before creating a plot, we need to ensure that your data matches our data. In the QMD, replace your `billboard` pivot code from Exercise 10 with our code and place it within a new code chunk.
 
 In the R Terminal, run:
 
@@ -1281,7 +1279,7 @@ Within the latest code chunk, add the option: `#| cache: true`. Assign the resul
 
 `Cmd/Ctrl + Shift + K`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
 
-If you have not done so already, you should add `analysis_cache` to the `.gitginore`. The content of the cache file does not belong on GitHub.
+If you have not done so already, you should add `analysis_cache` to the `.gitignore`. The content of the cache file does not belong on GitHub.
 
 Place your cursor on the line where the pipe is assigned to `billboard_longer`, run `Cmd/Ctrl + Enter`, thus ensuring that the workspace also includes a copy of `billboard_longer`.
 
@@ -1403,7 +1401,7 @@ You will learn about importing, organizing, and visualizing data using core pack
 
 `Cmd/Ctrl + Shift + K` to ensure that everything works.  The resulting HTML page should be attractive, showing clean versions of your two plots.
 
-At the R Terminal, run:
+In the R Terminal, run:
 
 ```
 tutorial.helpers::show_file("analysis.qmd")
@@ -1425,39 +1423,14 @@ question_text(NULL,
 Tabular data is considered *tidy* if and only if it satisfies the following rules:
 
 1.  Each variable is a column; each column is a variable.
-2.  Each observation is a row, each row is an observation.
-3.  Each value is a cell, each cell is a single value.
+2.  Each observation is a row; each row is an observation.
+3.  Each value is a cell; each cell is a single value.
 
 ### Exercise 2
 
-Publish your rendered QMD to GitHub Pages. In the Terminal --- not the R Terminal! --- run:
-
-````
-quarto publish gh-pages analysis.qmd
-````
-
-If the Terminal is still running from rendering, stop it first using `Ctrl/Cmd + C`.
-
-Copy/paste the resulting URL below.
-
-```{r summary-2}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 1)
-```
-
-### 
-
-Publishing the QMD allows for there to be a link on the internet that anyone can access to view the rendered project.
-
-### Exercise 3
-
 Commit and push all your files. Copy/paste the URL to your Github repo.
 
-```{r summary-3}
+```{r summary-2}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -1468,11 +1441,36 @@ question_text(NULL,
 
 ### 
 
-Github repositories are where people can view the code you used to create your project.
+GitHub repositories are where people can view the code you used to create your project.
 
 ###
 
 `pivot_longer()` and `pivot_wider()` are complicated and unique functions, and you can learn more about how they work step by step with the book we used to create this tutorial. The sections for [`pivot_longer()`](https://r4ds.hadley.nz/data-tidy.html#how-does-pivoting-work) and [`pivot_wider()`](https://r4ds.hadley.nz/data-tidy.html#how-does-pivot_wider-work) will explain in depth.
+
+### Exercise 3
+
+Publish your rendered QMD to GitHub Pages. In a Bash terminal, run:
+
+````
+quarto publish gh-pages analysis.qmd
+````
+
+If the bash terminal is still running from rendering, stop it first using `Ctrl/Cmd + C`.
+
+Copy/paste the resulting URL below.
+
+```{r summary-3}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 1)
+```
+
+### 
+
+Publishing the QMD creates a public URL anyone can use to view the rendered project.
 
 ```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
 ```
