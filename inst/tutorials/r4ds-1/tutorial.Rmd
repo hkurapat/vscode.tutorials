@@ -79,11 +79,13 @@ You will learn about importing, organizing, and visualizing data using core pack
 
 ### Exercise 1
 
+<!-- AR: Okay to have this check here? Or intro? This is in line with the AI vignette in tutorial.helpers as of 05.11 pre meeting. -->
+
 If you haven't already, use the `codespace-starter` template to create a new repo on GitHub and rename it `r4ds-1`. Then, open the `r4ds-1` repo on GitHub and create a Codespace from it.
 
 You need two R Terminals: one for running this tutorial and one for your exercises.
 
-Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Analyzing the Billboard 100"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
+Create a new Quarto Document and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Analyzing the Billboard 100"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
 
 Create a `.gitignore` file with `analysis_files` on the first line and then a blank line. Save and push.
 
@@ -111,6 +113,8 @@ question_text(NULL,
 Professionals keep their data science work in the cloud because laptops fail.
 
 ### Exercise 2
+
+<!-- AR: Should this chunk be labelled setup? -->
 
 In your QMD, put `library(tidyverse)` in a new code chunk. Render the file using `Cmd/Ctrl + Shift + K`.
 
@@ -203,10 +207,10 @@ Your answer should look something like this, although your path will be differen
 
 ````
 > getwd()
-[1] "/Users/dkane/Desktop/projects/r4ds-1"
+[1] "/workspaces/r4ds-1"
 > dir.create("data")
 > list.files()
- [1] "analysis_files" "analysis.html"  "analysis.qmd"   "data"           "README.md"  
+ [1] "analysis_files" "analysis.html"  "analysis.qmd"   "data"
 >
 ````
 
@@ -394,7 +398,7 @@ Provide the AI with your current code.
 
 Ask AI: Continue the code by assigning the plot to the variable `line_graph`, and then save `line_graph` with `ggsave()`.
 
-Update your code in `analysis.qmd`. Place your cursor on the first line of this code and run `Cmd/Ctrl + Enter` in order to run the code in the R Terminal. You may need to do this twice so that both the plot creation code and `ggsave()` are executed.
+Update your code in `analysis.qmd`. Place your cursor on the first line of this code and press `Cmd/Ctrl + Enter` to run each line in the R Terminal — since `Cmd/Ctrl + Enter` runs one line at a time, press it repeatedly until both the plot creation code and `ggsave()` are executed.
 
 CP/CR.
 
@@ -867,7 +871,7 @@ question_text(NULL,
 
 ###
 
-"CSV" stands for **C**omma-**S**eparated **V**alues, meaning that the variable names and data values are separated by commas in the file. CSV files are just one type of text file. A text file is any file which includes plain text. The contents of such files are easy to look at in any text editor, or in RStudio.
+"CSV" stands for **C**omma-**S**eparated **V**alues, meaning that the variable names and data values are separated by commas in the file. CSV files are just one type of text file. A text file is any file which includes plain text. The contents of such files are easy to look at in any text editor, or in VSCode.
 
 ### Exercise 2
 
@@ -1006,17 +1010,13 @@ read_csv(
 
 ###
 
-Assign this code to the object `music_1`.
-
-###
-
 The **readr** package provides column type functions like `col_character()`, `col_double()`, `col_integer()`, and `col_logical()` to control data import. Use these when readr guesses incorrectly or you need specific types.
 
 The [help page](https://readr.tidyverse.org/reference/cols.html) for `cols()` includes more details and discussion.
 
 ### Exercise 6
 
-Provide AI with a tibble of `music_1`.
+Assign this code to the object `music_1`. Then, provide AI with a tibble of `music_1`.
 
 Ask AI: Based on the `music_1` tibble previously provided, create a similar tibble with only 3 rows of data using `tibble()`, and with the same 3 columns. Don't assign the tibble to an object.
 
@@ -1169,7 +1169,7 @@ There are three key arguments:
 
 ### Exercise 10
 
-Ask AI: Continue the previous code with `billboard` so that NA values are dropped, and the pipe continues so that the number within the week column is parsed.
+Ask AI: Continue the previous code so that NA values are dropped, and the pipe continues so that the number within the week column is parsed.
 
 If you're using a different AI, provide the `billboard` tibble again and the previous code.
 
@@ -1246,7 +1246,7 @@ household |>
 
 ### Exercise 12
 
-Before creating a plot, we need to ensure that your data matches our data. In the QMD, replace your code from the previous exercise with our code and place it within a new code chunk.
+Before creating a plot, we need to ensure that your data matches our data. In the QMD, replace your `billboard` pivot code from Exercise 10 with our code and place it within a new code chunk.
 
 In the R Terminal, run:
 
