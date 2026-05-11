@@ -1428,34 +1428,9 @@ Tabular data is considered *tidy* if and only if it satisfies the following rule
 
 ### Exercise 2
 
-Publish your rendered QMD to GitHub Pages. In a Bash terminal, run:
-
-````
-quarto publish gh-pages analysis.qmd
-````
-
-If the bash terminal is still running from rendering, stop it first using `Ctrl/Cmd + C`.
-
-Copy/paste the resulting URL below.
-
-```{r summary-2}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 1)
-```
-
-### 
-
-Publishing the QMD creates a public URL anyone can use to view the rendered project.
-
-### Exercise 3
-
 Commit and push all your files. Copy/paste the URL to your Github repo.
 
-```{r summary-3}
+```{r summary-2}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -1471,6 +1446,31 @@ GitHub repositories are where people can view the code you used to create your p
 ###
 
 `pivot_longer()` and `pivot_wider()` are complicated and unique functions, and you can learn more about how they work step by step with the book we used to create this tutorial. The sections for [`pivot_longer()`](https://r4ds.hadley.nz/data-tidy.html#how-does-pivoting-work) and [`pivot_wider()`](https://r4ds.hadley.nz/data-tidy.html#how-does-pivot_wider-work) will explain in depth.
+
+### Exercise 3
+
+Publish your rendered QMD to GitHub Pages. In a Bash terminal, run:
+
+````
+quarto publish gh-pages analysis.qmd
+````
+
+If the bash terminal is still running from rendering, stop it first using `Ctrl/Cmd + C`.
+
+Copy/paste the resulting URL below.
+
+```{r summary-3}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 1)
+```
+
+### 
+
+Publishing the QMD creates a public URL anyone can use to view the rendered project.
 
 ```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
 ```
