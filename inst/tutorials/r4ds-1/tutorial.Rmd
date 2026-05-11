@@ -79,13 +79,11 @@ You will learn about importing, organizing, and visualizing data using core pack
 
 ### Exercise 1
 
-Create a Github repo called `r4ds-1`. Set the "Add README" toggle switch to "On."
+If you haven't already, use the `codespace-starter` template to create a new repo on GitHub and rename it `r4ds-1`. Then, open the `r4ds-1` repo on GitHub and create a Codespace from it.
 
-Connect the repo to a project on your computer using `File -> New Folder from Git ...`.  Make sure to select the "Open in a new window" box. Start an R interpreter, if necessary.
+You need two R Terminals: one for running this tutorial and one for your exercises.
 
-You need two Positron windows: this one for running the tutorial and the one you just created for writing your code and interacting with the R Terminal.
-
-In the new window, select `File -> New File -> Quarto Document ...`. Provide a title -- `"Analyzing the Billboard 100"` -- and an author (you). Render the document and save it as `analysis.qmd`.
+Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Analyzing the Billboard 100"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
 
 Create a `.gitignore` file with `analysis_files` on the first line and then a blank line. Save and push.
 
@@ -679,7 +677,7 @@ Within the latest code chunk, add the option: `#| cache: true`. Assign the resul
 
 `Cmd/Ctrl + Shift + K`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
 
-If you have not done so already, you should add `analysis_cache` to the `.gitginore`. The content of the cache file does not belong on GitHub.
+If you have not done so already, you should add `analysis_cache` to the `.gitignore`. The content of the cache file does not belong on GitHub.
 
 Place your cursor on the line where the pipe is assigned to `billboard_clean`, run `Cmd/Ctrl + Enter`, thus ensuring that the workspace also includes a copy of `billboard_clean`.
 
@@ -1281,7 +1279,7 @@ Within the latest code chunk, add the option: `#| cache: true`. Assign the resul
 
 `Cmd/Ctrl + Shift + K`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
 
-If you have not done so already, you should add `analysis_cache` to the `.gitginore`. The content of the cache file does not belong on GitHub.
+If you have not done so already, you should add `analysis_cache` to the `.gitignore`. The content of the cache file does not belong on GitHub.
 
 Place your cursor on the line where the pipe is assigned to `billboard_longer`, run `Cmd/Ctrl + Enter`, thus ensuring that the workspace also includes a copy of `billboard_longer`.
 
@@ -1430,7 +1428,7 @@ Tabular data is considered *tidy* if and only if it satisfies the following rule
 
 ### Exercise 2
 
-Publish your rendered QMD to GitHub Pages. In the Terminal --- not the R Terminal! --- run:
+Publish your rendered QMD to GitHub Pages. In a Bash terminal, run:
 
 ````
 quarto publish gh-pages analysis.qmd
