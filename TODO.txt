@@ -1,5 +1,18 @@
 ## Alec
 
+We need an 08-infrasctructure
+
+Start by showing students how to run Gemini. Lots of images and examples. Login. Copy/paste some key. Have them do some stuff. Like tell you about the repo. (Note how you have to authorize it to run shell commands.) Like make a .gitignore. (May need to authorize it to write a file.) Like make a analysis.qmd. Like render it. Also preview it. Then change the file. Note that the html things in the browser may automatically refresh, or may need a manual refresh.
+
+Point out the quota usage.
+
+Maybe mention some useful gemini commands. /model, /help
+
+   * /stats model: Displays model-specific token counts and information about your current limits.
+   * /stats session: Shows general session usage, including tool calls and performance.
+
+Finish by asking it for the correct Git commands. Now is an opportunity to distinguish between staging and commmitting. Mention the underlying git commands. You can either copy paste those commands into the shell. And then, make another change, and then just tell it to commit and push itself.
+
 Read https://ppbds.github.io/tutorial.helpers/articles/ai.html
 
 Send a PR (via the tutorial.helpers package!). -- AR: Done.
