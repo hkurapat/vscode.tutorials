@@ -1,0 +1,853 @@
+---
+title: "AI Infrastructure"
+author: David Kane
+tutorial:
+  id: "08-infrastructure"
+output:
+  learnr::tutorial:
+    df_print: default
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+description: "Introduction to AI-assisted development using the Gemini CLI in GitHub Codespaces. Covers authentication, using AI to create and manage project files, and integrating AI into the Git workflow."
+---
+
+```{r setup, include = FALSE}
+library(learnr)
+library(tutorial.helpers)
+library(knitr)
+
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(out.width = '90%')
+options(tutorial.exercise.timelimit = 60,
+        tutorial.storage = "local")
+```
+
+```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
+```
+
+## Introduction
+###
+
+This tutorial introduces the [Gemini CLI](https://github.com/google-gemini/gemini-cli), a command-line tool that lets you chat with Google's Gemini AI directly from your terminal. Unlike a web-based AI chat interface, the Gemini CLI can read files, run shell commands, and write to your filesystem --- all from within your Codespace. You will use it to set up a project, create files, and handle Git operations.
+
+### Exercise 1
+
+You must do this tutorial in a Codespace created from a GitHub repo named `08-infrastructure`. If you haven't already done this, follow these steps:
+
+1. Create a GitHub Repo: go to the [codespace-starter repo](https://github.com/ppbds-student/codespace-starter). Click the green "Use this Template" drop-down button and select "Create a new repository". Name the repo `08-infrastructure`. Then click "Create repository".
+
+2. Create a Codespace from `08-infrastructure`: from this repo's page, click the green "Code" drop down button, select the "Codespaces" tab, and click "Create Codespace on main".
+
+Copy and paste the URLs for:
+
+1. Your `08-infrastructure` repository.
+
+2. Your Codespace.
+
+```{r introduction-1}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your answer should look something like:
+
+````
+https://github.com/ppbds-student/08-infrastructure
+https://congenial-chainsaw-wv757pv4pp67cpw.github.dev/
+````
+
+###
+
+A Codespace gives you a full development environment --- editor, terminal, and installed tools --- running on GitHub's servers. Because it runs in the cloud, you can access your work from any machine, and tools like the Gemini CLI can be pre-installed and ready to use the moment the Codespace starts.
+
+### Exercise 2
+
+At the Terminal, run `pwd`, then `ls -a`. CP/CR.
+
+```{r introduction-2}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 6)
+```
+
+###
+
+Your answer should look like:
+
+````
+@ppbds-student ➜ /workspaces/08-infrastructure (main) $ pwd
+/workspaces/08-infrastructure
+@ppbds-student ➜ /workspaces/08-infrastructure (main) $ ls -a
+.  ..  .devcontainer  .git
+@ppbds-student ➜ /workspaces/08-infrastructure (main) $
+````
+
+The `.devcontainer` directory holds the configuration file that tells GitHub how to set up your Codespace --- which tools to install, which VS Code extensions to add, and how to configure the environment. This is why your Codespace arrives pre-configured rather than empty.
+
+## Gemini CLI
+###
+
+The [Gemini CLI](https://github.com/google-gemini/gemini-cli) is an open-source, command-line AI assistant built by Google. Unlike a web chat interface, it runs directly in your terminal and can take actions on your behalf: reading files, running shell commands, and writing new files. Each time it wants to take an action, it asks for your permission first --- so you always stay in control.
+
+### Exercise 1
+
+Start the Gemini CLI by running `gemini` in the Bash Terminal. On the first run, it will ask you to authenticate with your Google account.
+
+You will see a URL printed in the terminal. Open that URL in your browser, sign in with your Google account, and copy the authorization code that appears on the page. Paste it back into the terminal and press Enter.
+
+```{r}
+# AR: Add image showing the terminal with the auth URL and code prompt.
+# include_graphics("images/gemini-auth.png")
+```
+
+CP/CR the first several lines of terminal output --- enough to show the authentication prompt and the `>` prompt that appears after you successfully log in.
+
+```{r gemini-cli-1}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 10)
+```
+
+###
+
+Your output should look something like this:
+
+````
+@ppbds-student ➜ /workspaces/08-infrastructure (main) $ gemini
+
+╔══════════════════════════════════════╗
+║           Gemini CLI                 ║
+╚══════════════════════════════════════╝
+
+? How would you like to authenticate?
+❯ Login with Google
+
+Please open the following URL in your browser to complete authentication:
+
+  https://accounts.google.com/o/oauth2/auth?client_id=...
+
+Enter the authorization code: ████████████████
+
+✔ Authentication successful!
+
+>
+````
+
+###
+
+This authentication flow is called [OAuth 2.0](https://oauth.net/2/), the same standard used by "Sign in with Google" buttons across the web. Instead of sending your Google password to the CLI, you grant it a limited-scope access token. The token is stored locally so you won't need to re-authenticate every session.
+
+### Exercise 2
+
+You are now inside the Gemini CLI interactive session. The `>` prompt means Gemini is waiting for your input. Type `/help` and press Enter to see the list of available commands.
+
+CP/CR the output.
+
+```{r gemini-cli-2}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 18)
+```
+
+###
+
+You should see something like:
+
+````
+> /help
+
+Available commands:
+  /help              Show this help message
+  /quit or /exit     Exit the Gemini CLI
+  /model             Show or change the current model
+  /stats session     Show usage statistics for this session
+  /stats model       Show model token limits and current usage
+  /clear             Clear the current conversation history
+  /chat              List and restore saved chats
+
+>
+````
+
+###
+
+Slash commands control the CLI itself, not Gemini. When you type `/help`, you are telling the *program* to print its options. When you type a regular sentence, you are talking to *Gemini*. This distinction matters: `/stats` gives you real-time data about your environment, while a plain prompt like "how many tokens have I used?" produces an AI-generated guess. For factual information about your session, always use the slash commands.
+
+### Exercise 3
+
+Type `/model` to see which Gemini model is currently active. CP/CR.
+
+```{r gemini-cli-3}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 4)
+```
+
+###
+
+Your output should look something like:
+
+````
+> /model
+Current model: gemini-2.5-pro
+>
+````
+
+###
+
+The Gemini model family has several tiers. **Gemini Pro** models are optimized for complex reasoning and multi-step coding tasks. **Gemini Flash** models prioritize speed and lower token cost, making them better for quick lookups and simple tasks. You can switch models mid-session with `/model model-name`. In practice, the default model is usually a good starting point, but knowing how to change it is useful when you're doing a lot of fast, repetitive work and want to preserve your daily quota.
+
+### Exercise 4
+
+Ask Gemini to describe what files are in the repository. Type something like:
+
+```
+What files are in this repository and explain what's happening? Run ls -a to check.
+```
+
+Gemini will display a **tool authorization prompt** before running the shell command. It should look something like this:
+
+```{r}
+# AR: Add image showing the tool authorization prompt in the terminal.
+# include_graphics("images/gemini-tool-auth.png")
+```
+
+Press `y` and Enter to allow the command to run. CP/CR the authorization prompt and Gemini's response.
+
+```{r gemini-cli-4}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 15)
+```
+
+###
+
+Your output should look something like:
+
+````
+> What files are in this repository? Run ls -a to check.
+
+╔ Tool Use: run_shell ══════════════════════╗
+║  Command: ls -a                           ║
+╚═══════════════════════════════════════════╝
+
+Allow this tool call? [y/n/a] (a = always allow): y
+
+Output:
+.  ..  .devcontainer  .git
+
+This is a fresh repository. It contains only:
+- `.devcontainer/` — the Codespace configuration directory
+- `.git/` — Git's internal tracking directory
+
+There are no source files yet. Would you like me to help create some?
+
+>
+````
+
+###
+
+The tool authorization prompt is a deliberate safety feature. An AI assistant that could silently execute arbitrary shell commands would be a significant security risk. It could do anything on the device!. By requiring explicit approval for each tool call, the CLI ensures you remain in control. You can type `a` to allow *all* future tool calls in the session without prompting --- this is convenient but means you're trusting every action Gemini decides to take, so use it carefully.
+
+### Exercise 5
+
+Ask Gemini to create a `.gitignore` file suitable for a Quarto R project. Type something like:
+
+```
+Create a .gitignore file for a Quarto R project in VS Code. Include patterns for Quarto output directories. Do not include any RStudio-specific entries.
+```
+
+This time, Gemini will ask permission to **write a file** rather than run a command. Press `y` to authorize it. CP/CR the tool authorization prompt and Gemini's summary of what it created.
+
+```{r gemini-cli-5}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 12)
+```
+
+###
+
+Your output should look something like:
+
+````
+> Create a .gitignore file for a Quarto R project.
+
+╔ Tool Use: write_file ════════════════════╗
+║  Path: .gitignore                        ║
+╚══════════════════════════════════════════╝
+
+Allow this tool call? [y/n/a]: y
+
+✔ Created .gitignore
+
+I've created a `.gitignore` that covers:
+- `*_files/` — Quarto's output asset directories
+- `*_cache/` — cached computation results
+- `/.quarto/` — Quarto's internal build directory
+
+>
+````
+
+###
+
+A `.gitignore` file tells Git to ignore certain files and directories entirely --- they won't appear in `git status` and can never be accidentally committed. For a Quarto project, this typically includes `*_files/` directories (generated when rendering) and `*_cache/` directories (computation cache). The guiding principle: if a file can be *regenerated* from your source, it doesn't belong in the commit history. Tracking generated files just adds noise and inflates your repo size.
+
+### Exercise 6
+
+Ask Gemini to show you the contents of the `.gitignore` it just created. Type something like:
+
+```
+Show me the contents of .gitignore.
+```
+
+Press `y` to authorize the shell command. CP/CR.
+
+```{r gemini-cli-6}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 12)
+```
+
+###
+
+Your output should look something like:
+
+````
+> Show me the contents of .gitignore.
+
+╔ Tool Use: run_shell ══════════════════════╗
+║  Command: cat .gitignore                  ║
+╚═══════════════════════════════════════════╝
+
+Allow this tool call? [y/n/a]: y
+
+# Quarto
+*_files/
+*_cache/
+
+>
+````
+
+###
+
+Asking Gemini to read back a file it just created is a quick way to verify the contents without leaving the session. The underlying command is the same `cat` you would run yourself --- Gemini just runs it on your behalf and shows you the result.
+
+### Exercise 7
+
+Ask Gemini to create an `analysis.qmd` file. Tell it you want:
+
+- A YAML header with the title `"Exploring Storms"` and your name as author
+- `execute: echo: false` in the YAML
+- A setup chunk loading `library(tidyverse)` wrapped in `suppressPackageStartupMessages()`
+- A plot using the `storms` dataset from **dplyr** --- for example, a line chart showing the number of named storms per year
+
+Press `y` when Gemini asks to write the file. CP/CR the tool authorization and Gemini's explanation of what it created.
+
+```{r gemini-cli-7}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 12)
+```
+
+###
+
+Your output should look something like:
+
+````
+> Create an analysis.qmd with a title, author, execute echo false, suppressPackageStartupMessages tidyverse, and a ggplot2 plot using a built-in dataset.
+
+╔ Tool Use: write_file ════════════════════╗
+║  Path: analysis.qmd                      ║
+╚══════════════════════════════════════════╝
+
+Allow this tool call? [y/n/a]: y
+
+✔ Created analysis.qmd
+
+I've created `analysis.qmd` with:
+- YAML header titled "Exploring Storms" and `execute: echo: false`
+- Setup chunk using `suppressPackageStartupMessages(library(tidyverse))`
+- A line chart showing the number of named storms per year using the `storms` dataset
+
+>
+````
+
+###
+
+When you ask Gemini to create a file, it generates the entire contents in a single step and writes it for you. This is one of the most practical AI workflows in data science: instead of typing boilerplate YAML, chunk options, and library calls, you describe what you want and review the result. The AI writes the first draft; you refine it. This flips the typical writing process --- editing is almost always faster than composing from scratch.
+
+### Exercise 8
+
+Still inside Gemini, ask it to render `analysis.qmd` for you. Type something like:
+
+```
+Render analysis.qmd using quarto render and tell me what files were created afterward.
+```
+
+Gemini will issue two tool calls: one to render the document and one to list the resulting files. Press `y` for each. CP/CR the output.
+
+```{r gemini-cli-8}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 15)
+```
+
+###
+
+Your output should look something like:
+
+````
+> Render analysis.qmd using quarto render and tell me what files were created afterward.
+
+╔ Tool Use: run_shell ═══════════════════════════════╗
+║  Command: quarto render analysis.qmd               ║
+╚════════════════════════════════════════════════════╝
+
+Allow this tool call? [y/n/a]: y
+
+[Quarto rendering output...]
+Output created: analysis.html
+
+╔ Tool Use: run_shell ════════════╗
+║  Command: ls                    ║
+╚════════════════════════════════╝
+
+Allow this tool call? [y/n/a]: y
+
+Output: .gitignore  analysis.html  analysis.qmd
+
+Quarto rendered `analysis.qmd` successfully. New files: `analysis.html` (the rendered output) and `analysis_files/` (supporting assets, which your `.gitignore` will exclude from Git).
+
+>
+````
+
+###
+
+Notice that Gemini issued *two* tool calls to answer a single question: first to render, then to list files. This is called **multi-step tool use** --- the model breaks your request into a sequence of actions, uses the result of each step to decide what to do next, and then synthesizes the results into a single response. This is the difference between an AI *agent* (which takes actions and reasons about results) and a plain chatbot (which only produces text).
+
+### Exercise 9
+
+Let's view the rendered file in a browser. In the File Explorer (the file tree on the left side of VS Code), find `analysis.html`. Right-click it and select **"Open with Live Server"**.
+
+```{r}
+# include_graphics("images/live-server-right-click.png")
+```
+
+This opens `analysis.html` in a new browser tab served through your Codespace. The URL will look something like `https://[codespace-name]-5500.app.github.dev/analysis.html`.
+
+Copy/paste that URL below.
+
+```{r gemini-cli-9}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+Your URL should look something like:
+
+````
+https://congenial-chainsaw-wv757pv4pp67cpw-5500.app.github.dev/analysis.html
+````
+
+Keep this tab open. Every time `analysis.html` is updated on disk --- whether by Gemini or by running `quarto render` yourself --- the tab will automatically refresh.
+
+###
+
+Live Server is a VS Code extension that serves your HTML files through a local web server and watches for file changes. When a file is updated on disk, it sends a reload signal to the browser. This is necessary in a Codespace because the files live on a remote machine --- you cannot open them directly in a browser the way you would a file on your own computer. Live Server bridges that gap by forwarding a port from the Codespace to a URL you can visit.
+
+### Exercise 10
+
+Ask Gemini to add a second plot to `analysis.qmd` using the `storms` dataset. Tell it to visualize something different from the first plot --- for example, a boxplot showing the distribution of wind speeds by storm category. Ask it to include a meaningful title and subtitle, then re-render the file.
+
+After Gemini finishes, check your Live Server tab --- it should have refreshed automatically to show both plots. In a separate R Terminal, run:
+
+```
+tutorial.helpers::show_file("analysis.qmd", chunk = "Last")
+```
+
+CP/CR.
+
+```{r gemini-cli-10}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 20)
+```
+
+###
+
+Your answer will vary, but it should show ggplot2 code using the `storms` dataset --- something like a boxplot of wind speed by storm category. The chunk should not have `#| echo: true` --- since you set `execute: echo: false` in the YAML header, all chunks inherit that option by default.
+
+###
+
+`show_file()` with `chunk = "Last"` reads only the final code chunk from a Quarto document --- a useful shortcut when you want to verify just the most recently added code without looking at the whole file. It comes from the `tutorial.helpers` package. Note that this is an R function, which is why it runs in the R Terminal rather than the bash Terminal. The two terminals are separate environments: the bash Terminal runs shell commands, while the R Terminal runs R code.
+
+### Exercise 11
+
+Before moving on, let's deliberately quit and restart Gemini to see what happens to the conversation history. Type `/quit`.
+
+Now run `gemini` to start a fresh session. Once you're at the `>` prompt, ask:
+
+```
+What have we done in this project so far?
+```
+
+Without reading any files, Gemini will have no memory of the previous session. Press `y` to let it read the repo and watch it reconstruct the context from the filesystem.
+
+CP/CR Gemini's full response.
+
+```{r gemini-cli-11}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 15)
+```
+
+###
+
+Gemini's **conversation history** is gone the moment you type `/quit`. But the **files on disk** are permanent. This is why Gemini can recover context quickly after a restart --- it doesn't need to remember the conversation, it just needs to read the files.
+
+The `/chat save <name>` command lets you preserve a conversation before quitting so you can resume it later with `/chat resume <name>`. This is useful for long sessions where the back-and-forth itself contains important context that isn't captured in any file.
+
+## Git with Gemini
+###
+
+Now that the project has real files, let's save the work with Git. Rather than just telling you the commands, we'll use Gemini to explain the Git workflow. Using AI to understand what you are doing --- not just to do it --- is a powerful learning strategy.
+
+### Exercise 1
+
+Ask Gemini to check the Git status and explain what the output means:
+
+```
+Run git status and explain what each part of the output means.
+```
+
+Press `y` to allow the shell command. CP/CR the full response including Gemini's explanation.
+
+```{r git-with-gemini-1}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 18)
+```
+
+###
+
+Your answer should look something like:
+
+````
+> Run git status and explain what each part of the output means.
+
+╔ Tool Use: run_shell ══════════════════╗
+║  Command: git status                  ║
+╚═══════════════════════════════════════╝
+
+Allow this tool call? [y/n/a]: y
+
+Output:
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .gitignore
+        analysis.html
+        analysis.qmd
+
+nothing added to commit but untracked files present
+
+Here's what this means:
+- "On branch main" — you are working on the main branch.
+- "Your branch is up to date" — your local branch matches the GitHub copy.
+- "Untracked files" — Git has noticed these files but is not monitoring them yet. They will not be included in any commit until you explicitly add them with `git add`.
+
+>
+````
+
+###
+
+`git status` is one of the most useful Git commands. It shows three things: which branch you are on, changes that have been **staged** (queued for the next commit), and files that are **untracked** (new files Git has noticed but is not monitoring). An untracked file cannot be committed until it is staged with `git add`. Getting comfortable reading `git status` output is one of the most important habits you can build when learning Git.
+
+### Exercise 2
+
+Ask Gemini to explain the difference between `git add` and `git commit`, and to provide the exact commands needed to stage and commit all three files with a good message:
+
+```
+Explain the difference between git add and git commit. Then give me the exact commands to stage .gitignore, analysis.qmd, and analysis.html and commit them with a descriptive message.
+```
+
+CP/CR Gemini's full response.
+
+```{r git-with-gemini-2}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 20)
+```
+
+###
+
+Gemini should explain that `git add` moves files into the **staging area** (also called the index), a holding zone where you prepare a snapshot before committing. `git commit` then takes everything in the staging area and permanently records it in the repo's history. A typical response will include commands like:
+
+```
+git add .gitignore analysis.qmd analysis.html
+git commit -m "initial version with analysis and gitignore"
+```
+
+###
+
+The two-step add-then-commit design exists to give you precise control over what goes into each commit. Imagine you've changed five files but only want to record two of them as a single logical unit --- you add just those two, commit them, then add the remaining three separately with a different message. In practice, for solo projects, you often stage everything at once with `git add .`, but understanding that staging and committing are separate steps is essential once you start collaborating or managing larger projects.
+
+### Exercise 3
+
+In a separate bash Terminal, run the commands Gemini recommended --- the `git add` lines and the `git commit` line. Then run:
+
+```
+git log --oneline
+```
+
+CP/CR.
+
+```{r git-with-gemini-3}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 6)
+```
+
+###
+
+Your answer should look something like:
+
+````
+@ppbds-student ➜ /workspaces/08-infrastructure (main) $ git log --oneline
+a3b8c21 (HEAD -> main) initial version with analysis and gitignore
+e3b01ee Initial commit
+@ppbds-student ➜ /workspaces/08-infrastructure (main) $
+````
+
+The `(HEAD -> main)` indicator shows that your local `main` branch is pointing to this latest commit. The absence of `origin/main` on the same line tells you the commit exists locally but has not yet been pushed to GitHub. Pushing is the step that sends your commits to the remote, making them visible on GitHub and safe from local machine failure.
+
+### Exercise 4
+
+Ask Gemini to improve the storms-per-year chart. Type something like:
+
+```
+Update the storms-per-year chart in analysis.qmd to be a stacked area chart showing the count of each storm type per year. Filter to just tropical depressions, tropical storms, and hurricanes. Use a color scale that goes from light blue for tropical depressions through orange for tropical storms to dark red for hurricanes. Re-render the file when done.
+```
+
+Press `y` to authorize each tool call. Once the Live Server tab has refreshed and you are happy with the result, ask Gemini to handle the entire Git workflow:
+
+```
+Please stage analysis.qmd and analysis.html, commit them with a good message, and push to GitHub.
+```
+
+Press `y` to authorize each tool call as Gemini works through the steps. CP/CR the complete output.
+
+```{r git-with-gemini-4}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 20)
+```
+
+###
+
+Your output should look something like:
+
+````
+> Please stage analysis.qmd and analysis.html, commit them with a good message, and push to GitHub.
+
+╔ Tool Use: run_shell ═══════════════════════════════════════╗
+║  Command: git add analysis.qmd analysis.html               ║
+╚════════════════════════════════════════════════════════════╝
+Allow this tool call? [y/n/a]: y
+
+╔ Tool Use: run_shell ══════════════════════════════════════════════╗
+║  Command: git commit -m "convert to stacked area chart by storm type" ║
+╚══════════════════════════════════════════════════════════════════╝
+Allow this tool call? [y/n/a]: y
+
+╔ Tool Use: run_shell ════════════════════════╗
+║  Command: git push origin main              ║
+╚═════════════════════════════════════════════╝
+Allow this tool call? [y/n/a]: y
+
+✔ Done! Your changes have been committed and pushed to GitHub.
+
+>
+````
+
+###
+
+Gemini issued three separate tool calls: `git add`, `git commit`, and `git push`. These map directly to the three stages of the Git workflow: staging, recording, and sharing. In Exercise 3, you ran these commands yourself after Gemini told you what to type. Here, you asked Gemini to do the work directly. Both approaches are valid --- the first teaches you the individual commands, the second is faster for routine commits once you understand what's happening.
+
+### Exercise 5
+
+Still in Gemini, type `/stats session` and then `/stats model`. CP/CR both outputs.
+
+```{r git-with-gemini-5}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 18)
+```
+
+###
+
+Your output should look something like:
+
+````
+> /stats session
+
+Session Statistics:
+  Messages:           14
+  Tool calls made:    10
+  Tool calls allowed: 10
+  Input tokens:       ~18,400
+  Output tokens:      ~5,100
+  Total tokens:       ~23,500
+
+> /stats model
+
+Model: gemini-2.5-pro
+  Context window:    1,000,000 tokens
+  Free tier limit:   1,000,000 tokens/day
+  Used today:        ~23,500 tokens
+  Remaining:         ~976,500 tokens
+
+>
+````
+
+###
+
+AI models have **context windows** --- a limit on how much text they can process in a single exchange. Gemini's models have very large context windows (up to 1 million tokens), which is why they can read entire codebases and hold long, detailed conversations. The `/stats` commands give you real-time usage data. On the free tier, quotas reset daily, so running out during normal work is unlikely --- but for long automated tasks (like asking Gemini to read and comment on a very large codebase), watching your quota matters.
+
+## Summary
+###
+
+This tutorial introduced the [Gemini CLI](https://github.com/google-gemini/gemini-cli), a command-line AI assistant that can read files, run shell commands, and write to your filesystem directly from the terminal. You authenticated with Google, used tool authorization to control what Gemini could do, created project files with AI assistance, and integrated Gemini into a Git workflow --- both by copying its suggested commands and by having it execute them directly.
+
+### Exercise 1
+
+Quit Gemini with `/quit` if you haven't already. From the bash Terminal, run `quarto render analysis.qmd` to regenerate the HTML. Then, in the R Terminal, run:
+
+```
+tutorial.helpers::show_file("analysis.qmd")
+```
+
+CP/CR.
+
+```{r summary-1}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 30)
+```
+
+###
+
+Your answer should show the full contents of `analysis.qmd`, including a YAML header with `execute: echo: false`, a setup chunk using `suppressPackageStartupMessages(library(tidyverse))`, and at least two ggplot2 code chunks creating plots.
+
+### Exercise 2
+
+Publish your rendered QMD to GitHub Pages. In the bash Terminal, run:
+
+```
+quarto publish gh-pages analysis.qmd
+```
+
+Respond with `Y` when prompted. Copy/paste the resulting URL below.
+
+```{r summary-2}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+Your URL should look something like:
+
+```
+https://ppbds-student.github.io/08-infrastructure/
+```
+
+GitHub Pages takes a minute or two to deploy after `quarto publish` runs. If the link doesn't load immediately, wait and refresh.
+
+### Exercise 3
+
+Commit and push any remaining uncommitted files. Copy/paste the URL to your GitHub repo.
+
+```{r summary-3}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+The Gemini CLI is one of several AI coding tools available today. Others include [Claude Code](https://claude.ai/claude-code) (Anthropic), [GitHub Copilot](https://github.com/features/copilot) (Microsoft), and [Cursor](https://cursor.sh/) (Anysphere). Each has a different interface and strengths, but the underlying workflow is the same: describe what you want in natural language, review what the AI produces, and iterate. The goal is not to replace your judgment --- it is to handle the mechanical parts of coding so you can focus on the thinking.
+
+```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
+```
