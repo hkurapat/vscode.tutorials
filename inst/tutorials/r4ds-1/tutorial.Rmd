@@ -905,6 +905,8 @@ When you run `read_csv()`, it prints information about the rows, columns, and da
 
 ### Exercise 3
 
+<!-- AR: Why are we skipping 5 lines here? -->
+
 Provide AI with the line of code from the question above, as well as the tibble of data.
 
 Ask AI: Edit the code so that the `read_csv()` skips the first 5 lines. Continue the code so that the `read_csv()` will also not read the first row as headings.
@@ -935,6 +937,8 @@ read_csv("data/music.csv", skip = 5, col_names = FALSE)
 The argument `skip` is used to skip rows, but to skip columns, you can use the `col_only()` function as the argument to `col_types` in order to read in only the columns which you want. The argument `col_names` can also be used to create custom column names. 
 
 ### Exercise 4
+
+<!-- AR: no longer skip 5 lines here -->
 
 Ask AI: Edit the code so that the `read_csv()` is assigned to an object `df` and `read_csv()` is told with `col_types` that the column type of `artist.familiarity` is a double. Then run `problems(df)` to check for parsing failures.
 
