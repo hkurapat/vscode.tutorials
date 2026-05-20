@@ -1289,9 +1289,7 @@ question_text(NULL,
 
 ###
 
-<!-- AR: Irrelevant comment. Doesn't work in Positron. -->
-The RStudio `view()` lets you interactively explore a complex list. The viewer opens showing only the top level of the list.
-
+A `robots.txt` file is a plain-text file that website owners use to communicate which pages or directories they allow automated bots to access. Before scraping a site, check its `robots.txt` (e.g., `https://example.com/robots.txt`) to see what the owner permits.
 ### Exercise 2
 
 Ask AI to help you scrape the IMDb Top 250 page by using `resp_body_html()` to read the archived URL and then use `html_element()` with `table` selector followed by `html_table()` to extract the main data table.
@@ -2246,7 +2244,9 @@ question_text(NULL,
 	rows = 1)
 ```
 
-### 
+###
+
+You can use `purrr::map()` to apply a function to each element of a list and return the results as a new list.
 
 ```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
 ```
