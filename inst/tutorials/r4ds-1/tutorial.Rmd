@@ -81,7 +81,9 @@ You will learn about importing, organizing, and visualizing data using core pack
 
 <!-- AR: Okay to have this check here? Or intro? This is in line with the AI vignette in tutorial.helpers as of 05.11 pre meeting. -->
 
-If you haven't already, use the `codespace-starter` template to create a new repo on GitHub and rename it `r4ds-1`. Then, open the `r4ds-1` repo on GitHub and create a Codespace from it.
+Create a new repo using `codespace-starter` as a template and name it `r4ds-1`.
+
+If you haven't already, open the `r4ds-1` repo on GitHub and create a Codespace from it.
 
 You need two R Terminals: one for running this tutorial and one for your exercises.
 

@@ -73,13 +73,13 @@ You will also explore logical operations with `if_else()`, and concepts like int
 
 ### Exercise 1
 
-Create a Github repo called `r4ds-3`. Set the "Add README" toggle switch to "On."
+Create a new repo using `codespace-starter` as a template and name it `r4ds-3`.
 
-Connect the repo to a project on your computer using `File -> New Folder from Git ...`. Make sure to select the "Open in a new window" box.
+If you haven't already, open the `r4ds-3` repo on GitHub and create a Codespace from it.
 
-You need two Positron windows: this one for running the tutorial and the one you just created for writing your code and interacting with the R Terminal.
+You need two R Terminals: one for running this tutorial and one for your exercises. Open a second R Terminal using the dropdown button.
 
-Select `File -> New File -> Quarto Document ...`. Provide a title -- `"Analyzing Baby Names and Flights"` -- and an author (you). Render the document and save it as `analysis.qmd`.
+Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Analyzing Baby Names and Flights"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
 
 Create a `.gitignore` file with `analysis_files` on the first line and then a blank line. Save and push.
 
@@ -113,7 +113,7 @@ We will be working with databases in this tutorial. Two key differences between 
 
 In your QMD, put `library(tidyverse)`, `library(DBI)`, `library(duckdb)`, and `library(dbplyr)` in a new code chunk. Render the file using `Cmd/Ctrl + Shift + K`.
 
-Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this `setup` chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
+Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this code chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
 
 ```         
 execute: 
@@ -190,14 +190,14 @@ question_text(NULL,
 
 ###
 
-Your answer should look something like, although your path will be different.
+Your answer should look something like this, although your path will be different.
 
 ````
 > getwd()
-[1] "/Users/dkane/Desktop/projects/XX"
+[1] "/workspaces/r4ds-3"
 > dir.create("data")
 > list.files()
- [1] "analysis.qmd"        "data"    "README.md"
+ [1] "analysis_files" "analysis.html"  "analysis.qmd"   "data"
 >
 ````
 
@@ -224,7 +224,7 @@ Key functions you'll learn:
 
 We begin by downloading a DuckDB version of the babynames dataset directly from GitHub using `download.file()`. 
 
-This stores the database file, `data/nameby_year.duckdb`, to our the `data` directory so we can use it in this tutorial.
+This stores the database file, `data/nameby_year.duckdb`, to the `data` directory so we can use it in this tutorial.
 
 In the R Terminal, run:
 
@@ -704,7 +704,7 @@ Creating categorical variables like `length_class` transforms continuous data (n
 
 ### Exercise 15
 
-Publish your rendered QMD to GitHub Pages. In the Terminal --- not the R Terminal! --- run:
+Publish your rendered QMD to GitHub Pages. In a Bash terminal, run:
 
 ```         
 quarto publish gh-pages analysis.qmd
@@ -752,7 +752,7 @@ In this section we are going to focus on generating code to create a graph based
 
 We begin by downloading a DuckDB version of the flights dataset directly from GitHub using `download.file()`. 
 
-This stores the database file, `data/nycflights13.duckdb`, to our the `data` directory so we can use it in this tutorial.
+This stores the database file, `data/nycflights13.duckdb`, to the `data` directory so we can use it in this tutorial.
 
 In the R Terminal, run:
 

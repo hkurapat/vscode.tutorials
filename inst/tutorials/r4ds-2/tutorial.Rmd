@@ -51,13 +51,13 @@ You will learn about working with categorical and continuous variables using dif
 
 ### Exercise 1
 
-Create a Github repo called `r4ds-2`. Set the "Add README" toggle switch to "On."
+Create a new repo using `codespace-starter` as a template and name it `r4ds-2`.
 
-Connect the repo to a project on your computer using `File -> New Folder from Git ...`.  Make sure to select the "Open in a new window" box. 
+If you haven't already, open the `r4ds-2` repo on GitHub and create a Codespace from it.
 
-You need two Positron windows: this one for running the tutorial and the one you just created for writing your code and interacting with the R Terminal.
+You need two R Terminals: one for running this tutorial and one for your exercises. Open a second R Terminal using the dropdown button.
 
-Select `File -> New File -> Quarto Document ...`. Provide a title -- `"Analyzing Cheese and Wine"` -- and an author (you). Save the file as `analysis.qmd`. Render the document. 
+Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Analyzing Cheese and Wine"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
 
 Create a `.gitignore` file with `analysis_files` on the first line and then a blank line. Save and push.
 
@@ -89,7 +89,7 @@ You can create a brand new sheet with [`gs4_create()`](https://googlesheets4.tid
 
 In your QMD, put `library(tidyverse)`, `library(readxl)`, and `library(dbplyr)` in a new code chunk. Render the file using `Cmd/Ctrl + Shift + K`.
 
-Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this `setup` chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
+Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this code chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
 
 ```         
 execute: 
@@ -161,14 +161,14 @@ question_text(NULL,
 
 ###
 
-You answer should look something like, although your path will be different.
+Your answer should look something like this, although your path will be different.
 
 ````
 > getwd()
-[1] "/Users/dkane/Desktop/projects/XX"
+[1] "/workspaces/r4ds-2"
 > dir.create("data")
 > list.files()
- [1] "analysis.qmd"        "data"    "README.md"
+ [1] "analysis_files" "analysis.html"  "analysis.qmd"   "data"
 >
 ````
 
