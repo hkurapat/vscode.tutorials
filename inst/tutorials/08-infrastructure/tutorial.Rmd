@@ -12,7 +12,10 @@ runtime: shiny_prerendered
 description: "Introduction to AI-assisted development using the Gemini CLI in GitHub Codespaces. Covers authentication, using AI to create and manage project files, and integrating AI into the Git workflow."
 ---
 
-<!-- AR: Rename? I feel like as this stands now, the tutorial focusses more on using Gemini in the Command line rather than infrastructure. Some ideas: Command Line AI, Gemini, Gemini CLI, CLI AI -->
+<!-- AR: bash should be uncapitalized.
+- mention that chat side bar can be closed
+ -->
+
 
 ```{r setup, include = FALSE}
 library(learnr)
@@ -43,7 +46,7 @@ You must do this tutorial in a Codespace created from a GitHub repo named `08-in
 
 2. Create a Codespace from `08-infrastructure`: from this repo's page, click the green "Code" drop down button, select the "Codespaces" tab, and click "Create Codespace on main".
 
-Copy and paste the URLs for your `08-infrastructure` repository.
+Copy and paste the URL for your `08-infrastructure` repository.
 
 ```{r introduction-1}
 question_text(NULL,
@@ -68,7 +71,7 @@ The `codespace-starter` repo includes a `.devcontainer/devcontainer.json` file t
 
 ### Exercise 2
 
-Copy and Past the URL for your Codespace.
+Copy and paste the URL for your Codespace.
 
 
 ```{r introduction-2}
@@ -177,7 +180,7 @@ include_graphics("images/node-terminal.png")
 
 It will then ask you to authenticate with your Google account.
 
-You will see a URL printed in the terminal. Open that URL in your browser, sign in with your Google account, and copy the authorization code that appears on the page. Paste it back into the terminal and press Enter.
+You will see a URL printed in the terminal. Open that URL in your browser, sign in with your Google account, and copy the authorization code that appears on the page. Paste it back into the terminal and press `Enter`.
 
 ```{r}
 include_graphics("images/gemini-CLI-auth-link.png")
@@ -209,7 +212,7 @@ The token is stored locally, so you won't need to re-authenticate every session 
 
 ### Exercise 3
 
-You are now inside the Gemini CLI interactive session. The `>` prompt means Gemini is waiting for your input. Type `/help` and press Enter to see the list of available commands.
+You are now inside the Gemini CLI interactive session. The `>` prompt means Gemini is waiting for your input. Type `/help` and press `Enter` to see the list of available commands.
 
 CP/CR the output.
 
@@ -282,8 +285,10 @@ Please explain the contents of this repository. Run ls -a to check the contents.
 
 Gemini will display a **tool authorization prompt** before running the shell command. It should look something like this:
 
+<!-- AR: fix this -->
 
-Press `y` and Enter to allow the command to run. CP/CR the authorization prompt and Gemini's response.
+
+Press `y` and `Enter` to allow the command to run. CP/CR the authorization prompt and Gemini's response.
 
 ```{r gemini-cli-5}
 question_text(NULL,
@@ -322,6 +327,8 @@ There are no source files yet. Would you like me to help create some?
 ###
 
 The tool authorization prompt is a deliberate safety feature --- an AI that could silently execute shell commands would be a significant security risk.
+
+<!-- Note about A for always - maybe sub with image and replace with alternate (newer) option. UI is different from what's shown here. -->
 
 ### Exercise 6
 
@@ -461,7 +468,11 @@ Live Server is a VS Code extension that serves HTML files through a local web se
 
 Ask Gemini to add a second plot to `analysis.qmd` using the `storms` dataset. Tell it to visualize something different from the first plot --- for example, a boxplot showing the distribution of wind speeds by storm category. Ask it to include a meaningful title and subtitle, then re-render the file.
 
-After Gemini finishes, check your Live Server tab --- it should have refreshed automatically to show both plots. In a separate R Terminal, run:
+After Gemini finishes, check your Live Server tab --- it should have refreshed automatically to show both plots. Open a new R Terminal. 
+
+<!-- AR: show image of creating the new R Terminal -->
+
+Then, in the new R Terminal, run:
 
 ```
 tutorial.helpers::show_file("analysis.qmd", chunk = "Last")
@@ -480,7 +491,7 @@ question_text(NULL,
 
 ###
 
-Your answer will vary, but it should show ggplot2 code using the `storms` dataset --- something like a boxplot of wind speed by storm category. The chunk should not have `#| echo: true` --- since you set `execute: echo: false` in the YAML header, all chunks inherit that option by default.
+Your answer will vary, but it should show **ggplot2** code using the `storms` dataset --- something like a boxplot of wind speed by storm category. The chunk should not have `#| echo: true` --- since you set `execute: echo: false` in the YAML header, all chunks inherit that option by default.
 
 ###
 
@@ -694,7 +705,9 @@ git commit -m "initial version with analysis and gitignore"
 
 ###
 
-The two-step add-then-commit design exists to give you precise control over what goes into each commit. Imagine you've changed five files but only want to record two of them as a single logical unit --- you add just those two, commit them, then add the remaining three separately with a different message. In practice, for solo projects, you often stage everything at once with `git add .`, but understanding that staging and committing are separate steps is essential once you start collaborating or managing larger projects.
+The two-step add-then-commit design exists to give you precise control over what goes into each commit. Imagine you've changed five files but only want to record two of them as a single logical unit --- you add just those two, commit them, then add the remaining three separately with a different message. 
+
+In practice, for solo projects, you often stage everything at once with `git add .`, but understanding that staging and committing are separate steps is essential once you start collaborating or managing larger projects.
 
 ### Exercise 3
 
@@ -726,7 +739,7 @@ e3b01ee Initial commit
 @ppbds-student ➜ /workspaces/08-infrastructure (main) $
 ````
 
-The `(HEAD -> main)` indicator shows that your local `main` branch is pointing to this latest commit. The absence of `origin/main` on the same line tells you the commit exists locally but has not yet been pushed to GitHub. Pushing is the step that sends your commits to the remote, making them visible on GitHub and safe from local machine failure.
+The `(HEAD -> main)` indicator shows that your local `main` branch is pointing to this latest commit. The absence of `origin/main` on the same line tells you the commit exists locally but has not yet been pushed to GitHub. Pushing is the step that sends your commits to the remote repository, making them visible on GitHub and safe from local machine failure.
 
 ### Exercise 4
 
@@ -737,6 +750,18 @@ Update the storms-per-year chart in analysis.qmd to be a stacked area chart show
 ```
 
 Press `y` to authorize each tool call. Once the Live Server tab has refreshed and you are happy with the result, ask Gemini to handle the entire Git workflow:
+
+<!-- AR: Our students barely know that add exists. Settings in codespace starter add automatically.
+KD - in devcontainer we have a smart commit setting that does staging and committing in a single swoop. Other codespaces will not have this setting and there students will have to do staging. But in our codespace-starters we don't need to do this.
+
+Staging should be only mentioned and never done. They don't need to.
+
+
+DEVCONTAINERS SECTION
+When committing in the devcontainers section, explain this when stage pop-up appears.
+Also confirm sync and auto fetch. Also mention for their respective pop-ups which will appear.
+Major takeaway: VSCODE is different for everyone. There are many settings. Settings files often control this. These are some concrete examples
+ -->
 
 ```
 Please stage analysis.qmd and analysis.html, commit them with a good message, and push to GitHub.
@@ -826,6 +851,44 @@ Model: gemini-2.5-pro
 ###
 
 AI models have **context windows** --- a limit on how much information they can hold in memory at once. Gemini's are very large (up to 1 million tokens), but `/stats` lets you track usage in real time; on the free tier, quotas reset daily.
+
+<!-- AR: Devcontainers Section
+
+Can be 5-10 questions. Explore infrastructure available in github
+- explore our devcontainer?
+- Give a tour of an alternate infrastructure
+
+	1. show github.com/codespaces/templates -- examples of other devcontainer templates
+	-- students can use this to start their own codespaces
+
+	Now should point out that student has 2 codespaces open at github.com/codespaces
+
+	2. Explore the jupyter notebook devcontainer, copy paste sections of the devcontainer and explain them
+	- image: copy paste the line
+	- Copy paste section related to VSCODE extensions - compare to our devcontainer
+	- what python command is being executed
+		-- kd: about what this does - pip install 
+	- postCreateCommand - copy paste - KD: explain what this does
+	- copy paste entire devcontainer - here is my entire devcontainer, give me a new one which installs R - submit the changed file
+	-- use VS code diff viewer to see the changes made
+
+	3. click on requirements.txt in File explorer - tells pip install what to install
+	- go through some of the key packages - pandas, and other 2ish key packages
+
+	4. click on README - CP first sentence - KD: explain
+
+	5. click on .gitignore: CP - KD: expkin
+
+	6. data directory - atlantis.csv
+
+	7. notebooks directory - matplotlib.ipynb
+	- Jupiter notebook is a similar system to Quarto with text, code, plots
+
+	8. make a change to README.md - commit w/o staging - KD: staging vs. committing - return to how this devcontainer doesn't have the smart commit setting
+	9. publish branch - notice name given - notice the graph
+	10. check github repos and see the new repo! - paste the URL
+
+ -->
 
 ## Summary
 ###
