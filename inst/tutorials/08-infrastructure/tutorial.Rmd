@@ -153,11 +153,6 @@ The [Gemini CLI](https://github.com/google-gemini/gemini-cli) is an open-source,
 
 Start the Gemini CLI by running `gemini` in the Bash Terminal. First it will ask you if you wish to connect your Codespace to Gemini. Press `y` to allow it. Next, it will first ask whether you trust the current working directory --- again, press `y`. 
 
-```{r}
-# include_graphics("images/gemini-start.png")
-# image of terminal window with R terminal running tutorial and node bash terminal
-```
-
 CP/CR the first several lines of terminal output --- enough to show the authentication prompt and the `>` prompt that appears after you successfully log in.
 
 ```{r gemini-cli-1}
@@ -173,6 +168,11 @@ question_text(NULL,
 
 You may notice that VS Code renames the terminal tab from "bash" to "node" once Gemini starts. This is because the Gemini CLI is a [Node.js application](https://nodejs.org/en/about) --- VS Code detects the underlying process and updates the tab name to reflect it.
 
+
+```{r}
+include_graphics("images/node-terminal.png")
+```
+
 ### Exercise 2
 
 It will then ask you to authenticate with your Google account.
@@ -180,8 +180,7 @@ It will then ask you to authenticate with your Google account.
 You will see a URL printed in the terminal. Open that URL in your browser, sign in with your Google account, and copy the authorization code that appears on the page. Paste it back into the terminal and press Enter.
 
 ```{r}
-# AR: Add image showing the terminal with the auth URL and code prompt.
-# include_graphics("images/gemini-auth.png")
+include_graphics("images/gemini-CLI-auth-link.png")
 ```
 
 
@@ -196,30 +195,11 @@ question_text(NULL,
 
 ###
 
-Your output should look something like this:
+Your terminal should look something like this:
 
-<!-- AR: Instead use graphic -->
-
-````
-@ppbds-student ➜ /workspaces/08-infrastructure (main) $ gemini
-
-╔══════════════════════════════════════╗
-║           Gemini CLI                 ║
-╚══════════════════════════════════════╝
-
-? How would you like to authenticate?
-❯ Login with Google
-
-Please open the following URL in your browser to complete authentication:
-
-  https://accounts.google.com/o/oauth2/auth?client_id=...
-
-Enter the authorization code: ████████████████
-
-✔ Authentication successful!
-
->
-````
+```{r}
+include_graphics("images/gemini-CLI-auth-done.png")
+```
 
 ###
 
@@ -302,10 +282,6 @@ Please explain the contents of this repository. Run ls -a to check the contents.
 
 Gemini will display a **tool authorization prompt** before running the shell command. It should look something like this:
 
-```{r}
-# AR: Add image showing the tool authorization prompt in the terminal.
-# include_graphics("images/gemini-tool-auth.png")
-```
 
 Press `y` and Enter to allow the command to run. CP/CR the authorization prompt and Gemini's response.
 
