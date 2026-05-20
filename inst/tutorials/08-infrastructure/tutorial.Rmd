@@ -38,8 +38,7 @@ This tutorial introduces the [Gemini CLI](https://github.com/google-gemini/gemin
 ### Exercise 1
 
 <!-- AR: Separate into 2 questions. More opportunities for knowledge drops.
-KDs
-1. Gemini CLI relationship to devcontainer (devcontainer configured so it's already available) NOTE, there's already a similar KD below.
+
 2. There are 3 ways interacting with AIs: Chat, CLI (using here), Agents 
  -->
 
@@ -49,11 +48,7 @@ You must do this tutorial in a Codespace created from a GitHub repo named `08-in
 
 2. Create a Codespace from `08-infrastructure`: from this repo's page, click the green "Code" drop down button, select the "Codespaces" tab, and click "Create Codespace on main".
 
-Copy and paste the URLs for:
-
-1. Your `08-infrastructure` repository.
-
-2. Your Codespace.
+Copy and paste the URLs for your `08-infrastructure` repository.
 
 ```{r introduction-1}
 question_text(NULL,
@@ -70,22 +65,47 @@ Your answer should look something like:
 
 ````
 https://github.com/ppbds-student/08-infrastructure
+````
+
+###
+
+The `codespace-starter` repo includes a `.devcontainer/devcontainer.json` file that tells GitHub exactly what to install when a Codespace starts. The Gemini CLI is already listed there, which is why you'll be able to run `gemini` immediately without installing anything yourself.
+
+### Exercise 2
+
+Copy and Past the URL for your Codespace.
+
+
+```{r introduction-2}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your answer should look something like:
+
+````
 https://congenial-chainsaw-wv757pv4pp67cpw.github.dev/
 ````
 
 ###
 
-A Codespace gives you a full development environment --- editor, terminal, and installed tools --- running on GitHub's servers. Because it runs in the cloud, you can access your work from any machine, and tools like the Gemini CLI can be pre-installed and ready to use the moment the Codespace starts.
+There are three main ways to interact with AI: a *chat interface* (like gemini.google.com), a *CLI tool* running in your terminal, and an *embedded agent* inside your editor (like GitHub Copilot). This tutorial uses the CLI approach --- you'll run Gemini directly in the VS Code terminal, where it can read your files and take actions on your behalf.
 
-### Exercise 2
+### Exercise 3
 
 <!-- AR: Separate into 2 questions.
-KD 2: The only way we know that its a git repo is the .git directory
+New Knowledge drop. The only way we know that its a git repo is the .git directory
  -->
 
 At the Terminal, run `pwd`, then `ls -a`. CP/CR.
 
-```{r introduction-2}
+```{r introduction-3}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
