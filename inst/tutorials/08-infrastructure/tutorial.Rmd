@@ -151,15 +151,10 @@ The [Gemini CLI](https://github.com/google-gemini/gemini-cli) is an open-source,
 
 ### Exercise 1
 
-Start the Gemini CLI by running `gemini` in the Bash Terminal. On the first run, it will ask you to authenticate with your Google account.
-
-<!-- AR: add note about trusting folders -->
-
-You will see a URL printed in the terminal. Open that URL in your browser, sign in with your Google account, and copy the authorization code that appears on the page. Paste it back into the terminal and press Enter.
+Start the Gemini CLI by running `gemini` in the Bash Terminal. First it will ask you if you wish to connect your Codespace to Gemini. Press `y` to allow it. Next, it will first ask whether you trust the current working directory --- again, press `y`. 
 
 ```{r}
-# AR: Add image showing the terminal with the auth URL and code prompt.
-# include_graphics("images/gemini-auth.png")
+# include_graphics("images/gemini-start.png")
 # image of terminal window with R terminal running tutorial and node bash terminal
 ```
 
@@ -172,6 +167,31 @@ question_text(NULL,
 	try_again_button = "Edit Answer",
 	incorrect = NULL,
 	rows = 10)
+```
+
+###
+
+You may notice that VS Code renames the terminal tab from "bash" to "node" once Gemini starts. This is because the Gemini CLI is a Node.js application --- VS Code detects the underlying process and updates the tab name to reflect it.
+
+### Exercise 2
+
+It will then ask you to authenticate with your Google account.
+
+You will see a URL printed in the terminal. Open that URL in your browser, sign in with your Google account, and copy the authorization code that appears on the page. Paste it back into the terminal and press Enter.
+
+```{r}
+# AR: Add image showing the terminal with the auth URL and code prompt.
+# include_graphics("images/gemini-auth.png")
+```
+
+
+```{r gemini-cli-2}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
 ```
 
 ###
@@ -199,23 +219,19 @@ Enter the authorization code: ████████████████
 >
 ````
 
-<!-- AR: Why is the terminal renamed to node after the gemini command? Explain this. Photo. -->
-
-
 ###
 
 <!-- AR: What happens when we open a new Codespace? Need to reauth? What happens when we stop then reopen codespace? -->
 
-
 This authentication flow is called [OAuth 2.0](https://oauth.net/2/), the same standard used by "Sign in with Google" buttons across the web. Instead of sending your Google password to the CLI, you grant it a limited-scope access token. The token is stored locally so you won't need to re-authenticate every session.
 
-### Exercise 2
+### Exercise 3
 
 You are now inside the Gemini CLI interactive session. The `>` prompt means Gemini is waiting for your input. Type `/help` and press Enter to see the list of available commands.
 
 CP/CR the output.
 
-```{r gemini-cli-2}
+```{r gemini-cli-3}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -247,11 +263,11 @@ Available commands:
 
 Slash commands control the CLI itself, not Gemini --- the command `/help` tells the *program* to print its options, while a plain sentence talks to *Gemini*. For factual session data like token usage, always use slash commands rather than asking Gemini, which will only guess.
 
-### Exercise 3
+### Exercise 4
 
 Type `/model` to see which Gemini model is currently active. CP/CR.
 
-```{r gemini-cli-3}
+```{r gemini-cli-4}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -274,7 +290,7 @@ Current model: gemini-2.5-pro
 
 The Gemini model family has several tiers: **Pro** for complex reasoning and coding tasks, **Flash** for speed and lower token cost. You can switch mid-session with `/model model-name` if you want to preserve your daily quota for simpler work or use a more powerful model.
 
-### Exercise 4
+### Exercise 5
 
 Ask Gemini to describe what files are in the repository. Type something like:
 
@@ -291,7 +307,7 @@ Gemini will display a **tool authorization prompt** before running the shell com
 
 Press `y` and Enter to allow the command to run. CP/CR the authorization prompt and Gemini's response.
 
-```{r gemini-cli-4}
+```{r gemini-cli-5}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -329,7 +345,7 @@ There are no source files yet. Would you like me to help create some?
 
 The tool authorization prompt is a deliberate safety feature --- an AI that could silently execute shell commands would be a significant security risk. Typing `a` allows all future tool calls without prompting, so use it carefully.
 
-### Exercise 5
+### Exercise 6
 
 Ask Gemini to create a `.gitignore` file suitable for a Quarto R project. Type something like:
 
@@ -339,7 +355,7 @@ Create a .gitignore file for a Quarto R project in VS Code. Include patterns for
 
 This time, Gemini will ask permission to **write a file** rather than run a command. Press `y` to authorize it. CP/CR the tool authorization prompt and Gemini's summary of what it created.
 
-```{r gemini-cli-5}
+```{r gemini-cli-6}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -375,7 +391,7 @@ I've created a `.gitignore` that covers:
 
 A `.gitignore` tells Git to ignore certain files entirely --- they won't appear in `git status` and can never be accidentally committed. The guiding principle: if a file can be *regenerated* from your source, it doesn't belong in the commit history.
 
-### Exercise 6
+### Exercise 7
 
 Ask Gemini to show you the contents of the `.gitignore` it just created. Type something like:
 
@@ -385,7 +401,7 @@ Show me the contents of .gitignore.
 
 Press `y` to authorize the shell command. CP/CR.
 
-```{r gemini-cli-6}
+```{r gemini-cli-7}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -418,7 +434,7 @@ Allow this tool call? [y/n/a]: y
 
 Asking Gemini to read back a file it just created is a quick way to verify the contents without leaving the session. The underlying command is the same `cat` you would run yourself --- Gemini just runs it on your behalf and shows you the result.
 
-### Exercise 7
+### Exercise 8
 
 Ask Gemini to create an `analysis.qmd` file. Tell it you want:
 
@@ -429,7 +445,7 @@ Ask Gemini to create an `analysis.qmd` file. Tell it you want:
 
 Press `y` when Gemini asks to write the file. CP/CR the tool authorization and Gemini's explanation of what it created.
 
-```{r gemini-cli-7}
+```{r gemini-cli-8}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -465,7 +481,7 @@ I've created `analysis.qmd` with:
 
 When you ask Gemini to create a file, it generates the entire contents in one step and writes it for you. Instead of typing boilerplate YAML, chunk options, and library calls yourself, you describe what you want and refine the result --- editing is almost always faster than composing from scratch.
 
-### Exercise 8
+### Exercise 9
 
 Still inside Gemini, ask it to render `analysis.qmd` for you. Type something like:
 
@@ -475,7 +491,7 @@ Render analysis.qmd using quarto render and tell me what files were created afte
 
 Gemini will issue two tool calls: one to render the document and one to list the resulting files. Press `y` for each. CP/CR the output.
 
-```{r gemini-cli-8}
+```{r gemini-cli-9}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -517,7 +533,7 @@ Quarto rendered `analysis.qmd` successfully. New files: `analysis.html` (the ren
 
 Notice that Gemini issued *two* tool calls to answer a single question: first to render, then to list files. This is called **multi-step tool use** --- the model breaks your request into a sequence of actions, uses the result of each step to decide what to do next, and then synthesizes the results into a single response. This is the difference between an AI *agent* (which takes actions and reasons about results) and a plain chatbot (which only produces text).
 
-### Exercise 9
+### Exercise 10
 
 Let's view the rendered file in a browser. In the File Explorer (the file tree on the left side of VS Code), find `analysis.html`. Right-click it and select **"Open with Live Server"**.
 
@@ -529,7 +545,7 @@ This opens `analysis.html` in a new browser tab served through your Codespace. T
 
 Copy/paste that URL below.
 
-```{r gemini-cli-9}
+```{r gemini-cli-10}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -552,7 +568,7 @@ Keep this tab open. Every time `analysis.html` is updated on disk --- whether by
 
 Live Server is a VS Code extension that serves HTML files through a local web server and reloads the browser whenever a file changes on disk. This is necessary in a Codespace because the files live on a remote machine and cannot be opened directly in a browser.
 
-### Exercise 10
+### Exercise 11
 
 Ask Gemini to add a second plot to `analysis.qmd` using the `storms` dataset. Tell it to visualize something different from the first plot --- for example, a boxplot showing the distribution of wind speeds by storm category. Ask it to include a meaningful title and subtitle, then re-render the file.
 
@@ -564,7 +580,7 @@ tutorial.helpers::show_file("analysis.qmd", chunk = "Last")
 
 CP/CR.
 
-```{r gemini-cli-10}
+```{r gemini-cli-11}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -583,7 +599,7 @@ Your answer will vary, but it should show ggplot2 code using the `storms` datase
 
 `show_file()` with `chunk = "Last"` reads only the final code chunk from a Quarto document --- useful for verifying the most recently added code without reading the whole file. It is an R function, so it runs in the R Terminal, not the bash Terminal.
 
-### Exercise 11
+### Exercise 12
 
 Before moving on, let's deliberately quit and restart Gemini to see what happens to the conversation history. Type `/quit`.
 
@@ -597,7 +613,7 @@ Without reading any files, Gemini will have no memory of the previous session. P
 
 CP/CR Gemini's full response.
 
-```{r gemini-cli-11}
+```{r gemini-cli-12}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
