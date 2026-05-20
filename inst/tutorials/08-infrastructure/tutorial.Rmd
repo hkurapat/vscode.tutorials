@@ -221,9 +221,9 @@ Enter the authorization code: ████████████████
 
 ###
 
-<!-- AR: What happens when we open a new Codespace? Need to reauth? What happens when we stop then reopen codespace? -->
+This authentication flow is called [OAuth 2.0](https://oauth.net/2/), the same standard used by "Sign in with Google" buttons across the web. Instead of sending your Google password to the CLI, you grant it a limited-scope access token. 
 
-This authentication flow is called [OAuth 2.0](https://oauth.net/2/), the same standard used by "Sign in with Google" buttons across the web. Instead of sending your Google password to the CLI, you grant it a limited-scope access token. The token is stored locally so you won't need to re-authenticate every session.
+The token is stored locally, so you won't need to re-authenticate every session within the same Codespace. Whenever you open a new Codespace, however, you will need to reauthenticate.
 
 ### Exercise 3
 
