@@ -484,9 +484,7 @@ Your answer will vary, but it should show ggplot2 code using the `storms` datase
 
 ###
 
-<!-- AR: Update with something more relevant -->
-
-`show_file()` with `chunk = "Last"` reads only the final code chunk from a Quarto document --- useful for verifying the most recently added code without reading the whole file. It is an R function, so it runs in the R Terminal, not the bash Terminal.
+When Gemini adds a plot and re-renders, two things happen automatically: Quarto overwrites `analysis.html` on disk, and Live Server detects the change and refreshes your browser. This loop --- ask Gemini, render, view --- is the same workflow you would use throughout a real project.
 
 ### Exercise 10
 
