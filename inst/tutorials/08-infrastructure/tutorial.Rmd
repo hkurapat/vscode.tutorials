@@ -12,6 +12,8 @@ runtime: shiny_prerendered
 description: "Introduction to AI-assisted development using the Gemini CLI in GitHub Codespaces. Covers authentication, using AI to create and manage project files, and integrating AI into the Git workflow."
 ---
 
+<!-- AR: Rename? I feel like as this stands now, the tutorial focusses more on using Gemini in the Command line rather than infrastructure. Some ideas: Command Line AI, Gemini, Gemini CLI, CLI AI -->
+
 ```{r setup, include = FALSE}
 library(learnr)
 library(tutorial.helpers)
@@ -26,12 +28,20 @@ options(tutorial.exercise.timelimit = 60,
 ```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
 ```
 
+<!-- AR: Some questions asking AI to do stuff should be copy pasting a prompt, others should make students write the prompt. First 10 should be copy paste a pre-written prompt -->
+
 ## Introduction
 ###
 
-This tutorial introduces the [Gemini CLI](https://github.com/google-gemini/gemini-cli), a command-line tool that lets you chat with Google's Gemini AI directly from your terminal. Unlike a web-based AI chat interface, the Gemini CLI can read files, run shell commands, and write to your filesystem --- all from within your Codespace. You will use it to set up a project, create files, and handle Git operations.
+This tutorial introduces the [Gemini CLI](https://github.com/google-gemini/gemini-cli), a command-line interface tool that lets you chat with Google's Gemini AI directly from your terminal. It walk you through how to use this tool in VSCode in Github Codespaces. Unlike a web-based AI chat interface, the Gemini CLI can read files, run shell commands, and write to your filesystem --- all from within your Codespace. You will use it to set up a project, create files, and handle Git operations.
 
 ### Exercise 1
+
+<!-- AR: Separate into 2 questions. More opportunities for knowledge drops.
+KDs
+1. Gemini CLI relationship to devcontainer (devcontainer configured so it's already available) NOTE, there's already a similar KD below.
+2. There are 3 ways interacting with AIs: Chat, CLI (using here), Agents 
+ -->
 
 You must do this tutorial in a Codespace created from a GitHub repo named `08-infrastructure`. If you haven't already done this, follow these steps:
 
@@ -69,6 +79,10 @@ A Codespace gives you a full development environment --- editor, terminal, and i
 
 ### Exercise 2
 
+<!-- AR: Separate into 2 questions.
+KD 2: The only way we know that its a git repo is the .git directory
+ -->
+
 At the Terminal, run `pwd`, then `ls -a`. CP/CR.
 
 ```{r introduction-2}
@@ -103,11 +117,14 @@ The [Gemini CLI](https://github.com/google-gemini/gemini-cli) is an open-source,
 
 Start the Gemini CLI by running `gemini` in the Bash Terminal. On the first run, it will ask you to authenticate with your Google account.
 
+<!-- AR: add note about trusting folders -->
+
 You will see a URL printed in the terminal. Open that URL in your browser, sign in with your Google account, and copy the authorization code that appears on the page. Paste it back into the terminal and press Enter.
 
 ```{r}
 # AR: Add image showing the terminal with the auth URL and code prompt.
 # include_graphics("images/gemini-auth.png")
+# image of terminal window with R terminal running tutorial and node bash terminal
 ```
 
 CP/CR the first several lines of terminal output --- enough to show the authentication prompt and the `>` prompt that appears after you successfully log in.
@@ -146,7 +163,13 @@ Enter the authorization code: ████████████████
 >
 ````
 
+<!-- AR: Why is the terminal renamed to node after the gemini command? Explain this. Photo. -->
+
+
 ###
+
+<!-- AR: What happens when we open a new Codespace? Need to reauth? What happens when we stop then reopen codespace? -->
+
 
 This authentication flow is called [OAuth 2.0](https://oauth.net/2/), the same standard used by "Sign in with Google" buttons across the web. Instead of sending your Google password to the CLI, you grant it a limited-scope access token. The token is stored locally so you won't need to re-authenticate every session.
 
@@ -186,7 +209,7 @@ Available commands:
 
 ###
 
-Slash commands control the CLI itself, not Gemini. When you type `/help`, you are telling the *program* to print its options. When you type a regular sentence, you are talking to *Gemini*. This distinction matters: `/stats` gives you real-time data about your environment, while a plain prompt like "how many tokens have I used?" produces an AI-generated guess. For factual information about your session, always use the slash commands.
+Slash commands control the CLI itself, not Gemini --- the command `/help` tells the *program* to print its options, while a plain sentence talks to *Gemini*. For factual session data like token usage, always use slash commands rather than asking Gemini, which will only guess.
 
 ### Exercise 3
 
@@ -213,7 +236,7 @@ Current model: gemini-2.5-pro
 
 ###
 
-The Gemini model family has several tiers. **Gemini Pro** models are optimized for complex reasoning and multi-step coding tasks. **Gemini Flash** models prioritize speed and lower token cost, making them better for quick lookups and simple tasks. You can switch models mid-session with `/model model-name`. In practice, the default model is usually a good starting point, but knowing how to change it is useful when you're doing a lot of fast, repetitive work and want to preserve your daily quota.
+The Gemini model family has several tiers: **Pro** for complex reasoning and coding tasks, **Flash** for speed and lower token cost. You can switch mid-session with `/model model-name` if you want to preserve your daily quota for simpler work or use a more powerful model.
 
 ### Exercise 4
 
@@ -268,7 +291,7 @@ There are no source files yet. Would you like me to help create some?
 
 ###
 
-The tool authorization prompt is a deliberate safety feature. An AI assistant that could silently execute arbitrary shell commands would be a significant security risk. It could do anything on the device!. By requiring explicit approval for each tool call, the CLI ensures you remain in control. You can type `a` to allow *all* future tool calls in the session without prompting --- this is convenient but means you're trusting every action Gemini decides to take, so use it carefully.
+The tool authorization prompt is a deliberate safety feature --- an AI that could silently execute shell commands would be a significant security risk. Typing `a` allows all future tool calls without prompting, so use it carefully.
 
 ### Exercise 5
 
@@ -314,7 +337,7 @@ I've created a `.gitignore` that covers:
 
 ###
 
-A `.gitignore` file tells Git to ignore certain files and directories entirely --- they won't appear in `git status` and can never be accidentally committed. For a Quarto project, this typically includes `*_files/` directories (generated when rendering) and `*_cache/` directories (computation cache). The guiding principle: if a file can be *regenerated* from your source, it doesn't belong in the commit history. Tracking generated files just adds noise and inflates your repo size.
+A `.gitignore` tells Git to ignore certain files entirely --- they won't appear in `git status` and can never be accidentally committed. The guiding principle: if a file can be *regenerated* from your source, it doesn't belong in the commit history.
 
 ### Exercise 6
 
@@ -404,7 +427,7 @@ I've created `analysis.qmd` with:
 
 ###
 
-When you ask Gemini to create a file, it generates the entire contents in a single step and writes it for you. This is one of the most practical AI workflows in data science: instead of typing boilerplate YAML, chunk options, and library calls, you describe what you want and review the result. The AI writes the first draft; you refine it. This flips the typical writing process --- editing is almost always faster than composing from scratch.
+When you ask Gemini to create a file, it generates the entire contents in one step and writes it for you. Instead of typing boilerplate YAML, chunk options, and library calls yourself, you describe what you want and refine the result --- editing is almost always faster than composing from scratch.
 
 ### Exercise 8
 
@@ -491,7 +514,7 @@ Keep this tab open. Every time `analysis.html` is updated on disk --- whether by
 
 ###
 
-Live Server is a VS Code extension that serves your HTML files through a local web server and watches for file changes. When a file is updated on disk, it sends a reload signal to the browser. This is necessary in a Codespace because the files live on a remote machine --- you cannot open them directly in a browser the way you would a file on your own computer. Live Server bridges that gap by forwarding a port from the Codespace to a URL you can visit.
+Live Server is a VS Code extension that serves HTML files through a local web server and reloads the browser whenever a file changes on disk. This is necessary in a Codespace because the files live on a remote machine and cannot be opened directly in a browser.
 
 ### Exercise 10
 
@@ -520,7 +543,9 @@ Your answer will vary, but it should show ggplot2 code using the `storms` datase
 
 ###
 
-`show_file()` with `chunk = "Last"` reads only the final code chunk from a Quarto document --- a useful shortcut when you want to verify just the most recently added code without looking at the whole file. It comes from the `tutorial.helpers` package. Note that this is an R function, which is why it runs in the R Terminal rather than the bash Terminal. The two terminals are separate environments: the bash Terminal runs shell commands, while the R Terminal runs R code.
+<!-- AR: Update with something more relevant -->
+
+`show_file()` with `chunk = "Last"` reads only the final code chunk from a Quarto document --- useful for verifying the most recently added code without reading the whole file. It is an R function, so it runs in the R Terminal, not the bash Terminal.
 
 ### Exercise 11
 
@@ -547,9 +572,7 @@ question_text(NULL,
 
 ###
 
-Gemini's **conversation history** is gone the moment you type `/quit`. But the **files on disk** are permanent. This is why Gemini can recover context quickly after a restart --- it doesn't need to remember the conversation, it just needs to read the files.
-
-The `/chat save <name>` command lets you preserve a conversation before quitting so you can resume it later with `/chat resume <name>`. This is useful for long sessions where the back-and-forth itself contains important context that isn't captured in any file.
+Gemini's **conversation history** is gone the moment you type `/quit`, but the **files on disk** are permanent --- this is why it can reconstruct context after a restart just by reading the files. The `/chat save <name>` command lets you preserve a conversation so you can resume it later with `/chat resume <name>`.
 
 ## Git with Gemini
 ###
@@ -610,7 +633,7 @@ Here's what this means:
 
 ###
 
-`git status` is one of the most useful Git commands. It shows three things: which branch you are on, changes that have been **staged** (queued for the next commit), and files that are **untracked** (new files Git has noticed but is not monitoring). An untracked file cannot be committed until it is staged with `git add`. Getting comfortable reading `git status` output is one of the most important habits you can build when learning Git.
+`git status` shows which branch you are on, changes that have been **staged** (queued for the next commit), and files that are **untracked** (noticed by Git but not yet monitored). An untracked file won't be included in any commit until you stage it with `git add`.
 
 ### Exercise 2
 
@@ -730,7 +753,7 @@ Allow this tool call? [y/n/a]: y
 
 ###
 
-Gemini issued three separate tool calls: `git add`, `git commit`, and `git push`. These map directly to the three stages of the Git workflow: staging, recording, and sharing. In Exercise 3, you ran these commands yourself after Gemini told you what to type. Here, you asked Gemini to do the work directly. Both approaches are valid --- the first teaches you the individual commands, the second is faster for routine commits once you understand what's happening.
+Gemini issued three separate tool calls --- `git add`, `git commit`, and `git push` --- mapping directly to the three stages of staging, recording, and sharing. In Exercise 3 you ran these yourself; here you delegated them.
 
 ### Exercise 5
 
@@ -773,7 +796,7 @@ Model: gemini-2.5-pro
 
 ###
 
-AI models have **context windows** --- a limit on how much text they can process in a single exchange. Gemini's models have very large context windows (up to 1 million tokens), which is why they can read entire codebases and hold long, detailed conversations. The `/stats` commands give you real-time usage data. On the free tier, quotas reset daily, so running out during normal work is unlikely --- but for long automated tasks (like asking Gemini to read and comment on a very large codebase), watching your quota matters.
+AI models have **context windows** --- a limit on how much information they can hold in memory at once. Gemini's are very large (up to 1 million tokens), but `/stats` lets you track usage in real time; on the free tier, quotas reset daily.
 
 ## Summary
 ###
