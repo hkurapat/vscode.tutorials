@@ -171,7 +171,7 @@ question_text(NULL,
 
 ###
 
-You may notice that VS Code renames the terminal tab from "bash" to "node" once Gemini starts. This is because the Gemini CLI is a Node.js application --- VS Code detects the underlying process and updates the tab name to reflect it.
+You may notice that VS Code renames the terminal tab from "bash" to "node" once Gemini starts. This is because the Gemini CLI is a [Node.js application](https://nodejs.org/en/about) --- VS Code detects the underlying process and updates the tab name to reflect it.
 
 ### Exercise 2
 
