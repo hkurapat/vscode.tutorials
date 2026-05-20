@@ -702,32 +702,6 @@ ggplot(x, aes(x = year, y = total, color = length_class)) +
 
 Creating categorical variables like `length_class` transforms continuous data (name length in characters) into discrete groups that are easier to interpret and visualize. This classification reveals broader patterns - like whether short or long names are trending - that might be obscured by analyzing individual name lengths.
 
-### Exercise 15
-
-Publish your rendered QMD to GitHub Pages. In a Bash terminal, run:
-
-```         
-quarto publish gh-pages analysis.qmd
-```
-
-Copy/paste the resulting URL below.
-
-  
-```{r baby-names-15}
- 
- question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 5)
-```
-
-### 
-
-Commit/push everything.
-
-
 ## Flights
 ### 
 
@@ -1294,6 +1268,73 @@ This tutorial covered [Chapter 12: Logical vectors](https://r4ds.hadley.nz/logic
 You learned about how to work with numbers using commands such as [`pmin()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Extremes.html) with the **nycflights13** package.
 
 You learned about some of the power of the [**stringr**](https://stringr.tidyverse.org/) package: how to create, combine, and extract strings with the **babynames** package.
+
+### Exercise 1
+
+`Cmd/Ctrl + Shift + K` to ensure that everything works. The resulting HTML page should be attractive, showing clean versions of your plots.
+
+In the R Terminal, run:
+
+```
+show_file("analysis.qmd")
+```
+
+CP/CR.
+
+```{r summary-1}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 30)
+```
+
+###
+
+Database operations with **dbplyr** are translated to SQL and executed in the database, with results only pulled into R when you call `collect()`.
+
+### Exercise 2
+
+Commit and push all your files. Copy/paste the URL to your GitHub repo.
+
+```{r summary-2}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+GitHub repositories are where people can view the code you used to create your project.
+
+### Exercise 3
+
+Publish your rendered QMD to GitHub Pages. In a Bash terminal, run:
+
+````
+quarto publish gh-pages analysis.qmd
+````
+
+If the Bash terminal is still running from rendering, stop it first using `Ctrl/Cmd + C`.
+
+Copy/paste the resulting URL below.
+
+```{r summary-3}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 1)
+```
+
+###
+
+Publishing the QMD creates a public URL anyone can use to view the rendered project.
 
 ```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
 ```
