@@ -198,6 +198,8 @@ question_text(NULL,
 
 Your output should look something like this:
 
+<!-- AR: Instead use graphic -->
+
 ````
 @ppbds-student ➜ /workspaces/08-infrastructure (main) $ gemini
 
@@ -295,7 +297,7 @@ The Gemini model family has several tiers: **Pro** for complex reasoning and cod
 Ask Gemini to describe what files are in the repository. Type something like:
 
 ```
-What files are in this repository and explain what's happening? Run ls -a to check.
+Please explain the contents of this repository. Run ls -a to check the contents.
 ```
 
 Gemini will display a **tool authorization prompt** before running the shell command. It should look something like this:
@@ -343,98 +345,9 @@ There are no source files yet. Would you like me to help create some?
 
 ###
 
-The tool authorization prompt is a deliberate safety feature --- an AI that could silently execute shell commands would be a significant security risk. Typing `a` allows all future tool calls without prompting, so use it carefully.
+The tool authorization prompt is a deliberate safety feature --- an AI that could silently execute shell commands would be a significant security risk.
 
 ### Exercise 6
-
-Ask Gemini to create a `.gitignore` file suitable for a Quarto R project. Type something like:
-
-```
-Create a .gitignore file for a Quarto R project in VS Code. Include patterns for Quarto output directories. Do not include any RStudio-specific entries.
-```
-
-This time, Gemini will ask permission to **write a file** rather than run a command. Press `y` to authorize it. CP/CR the tool authorization prompt and Gemini's summary of what it created.
-
-```{r gemini-cli-6}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 12)
-```
-
-###
-
-Your output should look something like:
-
-````
-> Create a .gitignore file for a Quarto R project.
-
-╔ Tool Use: write_file ════════════════════╗
-║  Path: .gitignore                        ║
-╚══════════════════════════════════════════╝
-
-Allow this tool call? [y/n/a]: y
-
-✔ Created .gitignore
-
-I've created a `.gitignore` that covers:
-- `*_files/` — Quarto's output asset directories
-- `*_cache/` — cached computation results
-- `/.quarto/` — Quarto's internal build directory
-
->
-````
-
-###
-
-A `.gitignore` tells Git to ignore certain files entirely --- they won't appear in `git status` and can never be accidentally committed. The guiding principle: if a file can be *regenerated* from your source, it doesn't belong in the commit history.
-
-### Exercise 7
-
-Ask Gemini to show you the contents of the `.gitignore` it just created. Type something like:
-
-```
-Show me the contents of .gitignore.
-```
-
-Press `y` to authorize the shell command. CP/CR.
-
-```{r gemini-cli-7}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 12)
-```
-
-###
-
-Your output should look something like:
-
-````
-> Show me the contents of .gitignore.
-
-╔ Tool Use: run_shell ══════════════════════╗
-║  Command: cat .gitignore                  ║
-╚═══════════════════════════════════════════╝
-
-Allow this tool call? [y/n/a]: y
-
-# Quarto
-*_files/
-*_cache/
-
->
-````
-
-###
-
-Asking Gemini to read back a file it just created is a quick way to verify the contents without leaving the session. The underlying command is the same `cat` you would run yourself --- Gemini just runs it on your behalf and shows you the result.
-
-### Exercise 8
 
 Ask Gemini to create an `analysis.qmd` file. Tell it you want:
 
@@ -445,7 +358,7 @@ Ask Gemini to create an `analysis.qmd` file. Tell it you want:
 
 Press `y` when Gemini asks to write the file. CP/CR the tool authorization and Gemini's explanation of what it created.
 
-```{r gemini-cli-8}
+```{r gemini-cli-6}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -481,7 +394,7 @@ I've created `analysis.qmd` with:
 
 When you ask Gemini to create a file, it generates the entire contents in one step and writes it for you. Instead of typing boilerplate YAML, chunk options, and library calls yourself, you describe what you want and refine the result --- editing is almost always faster than composing from scratch.
 
-### Exercise 9
+### Exercise 7
 
 Still inside Gemini, ask it to render `analysis.qmd` for you. Type something like:
 
@@ -491,7 +404,7 @@ Render analysis.qmd using quarto render and tell me what files were created afte
 
 Gemini will issue two tool calls: one to render the document and one to list the resulting files. Press `y` for each. CP/CR the output.
 
-```{r gemini-cli-9}
+```{r gemini-cli-7}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -533,7 +446,7 @@ Quarto rendered `analysis.qmd` successfully. New files: `analysis.html` (the ren
 
 Notice that Gemini issued *two* tool calls to answer a single question: first to render, then to list files. This is called **multi-step tool use** --- the model breaks your request into a sequence of actions, uses the result of each step to decide what to do next, and then synthesizes the results into a single response. This is the difference between an AI *agent* (which takes actions and reasons about results) and a plain chatbot (which only produces text).
 
-### Exercise 10
+### Exercise 8
 
 Let's view the rendered file in a browser. In the File Explorer (the file tree on the left side of VS Code), find `analysis.html`. Right-click it and select **"Open with Live Server"**.
 
@@ -545,7 +458,7 @@ This opens `analysis.html` in a new browser tab served through your Codespace. T
 
 Copy/paste that URL below.
 
-```{r gemini-cli-10}
+```{r gemini-cli-8}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -568,7 +481,7 @@ Keep this tab open. Every time `analysis.html` is updated on disk --- whether by
 
 Live Server is a VS Code extension that serves HTML files through a local web server and reloads the browser whenever a file changes on disk. This is necessary in a Codespace because the files live on a remote machine and cannot be opened directly in a browser.
 
-### Exercise 11
+### Exercise 9
 
 Ask Gemini to add a second plot to `analysis.qmd` using the `storms` dataset. Tell it to visualize something different from the first plot --- for example, a boxplot showing the distribution of wind speeds by storm category. Ask it to include a meaningful title and subtitle, then re-render the file.
 
@@ -580,7 +493,7 @@ tutorial.helpers::show_file("analysis.qmd", chunk = "Last")
 
 CP/CR.
 
-```{r gemini-cli-11}
+```{r gemini-cli-9}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -598,6 +511,96 @@ Your answer will vary, but it should show ggplot2 code using the `storms` datase
 <!-- AR: Update with something more relevant -->
 
 `show_file()` with `chunk = "Last"` reads only the final code chunk from a Quarto document --- useful for verifying the most recently added code without reading the whole file. It is an R function, so it runs in the R Terminal, not the bash Terminal.
+
+### Exercise 10
+
+Ask Gemini to create a `.gitignore` file suitable for a Quarto R project. Type something like:
+
+```
+Create a .gitignore file for a Quarto R project in VS Code. Include patterns for Quarto output directories.
+```
+
+This time, Gemini will ask permission to **write a file** rather than run a command. Press `y` to authorize it. CP/CR the tool authorization prompt and Gemini's summary of what it created.
+
+```{r gemini-cli-10}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 12)
+```
+
+###
+
+Your output should look something like:
+
+````
+> Create a .gitignore file for a Quarto R project.
+
+╔ Tool Use: write_file ════════════════════╗
+║  Path: .gitignore                        ║
+╚══════════════════════════════════════════╝
+
+Allow this tool call? [y/n/a]: y
+
+✔ Created .gitignore
+
+I've created a `.gitignore` that covers:
+- `*_files/` — Quarto's output asset directories
+- `*_cache/` — cached computation results
+- `/.quarto/` — Quarto's internal build directory
+
+>
+````
+
+###
+
+A `.gitignore` tells Git to ignore certain files entirely --- they won't appear in `git status` and can never be accidentally committed. The guiding principle: if a file can be *regenerated* from your source, it doesn't belong in the commit history.
+
+### Exercise 11
+
+Ask Gemini to show you the contents of the `.gitignore` it just created. Type something like:
+
+```
+Show me the contents of .gitignore.
+```
+
+Press `y` to authorize the shell command. CP/CR.
+
+```{r gemini-cli-11}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 12)
+```
+
+###
+
+Your output should look something like:
+
+````
+> Show me the contents of .gitignore.
+
+╔ Tool Use: run_shell ══════════════════════╗
+║  Command: cat .gitignore                  ║
+╚═══════════════════════════════════════════╝
+
+Allow this tool call? [y/n/a]: y
+
+# Quarto
+*_files/
+*_cache/
+
+>
+````
+
+###
+
+Asking Gemini to read back a file it just created is a quick way to verify the contents without leaving the session. The underlying command is the same `cat` you would run yourself --- Gemini just runs it on your behalf and shows you the result.
+
 
 ### Exercise 12
 
