@@ -144,13 +144,13 @@ You will learn about working with parquet files using **[arrow](https://arrow.ap
 
 ### Exercise 1
 
-Create a Github repo called `r4ds-4`. Set the "Add README" toggle switch to "On."
+Create a new repo using `codespace-starter` as a template and name it `r4ds-4`.
 
-Connect the repo to a project on your computer using `File -> New Folder from Git ...`. Make sure to select the "Open in a new window" box.
+If you haven't already, open the `r4ds-4` repo on GitHub and create a Codespace from it.
 
-You need two Positron windows: this one for running the tutorial and the one you just created for writing your code and interacting with the R Terminal.
+You need two R Terminals: one for running this tutorial and one for your exercises. Open a second R Terminal using the dropdown button.
 
-In the new window, select `File -> New File -> Quarto Document ...`. Provide a title -- `"NBA and FIFA"` -- and an author (you). Render the document and save it as `analysis.qmd`.
+Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"NBA and FIFA"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
 
 Create a `.gitignore` file with `analysis_files` on the first line and then a blank line. Save and push.
 
@@ -160,7 +160,7 @@ In the R Terminal, run:
 show_file(".gitignore")
 ```
 
-If that fails, it is probably because you have not yet loaded `library(tutorial.helpers) in the R Terminal.
+If that fails, it is probably because you have not yet loaded `library(tutorial.helpers)` in the R Terminal.
 
 CP/CR.
 
@@ -267,14 +267,14 @@ question_text(NULL,
 
 ### 
 
-Your answer should look something like, although your path will be different.
+Your answer should look something like this, although your path will be different.
 
-```         
+```
 > getwd()
-[1] "/Users/dkane/Desktop/projects/r4ds-4"
+[1] "/workspaces/r4ds-4"
 > dir.create("data")
 > list.files()
- [1] "analysis.qmd"        "data"    "README.md"
+ [1] "analysis_files" "analysis.html"  "analysis.qmd"   "data"
 >
 ```
 
@@ -1975,7 +1975,7 @@ question_text(NULL,
 
 ### Exercise 2
 
-Commit and push all your files. Copy/paste the URL to your Github repo.
+Commit and push all your files. Copy/paste the URL to your GitHub repo.
 
 ```{r summary-2}
 question_text(NULL,
@@ -1992,7 +1992,7 @@ We recommend using `curl::multi_download()` to get very large files as it’s bu
 
 ### Exercise 3
 
-Publish your rendered QMD to GitHub Pages. In the Terminal --- not the R Terminal! --- run:
+Publish your rendered QMD to GitHub Pages. In a Bash terminal, run:
 
 ```
 quarto publish gh-pages analysis.qmd

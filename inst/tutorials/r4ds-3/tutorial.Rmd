@@ -73,13 +73,13 @@ You will also explore logical operations with `if_else()`, and concepts like int
 
 ### Exercise 1
 
-Create a Github repo called `r4ds-3`. Set the "Add README" toggle switch to "On."
+Create a new repo using `codespace-starter` as a template and name it `r4ds-3`.
 
-Connect the repo to a project on your computer using `File -> New Folder from Git ...`. Make sure to select the "Open in a new window" box.
+If you haven't already, open the `r4ds-3` repo on GitHub and create a Codespace from it.
 
-You need two Positron windows: this one for running the tutorial and the one you just created for writing your code and interacting with the R Terminal.
+You need two R Terminals: one for running this tutorial and one for your exercises. Open a second R Terminal using the dropdown button.
 
-Select `File -> New File -> Quarto Document ...`. Provide a title -- `"Analyzing Baby Names and Flights"` -- and an author (you). Render the document and save it as `analysis.qmd`.
+Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Analyzing Baby Names and Flights"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
 
 Create a `.gitignore` file with `analysis_files` on the first line and then a blank line. Save and push.
 
@@ -113,7 +113,7 @@ We will be working with databases in this tutorial. Two key differences between 
 
 In your QMD, put `library(tidyverse)`, `library(DBI)`, `library(duckdb)`, and `library(dbplyr)` in a new code chunk. Render the file using `Cmd/Ctrl + Shift + K`.
 
-Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this `setup` chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
+Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this code chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
 
 ```         
 execute: 
@@ -190,14 +190,14 @@ question_text(NULL,
 
 ###
 
-Your answer should look something like, although your path will be different.
+Your answer should look something like this, although your path will be different.
 
 ````
 > getwd()
-[1] "/Users/dkane/Desktop/projects/XX"
+[1] "/workspaces/r4ds-3"
 > dir.create("data")
 > list.files()
- [1] "analysis.qmd"        "data"    "README.md"
+ [1] "analysis_files" "analysis.html"  "analysis.qmd"   "data"
 >
 ````
 
@@ -224,7 +224,7 @@ Key functions you'll learn:
 
 We begin by downloading a DuckDB version of the babynames dataset directly from GitHub using `download.file()`. 
 
-This stores the database file, `data/nameby_year.duckdb`, to our the `data` directory so we can use it in this tutorial.
+This stores the database file, `data/nameby_year.duckdb`, to the `data` directory so we can use it in this tutorial.
 
 In the R Terminal, run:
 
@@ -702,32 +702,6 @@ ggplot(x, aes(x = year, y = total, color = length_class)) +
 
 Creating categorical variables like `length_class` transforms continuous data (name length in characters) into discrete groups that are easier to interpret and visualize. This classification reveals broader patterns - like whether short or long names are trending - that might be obscured by analyzing individual name lengths.
 
-### Exercise 15
-
-Publish your rendered QMD to GitHub Pages. In the Terminal --- not the R Terminal! --- run:
-
-```         
-quarto publish gh-pages analysis.qmd
-```
-
-Copy/paste the resulting URL below.
-
-  
-```{r baby-names-15}
- 
- question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 5)
-```
-
-### 
-
-Commit/push everything.
-
-
 ## Flights
 ### 
 
@@ -752,7 +726,7 @@ In this section we are going to focus on generating code to create a graph based
 
 We begin by downloading a DuckDB version of the flights dataset directly from GitHub using `download.file()`. 
 
-This stores the database file, `data/nycflights13.duckdb`, to our the `data` directory so we can use it in this tutorial.
+This stores the database file, `data/nycflights13.duckdb`, to the `data` directory so we can use it in this tutorial.
 
 In the R Terminal, run:
 
@@ -1294,6 +1268,73 @@ This tutorial covered [Chapter 12: Logical vectors](https://r4ds.hadley.nz/logic
 You learned about how to work with numbers using commands such as [`pmin()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Extremes.html) with the **nycflights13** package.
 
 You learned about some of the power of the [**stringr**](https://stringr.tidyverse.org/) package: how to create, combine, and extract strings with the **babynames** package.
+
+### Exercise 1
+
+`Cmd/Ctrl + Shift + K` to ensure that everything works. The resulting HTML page should be attractive, showing clean versions of your plots.
+
+In the R Terminal, run:
+
+```
+show_file("analysis.qmd")
+```
+
+CP/CR.
+
+```{r summary-1}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 30)
+```
+
+###
+
+Database operations with **dbplyr** are translated to SQL and executed in the database, with results only pulled into R when you call `collect()`.
+
+### Exercise 2
+
+Commit and push all your files. Copy/paste the URL to your GitHub repo.
+
+```{r summary-2}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+GitHub repositories are where people can view the code you used to create your project.
+
+### Exercise 3
+
+Publish your rendered QMD to GitHub Pages. In a Bash terminal, run:
+
+````
+quarto publish gh-pages analysis.qmd
+````
+
+If the Bash terminal is still running from rendering, stop it first using `Ctrl/Cmd + C`.
+
+Copy/paste the resulting URL below.
+
+```{r summary-3}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 1)
+```
+
+###
+
+Publishing the QMD creates a public URL anyone can use to view the rendered project.
 
 ```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
 ```
