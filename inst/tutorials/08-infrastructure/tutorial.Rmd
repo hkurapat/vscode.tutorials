@@ -37,11 +37,6 @@ This tutorial introduces the [Gemini CLI](https://github.com/google-gemini/gemin
 
 ### Exercise 1
 
-<!-- AR: Separate into 2 questions. More opportunities for knowledge drops.
-
-2. There are 3 ways interacting with AIs: Chat, CLI (using here), Agents 
- -->
-
 You must do this tutorial in a Codespace created from a GitHub repo named `08-infrastructure`. If you haven't already done this, follow these steps:
 
 1. Create a GitHub Repo: go to the [codespace-starter repo](https://github.com/ppbds-student/codespace-starter). Click the green "Use this Template" drop-down button and select "Create a new repository". Name the repo `08-infrastructure`. Then click "Create repository".
@@ -99,10 +94,6 @@ There are three main ways to interact with AI: a *chat interface* (like gemini.g
 
 ### Exercise 3
 
-<!-- AR: Separate into 2 questions.
-New Knowledge drop. The only way we know that its a git repo is the .git directory
- -->
-
 At the Terminal, run `pwd`, then `ls -a`. CP/CR.
 
 ```{r introduction-3}
@@ -121,12 +112,37 @@ Your answer should look like:
 ````
 @ppbds-student ➜ /workspaces/08-infrastructure (main) $ pwd
 /workspaces/08-infrastructure
+@ppbds-student ➜ /workspaces/08-infrastructure (main) $
+````
+
+Gemini CLI can see exactly what you can see. Because it runs in the same directory (`/workspaces/08-infrastructure`), any files here are directly accessible to it --- a key difference from a chat interface, where you'd have to manually paste file contents for the AI to read them.
+
+### Exercise 4
+
+Now, run `ls -a`. CP/CR.
+
+```{r introduction-4}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your answer should look like:
+
+````
 @ppbds-student ➜ /workspaces/08-infrastructure (main) $ ls -a
 .  ..  .devcontainer  .git
 @ppbds-student ➜ /workspaces/08-infrastructure (main) $
 ````
 
-The `.devcontainer` directory holds the configuration file that tells GitHub how to set up your Codespace --- which tools to install, which VS Code extensions to add, and how to configure the environment. This is why your Codespace arrives pre-configured rather than empty.
+###
+
+The `.git` directory tells you and Gemini it's inside a Git repo. When Gemini reads the filesystem, its presence signals that this is a version-controlled project --- which is what allows it to run `git` commands intelligently later in the tutorial, staging files, reading commit history, and pushing to GitHub.
 
 ## Gemini CLI
 ###
