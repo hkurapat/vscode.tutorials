@@ -9,10 +9,8 @@ output:
     progressive: true
     allow_skip: true
 runtime: shiny_prerendered
-description: "Introduction to AI-assisted development using the Gemini CLI in GitHub Codespaces. Covers authentication, using AI to create and manage project files, and integrating AI into the Git workflow."
+description: "Introduction to setting up infrastrucure for doing AI-assisted data science work using GitHub Codespaces. It shows how to set up the Gemini CLI and use it in a standard Git workflow. Also, it provides a tour of devcontainers and a basic explanation of how these can be used to configure development environments."
 ---
-
-<!-- AR: Rename? I feel like as this stands now, the tutorial focusses more on using Gemini in the Command line rather than infrastructure. Some ideas: Command Line AI, Gemini, Gemini CLI, CLI AI -->
 
 ```{r setup, include = FALSE}
 library(learnr)
@@ -33,7 +31,7 @@ options(tutorial.exercise.timelimit = 60,
 ## Introduction
 ###
 
-This tutorial introduces the [Gemini CLI](https://github.com/google-gemini/gemini-cli), a command-line interface tool that lets you chat with Google's Gemini AI directly from your terminal. It walk you through how to use this tool in VSCode in Github Codespaces. Unlike a web-based AI chat interface, the Gemini CLI can read files, run shell commands, and write to your filesystem --- all from within your Codespace. You will use it to set up a project, create files, and handle Git operations.
+This tutorial introduces the infrastructure for doing AI-assisted data science work in GitHub Codespaces. You will set up and use the [Gemini CLI](https://github.com/google-gemini/gemini-cli) --- a terminal-based AI assistant that can read your files, run shell commands, and write to your filesystem --- to create project files and handle Git operations. You will also explore devcontainers, learning how a `devcontainer.json` file defines a reproducible development environment with the languages, packages, and tools a project needs.
 
 ### Exercise 1
 
@@ -43,7 +41,7 @@ You must do this tutorial in a Codespace created from a GitHub repo named `08-in
 
 2. Create a Codespace from `08-infrastructure`: from this repo's page, click the green "Code" drop down button, select the "Codespaces" tab, and click "Create Codespace on main".
 
-Copy and paste the URLs for your `08-infrastructure` repository.
+Copy and paste the URL for your `08-infrastructure` repository.
 
 ```{r introduction-1}
 question_text(NULL,
@@ -68,7 +66,7 @@ The `codespace-starter` repo includes a `.devcontainer/devcontainer.json` file t
 
 ### Exercise 2
 
-Copy and Past the URL for your Codespace.
+Copy and paste the URL for your Codespace.
 
 
 ```{r introduction-2}
@@ -90,7 +88,7 @@ https://congenial-chainsaw-wv757pv4pp67cpw.github.dev/
 
 ###
 
-There are three main ways to interact with AI: a *chat interface* (like gemini.google.com), a *CLI tool* running in your terminal, and an *embedded agent* inside your editor (like GitHub Copilot). This tutorial uses the CLI approach --- you'll run Gemini directly in the VS Code terminal, where it can read your files and take actions on your behalf.
+There are three main ways to interact with AI: a *chat interface* (like gemini.google.com), a *CLI tool* running in your terminal, and an *embedded agent* inside your editor (like GitHub Copilot). This tutorial uses the CLI approach --- you'll run Gemini directly in the VS Code terminal, where it can read your files and take actions on your behalf. Feel free to close the Copilot sidebar.
 
 ### Exercise 3
 
@@ -151,7 +149,7 @@ The [Gemini CLI](https://github.com/google-gemini/gemini-cli) is an open-source,
 
 ### Exercise 1
 
-Start the Gemini CLI by running `gemini` in the Bash Terminal. First it will ask you if you wish to connect your Codespace to Gemini. Press `y` to allow it. Next, it will first ask whether you trust the current working directory --- again, press `y`. 
+Start the Gemini CLI by running `gemini` in the bash Terminal. First it will ask you if you wish to connect your Codespace to Gemini. Press `y` to allow it. Next, it will ask whether you trust the current working directory --- again, press `y`. 
 
 CP/CR the first several lines of terminal output --- enough to show the authentication prompt and the `>` prompt that appears after you successfully log in.
 
@@ -177,7 +175,7 @@ include_graphics("images/node-terminal.png")
 
 It will then ask you to authenticate with your Google account.
 
-You will see a URL printed in the terminal. Open that URL in your browser, sign in with your Google account, and copy the authorization code that appears on the page. Paste it back into the terminal and press Enter.
+You will see a URL printed in the terminal. Open that URL in your browser, sign in with your Google account, and copy the authorization code that appears on the page. Paste it back into the terminal and press `Enter`.
 
 ```{r}
 include_graphics("images/gemini-CLI-auth-link.png")
@@ -209,7 +207,7 @@ The token is stored locally, so you won't need to re-authenticate every session 
 
 ### Exercise 3
 
-You are now inside the Gemini CLI interactive session. The `>` prompt means Gemini is waiting for your input. Type `/help` and press Enter to see the list of available commands.
+You are now inside the Gemini CLI interactive session. The `>` prompt means Gemini is waiting for your input. Type `/help` and press `Enter` to see the list of available commands.
 
 CP/CR the output.
 
@@ -280,10 +278,14 @@ Ask Gemini to describe what files are in the repository. Type something like:
 Please explain the contents of this repository. Run ls -a to check the contents.
 ```
 
-Gemini will display a **tool authorization prompt** before running the shell command. It should look something like this:
+Gemini will display a **tool authorization prompt** before running commands. It should look something like this:
+
+```{r}
+include_graphics("images/gemini-CLI-git-permission.png")
+```
 
 
-Press `y` and Enter to allow the command to run. CP/CR the authorization prompt and Gemini's response.
+Press `1` to allow the command to run. You could press `2` to allow Gemini to run the same command without asking again in this session. CP/CR the authorization prompt and Gemini's response.
 
 ```{r gemini-cli-5}
 question_text(NULL,
@@ -293,31 +295,6 @@ question_text(NULL,
 	incorrect = NULL,
 	rows = 15)
 ```
-
-###
-
-Your output should look something like:
-
-````
-> What files are in this repository? Run ls -a to check.
-
-╔ Tool Use: run_shell ══════════════════════╗
-║  Command: ls -a                           ║
-╚═══════════════════════════════════════════╝
-
-Allow this tool call? [y/n/a] (a = always allow): y
-
-Output:
-.  ..  .devcontainer  .git
-
-This is a fresh repository. It contains only:
-- `.devcontainer/` — the Codespace configuration directory
-- `.git/` — Git's internal tracking directory
-
-There are no source files yet. Would you like me to help create some?
-
->
-````
 
 ###
 
@@ -427,7 +404,7 @@ Notice that Gemini issued *two* tool calls to answer a single question: first to
 Let's view the rendered file in a browser. In the File Explorer (the file tree on the left side of VS Code), find `analysis.html`. Right-click it and select **"Open with Live Server"**.
 
 ```{r}
-# include_graphics("images/live-server-right-click.png")
+include_graphics("images/live-server.png")
 ```
 
 This opens `analysis.html` in a new browser tab served through your Codespace. The URL will look something like `https://[codespace-name]-5500.app.github.dev/analysis.html`.
@@ -461,7 +438,11 @@ Live Server is a VS Code extension that serves HTML files through a local web se
 
 Ask Gemini to add a second plot to `analysis.qmd` using the `storms` dataset. Tell it to visualize something different from the first plot --- for example, a boxplot showing the distribution of wind speeds by storm category. Ask it to include a meaningful title and subtitle, then re-render the file.
 
-After Gemini finishes, check your Live Server tab --- it should have refreshed automatically to show both plots. In a separate R Terminal, run:
+After Gemini finishes, check your Live Server tab --- it should have refreshed automatically to show both plots. Open a new R Terminal. 
+
+<!-- AR: show image of creating the new R Terminal -->
+
+Then, in the new R Terminal, run:
 
 ```
 tutorial.helpers::show_file("analysis.qmd", chunk = "Last")
@@ -480,7 +461,7 @@ question_text(NULL,
 
 ###
 
-Your answer will vary, but it should show ggplot2 code using the `storms` dataset --- something like a boxplot of wind speed by storm category. The chunk should not have `#| echo: true` --- since you set `execute: echo: false` in the YAML header, all chunks inherit that option by default.
+Your answer will vary, but it should show **ggplot2** code using the `storms` dataset --- something like a boxplot of wind speed by storm category. The chunk should not have `#| echo: true` --- since you set `execute: echo: false` in the YAML header, all chunks inherit that option by default.
 
 ###
 
@@ -662,14 +643,14 @@ Here's what this means:
 
 ###
 
-`git status` shows which branch you are on, changes that have been **staged** (queued for the next commit), and files that are **untracked** (noticed by Git but not yet monitored). An untracked file won't be included in any commit until you stage it with `git add`.
+`git status` shows which branch you are on, changes that have been **staged** (queued for the next commit), and files that are **untracked** (noticed by Git but not yet monitored). An untracked file won't be included in any commit until you stage it with `git add`. The `codespace-starter` devcontainer enables smart commit, so staging happens automatically --- you only need to press the "Commit" button in the Source Control side bar.
 
 ### Exercise 2
 
-Ask Gemini to explain the difference between `git add` and `git commit`, and to provide the exact commands needed to stage and commit all three files with a good message:
+Ask Gemini to explain the difference between `git add` and `git commit`, and to provide the exact command to commit all three files with a good message:
 
 ```
-Explain the difference between git add and git commit. Then give me the exact commands to stage .gitignore, analysis.qmd, and analysis.html and commit them with a descriptive message.
+Explain the difference between git add and git commit. Then give me the exact command to commit .gitignore, analysis.qmd, and analysis.html with a descriptive message.
 ```
 
 CP/CR Gemini's full response.
@@ -694,11 +675,15 @@ git commit -m "initial version with analysis and gitignore"
 
 ###
 
-The two-step add-then-commit design exists to give you precise control over what goes into each commit. Imagine you've changed five files but only want to record two of them as a single logical unit --- you add just those two, commit them, then add the remaining three separately with a different message. In practice, for solo projects, you often stage everything at once with `git add .`, but understanding that staging and committing are separate steps is essential once you start collaborating or managing larger projects.
+The two-step add-then-commit design exists to give you precise control over what goes into each commit. Imagine you've changed five files but only want to record two of them as a single logical unit --- you add just those two, commit them, then add the remaining three separately with a different message. 
+
+In practice, using the `codespace-starter` we use the Source Control sidebar to stage and commit all changes at once, using these commands under the hood. But understanding that staging and committing are separate steps is essential once you start collaborating or managing larger projects.
 
 ### Exercise 3
 
-In a separate bash Terminal, run the commands Gemini recommended --- the `git add` lines and the `git commit` line. Then run:
+Open the Source Control sidebar (the branch icon in the Activity Bar). You should see `.gitignore`, `analysis.qmd`, and `analysis.html` listed as changes. Type a commit message in the message box at the top, then click the **Commit** button. Because smart commit is enabled in the devcontainer, clicking Commit will stage and commit all changes in one step --- no `git add` required.
+
+Then, in a separate bash Terminal, run:
 
 ```
 git log --oneline
@@ -726,7 +711,7 @@ e3b01ee Initial commit
 @ppbds-student ➜ /workspaces/08-infrastructure (main) $
 ````
 
-The `(HEAD -> main)` indicator shows that your local `main` branch is pointing to this latest commit. The absence of `origin/main` on the same line tells you the commit exists locally but has not yet been pushed to GitHub. Pushing is the step that sends your commits to the remote, making them visible on GitHub and safe from local machine failure.
+The `(HEAD -> main)` indicator shows that your local `main` branch is pointing to this latest commit. The absence of `origin/main` on the same line tells you the commit exists locally but has not yet been pushed to GitHub. Pushing is the step that sends your commits to the remote repository, making them visible on GitHub and safe from local machine failure.
 
 ### Exercise 4
 
@@ -739,7 +724,7 @@ Update the storms-per-year chart in analysis.qmd to be a stacked area chart show
 Press `y` to authorize each tool call. Once the Live Server tab has refreshed and you are happy with the result, ask Gemini to handle the entire Git workflow:
 
 ```
-Please stage analysis.qmd and analysis.html, commit them with a good message, and push to GitHub.
+Please commit analysis.qmd and analysis.html with a good message, and push to GitHub.
 ```
 
 Press `y` to authorize each tool call as Gemini works through the steps. CP/CR the complete output.
@@ -758,7 +743,7 @@ question_text(NULL,
 Your output should look something like:
 
 ````
-> Please stage analysis.qmd and analysis.html, commit them with a good message, and push to GitHub.
+> Please commit analysis.qmd and analysis.html with a good message, and push to GitHub.
 
 ╔ Tool Use: run_shell ═══════════════════════════════════════╗
 ║  Command: git add analysis.qmd analysis.html               ║
@@ -782,7 +767,7 @@ Allow this tool call? [y/n/a]: y
 
 ###
 
-Gemini issued three separate tool calls --- `git add`, `git commit`, and `git push` --- mapping directly to the three stages of staging, recording, and sharing. In Exercise 3 you ran these yourself; here you delegated them.
+Gemini issued three separate tool calls --- `git add`, `git commit`, and `git push` --- mapping directly to the three stages of staging, recording, and sharing. In Exercise 3 you ran these yourself using the Source Control sidebar; here you delegated them to gemini.
 
 ### Exercise 5
 
@@ -827,10 +812,511 @@ Model: gemini-2.5-pro
 
 AI models have **context windows** --- a limit on how much information they can hold in memory at once. Gemini's are very large (up to 1 million tokens), but `/stats` lets you track usage in real time; on the free tier, quotas reset daily.
 
+
+## Devcontainers
+
+### Exercise 1
+
+Go to https://github.com/codespaces/templates. Then press the "Use This Template" button for the Jupyter Notebook notebook template. This will open a new Codespace using this template. Copy and paste its URL.
+
+```{r}
+include_graphics("images/jupyter-template.png")
+```
+
+```{r devcontainers-1}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+The GitHub Jupyter Notebook template is a pre-built Codespace designed for Python data science work using Jupyter notebooks. Python is another powerful language for doing data science and Jupyter notebooks, like Quarto documents, contain text, code, and visualizations. The `codespace-starter` template we've been using, on the other hand, is configured specifically for R, Quarto, and running tutorials.
+
+### Exercise 2
+
+Now, you should have two Codespaces open. Go to https://github.com/codespaces. Then copy and paste the two table rows corresponding to your open Codespaces.
+
+```{r}
+include_graphics("images/open-codespaces.png")
+```
+
+```{r devcontainers-2}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+The github.com/codespaces page is where you manage all your active environments. Each Codespace runs on a virtual machine that consumes compute hours from your GitHub quota --- free accounts receive a monthly allowance. Stop or delete Codespaces you're not using to conserve it.
+
+### Exercise 3
+
+Select the `devcontainer.json` file within the `.devcontainer` directory in the File Explorer. Find the line beginning with "image", copy and paste.
+
+```{r devcontainers-3}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your answer should look like this:
+
+```
+"image": "mcr.microsoft.com/devcontainers/universal:2",
+```
+
+###
+
+The `image` field specifies the pre-built environment your Codespace starts from --- think of it as a snapshot of an operating system with software already installed. `mcr.microsoft.com/devcontainers/universal:2` is Microsoft's "Universal" snapshot, which includes Python, Node.js, Go, and other common languages out of the box.
+
+### Exercise 4
+
+In the same file, find the chunk of code beginning with `"vscode": {` copy and paste this chunk, ending with the bracket which closes the starting bracket on the first line.
+
+
+```{r devcontainers-4}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your answer should look like this:
+
+```
+"vscode": {
+      "extensions": [
+        "ms-toolsai.jupyter",
+        "ms-python.python"
+      ]
+    }
+```
+
+###
+
+This section of code specifies which VS Code extensions to pre-install. `ms-toolsai.jupyter` adds support for running Jupyter notebooks directly in VS Code, while `ms-python.python` provides Python language features like code completion and error highlighting. In contrast, the `codespace-starter` template installs extensions that help with R and running the course tutorials.
+
+VS Code is highly customizable. Personalized settings are often specified with configuration files like `devcontainers.json`.
+
+### Exercise 5
+
+Find the line beginning with "updateContentCommand." Copy and paste.
+
+```{r devcontainers-5}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your answer should look like this:
+
+```
+"updateContentCommand": "python3 -m pip install -r requirements.txt",
+```
+
+###
+
+`updateContentCommand` specifies a shell command that runs automatically each time the Codespace's contents are updated --- for example, when the repo changes. Here, `python3 -m pip install -r requirements.txt` reads the project's `requirements.txt` file and installs all the listed Python packages, ensuring the environment stays in sync with the project's dependencies.
+
+### Exercise 6
+
+Navigate to `requirements.txt` in the File Explorer. Copy and paste the entire file.
+
+```{r devcontainers-6}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your answer should look like:
+
+```
+ipywidgets==8.1.8
+matplotlib==3.8.4
+pandas==2.2.2
+torch==2.8.0
+torchvision==0.23.0
+tqdm==4.66.4
+pillow>=12.1.1
+fonttools>=4.60.0
+filelock>=3.20.3
+Pygments==2.20.0
+```
+
+###
+
+The two core data science packages here are `pandas` (tabular data manipulation) and `matplotlib` (plotting and visualization) --- the Python equivalents of the tidyverse tools you've been using in R. The file also includes `torch`, a deep learning framework, which is common in Python data science environments.
+
+### Exercise 7
+
+Back in `devcontainer.json` copy and paste the line beginning with "postCreateCommand."
+
+```{r devcontainers-7}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your answer should look like this:
+
+```
+"postCreateCommand": "",
+```
+
+###
+
+`postCreateCommand` specifies a shell command that runs once after the Codespace is first created --- unlike `updateContentCommand`, which reruns on every update. An empty string (`""`) means no command is configured here; a project that needed a database initialized, for example, might set this to something like `"python3 setup_db.py"`.
+
+### Exercise 8
+
+Use AI to update the devcontainer so it installs and configures the environment for using R instead of Python. Some ways you can do this include:
+
+1. Use the Copilot chat sidebar.
+
+2. Copy and paste the entire document to an AI chatbot.
+
+3. Use the gemini CLI in a bash Terminal.
+
+Copy and paste your new `devcontainer.json`.
+
+```{r devcontainers-8}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+My new file looks like this:
+
+```
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "hostRequirements": {
+    "cpus": 4
+  },
+  "waitFor": "onCreateCommand",
+  "updateContentCommand": "Rscript -e \"if (!requireNamespace('remotes', quietly=TRUE)) install.packages('remotes', repos='https://cloud.r-project.org')\"",
+  "postCreateCommand": "",
+  "customizations": {
+    "codespaces": {
+      "openFiles": []
+    },
+    "vscode": {
+        "extensions": [
+        "ms-toolsai.jupyter",
+        "Ikuyadeu.r"
+      ]
+    }
+  }
+}
+```
+
+###
+
+Describing what you want in plain English and letting AI handle the translation is a practical use of AI for infrastructure work. The same skill you use to write analysis code with AI --- describing a goal and reviewing the output --- applies equally to configuration files like `devcontainer.json`. Once you're comfortable editing devcontainers, you can publish your own repo as a template and use it as the starting point for any future project.
+
+### Exercise 9
+
+Since the rest of this Codespace still uses Python, let's revert any changes we've made to `devcontainer.json`. Go to the Source Control side bar and press the revert button on the right.
+
+```{r}
+include_graphics("images/revert-devcontainer.png")
+```
+
+Run `git status` in a Bash Terminal. CP/CR.
+
+```{r devcontainers-9}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+You should see something like this:
+
+```
+@ppbds-student ➜ /workspaces/codespaces-jupyter (main) $ git status
+On branch main
+nothing to commit, working tree clean
+@ppbds-student ➜ /workspaces/codespaces-jupyter (main) $ 
+```
+
+This indicates that Git doesn't detect any changes to the repository.
+
+###
+
+Until you commit, changes exist only in your local working tree and can be discarded at any time. The revert button works here precisely because `devcontainer.json` was never staged or committed --- once a change is committed, undoing it requires a new commit rather than a simple discard.
+
+
+### Exercise 10
+
+In the File Explorer, select `README.md`. Copy and paste the header and first two paragraphs.
+
+```{r devcontainers-10}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+A `README.md` is the standard introductory file for a repository --- it tells visitors what the project does, how to set it up, and how to use it. The `.md` extension stands for Markdown, a lightweight formatting syntax that uses plain-text symbols (like `#` for headers and `**` for bold) to produce readable, styled output when rendered on GitHub or in VS Code.
+
+### Exercise 11
+
+Replace the first paragraph with:
+
+```
+This is YOUR NAME's new python Codespace!
+```
+
+Save the changes. In the Source Control side bar, write a commit message like "Updated README". Then, press the "Commit Button". A pop-up will appear:
+
+```{r}
+include_graphics("images/commit-pop-up.png")
+```
+
+Press "Yes".
+
+Run `git log --oneline` to view the Git history. CP/CR.
+
+```{r devcontainers-11}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your output should look something like this:
+
+```
+@ppbds-student ➜ /workspaces/codespaces-jupyter (main) $ git log --oneline
+bf71a79 (HEAD -> main) Updated README
+7c6c35a Initial commit
+@ppbds-student ➜ /workspaces/codespaces-jupyter (main) $ 
+```
+
+###
+
+This pop-up doesn't appear when we use Codespaces started with `codespace-starter` because that template enables smart commit, a VS Code feature that automatically stages all tracked changes when the "Commit" button is pressed. The pop-up appeared in this Codespace because the devcontainer.json does not enable this feature.
+
+### Exercise 12
+
+Let's continue our tour of this repo. Navigate to `.gitignore` in the File Explorer.
+
+Copy and paste the entire file.
+
+```{r devcontainers-12}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+It should look something like this:
+
+```
+notebooks/data
+notebooks/cifar_net.pth
+.ipynb_checkpoints/
+```
+
+###
+
+Each line excludes files that shouldn't be tracked in Git: 
+
+- `notebooks/data` ignores the data directory (which may contain large files unsuitable for GitHub)
+
+- `notebooks/cifar_net.pth` ignores a saved PyTorch model file (also large and reproducible from training)
+
+- `.ipynb_checkpoints/` ignores the auto-save folder that Jupyter creates whenever you run a notebook --- since those checkpoints are local scratch files, not meaningful project history.
+
+###
+
+### Exercise 13
+
+Navigate to the `data` directory and open atlantis.csv. Paste the top 5 lines.
+
+```{r devcontainers-13}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your answer should look something like this.
+
+```
+year,population
+2000,12400
+2001,12800
+2002,13800
+2003,13600
+```
+
+###
+
+CSV (comma-separated values) is a plain-text format where each row is a record and each column is separated by a comma --- `atlantis.csv` contains simulated year-by-year population data for a fictional city.
+
+### Exercise 14
+
+Navigate to the `notebooks` directory, then `populations.ipynb`. Double click the heading of the document to open the editor for that section. Copy and paste all of the text.
+
+```{r devcontainers-14}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your answer should look something like this:
+
+```
+# Population Data from CSV
+
+This notebooks reads sample population data from `data/atlantis.csv` and plots it using Matplotlib. Edit `data/atlantis.csv` and re-run this cell to see how the plots change!
+```
+
+###
+
+A `.ipynb` file is a Jupyter notebook --- a document that interleaves text, code, and output in a series of runnable cells, similar to a Quarto document. 
+
+`populations.ipynb` performs a simple analysis by reading the year-and-population data from `atlantis.csv` using pandas, then plotting it with matplotlib --- demonstrating the same read-then-visualize workflow you've used in R, but in Python.
+
+### Exercise 15
+
+Go to the Source Control side bar and press the "Publish Branch" button. 
+
+You may be asked to sign into GitHub. If so, select "Yes" then your GitHub account. This happens because we created this Codespace directly from a template. We have a local Git repository in the Codespace, but do not yet have a Git Repository on GitHub. Press the "Publish Branch" button again.
+
+Run `git log --oneline`. CP/CR.
+
+Now you can name the GitHub repository and then select if you'd like to make it private or public. Name it `codespaces-jupyter` and choose public.
+
+```{r}
+include_graphics("images/publish-cs.png")
+```
+
+
+```{r devcontainers-15}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your log should look like this:
+
+```
+@ppbds-student ➜ /workspaces/codespaces-jupyter (main) $ git log --oneline
+bf71a79 (HEAD -> main, origin/main) Updated README
+7c6c35a Initial commit
+@ppbds-student ➜ /workspaces/codespaces-jupyter (main) $ 
+```
+
+Also notice how the Graph section of the Source Control side bar shows the same information.
+
+```{r}
+include_graphics("images/sc-graph.png")
+```
+
+
+###
+
+In the `git log --oneline` output, `(HEAD -> main, origin/main)` on the same commit means your local branch and the remote are perfectly in sync. The Source Control graph shows the same thing visually --- a purple cloud icon on the commit indicates it has been pushed to the remote. Both are telling you the same story; the graph just makes it easier to see at a glance.
+
+### Exercise 16
+
+Go to GitHub. In the upper-right corner, click your profile picture, then select "Your repositories". Click the repository named `codespaces-jupyter`. Paste the URL of the repo.
+
+
+```{r devcontainers-16}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your URL should look something like this:
+
+```
+https://github.com/ppbds-student/codespaces-jupyter
+```
+###
+
+Codespaces started from `codespace-starter` are backed by an existing GitHub repo, so pushing just sends commits to a remote that already exists. This Codespace was created directly from a template, so there was no GitHub repo yet --- "Publish Branch" is what creates it.
+
 ## Summary
 ###
 
-This tutorial introduced the [Gemini CLI](https://github.com/google-gemini/gemini-cli), a command-line AI assistant that can read files, run shell commands, and write to your filesystem directly from the terminal. You authenticated with Google, used tool authorization to control what Gemini could do, created project files with AI assistance, and integrated Gemini into a Git workflow --- both by copying its suggested commands and by having it execute them directly.
+This tutorial introduced the core infrastructure for AI-assisted data science in GitHub Codespaces. You used the [Gemini CLI](https://github.com/google-gemini/gemini-cli) to create project files and handle Git operations, and explored devcontainers as a way to define and share a reproducible development environment --- from the base image and installed packages to the VS Code extensions and startup commands.
 
 ### Exercise 1
 
