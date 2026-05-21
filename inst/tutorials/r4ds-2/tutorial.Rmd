@@ -51,13 +51,13 @@ You will learn about working with categorical and continuous variables using dif
 
 ### Exercise 1
 
-Create a Github repo called `r4ds-2`. Set the "Add README" toggle switch to "On."
+Create a new repo using `codespace-starter` as a template and name it `r4ds-2`.
 
-Connect the repo to a project on your computer using `File -> New Folder from Git ...`.  Make sure to select the "Open in a new window" box. 
+If you haven't already, open the `r4ds-2` repo on GitHub and create a Codespace from it.
 
-You need two Positron windows: this one for running the tutorial and the one you just created for writing your code and interacting with the R Terminal.
+You need two R Terminals: one for running this tutorial and one for your exercises. Open a second R Terminal using the dropdown button.
 
-Select `File -> New File -> Quarto Document ...`. Provide a title -- `"Analyzing Cheese and Wine"` -- and an author (you). Save the file as `analysis.qmd`. Render the document. 
+Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Analyzing Cheese and Wine"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
 
 Create a `.gitignore` file with `analysis_files` on the first line and then a blank line. Save and push.
 
@@ -89,7 +89,7 @@ You can create a brand new sheet with [`gs4_create()`](https://googlesheets4.tid
 
 In your QMD, put `library(tidyverse)`, `library(readxl)`, and `library(dbplyr)` in a new code chunk. Render the file using `Cmd/Ctrl + Shift + K`.
 
-Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this `setup` chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
+Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this code chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
 
 ```         
 execute: 
@@ -161,14 +161,14 @@ question_text(NULL,
 
 ###
 
-You answer should look something like, although your path will be different.
+Your answer should look something like this, although your path will be different.
 
 ````
 > getwd()
-[1] "/Users/dkane/Desktop/projects/XX"
+[1] "/workspaces/r4ds-2"
 > dir.create("data")
 > list.files()
- [1] "analysis.qmd"        "data"    "README.md"
+ [1] "analysis_files" "analysis.html"  "analysis.qmd"   "data"
 >
 ````
 
@@ -1352,6 +1352,73 @@ Beyond `geom_text()` and `geom_label()`, **ggplot2** offers many annotation geom
 This section covered key concepts from [Chapter 9: Layers](https://r4ds.hadley.nz/layers.html), [Chapter 10: Exploratory Data Analysis](https://r4ds.hadley.nz/eda.html), [Chapter 11: Communication](https://r4ds.hadley.nz/communication.html), and [Chapter 20: Spreadsheets](https://r4ds.hadley.nz/spreadsheets.html) from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
 You learned about working with categorical and continuous variables using different types of variation and exploratory data analysis with core packages such as **[readxl](https://readxl.tidyverse.org/)**, **[dbplyr](https://dbplyr.tidyverse.org/)**, and **[ggplot2](https://ggplot2.tidyverse.org/)**. Important functions included: [`facet_wrap()`](https://ggplot2.tidyverse.org/reference/facet_wrap.html), [`coord_flip()`](https://ggplot2.tidyverse.org/reference/coord_flip.html), and [`geom_jitter()`](https://ggplot2.tidyverse.org/reference/geom_jitter.html).
+
+### Exercise 1
+
+`Cmd/Ctrl + Shift + K` to ensure that everything works. The resulting HTML page should be attractive, showing clean versions of your plots.
+
+In the R Terminal, run:
+
+```
+show_file("analysis.qmd")
+```
+
+CP/CR.
+
+```{r summary-1}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 30)
+```
+
+###
+
+Spreadsheet data in `.xlsx` format can be read into R using `read_excel()` from the **readxl** package.
+
+### Exercise 2
+
+Commit and push all your files. Copy/paste the URL to your GitHub repo.
+
+```{r summary-2}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+GitHub repositories are where people can view the code you used to create your project.
+
+### Exercise 3
+
+Publish your rendered QMD to GitHub Pages. In a Bash terminal, run:
+
+````
+quarto publish gh-pages analysis.qmd
+````
+
+If the Bash terminal is still running from rendering, stop it first using `Ctrl/Cmd + C`.
+
+Copy/paste the resulting URL below.
+
+```{r summary-3}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 1)
+```
+
+###
+
+Publishing the QMD creates a public URL anyone can use to view the rendered project.
 
 ```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
 ```

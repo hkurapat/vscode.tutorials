@@ -186,13 +186,13 @@ You will learn about working with nested data structures, web scraping technique
 
 ### Exercise 1
 
-Create a Github repo called `r4ds-5`. Set the "Add README" toggle switch to "On."
+Create a new repo using `codespace-starter` as a template and name it `r4ds-5`.
 
-Connect the repo to a project on your computer using `File -> New Folder from Git ...`.  Make sure to select the "Open in a new window" box. 
+If you haven't already, open the `r4ds-5` repo on GitHub and create a Codespace from it.
 
-You need two Positron windows: this one for running the tutorial and the one you just created for writing your code and interacting with the R Terminal.
+You need two R Terminals: one for running this tutorial and one for your exercises. Open a second R Terminal using the dropdown button.
 
-In the new window, select `File -> New File -> Quarto Document ...`. Provide a title -- `"Earthquakes and Movies"` -- and an author (you). Render the document and save it as `analysis.qmd`.
+Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Earthquakes and Movies"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
 
 Create a `.gitignore` file with `analysis_files` on the first line and then a blank line. Save and push.
 
@@ -235,7 +235,7 @@ library(ggrepel)
 
 Render the file using `Cmd/Ctrl + Shift + K`.
 
-Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to the code chunk in order to remove all the messages in this `setup` chunk. Also, add the following to the YAML header to remove all code echoes from the HTML:
+Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to the code chunk in order to remove all the messages in this code chunk. Also, add the following to the YAML header to remove all code echoes from the HTML:
 
 ```         
 execute: 
@@ -306,14 +306,14 @@ question_text(NULL,
 
 ###
 
-You answer should look something like, although your path will be different.
+Your answer should look something like this, although your path will be different.
 
 ````
 > getwd()
-[1] "/Users/dkane/Desktop/projects/r4ds-5"
+[1] "/workspaces/r4ds-5"
 > dir.create("data")
 > list.files()
- [1] "analysis.qmd"        "data"    "README.md"
+ [1] "analysis_files" "analysis.html"  "analysis.qmd"   "data"
 >
 ````
 ###
@@ -1289,9 +1289,7 @@ question_text(NULL,
 
 ###
 
-<!-- AR: Irrelevant comment. Doesn't work in Positron. -->
-The RStudio `view()` lets you interactively explore a complex list. The viewer opens showing only the top level of the list.
-
+A `robots.txt` file is a plain-text file that website owners use to communicate which pages or directories they allow automated bots to access. Before scraping a site, check its `robots.txt` (e.g., `https://example.com/robots.txt`) to see what the owner permits.
 ### Exercise 2
 
 Ask AI to help you scrape the IMDb Top 250 page by using `resp_body_html()` to read the archived URL and then use `html_element()` with `table` selector followed by `html_table()` to extract the main data table.
@@ -2210,7 +2208,7 @@ If you want to collapse a lot of levels, `fct_collapse()` is a useful variant of
 
 ### Exercise 2
 
-Commit and push all your files. Copy/paste the URL to your Github repo.
+Commit and push all your files. Copy/paste the URL to your GitHub repo.
 
 ```{r summary-2}
 question_text(NULL,
@@ -2227,11 +2225,13 @@ There’s one special type of missing value that you’ll encounter from time to
 
 ### Exercise 3
 
-Publish your rendered QMD to GitHub Pages. In the Terminal --- not the R Terminal! --- run:
+Publish your rendered QMD to GitHub Pages. In a Bash terminal, run:
 
 ```
 quarto publish gh-pages analysis.qmd
 ```
+
+If the Bash terminal is still running from rendering, stop it first using `Ctrl/Cmd + C`.
 
 Copy/paste the resulting URL below.
 
@@ -2244,7 +2244,9 @@ question_text(NULL,
 	rows = 1)
 ```
 
-### 
+###
+
+You can use `purrr::map()` to apply a function to each element of a list and return the results as a new list.
 
 ```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
 ```
