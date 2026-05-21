@@ -12,11 +12,6 @@ runtime: shiny_prerendered
 description: "Introduction to AI-assisted development using the Gemini CLI in GitHub Codespaces. Covers authentication, using AI to create and manage project files, and integrating AI into the Git workflow."
 ---
 
-<!-- AR: bash should be uncapitalized.
-- mention that chat side bar can be closed
- -->
-
-
 ```{r setup, include = FALSE}
 library(learnr)
 library(tutorial.helpers)
@@ -93,7 +88,7 @@ https://congenial-chainsaw-wv757pv4pp67cpw.github.dev/
 
 ###
 
-There are three main ways to interact with AI: a *chat interface* (like gemini.google.com), a *CLI tool* running in your terminal, and an *embedded agent* inside your editor (like GitHub Copilot). This tutorial uses the CLI approach --- you'll run Gemini directly in the VS Code terminal, where it can read your files and take actions on your behalf.
+There are three main ways to interact with AI: a *chat interface* (like gemini.google.com), a *CLI tool* running in your terminal, and an *embedded agent* inside your editor (like GitHub Copilot). This tutorial uses the CLI approach --- you'll run Gemini directly in the VS Code terminal, where it can read your files and take actions on your behalf. Feel free to close the Copilot sidebar.
 
 ### Exercise 3
 
@@ -154,7 +149,7 @@ The [Gemini CLI](https://github.com/google-gemini/gemini-cli) is an open-source,
 
 ### Exercise 1
 
-Start the Gemini CLI by running `gemini` in the Bash Terminal. First it will ask you if you wish to connect your Codespace to Gemini. Press `y` to allow it. Next, it will first ask whether you trust the current working directory --- again, press `y`. 
+Start the Gemini CLI by running `gemini` in the bash Terminal. First it will ask you if you wish to connect your Codespace to Gemini. Press `y` to allow it. Next, it will first ask whether you trust the current working directory --- again, press `y`. 
 
 CP/CR the first several lines of terminal output --- enough to show the authentication prompt and the `>` prompt that appears after you successfully log in.
 
@@ -283,12 +278,14 @@ Ask Gemini to describe what files are in the repository. Type something like:
 Please explain the contents of this repository. Run ls -a to check the contents.
 ```
 
-Gemini will display a **tool authorization prompt** before running the shell command. It should look something like this:
+Gemini will display a **tool authorization prompt** before running commands. It should look something like this:
 
-<!-- AR: fix this -->
+```{r}
+include_graphics("images/gemini-CLI-git-permission.png")
+```
 
 
-Press `y` and `Enter` to allow the command to run. CP/CR the authorization prompt and Gemini's response.
+Press `1` to allow the command to run. You could press `2` to allow Gemini to run the same command without asking again in this session. CP/CR the authorization prompt and Gemini's response.
 
 ```{r gemini-cli-5}
 question_text(NULL,
@@ -301,34 +298,7 @@ question_text(NULL,
 
 ###
 
-Your output should look something like:
-
-````
-> What files are in this repository? Run ls -a to check.
-
-╔ Tool Use: run_shell ══════════════════════╗
-║  Command: ls -a                           ║
-╚═══════════════════════════════════════════╝
-
-Allow this tool call? [y/n/a] (a = always allow): y
-
-Output:
-.  ..  .devcontainer  .git
-
-This is a fresh repository. It contains only:
-- `.devcontainer/` — the Codespace configuration directory
-- `.git/` — Git's internal tracking directory
-
-There are no source files yet. Would you like me to help create some?
-
->
-````
-
-###
-
 The tool authorization prompt is a deliberate safety feature --- an AI that could silently execute shell commands would be a significant security risk.
-
-<!-- Note about A for always - maybe sub with image and replace with alternate (newer) option. UI is different from what's shown here. -->
 
 ### Exercise 6
 
@@ -673,14 +643,14 @@ Here's what this means:
 
 ###
 
-`git status` shows which branch you are on, changes that have been **staged** (queued for the next commit), and files that are **untracked** (noticed by Git but not yet monitored). An untracked file won't be included in any commit until you stage it with `git add`.
+`git status` shows which branch you are on, changes that have been **staged** (queued for the next commit), and files that are **untracked** (noticed by Git but not yet monitored). An untracked file won't be included in any commit until you stage it with `git add`. The `codespace-starter` devcontainer enables smart commit,so staging happens automatically --- you only need press the "Commit" button in the Source Control side bar.
 
 ### Exercise 2
 
-Ask Gemini to explain the difference between `git add` and `git commit`, and to provide the exact commands needed to stage and commit all three files with a good message:
+Ask Gemini to explain the difference between `git add` and `git commit`, and to provide the exact command to commit all three files with a good message:
 
 ```
-Explain the difference between git add and git commit. Then give me the exact commands to stage .gitignore, analysis.qmd, and analysis.html and commit them with a descriptive message.
+Explain the difference between git add and git commit. Then give me the exact command to commit .gitignore, analysis.qmd, and analysis.html with a descriptive message.
 ```
 
 CP/CR Gemini's full response.
@@ -707,11 +677,13 @@ git commit -m "initial version with analysis and gitignore"
 
 The two-step add-then-commit design exists to give you precise control over what goes into each commit. Imagine you've changed five files but only want to record two of them as a single logical unit --- you add just those two, commit them, then add the remaining three separately with a different message. 
 
-In practice, for solo projects, you often stage everything at once with `git add .`, but understanding that staging and committing are separate steps is essential once you start collaborating or managing larger projects.
+In practice, using the `codespace-starter` we use the Source Control sidebar to stage and commit all changes at once, using these commands under the hood. But understanding that staging and committing are separate steps is essential once you start collaborating or managing larger projects.
 
 ### Exercise 3
 
-In a separate bash Terminal, run the commands Gemini recommended --- the `git add` lines and the `git commit` line. Then run:
+Open the Source Control sidebar (the branch icon in the Activity Bar). You should see `.gitignore`, `analysis.qmd`, and `analysis.html` listed as changes. Type a commit message in the message box at the top, then click the **Commit** button. Because smart commit is enabled in the devcontainer, clicking Commit will stage and commit all changes in one step --- no `git add` required.
+
+Then, in a separate bash Terminal, run:
 
 ```
 git log --oneline
@@ -751,20 +723,8 @@ Update the storms-per-year chart in analysis.qmd to be a stacked area chart show
 
 Press `y` to authorize each tool call. Once the Live Server tab has refreshed and you are happy with the result, ask Gemini to handle the entire Git workflow:
 
-<!-- AR: Our students barely know that add exists. Settings in codespace starter add automatically.
-KD - in devcontainer we have a smart commit setting that does staging and committing in a single swoop. Other codespaces will not have this setting and there students will have to do staging. But in our codespace-starters we don't need to do this.
-
-Staging should be only mentioned and never done. They don't need to.
-
-
-DEVCONTAINERS SECTION
-When committing in the devcontainers section, explain this when stage pop-up appears.
-Also confirm sync and auto fetch. Also mention for their respective pop-ups which will appear.
-Major takeaway: VSCODE is different for everyone. There are many settings. Settings files often control this. These are some concrete examples
- -->
-
 ```
-Please stage analysis.qmd and analysis.html, commit them with a good message, and push to GitHub.
+Please commit analysis.qmd and analysis.html with a good message, and push to GitHub.
 ```
 
 Press `y` to authorize each tool call as Gemini works through the steps. CP/CR the complete output.
@@ -783,7 +743,7 @@ question_text(NULL,
 Your output should look something like:
 
 ````
-> Please stage analysis.qmd and analysis.html, commit them with a good message, and push to GitHub.
+> Please commit analysis.qmd and analysis.html with a good message, and push to GitHub.
 
 ╔ Tool Use: run_shell ═══════════════════════════════════════╗
 ║  Command: git add analysis.qmd analysis.html               ║
@@ -807,7 +767,7 @@ Allow this tool call? [y/n/a]: y
 
 ###
 
-Gemini issued three separate tool calls --- `git add`, `git commit`, and `git push` --- mapping directly to the three stages of staging, recording, and sharing. In Exercise 3 you ran these yourself; here you delegated them.
+Gemini issued three separate tool calls --- `git add`, `git commit`, and `git push` --- mapping directly to the three stages of staging, recording, and sharing. In Exercise 3 you ran these yourself using the Source Control sidebar; here you delegated them to gemini.
 
 ### Exercise 5
 
@@ -885,6 +845,12 @@ Can be 5-10 questions. Explore infrastructure available in github
 	- Jupiter notebook is a similar system to Quarto with text, code, plots
 
 	8. make a change to README.md - commit w/o staging - KD: staging vs. committing - return to how this devcontainer doesn't have the smart commit setting
+in codespace starter devcontainer we have a smart commit setting that does staging and committing in a single swoop. Other codespaces will not have this setting and there students will have to do staging. But in our codespace-starters we don't need to do this.
+
+When committing in the devcontainers section, explain this when stage pop-up appears.
+Also confirm sync and auto fetch. Also mention for their respective pop-ups which will appear.
+Major takeaway: VSCODE is different for everyone. There are many settings. Settings files often control this. These are some concrete examples
+
 	9. publish branch - notice name given - notice the graph
 	10. check github repos and see the new repo! - paste the URL
 
