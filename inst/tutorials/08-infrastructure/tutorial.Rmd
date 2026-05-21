@@ -841,7 +841,7 @@ The GitHub Jupyter Notebook template is a pre-built Codespace designed for Pytho
 Now, you should have two Codespaces open. Go to https://github.com/codespaces. Then copy and paste the two table rows corresponding to your open Codespaces.
 
 ```{r}
-include_graphics("open-codespaces.png")
+include_graphics("images/open-codespaces.png")
 ```
 
 ```{r devcontainers-2}
@@ -1056,7 +1056,7 @@ Describing what you want in plain English and letting AI handle the translation 
 Since the rest of this Codespace still uses Python, let's revert any changes we've made to `devcontainer.json`. Go to the Source Control side bar and press the revert button on the right.
 
 ```{r}
-include_graphics("images/revert-devcontainer.json")
+include_graphics("images/revert-devcontainer.png")
 ```
 
 Run `git status` in a Bash Terminal. CP/CR.
