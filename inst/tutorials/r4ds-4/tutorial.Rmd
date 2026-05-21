@@ -1975,23 +1975,6 @@ question_text(NULL,
 
 ### Exercise 2
 
-Commit and push all your files. Copy/paste the URL to your GitHub repo.
-
-```{r summary-2}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-We recommend using `curl::multi_download()` to get very large files as it’s built for exactly this purpose: it gives you a progress bar and it can resume the download if it's interrupted. 
-
-### Exercise 3
-
 Publish your rendered QMD to GitHub Pages. In a Bash terminal, run:
 
 ```
@@ -2000,7 +1983,7 @@ quarto publish gh-pages analysis.qmd
 
 Copy/paste the resulting URL below.
 
-```{r summary-3}
+```{r summary-2}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -2009,9 +1992,26 @@ question_text(NULL,
 	rows = 1)
 ```
 
-### 
+###
 
 Like `dbplyr`, `arrow` only understands some R expressions, so you may not be able to write exactly the same code you usually would. However, the list of operations and functions supported is fairly extensive and continues to grow; find a complete list of currently supported functions in `?acero_compute`.
+
+### Exercise 3
+
+Commit and push all your files. Copy/paste the URL to your GitHub repo.
+
+```{r summary-3}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+We recommend using `curl::multi_download()` to get very large files as it’s built for exactly this purpose: it gives you a progress bar and it can resume the download if it’s interrupted.
 
 ```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
 ```

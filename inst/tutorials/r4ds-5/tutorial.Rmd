@@ -2208,23 +2208,6 @@ If you want to collapse a lot of levels, `fct_collapse()` is a useful variant of
 
 ### Exercise 2
 
-Commit and push all your files. Copy/paste the URL to your GitHub repo.
-
-```{r summary-2}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-There’s one special type of missing value that you’ll encounter from time to time: a NaN (pronounced “nan”), or **n**ot **a** **n**umber. In the rare case you need to distinguish an NA from a NaN, you can use `is.nan(x)`.
-
-### Exercise 3
-
 Publish your rendered QMD to GitHub Pages. In a Bash terminal, run:
 
 ```
@@ -2235,11 +2218,11 @@ If the Bash terminal is still running from rendering, stop it first using `Ctrl/
 
 Copy/paste the resulting URL below.
 
-```{r summary-3}
+```{r summary-2}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
+	try_again_button = “Edit Answer”,
 	incorrect = NULL,
 	rows = 1)
 ```
@@ -2247,6 +2230,23 @@ question_text(NULL,
 ###
 
 You can use `purrr::map()` to apply a function to each element of a list and return the results as a new list.
+
+### Exercise 3
+
+Commit and push all your files. Copy/paste the URL to your GitHub repo.
+
+```{r summary-3}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = “Edit Answer”,
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+There’s one special type of missing value that you’ll encounter from time to time: a NaN (pronounced “nan”), or **n**ot **a** **n**umber. In the rare case you need to distinguish an NA from a NaN, you can use `is.nan(x)`.
 
 ```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
 ```
