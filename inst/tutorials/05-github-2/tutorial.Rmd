@@ -28,11 +28,6 @@ options(tutorial.exercise.timelimit = 60,
 ```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
 ```
 
-<!-- DK: Add an exercise or two where, after creating project-1, the student looks in github.com/codespaces, and sees that she has two codespaces operating. Important to keep track of the codespaces. Once done with project-1, delete the codespace. And then, at end, delete the codespace for project-2. Leave it to them to delete the codespace with the tutorial running in it.  
-
-AR: Done.
--->
-
 ## Introduction
 ### 
 

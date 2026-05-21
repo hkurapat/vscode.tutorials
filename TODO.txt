@@ -1,29 +1,12 @@
 ## Alec
 
-We need an 08-infrasctructure 
 
-Start by showing students how to run Gemini. Lots of images and examples. Login. Copy/paste some key. Have them do some stuff. Like tell you about the repo. (Note how you have to authorize it to run shell commands.) Like make a .gitignore. (May need to authorize it to write a file.) Like make a analysis.qmd. Like render it. Also preview it. Then change the file. Note that the html things in the browser may automatically refresh, or may need a manual refresh.
 
-Point out the quota usage.
+### Fixing r4ds 1-5 and tidycensus-1. 
 
-Maybe mention some useful gemini commands. /model, /help
+Doublecheck these are done.
 
-   * /stats model: Displays model-specific token counts and information about your current limits.
-   * /stats session: Shows general session usage, including tool calls and performance.
-
-Finish by asking it for the correct Git commands. Now is an opportunity to distinguish between staging and commmitting. Mention the underlying git commands. You can either copy paste those commands into the shell. And then, make another change, and then just tell it to commit and push itself.
-
-Read https://ppbds.github.io/tutorial.helpers/articles/ai.html
-
-Send a PR (via the tutorial.helpers package!). -- AR: Done.
-  
-  * Include typo fixes and questions. -- AR: Done.
-
-  * Update templates so that we use the new VS Code and Codespaces approach. This is most (only?) relevant for exercise 2. (And it is nice that it only matters there.) -- AR: Done. No changes needed.
-
-Fixing r4ds 1-5 and tidycensus-1. 
-
-  * Publish is second to last step. Committing is last step.
+  * Publish is second to last step. Committing is last step. 
 
   * Get rid of all Positron. 
 
@@ -31,7 +14,17 @@ Fixing r4ds 1-5 and tidycensus-1.
 
   * Maybe the Summary sections OK? Commit after publish!
 
+###
+
+  * Top of r4ds-1, give generic advice. AI refers to whatever AI you use. We recommend using an AI like Gemini CLI or Claude Code which can edit your documents directly. But you can also use a chat AI, although that will require you copy/pasting code into your Quarto document.
+
+  Say some words about how we phrase instructions, and what we mean.
+
+  Never use `Cmd/Ctrl + Enter` since we are never using the R Terminal. show_file() is the usual way that we check that students have done something.
+
   * r4ds-2 is too long. cheese download is messed up?
+
+  * Revisit the internals of the tutorials. Make them modern. Use an AI which edits documents! No more exercise chunks! No more copy/paste. Ask Gemini. 
 
 
 

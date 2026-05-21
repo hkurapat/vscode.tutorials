@@ -79,8 +79,6 @@ You will learn about importing, organizing, and visualizing data using core pack
 
 ### Exercise 1
 
-<!-- AR: Okay to have this check here? Or intro? This is in line with the AI vignette in tutorial.helpers as of 05.11 pre meeting. -->
-
 Create a new repo using `codespace-starter` as a template and name it `r4ds-1`.
 
 If you haven't already, open the `r4ds-1` repo on GitHub and create a Codespace from it.
@@ -116,11 +114,9 @@ Professionals keep their data science work in the cloud because laptops fail.
 
 ### Exercise 2
 
-<!-- AR: Should this chunk be labelled setup? -->
-
 In your QMD, put `library(tidyverse)` in a new code chunk. Render the file using `Cmd/Ctrl + Shift + K`.
 
-Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this `setup` chunk. Also, add the following to the YAML header to remove all code echoes from the HTML:
+Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this chunk. For historical reasons, the first chunk in a Quarto document is often referred to as the `setup` chunk. Also, add the following to the YAML header to remove all code echoes from the HTML:
 
 ```         
 execute: 
@@ -907,8 +903,6 @@ When you run `read_csv()`, it prints information about the rows, columns, and da
 
 ### Exercise 3
 
-<!-- AR: Why are we skipping 5 lines here? -->
-
 Provide AI with the line of code from the question above, as well as the tibble of data.
 
 Ask AI: Edit the code so that the `read_csv()` skips the first 5 lines. Continue the code so that the `read_csv()` will also not read the first row as headings.
@@ -936,7 +930,7 @@ read_csv("data/music.csv", skip = 5, col_names = FALSE)
 
 ###
 
-The argument `skip` is used to skip rows, but to skip columns, you can use the `col_only()` function as the argument to `col_types` in order to read in only the columns which you want. The argument `col_names` can also be used to create custom column names. 
+The argument `skip` is used to skip rows, but to skip columns, you can use the `col_only()` function as the argument to `col_types` in order to read in only the columns which you want. The argument `col_names` can also be used to create custom column names. There isn't anything wrong with the first five lines of this file.
 
 ### Exercise 4
 

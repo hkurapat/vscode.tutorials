@@ -26,8 +26,6 @@ options(tutorial.exercise.timelimit = 60,
 ```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
 ```
 
-<!-- AR: Some questions asking AI to do stuff should be copy pasting a prompt, others should make students write the prompt. First 10 should be copy paste a pre-written prompt -->
-
 ## Introduction
 ###
 
