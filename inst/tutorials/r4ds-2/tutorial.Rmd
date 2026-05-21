@@ -1380,23 +1380,6 @@ Spreadsheet data in `.xlsx` format can be read into R using `read_excel()` from 
 
 ### Exercise 2
 
-Commit and push all your files. Copy/paste the URL to your GitHub repo.
-
-```{r summary-2}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-GitHub repositories are where people can view the code you used to create your project.
-
-### Exercise 3
-
 Publish your rendered QMD to GitHub Pages. In a Bash terminal, run:
 
 ````
@@ -1407,7 +1390,7 @@ If the Bash terminal is still running from rendering, stop it first using `Ctrl/
 
 Copy/paste the resulting URL below.
 
-```{r summary-3}
+```{r summary-2}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -1419,6 +1402,23 @@ question_text(NULL,
 ###
 
 Publishing the QMD creates a public URL anyone can use to view the rendered project.
+
+### Exercise 3
+
+Commit and push all your files. Copy/paste the URL to your GitHub repo.
+
+```{r summary-3}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+GitHub repositories are where people can view the code you used to create your project.
 
 ```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
 ```
