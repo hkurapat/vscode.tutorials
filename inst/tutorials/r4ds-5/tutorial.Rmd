@@ -2222,7 +2222,7 @@ Copy/paste the resulting URL below.
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
-	try_again_button = “Edit Answer”,
+	try_again_button = "Edit Answer",
 	incorrect = NULL,
 	rows = 1)
 ```
