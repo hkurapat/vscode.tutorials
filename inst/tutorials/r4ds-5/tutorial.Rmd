@@ -181,7 +181,7 @@ top_movies <- request("https://web.archive.org/web/20220201012049/https://www.im
 
 This section covers key concepts from [Chapter 23: Hierarchical Data](https://r4ds.hadley.nz/hierarchical), [Chapter 24: Web Scraping](https://r4ds.hadley.nz/webscraping), [Chapter 25: Functions](https://r4ds.hadley.nz/functions), and [Chapter 26: Iterations](https://r4ds.hadley.nz/iteration) from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. 
 
-You will learn about working with nested data structures, web scraping techniques, and creating custom functions using core packages such as **[jsonlite](https://cran.r-project.org/package=jsonlite)**, **[rvest](https://rvest.tidyverse.org/)**, **[httr2](https://httr2.r-lib.org/)**, and **[purrr](https://purrr.tidyverse.org/)**. Important functions include: [`pluck()`](https://purrr.tidyverse.org/reference/pluck.html), [`unnest_wider()`](https://tidyr.tidyverse.org/reference/unnest_wider.html), [`html_table()`](https://rvest.tidyverse.org/reference/html_table.html), and [`separate_wider_regex()`](https://tidyr.tidyverse.org/reference/separate_wider_delim.html).
+You will learn about working with nested data structures, web scraping techniques, and creating custom functions using core packages such as **[jsonlite](https://cran.r-project.org/package=jsonlite)**, **[rvest](https://rvest.tidyverse.org/)**, **[httr2](https://httr2.r-lib.org/)**, and **[purrr](https://purrr.tidyverse.org/)**. Key concepts include extracting nested elements from lists, expanding list-columns into separate columns, extracting tables from HTML pages, and splitting text into structured columns using regex patterns.
 
 We recommend using an in-environment AI agent such as [Gemini CLI](https://github.com/google-gemini/gemini-cli) or [Claude Code](https://claude.ai/code); instructions are written with these tools in mind. You may also use a chat-based AI, but you will need to copy/paste code and data context manually.
 
@@ -327,7 +327,7 @@ Your answer should look something like this, although your path will be differen
 ## Earthquakes
 ###
 
-This section focuses on working with hierarchical JSON data structures and creating custom functions using **[jsonlite](https://cran.r-project.org/package=jsonlite)**, **[tidyr](https://tidyr.tidyverse.org/)**, and **[leaflet](https://rstudio.github.io/leaflet/)**. You will learn how to extract nested data from GeoJSON files, convert Unix timestamps to datetime objects, and create interactive maps. Key functions include: [`pluck()`](https://purrr.tidyverse.org/reference/pluck.html) for extracting nested elements, [`unnest_wider()`](https://tidyr.tidyverse.org/reference/unnest_wider.html) for expanding list columns, [`hoist()`](https://tidyr.tidyverse.org/reference/hoist.html) for selective extraction, and custom functions like `convert_earthquake_time()` and `categorize_magnitude()` for data transformation.
+This section focuses on working with hierarchical JSON data structures and creating custom functions using **[jsonlite](https://cran.r-project.org/package=jsonlite)**, **[tidyr](https://tidyr.tidyverse.org/)**, and **[leaflet](https://rstudio.github.io/leaflet/)**. You will learn how to extract nested data from GeoJSON files, convert Unix timestamps to datetime objects, and create interactive maps. Key **purrr** and **tidyr** concepts include extracting specific nested elements, expanding list-columns into separate columns, selectively hoisting named values from a list-column, and writing custom transformation functions.
 
 For this tutorial, we use `earthquakes.geojson` which comes from the **USGS real-time earthquake feed**, which is a live GeoJSON feed maintained by the U.S. Geological Survey, providing a programmatic interface for accessing recent seismic activity—including magnitude, location, depth, and other metadata—in an easily consumable JSON format with options from the past hour to the past 30 days.
 
@@ -404,7 +404,7 @@ We can use the `names()` function to get the names of the all the features in `g
 
 ### Exercise 3
 
-"Ask AI to use `jsonlite::read_json()` to read the `data/earthquakes.geojson` file, then use `pluck()` to extract the `features` list. Convert it into a tibble with `tibble(data = _)`. Use `unnest_wider()` to expand the `data` column, and then use `unnest_wider(properties, names_sep = "_")` to expand the `properties` list into separate columns such as `properties_mag`, `properties_place`, and `properties_time`. Add this code as a replacement to your current code in the same code chunk in the same QMD.
+Ask AI to read the `data/earthquakes.geojson` file, extract the `features` list, convert it into a tibble, expand the `data` column into separate columns, and then expand the `properties` list into separate columns using `"_"` as the name separator (e.g., `properties_mag`, `properties_place`, `properties_time`). Add this code as a replacement to your current code in the same code chunk in the same QMD.
 
 Place your cursor at the beginning of the line where it says `jsonlite...` and run `Cmd/Ctrl + Enter`.
 
@@ -1254,12 +1254,12 @@ leaflet(earthquake_df) |>
 
 ###
 
-Remember that `ggsave()` is a convenient function for saving a plot. It defaults to saving the last plot that you displayed, using the size of the current graphics device. It also guesses the type of graphics device from the extension.
+**ggplot2** can save a plot to a file. By default it saves the last displayed plot, using the current device size, and infers the file format from the extension (PNG, PDF, etc.).
 
 ## Top Movies
 ###
 
-This section covers web scraping techniques and data extraction from HTML tables using **[rvest](https://rvest.tidyverse.org/)**, **[httr2](https://httr2.r-lib.org/)**, and **[stringr](https://stringr.tidyverse.org/)**. You will learn how to scrape IMDb's Top 250 movies list, extract structured data from HTML elements, and clean messy text data. Important functions include: [`html_element()`](https://rvest.tidyverse.org/reference/html_element.html) and [`html_elements()`](https://rvest.tidyverse.org/reference/html_element.html) for selecting HTML nodes, [`html_table()`](https://rvest.tidyverse.org/reference/html_table.html) for extracting tabular data, [`html_attr()`](https://rvest.tidyverse.org/reference/html_attr.html) for accessing element attributes, and [`separate_wider_regex()`](https://tidyr.tidyverse.org/reference/separate_wider_delim.html) for parsing complex text patterns.
+This section covers web scraping techniques and data extraction from HTML tables using **[rvest](https://rvest.tidyverse.org/)**, **[httr2](https://httr2.r-lib.org/)**, and **[stringr](https://stringr.tidyverse.org/)**. You will learn how to scrape IMDb's Top 250 movies list, extract structured data from HTML elements, and clean messy text data. Key **rvest** and **tidyr** concepts include selecting single and multiple HTML nodes, extracting tables from HTML, reading element attributes, and splitting complex text into separate columns using regex patterns.
 
 For this section, we use a archived version **The IMDb Top 250 Movies list** which is a curated ranking of the top-rated films on IMDb, based on user ratings and votes . The data includes attributes such as movie titles, release years, directors, and user ratings. 
 
@@ -1369,7 +1369,7 @@ Both arrays and objects are similar to lists in R; the difference is whether or 
 
 ### Exercise 4
 
-Ask AI to continue the pipe using `mutate()` and `str_replace_all()` to clean up the `rank_title_year` column by replacing newlines and multiple spaces with single spaces. Add this code as a continuation of your current pipe in the same code chunk in the same QMD.
+Ask AI to continue the pipe by cleaning up the `rank_title_year` column, replacing newlines and multiple spaces with single spaces. Add this code as a continuation of your current pipe in the same code chunk in the same QMD.
 
 Place your cursor at the beginning of the line where it says `request...` and run `Cmd/Ctrl + Enter`.
 
@@ -1410,7 +1410,7 @@ When each row has the same number of elements with the same names, it’s natura
 
 ### Exercise 5
 
-Ask AI to continue the pipe using `separate_wider_regex()` to split the `rank_title_year` column into separate `rank`, `title`, and `year` columns using regex patterns to match the structure. Add this code as a continuation of your current pipe in the same code chunk in the same QMD.
+Ask AI to continue the pipe by splitting the `rank_title_year` column into separate `rank`, `title`, and `year` columns using regex patterns to match the structure. Add this code as a continuation of your current pipe in the same code chunk in the same QMD.
 
 Place your cursor at the beginning of the line where it says `request...` and run `Cmd/Ctrl + Enter`.
 
@@ -1619,7 +1619,7 @@ request("https://web.archive.org/web/20220201012049/https://www.imdb.com/chart/t
 
 ### Exercise 10
 
-Ask AI to continue the pipe using `separate_wider_regex()` on the `rank_title_year` column to extract `rank`, `title`, and `year`, and then apply another `separate_wider_regex()` on `rating_detail` and `patterns = ...` to extract the number of user ratings. Add this code as a continuation of your current pipe in the same code chunk in the same QMD.
+Ask AI to continue the pipe by splitting the `rank_title_year` column into `rank`, `title`, and `year`, and then split the `rating_details` column to extract the number of user ratings. Add this code as a continuation of your current pipe in the same code chunk in the same QMD.
 
 Place your cursor at the beginning of the line where it says `request...` and run `Cmd/Ctrl + Enter`.
 
@@ -1680,7 +1680,7 @@ request("https://web.archive.org/web/20220201012049/https://www.imdb.com/chart/t
 
 ### Exercise 11
 
-Ask AI to continue the pipe using `mutate()` and `parse_number()` to convert the `number` column from character to numeric, removing commas and other formatting.  Add this code as a continuation of your current pipe in the same code chunk in the same QMD.
+Ask AI to continue the pipe by converting the `number` column from character to numeric, removing commas and other formatting. Add this code as a continuation of your current pipe in the same code chunk in the same QMD.
 
 Place your cursor at the beginning of the line where it says `request...` and run `Cmd/Ctrl + Enter`.
 
@@ -1740,7 +1740,7 @@ request("https://web.archive.org/web/20220201012049/https://www.imdb.com/chart/t
 
 ###
 
-[`str_squish()`](https://stringr.tidyverse.org/reference/str_trim.html) removes whitespace at the start and end or a character variable, and replaces all internal whitespace with a single space.
+**stringr** provides a function that removes whitespace from the start and end of a string and also replaces all internal whitespace with a single space.
 
 ### Exercise 12
 
@@ -1962,7 +1962,7 @@ request("https://web.archive.org/web/20220201012049/https://www.imdb.com/chart/t
 
 ###
 
-`fct_infreq()` and `fct_rev()`  sort the bars by frequency from highest to lowest for a vertical bar graph.
+**forcats** supports sorting factor levels by frequency (for bar charts) and reversing the level order — useful for making horizontal bar charts read top-to-bottom by frequency.
 
 ### Exercise 15
 
@@ -2170,18 +2170,14 @@ filter(year >= 1990, year <= 2010) |>
 ###
 
 <!-- AR: Irrelevant comment? -->
-`fct_reorder()` takes three arguments:
-
-1. `.f`, the factor whose levels you want to modify.
-2. `.x`, a numeric vector that you want to use to reorder the levels.
-3. Optionally, `.fun`, a function that’s used if there are multiple values of .x for each value of .f. The default value is median.
+**forcats** lets you reorder factor levels by a numeric variable: specify the factor, the numeric vector to sort by, and optionally a summary function to use when there are multiple values per level (the default is median).
 
 ## Summary
 ###
 
 This section covered key concepts from [Chapter 23: Hierarchical Data](https://r4ds.hadley.nz/hierarchical), [Chapter 24: Web Scraping](https://r4ds.hadley.nz/webscraping), [Chapter 25: Functions](https://r4ds.hadley.nz/functions), and [Chapter 26: Iterations](https://r4ds.hadley.nz/iteration) from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. 
 
-You learned about working with nested data structures, web scraping techniques, and creating custom functions using core packages such as **[jsonlite](https://cran.r-project.org/package=jsonlite)**, **[rvest](https://rvest.tidyverse.org/)**, **[httr2](https://httr2.r-lib.org/)**, and **[purrr](https://purrr.tidyverse.org/)**. Important functions include: [`pluck()`](https://purrr.tidyverse.org/reference/pluck.html), [`unnest_wider()`](https://tidyr.tidyverse.org/reference/unnest_wider.html), [`html_table()`](https://rvest.tidyverse.org/reference/html_table.html), and [`separate_wider_regex()`](https://tidyr.tidyverse.org/reference/separate_wider_delim.html).
+You learned about working with nested data structures, web scraping techniques, and creating custom functions using core packages such as **[jsonlite](https://cran.r-project.org/package=jsonlite)**, **[rvest](https://rvest.tidyverse.org/)**, **[httr2](https://httr2.r-lib.org/)**, and **[purrr](https://purrr.tidyverse.org/)**. Key concepts included extracting nested elements from lists, expanding list-columns, extracting HTML tables, and parsing complex text into structured columns using regex.
 
 ### Exercise 1
 
@@ -2206,7 +2202,7 @@ question_text(NULL,
 
 ### 
 
-If you want to collapse a lot of levels, `fct_collapse()` is a useful variant of `fct_recode()`.
+**forcats** supports collapsing many factor levels into a smaller set by grouping multiple old levels under a single new name.
 
 ### Exercise 2
 

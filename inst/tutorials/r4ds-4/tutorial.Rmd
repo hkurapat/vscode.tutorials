@@ -362,7 +362,7 @@ Our code:
 
 ### Exercise 3
 
-Ask AI to write R code that continues our pipe that opened `data/game.parquet` and selects the columns `game_id`, `game_date`, and `season_id` columns, then collects it into R using `collect()`. After that, ask it to parse `game_date` as a datetime with `ymd_hms()`, extract the `year`, `month` (with labels), and `weekday` (with labels), and then count how many games occurred on each weekday, arranging the result in descending order using `desc()`. Add this code as a continuation of your current pipe in the same code chunk in the same QMD. Your output should look something like:
+Ask AI to write R code that continues our pipe that opened `data/game.parquet` and selects the columns `game_id`, `game_date`, and `season_id`, then collects it into R. After that, ask it to parse `game_date` as a datetime, extract the year, month (with labels), and weekday (with labels), and then count how many games occurred on each weekday, arranging the result in descending order. Add this code as a continuation of your current pipe in the same code chunk in the same QMD. Your output should look something like:
 
 ```{r}
 "data/game.parquet" |> 
@@ -468,7 +468,7 @@ In the rare case you need to distinguish an `NA` from a `NaN`, you can use `is.n
 
 ### Exercise 5
 
-Ask AI to write R code that changes our pipe so that it parses `game_date` with `ymd_hms()`, and creates a new variable called `decade` by flooring the year to the nearest decade, then filters out missing decades and groups by decade (using `group_by()`) and summarises the total number of games plus the percentage of missing values for `reb_home`, `fg3m_home`, and `stl_home`. Make sure the AI uses `.groups` to drop the grouping at the end.
+Ask AI to write R code that changes our pipe so that it parses `game_date` as a datetime, creates a new variable called `decade` by flooring the year to the nearest decade, then filters out missing decades, groups by decade, and summarises the total number of games plus the percentage of missing values for `reb_home`, `fg3m_home`, and `stl_home`. Make sure the AI uses `.groups` to drop the grouping at the end.
 
 Add this code as a replacement to your current code in the same code chunk in the same QMD.
 
