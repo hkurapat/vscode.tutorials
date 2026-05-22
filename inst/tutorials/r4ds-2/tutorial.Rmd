@@ -46,7 +46,9 @@ wine_tibble <- read_excel("data/wine.xlsx")|>
 
 This section covers key concepts from [Chapter 9: Layers](https://r4ds.hadley.nz/layers.html), [Chapter 10: Exploratory Data Analysis](https://r4ds.hadley.nz/eda.html), [Chapter 11: Communication](https://r4ds.hadley.nz/communication.html), and [Chapter 20: Spreadsheets](https://r4ds.hadley.nz/spreadsheets.html) from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
-You will learn about working with categorical and continuous variables using different types of variation and exploratory data analysis using core packages such as **[readxl](https://readxl.tidyverse.org/)**, **[dbplyr](https://dbplyr.tidyverse.org/)**, and **[ggplot2](https://ggplot2.tidyverse.org/)**. Important functions include: [`facet_wrap()`](https://ggplot2.tidyverse.org/reference/facet_wrap.html), [`coord_flip()`](https://ggplot2.tidyverse.org/reference/coord_flip.html), and  [`geom_jitter()`](https://ggplot2.tidyverse.org/reference/geom_jitter.html). 
+You will learn about working with categorical and continuous variables using different types of variation and exploratory data analysis using core packages such as **[readxl](https://readxl.tidyverse.org/)**, **[dbplyr](https://dbplyr.tidyverse.org/)**, and **[ggplot2](https://ggplot2.tidyverse.org/)**. Important functions include: [`facet_wrap()`](https://ggplot2.tidyverse.org/reference/facet_wrap.html), [`coord_flip()`](https://ggplot2.tidyverse.org/reference/coord_flip.html), and  [`geom_jitter()`](https://ggplot2.tidyverse.org/reference/geom_jitter.html).
+
+We recommend using an in-environment AI agent such as [Gemini CLI](https://github.com/google-gemini/gemini-cli) or [Claude Code](https://claude.ai/code), which can read and edit your files directly. Instructions are written with these tools in mind. You may also use a chat-based AI, but you will need to copy/paste code and data context manually.
 
 
 ### Exercise 1
