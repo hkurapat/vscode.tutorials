@@ -77,6 +77,8 @@ This section covers key concepts from [Chapter 1: Data visualization](https://r4
 
 You will learn about importing, organizing, and visualizing data using core packages such as **[readr](https://readr.tidyverse.org/)**, **[dplyr](https://dplyr.tidyverse.org/)**, and **[ggplot2](https://ggplot2.tidyverse.org/)**. Important functions include: [`read_csv()`](https://readr.tidyverse.org/reference/read_delim.html), [`filter()`](https://dplyr.tidyverse.org/reference/filter.html), [`ggplot()`](https://ggplot2.tidyverse.org/reference/ggplot.html), and [`pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html).
 
+Throughout these tutorials, you will use AI to help write and debug code. We recommend using an AI agent that works directly within your development environment, such as [Gemini CLI](https://github.com/google-gemini/gemini-cli) or [Claude Code](https://claude.ai/code), which can read and edit your files without copy/pasting. You may also use a chat-based AI (such as ChatGPT or Claude on the web), though this will require manually copying code into your Quarto document. Instructions throughout these tutorials are written assuming you are using an in-environment AI agent, but the choice is yours.
+
 ### Exercise 1
 
 Create a new repo using `codespace-starter` as a template and name it `r4ds-1`.
