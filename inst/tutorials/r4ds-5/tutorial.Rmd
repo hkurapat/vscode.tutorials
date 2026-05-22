@@ -183,6 +183,8 @@ This section covers key concepts from [Chapter 23: Hierarchical Data](https://r4
 
 You will learn about working with nested data structures, web scraping techniques, and creating custom functions using core packages such as **[jsonlite](https://cran.r-project.org/package=jsonlite)**, **[rvest](https://rvest.tidyverse.org/)**, **[httr2](https://httr2.r-lib.org/)**, and **[purrr](https://purrr.tidyverse.org/)**. Important functions include: [`pluck()`](https://purrr.tidyverse.org/reference/pluck.html), [`unnest_wider()`](https://tidyr.tidyverse.org/reference/unnest_wider.html), [`html_table()`](https://rvest.tidyverse.org/reference/html_table.html), and [`separate_wider_regex()`](https://tidyr.tidyverse.org/reference/separate_wider_delim.html).
 
+We recommend using an in-environment AI agent such as [Gemini CLI](https://github.com/google-gemini/gemini-cli) or [Claude Code](https://claude.ai/code); instructions are written with these tools in mind. You may also use a chat-based AI, but you will need to copy/paste code and data context manually.
+
 
 ### Exercise 1
 

@@ -71,6 +71,8 @@ You will learn about working with numeric data and text patterns using core *Tid
 
 You will also explore logical operations with `if_else()`, and concepts like integer division and modulo. This knowledge will help you manipulate numbers, strings, logical vectors, and connect with DuckDB databases using SQL from within R.
 
+We recommend using an in-environment AI agent such as [Gemini CLI](https://github.com/google-gemini/gemini-cli) or [Claude Code](https://claude.ai/code); instructions are written with these tools in mind. You may also use a chat-based AI, but you will need to copy/paste code and data context manually.
+
 ### Exercise 1
 
 Create a new repo using `codespace-starter` as a template and name it `r4ds-3`.

@@ -142,6 +142,8 @@ This tutorial covers key concepts from [Chapter 16: Factors](https://r4ds.hadley
 
 You will learn about working with parquet files using **[arrow](https://arrow.apache.org/docs/r/)**, manipulating categorical variables with **[forcats](https://forcats.tidyverse.org/)**, handling date/time data with **[lubridate](https://lubridate.tidyverse.org/)**, managing missing values, and performing joins. Key functions include [`open_dataset()`](https://arrow.apache.org/docs/r/reference/open_dataset.html), [`fct_reorder()`](https://forcats.tidyverse.org/reference/fct_reorder.html), [`ymd_hms()`](https://lubridate.tidyverse.org/reference/ymd.html), [`left_join()`](https://dplyr.tidyverse.org/reference/mutate-joins.html), and [`drop_na()`](https://tidyr.tidyverse.org/reference/drop_na.html).
 
+We recommend using an in-environment AI agent such as [Gemini CLI](https://github.com/google-gemini/gemini-cli) or [Claude Code](https://claude.ai/code); instructions are written with these tools in mind. You may also use a chat-based AI, but you will need to copy/paste code and data context manually.
+
 ### Exercise 1
 
 Create a new repo using `codespace-starter` as a template and name it `r4ds-4`.
