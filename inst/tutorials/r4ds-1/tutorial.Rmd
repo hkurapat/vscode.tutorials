@@ -77,6 +77,8 @@ This section covers key concepts from [Chapter 1: Data visualization](https://r4
 
 You will learn about importing, organizing, and visualizing data using core packages such as **[readr](https://readr.tidyverse.org/)**, **[dplyr](https://dplyr.tidyverse.org/)**, and **[ggplot2](https://ggplot2.tidyverse.org/)**. Important functions include: [`read_csv()`](https://readr.tidyverse.org/reference/read_delim.html), [`filter()`](https://dplyr.tidyverse.org/reference/filter.html), [`ggplot()`](https://ggplot2.tidyverse.org/reference/ggplot.html), and [`pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html).
 
+Throughout these tutorials, you will use AI to help write and debug code. We recommend using an AI agent that works directly within your development environment, such as [Gemini CLI](https://github.com/google-gemini/gemini-cli) or [Claude Code](https://claude.ai/code), which can read and edit your files without copy/pasting. You may also use a chat-based AI (such as ChatGPT or Claude on the web), though this will require manually copying code into your Quarto document. Instructions throughout these tutorials are written assuming you are using an in-environment AI agent, but the choice is yours.
+
 ### Exercise 1
 
 Create a new repo using `codespace-starter` as a template and name it `r4ds-1`.
@@ -251,9 +253,9 @@ A "variable" represents a quantity, quality, or property that can be measured or
 
 ### Exercise 2
 
-Choose an AI to use and in the chat, provide a tibble of `billboard`. You only need the top 3 lines or so.
+Ask AI: Create a simple graph plotting `wk1` against `wk2` while only using the functions `ggplot()`, `aes()`, and `geom_point()`.
 
-Ask AI: Create a simple graph plotting `wk1` against `wk2` while only using the functions `ggplot()`, `aes()`, and `geom_point()`. 
+If using a chat AI, first share a few rows of `billboard` from the R Terminal. In-environment agents can access your data directly.
 
 Copy and paste the AI generated code into a new code chunk with your QMD. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
 
@@ -282,7 +284,7 @@ The warning about 'removed rows containing missing values' means `ggplot()` auto
 
 ### Exercise 3
 
-Ask AI: Continue the code with `+` and add a trendline with `geom_smooth()`. Add a `title`, `subtitle`, `caption`, and axis labels using the `labs()` function.
+Ask AI: Continue the code to add a smooth trend line and proper title, subtitle, caption, and axis labels.
 
 Copy and paste this code to continue the previous code and save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
 
@@ -312,11 +314,11 @@ ggplot(billboard, aes(x = wk1, y = wk2)) +
 
 ###
 
-`geom_smooth()` adds a trend line to your scatterplot to show the general pattern in your data. The gray shaded area around the line shows how uncertain the trend is - a wider area means more uncertainty. Use `method = "lm"` for linear regression (straight line) or LOESS for curved trends.
+A trend line shows the general pattern in your data. The shaded area around the line represents uncertainty — a wider band means less certainty. **ggplot2** supports both linear and curved (LOESS) trend lines.
 
 ### Exercise 4
 
-In a new prompt for AI, provide a tibble of `billboard` again.
+If using a chat AI, start a new conversation and share a few rows of `billboard` from the R Terminal.
 
 Ask AI: Create a line graph showing the rank of 3 songs over the first 5 weeks, mainly using the functions `ggplot()`, `aes()`, and `geom_line()`. 
 
@@ -355,7 +357,7 @@ The code that the AI produced likely contained the symbol `%>%` or `|>`, which a
 
 ### Exercise 5
 
-Ask AI: Continue the code to split the graph into 3 graphs, 1 per track, using `facet_wrap()`. 
+Ask AI: Continue the code to split the graph into separate panels, one per track.
 
 Copy and paste this code to continue the previous code and save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
 
@@ -388,15 +390,15 @@ billboard |>
 
 ###
 
-For categorical variables, splitting your plot into **facets** creates subplots that each display one subset of the data. The first argument of `facet_wrap()` is a formula, which you create with `~` followed by a variable name. The variable that you pass to `facet_wrap()` should be categorical.
+For categorical variables, splitting your plot into **facets** creates subplots that each display one subset of the data. The variable you facet by should be categorical.
 
 ### Exercise 6
 
-Provide the AI with your current code.
+If using a chat AI, share your current code.
 
-Ask AI: Continue the code by assigning the plot to the variable `line_graph`, and then save `line_graph` with `ggsave()`.
+Ask AI: Continue the code by assigning the plot to the variable `line_graph`, and then save it to a file.
 
-Update your code in `analysis.qmd`. Place your cursor on the first line of this code and press `Cmd/Ctrl + Enter` to run each line in the R Terminal — since `Cmd/Ctrl + Enter` runs one line at a time, press it repeatedly until both the plot creation code and `ggsave()` are executed.
+Update your code in `analysis.qmd`. Place your cursor on the first line of this code and press `Cmd/Ctrl + Enter` to run each line in the R Terminal — since `Cmd/Ctrl + Enter` runs one line at a time, press it repeatedly until both the plot creation code and the save command are executed.
 
 CP/CR.
 
@@ -429,13 +431,13 @@ line_graph <- billboard |>
 
 ###
 
-This creates the plot object `line_graph` which you can view by typing its name in the R Terminal. You can use `ggsave(filename = "billboard_tracks.png", plot = line_graph)` to save the image as a PNG file.
+This creates the plot object `line_graph` which you can view by typing its name in the R Terminal. **ggplot2** can save it as a PNG, PDF, or other image format.
 
 ### Exercise 7
 
-In a new prompt for AI, provide a tibble of `billboard` again.
+If using a chat AI, start a new conversation and share a few rows of `billboard` from the R Terminal.
 
-Ask AI: Create a simple graph with boxplots showing the distribution of ranks of 3 songs, mainly using the functions `ggplot()`, `aes()`, and `geom_boxplot()`. 
+Ask AI: Create a box plot showing the distribution of ranks of 3 songs.
 
 Copy and paste the AI generated code into a new code chunk with your QMD. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
 
@@ -471,9 +473,9 @@ To visualize the relationship between a numerical and a categorical variable, we
 
 ### Exercise 8
 
-In a new prompt for AI, provide a tibble of `billboard` again.
+If using a chat AI, start a new conversation and share a few rows of `billboard` from the R Terminal.
 
-Ask AI: Create a simple bar graph with bars showing the count of weeks 3 songs were ranked in the top 100, mainly using the functions `ggplot()`, `aes()`, and `geom_bar()`. 
+Ask AI: Create a bar chart showing the count of weeks 3 songs were ranked in the top 100.
 
 Copy and paste the AI generated code into a new code chunk with your QMD. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
 
@@ -508,13 +510,13 @@ billboard |>
 
 ###
 
-`geom_bar()` makes the height of the bar proportional to the number of cases in each group. If you want the heights of the bars to represent values in the data, use `geom_col()` instead. `geom_bar()` uses `stat_count()` by default: it counts the number of cases at each x position. `geom_col()` uses `stat_identity()`: it leaves the data as is.
+**ggplot2** bar charts come in two flavors: one where the bar height is automatically counted from the data, and one where the bar height represents a value already in the data. Make sure to tell AI which you want.
 
 ### Exercise 9
 
 Now, we'll move on to functions from the **dplyr** package.
 
-In a new prompt for AI, provide a tibble of `billboard` again.
+If using a chat AI, start a new conversation and share a few rows of `billboard` from the R Terminal.
 
 Ask AI: Create a pipe with `billboard` to filter for the rows where the values in `wk1` are less than 101. Continue the pipe to arrange the rows by `wk1` rank values.
 
@@ -547,7 +549,7 @@ billboard |>
 
 Ask AI: Continue the pipe to create a new column titled `improvement` that contains the difference between `wk1` and `wk2` rankings, and place it after the `wk2` column.
 
-If you're using a different AI, provide the `billboard` tibble again and the previous code.
+If you're using a chat AI, provide the `billboard` tibble again and the previous code.
 
 Copy and paste the AI generated code in the place to continue the previous code. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
 
@@ -579,7 +581,7 @@ billboard |>
 
 Ask AI: Continue the pipe to select the columns `artist` through `improvement`.
 
-If you're using a different AI, provide the `billboard` tibble again and the previous code.
+If you're using a chat AI, provide the `billboard` tibble again and the previous code.
 
 Copy and paste the AI generated code in the place to continue the previous code. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
 
@@ -614,7 +616,7 @@ billboard |>
 
 Ask AI: Continue the pipe to rename the columns `wk1` and `wk2` to be `week1` and `week2` respectively.
 
-If you're using a different AI, provide the `billboard` tibble again and the previous code.
+If you're using a chat AI, provide the `billboard` tibble again and the previous code.
 
 Copy and paste the AI generated code in the place to continue the previous code. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
 
@@ -742,7 +744,7 @@ billboard_clean
 
 ### Exercise 16
 
-Ask AI: Generate R code that uses `billboard_clean` to plot a basic graph showing a histogram for `improvement`. Mention you want to use the data from `billboard_clean` and copy/paste the `billboard_clean` you ran in the R Terminal with the resulting tibble. You only need the top 3 lines, mainly to include column names.
+Ask AI: Generate R code that uses `billboard_clean` to plot a basic graph showing a histogram for `improvement`. If using a chat AI, copy/paste a few rows of `billboard_clean` from the R Terminal to give it context. In-environment agents can access the data directly.
 
 Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. Run `Cmd/Ctrl + Shift + K` to ensure that everything works. 
 
@@ -785,7 +787,7 @@ A histogram divides the x-axis into equally spaced bins and then uses the height
 
 ### Exercise 17
 
-Ask AI: Continue the code for the plot with `theme()` in order to make the plot look nice. Make the `title` and `subtitle` fit on the graph. If necessary, manually edit the sizes. Place this code as a continuation of the graph code, in the end the chunk should just have the final graph. Run `Cmd/Ctrl + Shift + K` to ensure that everything works. 
+Ask AI: Continue the code to style the plot's appearance so the title and subtitle fit on the graph. If necessary, manually edit the sizes. Place this code as a continuation of the graph code; in the end the chunk should just have the final graph. Run `Cmd/Ctrl + Shift + K` to ensure that everything works.
 
 In the R Terminal, run:
 
@@ -903,7 +905,7 @@ When you run `read_csv()`, it prints information about the rows, columns, and da
 
 ### Exercise 3
 
-Provide AI with the line of code from the question above, as well as the tibble of data.
+If using a chat AI, share the code from above and the `music.csv` tibble from the R Terminal.
 
 Ask AI: Edit the code so that the `read_csv()` skips the first 5 lines. Continue the code so that the `read_csv()` will also not read the first row as headings.
 
@@ -936,9 +938,9 @@ The argument `skip` is used to skip rows, but to skip columns, you can use the `
 
 <!-- AR: no longer skip 5 lines here -->
 
-Ask AI: Edit the code so that the `read_csv()` is assigned to an object `df` and `read_csv()` is told with `col_types` that the column type of `artist.familiarity` is a double. Then run `problems(df)` to check for parsing failures.
+Ask AI: Edit the code so that `read_csv()` is assigned to an object `df` and told that the column type of `artist.familiarity` is a double. Then check `df` for any parsing failures.
 
-If you're using a different AI, provide the `music.csv` tibble again and the previous code.
+If you're using a chat AI, provide the `music.csv` tibble again and the previous code.
 
 Copy and paste the AI generated code in the place to edit the previous code. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
 
@@ -976,9 +978,9 @@ CSV files don't specify data types, so **readr** automatically guesses whether c
 
 Now delete `df` along with the code. The chunk should be empty.
 
-Ask AI: Edit the code `read_csv("data/music.csv")` so that the `read_csv()` only selects the columns `artist.familiarity`, `artist.hotttnesss`, and `artist.id` with `cols_only()`, and then overrides the column type to be a string.
+Ask AI: Edit the code `read_csv("data/music.csv")` so that it only reads the columns `artist.familiarity`, `artist.hotttnesss`, and `artist.id`, overriding their types to be strings.
 
-If you're using a different AI, provide the `music.csv` tibble again and the previous code.
+If you're using a chat AI, provide the `music.csv` tibble again and the previous code.
 
 Copy and paste the AI generated code into the empty chunk. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
 
@@ -1010,13 +1012,11 @@ read_csv(
 
 ###
 
-The **readr** package provides column type functions like `col_character()`, `col_double()`, `col_integer()`, and `col_logical()` to control data import. Use these when readr guesses incorrectly or you need specific types.
-
-The [help page](https://readr.tidyverse.org/reference/cols.html) for `cols()` includes more details and discussion.
+**readr** lets you specify the type of each column — text, numeric, integer, logical — when importing data. This is useful when **readr** guesses incorrectly or when you need to enforce specific types.
 
 ### Exercise 6
 
-Assign this code to the object `music_1`. Then, provide AI with a tibble of `music_1`.
+Assign this code to the object `music_1`. If using a chat AI, share a few rows of `music_1` from the R Terminal.
 
 Ask AI: Based on the `music_1` tibble previously provided, create a similar tibble with only 3 rows of data using `tibble()`, and with the same 3 columns. Don't assign the tibble to an object.
 
@@ -1047,13 +1047,13 @@ tibble(
 
 ###
 
-Sometimes you’ll need to assemble a tibble “by hand,” doing a little data entry in your R script. There are two useful functions that differ in whether you lay out the tibble by columns [`tibble()`](https://tibble.tidyverse.org/reference/tibble.html) or by rows [`tribble()`](https://tibble.tidyverse.org/reference/tribble.html).
+Sometimes you’ll need to assemble a tibble “by hand,” doing a little data entry in your R script. **tibble** provides two ways to do this: laying out the data column by column, or row by row.
 
 ### Exercise 7
 
 Ask AI: Continue the previous code with the new tibble so that it is fed through a pipe and is written into a new CSV file titled `music_fake.csv` within the `data` directory.
 
-If you're using a different AI, provide the previous code.
+If you're using a chat AI, provide the previous code.
 
 Manually, using the same command, do the same for the `music_1` tibble.
 
@@ -1085,13 +1085,13 @@ write_csv(music_1, "data/music_1.csv")
 
 ###
 
-**readr** also comes with two useful functions for writing data back to disk: `write_csv()` and `write_tsv()`. The most important arguments to these functions are `x` (the data frame or tibble to write) and `file` (the location to write it to). You can also specify how missing values are written with `na`, and if you want to `append` to an existing file.
+**readr** can also write data back to disk as CSV or TSV files. You can control how missing values are written and whether to append to an existing file.
 
 ### Exercise 8
 
 Ask AI: Creating a vector of both CSV files, use `read_csv()` to read both CSV files `"music_1.csv"` and `"music_fake.csv"` and create a new column showing the file that the data comes from with the argument `id`. Don't assign the combined data frame to an object.
 
-If you're using a different AI, provide the `music.csv` tibble again and the previous code.
+If you're using a chat AI, provide the `music.csv` tibble again and the previous code.
 
 Copy and paste the AI generated code in the place following the previous code. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
 
@@ -1126,7 +1126,7 @@ We will now learn how to make our data tidy.
 
 ### Exercise 9
 
-We are returning to our previous data frame `billboard`. Within your AI, copy/paste the first 3 rows of the tibble to remind it of what we are now working with.
+We are returning to our previous data frame `billboard`. If using a chat AI, share a few rows of `billboard` from the R Terminal to remind it of what we are working with.
 
 Ask AI: Using the `billboard` tibble, create a pipe to change the columns starting with `wk` to all go in a single column titled `week`, and another column titled `rank` with all the values from the `wk` columns.
 
@@ -1171,7 +1171,7 @@ There are three key arguments:
 
 Ask AI: Continue the previous code so that NA values are dropped, and the pipe continues so that the number within the week column is parsed.
 
-If you're using a different AI, provide the `billboard` tibble again and the previous code.
+If you're using a chat AI, provide the `billboard` tibble again and the previous code.
 
 Copy and paste the AI generated code to continue the previous code. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
 
@@ -1203,13 +1203,13 @@ billboard |>
 
 ###
 
-This data is now tidy as NA values are removed, but we could make future computation a bit easier by converting values of week from character strings to numbers using `mutate()` and `readr::parse_number()`. `parse_number()` is a handy function that will extract the first number from a string, ignoring all other text.
+This data is now tidy as NA values are removed, but we could make future computation a bit easier by converting values of week from character strings to numbers using `mutate()`. **readr** has a helpful tool that extracts the first number from a string, ignoring all other text.
 
 ### Exercise 11
 
 In the R Terminal, type `household` and press `Enter`. The result should be a tibble that is a part of **tidyverse**.
 
-Provide AI with the first 3 lines of the `household` tibble.
+If using a chat AI, share the first 3 lines of the `household` tibble from the R Terminal.
 
 Ask AI: Using the `household` tibble, create code that changes the columns so that there are only 4 columns, `family`, `child`, `dob`, and `name`.
 
@@ -1346,7 +1346,7 @@ Most real-world data is untidy because it's often organized for data entry rathe
 
 ### Exercise 15
 
-Ask AI to generate R code that uses `billboard_longer` to plot a basic graph showing the Billboard rank of each track over the weeks after they were released. Mention you want to use the data from `billboard_longer` and copy/paste the `billboard_longer` you ran in the R Terminal with the resulting tibble. You only need the top 3 lines, mainly to include column names.
+Ask AI to generate R code that uses `billboard_longer` to plot a basic graph showing the Billboard rank of each track over the weeks after they were released. If using a chat AI, copy/paste a few rows of `billboard_longer` from the R Terminal to give it context. In-environment agents can access the data directly.
 
 Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. Run `Cmd/Ctrl + Shift + K` to ensure that everything works. Make your plot look nice.
 
