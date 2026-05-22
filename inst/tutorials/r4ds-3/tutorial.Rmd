@@ -67,9 +67,9 @@ departure_data <- data |>
 
 This section covers key concepts from [Chapter 13: Numbers](https://r4ds.hadley.nz/numbers.html), [Chapter 14: Strings](https://r4ds.hadley.nz/strings.html), [Chapter 15: Regular Expressions](https://r4ds.hadley.nz/regexps.html), [Chapter 12: Logical Vectors](https://r4ds.hadley.nz/logicals.html), and [Chapter 21: Databases](https://r4ds.hadley.nz/databases.html) from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
-You will learn about working with numeric data and text patterns using core *Tidyverse* packages like **readr**, **dplyr**, and **stringr**, as well as database interaction using **dbplyr**. Important functions include: [parse_number()](https://readr.tidyverse.org/reference/parse_number.html), [is.na()](https://rdrr.io/r/base/NA.html), [str_detect()](https://stringr.tidyverse.org/reference/str_detect.html), [pmax()](https://rdrr.io/r/base/Extremes.html), [`str_c()`](https://stringr.tidyverse.org/reference/str_c.html), [`str_flatten()`](https://stringr.tidyverse.org/reference/str_flatten.html), [`dbWriteTable()`](https://rdrr.io/cran/DBI/man/dbWriteTable.html), and [`dbConnect()`](https://rdrr.io/cran/DBI/man/dbConnect.html). 
+You will learn about working with numeric data and text patterns using core *Tidyverse* packages like **readr**, **dplyr**, and **stringr**, as well as database interaction using **dbplyr**. Key concepts include extracting numbers from strings, detecting text patterns, computing parallel maxima across vectors, concatenating and flattening strings, and connecting to databases.
 
-You will also explore logical operations with `if_else()`, and concepts like integer division and modulo. This knowledge will help you manipulate numbers, strings, logical vectors, and connect with DuckDB databases using SQL from within R.
+You will also explore logical operations and concepts like integer division and modulo. This knowledge will help you manipulate numbers, strings, logical vectors, and connect with DuckDB databases using SQL from within R.
 
 We recommend using an in-environment AI agent such as [Gemini CLI](https://github.com/google-gemini/gemini-cli) or [Claude Code](https://claude.ai/code); instructions are written with these tools in mind. You may also use a chat-based AI, but you will need to copy/paste code and data context manually.
 
@@ -209,17 +209,13 @@ Your answer should look something like this, although your path will be differen
 
 In this section we are going to focus on generating code to create a graph based on a database called `nameby_year.duckdb`. The data in this database comes from `babynames`, which is a dataset that contains names used for American babies from 1880 to 2017. If you want to explore related data, checkout [popular baby names](https://www.ssa.gov/oact/babynames/limits.html). We will be using AI to generate the code for us and then we will break down the functions within the code and how they work.
 
-Key functions you'll learn:
+Key **DBI** and **dbplyr** concepts you'll use:
 
-`DBI::dbConnect()` - Creates a connection to a database
-
-`dbReadTable()` - Reads a complete table from a database into a data frame
-
-`as_tibble()` - Converts data frames to tibbles for better printing and consistency
-
-`tbl()` - Creates a lazy reference to a database table for use with dbplyr
-
-`dbGetQuery()` - Executes a SQL query and returns the results as a data frame
+- Connecting to a database file and opening a named connection
+- Reading a complete table from a database into a data frame
+- Converting data frames to tibbles for better printing and consistency
+- Creating a lazy reference to a database table so **dplyr** code translates to SQL
+- Executing a raw SQL query and returning the results as a data frame
 
 
 ### Exercise 1
@@ -709,17 +705,14 @@ Creating categorical variables like `length_class` transforms continuous data (n
 
 This section covers key concepts from [Chapter 13: Numbers](https://r4ds.hadley.nz/numbers.html) and [Chapter 15: Regular Expressions](https://r4ds.hadley.nz/regexps.html) from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. You will learn about some of the power of working with numeric data and text patterns using core Tidyverse packages: readr, dplyr, and stringr. 
 
-Key functions you'll learn: 
+Key **readr**, **stringr**, and base R concepts you'll use:
 
-[`parse_number()`](https://readr.tidyverse.org/reference/parse_number.html) - Parses the first number it finds
+- Extracting the first number from a string, ignoring surrounding text
+- Checking which values in a vector are missing
+- Detecting whether a text pattern appears in each element of a string column
+- Computing the element-wise maximum across two vectors (e.g., flooring negative values at zero)
 
-[`is.na()`](https://rdrr.io/r/base/NA.html) - Indicates which elements are missing
-
-[`str_detect()`](https://stringr.tidyverse.org/reference/str_detect.html) - Returns a logical vector with TRUE for each element of string that matches pattern
-
-[`pmax()`](https://rdrr.io/r/base/Extremes.html) - return a single vector giving the maxima of the argument vectors
-
-We will also learn about integer division and moduluo.
+We will also learn about integer division and modulo.
 
 In this section we are going to focus on generating code to create a graph based on a dataset called `nycflights13`. The `nycflights13` is a dataset which contains information about all flights departing from New York City airports in 2013. We will be using AI to generate the code for us and then we will break down the functions within the code and how they work. 
 
@@ -1024,11 +1017,9 @@ departure_data |>
 ### 
 Delete this code cell. 
 
-Since `str_detect()` returns a logical vector of the same length as the initial vector, it pairs well with `filter()` There are two functions that are closely related to `str_detect()`:\
-\* `str_subset()` returns a character vector containing only the strings that match. 
-\* `str_which()` returns an integer vector giving the positions of the strings that match.
+**stringr**'s pattern detection returns a logical vector of the same length as the input, which pairs well with `filter()`. Two related operations in **stringr** are: returning only the strings that match (subsetting), and returning the positions of matching strings (indexing).
 
-Also, `n_distinct(x)` counts the number of distinct (unique) values of one or more variables. It is part of the same family of functions as `count()` and `n()`.
+Also, **dplyr** can count the number of distinct (unique) values of one or more variables, related to the same family of operations as `count()`.
 
 ### Exercise 10
 
@@ -1104,7 +1095,7 @@ departure_data |>
 
 ### 
 
-Note that these are different to the summary functions `min()` and `max()` which take multiple observations and return a single value. You can tell that you’ve used the wrong form when all the minimums and all the maximums have the same value.
+Note that computing the element-wise maximum across vectors is different from summary functions that collapse multiple observations into a single value. You can tell you’ve used the wrong form when all the minimums and all the maximums have the same value.
 
 ### Exercise 12
 
@@ -1211,7 +1202,7 @@ In the next exercise, you will see a crosstabulation structure - with two groupi
 
 ### Exercise 15
 
-Ask AI to generate R code that creates a beautiful heatmap using `geom_tile()`. (You can make a different plot than a heatmap, if you like.) The plot must make sense. It must be something which tells us about the world. It can't just be nonsense. You need to look at the output.
+Ask AI to generate R code that creates a beautiful heatmap. (You can make a different plot than a heatmap, if you like.) The plot must make sense. It must be something which tells us about the world. It can't just be nonsense. You need to look at the output.
 
 Within `labs()` edit or add a proper title, subtitle, and caption. If axis labels are appropriate, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Add this code to a new code cell. Run `Cmd/Ctrl + Shift + K`.
 
@@ -1265,7 +1256,7 @@ Once you map an aesthetic, **ggplot2** takes care of the rest. It selects a reas
 
 This tutorial covered [Chapter 12: Logical vectors](https://r4ds.hadley.nz/logicals.html), [Chapter 13: Numbers](https://r4ds.hadley.nz/numbers.html), [Chapter 14: Strings](https://r4ds.hadley.nz/strings.html), [Chapter 15: Regular expressions](https://r4ds.hadley.nz/regexps.html), and [Chapter 16: Factors](https://r4ds.hadley.nz/factors.html), from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
-You learned about how to work with numbers using commands such as [`pmin()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Extremes.html) with the **nycflights13** package.
+You learned how to work with numbers, strings, and logical vectors using **readr**, **stringr**, and **dplyr**, and how to query databases using **DBI** and **dbplyr**.
 
 You learned about some of the power of the [**stringr**](https://stringr.tidyverse.org/) package: how to create, combine, and extract strings with the **babynames** package.
 

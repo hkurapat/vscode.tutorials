@@ -46,7 +46,7 @@ wine_tibble <- read_excel("data/wine.xlsx")|>
 
 This section covers key concepts from [Chapter 9: Layers](https://r4ds.hadley.nz/layers.html), [Chapter 10: Exploratory Data Analysis](https://r4ds.hadley.nz/eda.html), [Chapter 11: Communication](https://r4ds.hadley.nz/communication.html), and [Chapter 20: Spreadsheets](https://r4ds.hadley.nz/spreadsheets.html) from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
-You will learn about working with categorical and continuous variables using different types of variation and exploratory data analysis using core packages such as **[readxl](https://readxl.tidyverse.org/)**, **[dbplyr](https://dbplyr.tidyverse.org/)**, and **[ggplot2](https://ggplot2.tidyverse.org/)**. Important functions include: [`facet_wrap()`](https://ggplot2.tidyverse.org/reference/facet_wrap.html), [`coord_flip()`](https://ggplot2.tidyverse.org/reference/coord_flip.html), and  [`geom_jitter()`](https://ggplot2.tidyverse.org/reference/geom_jitter.html).
+You will learn about working with categorical and continuous variables using different types of variation and exploratory data analysis using core packages such as **[readxl](https://readxl.tidyverse.org/)**, **[dbplyr](https://dbplyr.tidyverse.org/)**, and **[ggplot2](https://ggplot2.tidyverse.org/)**. Key **ggplot2** techniques include faceting plots into panels, flipping axes, and adding jitter to avoid overplotting.
 
 We recommend using an in-environment AI agent such as [Gemini CLI](https://github.com/google-gemini/gemini-cli) or [Claude Code](https://claude.ai/code), which can read and edit your files directly. Instructions are written with these tools in mind. You may also use a chat-based AI, but you will need to copy/paste code and data context manually.
 
@@ -270,9 +270,9 @@ read_excel("data/cheeses.xlsx") |>
 ###
 By default, bars are stacked using the position adjustment specified by the position argument.
 
-* `position = "dodge"` places overlapping objects directly beside one another.
-* `position = "fill"` makes each set of stacked bars the same height.
-* `position = "identity"` places each object exactly where it falls, overlapping bars.
+* **Dodge** places overlapping objects directly beside one another.
+* **Fill** makes each set of stacked bars the same height, showing proportions.
+* **Identity** places each object exactly where it falls in the data, allowing overlap.
 
 ### Exercise 4
 
@@ -363,7 +363,7 @@ Many graphs plot raw values, while others calculate new values first.
 
 ### Exercise 6
 
-Ask AI to change the pipe so that it makes a grouped bar chart using `geom_col()` with `position = "dodge"` to separate bars by country. If using a chat AI, also share your current pipe for context. Add this code as a replacement of your current code in the same code chunk in your QMD. Place your cursor at the beginning of the line where it says `read_excel("data/cheeses.xlsx") |> ` and run `Cmd/Ctrl + Enter`.
+Ask AI to change the pipe so that it makes a grouped bar chart with bars side by side, separated by country. If using a chat AI, also share your current pipe for context. Add this code as a replacement of your current code in the same code chunk in your QMD. Place your cursor at the beginning of the line where it says `read_excel("data/cheeses.xlsx") |> ` and run `Cmd/Ctrl + Enter`.
 
 CP/CR.
 
@@ -403,13 +403,13 @@ read_excel("data/cheeses.xlsx") |>
 
 ###
 
-Dodging preserves the vertical position of an geom while adjusting the horizontal position. `position_dodge()` requires the grouping variable to be be specified in the global or `geom_*` layer. 
+Dodging preserves the vertical position of a geom while adjusting the horizontal position. The grouping variable must be specified in the global or geometry layer for dodging to work correctly.
 
 ### Exercise 7
 
 The `milk` types on the x-axis are barely readable and it's hard to tell the count of each bar. 
 
-Fix this by asking AI to use our pipe from the last exercise and add `geom_text()` to display the count values on top of each bar and use `position_dodge()` in `geom_text()` to align the text with the bars. Within `theme()` change the x-axis text to be angled at 45 degrees using `element_text`.
+Fix this by asking AI to use our pipe from the last exercise and display count values on top of each bar, aligning the text with the dodged bars, and angle the x-axis labels at 45 degrees.
 
  Add this code as a replacement of your current code in the same code chunk in your QMD. Place your cursor at the beginning of the line where it says `read_excel("data/cheeses.xlsx") |> ` and run `Cmd/Ctrl + Enter`.
 
@@ -455,11 +455,11 @@ read_excel("data/cheeses.xlsx") |>
 
 ###
 
-Another handy function for adding annotations to plots is `annotate()`. As a rule of thumb, geoms are generally useful for highlighting a subset of the data while `annotate()` is useful for adding one or few annotation elements to a plot.
+**ggplot2** supports adding annotations directly to plots. As a rule of thumb, geometry layers are generally useful for highlighting a subset of the data while annotations are useful for adding one or a few fixed elements to a plot.
 
 ### Exercise 8
 
-Make another plot by asking AI how to add a layer to our pipe so that our plot is faceted using `facet_wrap` that shows the number of cheeses by milk type using the columns `milk` and `n` and map the `fill` to `milk`. 
+Make another plot by asking AI how to add a faceting layer to our pipe that splits the plot into panels showing the number of cheeses by milk type, using the columns `milk` and `n`, and mapping the fill color to `milk`.
 
 Add this code as a replacement to your current code chunk in the same QMD. Place your cursor at the beginning of the line where it says `read_ excel` and run `Cmd/Ctrl + Enter`.
 
@@ -506,10 +506,10 @@ read_excel("data/cheeses.xlsx") |>
 
 ###
 
-To facet your plot by a single variable, use `facet_wrap()`. The first argument of `facet_wrap()` is a formula, which you create with `~` followed by a variable name. The variable that you pass to `facet_wrap()` should be categorical, i.e., either character or factor.
+**Faceting** splits a plot into panels, one per level of a variable. The variable used for faceting should be categorical (character or factor), since each level becomes its own panel.
 
 ### Exercise 9
-Ask AI to delete the `facet_wrap()` and continue the pipe by adding `coord_flip()` and use `show.legend = FALSE` so that there is no legend. Add this code as a continuation of your pipe to the same chunk in your QMD. Place your cursor at the beginning of the line where it says `cheese_tibble|> ` and run `Cmd/Ctrl + Enter`.
+Ask AI to delete the faceting layer and continue the pipe by flipping the axes and hiding the legend. Add this code as a continuation of your pipe to the same chunk in your QMD. Place your cursor at the beginning of the line where it says `cheese_tibble|> ` and run `Cmd/Ctrl + Enter`.
 
 CP/CR.
 
@@ -554,13 +554,13 @@ read_excel("data/cheeses.xlsx") |>
 
 ###
 
-The function, `coord_cartesian()`, also has an `xlim` argument for when you need to zoom into the x-axis. **ggplot2** also has `xlim()` and `ylim()` functions that work slightly differently: they throw away the data outside the limits. 
+**ggplot2** supports zooming into a plot without discarding data, which preserves things like smoothing lines that depend on the full dataset. It also supports setting hard axis limits that drop data outside the range entirely — a different behavior worth knowing.
 
 ### Exercise 10
 
 This plot is good, but it's difficult to see the tiny slivers of data because of the stacking. 
 
-Ask AI to change the pipe so that the plot is polar using `coord_polar()` and does not display the count of each column anymore. If using a chat AI, also share your current pipe for context. Add this code as a replacement of your current code in the same code chunk in your QMD. Place your cursor at the beginning of the line where it says `read_excel("data/cheeses.xlsx") |> ` and run `Cmd/Ctrl + Enter`.
+Ask AI to change the pipe so that the plot uses a polar/circular layout and does not display the count of each bar anymore. If using a chat AI, also share your current pipe for context. Add this code as a replacement of your current code in the same code chunk in your QMD. Place your cursor at the beginning of the line where it says `read_excel("data/cheeses.xlsx") |> ` and run `Cmd/Ctrl + Enter`.
 
 CP/CR.
 
@@ -605,7 +605,7 @@ read_excel("data/cheeses.xlsx") |>
 
 ### Exercise 11
 
-Ask AI to change the code so that `theta` is set to `y` within `coord_polar()`. This makes the plot look like a donut plot rather than a pie chart. Add this code as a replacement of your current code in the same code chunk in your QMD. Place your cursor at the beginning of the line where it says `read_excel("data/cheeses.xlsx") |> ` and run `Cmd/Ctrl + Enter`.
+Ask AI to change the code so that the polar layout maps the angle to the y-axis instead, turning the pie chart into a donut chart. Add this code as a replacement of your current code in the same code chunk in your QMD. Place your cursor at the beginning of the line where it says `read_excel("data/cheeses.xlsx") |> ` and run `Cmd/Ctrl + Enter`.
 
 CP/CR.
 
@@ -1057,7 +1057,7 @@ Adding randomness seems like a strange way to improve your plot, but while it ma
 
 ### Exercise 8
 
-Ask AI to continue the plot using `geom_smooth()` to make a smooth line fitted to the data. Set the `method` argument to `lm`. Add this code as a continuation of your pipe to the same chunk in your QMD.  Place your cursor on the first line of the code in your current code chunk at the start of `read_excel("data/wine.xlsx")` and run `Cmd/Ctrl + Enter`.
+Ask AI to continue the plot by adding a linear trend line fitted to the data. Add this code as a continuation of your pipe to the same chunk in your QMD.  Place your cursor on the first line of the code in your current code chunk at the start of `read_excel("data/wine.xlsx")` and run `Cmd/Ctrl + Enter`.
 
 CP/CR.
 
@@ -1084,13 +1084,13 @@ read_excel("data/wine.xlsx")|>
 
 ###
 
-`geom_smooth(method = "lm")` fits a linear regression line to the data.
+A **linear trend line** fits a straight regression line to the data, assuming a constant rate of change.
 
-`geom_smooth(method = "loes")` fits a smooth curve by locally weighting points, capturing complex nonlinear patterns without assuming a specific form.
+A **LOESS curve** fits a smooth curve by locally weighting nearby points, capturing complex nonlinear patterns without assuming a specific form.
 
 ### Exercise 9
 
-Ask AI to set the `method` argument to `loess` for `geom_smooth()`. Add this code as a replacement of `method = "lm"` to the same chunk in your QMD. Place your cursor on the first line of the code in your current code chunk at the start of `read_excel("data/wine.xlsx")` and run `Cmd/Ctrl + Enter`.
+Ask AI to change the trend line from linear to a curved LOESS fit. Add this code as a replacement to the same chunk in your QMD. Place your cursor on the first line of the code in your current code chunk at the start of `read_excel("data/wine.xlsx")` and run `Cmd/Ctrl + Enter`.
 
 CP/CR.
 
@@ -1121,7 +1121,7 @@ The `se`, which stands for "standard error," determines whether or not error bar
 
 ### Exercise 10
 
- Ask AI to add a color scale using green and red to make the points of the plot have higher contrast using `scale_color_gradient`. Tell AI to set one of your colors as `low` and the other as `high`. Add this code as a continuation of your pipe to the same chunk in your QMD.  Place your cursor on the first line of the code in your current code chunk at the start of `read_excel("data/wine.xlsx")` and run `Cmd/Ctrl + Enter`.
+Ask AI to add a green-to-red color gradient scale to the points for higher contrast. Add this code as a continuation of your pipe to the same chunk in your QMD.  Place your cursor on the first line of the code in your current code chunk at the start of `read_excel("data/wine.xlsx")` and run `Cmd/Ctrl + Enter`.
 
 CP/CR.
 
@@ -1346,14 +1346,14 @@ wine_tibble |>
 ```
 
 ###
-Beyond `geom_text()` and `geom_label()`, **ggplot2** offers many annotation geoms like `geom_hline()` and `geom_vline()` for reference lines. These are often made thick and white (`linewidth = 2`, `color = "white"`) and drawn underneath the primary data layer to remain visible without distracting from the data.
+**ggplot2** offers many annotation options beyond text labels, including horizontal and vertical reference lines. These are often made thick and white and drawn underneath the primary data layer to remain visible without distracting from the data.
 
 ## Summary
 ###
 
 This section covered key concepts from [Chapter 9: Layers](https://r4ds.hadley.nz/layers.html), [Chapter 10: Exploratory Data Analysis](https://r4ds.hadley.nz/eda.html), [Chapter 11: Communication](https://r4ds.hadley.nz/communication.html), and [Chapter 20: Spreadsheets](https://r4ds.hadley.nz/spreadsheets.html) from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
-You learned about working with categorical and continuous variables using different types of variation and exploratory data analysis with core packages such as **[readxl](https://readxl.tidyverse.org/)**, **[dbplyr](https://dbplyr.tidyverse.org/)**, and **[ggplot2](https://ggplot2.tidyverse.org/)**. Important functions included: [`facet_wrap()`](https://ggplot2.tidyverse.org/reference/facet_wrap.html), [`coord_flip()`](https://ggplot2.tidyverse.org/reference/coord_flip.html), and [`geom_jitter()`](https://ggplot2.tidyverse.org/reference/geom_jitter.html).
+You learned about working with categorical and continuous variables using different types of variation and exploratory data analysis with core packages such as **[readxl](https://readxl.tidyverse.org/)**, **[dbplyr](https://dbplyr.tidyverse.org/)**, and **[ggplot2](https://ggplot2.tidyverse.org/)**. Key **ggplot2** techniques included faceting plots into panels, flipping axes, and adding jitter to avoid overplotting.
 
 ### Exercise 1
 
