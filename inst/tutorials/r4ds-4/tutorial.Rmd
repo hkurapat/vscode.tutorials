@@ -427,7 +427,7 @@ This tibble shows that the largest number of NBA games occur on Friday and Wedne
 
 ### Exercise 4
 
-Paste our pipe into AI and ask AI to change our pipe so that it selects the columns for home and away stats (`reb_home, reb_away, fg3m_home, fg3m_away, stl_home, stl_away, blk_home, blk_away`), then calculates how many missing values each column has. Then, reshape the results with `pivot_longer()` into `column/missing_count` format, add a column for total rows (65,698) and missing percentage, and finally arrange in descending order of missing percentage.
+Ask AI to change our pipe so that it selects the columns for home and away stats (`reb_home, reb_away, fg3m_home, fg3m_away, stl_home, stl_away, blk_home, blk_away`), then calculates how many missing values each column has. Then, reshape the results with `pivot_longer()` into `column/missing_count` format, add a column for total rows (65,698) and missing percentage, and finally arrange in descending order of missing percentage.
 
 Add this code as a replacement to your current code in the same code chunk in the same QMD.
 
@@ -1066,7 +1066,7 @@ A **right join** keeps all observations in `y` Every row of y is preserved in th
 
 ### Exercise 17
 
-Ask AI to generate R code that uses `nba_clean` to create an interesting plot. Include the top 3 rows of the tibble --- just enough to show the column names. 
+Ask AI to generate R code that uses `nba_clean` to create an interesting plot.
 
 Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. Run `Cmd/Ctrl + Shift + K` to ensure that everything works. Make your plot look nice.
 
@@ -1886,7 +1886,7 @@ You can recognize ordered factors when printing because they use `<` between the
 
 ### Exercise 19
 
-Ask AI to use the `final_fifa` dataset to generate an interesting chart. Include the top 3 rows of the tibble (just enough to show the column names). Deal with any warnings or messages in a sensible fashion.
+Ask AI to use the `final_fifa` dataset to generate an interesting chart. Deal with any warnings or messages in a sensible fashion.
 
 Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. Run `Cmd/Ctrl + Shift + K` to ensure that everything works. Make your plot look nice.
 

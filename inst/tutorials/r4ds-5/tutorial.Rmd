@@ -692,7 +692,7 @@ jsonlite::read_json("data/earthquakes.geojson") |>
  	filter(!if_any(c(properties_mag, longitude, latitude), is.na))
 ```
 
-Paste our pipe from Exercise 7 into AI and ask AI to continue our pipe and apply our `convert_earthquake_time()` and `categorize_magnitude()` functions to create datetime and magnitude category columns. Make sure to use `as.numeric()`.  Add this code to a new code chunk in the same QMD.
+Ask AI to continue our pipe and apply our `convert_earthquake_time()` and `categorize_magnitude()` functions to create datetime and magnitude category columns. Make sure to use `as.numeric()`.  Add this code to a new code chunk in the same QMD.
 
 Place your cursor at the beginning of the line where it says `jsonlite...` and run `Cmd/Ctrl + Enter`.
 
@@ -1205,7 +1205,7 @@ earthquake_df
 
 ### Exercise 20
 
-Ask AI to generate R code that uses the `earthquake_df` tibble to create an interactive map showing earthquakes in the U.S. Mention that you want to use the data from `earthquake_df` and include the top 3 rows (mainly to show column names). 
+Ask AI to generate R code that uses the `earthquake_df` tibble to create an interactive map showing earthquakes in the U.S.
 
 Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. Run `Cmd/Ctrl + Shift + K` to ensure that everything works. Make your plot look nice.
 
@@ -2097,7 +2097,7 @@ top_movies
 
 ### Exercise 18
 
-Ask AI to generate R code that uses `top_movies` to make an interesting plot. Show the AI the top 3 lines, so it knows the column names.
+Ask AI to generate R code that uses `top_movies` to make an interesting plot.
 
 Within `labs()`, edit or add a proper title, subtitle, and caption. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. Run `Cmd/Ctrl + Shift + K` to ensure that everything works. Make your plot look nice.
 
