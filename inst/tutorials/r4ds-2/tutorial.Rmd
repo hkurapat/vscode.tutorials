@@ -237,7 +237,7 @@ read_excel("data/cheeses.xlsx")
 
 ### Exercise 3
 
-Ask AI to give you code to make a stacked bar plot using `geom_bar()` to explore the relationship between countries and the milks they use to produce different cheeses by using the `country` and `milk` columns. Show the output from `read_excel("data/cheeses.xlsx")`. You only need the top 3 lines, mainly to include column names.
+Ask AI to give you code to make a stacked bar plot using `geom_bar()` to explore the relationship between countries and the milks they use to produce different cheeses by using the `country` and `milk` columns. If using a chat AI, paste a few rows of the data from the R Terminal. In-environment agents can read the file directly.
 
 Add this code as a replacement to your current code in the same code cell in your QMD. Run `Cmd/Ctrl + Enter`.
 
@@ -276,7 +276,7 @@ By default, bars are stacked using the position adjustment specified by the posi
 
 ### Exercise 4
 
-Our plot is crowded because it includes all countries and has many `NA`values. We need to identify the top 3 countries and then filter our data accordingly. Paste our prompt into your favorite AI to filter the top 3 countries in the data through a single pipe.
+Our plot is crowded because it includes all countries and has many `NA`values. We need to identify the top 3 countries and then filter our data accordingly. Use this prompt with your AI to filter the top 3 countries in the data through a single pipe.
 
 Here's the prompt we used: 
 
@@ -363,7 +363,7 @@ Many graphs plot raw values, while others calculate new values first.
 
 ### Exercise 6
 
-Paste our pipe from the last question and ask AI to change the pipe so that it makes a grouped bar chart using `geom_col()` with `position = "dodge"` to separate bars by country. Add this code as a replacement of your current code in the same code chunk in your QMD. Place your cursor at the beginning of the line where it says `read_excel("data/cheeses.xlsx") |> ` and run `Cmd/Ctrl + Enter`.
+Ask AI to change the pipe so that it makes a grouped bar chart using `geom_col()` with `position = "dodge"` to separate bars by country. If using a chat AI, also share your current pipe for context. Add this code as a replacement of your current code in the same code chunk in your QMD. Place your cursor at the beginning of the line where it says `read_excel("data/cheeses.xlsx") |> ` and run `Cmd/Ctrl + Enter`.
 
 CP/CR.
 
@@ -560,7 +560,7 @@ The function, `coord_cartesian()`, also has an `xlim` argument for when you need
 
 This plot is good, but it's difficult to see the tiny slivers of data because of the stacking. 
 
-Paste our pipe into AI and ask it to change our code so that the plot is polar using `coord_polar()` and does not display the count of each column anymore. Add this code as a replacement of your current code in the same code chunk in your QMD. Place your cursor at the beginning of the line where it says `read_excel("data/cheeses.xlsx") |> ` and run `Cmd/Ctrl + Enter`.
+Ask AI to change the pipe so that the plot is polar using `coord_polar()` and does not display the count of each column anymore. If using a chat AI, also share your current pipe for context. Add this code as a replacement of your current code in the same code chunk in your QMD. Place your cursor at the beginning of the line where it says `read_excel("data/cheeses.xlsx") |> ` and run `Cmd/Ctrl + Enter`.
 
 CP/CR.
 
@@ -1057,7 +1057,7 @@ Adding randomness seems like a strange way to improve your plot, but while it ma
 
 ### Exercise 8
 
-Ask the same AI to continue the plot using `geom_smooth()` to make a smooth line fitted to the data. Set the `method` argument to `lm`. Add this code as a continuation of your pipe to the same chunk in your QMD.  Place your cursor on the first line of the code in your current code chunk at the start of `read_excel("data/wine.xlsx")` and run `Cmd/Ctrl + Enter`.
+Ask AI to continue the plot using `geom_smooth()` to make a smooth line fitted to the data. Set the `method` argument to `lm`. Add this code as a continuation of your pipe to the same chunk in your QMD.  Place your cursor on the first line of the code in your current code chunk at the start of `read_excel("data/wine.xlsx")` and run `Cmd/Ctrl + Enter`.
 
 CP/CR.
 
@@ -1090,7 +1090,7 @@ read_excel("data/wine.xlsx")|>
 
 ### Exercise 9
 
-Ask the same AI to set the `method` argument to `loess` for `geom_smooth()`. Add this code as a replacement of `method = "lm"` to the same chunk in your QMD. Place your cursor on the first line of the code in your current code chunk at the start of `read_excel("data/wine.xlsx")` and run `Cmd/Ctrl + Enter`.
+Ask AI to set the `method` argument to `loess` for `geom_smooth()`. Add this code as a replacement of `method = "lm"` to the same chunk in your QMD. Place your cursor on the first line of the code in your current code chunk at the start of `read_excel("data/wine.xlsx")` and run `Cmd/Ctrl + Enter`.
 
 CP/CR.
 
@@ -1296,7 +1296,7 @@ Covariation is the tendency for the values of two or more variables to vary toge
 
 Ask AI to write R code to create a scatter plot form `wine_tibble` to explore the relationship of `Phenols` and `Flavanoids`, two categorical variables with a loess smoothing curve that shows the outlier.
 
-Copy and paste our specific prompt into the AI:
+Use this prompt:
 
 "Create a scatter plot from wine_tibble with Phenols vs Flavanoids, with color aesthetic mapped to Color. Include jittered points, a LOESS smooth curve, and label the maximum Flavanoids value as 'Outlier' in magenta. Use blue-to-orange color gradient and classic theme."
 
