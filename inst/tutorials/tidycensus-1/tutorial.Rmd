@@ -83,7 +83,13 @@ If you haven't already, open the `tidycensus-plots` repo on GitHub and create a 
 
 You need two R Terminals: one for running this tutorial and one for your exercises.
 
-Create a new Quarto Document and save it as `TexasIncome.qmd`. Add a YAML header at the top with a title (`"TexasIncome"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
+Create a new Quarto Document and save it as `TexasIncome.qmd`. Add a YAML header at the top with a title (`"TexasIncome"`) and your name as author. In a Bash terminal, run:
+
+```
+quarto render TexasIncome.qmd
+```
+
+Open `TexasIncome.html` in a browser by right-clicking it in the File Explorer and selecting **Open with Live Server**. Keep this tab open — it will refresh automatically whenever you re-render.
 
 Create a `.gitignore` file with `*_files` on the first line and then a blank line. Save and push.
 
@@ -120,7 +126,7 @@ library(tidycensus)
 library(sf)
 ```
 
-Render the file using `Cmd/Ctrl + Shift + K`.
+In a Bash terminal, run `quarto render TexasIncome.qmd`. Check your Live Server tab — it should refresh automatically.
 
 Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to the code chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
 
@@ -450,7 +456,13 @@ In this activity, we will use **ggplot2** to visualize educational attainment da
 
 ### 
 
-Create a new Quarto Document and save it as `CaliforniaBachelors.qmd`. Add a YAML header at the top with a title (`"CaliforniaBachelors"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
+Create a new Quarto Document and save it as `CaliforniaBachelors.qmd`. Add a YAML header at the top with a title (`"CaliforniaBachelors"`) and your name as author. In a Bash terminal, run:
+
+```
+quarto render CaliforniaBachelors.qmd
+```
+
+Open `CaliforniaBachelors.html` with Live Server and keep the tab open.
 
 In this exercise, we’ll get the percentage of adults with a bachelor’s degree or higher in each California county.
 
@@ -464,7 +476,7 @@ library(tidycensus)
 library(sf)
 ```
 
-Render the file using `Cmd/Ctrl + Shift + K`.
+In a Bash terminal, run `quarto render CaliforniaBachelors.qmd`. Check your Live Server tab — it should refresh automatically.
 
 Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to the code chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
 
@@ -740,7 +752,13 @@ Census variable codes like `"B19013_001"` represent specific survey questions. *
 
 In this exercise, you will collect and plot median age data for all counties in California for the year 2020 using the **tidycensus** package.
 
-Create a new Quarto Document and save it as `CaliforniaAge.qmd`. Add a YAML header at the top with a title (`"CaliforniaAge"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
+Create a new Quarto Document and save it as `CaliforniaAge.qmd`. Add a YAML header at the top with a title (`"CaliforniaAge"`) and your name as author. In a Bash terminal, run:
+
+```
+quarto render CaliforniaAge.qmd
+```
+
+Open `CaliforniaAge.html` with Live Server and keep the tab open.
 
 
 
@@ -755,7 +773,7 @@ library(tidycensus)
 library(sf)
 ```
 
-Render the file using `Cmd/Ctrl + Shift + K`.
+In a Bash terminal, run `quarto render CaliforniaAge.qmd`. Check your Live Server tab — it should refresh automatically.
 
 Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to the code chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
 
@@ -1084,7 +1102,7 @@ This tutorial covered an overview of [Analyzing US Census Data](https://walker-d
 
 ### Exercise 1
 
-`Cmd/Ctrl + Shift + K` to ensure that all three of your QMDs render without errors. The resulting HTML pages should show your choropleth maps and bar chart.
+In a Bash terminal, run `quarto render` on each of your three QMDs to ensure they all render without errors. Check your Live Server tabs — they should each refresh to show your choropleth maps and bar chart.
 
 In the R Terminal, run:
 
