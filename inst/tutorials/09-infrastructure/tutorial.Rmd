@@ -114,7 +114,7 @@ Your answer should look like:
 
 ###
 
-The `.devcontainer` directory tells GitHub Codespaces how to set up this Codespace; without it, GitHub falls back to a generic default. The `.git` directory confirms this repo is tracked by Git.
+The `.devcontainer` directory tells GitHub Codespaces how to set up this Codespace. The `.git` directory confirms this repo is tracked by Git.
 
 ### Exercise 4
 
@@ -131,7 +131,7 @@ question_text(NULL,
 
 ###
 
-Your output will show the full `devcontainer.json` for the `codespace-starter` template. You will explore each part of this file in the Jupyter Notebook Devcontainer section. Keep this Codespace open --- you will need it alongside a second Codespace in the next section.
+Your output will show the full `devcontainer.json` for the `codespace-starter` template. You will explore each part of this file in the Codespace Starter Devcontainer section. Keep this Codespace open --- you will need it alongside a second Codespace in the next section.
 
 ## Jupyter Notebook Devcontainer
 ###
@@ -178,7 +178,7 @@ question_text(NULL,
 
 ###
 
-The github.com/codespaces page is where you manage all your active Codespaces. Each one uses hours from your GitHub monthly limit, so stop or delete ones you're not using.
+The github.com/codespaces page is where you manage all your active Codespaces. Each one uses hours and storage from your GitHub monthly limit, so stop or delete ones you're not using.
 
 ### Exercise 3
 
@@ -270,7 +270,7 @@ Pygments==2.20.0
 
 ###
 
-`updateContentCommand` runs a command each time the Codespace updates --- here it installs everything in `requirements.txt`. `pandas` and `matplotlib` are the core packages: the Python equivalents of the tidyverse tools you've been using in R.
+`updateContentCommand` runs when the Codespace is first created and again whenever the repo's files change --- so if someone pushes a new `requirements.txt`, the packages update automatically. `pandas` and `matplotlib` are the core packages: the Python equivalents of the tidyverse tools you've been using in R.
 
 ### Exercise 6
 
@@ -821,11 +821,70 @@ Extension IDs follow the format `publisher.extension-name`. `REditorSupport.r` p
 
 ### Exercise 9
 
+In the blank Codespace, go to the Source Control sidebar. Write a commit message like **"add R devcontainer"** and press the **Commit** button. Then press **"Publish Branch"**. Name the repository `r-devcontainer` and choose public.
+
+```{r}
+include_graphics("images/publish-cs.png")
+```
+
+Run `git log --oneline`. CP/CR.
+
+```{r new-devcontainer-9}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your log should look like this:
+
+```
+main $ git log --oneline
+abc1234 (HEAD -> main, origin/main) add R devcontainer
+def5678 Initial commit
+main $
+```
+
+###
+
+`(HEAD -> main, origin/main)` on the same commit means your local branch and GitHub are up to date with each other.
+
+### Exercise 10
+
+Go to GitHub. In the upper-right corner, click your profile picture, then select **"Your repositories"**. Click the repository named `r-devcontainer`. Paste the URL of the repo.
+
+```{r new-devcontainer-10}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your URL should look something like this:
+
+```
+https://github.com/ppbds-student/r-devcontainer
+```
+
+###
+
+This Codespace was created directly from a template, so there was no GitHub repo yet --- "Publish Branch" is what creates it.
+
+### Exercise 11
+
 If you haven't already, stop the blank Codespace. Open the Command Palette with `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac), type `>stop`, and select **"Codespaces: Stop Current Codespace"**.
 
 Then go to https://github.com/codespaces. Find the row for the blank Codespace and copy and paste it.
 
-```{r new-devcontainer-9}
+```{r new-devcontainer-11}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -1040,7 +1099,7 @@ Your answer should look like:
 
 ###
 
-Word wrap causes long lines to wrap to the next line visually rather than extending off the right edge of the screen. Without it, long comment blocks or URLs in code appear truncated, and students on small screens (like Chromebooks) may not notice that content is hidden to the right.
+Word wrap causes long lines to wrap to the next line visually rather than extending off the right edge of the screen. Without it, long comment blocks or URLs in code appear truncated, and students on small screens may not notice that content is hidden to the right.
 
 ### Exercise 9
 
@@ -1067,6 +1126,8 @@ Your answer should look like:
 
 By default, VS Code opens files in "preview" mode --- clicking a second file replaces the first tab, so beginners often think their file disappeared. Setting this to `false` means every file opens in a permanent tab.
 
+<!-- AR: Need any more exercises here (i.e. Make a change to the devcontainer)? No changes to push to repo yet. -->
+
 ## Summary
 ###
 
@@ -1074,26 +1135,9 @@ This tutorial explored devcontainers as a way to define and share consistent Cod
 
 ### Exercise 1
 
-In the `09-infrastructure` Codespace, run `cat .devcontainer/devcontainer.json` in the bash Terminal. CP/CR.
-
-```{r summary-1}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 20)
-```
-
-###
-
-Your output should show the full contents of the `devcontainer.json` from `codespace-starter`, including fields like `image`, `features`, `customizations`, and any startup commands. Compare this to the Jupyter template's `devcontainer.json` you explored in the Jupyter Notebook Devcontainer section --- the two files use the same structure but produce completely different setups.
-
-### Exercise 2
-
 Go to https://github.com/codespaces. Stop any Codespaces you are no longer using by clicking the three-dot menu next to each one and selecting "Stop codespace". Paste the URL of your `codespaces-jupyter` GitHub repository below.
 
-```{r summary-2}
+```{r summary-1}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -1112,11 +1156,13 @@ https://github.com/ppbds-student/codespaces-jupyter
 
 Stopping Codespaces when you are done with them conserves your free monthly compute hours. Deleted Codespaces cannot be recovered, but stopped ones can be restarted at any time.
 
-### Exercise 3
+### Exercise 2
+
+<!-- AR: Delete if students make no changes to the repo. As of 26.05.26 pre-meeting, no changes are made. -->
 
 Commit and push any remaining uncommitted files in your `09-infrastructure` Codespace. Copy/paste the URL to your `09-infrastructure` GitHub repo.
 
-```{r summary-3}
+```{r summary-2}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
