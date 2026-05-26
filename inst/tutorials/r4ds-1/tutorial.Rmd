@@ -87,7 +87,13 @@ If you haven't already, open the `r4ds-1` repo on GitHub and create a Codespace 
 
 You need two R Terminals: one for running this tutorial and one for your exercises.
 
-Create a new Quarto Document and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Analyzing the Billboard 100"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
+Create a new Quarto Document and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Analyzing the Billboard 100"`) and your name as author. In a Bash terminal, run:
+
+```
+quarto render analysis.qmd
+```
+
+Open `analysis.html` in a browser by right-clicking it in the File Explorer and selecting **Open with Live Server**. Keep this tab open — it will refresh automatically whenever you re-render.
 
 Create a `.gitignore` file with `analysis_files` on the first line and then a blank line. Save and push.
 
@@ -116,7 +122,7 @@ Professionals keep their data science work in the cloud because laptops fail.
 
 ### Exercise 2
 
-In your QMD, put `library(tidyverse)` in a new code chunk. Render the file using `Cmd/Ctrl + Shift + K`.
+In your QMD, put `library(tidyverse)` in a new code chunk. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab — it should refresh automatically.
 
 Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this chunk. For historical reasons, the first chunk in a Quarto document is often referred to as the `setup` chunk. Also, add the following to the YAML header to remove all code echoes from the HTML:
 
@@ -125,7 +131,7 @@ execute:
   echo: false
 ```
 
-Using `Cmd/Ctrl + Shift + K`, render the file again. Only the title and author should appear in the HTML.
+In a Bash terminal, run `quarto render analysis.qmd` again. Check your Live Server tab. Only the title and author should appear in the HTML.
 
 In the R Terminal, run:
 
@@ -679,7 +685,7 @@ If `show_file()` gives an error, add `library(tutorial.helpers)` to your first c
 
 Within the latest code chunk, add the option: `#| cache: true`. Assign the result of the pipe to `billboard_clean`. 
 
-`Cmd/Ctrl + Shift + K`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
+In a Bash terminal, run `quarto render analysis.qmd`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
 
 If you have not done so already, you should add `analysis_cache` to the `.gitignore`. The content of the cache file does not belong on GitHub.
 
@@ -746,7 +752,7 @@ billboard_clean
 
 Ask AI: Generate R code that uses `billboard_clean` to plot a basic graph showing a histogram for `improvement`. If using a chat AI, copy/paste a few rows of `billboard_clean` from the R Terminal to give it context. In-environment agents can access the data directly.
 
-Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. Run `Cmd/Ctrl + Shift + K` to ensure that everything works. 
+Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab.
 
 Make your plot look nice. Edit the appearance by hand or get AI to help. The titles should be legible and everything should have proper capitalization.
 
@@ -787,7 +793,7 @@ A histogram divides the x-axis into equally spaced bins and then uses the height
 
 ### Exercise 17
 
-Ask AI: Continue the code to style the plot's appearance so the title and subtitle fit on the graph. If necessary, manually edit the sizes. Place this code as a continuation of the graph code; in the end the chunk should just have the final graph. Run `Cmd/Ctrl + Shift + K` to ensure that everything works.
+Ask AI: Continue the code to style the plot's appearance so the title and subtitle fit on the graph. If necessary, manually edit the sizes. Place this code as a continuation of the graph code; in the end the chunk should just have the final graph. In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab.
 
 In the R Terminal, run:
 
@@ -1277,7 +1283,7 @@ Each value is a cell; each cell is a single value.
 
 Within the latest code chunk, add the option: `#| cache: true`. Assign the result of the pipe to `billboard_longer`. 
 
-`Cmd/Ctrl + Shift + K`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
+In a Bash terminal, run `quarto render analysis.qmd`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
 
 If you have not done so already, you should add `analysis_cache` to the `.gitignore`. The content of the cache file does not belong on GitHub.
 
@@ -1348,7 +1354,7 @@ Most real-world data is untidy because it's often organized for data entry rathe
 
 Ask AI to generate R code that uses `billboard_longer` to plot a basic graph showing the Billboard rank of each track over the weeks after they were released. If using a chat AI, copy/paste a few rows of `billboard_longer` from the R Terminal to give it context. In-environment agents can access the data directly.
 
-Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. Run `Cmd/Ctrl + Shift + K` to ensure that everything works. Make your plot look nice.
+Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab. Make your plot look nice.
 
 In the R Terminal, run:
 
@@ -1399,7 +1405,7 @@ You will learn about importing, organizing, and visualizing data using core pack
 
 ### Exercise 1
 
-`Cmd/Ctrl + Shift + K` to ensure that everything works.  The resulting HTML page should be attractive, showing clean versions of your two plots.
+In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab — the resulting HTML page should be attractive, showing clean versions of your two plots.
 
 In the R Terminal, run:
 

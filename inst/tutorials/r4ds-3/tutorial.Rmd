@@ -81,7 +81,13 @@ If you haven't already, open the `r4ds-3` repo on GitHub and create a Codespace 
 
 You need two R Terminals: one for running this tutorial and one for your exercises. Open a second R Terminal using the dropdown button.
 
-Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Analyzing Baby Names and Flights"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
+Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Analyzing Baby Names and Flights"`) and your name as author. In a Bash terminal, run:
+
+```
+quarto render analysis.qmd
+```
+
+Open `analysis.html` in a browser by right-clicking it in the File Explorer and selecting **Open with Live Server**. Keep this tab open — it will refresh automatically whenever you re-render.
 
 Create a `.gitignore` file with `analysis_files` on the first line and then a blank line. Save and push.
 
@@ -113,7 +119,7 @@ We will be working with databases in this tutorial. Two key differences between 
 
 ### Exercise 2
 
-In your QMD, put `library(tidyverse)`, `library(DBI)`, `library(duckdb)`, and `library(dbplyr)` in a new code chunk. Render the file using `Cmd/Ctrl + Shift + K`.
+In your QMD, put `library(tidyverse)`, `library(DBI)`, `library(duckdb)`, and `library(dbplyr)` in a new code chunk. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab — it should refresh automatically.
 
 Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this code chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
 
@@ -122,7 +128,7 @@ execute:
   echo: false
 ```
 
-Render the file using `Cmd/Ctrl + Shift + K`. In the R Terminal, run:
+In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab — it should refresh automatically. In the R Terminal, run:
 
 ```         
 show_file("analysis.qmd", chunk = "Last")
@@ -601,7 +607,7 @@ Again, you should filter for names which start with any other letter except for 
 
 Within the recent code chunk, add the option: `#| cache: true`. Assign the result of our pipe to `x`.
 
-`Cmd/Ctrl + Shift + K`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved fitted object.
+In a Bash terminal, run `quarto render analysis.qmd`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved fitted object.
 
 Place your cursor on the line where the pipe is assigned to x, run `Cmd/Ctrl + Enter`. Now, the workspace also includes a copy of `x`.
 
@@ -660,11 +666,11 @@ The `.by` argument in `summarize()` performs grouped operations without modifyin
 
 Ask AI to generate R code that plots a basic line graph showing the proportion of "Short" vs. "Long" names starting with a specific letter --- the letter you choose to replace `A`--- over the years.
 
-Within `labs()` edit or add a proper title, subtitle, and caption. If axis labels are appropriate, add them, but if unnecessary, don't bother. Don't assign the code to any variable. Put this code into a new code chunk. Run `Cmd/Ctrl + Shift + K`.
+Within `labs()` edit or add a proper title, subtitle, and caption. If axis labels are appropriate, add them, but if unnecessary, don't bother. Don't assign the code to any variable. Put this code into a new code chunk. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 In the R Terminal, run:
 
-```         
+```
 show_file("analysis.qmd", chunk = "Last")
 ```
 
@@ -1140,7 +1146,7 @@ The `pmax()` function computes the parallel maximum across vectors element-wise,
 
 Within the recent code chunk, add the option: `#| cache: true`. Assign the result of our pipe to `x`.
 
-`Cmd/Ctrl + Shift + K`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved fitted object.
+In a Bash terminal, run `quarto render analysis.qmd`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved fitted object.
 
 Place your cursor on the line where the pipe is assigned to `x`, run `Cmd/Ctrl + Enter`. Now, the workspace also includes a copy of `x`.
 
@@ -1204,7 +1210,7 @@ In the next exercise, you will see a crosstabulation structure - with two groupi
 
 Ask AI to generate R code that creates a beautiful heatmap. (You can make a different plot than a heatmap, if you like.) The plot must make sense. It must be something which tells us about the world. It can't just be nonsense. You need to look at the output.
 
-Within `labs()` edit or add a proper title, subtitle, and caption. If axis labels are appropriate, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Add this code to a new code cell. Run `Cmd/Ctrl + Shift + K`.
+Within `labs()` edit or add a proper title, subtitle, and caption. If axis labels are appropriate, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Add this code to a new code cell. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 In the R Terminal, run:
 
@@ -1262,7 +1268,7 @@ You learned about some of the power of the [**stringr**](https://stringr.tidyver
 
 ### Exercise 1
 
-`Cmd/Ctrl + Shift + K` to ensure that everything works. The resulting HTML page should be attractive, showing clean versions of your plots.
+In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab — the resulting HTML page should be attractive, showing clean versions of your plots.
 
 In the R Terminal, run:
 

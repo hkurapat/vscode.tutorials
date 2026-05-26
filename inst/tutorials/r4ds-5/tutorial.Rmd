@@ -194,7 +194,13 @@ If you haven't already, open the `r4ds-5` repo on GitHub and create a Codespace 
 
 You need two R Terminals: one for running this tutorial and one for your exercises. Open a second R Terminal using the dropdown button.
 
-Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Earthquakes and Movies"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
+Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Earthquakes and Movies"`) and your name as author. In a Bash terminal, run:
+
+```
+quarto render analysis.qmd
+```
+
+Open `analysis.html` in a browser by right-clicking it in the File Explorer and selecting **Open with Live Server**. Keep this tab open — it will refresh automatically whenever you re-render.
 
 Create a `.gitignore` file with `analysis_files` on the first line and then a blank line. Save and push.
 
@@ -235,7 +241,7 @@ library(httr2)
 library(ggrepel)   
 ```
 
-Render the file using `Cmd/Ctrl + Shift + K`.
+In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab — it should refresh automatically.
 
 Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to the code chunk in order to remove all the messages in this code chunk. Also, add the following to the YAML header to remove all code echoes from the HTML:
 
@@ -1098,7 +1104,7 @@ question_text(NULL,
 
 Within the latest code chunk, add the option: `#| cache: true`. Assign the result of the pipe to `earthquake_df`. 
 
-`Cmd/Ctrl + Shift + K`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
+In a Bash terminal, run `quarto render analysis.qmd`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
 
 If you have not done so already, you should add `analysis_cache` to the `.gitignore`. The content of the cache file does not belong on GitHub.
 
@@ -1207,11 +1213,11 @@ earthquake_df
 
 Ask AI to generate R code that uses the `earthquake_df` tibble to create an interactive map showing earthquakes in the U.S.
 
-Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. Run `Cmd/Ctrl + Shift + K` to ensure that everything works. Make your plot look nice.
+Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab. Make your plot look nice.
 
 In the R Terminal, run:
 
-```         
+```
 show_file("analysis.qmd", chunk = "Last")
 ```
 
@@ -1994,7 +2000,7 @@ You can often get the same results from `across()` by first using `pivot_longer(
 
 Within the latest code chunk, add the option: `#| cache: true`. Assign the result of the pipe to `top_movies`. 
 
-`Cmd/Ctrl + Shift + K`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
+In a Bash terminal, run `quarto render analysis.qmd`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
 
 Place your cursor on the line where the pipe is assigned to `top_movies`, run `Cmd/Ctrl + Enter`, thus ensuring that the workspace also includes a copy of `top_movies`.
 
@@ -2099,11 +2105,11 @@ top_movies
 
 Ask AI to generate R code that uses `top_movies` to make an interesting plot.
 
-Within `labs()`, edit or add a proper title, subtitle, and caption. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. Run `Cmd/Ctrl + Shift + K` to ensure that everything works. Make your plot look nice.
+Within `labs()`, edit or add a proper title, subtitle, and caption. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab. Make your plot look nice.
 
 In the R Terminal, run:
 
-```         
+```
 show_file("analysis.qmd", chunk = "Last")
 ```
 
@@ -2181,7 +2187,7 @@ You learned about working with nested data structures, web scraping techniques, 
 
 ### Exercise 1
 
-`Cmd/Ctrl + Shift + K` to ensure that everything works.  The resulting HTML page should be attractive, showing clean versions of your plot(s).
+In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab — the resulting HTML page should be attractive, showing clean versions of your plot(s).
 
 At the R Terminal, run:
 

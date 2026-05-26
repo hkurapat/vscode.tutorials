@@ -59,7 +59,13 @@ If you haven't already, open the `r4ds-2` repo on GitHub and create a Codespace 
 
 You need two R Terminals: one for running this tutorial and one for your exercises. Open a second R Terminal using the dropdown button.
 
-Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Analyzing Cheese and Wine"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
+Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Analyzing Cheese and Wine"`) and your name as author. In a Bash terminal, run:
+
+```
+quarto render analysis.qmd
+```
+
+Open `analysis.html` in a browser by right-clicking it in the File Explorer and selecting **Open with Live Server**. Keep this tab open — it will refresh automatically whenever you re-render.
 
 Create a `.gitignore` file with `analysis_files` on the first line and then a blank line. Save and push.
 
@@ -89,7 +95,7 @@ You can create a brand new sheet with [`gs4_create()`](https://googlesheets4.tid
 
 ### Exercise 2
 
-In your QMD, put `library(tidyverse)`, `library(readxl)`, and `library(dbplyr)` in a new code chunk. Render the file using `Cmd/Ctrl + Shift + K`.
+In your QMD, put `library(tidyverse)`, `library(readxl)`, and `library(dbplyr)` in a new code chunk. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab — it should refresh automatically.
 
 Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this code chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
 
@@ -736,7 +742,7 @@ Just like with `read_excel()`, we can read in a portion of a Google Sheet by def
 
 Within the recent code chunk, add the option: `#| cache: true`. Assign the result of our pipe to `cheese_tibble`. 
 
-`Cmd/Ctrl + Shift + K`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved fitted object.
+In a Bash terminal, run `quarto render analysis.qmd`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved fitted object.
 
 Place your cursor on the line where the pipe is assigned to `cheese_tibble`, run `Cmd/Ctrl + Enter`. Now, the workspace also includes a copy of `cheese_tibble`.
 
@@ -802,7 +808,7 @@ The function [`linear_reg()`](https://parsnip.tidymodels.org/reference/linear_re
 
 You add labels with the `labs()` function.
 
-Ask AI to use the `labs()` function and add a `title`, `subtitle`, `caption`, and labels for the `x` and `y` axes. Add this code as a continuation of your pipe to the same chunk in your QMD. Place your cursor at the beginning of the line where it says `cheese_tibble|> ` and run `Cmd/Ctrl + Shift + K` to render.
+Ask AI to use the `labs()` function and add a `title`, `subtitle`, `caption`, and labels for the `x` and `y` axes. Add this code as a continuation of your pipe to the same chunk in your QMD. Place your cursor at the beginning of the line where it says `cheese_tibble|> `. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 In the R Terminal, run:
 
@@ -1241,7 +1247,7 @@ Just like with `read_excel()`, we can read in a portion of a Google Sheet by def
 
 Within the recent code chunk, add the option: `#| cache: true`. Assign the result of our pipe to `wine_tibble`. 
 
-`Cmd/Ctrl + Shift + K`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved fitted object.
+In a Bash terminal, run `quarto render analysis.qmd`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved fitted object.
 
 Place your cursor on the line where the pipe is assigned to `wine_tibble`, run `Cmd/Ctrl + Enter`. Now, the workspace also includes a copy of `wine_tibble`.
 
@@ -1300,7 +1306,7 @@ Use this prompt:
 
 "Create a scatter plot from wine_tibble with Phenols vs Flavanoids, with color aesthetic mapped to Color. Include jittered points, a LOESS smooth curve, and label the maximum Flavanoids value as 'Outlier' in magenta. Use blue-to-orange color gradient and classic theme."
 
- Add this code into a new code chunk in your QMD.  Place your cursor on the first line of the code in your current code chunk at the start of `wine_tibble` and run `Cmd/Ctrl + Shift + K` to render.
+ Add this code into a new code chunk in your QMD.  Place your cursor on the first line of the code in your current code chunk at the start of `wine_tibble`. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 In the R Terminal, run:
 
@@ -1357,7 +1363,7 @@ You learned about working with categorical and continuous variables using differ
 
 ### Exercise 1
 
-`Cmd/Ctrl + Shift + K` to ensure that everything works. The resulting HTML page should be attractive, showing clean versions of your plots.
+In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab — the resulting HTML page should be attractive, showing clean versions of your plots.
 
 In the R Terminal, run:
 
