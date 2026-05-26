@@ -1,6 +1,6 @@
 ## Alec
 
-Split 08 tutorial into 08-ai and 09-infrastructure. The ai just contains the current ai stuff in 08. The devcontainer stuff in 08 gets moved to 09. A second section in 09 gives a tour of the codebase-starter stuff. 
+Split 08 tutorial into 08-ai and 09-infrastructure. The ai just contains the current ai stuff in 08. The devcontainer stuff in 08 gets moved to 09. A second section in 09 gives a tour of the codebase-starter stuff. AR: Done. Also added section where students create their own devcontainer in 09-infrastructure.
 
 
 ### Fixing r4ds 1-5 and tidycensus-1. 
