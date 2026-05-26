@@ -114,7 +114,7 @@ Your answer should look like:
 
 ###
 
-The `.devcontainer` directory is what tells GitHub Codespaces how to set up this Codespace. Without it, GitHub would use a generic default setup with no customization. The presence of `.git` confirms this repo is tracked by Git.
+The `.devcontainer` directory tells GitHub Codespaces how to set up this Codespace; without it, GitHub falls back to a generic default. The `.git` directory confirms this repo is tracked by Git.
 
 ### Exercise 4
 
@@ -157,7 +157,7 @@ question_text(NULL,
 
 ###
 
-The GitHub Jupyter Notebook template is a pre-built Codespace designed for Python data science work using Jupyter notebooks. Python is another powerful language for doing data science and Jupyter notebooks, like Quarto documents, contain text, code, and visualizations. The `codespace-starter` template we've been using, on the other hand, is configured specifically for R, Quarto, and running tutorials.
+The Jupyter Notebook template is a pre-built Codespace for Python data science using Jupyter notebooks --- similar to how `codespace-starter` is set up for R, Quarto, and running tutorials.
 
 ### Exercise 2
 
@@ -178,7 +178,7 @@ question_text(NULL,
 
 ###
 
-The github.com/codespaces page is where you manage all your active Codespaces. Each Codespace runs on a remote computer that uses hours from your GitHub monthly limit --- free accounts receive a monthly allowance. Stop or delete Codespaces you're not using to conserve it.
+The github.com/codespaces page is where you manage all your active Codespaces. Each one uses hours from your GitHub monthly limit, so stop or delete ones you're not using.
 
 ### Exercise 3
 
@@ -203,7 +203,7 @@ Your answer should look like this:
 
 ###
 
-The `image` field tells GitHub which pre-built setup to use when creating the Codespace. Think of it as choosing a computer that already has certain software installed before you even open it. `mcr.microsoft.com/devcontainers/universal:2` is a general-purpose setup made by Microsoft that comes with Python and several other programming languages already installed.
+The `image` field tells GitHub which pre-built setup to use --- think of it as choosing a computer that already has certain software installed. `mcr.microsoft.com/devcontainers/universal:2` is Microsoft's general-purpose setup with Python and several other programming languages pre-installed.
 
 ### Exercise 4
 
@@ -234,9 +234,7 @@ Your answer should look like this:
 
 ###
 
-This section of code specifies which VS Code extensions to pre-install. `ms-toolsai.jupyter` adds support for running Jupyter notebooks directly in VS Code, while `ms-python.python` provides Python language features like code completion and error highlighting. In contrast, the `codespace-starter` template installs extensions that help with R and running the course tutorials.
-
-VS Code is highly customizable. Personalized settings are often specified with configuration files like `devcontainers.json`.
+This block lists which VS Code extensions to pre-install. `ms-toolsai.jupyter` enables Jupyter notebooks; `ms-python.python` adds Python code completion and error highlighting.
 
 ### Exercise 5
 
@@ -272,7 +270,7 @@ Pygments==2.20.0
 
 ###
 
-`updateContentCommand` runs a shell command each time the Codespace's contents are updated. Here it runs `pip install -r requirements.txt`, which installs all packages listed in `requirements.txt` --- connecting the two files directly. The two core data science packages are `pandas` (tabular data manipulation) and `matplotlib` (plotting), the Python equivalents of the tidyverse tools you've been using in R. There is also a companion field `postCreateCommand` for commands that should run only once when the Codespace is first created, rather than on every update.
+`updateContentCommand` runs a command each time the Codespace updates --- here it installs everything in `requirements.txt`. `pandas` and `matplotlib` are the core packages: the Python equivalents of the tidyverse tools you've been using in R.
 
 ### Exercise 6
 
@@ -324,7 +322,7 @@ My new file looks like this:
 
 ###
 
-Describing what you want in plain English and letting AI handle the translation is a practical use of AI for infrastructure work. The same skill you use to write analysis code with AI --- describing a goal and reviewing the output --- applies equally to configuration files like `devcontainer.json`. Once you're comfortable editing devcontainers, you can publish your own repo as a template and use it as the starting point for any future project.
+Describing what you want in plain English works just as well for configuration files like `devcontainer.json` as it does for analysis code. Once comfortable, you can publish your own repo as a template and reuse it for future projects.
 
 ### Exercise 7
 
@@ -496,9 +494,7 @@ This notebooks reads sample population data from `data/atlantis.csv` and plots i
 
 ###
 
-A `.ipynb` file is a Jupyter notebook --- a document that mixes text, code, and output in a series of runnable cells, similar to a Quarto document.
-
-`populations.ipynb` performs a simple analysis by reading the year-and-population data from `atlantis.csv` using pandas, then plotting it with matplotlib --- demonstrating the same read-then-visualize workflow you've used in R, but in Python.
+A `.ipynb` file is a Jupyter notebook --- like a Quarto document, it mixes text, code, and output in runnable cells. `populations.ipynb` reads population data from `atlantis.csv` and plots it with matplotlib, the same read-then-visualize workflow you've used in R.
 
 ### Exercise 12
 
@@ -544,7 +540,7 @@ include_graphics("images/sc-graph.png")
 
 ###
 
-In the `git log --oneline` output, `(HEAD -> main, origin/main)` on the same commit means your local branch and GitHub are perfectly up to date with each other. The Source Control graph shows the same thing visually --- a purple cloud icon on the commit indicates it has been pushed to GitHub. Both are telling you the same story; the graph just makes it easier to see at a glance.
+`(HEAD -> main, origin/main)` on the same commit means your local branch and GitHub are up to date with each other. The Source Control graph shows the same thing --- a purple cloud icon means the commit has been pushed to GitHub.
 
 ### Exercise 13
 
@@ -588,7 +584,7 @@ question_text(NULL,
 
 ###
 
-The row should show the Codespace's status as **Stopped**. Stopped Codespaces are not running and do not consume compute hours, but they still occupy storage and can be restarted at any time. Deleting a Codespace frees the storage entirely but cannot be undone.
+Stopped Codespaces don't use compute hours but still occupy storage --- they can be restarted at any time. Deleting a Codespace frees the storage entirely but cannot be undone.
 
 ## New Devcontainer
 ###
@@ -612,7 +608,7 @@ question_text(NULL,
 
 ###
 
-The blank template starts with no `.devcontainer` directory at all. GitHub falls back to a generic default setup with no customization. This is the starting point for any brand-new project where you want to configure the Codespace from scratch.
+Without a `.devcontainer` directory, GitHub falls back to a generic default setup with no customization. This is the starting point for any brand-new project where you want to configure the Codespace from scratch.
 
 ### Exercise 2
 
@@ -668,7 +664,7 @@ question_text(NULL,
 
 ###
 
-AI models know the `devcontainer.json` format well because it is a widely-used format with extensive documentation. The response is often longer than needed --- AI tends to include optional fields like `postCreateCommand` or `features` as a precaution. Reviewing and simplifying AI output is a normal part of using it for technical setup work.
+AI tends to produce longer `devcontainer.json` files than needed, adding optional fields like `postCreateCommand` or `features` as a precaution. Reviewing and simplifying the output is a normal part of using AI for technical setup work.
 
 ### Exercise 4
 
@@ -740,7 +736,7 @@ R version 4.4.0 (2024-04-24) -- "Puppy Cup"
 
 ###
 
-A full rebuild discards the existing container and constructs a new one from scratch using the updated `devcontainer.json`. This is slower than a standard rebuild but guarantees the Codespace is set up exactly as specified. Because `ghcr.io/rocker-org/devcontainer/tidyverse:4` already has R pre-installed, R is available the moment the rebuild finishes --- no install scripts needed.
+A full rebuild constructs the container from scratch using the updated `devcontainer.json`, which is slower but guarantees the Codespace matches the configuration exactly. Because the Rocker image already has R pre-installed, R is available the moment the rebuild finishes.
 
 ### Exercise 6
 
@@ -765,7 +761,7 @@ Your answer should look like:
 
 ###
 
-The `image` field names the pre-built setup used as the starting point for the container. `ghcr.io/rocker-org/devcontainer/tidyverse:4` is a pre-built image maintained by the [Rocker Project](https://rocker-project.org/) that comes with R 4.x, the tidyverse, and common data science packages already installed. Using a dedicated R image means no install scripts are needed --- R is ready when the container starts.
+`ghcr.io/rocker-org/devcontainer/tidyverse:4` is a pre-built image from the [Rocker Project](https://rocker-project.org/) that comes with R 4.x, the tidyverse, and common data science packages already installed --- no install scripts needed.
 
 ### Exercise 7
 
@@ -796,7 +792,7 @@ Your answer should look like:
 
 ###
 
-The `customizations` block is where tool-specific settings live. Different tools that support devcontainers --- VS Code, GitHub Codespaces, and others --- each read their own key inside `customizations`. The `vscode` key contains settings that only VS Code will read, which is what allows the same `devcontainer.json` to work cleanly with other editors that also support the devcontainer format.
+The `customizations` block holds tool-specific settings --- each tool reads only its own key. The `vscode` key contains settings only VS Code reads, so the same `devcontainer.json` can also work with other editors.
 
 ### Exercise 8
 
@@ -821,7 +817,7 @@ Your answer should look like:
 
 ###
 
-Extension IDs in VS Code follow the format `publisher.extension-name`. `REditorSupport.r` is the official R language extension, published by the REditorSupport organization. It provides colored code, code completion, and inline output for R in VS Code --- the same extension you have been using throughout this course.
+Extension IDs follow the format `publisher.extension-name`. `REditorSupport.r` provides colored code, code completion, and inline R output --- the same extension you've been using throughout this course.
 
 ### Exercise 9
 
@@ -840,7 +836,7 @@ question_text(NULL,
 
 ###
 
-The row should show the Codespace's status as **Stopped**. Stopped Codespaces are not running and do not consume compute hours, but they still occupy storage and can be restarted at any time. Deleting a Codespace frees the storage entirely but cannot be undone.
+Stopped Codespaces don't use compute hours but still occupy storage --- they can be restarted at any time. Deleting a Codespace frees the storage entirely but cannot be undone.
 
 ## Codespace Starter Devcontainer
 ###
@@ -862,7 +858,7 @@ question_text(NULL,
 
 ###
 
-You may have noticed that this file contains lines beginning with `//`. Standard JSON does not allow comments, but `devcontainer.json` uses an extended version called **JSONC** (JSON with Comments) that does. The comments here are written for instructors and future maintainers --- they explain *why* each setting exists, not just what it does.
+Standard JSON doesn't allow comments, but `devcontainer.json` uses **JSONC** (JSON with Comments), which does. The comments here explain *why* each setting exists --- useful for instructors and future maintainers.
 
 ### Exercise 2
 
@@ -887,7 +883,7 @@ Your answer should look like:
 
 ###
 
-Rather than a generic starting setup, `codespace-starter` uses a custom image built and maintained by the PPBDS organization. The image is **locked** to a specific version (`0.2.1`) rather than using `:latest` --- this ensures every student gets the exact same setup regardless of when they open the Codespace. The image pre-installs everything the course needs: Quarto, `gh`, `tutorial.helpers`, `vscode.tutorials`, and several AI coding tools including `gemini` and `claude`.
+`codespace-starter` uses a custom PPBDS image **locked** to version `0.2.1`, so every student gets the exact same setup regardless of when they open the Codespace. It pre-installs everything the course needs: Quarto, `gh`, `tutorial.helpers`, `vscode.tutorials`, `gemini`, and `claude`.
 
 ### Exercise 3
 
@@ -944,7 +940,7 @@ Your answer should look like:
 
 ###
 
-This setting tells the R extension to use `arf` --- a fast R console --- instead of launching R directly. `arf` starts faster and handles pasted multi-line code more reliably than the default R terminal. Because it lives at a specific path inside the image, the path is written out directly here so VS Code can always find it.
+`arf` is a fast R console that starts more quickly and handles pasted multi-line code more reliably than the default terminal. The path is written out directly here so VS Code always knows where to find it.
 
 ### Exercise 5
 
@@ -969,7 +965,7 @@ Your answer should look like:
 
 ###
 
-By default, R opens plots in a separate window. In a Codespace that window would be invisible, since the R process runs on a remote computer. Setting `r.plot.useHttpgd` to `true` sends plots to the `httpgd` tool instead, which streams them into a panel inside VS Code that you can actually see.
+By default, R opens plots in a separate window that would be invisible in a Codespace. Setting this to `true` sends plots to the `httpgd` tool instead, which streams them into a panel inside VS Code.
 
 ### Exercise 6
 
@@ -1069,7 +1065,7 @@ Your answer should look like:
 
 ###
 
-By default, VS Code opens files in "preview" mode --- the tab title appears in italics, and clicking a second file replaces the preview tab rather than opening a new one. Beginners frequently think their file disappeared. Setting this to `false` means every file opens in a permanent tab.
+By default, VS Code opens files in "preview" mode --- clicking a second file replaces the first tab, so beginners often think their file disappeared. Setting this to `false` means every file opens in a permanent tab.
 
 ## Summary
 ###
@@ -1131,7 +1127,7 @@ question_text(NULL,
 
 ###
 
-The `devcontainer.json` file is itself committed to the repository --- which means the Codespace configuration travels with the code. Anyone who forks your repo and opens a Codespace gets the exact same setup you designed. This is the same principle behind `renv.lock` for R packages or `requirements.txt` for Python: capture your setup in files tracked by Git so it can be reproduced by anyone, anywhere.
+Because `devcontainer.json` is committed to the repo, the Codespace configuration travels with the code --- anyone who forks your repo gets the exact same setup. This is the same principle behind `renv.lock` and `requirements.txt`: capture your setup in Git so it can be reproduced by anyone.
 
 ```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
 ```
