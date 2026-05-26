@@ -1073,52 +1073,78 @@ question_text(NULL,
 The `show_file()` function from tutorial.helpers is a convenient way to check the contents of files without leaving R. It helps confirm that your edits were saved properly.
 
 
-```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
-```
-
-
 ## Summary
 
-This tutorial covered an overview of  [Analyzing US Census Data](https://walker-data.com/census-r/index.html) by Kyle Walker. You learned about using the [**tidycensus**] package for collecting, interacting, and plotting US Census data. You mainly focused on collecting data from the Decennial Census and the American Community Survey (ACS).
+###
 
-### Good Knowledge Drops
+This tutorial covered an overview of [Analyzing US Census Data](https://walker-data.com/census-r/index.html) by Kyle Walker. You learned about using the **tidycensus** package for collecting, interacting, and plotting US Census data. You mainly focused on collecting data from the Decennial Census and the American Community Survey (ACS).
 
-If the year is not specified, `get_acs()` defaults to the most recent five-year ACS sample. The data returned is similar in structure to that returned by `get_decennial()`, but includes an `estimate` column (for the ACS estimate) and `moe` column (for the margin of error around that estimate) instead of a value column.
+### Exercise 1
 
-The geography parameter in `get_acs()` and `get_decennial()` allows users to request data aggregated to common Census enumeration units.
-Census blocks are available in `get_decennial()` but not in `get_acs()` as block-level data are not available from the American Community Survey. To request data within states and/or counties, state and county names can be supplied to the state and county parameters, respectively, [formatted in the way that they are accepted by the US Census Bureau API](https://walker-data.com/census-r/an-introduction-to-tidycensus.html#geography-and-variables-in-tidycensus).
+`Cmd/Ctrl + Shift + K` to ensure that all three of your QMDs render without errors. The resulting HTML pages should show your choropleth maps and bar chart.
 
-**tidycensus** accepts state names (e.g. "Wisconsin"), state postal codes (e.g. "WI"), and state FIPS codes (e.g. "55"), so an analyst can use what they are most comfortable with.
+In the R Terminal, run:
 
-This is the typical workflow. First, we figure out what variables we need and download them using a function like `get_acs()` or `get_decennial()`. We save the result to a permanent object like `az_race`. Then, we build pipes starting from that saved object.
+```
+show_file("CaliforniaAge.qmd")
+```
 
-The `mutate()` function allows us the create, modify and delete columns. More information about this function can be found [here](https://dplyr.tidyverse.org/reference/mutate.html)
+CP/CR.
 
-The attractive defaults of [ggplot2](https://ggplot2.tidyverse.org/) visualizations allow for the creation of legible graphics with little to no customization. This helps greatly with exploratory data analysis tasks where the primary audience is the analyst exploring the dataset.This section covers how to take a Census data visualization that is relatively illegible by default and polish it up for eventual presentation and export from R.
+```{r summary-1}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 30)
+```
 
-While an analyst may be comfortable with the plot as-is, **ggplot2** allows for significant customization with respect to stylistic presentation. This includes styling the bars on the plot with a different color and internal transparency; changing the font; and customizing the axis tick labels.
+###
 
-Once an analyst has settled on a visualization design, they may want to export their image from R to display on a website, in a blog post, or in a report. You can do so by clicking the button **Export** in the plot window and then **Save as Image**
+ACS data includes both an `estimate` column (the survey’s best guess) and a `moe` column (margin of error). The `geography` parameter in `get_acs()` allows data to be aggregated to common Census units — county, tract, state, and more. **tidycensus** accepts state names (e.g. `"Texas"`), postal codes (e.g. `"TX"`), and FIPS codes (e.g. `"48"`), so you can use whichever format you know.
 
-The [ggsave()](https://ggplot2.tidyverse.org/reference/ggsave.html) function in ggplot2 will save the last plot generated to an image file in the user’s current working directory by default. The specified file extension will control the output image format, e.g. .png.
+### Exercise 2
 
-Cleaning up the plot allows us to use some additional visualization options in **ggplot2**. In addition to specifying appropriate chart labels, we can format the axis tick labels by using appropriate `scale_*` functions in **ggplot2** and setting the X-axis limits to show both sides of 0 equally
+Publish your rendered QMD to GitHub Pages. In a Bash terminal, run:
 
-We’ll also make use of an alternative **ggplot2** theme, `theme_minimal()`, which uses a white background with muted gridlines.
+````
+quarto publish gh-pages TexasIncome.qmd
+````
 
-The `separate()` function is used to split the `NAME` column into three separate columns: `TRACT`, `COUNTY`, and `STATE`. The `sep` argument is used to specify the character that separates the values in the `NAME` column.
+If the bash terminal is still running from rendering, stop it first using `Ctrl/Cmd + C`.
 
-The `summarize()` function is used to calculate summary statistics for each group. In this case, we are calculating the minimum median home value for each county.
+Copy/paste the resulting URL below.
 
-The `scale_x_continuous()` function is used to format the x-axis labels as dollar values. The `breaks` argument is used to specify the breaks on the x-axis.
+```{r summary-2}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 1)
+```
 
-The `scale_color_viridis_c()` function is used to adjust the color scheme of the plot. The `guide` argument is used to specify the type of legend to display.
+###
 
-The `theme_void()` function strips the background grid and axis labels from the plot accordingly:
+Publishing the QMD creates a public URL anyone can use to view your choropleth map.
 
-`coord_flip()` from ggplot2:
-Flips x and y axes, often used to make horizontal bar charts easier to read.
+### Exercise 3
 
+Commit and push all your files. Copy/paste the URL to your GitHub repo.
 
+```{r summary-3}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
 
+###
 
+GitHub repositories are where people can view the code you used to create your project.
+
+```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
+```
