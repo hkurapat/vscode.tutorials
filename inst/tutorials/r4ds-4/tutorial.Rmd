@@ -152,7 +152,13 @@ If you haven't already, open the `r4ds-4` repo on GitHub and create a Codespace 
 
 You need two R Terminals: one for running this tutorial and one for your exercises. Open a second R Terminal using the dropdown button.
 
-Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"NBA and FIFA"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
+Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"NBA and FIFA"`) and your name as author. In a Bash terminal, run:
+
+```
+quarto render analysis.qmd
+```
+
+Open `analysis.html` in a browser by right-clicking it in the File Explorer and selecting **Open with Live Server**. Keep this tab open — it will refresh automatically whenever you re-render.
 
 Create a `.gitignore` file with `analysis_files` on the first line and then a blank line. Save and push.
 
@@ -183,7 +189,7 @@ Parquet files are “chunked”, which makes it possible to work on different pa
 
 ### Exercise 2
 
-In your QMD, put `library(tidyverse)`,`library(arrow)`, `library(plotly)`, `library(viridis)` and `library(scales)`  in a new code chunk. Render the file using `Cmd/Ctrl + Shift + K`.
+In your QMD, put `library(tidyverse)`,`library(arrow)`, `library(plotly)`, `library(viridis)` and `library(scales)`  in a new code chunk. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab — it should refresh automatically.
 
 Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, wrap the calls to library within a call to `suppressPackageStartupMessages()` like so:
 
@@ -967,7 +973,7 @@ question_text(NULL,
 
 Within the latest code chunk, add the option: `#| cache: true`. Assign the result of the pipe to `nba_clean`.
 
-`Cmd/Ctrl + Shift + K`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
+In a Bash terminal, run `quarto render analysis.qmd`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
 
 If you have not done so already, you should add `analysis_cache` to the `.gitginore`. The content of the cache file does not belong on GitHub.
 
@@ -1068,7 +1074,7 @@ A **right join** keeps all observations in `y` Every row of y is preserved in th
 
 Ask AI to generate R code that uses `nba_clean` to create an interesting plot.
 
-Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. Run `Cmd/Ctrl + Shift + K` to ensure that everything works. Make your plot look nice.
+Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab. Make your plot look nice.
 
 In the R Terminal, run:
 
@@ -1792,7 +1798,7 @@ We can find out what R thinks our current time zone is with `Sys.timezone()`. If
 
 Within the latest code chunk, add the option: `#| cache: true`. Assign the result of the pipe to `final_fifa`.
 
-`Cmd/Ctrl + Shift + K`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
+In a Bash terminal, run `quarto render analysis.qmd`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
 
 If you have not done so already, you should add `analysis_cache` to the `.gitginore`. The content of the cache file does not belong on GitHub.
 
@@ -1888,7 +1894,7 @@ You can recognize ordered factors when printing because they use `<` between the
 
 Ask AI to use the `final_fifa` dataset to generate an interesting chart. Deal with any warnings or messages in a sensible fashion.
 
-Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. Run `Cmd/Ctrl + Shift + K` to ensure that everything works. Make your plot look nice.
+Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab. Make your plot look nice.
 
 In the R Terminal, run:
 
@@ -1952,7 +1958,7 @@ You learned about working with parquet files using **[arrow](https://arrow.apach
 
 ### Exercise 1
 
-`Cmd/Ctrl + Shift + K` to ensure that everything works.  The resulting HTML page should be attractive, showing clean versions of your plot(s).
+In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab — the resulting HTML page should be attractive, showing clean versions of your plot(s).
 
 At the R Terminal, run:
 

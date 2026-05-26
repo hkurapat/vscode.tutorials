@@ -4,27 +4,27 @@
 
 ### Fixing r4ds 1-5 and tidycensus-1. 
 
-Doublecheck these are done.
+Doublecheck these are done. AR: All are good to go.
 
-  * Publish is second to last step. Committing is last step. 
+  * Publish is second to last step. Committing is last step. AR: Done.
 
-  * Get rid of all Positron. 
+  * Get rid of all Positron. AR: Done.
 
-  * Rewrite Exercise 1 creation to be Codespace.
+  * Rewrite Exercise 1 creation to be Codespace. AR: Done.
 
-  * Maybe the Summary sections OK? Commit after publish!
+  * Maybe the Summary sections OK? Commit after publish! AR: Done.
 
 ###
 
-  * Top of r4ds-1, give generic advice. AI refers to whatever AI you use. We recommend using an AI like Gemini CLI or Claude Code which can edit your documents directly. But you can also use a chat AI, although that will require you copy/pasting code into your Quarto document.
+  * Top of r4ds-1, give generic advice. AI refers to whatever AI you use. We recommend using an AI like Gemini CLI or Claude Code which can edit your documents directly. But you can also use a chat AI, although that will require you copy/pasting code into your Quarto document. AR: Done.
 
-  Say some words about how we phrase instructions, and what we mean.
+  Say some words about how we phrase instructions, and what we mean. AR: Done.
 
-  Never use `Cmd/Ctrl + Enter` since we are never using the R Terminal. show_file() is the usual way that we check that students have done something.
+  Never use `Cmd/Ctrl + Enter` since we are never using the R Terminal. show_file() is the usual way that we check that students have done something. AR: Done.
 
   * r4ds-2 is too long. cheese download is messed up?
 
-  * Revisit the internals of the tutorials. Make them modern. Use an AI which edits documents! No more exercise chunks! No more copy/paste. Ask Gemini. 
+  * Revisit the internals of the tutorials. Make them modern. Use an AI which edits documents! No more exercise chunks! No more copy/paste. Ask Gemini. AR: Done.
 
 
 
