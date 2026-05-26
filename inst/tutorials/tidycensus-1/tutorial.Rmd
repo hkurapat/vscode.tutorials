@@ -69,10 +69,11 @@ options(tutorial.exercise.timelimit = 600,
 
 ## Introduction
 
-<!-- DK: Overview introduction. Link to the book.  -->
+###
 
+This tutorial covers an overview of [Analyzing US Census Data](https://walker-data.com/census-r/index.html) by Kyle Walker. You will learn about using the **tidycensus** package for collecting, interacting, and plotting US Census data. You will mainly focus on collecting data from the Decennial Census and the American Community Survey (ACS).
 
-This tutorial covers an overview of [Analyzing US Census Data](https://walker-data.com/census-r/index.html) by Kyle Walker. You will learn about using the [**tidycensus**] package for collecting, interacting, and plotting US Census data. You will mainly focus on collecting data from the Decennial Census and the American Community Survey (ACS).
+Throughout these tutorials, you will use AI to help write and debug code. We recommend using an AI agent that works directly within your development environment, such as [Gemini CLI](https://github.com/google-gemini/gemini-cli) or [Claude Code](https://claude.ai/code), which can read and edit your files without copy/pasting. You may also use a chat-based AI (such as ChatGPT or Claude on the web), though this will require manually copying code into your Quarto document. Instructions throughout these tutorials are written assuming you are using an in-environment AI agent, but the choice is yours.
 
 ### Exercise 1
 
@@ -111,18 +112,26 @@ Professionals keep their data science work in the cloud because laptops fail.
 
 ### Exercise 2
 
-In your QMD, put `library(tidyverse)`, `library(tidycensus)`, and `library(sf)` in a new code chunk. Press `Ctrl/Cmd + Shift + K` to render the file
+In your QMD, paste the following `library()` commands in a new code chunk:
 
-Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this `setup` chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
+```
+library(tidyverse)
+library(tidycensus)
+library(sf)
+```
 
-```         
-execute: 
+Render the file using `Cmd/Ctrl + Shift + K`.
+
+Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to the code chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
+
+```
+execute:
   echo: false
 ```
 
 In the R Terminal, run:
 
-```         
+```
 show_file("TexasIncome.qmd", chunk = "Last")
 ```
 
@@ -166,7 +175,7 @@ This is how professionals work, they type code in the quarto document and send i
 
 <!-- DK: Clean up as we discussed. No wasted words. -->
 
-A critical part of the Census data analysis process is data visualization, where an analyst examines patterns and trends found in their data graphically. This first section illustrates some examples for getting started with exploratory Census data visualization with [**ggplot2**](https://ggplot2.tidyverse.org/). You will be using the `get_acs()` and the `geom_sf()` functions as well.
+A critical part of the Census data analysis process is data visualization, where an analyst examines patterns and trends found in their data graphically. This first section illustrates how to use **ggplot2** for exploratory Census data visualization, including how to draw choropleth maps using spatial data from **tidycensus**.
 
 ### Exercise 1
 
@@ -203,16 +212,15 @@ income_tx <- get_acs(
 
 <!-- DK: Knowledge drop. -->
 
-The `geometry` argument in `get_acs()` controls whether spatial boundary data is downloaded. Setting `geometry = TRUE` downloads county/tract shapes as polygons, which allows you to create maps with `geom_sf()`.
+The `geometry` argument in **tidycensus** controls whether spatial boundary data is downloaded. Setting it to `TRUE` downloads county shapes as polygons, enabling choropleth maps with **ggplot2**.
 
 ### Exercise 2
 
-Copy and paste our code to replace it with what you have.
-
+If your code looks different from ours, ask AI to update it so that `geometry = FALSE` is set explicitly. Send the updated code to the R Terminal using `Cmd/Ctrl + Enter`.
 
 In the R Terminal, run:
 
-```         
+```
 show_file("TexasIncome.qmd", chunk = "Last")
 ```
 
@@ -229,13 +237,11 @@ question_text(NULL,
 
 ###
 
-`get_acs()` is part of the **tidycensus** package and allows downloading American Community Survey (ACS) data.
+**tidycensus** connects directly to the Census API, letting you download American Community Survey (ACS) data into a tidy data frame.
 
 ### Exercise 3
 
-Edit your QMD, to change the value of `geometry` to `TRUE`.
-
-Take your code chunk and do `Cmd/Ctrl + Enter` to send it to the R Terminal.
+Ask AI to update your `get_acs()` call to set `geometry = TRUE`. Send the updated code chunk to the R Terminal using `Cmd/Ctrl + Enter`.
 
 In the R Terminal, run:
 
@@ -294,7 +300,7 @@ question_text(NULL,
 
 <!-- DK: Knowledge drop? -->
 
-The `glimpse()` function from **dplyr** shows the structure of your data frame transposed, making it easy to scan all column names and types at once. For Census data, this helps you quickly verify you got the right variables and see what additional columns like `GEOID` and `NAME` were automatically included.
+**dplyr**'s data inspection tools show the structure of a data frame, making it easy to scan all column names and types at once. For Census data, this helps you verify you got the right variables and see what additional columns like `GEOID` and `NAME` were automatically included.
 
 ### Exercise 5
 
@@ -340,10 +346,9 @@ question_text(NULL,
 
 ### Exercise 7
 
-Now copy the first few lines into your AI and say that you are working with **tidyverse**. Tell it to take the data in `income_tx` and make a choropleth map of median household income.
+Ask AI to take the `income_tx` data and create a choropleth map of median household income using **ggplot2**.
 
-
-Put what it gives you in a new code chunk and do `Cmd/Ctrl + Enter` to send it to the console
+Put what it gives you in a new code chunk and send it to the R Terminal using `Cmd/Ctrl + Enter`.
 
 CP/CR.
 
@@ -367,10 +372,7 @@ ggplot(income_tx) +
 
 ### Exercise 8
 
-Now, tell the AI to color counties by the estimate column and add an approprite title and theme. 
-
-
-Replace your code with this code in your chunk and do `Cmd/Ctrl + Enter` to send it to the console
+Ask AI to update the map to use an appropriate color scale for the `estimate` column and add a title and theme. Update your code chunk and send it to the R Terminal using `Cmd/Ctrl + Enter`.
 
 CP/CR.
 
@@ -385,13 +387,12 @@ question_text(NULL,
 ###
 
 
-When mapping spatial Census data, use `geom_sf()` in `ggplot2` and apply `fill = estimate` to show choropleth patterns.
+When mapping spatial Census data with **ggplot2**, setting the `fill` aesthetic to the `estimate` column creates choropleth patterns that show variation across geographies.
 
 
 ### Exercise 9
 
-Here is our code. It is okay if your code is different. That will happen when using AI!
-Replace your code with what it gave you using this code: 
+Here is our code. It is okay if your code is different. That will happen when using AI! If your map does not look right, ask AI to update it to match our version:
 
 ````
 ggplot(income_tx) +
@@ -406,7 +407,7 @@ ggplot(income_tx) +
 
 ###
 
-`geom_sf()` plots spatial data stored as simple features (`sf` objects). The `fill` aesthetic maps color to median income. The `viridis` color scale provides perceptually uniform colors for better interpretation.
+**ggplot2** can plot spatial data stored as **sf** (simple features) objects directly. The `fill` aesthetic maps color to values like median income. The viridis color scale provides perceptually uniform colors for better interpretation.
 ```{r}
 #| message: false
 ggplot(income_tx) +
@@ -444,7 +445,7 @@ The `show_file()` function from **tutorial.helpers** is a convenient way to chec
 
 ## California Bachelors Degree
 
-In this activity, we will be using **ggplot**, `geom_sf`, and be modifying data to turn it into percentages.
+In this activity, we will use **ggplot2** to visualize educational attainment data as a choropleth map, after calculating percentages using **dplyr**.
 
 
 ### 
@@ -455,9 +456,17 @@ In this exercise, we’ll get the percentage of adults with a bachelor’s degre
 
 ### Exercise 1
 
-In your QMD, put `library(tidyverse)`, `library(tidycensus)`, and `library(sf)` in a new code chunk. Press Ctrl/Cmd + Shift + K to render the file
+In your QMD, paste the following `library()` commands in a new code chunk:
 
-Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this `setup` chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
+```
+library(tidyverse)
+library(tidycensus)
+library(sf)
+```
+
+Render the file using `Cmd/Ctrl + Shift + K`.
+
+Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to the code chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
 
 ```
 execute:
@@ -542,13 +551,11 @@ edu_ca <- get_acs(
 
 ### Exercise 4
 
-Using our code, set `geometry = TRUE`.
-
-Take your code chunk and do `Cmd/Ctrl + Enter` to send it to the R Terminal.
+Ask AI to update your `get_acs()` call to set `geometry = TRUE`. Send the updated code chunk to the R Terminal using `Cmd/Ctrl + Enter`.
 
 In the R Terminal, run:
 
-```         
+```
 show_file("CaliforniaBachelors.qmd", chunk = "Last")
 ```
 
@@ -623,9 +630,7 @@ Census education tables report completed degrees, not enrollment. Someone with a
 
 We’ll now make a choropleth map of bachelor’s degree attainment across California counties.
 
-Send our code to the console from the previous exercise.
-
-Now, type `edu_ca` in the console.
+Type `edu_ca` in the R Terminal.
 
 CP/CR the first few lines.
 
@@ -644,11 +649,11 @@ Geometry must be `TRUE` if we want to map later.
 
 ### Exercise 8
 
-Now copy the first few lines into your AI and say that you are working with tidyverse. Tell it to take the data in `edu_ca` and make a choropleth map of at least bachelor’s degree attainment or higher across California counties and use `mutate()` to calculate the percentage of the population with at least a bachelor’s degree and pipe it into a `ggplot()`
+Ask AI to take the `edu_ca` data and create a choropleth map of bachelor’s degree attainment or higher across California counties. Tell it to calculate the percentage of adults with at least a bachelor’s degree and pipe that into a **ggplot2** map.
 
-Put what it gives you in a new code chunk and do `Cmd/Ctrl + Enter` to send it to the console
+Put what it gives you in a new code chunk and send it to the R Terminal using `Cmd/Ctrl + Enter`.
 
-CP/CR
+CP/CR.
 
 ```{r california-bachelors-degree-8}
 question_text(NULL,
@@ -679,7 +684,7 @@ ggplot(edu_ca) +
 ````
 
 
-For educational attainment, we use `B15003_022` through `B15003_025` to sum all individuals with a bachelor’s degree or more, then divide by the total population (variable `B15003_001`). The `scale_fill_viridis_c()` function applies colorblind-friendly color scales to maps, using palettes like viridis, plasma, or magma.
+For educational attainment, we use `B15003_022` through `B15003_025` to sum all individuals with a bachelor’s degree or more, then divide by the total population (variable `B15003_001`). **ggplot2** supports colorblind-friendly color scales for maps, such as the viridis family of palettes (viridis, plasma, magma).
 
 
 
@@ -702,7 +707,7 @@ ggplot(edu_ca) +
 
 ###
 
-`ggplot2` can handle spatial data directly using `geom_sf()`. Use `mutate()` to calculate percentages, and pipe that into `ggplot()` for a map.
+**ggplot2** can handle spatial data directly. Use `mutate()` to calculate percentages, then pipe the result into `ggplot()` for a map.
 
 
 ### Exercise 9
@@ -726,11 +731,7 @@ question_text(NULL,
 
 ###
 
-The variables in `get_acs()` like `"B19013_001"` are codes that represent specific census survey questions or data points.
-
- You can use the `load_variables()` function from tidycensus to look up what each code means and explore available variables for a given year and dataset. 
- 
- This helps you find exactly the data you need without guessing variable names.
+Census variable codes like `"B19013_001"` represent specific survey questions. **tidycensus** provides tools to look up what each code means and explore available variables for a given year and dataset, so you can find exactly the data you need.
 
 
 ## California Median Age
@@ -746,9 +747,17 @@ Create a new Quarto Document and save it as `CaliforniaAge.qmd`. Add a YAML head
 
 ### Exercise 1
 
-In your QMD, put `library(tidyverse)`, `library(tidycensus)`, and `library(sf)` in a new code chunk. Press Ctrl/Cmd + Shift + K to render the file
+In your QMD, paste the following `library()` commands in a new code chunk:
 
-Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this `setup` chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
+```
+library(tidyverse)
+library(tidycensus)
+library(sf)
+```
+
+Render the file using `Cmd/Ctrl + Shift + K`.
+
+Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to the code chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
 
 ```
 execute:
@@ -837,9 +846,7 @@ AI is your best friend! Professionals use AI to generate code and plot. You howe
 
 ### Exercise 4
 
-Using our code, add `geometry = FALSE`.
-
-Take your code chunk and do `Cmd/Ctrl + Enter` to send it to the R Terminal.
+Ask AI to update your `get_acs()` call to add `geometry = FALSE`. Send the updated code chunk to the R Terminal using `Cmd/Ctrl + Enter`.
 
 In the R Terminal, run:
 
@@ -912,13 +919,11 @@ question_text(NULL,
 
 ###
 
-`get_acs()` is your go-to for detailed annual demographic estimates from the American Community Survey. It returns both point estimates and margins of error (MOE) by default.
+**tidycensus** is your go-to for detailed annual demographic estimates from the American Community Survey. It returns both point estimates and margins of error (MOE) by default.
 
 ### Exercise 7
 
-Send our code to the console from the previous exercise.
-
-Now, type `age_ca` in the console.
+Type `age_ca` in the R Terminal.
 
 CP/CR the first few lines.
 
@@ -933,16 +938,15 @@ question_text(NULL,
 
 ###
 
-Helpful info for the next exercise: 
-`geom_col()` from `ggplot2`: Creates bar charts where bar heights correspond to values in the data.
+**ggplot2** can create bar charts where bar heights correspond to values in the data — useful for comparing Census estimates across geographies.
 
 ### Exercise 8
 
-Now, copy/paste those few lines into your AI. Tell it to use the `age_ca` data and make a bar plot showing median age by county.
+Ask AI to take the `age_ca` data and create a bar chart showing median age by county.
 
-Put what it gives you in a new code chunk and do `Cmd/Ctrl + Enter` to send it to the console
+Put what it gives you in a new code chunk and send it to the R Terminal using `Cmd/Ctrl + Enter`.
 
-CP/CR
+CP/CR.
 
 ```{r california-median-age-8}
 question_text(NULL,
@@ -968,13 +972,13 @@ ggplot(age_ca_wide, aes(x = reorder(NAME, median_age), y = median_age)) +
   coord_flip() 
 ````
 
-Annotate charts with `geom_text()` or `labs()` to add clarity about what each axis, facet, or fill represents—especially useful for public-facing work.
+Annotating charts with informative labels and titles adds clarity about what each axis and fill represents — especially useful for public-facing work.
 
 ### Exercise 9
 
 Now we have a basic bar plot, but we have too much data points.
 
-Tell your AI to filter the dataset to the 15 most populous counties and add informative labels and a title with `labs()`.
+Tell your AI to filter the dataset to the 15 most populous counties and add informative labels and a title.
 
 Put what it gives you in the  code chunk and do `Cmd/Ctrl + Enter` to send it to the console
 
@@ -1019,8 +1023,7 @@ ggplot(largest_ca, aes(x = reorder(NAME, median_age), y = median_age)) +
   )
 ````
 
-`theme_minimal()` from `ggplot2`:
-Applies a clean, minimal theme to the plot for better readability.
+**ggplot2** themes control the overall visual style of a plot. A minimal theme uses a white background with light gridlines, making data easier to read.
 
 ```{r}
 #| message: false
@@ -1102,7 +1105,7 @@ question_text(NULL,
 
 ###
 
-ACS data includes both an `estimate` column (the survey’s best guess) and a `moe` column (margin of error). The `geography` parameter in `get_acs()` allows data to be aggregated to common Census units — county, tract, state, and more. **tidycensus** accepts state names (e.g. `"Texas"`), postal codes (e.g. `"TX"`), and FIPS codes (e.g. `"48"`), so you can use whichever format you know.
+ACS data includes both an `estimate` column (the survey’s best guess) and a `moe` column (margin of error). **tidycensus** lets you aggregate data to common Census units — county, tract, state, and more. It accepts state names (e.g. `"Texas"`), postal codes (e.g. `"TX"`), and FIPS codes (e.g. `"48"`), so you can use whichever format you know.
 
 ### Exercise 2
 
