@@ -29,7 +29,7 @@ options(tutorial.exercise.timelimit = 60,
 ## Introduction
 ###
 
-This tutorial introduces the [Gemini CLI](https://github.com/google-gemini/gemini-cli) for doing AI-assisted data science work in GitHub Codespaces. You will set up and use the Gemini CLI --- a terminal-based AI assistant that can read your files, run shell commands, and write to your filesystem --- to create and render project files and handle Git operations.
+This tutorial introduces the [Gemini CLI](https://github.com/google-gemini/gemini-cli) for doing AI-assisted data science work in GitHub Codespaces. You will set up and use the Gemini CLI --- a terminal-based AI assistant that can read your files, run commands in the terminal, and write new files --- to create and render project files and handle Git operations.
 
 ### Exercise 1
 
@@ -86,7 +86,7 @@ https://congenial-chainsaw-wv757pv4pp67cpw.github.dev/
 
 ###
 
-There are three main ways to interact with AI: a *chat interface* (like gemini.google.com), a *CLI tool* running in your terminal, and an *embedded agent* inside your editor (like GitHub Copilot). This tutorial uses the CLI approach --- you'll run Gemini directly in the VS Code terminal, where it can read your files and take actions on your behalf. Feel free to close the Copilot sidebar.
+There are three main ways to interact with AI: a *chat interface* (like gemini.google.com), a *command-line tool* running in your terminal, and *an AI built into your editor* (like GitHub Copilot). This tutorial uses the command-line approach --- you'll run Gemini directly in the VS Code terminal, where it can read your files and take actions on your behalf. Feel free to close the Copilot sidebar.
 
 ### Exercise 3
 
@@ -138,12 +138,12 @@ Your answer should look like:
 
 ###
 
-The `.git` directory tells you and Gemini it's inside a Git repo. When Gemini reads the filesystem, its presence signals that this is a version-controlled project --- which is what allows it to run `git` commands intelligently later in the tutorial, staging files, reading commit history, and pushing to GitHub.
+The `.git` directory tells both you and Gemini that this is a Git repository. When Gemini sees it, Gemini knows it can run `git` commands --- like adding files to Git, reading the commit history, and pushing to GitHub.
 
 ## Gemini CLI
 ###
 
-The [Gemini CLI](https://github.com/google-gemini/gemini-cli) is an open-source, command-line AI assistant built by Google. Unlike a web chat interface, it runs directly in your terminal and can take actions on your behalf: reading files, running shell commands, and writing new files. Each time it wants to take an action, it asks for your permission first --- so you always stay in control.
+The [Gemini CLI](https://github.com/google-gemini/gemini-cli) is a free, open AI assistant built by Google that runs in your terminal. Unlike a web chat interface, it can take actions on your behalf: reading files, running terminal commands, and writing new files. Each time it wants to take an action, it asks for your permission first --- so you always stay in control.
 
 ### Exercise 1
 
@@ -162,7 +162,7 @@ question_text(NULL,
 
 ###
 
-You may notice that VS Code renames the terminal tab from "bash" to "node" once Gemini starts. This is because the Gemini CLI is a [Node.js application](https://nodejs.org/en/about) --- VS Code detects the underlying process and updates the tab name to reflect it.
+You may notice that VS Code renames the terminal tab from "bash" to "node" once Gemini starts. This is because the Gemini CLI is built on [Node.js](https://nodejs.org/en/about), and VS Code detects this and updates the tab name.
 
 
 ```{r}
@@ -199,9 +199,7 @@ include_graphics("images/gemini-CLI-auth-done.png")
 
 ###
 
-This authentication flow is called [OAuth 2.0](https://oauth.net/2/), the same standard used by "Sign in with Google" buttons across the web. Instead of sending your Google password to the CLI, you grant it a limited-scope access token. 
-
-The token is stored locally, so you won't need to re-authenticate every session within the same Codespace. Whenever you open a new Codespace, however, you will need to reauthenticate.
+This uses [OAuth 2.0](https://oauth.net/2/), the same standard behind "Sign in with Google" buttons --- you grant a temporary permission token rather than sharing your password. The token is saved in this Codespace, but each new Codespace requires a fresh sign-in.
 
 ### Exercise 3
 
@@ -239,7 +237,7 @@ Available commands:
 
 ###
 
-Slash commands control the CLI itself, not Gemini --- the command `/help` tells the *program* to print its options, while a plain sentence talks to *Gemini*. For factual session data like token usage, always use slash commands rather than asking Gemini, which will only guess.
+Slash commands control the program itself, not Gemini --- the command `/help` tells the *program* to print its options, while a plain sentence talks to *Gemini*. For factual session data like usage statistics, always use slash commands rather than asking Gemini, which will only guess.
 
 ### Exercise 4
 
@@ -266,7 +264,7 @@ Current model: gemini-2.5-pro
 
 ###
 
-The Gemini model family has several tiers: **Pro** for complex reasoning and coding tasks, **Flash** for speed and lower token cost. You can switch mid-session with `/model model-name` if you want to preserve your daily quota for simpler work or use a more powerful model.
+The Gemini model family has several tiers: **Pro** for complex reasoning and coding tasks, **Flash** for speed and lower usage. You can switch mid-session with `/model model-name` if you want to save your daily limit for simpler work or use a more powerful model.
 
 ### Exercise 5
 
@@ -296,7 +294,7 @@ question_text(NULL,
 
 ###
 
-The tool authorization prompt is a deliberate safety feature --- an AI that could silently execute shell commands would be a significant security risk.
+The tool authorization prompt is a deliberate safety feature --- an AI that could silently run commands in your terminal without asking would be a significant security risk.
 
 ### Exercise 6
 
@@ -343,7 +341,7 @@ I've created `analysis.qmd` with:
 
 ###
 
-When you ask Gemini to create a file, it generates the entire contents in one step and writes it for you. Instead of typing boilerplate YAML, chunk options, and library calls yourself, you describe what you want and refine the result --- editing is almost always faster than composing from scratch.
+When you ask Gemini to create a file, it generates the entire contents in one step and writes it for you. Instead of typing the YAML header, chunk settings, and library calls yourself, you describe what you want and refine the result --- editing is almost always faster than composing from scratch.
 
 ### Exercise 7
 
@@ -395,7 +393,7 @@ Quarto rendered `analysis.qmd` successfully. New files: `analysis.html` (the ren
 
 ###
 
-Notice that Gemini issued *two* tool calls to answer a single question: first to render, then to list files. This is called **multi-step tool use** --- the model breaks your request into a sequence of actions, uses the result of each step to decide what to do next, and then synthesizes the results into a single response. This is the difference between an AI *agent* (which takes actions and reasons about results) and a plain chatbot (which only produces text).
+Gemini ran two commands to answer one question, using the result of each step to decide what to do next. This is what makes it an AI *agent* --- it takes actions and reasons about results, rather than just producing text.
 
 ### Exercise 8
 
@@ -430,7 +428,7 @@ Keep this tab open. Every time `analysis.html` is updated on disk --- whether by
 
 ###
 
-Live Server is a VS Code extension that serves HTML files through a local web server and reloads the browser whenever a file changes on disk. This is necessary in a Codespace because the files live on a remote machine and cannot be opened directly in a browser.
+Live Server is a VS Code extension that hosts HTML files so they can be viewed in a browser and reloads the page whenever a file changes. This is necessary in a Codespace because the files live on a remote computer and cannot be opened directly in a browser.
 
 ### Exercise 9
 
@@ -459,11 +457,11 @@ question_text(NULL,
 
 ###
 
-Your answer will vary, but it should show **ggplot2** code using the `storms` dataset --- something like a boxplot of wind speed by storm category. The chunk should not have `#| echo: true` --- since you set `execute: echo: false` in the YAML header, all chunks inherit that option by default.
+Your answer will vary, but it should show **ggplot2** code using the `storms` dataset --- something like a boxplot of wind speed by storm category. The chunk should not have `#| echo: true` --- since you set `execute: echo: false` in the YAML header, all chunks use that setting by default.
 
 ###
 
-When Gemini adds a plot and re-renders, two things happen automatically: Quarto overwrites `analysis.html` on disk, and Live Server detects the change and refreshes your browser. This loop --- ask Gemini, render, view --- is the same workflow you would use throughout a real project.
+When Gemini adds a plot and re-renders, two things happen automatically: Quarto updates `analysis.html`, and Live Server detects the change and refreshes your browser. This loop --- ask Gemini, render, view --- is the same workflow you would use throughout a real project.
 
 ### Exercise 10
 
@@ -552,7 +550,7 @@ Allow this tool call? [y/n/a]: y
 
 ###
 
-Asking Gemini to read back a file it just created is a quick way to verify the contents without leaving the session. The underlying command is the same `cat` you would run yourself --- Gemini just runs it on your behalf and shows you the result.
+Asking Gemini to read back a file it just created is a quick way to verify the contents without leaving Gemini. The underlying command is the same `cat` you would run yourself --- Gemini just runs it on your behalf and shows you the result.
 
 
 ### Exercise 12
@@ -580,7 +578,7 @@ question_text(NULL,
 
 ###
 
-Gemini's **conversation history** is gone the moment you type `/quit`, but the **files on disk** are permanent --- this is why it can reconstruct context after a restart just by reading the files. The `/chat save <name>` command lets you preserve a conversation so you can resume it later with `/chat resume <name>`.
+Gemini's **conversation history** is gone the moment you type `/quit`, but the **files on disk** are permanent --- this is why it can pick up where you left off after a restart just by reading the files. The `/chat save <name>` command lets you preserve a conversation so you can resume it later with `/chat resume <name>`.
 
 ## Git with Gemini
 ###
@@ -641,7 +639,7 @@ Here's what this means:
 
 ###
 
-`git status` shows which branch you are on, changes that have been **staged** (queued for the next commit), and files that are **untracked** (noticed by Git but not yet monitored). An untracked file won't be included in any commit until you stage it with `git add`. The `codespace-starter` devcontainer enables smart commit, so staging happens automatically --- you only need to press the "Commit" button in the Source Control side bar.
+`git status` shows your branch, **staged** changes (added to the next commit), and **untracked** files (noticed by Git but not yet included). Smart commit in `codespace-starter` handles staging automatically --- just press the "Commit" button.
 
 ### Exercise 2
 
@@ -664,7 +662,7 @@ question_text(NULL,
 
 ###
 
-Gemini should explain that `git add` moves files into the **staging area** (also called the index), a holding zone where you prepare a snapshot before committing. `git commit` then takes everything in the staging area and permanently records it in the repo's history. A typical response will include commands like:
+Gemini should explain that `git add` moves files into the **staging area**, a holding zone where you prepare which changes to include before committing. `git commit` then takes everything in the staging area and permanently records it in the project's history. A typical response will include commands like:
 
 ```
 git add .gitignore analysis.qmd analysis.html
@@ -673,9 +671,7 @@ git commit -m "initial version with analysis and gitignore"
 
 ###
 
-The two-step add-then-commit design exists to give you precise control over what goes into each commit. Imagine you've changed five files but only want to record two of them as a single logical unit --- you add just those two, commit them, then add the remaining three separately with a different message. 
-
-In practice, using the `codespace-starter` we use the Source Control sidebar to stage and commit all changes at once, using these commands under the hood. But understanding that staging and committing are separate steps is essential once you start collaborating or managing larger projects.
+The two-step design lets you choose exactly which files go into each commit --- useful when you want to record related changes separately with different messages. In `codespace-starter`, the Source Control sidebar handles both steps at once, but knowing they are separate matters when collaborating on larger projects.
 
 ### Exercise 3
 
@@ -709,7 +705,7 @@ e3b01ee Initial commit
 @ppbds-student ➜ /workspaces/08-ai (main) $
 ````
 
-The `(HEAD -> main)` indicator shows that your local `main` branch is pointing to this latest commit. The absence of `origin/main` on the same line tells you the commit exists locally but has not yet been pushed to GitHub. Pushing is the step that sends your commits to the remote repository, making them visible on GitHub and safe from local machine failure.
+The `(HEAD -> main)` indicator confirms your local branch is current, but the missing `origin/main` means this commit hasn't been pushed to GitHub yet. Pushing is what sends it there and makes it visible to others.
 
 ### Exercise 4
 
@@ -808,7 +804,7 @@ Model: gemini-2.5-pro
 
 ###
 
-AI models have **context windows** --- a limit on how much information they can hold in memory at once. Gemini's are very large (up to 1 million tokens), but `/stats` lets you track usage in real time; on the free tier, quotas reset daily.
+AI models have **context windows** --- a limit on how much text they can process in one session. Gemini's are very large (up to 1 million tokens), but `/stats` lets you track usage in real time; on the free tier, your daily limit resets every day.
 
 
 ## Summary
@@ -883,7 +879,7 @@ question_text(NULL,
 
 ###
 
-The Gemini CLI is one of several AI coding tools available today. Others include [Claude Code](https://claude.ai/claude-code) (Anthropic), [GitHub Copilot](https://github.com/features/copilot) (Microsoft), and [Cursor](https://cursor.sh/) (Anysphere). Each has a different interface and strengths, but the underlying workflow is the same: describe what you want in natural language, review what the AI produces, and iterate. The goal is not to replace your judgment --- it is to handle the mechanical parts of coding so you can focus on the thinking.
+Other AI coding tools include [Claude Code](https://claude.ai/claude-code) (Anthropic), [GitHub Copilot](https://github.com/features/copilot) (Microsoft), and [Cursor](https://cursor.sh/) (Anysphere). The workflow is the same across all of them: describe what you want, review the result, and iterate.
 
 ```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
 ```
