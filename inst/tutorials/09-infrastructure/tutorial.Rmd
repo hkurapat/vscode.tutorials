@@ -131,12 +131,12 @@ question_text(NULL,
 
 ###
 
-Your output will show the full `devcontainer.json` for the `codespace-starter` template. You will explore each part of this file in the Devcontainers section. Keep this Codespace open --- you will need it alongside a second Codespace in the next section.
+Your output will show the full `devcontainer.json` for the `codespace-starter` template. You will explore each part of this file in the Jupyter Notebook Devcontainer section. Keep this Codespace open --- you will need it alongside a second Codespace in the next section.
 
-## Devcontainers
+## Jupyter Notebook Devcontainer
 ###
 
-A **devcontainer** is a configuration-as-code approach to development environments. Instead of documenting setup steps in a README and hoping every collaborator follows them correctly, a `devcontainer.json` file encodes the entire environment --- base image, packages, extensions, and startup commands --- so that any Codespace opened from the repo starts in an identical, ready-to-use state.
+A **devcontainer** is a configuration-as-code approach to development environments. Instead of documenting setup steps in a README and hoping every collaborator follows them correctly, a `devcontainer.json` file encodes the entire environment --- base image, packages, extensions, and startup commands --- so that any Codespace opened from the repo starts in an identical, ready-to-use state. In this section you will examine the devcontainer for GitHub's Jupyter Notebook template, which sets up a development environment for doing data science with Python and Jupyter Notebooks.
 
 ### Exercise 1
 
@@ -636,6 +636,283 @@ https://github.com/ppbds-student/codespaces-jupyter
 
 Codespaces started from `codespace-starter` are backed by an existing GitHub repo, so pushing just sends commits to a remote that already exists. This Codespace was created directly from a template, so there was no GitHub repo yet --- "Publish Branch" is what creates it.
 
+## New Devcontainer
+###
+
+In the previous section you explored a devcontainer someone else wrote. Now you will build one from scratch. You will open a blank Codespace with no configuration at all, manually create the devcontainer files, ask an AI to draft the JSON, replace it with a clean version, and rebuild the container to see the new environment take effect.
+
+### Exercise 1
+
+Go to https://github.com/codespaces/templates. Click "Use This Template" for the **Blank** template. This will open a new blank Codespace. You should now have two Codespaces open: the one running this tutorial and the new blank one.
+
+Copy and paste the URL of the new blank Codespace.
+
+```{r new-devcontainer-1}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+The blank template starts with no `.devcontainer` directory at all. GitHub falls back to a generic default image with no customization. This is the starting point for any brand-new project where you want to define the environment from scratch.
+
+### Exercise 2
+
+In the blank Codespace, open the File Explorer. Right-click in the file tree and select **"New Folder"**. Name it `.devcontainer`. Then right-click the new folder and select **"New File"**. Name it `devcontainer.json`.
+
+In the bash Terminal, run:
+
+```
+ls .devcontainer/
+```
+
+CP/CR.
+
+```{r new-devcontainer-2}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 4)
+```
+
+###
+
+Your output should look like:
+
+````
+devcontainer.json
+````
+
+###
+
+GitHub Codespaces looks for a file named exactly `devcontainer.json` inside a directory named exactly `.devcontainer` at the root of the repo. The leading dot makes `.devcontainer` a hidden directory --- it won't appear in `ls` without the `-a` flag, but it is visible in VS Code's File Explorer by default.
+
+### Exercise 3
+
+Open an AI chatbot --- ChatGPT, Gemini, Claude, or any other. Ask it:
+
+```
+Write a devcontainer.json for an R data science project.
+```
+
+CP/CR the AI's full response.
+
+```{r new-devcontainer-3}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 20)
+```
+
+###
+
+AI models know the `devcontainer.json` format well because it is a widely-used open standard with extensive documentation. The response is often longer than needed --- AI tends to include optional fields like `postCreateCommand` or `features` as a precaution. Reviewing and simplifying AI output is a normal part of using it for infrastructure work.
+
+### Exercise 4
+
+Open `.devcontainer/devcontainer.json` in the editor. Replace all of its contents with the following:
+
+```
+{
+  "name": "R Dev Container",
+  "image": "ghcr.io/rocker-org/devcontainer/tidyverse:4",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "REditorSupport.r"
+      ]
+    }
+  }
+}
+```
+
+Save the file. Then in the **R Terminal**, run:
+
+```
+tutorial.helpers::show_file(".devcontainer/devcontainer.json", chunk = "Last")
+```
+
+CP/CR.
+
+```{r new-devcontainer-4}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 12)
+```
+
+###
+
+This file is simpler than what the AI produced --- fewer fields means fewer things that can go wrong. Good devcontainers are minimal: only add what the project actually needs.
+
+### Exercise 5
+
+Click the blue connection indicator in the bottom-left corner of VS Code (it shows text like **"Codespaces: ..."**). From the menu that appears, select **"Rebuild Container"**, then **"Full Rebuild"**. Wait for the rebuild to complete --- the window will reload when the new container is ready.
+
+Once the Codespace has reloaded, in the bash Terminal run:
+
+```
+R --version
+```
+
+CP/CR.
+
+```{r new-devcontainer-5}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 6)
+```
+
+###
+
+Your output should begin with something like:
+
+````
+R version 4.4.0 (2024-04-24) -- "Puppy Cup"
+````
+
+###
+
+A full rebuild discards the existing container and constructs a new one from scratch using the updated `devcontainer.json`. This is slower than a standard rebuild but guarantees the environment exactly matches the configuration. Because `ghcr.io/rocker-org/devcontainer/tidyverse:4` already has R pre-installed, R is available the moment the rebuild finishes --- no install scripts needed.
+
+### Exercise 6
+
+In `devcontainer.json`, find the line beginning with `"name"`. Copy and paste it.
+
+```{r new-devcontainer-6}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+Your answer should look like:
+
+```
+"name": "R Dev Container",
+```
+
+###
+
+The `name` field sets the display label for the container in VS Code's status bar and on the github.com/codespaces management page. It has no effect on the environment itself --- it is purely a human-readable identifier.
+
+### Exercise 7
+
+Find the line beginning with `"image"`. Copy and paste it.
+
+```{r new-devcontainer-7}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+Your answer should look like:
+
+```
+"image": "ghcr.io/rocker-org/devcontainer/tidyverse:4",
+```
+
+###
+
+The `image` field names the Docker image used as the base environment. `ghcr.io/rocker-org/devcontainer/tidyverse:4` is a pre-built image maintained by the [Rocker Project](https://rocker-project.org/) that ships with R 4.x, the tidyverse, and common data science packages already installed. Using a dedicated R image means no install scripts are needed --- R is ready when the container starts.
+
+### Exercise 8
+
+Find the line beginning with `"customizations"`. Copy and paste it.
+
+```{r new-devcontainer-8}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+Your answer should look like:
+
+```
+"customizations": {
+```
+
+###
+
+The `customizations` block is where tool-specific settings live. Different tools that support devcontainers --- VS Code, GitHub Codespaces, JetBrains IDEs --- each read their own key inside `customizations`. This lets a single `devcontainer.json` configure multiple tools without those settings interfering with each other.
+
+### Exercise 9
+
+Find the line beginning with `"vscode"`. Copy and paste it.
+
+```{r new-devcontainer-9}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+Your answer should look like:
+
+```
+"vscode": {
+```
+
+###
+
+The `vscode` key scopes settings that only VS Code will read. Placing VS Code settings here --- rather than at the top level --- is what allows the same `devcontainer.json` to work cleanly with other editors that also support the devcontainer spec.
+
+### Exercise 10
+
+Find the line containing `"REditorSupport.r"`. Copy and paste it.
+
+```{r new-devcontainer-10}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+Your answer should look like:
+
+```
+"REditorSupport.r"
+```
+
+###
+
+Extension IDs in VS Code follow the format `publisher.extension-name`. `REditorSupport.r` is the official R language extension, published by the REditorSupport organization. It provides syntax highlighting, code completion, and inline output for R in VS Code --- the same extension you have been using throughout this course.
+
 ## Summary
 ###
 
@@ -656,7 +933,7 @@ question_text(NULL,
 
 ###
 
-Your output should show the full contents of the `devcontainer.json` from `codespace-starter`, including fields like `image`, `features`, `customizations`, and any lifecycle commands. Compare this to the Jupyter template's `devcontainer.json` you explored in the Devcontainers section --- the two files use the same structure but configure completely different environments.
+Your output should show the full contents of the `devcontainer.json` from `codespace-starter`, including fields like `image`, `features`, `customizations`, and any lifecycle commands. Compare this to the Jupyter template's `devcontainer.json` you explored in the Jupyter Notebook Devcontainer section --- the two files use the same structure but configure completely different environments.
 
 ### Exercise 2
 
