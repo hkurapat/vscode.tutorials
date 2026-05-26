@@ -1,31 +1,34 @@
 ## Alec
 
-Split 08 tutorial into 08-ai and 09-infrastructure. The ai just contains the current ai stuff in 08. The devcontainer stuff in 08 gets moved to 09. A second section in 09 gives a tour of the codebase-starter stuff. AR: Done. Also added section where students create their own devcontainer in 09-infrastructure.
+CLAUDE.md document. Placed where? Describes how to make tutorials. 
+
+Can start it by showing it the ai.qmd document.
+
+No more "Place your cursor in the QMD" after r4ds-* tutorials. We just render and look and talk.
+
+Don't want every render to download data or do anything that takes too much time. So, almost every tutorial tells the student to implement cache'ing.
+
+There is no need for a data/ directory in most (all?) tutorials.
+
+We never (?) use an exercise code chunk. Students don't type code. They type instructions to the AI.
+
+Claude is responsible for creating the text within backticks which shows students what they should see at the bottom of their HTML, since we are almost always editing the last code chunk. 
+
+And Claude is responsible for keeping everything in sync. If we change the tibble up above, that means that what is displayed by summary() on that tibble in the QMD will change, which means that what we show students should change.
+
+tidycensus-1 -> Census
+
+Tutorials now are about concepts, not books.
+
+Baseball and stocks and Bitcoin.
+
+
 
 
 ### Fixing r4ds 1-5 and tidycensus-1. 
 
-Doublecheck these are done. AR: All are good to go.
+* r4ds-2 is too long. cheese download is messed up?
 
-  * Publish is second to last step. Committing is last step. AR: Done.
-
-  * Get rid of all Positron. AR: Done.
-
-  * Rewrite Exercise 1 creation to be Codespace. AR: Done.
-
-  * Maybe the Summary sections OK? Commit after publish! AR: Done.
-
-###
-
-  * Top of r4ds-1, give generic advice. AI refers to whatever AI you use. We recommend using an AI like Gemini CLI or Claude Code which can edit your documents directly. But you can also use a chat AI, although that will require you copy/pasting code into your Quarto document. AR: Done.
-
-  Say some words about how we phrase instructions, and what we mean. AR: Done.
-
-  Never use `Cmd/Ctrl + Enter` since we are never using the R Terminal. show_file() is the usual way that we check that students have done something. AR: Done.
-
-  * r4ds-2 is too long. cheese download is messed up?
-
-  * Revisit the internals of the tutorials. Make them modern. Use an AI which edits documents! No more exercise chunks! No more copy/paste. Ask Gemini. AR: Done.
 
 
 

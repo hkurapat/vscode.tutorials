@@ -1126,7 +1126,6 @@ Your answer should look like:
 
 By default, VS Code opens files in "preview" mode --- clicking a second file replaces the first tab, so beginners often think their file disappeared. Setting this to `false` means every file opens in a permanent tab.
 
-<!-- AR: Need any more exercises here (i.e. Make a change to the devcontainer)? No changes to push to repo yet. -->
 
 ## Summary
 ###
@@ -1157,8 +1156,6 @@ https://github.com/ppbds-student/codespaces-jupyter
 Stopping Codespaces when you are done with them conserves your free monthly compute hours. Deleted Codespaces cannot be recovered, but stopped ones can be restarted at any time.
 
 ### Exercise 2
-
-<!-- AR: Delete if students make no changes to the repo. As of 26.05.26 pre-meeting, no changes are made. -->
 
 Commit and push any remaining uncommitted files in your `09-infrastructure` Codespace. Copy/paste the URL to your `09-infrastructure` GitHub repo.
 

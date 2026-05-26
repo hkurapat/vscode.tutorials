@@ -942,8 +942,6 @@ The argument `skip` is used to skip rows, but to skip columns, you can use the `
 
 ### Exercise 4
 
-<!-- AR: no longer skip 5 lines here -->
-
 Ask AI: Edit the code so that `read_csv()` is assigned to an object `df` and told that the column type of `artist.familiarity` is a double. Then check `df` for any parsing failures.
 
 If you're using a chat AI, provide the `music.csv` tibble again and the previous code.

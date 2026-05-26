@@ -61,14 +61,10 @@ options(tutorial.exercise.timelimit = 600,
         tutorial.storage = "local") 	
 ```
 
-
-
 ```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
 ```
 
-
 ## Introduction
-
 ###
 
 This tutorial covers an overview of [Analyzing US Census Data](https://walker-data.com/census-r/index.html) by Kyle Walker. You will learn about using the **tidycensus** package for collecting, interacting, and plotting US Census data. You will mainly focus on collecting data from the Decennial Census and the American Community Survey (ACS).
@@ -83,7 +79,7 @@ If you haven't already, open the `tidycensus-plots` repo on GitHub and create a 
 
 You need two R Terminals: one for running this tutorial and one for your exercises.
 
-Create a new Quarto Document and save it as `TexasIncome.qmd`. Add a YAML header at the top with a title (`"TexasIncome"`) and your name as author. In a Bash terminal, run:
+Create a new Quarto Document and save it as `TexasIncome.qmd`. Add a YAML header at the top with a title (`"Texas Income"`) and your name as author. In a bash terminal, run:
 
 ```
 quarto render TexasIncome.qmd
@@ -450,6 +446,7 @@ The `show_file()` function from **tutorial.helpers** is a convenient way to chec
 
 
 ## California Bachelors Degree
+###
 
 In this activity, we will use **ggplot2** to visualize educational attainment data as a choropleth map, after calculating percentages using **dplyr**.
 
