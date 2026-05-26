@@ -76,15 +76,15 @@ This tutorial covers an overview of [Analyzing US Census Data](https://walker-da
 
 ### Exercise 1
 
-Create a Github repo called `tidycensus-plots`. Set the "Add README" toggle switch to "On."
+Create a new repo using `codespace-starter` as a template and name it `tidycensus-plots`.
 
-Connect the repo to a project on your computer using `File -> New Folder from Git ...`. Make sure to select the "Open in a new window" box. 
+If you haven't already, open the `tidycensus-plots` repo on GitHub and create a Codespace from it.
 
-You need two Positron windows: this one for running the tutorial and the one you just created for writing your code and interacting with the R Terminal.
+You need two R Terminals: one for running this tutorial and one for your exercises.
 
-Select `File -> New File -> Quarto Document ...`. Provide a title -- `"TexasIncome"` -- and an author (you). Render the document and save it as `TexasIncome.qmd`.
+Create a new Quarto Document and save it as `TexasIncome.qmd`. Add a YAML header at the top with a title (`"TexasIncome"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
 
-Create a `.gitignore` file with `_files` on the first line and then a blank line. Save and push.
+Create a `.gitignore` file with `*_files` on the first line and then a blank line. Save and push.
 
 In the R Terminal, run:
 
@@ -111,7 +111,7 @@ Professionals keep their data science work in the cloud because laptops fail.
 
 ### Exercise 2
 
-In your QMD, put `library(tidyverse)` and  `library(tidycensus)` in a new code chunk. Press `Ctrl/Cmd + Shift + K` to render the file
+In your QMD, put `library(tidyverse)`, `library(tidycensus)`, and `library(sf)` in a new code chunk. Press `Ctrl/Cmd + Shift + K` to render the file
 
 Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this `setup` chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
 
@@ -123,7 +123,7 @@ execute:
 In the R Terminal, run:
 
 ```         
-tutorial.helpers::show_file("TexasIncome.qmd", chunk = "Last")
+show_file("TexasIncome.qmd", chunk = "Last")
 ```
 
 CP/CR.
@@ -213,7 +213,7 @@ Copy and paste our code to replace it with what you have.
 In the R Terminal, run:
 
 ```         
-tutorial.helpers::show_file("TexasIncome.qmd", chunk = "Last")
+show_file("TexasIncome.qmd", chunk = "Last")
 ```
 
 CP/CR.
@@ -240,7 +240,7 @@ Take your code chunk and do `Cmd/Ctrl + Enter` to send it to the R Terminal.
 In the R Terminal, run:
 
 ```         
-tutorial.helpers::show_file("TexasIncome.qmd", chunk = "Last")
+show_file("TexasIncome.qmd", chunk = "Last")
 ```
 
 CP/CR.
@@ -425,7 +425,7 @@ ggplot(income_tx) +
 In the R Terminal, run the following command to display the last chunk of your `.qmd` file: CP/CR
 
 ```         
-tutorial.helpers::show_file("TexasIncome.qmd", chunk = "Last")
+show_file("TexasIncome.qmd", chunk = "Last")
 ```
 
 ```{r texas-income-10}
@@ -449,25 +449,25 @@ In this activity, we will be using **ggplot**, `geom_sf`, and be modifying data 
 
 ### 
 
-Select `File -> New File -> Quarto Document ...`. Provide a title -- `"CaliforniaBachelors"` -- and an author (you). Render the document and save it as `CaliforniaBachelors.qmd`.
+Create a new Quarto Document and save it as `CaliforniaBachelors.qmd`. Add a YAML header at the top with a title (`"CaliforniaBachelors"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
 
 In this exercise, we’ll get the percentage of adults with a bachelor’s degree or higher in each California county.
 
 ### Exercise 1
 
-In your QMD, put `library(tidyverse)` and  `library(tidycensus)` in a new code chunk. Press Ctrl/Cmd + Shift + K to render the file
+In your QMD, put `library(tidyverse)`, `library(tidycensus)`, and `library(sf)` in a new code chunk. Press Ctrl/Cmd + Shift + K to render the file
 
 Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this `setup` chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
 
-```         
-execute: 
+```
+execute:
   echo: false
 ```
 
 In the R Terminal, run:
 
-```         
-tutorial.helpers::show_file("CaliforniaBachelors.qmd", chunk = "Last")
+```
+show_file("CaliforniaBachelors.qmd", chunk = "Last")
 ```
 
 CP/CR.
@@ -549,7 +549,7 @@ Take your code chunk and do `Cmd/Ctrl + Enter` to send it to the R Terminal.
 In the R Terminal, run:
 
 ```         
-tutorial.helpers::show_file("CaliforniaBachelors.qmd", chunk = "Last")
+show_file("CaliforniaBachelors.qmd", chunk = "Last")
 ```
 
 CP/CR.
@@ -710,7 +710,7 @@ ggplot(edu_ca) +
 In the R Terminal, run the following command to display the last chunk of your `.qmd` file
 
 ```
-tutorial.helpers::show_file("CaliforniaBachelors.qmd", chunk = "Last")
+show_file("CaliforniaBachelors.qmd", chunk = "Last")
 ```
 
 CP/CR
@@ -739,26 +739,26 @@ The variables in `get_acs()` like `"B19013_001"` are codes that represent specif
 
 In this exercise, you will collect and plot median age data for all counties in California for the year 2020 using the **tidycensus** package.
 
-Select `File -> New File -> Quarto Document ...`. Provide a title -- `"CaliforniaAge"` -- and an author (you). Render the document and save it as `CaliforniaAge.qmd`.
+Create a new Quarto Document and save it as `CaliforniaAge.qmd`. Add a YAML header at the top with a title (`"CaliforniaAge"`) and your name as author. Render the document using `Cmd/Ctrl + Shift + K`.
 
 
 
 
 ### Exercise 1
 
-In your QMD, put `library(tidyverse)` and  `library(tidycensus)` in a new code chunk. Press Ctrl/Cmd + Shift + K to render the file
+In your QMD, put `library(tidyverse)`, `library(tidycensus)`, and `library(sf)` in a new code chunk. Press Ctrl/Cmd + Shift + K to render the file
 
 Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this `setup` chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
 
-```         
-execute: 
+```
+execute:
   echo: false
 ```
 
 In the R Terminal, run:
 
-```         
-tutorial.helpers::show_file("CaliforniaAge.qmd", chunk = "Last")
+```
+show_file("CaliforniaAge.qmd", chunk = "Last")
 ```
 
 CP/CR.
@@ -844,7 +844,7 @@ Take your code chunk and do `Cmd/Ctrl + Enter` to send it to the R Terminal.
 In the R Terminal, run:
 
 ```         
-tutorial.helpers::show_file("CaliforniaAge.qmd", chunk = "Last")
+show_file("CaliforniaAge.qmd", chunk = "Last")
 ```
 
 CP/CR.
@@ -1054,7 +1054,7 @@ ggplot(largest_ca, aes(x = reorder(NAME, median_age), y = median_age)) +
 In the R Terminal, run the following command to display the last chunk of your `.qmd` file.
 
 ```
-tutorial.helpers::show_file("CaliforniaAge.qmd", chunk = "Last")
+show_file("CaliforniaAge.qmd", chunk = "Last")
 ```
 
 CP/CR
