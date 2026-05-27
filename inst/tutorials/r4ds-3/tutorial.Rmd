@@ -603,9 +603,7 @@ Again, you should filter for names which start with any other letter except for 
 
 Within the recent code chunk, add the option: `#| cache: true`. Assign the result of our pipe to `x`.
 
-In a Bash terminal, run `quarto render analysis.qmd`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved fitted object.
-
-In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+In a Bash terminal, run `quarto render analysis.qmd`. This first render will take some time since the code is running for the first time — by including `#| cache: true`, Quarto saves the result to disk so the next render loads from cache instead of re-running. Check your Live Server tab.
 
 CP/CR.
 
@@ -1142,9 +1140,7 @@ The `pmax()` function computes the parallel maximum across vectors element-wise,
 
 Within the recent code chunk, add the option: `#| cache: true`. Assign the result of our pipe to `x`.
 
-In a Bash terminal, run `quarto render analysis.qmd`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved fitted object.
-
-In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+In a Bash terminal, run `quarto render analysis.qmd`. This first render will take some time since the code is running for the first time — by including `#| cache: true`, Quarto saves the result to disk so the next render loads from cache instead of re-running. Check your Live Server tab.
 
 CP/CR.
 

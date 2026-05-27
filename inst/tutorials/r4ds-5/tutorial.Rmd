@@ -1102,13 +1102,11 @@ question_text(NULL,
 
 ### Exercise 17
 
-Within the latest code chunk, add the option: `#| cache: true`. Assign the result of the pipe to `earthquake_df`. 
+Within the latest code chunk, add the option: `#| cache: true`. Assign the result of the pipe to `earthquake_df`.
 
-In a Bash terminal, run `quarto render analysis.qmd`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
+If you have not done so already, add `analysis_cache` to your `.gitignore`. The cache files do not belong on GitHub.
 
-If you have not done so already, you should add `analysis_cache` to the `.gitignore`. The content of the cache file does not belong on GitHub.
-
-In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+In a Bash terminal, run `quarto render analysis.qmd`. This first render will take some time since the code is running for the first time — by including `#| cache: true`, Quarto saves the result to disk so the next render loads from cache instead of re-running. Check your Live Server tab.
 
 CP/CR.
 
@@ -1998,11 +1996,9 @@ You can often get the same results from `across()` by first using `pivot_longer(
 <!-- AR exercise 15 was duplicated -->
 ### Exercise 16
 
-Within the latest code chunk, add the option: `#| cache: true`. Assign the result of the pipe to `top_movies`. 
+Within the latest code chunk, add the option: `#| cache: true`. Assign the result of the pipe to `top_movies`.
 
-In a Bash terminal, run `quarto render analysis.qmd`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
-
-In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+In a Bash terminal, run `quarto render analysis.qmd`. This first render will take some time since the code is running for the first time — by including `#| cache: true`, Quarto saves the result to disk so the next render loads from cache instead of re-running. Check your Live Server tab.
 
 CP/CR.
 
