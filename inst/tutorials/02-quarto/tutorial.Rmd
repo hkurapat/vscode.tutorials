@@ -677,7 +677,7 @@ scat_p
 
 Create a new code chunk. 
 
-Ask your favorite AI to recreate the chart you see above using R. You can describe it in words, or even use the image of the chart itself. Ask AI for any help you need in writing your prompt! Then paste the code you get back into your new code chunk.
+Use AI to recreate the chart you see above using R. You can describe it in words, or even use the image of the chart itself. Then paste the code you get back into your new code chunk.
 
 ### 
 
@@ -709,7 +709,7 @@ AI code is not perfect! A new piping character, `|>`, was introduced to replace 
 
 Insert a new code chunk.
 
-Ask your favorite AI to make another cool plot using R and data from the `tidyverse` package. Insert the code you get into the chunk and preview the chart. Ask the AI to make some changes, then update the code chunk and preview again. Do this a few more times until you get a chart that is beautiful and interesting.
+Use AI to make another cool plot using R and data from the `tidyverse` package. Insert the code you get into the chunk and preview the chart. Make some changes, then update the code chunk and preview again. Do this a few more times until you get a chart that is beautiful and interesting.
 
 ```{r quarto-2-12}
 question_text(NULL,

@@ -152,7 +152,7 @@ If you haven't already, open the `r4ds-4` repo on GitHub and create a Codespace 
 
 You need two R Terminals: one for running this tutorial and one for your exercises. Open a second R Terminal using the dropdown button.
 
-Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"NBA and FIFA"`) and your name as author. In a Bash terminal, run:
+Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"NBA and FIFA"`) and your name as author. In a bash terminal, run:
 
 ```
 quarto render analysis.qmd
@@ -189,7 +189,7 @@ Parquet files are “chunked”, which makes it possible to work on different pa
 
 ### Exercise 2
 
-In your QMD, put `library(tidyverse)`,`library(arrow)`, `library(plotly)`, `library(viridis)` and `library(scales)`  in a new code chunk. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab — it should refresh automatically.
+In your QMD, put `library(tidyverse)`,`library(arrow)`, `library(plotly)`, `library(viridis)` and `library(scales)`  in a new code chunk. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab — it should refresh automatically.
 
 Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, wrap the calls to library within a call to `suppressPackageStartupMessages()` like so:
 
@@ -235,7 +235,7 @@ Like CSV, parquet is used for rectangular data, but instead of being a text form
 
 ### Exercise 3
 
-Place your cursor in the QMD file on the `suppressPackageStartupMessages()` line. Use `Cmd/Ctrl + Enter` to execute that line. This should load up all the libraries in the R Terminal.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -338,9 +338,9 @@ We’ll pair parquet files with [Apache Arrow](https://arrow.apache.org/), a mul
 
 ### Exercise 2
 
-Ask AI to write R code that pipes the file `data/game.parquet` and opens the parquet file using `open_dataset()`. Make sure this code is not assigned to a variable and the pipe starts with `data/game.parquet`. Add this code to a new code chunk in the  QMD.
+Write R code that pipes the file `data/game.parquet` and opens the parquet file using `open_dataset()`. Make sure this code is not assigned to a variable and the pipe starts with `data/game.parquet`. Add this code to a new code chunk in the  QMD.
 
-Place your cursor at the first line of this code and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -368,7 +368,7 @@ Our code:
 
 ### Exercise 3
 
-Ask AI to write R code that continues our pipe that opened `data/game.parquet` and selects the columns `game_id`, `game_date`, and `season_id`, then collects it into R. After that, ask it to parse `game_date` as a datetime, extract the year, month (with labels), and weekday (with labels), and then count how many games occurred on each weekday, arranging the result in descending order. Add this code as a continuation of your current pipe in the same code chunk in the same QMD. Your output should look something like:
+Write R code that continues our pipe that opened `data/game.parquet` and selects the columns `game_id`, `game_date`, and `season_id`, then collects it into R. After that, ask it to parse `game_date` as a datetime, extract the year, month (with labels), and weekday (with labels), and then count how many games occurred on each weekday, arranging the result in descending order. Add this code as a continuation of your current pipe in the same code chunk in the same QMD. Your output should look something like:
 
 ```{r}
 "data/game.parquet" |> 
@@ -389,7 +389,7 @@ Ask AI to write R code that continues our pipe that opened `data/game.parquet` a
   arrange(desc(n))
 ```
 
-Place your cursor at the beginning of the line where it says `data/game.parquet` and run `Cmd/Ctrl + Enter`. 
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab. 
 
 CP/CR.
 
@@ -433,11 +433,11 @@ This tibble shows that the largest number of NBA games occur on Friday and Wedne
 
 ### Exercise 4
 
-Ask AI to change our pipe so that it selects the columns for home and away stats (`reb_home, reb_away, fg3m_home, fg3m_away, stl_home, stl_away, blk_home, blk_away`), then calculates how many missing values each column has. Then, reshape the results with `pivot_longer()` into `column/missing_count` format, add a column for total rows (65,698) and missing percentage, and finally arrange in descending order of missing percentage.
+Change our pipe so that it selects the columns for home and away stats (`reb_home, reb_away, fg3m_home, fg3m_away, stl_home, stl_away, blk_home, blk_away`), then calculates how many missing values each column has. Then, reshape the results with `pivot_longer()` into `column/missing_count` format, add a column for total rows (65,698) and missing percentage, and finally arrange in descending order of missing percentage.
 
 Add this code as a replacement to your current code in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/game.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -474,11 +474,11 @@ In the rare case you need to distinguish an `NA` from a `NaN`, you can use `is.n
 
 ### Exercise 5
 
-Ask AI to write R code that changes our pipe so that it parses `game_date` as a datetime, creates a new variable called `decade` by flooring the year to the nearest decade, then filters out missing decades, groups by decade, and summarises the total number of games plus the percentage of missing values for `reb_home`, `fg3m_home`, and `stl_home`. Make sure the AI uses `.groups` to drop the grouping at the end.
+Write R code that changes our pipe so that it parses `game_date` as a datetime, creates a new variable called `decade` by flooring the year to the nearest decade, then filters out missing decades, groups by decade, and summarises the total number of games plus the percentage of missing values for `reb_home`, `fg3m_home`, and `stl_home`. Make sure the AI uses `.groups` to drop the grouping at the end.
 
 Add this code as a replacement to your current code in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/game.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -520,11 +520,11 @@ A date-time is a date plus a time: it uniquely identifies an instant in time (ty
 
 ### Exercise 6
 
-Ask AI to write R code that changes our pipe and groups it by `team_name_home`, then calculates the average home points per team, sorts the results in descending order, selects the top 4 teams, and then reorders `team_name_home` as a factor sorted by `avg_pts` for cleaner plotting. Make sure the AI uses `.groups` to drop the grouping at the end.
+Write R code that changes our pipe and groups it by `team_name_home`, then calculates the average home points per team, sorts the results in descending order, selects the top 4 teams, and then reorders `team_name_home` as a factor sorted by `avg_pts` for cleaner plotting. Make sure the AI uses `.groups` to drop the grouping at the end.
 
 Add this code as a replacement to your current code in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/game.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -560,11 +560,11 @@ The top four teams that have the highest points seem to be names of players and 
 
 We are going to clean the data by converting date-time into useful components (`game_year`, `game_month`, `game_weekday`), simplifying team abbreviations (recoding old names and lumping less common ones), and creating a new variable `home_result` to indicate whether the home team won or lost.
 
-Ask AI to write a single-pipe R workflow to read the `line_score.parquet` file, parse the `game_date_est` column into a date, then extract year, month (with labels), and weekday (with labels). Convert `team_abbreviation_home` into a factor and rename old team codes (e.g., map "PHW" to "Warriors", "MNL" to "Lakers"), then lump all but the top 8 teams into "Other". Then create a `home_result` factor from `pts_home` vs `pts_away`.
+Write a single-pipe R workflow to read the `line_score.parquet` file, parse the `game_date_est` column into a date, then extract year, month (with labels), and weekday (with labels). Convert `team_abbreviation_home` into a factor and rename old team codes (e.g., map "PHW" to "Warriors", "MNL" to "Lakers"), then lump all but the top 8 teams into "Other". Then create a `home_result` factor from `pts_home` vs `pts_away`.
 
 Add this code as a replacement to your current code in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/game.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -608,11 +608,11 @@ When using these three formats (ymd, mdy, dmy)  we need to identify the order in
 
 We are going to use the number of wins and points to determine if the game was considered a close win, a moderately close win, or an absolute blowout win then count how many of each type of win occurred in the early era of the NBA.
 
-Ask AI to continue our pipe from the last exercise and categorize `margin_category` based on the absolute point difference, creating an ordered factor with levels "Close", "Moderate", and "Blowout". Create an `era` factor using `game_year` with levels "Early NBA", "Classic Era", and "Modern". Also compute the start of each month, the number of days since January 1st, and a date one week ahead. Finally, arrange the dataset by `game_date`, limit to 1000 rows, and count games by `era` and `margin_category`.
+Continue our pipe from the last exercise and categorize `margin_category` based on the absolute point difference, creating an ordered factor with levels "Close", "Moderate", and "Blowout". Create an `era` factor using `game_year` with levels "Early NBA", "Classic Era", and "Modern". Also compute the start of each month, the number of days since January 1st, and a date one week ahead. Finally, arrange the dataset by `game_date`, limit to 1000 rows, and count games by `era` and `margin_category`.
 
 Add this code as a continuation to your current pipe in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/game.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -672,11 +672,11 @@ question_text(NULL,
 
 ### Exercise 9
 
-Ask AI to use `data/game.parquet` and `data/line_score.parquet` and join them together by `game_id` using `left_join()` and parses `game_date` and `game_date_est` as `datetimes` in one singular pipe without creating intermediate variables. Make sure the `relationship` is set to `many-to-many` and `NA` values are dropped using `drop_na()`.
+Use `data/game.parquet` and `data/line_score.parquet` and join them together by `game_id` using `left_join()` and parses `game_date` and `game_date_est` as `datetimes` in one singular pipe without creating intermediate variables. Make sure the `relationship` is set to `many-to-many` and `NA` values are dropped using `drop_na()`.
 
 Add this code as a replacement to your current code in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/game.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -712,11 +712,11 @@ If you are doing this deliberately, you can set `relationship = "many-to-many"`,
 
 ### Exercise 10
 
-Ask AI to write R code that continues your pipe and creates three new columns: `game_date` converted to a proper datetime object, `game_year` extracted from `game_date`, and `season_label` constructed by combining parts of the `season_id`. Then filter to remove rows where `game_date` is missing and to keep only rows where `game_year` is 1946 or later.
+Write R code that continues your pipe and creates three new columns: `game_date` converted to a proper datetime object, `game_year` extracted from `game_date`, and `season_label` constructed by combining parts of the `season_id`. Then filter to remove rows where `game_date` is missing and to keep only rows where `game_year` is 1946 or later.
 
 Add this code as a continuation to your current code in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/game.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -758,11 +758,11 @@ You can use the `.direction` argument to fill in missing values that have been g
 
 ### Exercise 11
 
-Ask AI to write R code that continues your pipe and uses `mutate()` to convert the `wl_home` column into a factor with levels `W` and `L` so that home wins and losses are treated as categorical data, and to create a new column `game_era` using `case_when()` based on the `game_year` column so that each game is classified into "Pre-Three Point", "Modern Era", "Analytics Era", or "Current Era", and then convert `game_era` into a factor with these same levels to preserve the logical order.
+Write R code that continues your pipe and uses `mutate()` to convert the `wl_home` column into a factor with levels `W` and `L` so that home wins and losses are treated as categorical data, and to create a new column `game_era` using `case_when()` based on the `game_year` column so that each game is classified into "Pre-Three Point", "Modern Era", "Analytics Era", or "Current Era", and then convert `game_era` into a factor with these same levels to preserve the logical order.
 
 Add this code as a continuation to your current code in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/game.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -814,11 +814,11 @@ open_dataset("data/game.parquet") |>
 
 ### Exercise 12
 
-Ask AI to write R code that continues your pipe and uses `mutate()` with `across()` to replace missing values with 0 for all columns containing `"pct"` and for the columns `pts_home.x` and `pts_away.x` so that `NA`s are handled. Then, use `mutate()` again to create a new column `total_points` as the sum of `pts_home.x` and `pts_away.x`. Finally, use `filter()` to keep only rows where `total_points` is greater than 0 and neither `pts_home.x` nor `pts_away.x` are `NA`.
+Write R code that continues your pipe and uses `mutate()` with `across()` to replace missing values with 0 for all columns containing `"pct"` and for the columns `pts_home.x` and `pts_away.x` so that `NA`s are handled. Then, use `mutate()` again to create a new column `total_points` as the sum of `pts_home.x` and `pts_away.x`. Finally, use `filter()` to keep only rows where `total_points` is greater than 0 and neither `pts_home.x` nor `pts_away.x` are `NA`.
 
 Add this code as a continuation to your current code in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/game.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -876,11 +876,11 @@ A **mutating join** allows you to combine variables from two data frames: it fir
 
 ### Exercise 13
 
-Ask AI to continue your pipe and write R code that uses `group_by()` to group the data by `game_year`, `game_era`, and `season_label`, then uses `summarise()` to calculate `avg_points` as the mean of `total_points`, `games_count` as the number of games, and `home_win_pct` as the mean of `wl_home` being `"W"` while removing NAs, and finally uses `arrange()` to sort the results by `game_year`.
+Continue your pipe and write R code that uses `group_by()` to group the data by `game_year`, `game_era`, and `season_label`, then uses `summarise()` to calculate `avg_points` as the mean of `total_points`, `games_count` as the number of games, and `home_win_pct` as the mean of `wl_home` being `"W"` while removing NAs, and finally uses `arrange()` to sort the results by `game_year`.
 
 Add this code as a continuation to your current code in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/game.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -973,11 +973,9 @@ question_text(NULL,
 
 Within the latest code chunk, add the option: `#| cache: true`. Assign the result of the pipe to `nba_clean`.
 
-In a Bash terminal, run `quarto render analysis.qmd`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
+If you have not done so already, add `analysis_cache` to your `.gitignore`. The cache files do not belong on GitHub.
 
-If you have not done so already, you should add `analysis_cache` to the `.gitginore`. The content of the cache file does not belong on GitHub.
-
-Place your cursor on the line where the pipe is assigned to `nba_clean`, run `Cmd/Ctrl + Enter`, thus ensuring that the workspace also includes a copy of `nba_clean`.
+In a bash terminal, run `quarto render analysis.qmd`. This first render will take some time since the code is running for the first time — by including `#| cache: true`, Quarto saves the result to disk so the next render loads from cache instead of re-running. Check your Live Server tab.
 
 CP/CR.
 
@@ -1072,9 +1070,9 @@ A **right join** keeps all observations in `y` Every row of y is preserved in th
 
 ### Exercise 17
 
-Ask AI to generate R code that uses `nba_clean` to create an interesting plot.
+Generate R code that uses `nba_clean` to create an interesting plot.
 
-Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab. Make your plot look nice.
+Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. In a bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab. Make your plot look nice.
 
 In the R Terminal, run:
 
@@ -1183,9 +1181,9 @@ A cross join matches everything, generating the Cartesian product of rows. This 
 
 ### Exercise 2
 
-Ask AI to write R code that opens `data/fifa.parquet` using `open_dataset()` and `collect()`, then uses `glimpse()` to examine the structure of the FIFA dataset. Make sure this code is not assigned to a variable and the pipe starts with `data/fifa.parquet`. Add this code to a new code chunk in the same QMD.
+Write R code that opens `data/fifa.parquet` using `open_dataset()` and `collect()`, then uses `glimpse()` to examine the structure of the FIFA dataset. Make sure this code is not assigned to a variable and the pipe starts with `data/fifa.parquet`. Add this code to a new code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/fifa.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1217,9 +1215,9 @@ Like `mutate()`, the join functions add variables to the right, so if your datas
 
 ### Exercise 3
 
-Ask AI to write R code that opens the FIFA dataset and uses `select()` to examine just the `Height` and `Weight` columns, then uses `slice_head()` to show the first 10 rows so we can see the format of these columns before cleaning them. This is a separate analysis from the previous exercise - start fresh with `data/fifa.parquet`. Add this code as a replacement to your current code in the same code chunk in the same QMD.
+Write R code that opens the FIFA dataset and uses `select()` to examine just the `Height` and `Weight` columns, then uses `slice_head()` to show the first 10 rows so we can see the format of these columns before cleaning them. This is a separate analysis from the previous exercise - start fresh with `data/fifa.parquet`. Add this code as a replacement to your current code in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/fifa.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1252,9 +1250,9 @@ Factors are used for categorical variables --- variables that have a fixed and k
 
 ### Exercise 4
 
-Ask AI to write R code that opens the FIFA dataset and creates clean numeric versions of height and weight by extracting the numeric digits from the `Height` and `Weight` columns (which contain units as text). Create new columns called `height_cm` and `weight_kg`. Use `select()` to show only the original and new height/weight columns, then `slice_head()` to verify the cleaning worked. Add this code as a replacement to your current code in the same code chunk in the same QMD.
+Write R code that opens the FIFA dataset and creates clean numeric versions of height and weight by extracting the numeric digits from the `Height` and `Weight` columns (which contain units as text). Create new columns called `height_cm` and `weight_kg`. Use `select()` to show only the original and new height/weight columns, then `slice_head()` to verify the cleaning worked. Add this code as a replacement to your current code in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/fifa.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1291,9 +1289,9 @@ One of the nine core packages within the *Tidyverse* is [**forcats**](https://fo
 
 ### Exercise 5
 
-Ask AI to write R code that opens the FIFA dataset and examines which columns contain newline characters. Use `select()` with `where()` and `is.character` to get only character columns, then use `summarise()` with `across()` to count how many values in each character column contain `"\\n"` using `str_detect()` and `sum()`. Add this code as a replacement to your current code in the same code chunk in the same QMD.
+Write R code that opens the FIFA dataset and examines which columns contain newline characters. Use `select()` with `where()` and `is.character` to get only character columns, then use `summarise()` with `across()` to count how many values in each character column contain `"\\n"` using `str_detect()` and `sum()`. Add this code as a replacement to your current code in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/fifa.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1326,9 +1324,9 @@ The `Club` character column contains a lot of problematic newline characters tha
 
 ### Exercise 6
 
-Ask AI to write R code that opens the FIFA dataset and focuses on the `Joined` column to understand date formats. Use `select()` to get `Name`, `Club`, and `Joined` columns, then `slice_sample()` to look at 15 random rows so we can see the variety of date formats before parsing. Add this code as a replacement to your current code in the same code chunk in the same QMD.
+Write R code that opens the FIFA dataset and focuses on the `Joined` column to understand date formats. Use `select()` to get `Name`, `Club`, and `Joined` columns, then `slice_sample()` to look at 15 random rows so we can see the variety of date formats before parsing. Add this code as a replacement to your current code in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/fifa.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1361,11 +1359,11 @@ The function `factor()` is a part of base R, not **forcats**. It creates a facto
 
 ### Exercise 7
 
-Ask AI to write R code that opens the FIFA dataset from `"data/fifa.parquet"` and parses the `Joined` column as dates (month-day-year format). Then calculate `years_at_club` by subtracting `joined_date` from today's date and dividing by 365.25. Create a logical column `long_tenure` for players with more than 10 years at a club. Use `filter()` to keep only players with `long_tenure == TRUE`, `select()` key columns such as `Name`, `Club`, `Joined`, and `years_at_club`, and `arrange()` the results in descending order of `years_at_club`.
+Write R code that opens the FIFA dataset from `"data/fifa.parquet"` and parses the `Joined` column as dates (month-day-year format). Then calculate `years_at_club` by subtracting `joined_date` from today's date and dividing by 365.25. Create a logical column `long_tenure` for players with more than 10 years at a club. Use `filter()` to keep only players with `long_tenure == TRUE`, `select()` key columns such as `Name`, `Club`, `Joined`, and `years_at_club`, and `arrange()` the results in descending order of `years_at_club`.
 
 Add this code as a replacement to your current code in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/fifa.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1404,9 +1402,9 @@ Instead of `factor()`, we recommend using the `fct()` function from the **forcat
 
 ### Exercise 8
 
-Ask AI to write R code that opens the dataset and examines the format of financial columns. Use `select()` to get `Name`, `Value`, `Wage`, and `Release.Clause` columns, then `slice_head()` to see 20 rows so we understand the string formats with "M", "K", and "€" symbols before converting them to numbers. Add this code as a replacement to your current code in the same code chunk in the same QMD.
+Write R code that opens the dataset and examines the format of financial columns. Use `select()` to get `Name`, `Value`, `Wage`, and `Release.Clause` columns, then `slice_head()` to see 20 rows so we understand the string formats with "M", "K", and "€" symbols before converting them to numbers. Add this code as a replacement to your current code in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/fifa.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1439,9 +1437,9 @@ This shows us the variety of financial string formats we need to parse into nume
 
 ### Exercise 9
 
-Ask AI to write R code that opens the FIFA dataset and converts the `Value` column from text to numeric. Handle "M" (multiply by 1,000,000), "K" (multiply by 1,000), and plain "€" values by detecting these patterns and cleaning the currency symbols. Create a `value_numeric` column, then use `select()` to show `Name`, original `Value`, and `value_numeric`, and `arrange()` by descending value to see the most valuable players. Add this code as a replacement to your current code in the same code chunk in the same QMD.
+Write R code that opens the FIFA dataset and converts the `Value` column from text to numeric. Handle "M" (multiply by 1,000,000), "K" (multiply by 1,000), and plain "€" values by detecting these patterns and cleaning the currency symbols. Create a `value_numeric` column, then use `select()` to show `Name`, original `Value`, and `value_numeric`, and `arrange()` by descending value to see the most valuable players. Add this code as a replacement to your current code in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/fifa.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1486,9 +1484,9 @@ All statistical functions in R will produce a value of NA if even a single one o
 
 ### Exercise 10
 
-Ask AI to write R code that opens the FIFA dataset and identifies columns with star ("★") characters. Use `select()` with `where()` and a function that checks if any values contain "★" using `any(str_detect(.x, "★"))`. Then use `names()` to show just the column names that contain stars. Add this code as a replacement to your current code in the same code chunk in the same QMD.
+Write R code that opens the FIFA dataset and identifies columns with star ("★") characters. Use `select()` with `where()` and a function that checks if any values contain "★" using `any(str_detect(.x, "★"))`. Then use `names()` to show just the column names that contain stars. Add this code as a replacement to your current code in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/fifa.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1521,9 +1519,9 @@ This identifies which columns use star ratings that need to be converted to nume
 
 ### Exercise 11
 
-Ask AI to write R code that opens the FIFA dataset, then begins cleaning with `mutate()` to create numeric height and weight columns by extracting the numeric digits from the text strings. Add this code as a replacement to your current code in the same code chunk in the same QMD.
+Write R code that opens the FIFA dataset, then begins cleaning with `mutate()` to create numeric height and weight columns by extracting the numeric digits from the text strings. Add this code as a replacement to your current code in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/fifa.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1558,9 +1556,9 @@ This begins our comprehensive data cleaning pipeline with numeric conversion of 
 
 ### Exercise 12
 
-Ask AI to write R code that continues our pipeline and cleans text formatting. Remove newline characters from all character columns, then in a second step, trim leading and trailing whitespace from character columns. Add this code as a continuation of your current pipe in the same code chunk in the same QMD.
+Write R code that continues our pipeline and cleans text formatting. Remove newline characters from all character columns, then in a second step, trim leading and trailing whitespace from character columns. Add this code as a continuation of your current pipe in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/fifa.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1598,9 +1596,9 @@ This continues our pipeline by cleaning text formatting issues across all charac
 
 ### Exercise 13
 
-Ask AI to write R code that continues our pipeline and adds date parsing with club tenure calculation. Parse `Joined` as a date (month-day-year format), calculate `years_at_club` using date arithmetic (divide by 365.25), and create a `long_tenure` logical column for players with more than 10 years. Also remove rows where date parsing failed. Add this code as a continuation of your current pipe in the same code chunk in the same QMD.
+Write R code that continues our pipeline and adds date parsing with club tenure calculation. Parse `Joined` as a date (month-day-year format), calculate `years_at_club` using date arithmetic (divide by 365.25), and create a `long_tenure` logical column for players with more than 10 years. Also remove rows where date parsing failed. Add this code as a continuation of your current pipe in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/fifa.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1643,9 +1641,9 @@ This adds date processing and tenure analysis while handling missing values appr
 
 ### Exercise 14
 
-Ask AI to write R code that continues our pipeline and converts financial columns to numeric. Create `value_numeric`, `wage_numeric`, and `release_clause_numeric` columns by detecting whether each value contains "M" (millions), "K" (thousands), or a plain number, then cleaning the currency symbols and scaling accordingly. Add this code as a continuation of your current pipe in the same code chunk in the same QMD.
+Write R code that continues our pipeline and converts financial columns to numeric. Create `value_numeric`, `wage_numeric`, and `release_clause_numeric` columns by detecting whether each value contains "M" (millions), "K" (thousands), or a plain number, then cleaning the currency symbols and scaling accordingly. Add this code as a continuation of your current pipe in the same code chunk in the same QMD.
 
-Place your cursor at the beginning of the line where it says `data/fifa.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1704,9 +1702,9 @@ This converts complex financial strings with various multipliers into clean nume
 
 ### Exercise 15
 
-Ask AI to complete our pipeline by adding star rating cleaning and creating an amazing interactive visualization. Continue the pipe to remove stars from skill columns using `mutate()` and `across()` with `contains("Skill")`, then add `#| cache: true` and assign the result to `fifa_clean`. Create an interactive plot with `ggplotly()` that shows the relationship between `value_numeric` and `wage_numeric`, identifying undervalued players (high value, relatively low wages). Filter for players with value \> €5M and wage \< €200K, use point size for `Overall` rating, color for `Age`, add smooth trend lines by `Position` (limit to top 6 positions by count), and include hover text with player names and clubs. Use log scales, viridis colors, and proper labels. Add this code as a continuation and plot creation in the same code chunk.
+Complete our pipeline by adding star rating cleaning and creating an amazing interactive visualization. Continue the pipe to remove stars from skill columns using `mutate()` and `across()` with `contains("Skill")`, then add `#| cache: true` and assign the result to `fifa_clean`. Create an interactive plot with `ggplotly()` that shows the relationship between `value_numeric` and `wage_numeric`, identifying undervalued players (high value, relatively low wages). Filter for players with value \> €5M and wage \< €200K, use point size for `Overall` rating, color for `Age`, add smooth trend lines by `Position` (limit to top 6 positions by count), and include hover text with player names and clubs. Use log scales, viridis colors, and proper labels. Add this code as a continuation and plot creation in the same code chunk.
 
-Place your cursor at the beginning of the line where it says `data/fifa.parquet` and run `Cmd/Ctrl + Enter`.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1798,11 +1796,9 @@ We can find out what R thinks our current time zone is with `Sys.timezone()`. If
 
 Within the latest code chunk, add the option: `#| cache: true`. Assign the result of the pipe to `final_fifa`.
 
-In a Bash terminal, run `quarto render analysis.qmd`. By including `#| cache: true` you cause Quarto to cache the results of the chunk. The next time you render your QMD, as long as you have not changed the code, Quarto will just load up the saved object.
+If you have not done so already, add `analysis_cache` to your `.gitignore`. The cache files do not belong on GitHub.
 
-If you have not done so already, you should add `analysis_cache` to the `.gitginore`. The content of the cache file does not belong on GitHub.
-
-Place your cursor on the line where the pipe is assigned to `final_fifa`, run `Cmd/Ctrl + Enter`, thus ensuring that the workspace also includes a copy of `final_fifa`.
+In a bash terminal, run `quarto render analysis.qmd`. This first render will take some time since the code is running for the first time — by including `#| cache: true`, Quarto saves the result to disk so the next render loads from cache instead of re-running. Check your Live Server tab.
 
 CP/CR.
 
@@ -1892,9 +1888,9 @@ You can recognize ordered factors when printing because they use `<` between the
 
 ### Exercise 19
 
-Ask AI to use the `final_fifa` dataset to generate an interesting chart. Deal with any warnings or messages in a sensible fashion.
+Use the `final_fifa` dataset to generate an interesting chart. Deal with any warnings or messages in a sensible fashion.
 
-Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab. Make your plot look nice.
+Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. In a bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab. Make your plot look nice.
 
 In the R Terminal, run:
 
@@ -1958,7 +1954,7 @@ You learned about working with parquet files using **[arrow](https://arrow.apach
 
 ### Exercise 1
 
-In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab — the resulting HTML page should be attractive, showing clean versions of your plot(s).
+In a bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab — the resulting HTML page should be attractive, showing clean versions of your plot(s).
 
 At the R Terminal, run:
 
@@ -1983,7 +1979,7 @@ question_text(NULL,
 
 ### Exercise 2
 
-Publish your rendered QMD to GitHub Pages. In a Bash terminal, run:
+Publish your rendered QMD to GitHub Pages. In a bash terminal, run:
 
 ```
 quarto publish gh-pages analysis.qmd

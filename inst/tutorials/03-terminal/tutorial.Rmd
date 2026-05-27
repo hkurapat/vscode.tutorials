@@ -1455,7 +1455,7 @@ ate.txt cat.txt hat.txt
 @ppbds-student ➜ /workspaces/codespace-starter/wildcards (main) $
 ````
 
-If you are curious about how those commands work, ask your favorite AI. The more you interact with AI, the better.
+If you are curious about how those commands work, use AI to explore them. The more you interact with AI, the better.
 
 ### Exercise 4
 
