@@ -163,9 +163,9 @@ This means that `analysis.qmd` lacks an empty last line. Add one. Text files sho
 
 ### Exercise 3
 
-Place your cursor in the QMD file on the `library(tidyverse)` line. Use `Cmd/Ctrl + Enter` to execute that line.
+In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
-Note how this command causes `library(tidyverse)` to be copied down to the R Terminal and then executed. 
+Note how this command causes `library(tidyverse)` to be copied down to the R Terminal and then executed.
 
 CP/CR.
 
@@ -263,7 +263,7 @@ Ask AI: Create a simple graph plotting `wk1` against `wk2` while only using the 
 
 If using a chat AI, first share a few rows of `billboard` from the R Terminal. In-environment agents can access your data directly.
 
-Copy and paste the AI generated code into a new code chunk with your QMD. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
+Copy and paste the AI generated code into a new code chunk with your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -292,7 +292,7 @@ The warning about 'removed rows containing missing values' means `ggplot()` auto
 
 Ask AI: Continue the code to add a smooth trend line and proper title, subtitle, caption, and axis labels.
 
-Copy and paste this code to continue the previous code and save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
+Copy and paste this code to continue the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 ```{r billboard-100-3}
 question_text(NULL,
@@ -328,7 +328,7 @@ If using a chat AI, start a new conversation and share a few rows of `billboard`
 
 Ask AI: Create a line graph showing the rank of 3 songs over the first 5 weeks, mainly using the functions `ggplot()`, `aes()`, and `geom_line()`. 
 
-Copy and paste the AI generated code into a new code chunk with your QMD. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
+Copy and paste the AI generated code into a new code chunk with your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -365,7 +365,7 @@ The code that the AI produced likely contained the symbol `%>%` or `|>`, which a
 
 Ask AI: Continue the code to split the graph into separate panels, one per track.
 
-Copy and paste this code to continue the previous code and save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
+Copy and paste this code to continue the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -404,7 +404,7 @@ If using a chat AI, share your current code.
 
 Ask AI: Continue the code by assigning the plot to the variable `line_graph`, and then save it to a file.
 
-Update your code in `analysis.qmd`. Place your cursor on the first line of this code and press `Cmd/Ctrl + Enter` to run each line in the R Terminal — since `Cmd/Ctrl + Enter` runs one line at a time, press it repeatedly until both the plot creation code and the save command are executed.
+Update your code in `analysis.qmd`. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -445,7 +445,7 @@ If using a chat AI, start a new conversation and share a few rows of `billboard`
 
 Ask AI: Create a box plot showing the distribution of ranks of 3 songs.
 
-Copy and paste the AI generated code into a new code chunk with your QMD. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
+Copy and paste the AI generated code into a new code chunk with your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -483,7 +483,7 @@ If using a chat AI, start a new conversation and share a few rows of `billboard`
 
 Ask AI: Create a bar chart showing the count of weeks 3 songs were ranked in the top 100.
 
-Copy and paste the AI generated code into a new code chunk with your QMD. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
+Copy and paste the AI generated code into a new code chunk with your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -526,7 +526,7 @@ If using a chat AI, start a new conversation and share a few rows of `billboard`
 
 Ask AI: Create a pipe with `billboard` to filter for the rows where the values in `wk1` are less than 101. Continue the pipe to arrange the rows by `wk1` rank values.
 
-Copy and paste the AI generated code into a new code chunk with your QMD. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
+Copy and paste the AI generated code into a new code chunk with your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -557,7 +557,7 @@ Ask AI: Continue the pipe to create a new column titled `improvement` that conta
 
 If you're using a chat AI, provide the `billboard` tibble again and the previous code.
 
-Copy and paste the AI generated code in the place to continue the previous code. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
+Copy and paste the AI generated code in the place to continue the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -589,7 +589,7 @@ Ask AI: Continue the pipe to select the columns `artist` through `improvement`.
 
 If you're using a chat AI, provide the `billboard` tibble again and the previous code.
 
-Copy and paste the AI generated code in the place to continue the previous code. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
+Copy and paste the AI generated code in the place to continue the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -624,7 +624,7 @@ Ask AI: Continue the pipe to rename the columns `wk1` and `wk2` to be `week1` an
 
 If you're using a chat AI, provide the `billboard` tibble again and the previous code.
 
-Copy and paste the AI generated code in the place to continue the previous code. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
+Copy and paste the AI generated code in the place to continue the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -689,7 +689,7 @@ In a Bash terminal, run `quarto render analysis.qmd`. By including `#| cache: tr
 
 If you have not done so already, you should add `analysis_cache` to the `.gitignore`. The content of the cache file does not belong on GitHub.
 
-Place your cursor on the line where the pipe is assigned to `billboard_clean`, run `Cmd/Ctrl + Enter`, thus ensuring that the workspace also includes a copy of `billboard_clean`.
+In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -885,7 +885,7 @@ Ask AI: Read a `.csv` dataset called `data/music.csv` using `read_csv()`.
 
 Add this code to a new code chunk in your QMD. Make sure the result of the function is not assigned to a variable. 
 
-Place your cursor at the beginning of the line and run `Cmd/Ctrl + Enter`.
+In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -915,7 +915,7 @@ If using a chat AI, share the code from above and the `music.csv` tibble from th
 
 Ask AI: Edit the code so that the `read_csv()` skips the first 5 lines. Continue the code so that the `read_csv()` will also not read the first row as headings.
 
-Copy and paste the AI generated code in the place to edit the previous code. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
+Copy and paste the AI generated code in the place to edit the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -946,7 +946,7 @@ Ask AI: Edit the code so that `read_csv()` is assigned to an object `df` and tol
 
 If you're using a chat AI, provide the `music.csv` tibble again and the previous code.
 
-Copy and paste the AI generated code in the place to edit the previous code. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
+Copy and paste the AI generated code in the place to edit the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -986,7 +986,7 @@ Ask AI: Edit the code `read_csv("data/music.csv")` so that it only reads the col
 
 If you're using a chat AI, provide the `music.csv` tibble again and the previous code.
 
-Copy and paste the AI generated code into the empty chunk. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
+Copy and paste the AI generated code into the empty chunk. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1024,7 +1024,7 @@ Assign this code to the object `music_1`. If using a chat AI, share a few rows o
 
 Ask AI: Based on the `music_1` tibble previously provided, create a similar tibble with only 3 rows of data using `tibble()`, and with the same 3 columns. Don't assign the tibble to an object.
 
-Copy and paste the AI generated code below the previous code. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
+Copy and paste the AI generated code below the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1061,7 +1061,7 @@ If you're using a chat AI, provide the previous code.
 
 Manually, using the same command, do the same for the `music_1` tibble.
 
-Copy and paste the AI generated code into the appropriate place. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
+Copy and paste the AI generated code into the appropriate place. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1097,7 +1097,7 @@ Ask AI: Creating a vector of both CSV files, use `read_csv()` to read both CSV f
 
 If you're using a chat AI, provide the `music.csv` tibble again and the previous code.
 
-Copy and paste the AI generated code in the place following the previous code. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
+Copy and paste the AI generated code in the place following the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1134,7 +1134,7 @@ We are returning to our previous data frame `billboard`. If using a chat AI, sha
 
 Ask AI: Using the `billboard` tibble, create a pipe to change the columns starting with `wk` to all go in a single column titled `week`, and another column titled `rank` with all the values from the `wk` columns.
 
-Copy and paste the AI generated code in the place following the previous code. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
+Copy and paste the AI generated code in the place following the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1177,7 +1177,7 @@ Ask AI: Continue the previous code so that NA values are dropped, and the pipe c
 
 If you're using a chat AI, provide the `billboard` tibble again and the previous code.
 
-Copy and paste the AI generated code to continue the previous code. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
+Copy and paste the AI generated code to continue the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1217,7 +1217,7 @@ If using a chat AI, share the first 3 lines of the `household` tibble from the R
 
 Ask AI: Using the `household` tibble, create code that changes the columns so that there are only 4 columns, `family`, `child`, `dob`, and `name`.
 
-Copy and paste the AI generated code in the place following the previous code. Run `Cmd/Ctrl + S` to save the file. Place your cursor on the first line of code and run `Cmd/Ctrl + Enter`.
+Copy and paste the AI generated code in the place following the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1285,7 +1285,7 @@ In a Bash terminal, run `quarto render analysis.qmd`. By including `#| cache: tr
 
 If you have not done so already, you should add `analysis_cache` to the `.gitignore`. The content of the cache file does not belong on GitHub.
 
-Place your cursor on the line where the pipe is assigned to `billboard_longer`, run `Cmd/Ctrl + Enter`, thus ensuring that the workspace also includes a copy of `billboard_longer`.
+In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 

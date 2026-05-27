@@ -154,9 +154,7 @@ Render again. Everything looks nice, albeit empty, because we have added code to
 
 ### Exercise 3
 
-Place your cursor in the QMD file on the `library(tidyverse)` line. Use `Cmd/Ctrl + Enter` to execute that line.
-
-Note that this causes the entire code cell to be copied down to the R Terminal and then executed. 
+In a Bash terminal, run `quarto render TexasIncome.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -183,7 +181,7 @@ A critical part of the Census data analysis process is data visualization, where
 
 Ask AI to use **tidycensus** to get data on the median household income for all counties in Texas for 2020.
 
-Put what it gives you in a new code chunk and do `Cmd/Ctrl + Enter` to send it to the R Terminal.
+In a Bash terminal, run `quarto render TexasIncome.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -218,7 +216,7 @@ The `geometry` argument in **tidycensus** controls whether spatial boundary data
 
 ### Exercise 2
 
-If your code looks different from ours, ask AI to update it so that `geometry = FALSE` is set explicitly. Send the updated code to the R Terminal using `Cmd/Ctrl + Enter`.
+If your code looks different from ours, ask AI to update it so that `geometry = FALSE` is set explicitly. In a Bash terminal, run `quarto render TexasIncome.qmd`. Check your Live Server tab.
 
 In the R Terminal, run:
 
@@ -243,11 +241,11 @@ question_text(NULL,
 
 ### Exercise 3
 
-Ask AI to update your `get_acs()` call to set `geometry = TRUE`. Send the updated code chunk to the R Terminal using `Cmd/Ctrl + Enter`.
+Ask AI to update your `get_acs()` call to set `geometry = TRUE`. In a Bash terminal, run `quarto render TexasIncome.qmd`. Check your Live Server tab.
 
 In the R Terminal, run:
 
-```         
+```
 show_file("TexasIncome.qmd", chunk = "Last")
 ```
 
@@ -356,7 +354,7 @@ question_text(NULL,
 
 Ask AI to take the `income_tx` data and create a choropleth map of median household income using **ggplot2**.
 
-Put what it gives you in a new code chunk and send it to the R Terminal using `Cmd/Ctrl + Enter`.
+In a Bash terminal, run `quarto render TexasIncome.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -380,7 +378,7 @@ ggplot(income_tx) +
 
 ### Exercise 8
 
-Ask AI to update the map to use an appropriate color scale for the `estimate` column and add a title and theme. Update your code chunk and send it to the R Terminal using `Cmd/Ctrl + Enter`.
+Ask AI to update the map to use an appropriate color scale for the `estimate` column and add a title and theme. Update your code chunk. In a Bash terminal, run `quarto render TexasIncome.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -511,9 +509,7 @@ Render again. Everything looks nice, albeit empty, because we have added code to
 
 ### Exercise 2
 
-Place your cursor in the QMD file on the `library(tidyverse)` line. Use `Cmd/Ctrl + Enter` to execute that line.
-
-Note that this causes `library(tidyverse)` to be copied down to the R Terminal and then executed. 
+In a Bash terminal, run `quarto render CaliforniaBachelors.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -534,7 +530,7 @@ Educational attainment variables in the Census are nested hierarchically—table
 
 Ask AI to generate R code that uses tidycensus to get educational attainment variables for all California counties in 2020 and save it in a variable called `edu_ca`
 
-Put what it gives you in a new code chunk and do `Cmd/Ctrl + Enter` to send it to the console
+In a Bash terminal, run `quarto render CaliforniaBachelors.qmd`. Check your Live Server tab.
 
 CP/CR
 
@@ -566,7 +562,7 @@ edu_ca <- get_acs(
 
 ### Exercise 4
 
-Ask AI to update your `get_acs()` call to set `geometry = TRUE`. Send the updated code chunk to the R Terminal using `Cmd/Ctrl + Enter`.
+Ask AI to update your `get_acs()` call to set `geometry = TRUE`. In a Bash terminal, run `quarto render CaliforniaBachelors.qmd`. Check your Live Server tab.
 
 In the R Terminal, run:
 
@@ -666,7 +662,7 @@ Geometry must be `TRUE` if we want to map later.
 
 Ask AI to take the `edu_ca` data and create a choropleth map of bachelor’s degree attainment or higher across California counties. Tell it to calculate the percentage of adults with at least a bachelor’s degree and pipe that into a **ggplot2** map.
 
-Put what it gives you in a new code chunk and send it to the R Terminal using `Cmd/Ctrl + Enter`.
+In a Bash terminal, run `quarto render CaliforniaBachelors.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -808,9 +804,7 @@ Render again. Everything looks nice, albeit empty, because we have added code to
 
 ### Exercise 2
 
-Place your cursor in the QMD file on the `library(tidyverse)` line. Use `Cmd/Ctrl + Enter` to execute that line.
-
-Note that this causes `library(tidyverse)` to be copied down to the R Terminal and then executed. 
+In a Bash terminal, run `quarto render CaliforniaAge.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -834,8 +828,7 @@ Working in the console like this is how professionals work!
 
 Ask AI to generate R code that uses tidycensus data to get both the median age and populations for all counties in California for 2020 in a variable called `age_ca`
 
-Put what it gives you in a new code chunk and do `Cmd/Ctrl + Enter` to send it to the console
-
+In a Bash terminal, run `quarto render CaliforniaAge.qmd`. Check your Live Server tab.
 
 CP/CR
 
@@ -867,7 +860,7 @@ AI is your best friend! Professionals use AI to generate code and plot. You howe
 
 ### Exercise 4
 
-Ask AI to update your `get_acs()` call to add `geometry = FALSE`. Send the updated code chunk to the R Terminal using `Cmd/Ctrl + Enter`.
+Ask AI to update your `get_acs()` call to add `geometry = FALSE`. In a Bash terminal, run `quarto render CaliforniaAge.qmd`. Check your Live Server tab.
 
 In the R Terminal, run:
 
@@ -965,7 +958,7 @@ question_text(NULL,
 
 Ask AI to take the `age_ca` data and create a bar chart showing median age by county.
 
-Put what it gives you in a new code chunk and send it to the R Terminal using `Cmd/Ctrl + Enter`.
+In a Bash terminal, run `quarto render CaliforniaAge.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1001,7 +994,7 @@ Now we have a basic bar plot, but we have too much data points.
 
 Tell your AI to filter the dataset to the 15 most populous counties and add informative labels and a title.
 
-Put what it gives you in the  code chunk and do `Cmd/Ctrl + Enter` to send it to the console
+In a Bash terminal, run `quarto render CaliforniaAge.qmd`. Check your Live Server tab.
 
 CP/CR
 
