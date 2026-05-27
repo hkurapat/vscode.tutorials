@@ -1053,9 +1053,9 @@ question_text(NULL,
 
 ### Exercise 2
 
-Go back to editing `script-3.r`. Remove `5 + 5`. Open the chat sidebar on the right and ask the AI to make a nice-looking plot using data from the **tidyverse** package. Tell it to write the code in `script-3.r`.
+Go back to editing `script-3.r`. Remove `5 + 5`. Open the chat sidebar on the right and have it make a nice-looking plot using data from the **tidyverse** package. Tell it to write the code in `script-3.r`.
 
-Run the script interactively, line by line, using `Cmd/Ctrl + Enter`. If there are problems, ask the AI for help. It will probably take several iterations to get something you like.
+Run the script interactively, line by line, using `Cmd/Ctrl + Enter`. If there are problems, use the chat sidebar to debug. It will probably take several iterations to get something you like.
 
 Advice you should feel free to give to the AI:
 

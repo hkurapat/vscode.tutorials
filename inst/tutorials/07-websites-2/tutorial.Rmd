@@ -699,7 +699,7 @@ Note how changing `index.qmd` causes the `index.html` to be re-rendered, leading
 
 ### Exercise 7
 
-Create another code chunk. Ask AI to create some code which makes a cool looking plot using the `billboard` tibble from the **tidyr** package and `ggplot()`. Make sure you understand what the plot is showing. Work with the AI to solve any errors, improve the code, make the graphic better and so on. 
+Create another code chunk. Create a cool-looking plot using the `billboard` tibble from the **tidyr** package and `ggplot()`. Make sure you understand what the plot is showing. Work with AI to solve any errors, improve the code, make the graphic better and so on.
 
 `Cmd/Ctrl + Shift + K` to ensure that the plot looks good. If it looks bad, or there are some weird messages/warnings, use the AI to fix things.
 

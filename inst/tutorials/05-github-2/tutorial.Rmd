@@ -433,7 +433,7 @@ penguins
 
 ### Exercise 12
 
-Ask your favorite AI to create a beautiful graphic using the `penguins` data. Phrase the question however you like. I asked [chatGPT](https://chatgpt.com/):
+Use AI to create a beautiful graphic using the `penguins` data. Phrase the question however you like. I asked [chatGPT](https://chatgpt.com/):
 
 > Using R and the tidyverse package, create a beautiful graphic using the penguins data from the palmerpenguins package.
 
@@ -988,7 +988,7 @@ no changes added to commit (use "git add" and/or "git commit -a" to commit)
 
 ### Exercise 9
 
-Now let's add a plot. Use an AI tool of your choice (e.g., ChatGPT, Claude, Copilot) to generate a **ggplot2** graphic using the `mpg` dataset. Ask the AI to create an interesting visualization --- for example, a scatterplot of engine displacement versus highway miles per gallon colored by car class. Paste the code into a new chunk in `quarto-2.qmd` and render to confirm it works.
+Now let's add a plot. Use an AI tool of your choice (e.g., ChatGPT, Claude, Copilot) to generate a **ggplot2** graphic using the `mpg` dataset. Create an interesting visualization --- for example, a scatterplot of engine displacement versus highway miles per gallon colored by car class. Paste the code into a new chunk in `quarto-2.qmd` and render to confirm it works.
 
 In the R Terminal, run:
 

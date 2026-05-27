@@ -147,7 +147,7 @@ The [Gemini CLI](https://github.com/google-gemini/gemini-cli) is a free, open AI
 
 ### Exercise 1
 
-Start the Gemini CLI by running `gemini` in the bash Terminal. First it will ask you if you wish to connect your Codespace to Gemini. Press `y` to allow it. Next, it will ask whether you trust the current working directory --- again, press `y`. 
+Start the Gemini CLI by running `gemini` in the bash terminal. First it will ask you if you wish to connect your Codespace to Gemini. Press `y` to allow it. Next, it will ask whether you trust the current working directory --- again, press `y`. 
 
 CP/CR the first several lines of terminal output --- enough to show the authentication prompt and the `>` prompt that appears after you successfully log in.
 
@@ -677,7 +677,7 @@ The two-step design lets you choose exactly which files go into each commit --- 
 
 Open the Source Control sidebar (the branch icon in the Activity Bar). You should see `.gitignore`, `analysis.qmd`, and `analysis.html` listed as changes. Type a commit message in the message box at the top, then click the **Commit** button. Because smart commit is enabled in the devcontainer, clicking Commit will stage and commit all changes in one step --- no `git add` required.
 
-Then, in a separate bash Terminal, run:
+Then, in a separate bash terminal, run:
 
 ```
 git log --oneline
@@ -814,7 +814,7 @@ This tutorial introduced the [Gemini CLI](https://github.com/google-gemini/gemin
 
 ### Exercise 1
 
-Quit Gemini with `/quit` if you haven't already. From the bash Terminal, run `quarto render analysis.qmd` to regenerate the HTML. Then, in the R Terminal, run:
+Quit Gemini with `/quit` if you haven't already. From the bash terminal, run `quarto render analysis.qmd` to regenerate the HTML. Then, in the R Terminal, run:
 
 ```
 tutorial.helpers::show_file("analysis.qmd")
@@ -837,7 +837,7 @@ Your answer should show the full contents of `analysis.qmd`, including a YAML he
 
 ### Exercise 2
 
-Publish your rendered QMD to GitHub Pages. In the bash Terminal, run:
+Publish your rendered QMD to GitHub Pages. In the bash terminal, run:
 
 ```
 quarto publish gh-pages analysis.qmd

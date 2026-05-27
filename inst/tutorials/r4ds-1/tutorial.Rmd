@@ -3,7 +3,7 @@ title: First Tutorial for R4DS
 author: Luke Li and David Kane
 tutorial:
   id: r4ds-1
-output: 
+output:
   learnr::tutorial:
     df_print: default
     progressive: true
@@ -19,8 +19,8 @@ library(tidyverse)
 library(quarto) # Total hack to shut up renv! Really need to put this in the package help file.
 
 knitr::opts_chunk$set(echo = FALSE)
-options(tutorial.exercise.timelimit = 60, 
-        tutorial.storage = "local") 
+options(tutorial.exercise.timelimit = 60,
+        tutorial.storage = "local")
 
 line_graph <- billboard |>
   filter(track %in% c("Dancing Queen", "Loser", "Try Again")) |>
@@ -31,7 +31,7 @@ line_graph <- billboard |>
     values_drop_na = TRUE
   ) |>
   ggplot(aes(x = week, y = rank, color = track, group = track)) +
-  geom_line() + 
+  geom_line() +
   facet_wrap(~ track)
 
 billboard_clean <- billboard |>
@@ -87,7 +87,7 @@ If you haven't already, open the `r4ds-1` repo on GitHub and create a Codespace 
 
 You need two R Terminals: one for running this tutorial and one for your exercises.
 
-Create a new Quarto Document and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Analyzing the Billboard 100"`) and your name as author. In a Bash terminal, run:
+Create a new Quarto Document and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Analyzing the Billboard 100"`) and your name as author. In a bash terminal, run:
 
 ```
 quarto render analysis.qmd
@@ -99,7 +99,7 @@ Create a `.gitignore` file with `analysis_files` on the first line and then a bl
 
 In the R Terminal, run:
 
-```         
+```
 show_file(".gitignore")
 ```
 
@@ -116,26 +116,26 @@ question_text(NULL,
 	rows = 3)
 ```
 
-### 
+###
 
 Professionals keep their data science work in the cloud because laptops fail.
 
 ### Exercise 2
 
-In your QMD, put `library(tidyverse)` in a new code chunk. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab — it should refresh automatically.
+In your QMD, put `library(tidyverse)` in a new code chunk. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab — it should refresh automatically.
 
 Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this chunk. For historical reasons, the first chunk in a Quarto document is often referred to as the `setup` chunk. Also, add the following to the YAML header to remove all code echoes from the HTML:
 
-```         
-execute: 
+```
+execute:
   echo: false
 ```
 
-In a Bash terminal, run `quarto render analysis.qmd` again. Check your Live Server tab. Only the title and author should appear in the HTML.
+In a bash terminal, run `quarto render analysis.qmd` again. Check your Live Server tab. Only the title and author should appear in the HTML.
 
 In the R Terminal, run:
 
-```         
+```
 show_file("analysis.qmd", chunk = "Last")
 ```
 
@@ -150,7 +150,7 @@ question_text(NULL,
 	rows = 6)
 ```
 
-### 
+###
 
 You may get a warning like:
 
@@ -163,7 +163,7 @@ This means that `analysis.qmd` lacks an empty last line. Add one. Text files sho
 
 ### Exercise 3
 
-In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 Note how this command causes `library(tidyverse)` to be copied down to the R Terminal and then executed.
 
@@ -184,15 +184,15 @@ You should practice moving from QMD World to R Terminal World and back.
 
 Note that **ggplot2** is loaded with **tidyverse**.
 
-R has several systems for making graphs, but [**ggplot2**](https://ggplot2.tidyverse.org/index.html) is the best. **ggplot2** implements the *grammar of graphics*, a coherent system for describing and building graphs. 
+R has several systems for making graphs, but [**ggplot2**](https://ggplot2.tidyverse.org/index.html) is the best. **ggplot2** implements the *grammar of graphics*, a coherent system for describing and building graphs.
 
 ### Exercise 4
 
 From the R Terminal, run these three commands:
 
-`getwd()`  
-`dir.create("data")`  
-`list.files()`  
+`getwd()`
+`dir.create("data")`
+`list.files()`
 
 These commands organize your project directories: `getwd()` shows your working directory (WD), which is your current location. `dir.create("data")` creates a data folder in your WD and `list.files()` displays files in WD when parentheses are empty.
 
@@ -245,9 +245,7 @@ question_text(NULL,
 
 ###
 
-You should get a tibble that looks like the below. Note that the code that appears after you submit a question is our answer to the question. It is OK if it differs from your answer.
-
-```{r billboard-100-1-test, echo = TRUE}
+```{r billboard-100-1-test}
 billboard
 ```
 
@@ -255,15 +253,11 @@ billboard
 
 A "variable" represents a quantity, quality, or property that can be measured or observed. Variables can be numeric or categorical, continuous or discrete, qualitative or quantitative.
 
-**Tabular data** is data organized in a table. A table is a group of cells, organized in rows and columns. 
+**Tabular data** is data organized in a table. A table is a group of cells, organized in rows and columns.
 
 ### Exercise 2
 
-Ask AI: Create a simple graph plotting `wk1` against `wk2` while only using the functions `ggplot()`, `aes()`, and `geom_point()`.
-
-If using a chat AI, first share a few rows of `billboard` from the R Terminal. In-environment agents can access your data directly.
-
-Copy and paste the AI generated code into a new code chunk with your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+Ask AI to create a scatter plot of `wk1` vs `wk2` from `billboard` using `geom_point()` and `geom_smooth()`. Include a proper title, subtitle, caption, and axis labels in `labs()`. Add this code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -278,21 +272,28 @@ question_text(NULL,
 
 ###
 
-```{r billboard-100-2-test, echo = TRUE}
-ggplot(data = billboard, 
-	   mapping = aes(x = wk1, y = wk2)) +
-  geom_point()
+```{r billboard-100-2-test}
+ggplot(billboard, aes(x = wk1, y = wk2)) +
+  geom_point() +
+  geom_smooth() +
+  labs(
+    title = "Billboard Rankings: Week 1 vs. Week 2",
+    subtitle = "Shows how a song's debut ranking relates to its second week performance",
+    caption = "Source: Billboard dataset (2000)",
+    x = "Week 1 Rank",
+    y = "Week 2 Rank"
+  )
 ```
 
 ###
 
-The warning about 'removed rows containing missing values' means `ggplot()` automatically excluded NA entries. This is normal behavior when working with real-world data that has missing values.
+A trend line shows the general pattern in your data. The shaded area around the line represents uncertainty — a wider band means less certainty. **ggplot2** supports both linear and curved (LOESS) trend lines.
 
 ### Exercise 3
 
-Ask AI: Continue the code to add a smooth trend line and proper title, subtitle, caption, and axis labels.
+Ask AI to create a faceted line graph showing the rank of the songs "Dancing Queen", "Loser", and "Try Again" from `billboard` over their first 5 weeks, with one panel per track using `facet_wrap()`. Assign the result to `line_graph`. Add this code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
-Copy and paste this code to continue the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+CP/CR.
 
 ```{r billboard-100-3}
 question_text(NULL,
@@ -305,30 +306,31 @@ question_text(NULL,
 
 ###
 
-```{r billboard-100-3-test, echo = TRUE}
-ggplot(billboard, aes(x = wk1, y = wk2)) +
-  geom_point() +
-  geom_smooth() +
-  labs(
-    title = "Billboard Rankings: Week 1 vs. Week 2",
-    subtitle = "Shows how a song’s debut ranking relates to its second week performance",
-    caption = "Source: Billboard dataset (2000)",
-    x = "Week 1 Rank",
-    y = "Week 2 Rank"
-  )
+```{r billboard-100-3-test}
+line_graph
 ```
 
-###
+Your code should look something like this:
 
-A trend line shows the general pattern in your data. The shaded area around the line represents uncertainty — a wider band means less certainty. **ggplot2** supports both linear and curved (LOESS) trend lines.
+```
+line_graph <- billboard |>
+  filter(track %in% c("Dancing Queen", "Loser", "Try Again")) |>
+  pivot_longer(
+    cols = wk1:wk5,
+    names_to = "week",
+    values_to = "rank",
+    values_drop_na = TRUE
+  ) |>
+  ggplot(aes(x = week, y = rank, color = track, group = track)) +
+  geom_line() +
+  facet_wrap(~ track)
+```
+
+For categorical variables, splitting your plot into **facets** creates subplots that each display one subset of the data. The pipe `|>` passes the left side as input to the right side function — use `|>` between data steps and `+` between ggplot layers.
 
 ### Exercise 4
 
-If using a chat AI, start a new conversation and share a few rows of `billboard` from the R Terminal.
-
-Ask AI: Create a line graph showing the rank of 3 songs over the first 5 weeks, mainly using the functions `ggplot()`, `aes()`, and `geom_line()`. 
-
-Copy and paste the AI generated code into a new code chunk with your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+Ask AI to create a box plot from `billboard` showing the distribution of ranks of 3 songs. Add this code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -343,124 +345,7 @@ question_text(NULL,
 
 ###
 
-```{r billboard-100-4-test, echo = TRUE}
-billboard |>
-  filter(track %in% c("Dancing Queen", "Loser", "Try Again")) |>
-  pivot_longer(
-    cols = wk1:wk5,
-    names_to = "week",
-    values_to = "rank",
-    values_drop_na = TRUE
-  ) |>
-  ggplot(aes(x = week, y = rank, color = track, group = track)) +
-  geom_line()
-```
-
-###
-
-The code that the AI produced likely contained the symbol `%>%` or `|>`, which are pipe operators. **Replace** `%>%` with `|>` using `Cmd/Ctrl + H` because `|>` is a base R function, which helps ensure better performance. The pipe `|>` passes the left side as input to the right side function. Remember: use `|>` between data steps and `+` between ggplot layers.
-
-
-### Exercise 5
-
-Ask AI: Continue the code to split the graph into separate panels, one per track.
-
-Copy and paste this code to continue the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r billboard-100-5}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 5)
-```
-
-###
-
-```{r billboard-100-5-test, echo = TRUE}
-billboard |>
-  filter(track %in% c("Dancing Queen", "Loser", "Try Again")) |>
-  pivot_longer(
-    cols = wk1:wk5,
-    names_to = "week",
-    values_to = "rank",
-    values_drop_na = TRUE
-  ) |>
-  ggplot(aes(x = week, y = rank, color = track, group = track)) +
-  geom_line() + 
-  facet_wrap(~ track)
-```
-
-###
-
-For categorical variables, splitting your plot into **facets** creates subplots that each display one subset of the data. The variable you facet by should be categorical.
-
-### Exercise 6
-
-If using a chat AI, share your current code.
-
-Ask AI: Continue the code by assigning the plot to the variable `line_graph`, and then save it to a file.
-
-Update your code in `analysis.qmd`. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r billboard-100-6}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 5)
-```
-
-###
-
-Your code should look something like this:
-
-```
-line_graph <- billboard |>
-  filter(track %in% c("Dancing Queen", "Loser", "Try Again")) |>
-  pivot_longer(
-    cols = wk1:wk5,
-    names_to = "week",
-    values_to = "rank",
-    values_drop_na = TRUE
-  ) |>
-  ggplot(aes(x = week, y = rank, color = track, group = track)) +
-  geom_line() + 
-  facet_wrap(~ track)
-```
-
-###
-
-This creates the plot object `line_graph` which you can view by typing its name in the R Terminal. **ggplot2** can save it as a PNG, PDF, or other image format.
-
-### Exercise 7
-
-If using a chat AI, start a new conversation and share a few rows of `billboard` from the R Terminal.
-
-Ask AI: Create a box plot showing the distribution of ranks of 3 songs.
-
-Copy and paste the AI generated code into a new code chunk with your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r billboard-100-7}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 5)
-```
-
-###
-
-```{r billboard-100-7-test, echo = TRUE}
+```{r billboard-100-4-test}
 billboard |>
   filter(track %in% c("Kryptonite", "Loser", "Try Again")) |>
   pivot_longer(
@@ -475,19 +360,15 @@ billboard |>
 
 ###
 
-To visualize the relationship between a numerical and a categorical variable, we can use side-by-side box plots. A boxplot shows the distribution's key statistics: the median (middle line), quartiles (box edges), and potential outliers (individual points). The box represents the middle 50% of data, whiskers show the data range, and points beyond indicate unusual values.
+To visualize the relationship between a numerical and a categorical variable, we can use side-by-side box plots. A boxplot shows the distribution's key statistics: the median (middle line), quartiles (box edges), and potential outliers (individual points).
 
-### Exercise 8
+### Exercise 5
 
-If using a chat AI, start a new conversation and share a few rows of `billboard` from the R Terminal.
-
-Ask AI: Create a bar chart showing the count of weeks 3 songs were ranked in the top 100.
-
-Copy and paste the AI generated code into a new code chunk with your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+Ask AI to create a bar chart from `billboard` showing the count of weeks 3 songs were ranked in the top 100. Add this code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
-```{r billboard-100-8}
+```{r billboard-100-5}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -498,9 +379,7 @@ question_text(NULL,
 
 ###
 
-
-
-```{r billboard-100-8-test, echo = TRUE}
+```{r billboard-100-5-test}
 billboard |>
   filter(track %in% c("Kryptonite", "Loser", "Try Again")) |>
   pivot_longer(
@@ -518,128 +397,36 @@ billboard |>
 
 **ggplot2** bar charts come in two flavors: one where the bar height is automatically counted from the data, and one where the bar height represents a value already in the data. Make sure to tell AI which you want.
 
-### Exercise 9
+### Exercise 6
 
-Now, we'll move on to functions from the **dplyr** package.
+Use the following prompt with your AI to build a cleaned version of `billboard`. Add the resulting code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`.
 
-If using a chat AI, start a new conversation and share a few rows of `billboard` from the R Terminal.
+In the R Terminal, run:
 
-Ask AI: Create a pipe with `billboard` to filter for the rows where the values in `wk1` are less than 101. Continue the pipe to arrange the rows by `wk1` rank values.
-
-Copy and paste the AI generated code into a new code chunk with your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+```
+show_file("analysis.qmd", chunk = "Last")
+```
 
 CP/CR.
 
-```{r billboard-100-9}
+Here's the prompt we used:
+
+Write R code that starts with `billboard` and pipes it through several operations: filter to keep only rows where `wk1` is less than 101, arrange in ascending order by `wk1`, create a new column called `improvement` equal to `wk1` minus `wk2` placed after the `wk2` column using `mutate()` with `.after = wk2`, select only the columns from `artist` through `improvement`, and rename `wk1` to `week1` and `wk2` to `week2`.
+
+```{r billboard-100-6}
 question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 5)
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 6)
 ```
 
 ###
 
-```{r billboard-100-9-test, echo = TRUE}
-billboard |>
-  filter(wk1 < 101) |>
-  arrange(wk1)
-```
+Our result:
 
-###
-
-`filter()` selects rows based on conditions without changing their order. Use boolean operators like `&` (and), `|` (or), and `%in%` to combine multiple conditions. This function returns a new tibble with only the rows that match your criteria. `arrange()` changes the order of the rows based on the value of the columns. 
-
-### Exercise 10
-
-Ask AI: Continue the pipe to create a new column titled `improvement` that contains the difference between `wk1` and `wk2` rankings, and place it after the `wk2` column.
-
-If you're using a chat AI, provide the `billboard` tibble again and the previous code.
-
-Copy and paste the AI generated code in the place to continue the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r billboard-100-10}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 5)
-```
-
-###
-
-```{r billboard-100-10-test, echo = TRUE}
-billboard |>
-  filter(wk1 < 101) |>
-  arrange(wk1) |>
-  mutate(improvement = wk1 - wk2, .after = wk2)
-```
-
-###
-
-`mutate()` creates new columns derived from existing columns. The `.after` argument positions new columns after specified variables.
-
-### Exercise 11
-
-Ask AI: Continue the pipe to select the columns `artist` through `improvement`.
-
-If you're using a chat AI, provide the `billboard` tibble again and the previous code.
-
-Copy and paste the AI generated code in the place to continue the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r billboard-100-11}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 5)
-```
-
-###
-
-
-
-```{r billboard-100-11-test, echo = TRUE}
-billboard |>
-  filter(wk1 < 101) |>
-  arrange(wk1) |>
-  mutate(improvement = wk1 - wk2, .after = wk2) |>
-  select(artist:improvement)
-```
-
-###
-
-`select()` chooses which columns to keep in your data frame. It uses special operators like `&`, `!`, and `|` to select columns by name, position, or pattern. This function helps you focus on the variables relevant to your analysis.
-
-### Exercise 12
-
-Ask AI: Continue the pipe to rename the columns `wk1` and `wk2` to be `week1` and `week2` respectively.
-
-If you're using a chat AI, provide the `billboard` tibble again and the previous code.
-
-Copy and paste the AI generated code in the place to continue the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r billboard-100-12}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 5)
-```
-
-###
-
-```{r billboard-100-12-test, echo = TRUE}
+```{r billboard-100-6-test}
 billboard |>
   filter(wk1 < 101) |>
   arrange(wk1) |>
@@ -648,50 +435,34 @@ billboard |>
   rename(week1 = wk1, week2 = wk2)
 ```
 
-###
+If your result doesn't match ours, replace your chunk code with the following before moving on:
 
-`rename()` changes the names of the columns with no impact on the other variables.
+<pre><code>```{r}
+billboard |>
+  filter(wk1 < 101) |>
+  arrange(wk1) |>
+  mutate(improvement = wk1 - wk2, .after = wk2) |>
+  select(artist:improvement) |>
+  rename(week1 = wk1, week2 = wk2)
+```</code></pre>
 
-You can also rename variables as you `select()` them by using `=`. The new name appears on the left-hand side of the `=`, and the old variable appears on the right-hand side. 
+`filter()` selects rows by condition, `arrange()` reorders them, `mutate()` creates new columns, `select()` keeps specified columns, and `rename()` changes column names — all without modifying the original tibble.
 
-### Exercise 13
+### Exercise 7
 
-Before creating a plot, we need to ensure that your data matches our data. In the QMD, replace your code from the previous exercise with our code.
+Within the latest code chunk, add the option: `#| cache: true`. Assign the result of the pipe to `billboard_clean`. If you have not done so already, add `analysis_cache` to your `.gitignore`.
+
+In a bash terminal, run `quarto render analysis.qmd`. This first render will take some time — by including `#| cache: true`, Quarto saves the result to disk so the next render loads from cache instead of re-running. Check your Live Server tab.
 
 In the R Terminal, run:
 
-```         
+```
 show_file("analysis.qmd", chunk = "Last")
 ```
 
 CP/CR.
 
-```{r billboard-100-13}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 6)
-```
-
-If `show_file()` gives an error, add `library(tutorial.helpers)` to your first code chunk where `library(tidyverse)` is located.
-
-###
-
-`summarize()` calculates group statistics and returns one row per group. Use `na.rm = TRUE` to ignore missing values in calculations. The `.by` argument groups data directly within `summarize()`, making `group_by()` unnecessary for most cases. `slice_*()` allows you to extract specific rows.
-
-### Exercise 14
-
-Within the latest code chunk, add the option: `#| cache: true`. Assign the result of the pipe to `billboard_clean`.
-
-If you have not done so already, add `analysis_cache` to your `.gitignore`. The cache files do not belong on GitHub.
-
-In a Bash terminal, run `quarto render analysis.qmd`. This first render will take some time since the code is running for the first time — by including `#| cache: true`, Quarto saves the result to disk so the next render loads from cache instead of re-running. Check your Live Server tab.
-
-CP/CR.
-
-```{r billboard-100-14}
+```{r billboard-100-7}
 question_text(NULL,
     answer(NULL, correct = TRUE),
     allow_retry = TRUE,
@@ -702,67 +473,21 @@ question_text(NULL,
 
 ###
 
+The pipe takes the thing on its left and passes it along to the function on its right so that `billboard |> filter(wk1 < 101)` is equivalent to `filter(billboard, wk1 < 101)`. The easiest way to pronounce the pipe is "then".
 
+### Exercise 8
 
-```{r, echo = TRUE}
-billboard_clean <- billboard |>
-  filter(wk1 < 101) |>
-  arrange(wk1) |>
-  mutate(improvement = wk1 - wk2, .after = wk2) |>
-  select(artist:improvement) |>
-  rename(week1 = wk1, week2 = wk2)
-```
-
-###
-
-The pipe takes the thing on its left and passes it along to the function on its right so that `billboard |> filter(wk1 < 101)` is equivalent to `filter(billboard, wk1 < 101)`, and `billboard |> filter(wk1 < 101) |> arrange(wk1)` is equivalent to `arrange(filter(billboard, wk1 < 101), wk1)`. The easiest way to pronounce the pipe is “then”.
-
-### Exercise 15
-
-Within the R Terminal, type `billboard_clean`, which we previously assigned to a pipe and ran in the R Terminal. Hit `Enter`.
-
-CP/CR.
-
-```{r billboard-100-15}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 8)
-```
-
-###
-
-
-
-```{r, echo=TRUE}
-billboard_clean
-```
-
-###
-
-`billboard` is a tibble, a special type of data frame used by the tidyverse to avoid some common gotchas, which are unexpected behaviors that lead to confusion. The most important difference between tibbles and data frames is the way tibbles print; they are designed for large datasets, so they only show the first few rows and only the columns that fit on one screen.
-
-`billboard_clean` is also a tibble since **tidyverse** functions return tibbles by default.
-
-### Exercise 16
-
-Ask AI: Generate R code that uses `billboard_clean` to plot a basic graph showing a histogram for `improvement`. If using a chat AI, copy/paste a few rows of `billboard_clean` from the R Terminal to give it context. In-environment agents can access the data directly.
-
-Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab.
-
-Make your plot look nice. Edit the appearance by hand or get AI to help. The titles should be legible and everything should have proper capitalization.
+Ask AI to pipe `billboard_clean` into a histogram of `improvement` with a title, subtitle, and caption. Adjust the theme so the title and subtitle are readable. Add this code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 In the R Terminal, run:
 
-```         
+```
 show_file("analysis.qmd", chunk = "Last")
 ```
 
 CP/CR.
 
-```{r billboard-100-16}
+```{r billboard-100-8}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -773,48 +498,9 @@ question_text(NULL,
 
 ###
 
-```{r, echo=TRUE}
+```{r billboard-100-8-test}
 ggplot(billboard_clean, aes(x = improvement)) +
-  geom_histogram(binwidth = 5, fill = "skyblue", color = "black") + 
-  labs(
-	title = "Distribution of Billboard Top 100 Song Ranking Improvements From Week 1 to Week 2",
-	subtitle = "Most songs either had no improvement or improved their ranking by up to 20 places",
-	x = "Song Rank Improvement",
-	y = "Count",
-	caption = "Source: Song rankings for Billboard top 100 in the year 2000"
-  )
-```
-
-###
-
-A histogram divides the x-axis into equally spaced bins and then uses the height of a bar to display the number of observations that fall in each bin. You can set the width of the intervals in a histogram with the `binwidth` argument, which is measured in the units of the x variable. 
-
-### Exercise 17
-
-Ask AI: Continue the code to style the plot's appearance so the title and subtitle fit on the graph. If necessary, manually edit the sizes. Place this code as a continuation of the graph code; in the end the chunk should just have the final graph. In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab.
-
-In the R Terminal, run:
-
-```         
-show_file("analysis.qmd", chunk = "Last")
-```
-
-CP/CR.
-
-```{r billboard-100-17}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 5)
-```
-
-###
-
-```{r billboard-100-17-test, echo = TRUE}
-ggplot(billboard_clean, aes(x = improvement)) +
-  geom_histogram(binwidth = 5, fill = "skyblue", color = "black") + 
+  geom_histogram(binwidth = 5, fill = "skyblue", color = "black") +
   labs(
 	title = "Distribution of Billboard Top 100 Song Ranking Improvements From Week 1 to Week 2",
 	subtitle = "Most songs either had no improvement or improved their ranking by up to 20 places",
@@ -830,7 +516,7 @@ ggplot(billboard_clean, aes(x = improvement)) +
 
 ###
 
-Many `theme_*()` functions exist within **ggplot2** that create different appearance themes for plots while not affecting the data display. Click this [link](https://ggplot2.tidyverse.org/reference/ggtheme.html) to find out the different themes.
+A histogram divides the x-axis into equally spaced bins and uses the bar height to display observation counts. Many `theme_*()` functions exist within **ggplot2** that create different appearance themes for plots.
 
 ## Music
 ###
@@ -850,11 +536,11 @@ Key functions you'll learn:
 
 ### Exercise 1
 
-We begin by downloading our CSV file `music.csv` to the `data` directory directly from the internet using `download.file()`. 
+We begin by downloading our CSV file `music.csv` to the `data` directory directly from the internet using `download.file()`.
 
 In the R Terminal, run:
 
-```         
+```
 download.file(
   "https://corgis-edu.github.io/corgis/datasets/csv/music/music.csv",
   destfile = "data/music.csv",
@@ -879,11 +565,7 @@ question_text(NULL,
 
 ### Exercise 2
 
-Ask AI: Read a `.csv` dataset called `data/music.csv` using `read_csv()`. 
-
-Add this code to a new code chunk in your QMD. Make sure the result of the function is not assigned to a variable. 
-
-In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+Ask AI to read a `.csv` dataset called `data/music.csv` using `read_csv()`. Add this code to a new code chunk in your QMD. Make sure the result of the function is not assigned to a variable. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -898,22 +580,21 @@ question_text(NULL,
 
 ###
 
-
-```{r music-2-hint-1, echo = TRUE, eval = FALSE}
+```{r music-2-test}
 read_csv("data/music.csv")
 ```
 
 ###
 
-When you run `read_csv()`, it prints information about the rows, columns, and data types it detected. The **readr** package includes similar functions for other file formats like `read_tsv()` for tabs and `read_delim()` for custom separators. These functions help read different types of structured data files.
+When you run `read_csv()`, it prints information about the rows, columns, and data types it detected. The **readr** package includes similar functions for other file formats like `read_tsv()` for tabs and `read_delim()` for custom separators.
 
 ### Exercise 3
 
 If using a chat AI, share the code from above and the `music.csv` tibble from the R Terminal.
 
-Ask AI: Edit the code so that the `read_csv()` skips the first 5 lines. Continue the code so that the `read_csv()` will also not read the first row as headings.
+Edit the code so that the `read_csv()` skips the first 5 lines. Continue the code so that the `read_csv()` will also not read the first row as headings.
 
-Copy and paste the AI generated code in the place to edit the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+Copy and paste the AI generated code in the place to edit the previous code. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -928,9 +609,7 @@ question_text(NULL,
 
 ###
 
-
-
-```{r music-3-test, echo = TRUE}
+```{r music-3-test}
 read_csv("data/music.csv", skip = 5, col_names = FALSE)
 ```
 
@@ -940,11 +619,11 @@ The argument `skip` is used to skip rows, but to skip columns, you can use the `
 
 ### Exercise 4
 
-Ask AI: Edit the code so that `read_csv()` is assigned to an object `df` and told that the column type of `artist.familiarity` is a double. Then check `df` for any parsing failures.
+Edit the code so that `read_csv()` is assigned to an object `df` and told that the column type of `artist.familiarity` is a double. Then check `df` for any parsing failures.
 
 If you're using a chat AI, provide the `music.csv` tibble again and the previous code.
 
-Copy and paste the AI generated code in the place to edit the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+Copy and paste the AI generated code in the place to edit the previous code. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -959,32 +638,30 @@ question_text(NULL,
 
 ###
 
-
-
-```{r music-4-test, echo = TRUE}
+```{r music-4-test}
 df <- read_csv(
    "data/music.csv",
    col_types = cols(
      artist.familiarity = col_double()
    )
 )
- 
+
 problems(df)
 ```
 
 ###
 
-CSV files don't specify data types, so **readr** automatically guesses whether columns contain text, numbers, or other values. The `col_types` argument lets you manually specify column types when readr guesses incorrectly. This ensures your data imports with the correct formats for analysis.
+CSV files don't specify data types, so **readr** automatically guesses whether columns contain text, numbers, or other values. The `col_types` argument lets you manually specify column types when readr guesses incorrectly.
 
 ### Exercise 5
 
 Now delete `df` along with the code. The chunk should be empty.
 
-Ask AI: Edit the code `read_csv("data/music.csv")` so that it only reads the columns `artist.familiarity`, `artist.hotttnesss`, and `artist.id`, overriding their types to be strings.
+Edit the code `read_csv("data/music.csv")` so that it only reads the columns `artist.familiarity`, `artist.hotttnesss`, and `artist.id`, overriding their types to be strings.
 
 If you're using a chat AI, provide the `music.csv` tibble again and the previous code.
 
-Copy and paste the AI generated code into the empty chunk. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+Copy and paste the AI generated code into the empty chunk. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -999,9 +676,7 @@ question_text(NULL,
 
 ###
 
-
-
-```{r music-5-test, echo = TRUE}
+```{r music-5-test}
 read_csv(
   "data/music.csv",
   col_types = cols_only(
@@ -1020,9 +695,9 @@ read_csv(
 
 Assign this code to the object `music_1`. If using a chat AI, share a few rows of `music_1` from the R Terminal.
 
-Ask AI: Based on the `music_1` tibble previously provided, create a similar tibble with only 3 rows of data using `tibble()`, and with the same 3 columns. Don't assign the tibble to an object.
+Based on the `music_1` tibble previously provided, create a similar tibble with only 3 rows of data using `tibble()`, and with the same 3 columns. Don't assign the tibble to an object.
 
-Copy and paste the AI generated code below the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+Copy and paste the AI generated code below the previous code. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1037,9 +712,7 @@ question_text(NULL,
 
 ###
 
-
-
-```{r music-6-test, echo = TRUE}
+```{r music-6-test}
 tibble(
   artist.familiarity = c("0.85", "0.67", "0.92"),
   artist.hotttnesss  = c("0.78", "0.55", "0.88"),
@@ -1049,17 +722,17 @@ tibble(
 
 ###
 
-Sometimes you’ll need to assemble a tibble “by hand,” doing a little data entry in your R script. **tibble** provides two ways to do this: laying out the data column by column, or row by row.
+Sometimes you'll need to assemble a tibble "by hand," doing a little data entry in your R script. **tibble** provides two ways to do this: laying out the data column by column, or row by row.
 
 ### Exercise 7
 
-Ask AI: Continue the previous code with the new tibble so that it is fed through a pipe and is written into a new CSV file titled `music_fake.csv` within the `data` directory.
+Continue the previous code with the new tibble so that it is fed through a pipe and is written into a new CSV file titled `music_fake.csv` within the `data` directory.
 
 If you're using a chat AI, provide the previous code.
 
 Manually, using the same command, do the same for the `music_1` tibble.
 
-Copy and paste the AI generated code into the appropriate place. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+Copy and paste the AI generated code into the appropriate place. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1074,7 +747,7 @@ question_text(NULL,
 
 ###
 
-```{r music-7-test, echo = TRUE}
+```{r music-7-test}
 tibble(
   artist.familiarity = c("0.85", "0.67", "0.92"),
   artist.hotttnesss  = c("0.78", "0.55", "0.88"),
@@ -1091,11 +764,11 @@ write_csv(music_1, "data/music_1.csv")
 
 ### Exercise 8
 
-Ask AI: Creating a vector of both CSV files, use `read_csv()` to read both CSV files `"music_1.csv"` and `"music_fake.csv"` and create a new column showing the file that the data comes from with the argument `id`. Don't assign the combined data frame to an object.
+Creating a vector of both CSV files, use `read_csv()` to read both CSV files `"music_1.csv"` and `"music_fake.csv"` and create a new column showing the file that the data comes from with the argument `id`. Don't assign the combined data frame to an object.
 
 If you're using a chat AI, provide the `music.csv` tibble again and the previous code.
 
-Copy and paste the AI generated code in the place following the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+Copy and paste the AI generated code in the place following the previous code. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1110,9 +783,7 @@ question_text(NULL,
 
 ###
 
-
-
-```{r music-8-test, echo = TRUE}
+```{r music-8-test}
 read_csv(c("data/music_1.csv", "data/music_fake.csv"), id = "file")
 ```
 
@@ -1128,54 +799,68 @@ We will now learn how to make our data tidy.
 
 ### Exercise 9
 
-We are returning to our previous data frame `billboard`. If using a chat AI, share a few rows of `billboard` from the R Terminal to remind it of what we are working with.
+Use the following prompt with your AI to create a tidy version of `billboard`. Add the resulting code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`.
 
-Ask AI: Using the `billboard` tibble, create a pipe to change the columns starting with `wk` to all go in a single column titled `week`, and another column titled `rank` with all the values from the `wk` columns.
+In the R Terminal, run:
 
-Copy and paste the AI generated code in the place following the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+```
+show_file("analysis.qmd", chunk = "Last")
+```
 
 CP/CR.
 
+Here's the prompt we used:
+
+Write R code that starts with `billboard` and pipes it through `pivot_longer()` to collect all columns starting with "wk" into a `week` column and a `rank` column, dropping NA values with `values_drop_na = TRUE`. Continue the pipe with `mutate()` to convert `week` from a character string to a number using `parse_number()`.
+
 ```{r music-9}
 question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 5)
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 6)
 ```
 
 ###
 
+Our result:
 
-
-```{r music-9-test, echo = TRUE}
+```{r music-9-test}
 billboard |>
   pivot_longer(
     cols = starts_with("wk"),
     names_to = "week",
-    values_to = "rank"
-  )
+    values_to = "rank",
+    values_drop_na = TRUE
+  ) |>
+  mutate(week = parse_number(week))
 ```
 
-###
+If your result doesn't match ours, replace your chunk code with the following before moving on:
 
-[`pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html) "lengthens" data, increasing the number of rows and decreasing the number of columns.
+<pre><code>```{r}
+billboard |>
+  pivot_longer(
+    cols = starts_with("wk"),
+    names_to = "week",
+    values_to = "rank",
+    values_drop_na = TRUE
+  ) |>
+  mutate(week = parse_number(week))
+```</code></pre>
 
-There are three key arguments:
-
-`cols` specifies which columns need to be pivoted, i.e. which columns aren’t variables. This argument uses the same syntax as `select()`, so here we could use `!c(artist, track, date.entered)` or `starts_with("wk")`.
-`names_to` names the variable stored in the column names; we named that variable `week`.
-`values_to` names the variable stored in the cell values; we named that variable `rank`.
-
+[`pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html) "lengthens" data by turning column names into a variable (`names_to`) and values into another (`values_to`). `parse_number()` extracts the first number from a string, making `week` numeric for plotting.
 
 ### Exercise 10
 
-Ask AI: Continue the previous code so that NA values are dropped, and the pipe continues so that the number within the week column is parsed.
+In the R Terminal, type `household` and press `Enter`. The result should be a tibble that is a part of **tidyverse**.
 
-If you're using a chat AI, provide the `billboard` tibble again and the previous code.
+If using a chat AI, share the first 3 lines of the `household` tibble from the R Terminal.
 
-Copy and paste the AI generated code to continue the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+Using the `household` tibble, create code that changes the columns so that there are only 4 columns, `family`, `child`, `dob`, and `name`.
+
+Copy and paste the AI generated code in the place following the previous code. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -1190,49 +875,7 @@ question_text(NULL,
 
 ###
 
-
-
-```{r music-10-test, echo = TRUE}
-billboard |>
-  pivot_longer(
-    cols = starts_with("wk"),
-    names_to = "week",
-    values_to = "rank",
-    values_drop_na = TRUE
-  ) |>
-  mutate(week = parse_number(week))
-```
-
-###
-
-This data is now tidy as NA values are removed, but we could make future computation a bit easier by converting values of week from character strings to numbers using `mutate()`. **readr** has a helpful tool that extracts the first number from a string, ignoring all other text.
-
-### Exercise 11
-
-In the R Terminal, type `household` and press `Enter`. The result should be a tibble that is a part of **tidyverse**.
-
-If using a chat AI, share the first 3 lines of the `household` tibble from the R Terminal.
-
-Ask AI: Using the `household` tibble, create code that changes the columns so that there are only 4 columns, `family`, `child`, `dob`, and `name`.
-
-Copy and paste the AI generated code in the place following the previous code. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r music-11}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 5)
-```
-
-###
-
-
-
-```{r music-11-test, echo = TRUE}
+```{r music-10-test}
 household |>
   pivot_longer(
     cols = !family,
@@ -1243,16 +886,45 @@ household |>
 
 ###
 
-`pivot_longer()` makes data longer by turning column names into variables, with `.value` letting part of a name become a variable.  
+`pivot_longer()` makes data longer by turning column names into variables, with `.value` letting part of a name become a variable.
 `pivot_wider()` does the reverse, spreading rows into columns using `values_from`, `names_from`, and `id_cols` to keep rows unique.
 
-### Exercise 12
+### Exercise 11
 
-Before creating a plot, we need to ensure that your data matches our data. In the QMD, replace your `billboard` pivot code from Exercise 10 with our code and place it within a new code chunk.
+Within the latest code chunk, add the option: `#| cache: true`. Assign the result of the pipe to `billboard_longer`. If you have not done so already, add `analysis_cache` to your `.gitignore`.
+
+In a bash terminal, run `quarto render analysis.qmd`. This first render will take some time — by including `#| cache: true`, Quarto saves the result to disk so the next render loads from cache instead of re-running. Check your Live Server tab.
 
 In the R Terminal, run:
 
-```         
+```
+show_file("analysis.qmd", chunk = "Last")
+```
+
+CP/CR.
+
+```{r music-11}
+question_text(NULL,
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 8)
+```
+
+###
+
+There are three interrelated rules that make a dataset tidy: each variable is a column, each observation is a row, and each value is a cell. Most real-world data is untidy because it's often organized for data entry rather than analysis.
+
+### Exercise 12
+
+Generate R code that uses `billboard_longer` to plot a basic graph showing the Billboard rank of each track over the weeks after they were released. If using a chat AI, copy/paste a few rows of `billboard_longer` from the R Terminal to give it context. In-environment agents can access the data directly.
+
+Within `labs()`, edit or add a proper title, subtitle, and caption. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab. Make your plot look nice.
+
+In the R Terminal, run:
+
+```
 show_file("analysis.qmd", chunk = "Last")
 ```
 
@@ -1264,114 +936,12 @@ question_text(NULL,
 	allow_retry = TRUE,
 	try_again_button = "Edit Answer",
 	incorrect = NULL,
-	rows = 6)
-```
-
-###
-
-There are three interrelated rules that make a dataset tidy:
-
-Each variable is a column; each column is a variable.
-Each observation is a row; each row is an observation.
-Each value is a cell; each cell is a single value.
-
-### Exercise 13
-
-Within the latest code chunk, add the option: `#| cache: true`. Assign the result of the pipe to `billboard_longer`.
-
-If you have not done so already, add `analysis_cache` to your `.gitignore`. The cache files do not belong on GitHub.
-
-In a Bash terminal, run `quarto render analysis.qmd`. This first render will take some time since the code is running for the first time — by including `#| cache: true`, Quarto saves the result to disk so the next render loads from cache instead of re-running. Check your Live Server tab.
-
-CP/CR.
-
-```{r music-13}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 8)
-```
-
-###
-
-
-
-```{r, echo = TRUE}
-billboard_longer <- billboard |>
-  pivot_longer(
-    cols = starts_with("wk"),
-    names_to = "week",
-    values_to = "rank",
-    values_drop_na = TRUE
-  ) |>
-  mutate(week = parse_number(week))
-```
-
-###
-
-Why ensure that your data is tidy? There are two main advantages:
-
-* Consistent data structure makes it easier to learn the tools related to it.
-
-* Column-based variables work better with R's vectorized functions.
-
-### Exercise 14
-
-Within the R Terminal, type `billboard_longer`, which we previously assigned to a pipe and ran in the R Terminal. Hit `Enter`.
-
-CP/CR.
-
-```{r music-14}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 8)
-```
-
-###
-
-
-
-```{r, echo=TRUE}
-billboard_longer
-```
-
-###
-
-Most real-world data is untidy because it's often organized for data entry rather than analysis. Many people creating datasets aren't familiar with tidy data principles, making data cleaning a common first step in analysis.
-
-### Exercise 15
-
-Ask AI to generate R code that uses `billboard_longer` to plot a basic graph showing the Billboard rank of each track over the weeks after they were released. If using a chat AI, copy/paste a few rows of `billboard_longer` from the R Terminal to give it context. In-environment agents can access the data directly.
-
-Within `labs()`, edit or add a proper title, subtitle, and caption. If axis labels would be useful, add them, but if unnecessary, don't bother. Don't assign the code for the plot to any variable. Put the plot code in a new code chunk. In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab. Make your plot look nice.
-
-In the R Terminal, run:
-
-```         
-show_file("analysis.qmd", chunk = "Last")
-```
-
-CP/CR.
-
-```{r music-15}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
 	rows = 12)
 ```
 
 ###
 
-
-
-```{r, echo=TRUE}
+```{r music-12-test}
 billboard_longer |>
   ggplot(aes(x = week, y = rank, group = track)) +
   geom_line(alpha = 0.2) +
@@ -1387,7 +957,7 @@ billboard_longer |>
 
 ###
 
-Most real analyses will require at least a little tidying. You’ll begin by figuring out what the underlying variables and observations are. Sometimes this is easy; other times you’ll need to consult with the people who originally generated the data. Then, you’ll pivot your data into a tidy form, with variables in the columns and observations in the rows.
+Most real analyses will require at least a little tidying. You'll begin by figuring out what the underlying variables and observations are, then pivot your data into a tidy form with variables in the columns and observations in the rows.
 
 
 ## Summary
@@ -1399,7 +969,7 @@ You will learn about importing, organizing, and visualizing data using core pack
 
 ### Exercise 1
 
-In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab — the resulting HTML page should be attractive, showing clean versions of your two plots.
+In a bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab — the resulting HTML page should be attractive, showing clean versions of your two plots.
 
 In the R Terminal, run:
 
@@ -1418,7 +988,7 @@ question_text(NULL,
 	rows = 30)
 ```
 
-### 
+###
 
 Tabular data is considered *tidy* if and only if it satisfies the following rules:
 
@@ -1428,7 +998,7 @@ Tabular data is considered *tidy* if and only if it satisfies the following rule
 
 ### Exercise 2
 
-Publish your rendered QMD to GitHub Pages. In a Bash terminal, run:
+Publish your rendered QMD to GitHub Pages. In a bash terminal, run:
 
 ````
 quarto publish gh-pages analysis.qmd

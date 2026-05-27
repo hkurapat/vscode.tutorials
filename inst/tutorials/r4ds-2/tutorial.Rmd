@@ -216,7 +216,7 @@ question_text(NULL,
 
 ### Exercise 2
 
-Ask AI how to read a `.xlsx` spreadsheet called `data/cheeses.xlsx` using `read_excel()`. Add this code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+Read a `.xlsx` spreadsheet called `data/cheeses.xlsx` using `read_excel()`. Add this code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -321,7 +321,7 @@ Quarto's `#| cache: true` option saves a chunk's result to disk. Add `analysis_c
 
 ### Exercise 5
 
-Ask AI to pipe `cheese_tibble` into a plot that shows the number of cheeses by milk type, faceted by country, with flipped axes. Add this code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+Pipe `cheese_tibble` into a plot that shows the number of cheeses by milk type, faceted by country, with flipped axes. Add this code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 In the R Terminal, run:
 
@@ -399,7 +399,7 @@ You can write data back to disk as an Excel file using the `write_xlsx()` functi
 
 ### Exercise 2
 
-Ask AI how to read a `.xlsx` spreadsheet called `data/wine.xlsx` using `read_excel()`. Add this code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+Read a `.xlsx` spreadsheet called `data/wine.xlsx` using `read_excel()`. Add this code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -424,7 +424,7 @@ read_excel("data/wine.xlsx")
 
 ### Exercise 3
 
-Ask AI how to pipe `read_excel("data/wine.xlsx")` into `select()` to keep only the `Phenols`, `Color`, and `Flavanoids` columns. Add this code as a replacement of your current code in the same code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`.
+Pipe `read_excel("data/wine.xlsx")` into `select()` to keep only the `Phenols`, `Color`, and `Flavanoids` columns. Add this code as a replacement of your current code in the same code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`.
 
 In the R Terminal, run:
 
@@ -488,7 +488,7 @@ Covariation is the tendency for the values of two or more variables to vary toge
 
 ### Exercise 5
 
-Ask AI to create a scatter plot from `wine_tibble` with `Phenols` on the x-axis and `Flavanoids` on the y-axis, with color mapped to `Color`. Include jittered points, a LOESS smooth curve, and label the maximum `Flavanoids` value as "Outlier" in magenta. Use a blue-to-orange color gradient and a classic theme. Add this code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+Create a scatter plot from `wine_tibble` with `Phenols` on the x-axis and `Flavanoids` on the y-axis, with color mapped to `Color`. Include jittered points, a LOESS smooth curve, and label the maximum `Flavanoids` value as "Outlier" in magenta. Use a blue-to-orange color gradient and a classic theme. Add this code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 In the R Terminal, run:
 

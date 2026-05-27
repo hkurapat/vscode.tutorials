@@ -332,7 +332,7 @@ Since the rest of this Codespace still uses Python, let's revert any changes we'
 include_graphics("images/revert-devcontainer.png")
 ```
 
-Run `git status` in a Bash Terminal. CP/CR.
+Run `git status` in a bash terminal. CP/CR.
 
 ```{r devcontainers-7}
 question_text(NULL,
@@ -589,7 +589,7 @@ Stopped Codespaces don't use compute hours but still occupy storage --- they can
 ## New Devcontainer
 ###
 
-In the previous section you explored a devcontainer someone else wrote. Now you will build one from scratch. You will open a blank Codespace with no configuration at all, manually create the devcontainer files, ask an AI to draft the JSON, replace it with a clean version, and rebuild the container to see the new environment take effect.
+In the previous section you explored a devcontainer someone else wrote. Now you will build one from scratch. You will open a blank Codespace with no configuration at all, manually create the devcontainer files, use AI to draft the JSON, replace it with a clean version, and rebuild the container to see the new environment take effect.
 
 ### Exercise 1
 
