@@ -3,7 +3,7 @@ title: Second Tutorial for R4DS
 author: Sruthi Gandhi and David Kane
 tutorial:
   id: r4ds-2
-output: 
+output:
   learnr::tutorial:
     df_print: default
     progressive: true
@@ -21,8 +21,8 @@ library(readxl)
 library(dbplyr)
 
 knitr::opts_chunk$set(echo = FALSE)
-options(tutorial.exercise.timelimit = 600, 
-        tutorial.storage = "local") 
+options(tutorial.exercise.timelimit = 600,
+        tutorial.storage = "local")
 
 
 cheese_tibble <- read_excel("data/cheeses.xlsx") |>
@@ -59,7 +59,7 @@ If you haven't already, open the `r4ds-2` repo on GitHub and create a Codespace 
 
 You need two R Terminals: one for running this tutorial and one for your exercises. Open a second R Terminal using the dropdown button.
 
-Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Analyzing Cheese and Wine"`) and your name as author. In a Bash terminal, run:
+Create a new file and save it as `analysis.qmd`. Add a YAML header at the top with a title (`"Analyzing Cheese and Wine"`) and your name as author. In a bash terminal, run:
 
 ```
 quarto render analysis.qmd
@@ -71,7 +71,7 @@ Create a `.gitignore` file with `analysis_files` on the first line and then a bl
 
 In the R Terminal, run:
 
-```         
+```
 show_file(".gitignore")
 ```
 
@@ -88,25 +88,25 @@ question_text(NULL,
     rows = 3)
 ```
 
-### 
+###
 
 **googlesheets4** uses v4 of the [Google Sheets API v4](https://developers.google.com/sheets/api/) to provide an R interface to Google Sheets, hence the name.
 You can create a brand new sheet with [`gs4_create()`](https://googlesheets4.tidyverse.org/reference/gs4_create.html) or write to an existing sheet with [`sheet_write()`](https://googlesheets4.tidyverse.org/articles/write-sheets.html) and friends.
 
 ### Exercise 2
 
-In your QMD, put `library(tidyverse)`, `library(readxl)`, and `library(dbplyr)` in a new code chunk. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab — it should refresh automatically.
+In your QMD, put `library(tidyverse)`, `library(readxl)`, and `library(dbplyr)` in a new code chunk. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab — it should refresh automatically.
 
 Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this code chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
 
-```         
-execute: 
+```
+execute:
   echo: false
 ```
 
 In the R Terminal, run:
 
-```         
+```
 show_file("analysis.qmd", chunk = "Last")
 ```
 
@@ -121,13 +121,13 @@ question_text(NULL,
     rows = 6)
 ```
 
-### 
+###
 
 You can read a single worksheet from a spreadsheet with the `sheet` argument in `read_excel()` from the **readxl** package.
 
 ### Exercise 3
 
-In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 Note that this causes `library(tidyverse)`, `library(readxl)`, and `library(dbplyr)` to be copied down to the R Terminal and then executed.
 
@@ -144,7 +144,7 @@ question_text(NULL,
 
 ###
 
-You can use `excel_sheets()` to get information on all worksheets in an Excel spreadsheet, and then read the one(s) you’re interested in.
+You can use `excel_sheets()` to get information on all worksheets in an Excel spreadsheet, and then read the one(s) you're interested in.
 
 ### Exercise 4
 
@@ -183,15 +183,15 @@ Your answer should look something like this, although your path will be differen
 ## Cheese
 ###
 
-The [cheese.csv](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-06-04/readme.md) dataset is a [TidyTuesday](https://github.com/rfordatascience/tidytuesday) dataset on Github which contains data scraped from [cheese.com](https://www.cheese.com) about data from 2046 different types of cheese. Our spreadsheet `data/cheeses.xlsx` contains this data in a spreadsheet format. 
+The [cheese.csv](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-06-04/readme.md) dataset is a [TidyTuesday](https://github.com/rfordatascience/tidytuesday) dataset on Github which contains data scraped from [cheese.com](https://www.cheese.com) about data from 2046 different types of cheese. Our spreadsheet `data/cheeses.xlsx` contains this data in a spreadsheet format.
 
 ### Exercise 1
 
-We begin by downloading our spreadsheet `cheeses.xlsx` directly from GitHub to the `data` directory using `download.file()`. 
+We begin by downloading our spreadsheet `cheeses.xlsx` directly from GitHub to the `data` directory using `download.file()`.
 
 In the R Terminal, run:
 
-```         
+```
 download.file(
   "https://github.com/PPBDS/vscode.tutorials/raw/refs/heads/main/inst/tutorials/r4ds-2/data/cheeses.xlsx",
   destfile = "data/cheeses.xlsx",
@@ -212,11 +212,11 @@ question_text(NULL,
 
 ###
 
-The function, `geom_freqpoly()`, visualizes the distribution of a single continuous variable by dividing the x-axis into bins and counting the number of observations in each bin. Frequency polygons display the counts with lines. Frequency polygons are more suitable when you want to compare the distribution across the levels of a categorical variable.
+`download.file()` saves a file from a URL to a local path. The `mode = "wb"` argument is required for binary files like `.xlsx` — without it, text-mode line-ending conversion can corrupt the file.
 
 ### Exercise 2
 
-Ask AI how to read a `.xlsx` spreadsheet called `data/cheeses.xlsx` using `read_excel()`. Add this code to a new code chunk in your QMD. Make sure the code is not assigned to a variable. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+Ask AI how to read a `.xlsx` spreadsheet called `data/cheeses.xlsx` using `read_excel()`. Add this code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -231,81 +231,44 @@ question_text(NULL,
 
 ###
 
-Our code:
+Our result:
 
-```{r cheese-2-test, echo = TRUE}
+```{r cheese-2-test}
 read_excel("data/cheeses.xlsx")
 ```
 
-###
-
-`read_excel()` can read files with either `xls` and `xlsx` format. It guesses the file type based on the input.
+`read_excel()` can read files with either `.xls` and `.xlsx` format. It guesses the file type based on the input.
 
 ### Exercise 3
 
-Ask AI to give you code to make a stacked bar plot using `geom_bar()` to explore the relationship between countries and the milks they use to produce different cheeses by using the `country` and `milk` columns. If using a chat AI, paste a few rows of the data from the R Terminal. In-environment agents can read the file directly.
+Use the following prompt with your AI to filter and summarize the cheese data. Add the resulting code as a replacement of your current code in the same code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`.
 
-Add this code as a replacement to your current code in the same code cell in your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+In the R Terminal, run:
 
-CP/CR. 
-
-```{r cheese-3}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
 ```
-
-###
-
-Our code:
-
-```{r cheese-3-test, echo = TRUE}
-read_excel("data/cheeses.xlsx") |>
-  ggplot(aes(x = country, fill = milk)) +
-  geom_bar(position = "stack") +
-  labs(
-    title = "Cheese Production by Milk Type Across Countries",
-    subtitle = "Exploring the relationship between country and type of milk used",
-    caption = "Data source: cheese dataset"
-  )
+show_file("analysis.qmd", chunk = "Last")
 ```
-
-###
-By default, bars are stacked using the position adjustment specified by the position argument.
-
-* **Dodge** places overlapping objects directly beside one another.
-* **Fill** makes each set of stacked bars the same height, showing proportions.
-* **Identity** places each object exactly where it falls in the data, allowing overlap.
-
-### Exercise 4
-
-Our plot is crowded because it includes all countries and has many `NA`values. We need to identify the top 3 countries and then filter our data accordingly. Use this prompt with your AI to filter the top 3 countries in the data through a single pipe.
-
-Here's the prompt we used: 
-
-Write R code that starts with `read_excel("data/cheeses.xlsx")` and pipes it through several operations. First, filter out rows where country is NA using `filter(!is.na(country))`, then add a column showing the total count for each country using `add_count(country, name = "country_total")`. Next, keep only the top 3 countries by filtering where the `country_total` is greater than or equal to the 3rd highest value using `filter(country_total >= sort(unique(country_total), decreasing = TRUE)[3])`. After that, filter out any NA values in the `milk `column with `!is.na(milk)`, then count the combinations of `country` and `milk` type using `count(country, milk)`, group the results by `country`, and finally arrange them by country name and then by count in descending order.
-
-Add the resulting code as a replacement of your current code to the code chunk in your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
-```{r cheese-4}
+Here's the prompt we used:
+
+Write R code that starts with `read_excel("data/cheeses.xlsx")` and pipes it through several operations. First, filter out rows where country is NA using `filter(!is.na(country))`, then add a column showing the total count for each country using `add_count(country, name = "country_total")`. Next, keep only the top 3 countries by filtering where the `country_total` is greater than or equal to the 3rd highest value using `filter(country_total >= sort(unique(country_total), decreasing = TRUE)[3])`. After that, filter out any NA values in the `milk` column with `!is.na(milk)`, then count the combinations of `country` and `milk` type using `count(country, milk)`, group the results by `country`, and finally arrange them by country name and then by count in descending order.
+
+```{r cheese-3}
 question_text(NULL,
     answer(NULL, correct = TRUE),
     allow_retry = TRUE,
     try_again_button = "Edit Answer",
     incorrect = NULL,
-    rows = 3)
+    rows = 6)
 ```
 
 ###
 
-Our code:
+Our result:
 
-```{r cheese-4-test, echo = TRUE}
+```{r cheese-3-test}
 read_excel("data/cheeses.xlsx") |>
   filter(!is.na(country)) |>
   add_count(country, name = "country_total") |>
@@ -316,12 +279,55 @@ read_excel("data/cheeses.xlsx") |>
   arrange(country, desc(n))
 ```
 
+If your result doesn't match ours, replace your chunk code with the following before moving on:
+
+<pre><code>```{r}
+read_excel("data/cheeses.xlsx") |>
+  filter(!is.na(country)) |>
+  add_count(country, name = "country_total") |>
+  filter(country_total >= sort(unique(country_total), decreasing = TRUE)[3]) |>
+  filter(!is.na(milk)) |>
+  count(country, milk) |>
+  group_by(country) |>
+  arrange(country, desc(n))
+```</code></pre>
+
+`add_count()` adds a column of group counts without collapsing the data — equivalent to `group_by()` followed by `add_tally()`. Use it when you need the count as a new column for downstream filtering.
+
+### Exercise 4
+
+Within the recent code chunk, add the option `#| cache: true` and assign the result to `cheese_tibble`. In a bash terminal, run `quarto render analysis.qmd`. This first render takes noticeably longer — Quarto runs the code and writes the cache to disk; subsequent renders skip that code and load from cache instead.
+
+In the R Terminal, run:
+
+```
+show_file("analysis.qmd", chunk = "Last")
+```
+
+CP/CR.
+
+```{r cheese-4}
+question_text(NULL,
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 6)
+```
+
 ###
-`count()` outputs a tibble with variable values and their observation counts, which can be piped directly into `ggplot()` with `aes(x = cut, y = n)`. To visualize covariation between categorical variables, use `geom_count()` to count observations for each combination of levels.
+
+Quarto's `#| cache: true` option saves a chunk's result to disk. Add `analysis_cache` to your `.gitignore` so the cache files don't end up on GitHub. `count()` outputs a tibble with variable values and their observation counts; the resulting `n` column can be mapped directly to aesthetics like `size`, `y`, or `fill` in **ggplot2**.
 
 ### Exercise 5
 
-Ask AI how to pipe your filtered data into a dot plot using `geom_point()` where you map `country` to the x-axis, `milk` to the y-axis, and `n` to the size of the points. Also map `country` to `color` for better distinction between countries. Add this code as a continuation of your current pipe in the same code chunk in your current QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+Ask AI to pipe `cheese_tibble` into a plot that shows the number of cheeses by milk type, faceted by country, with flipped axes. Add this code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+
+In the R Terminal, run:
+
+```
+show_file("analysis.qmd", chunk = "Last")
+```
 
 CP/CR.
 
@@ -336,531 +342,39 @@ question_text(NULL,
 
 ###
 
-Our code:
+Our plot:
 
-```{r cheese-5-test, echo = TRUE}
-read_excel("data/cheeses.xlsx") |>
-  filter(!is.na(country)) |>
-  add_count(country, name = "country_total") |>
-  filter(country_total >= sort(unique(country_total), decreasing = TRUE)[3]) |>
-  filter(!is.na(milk)) |>
-  count(country, milk) |>
-  group_by(country) |>
-  arrange(country, desc(n))|>
-    ggplot(aes(x = country, y = milk, size = n, color = country)) +
-    geom_point() +
-    labs(
-      title = "Cheese Production by Milk Type: Dot Plot View",
-      subtitle = "Point size represents number of cheeses",
-      x = "Country",
-      y = "Milk Type",
-     size = "Number of Cheeses",
-      color = "Country"
-  ) +
-    theme_minimal()
-```
-
-###
-Many graphs plot raw values, while others calculate new values first.
-
-* Bar charts, histograms, and frequency polygons bin data and plot the counts in each bin.
-* Smoothers plot model predictions.
-* Boxplots display a five-number summary of the distribution.
-
-### Exercise 6
-
-Ask AI to change the pipe so that it makes a grouped bar chart with bars side by side, separated by country. If using a chat AI, also share your current pipe for context. Add this code as a replacement of your current code in the same code chunk in your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r cheese-6}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 5)
-```
-
-###
-
-Our code:
-
-```{r cheese-6-test, echo = TRUE}
-read_excel("data/cheeses.xlsx") |>
-  filter(!is.na(country)) |>
-  add_count(country, name = "country_total") |>
-  filter(country_total >= sort(unique(country_total), decreasing = TRUE)[3]) |>
-  filter(!is.na(milk)) |>
-  count(country, milk) |>
-  group_by(country) |>
-  arrange(country, desc(n))|>
-  ggplot(aes(x = milk, y = n, fill = country)) +
-  geom_col(position = "dodge") +
+```{r cheese-5-test}
+cheese_tibble |>
+  ggplot(aes(x = milk, y = n, fill = milk)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ country, scales = "fixed") +
+  coord_flip() +
+  scale_y_sqrt() +
+  theme_gray() +
   labs(
-    title = "Cheese Production by Milk Type and Country",
-    subtitle = "Grouped bars with exact counts labeled",
-    x = "Milk Type",
-    y = "Number of Cheeses",
-    fill = "Country"
-  ) +
-  theme_minimal() 
-```
-
-###
-
-Dodging preserves the vertical position of a geom while adjusting the horizontal position. The grouping variable must be specified in the global or geometry layer for dodging to work correctly.
-
-### Exercise 7
-
-The `milk` types on the x-axis are barely readable and it's hard to tell the count of each bar. 
-
-Fix this by asking AI to use our pipe from the last exercise and display count values on top of each bar, aligning the text with the dodged bars, and angle the x-axis labels at 45 degrees.
-
- Add this code as a replacement of your current code in the same code chunk in your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r cheese-7}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 5)
-```
-
-###
-
-Our code:
-
-```{r cheese-7-test, echo = TRUE}
-read_excel("data/cheeses.xlsx") |>
-  filter(!is.na(country)) |>
-  add_count(country, name = "country_total") |>
-  filter(country_total >= sort(unique(country_total), decreasing = TRUE)[3]) |>
-  filter(!is.na(milk)) |>
-  count(country, milk) |>
-  group_by(country) |>
-  arrange(country, desc(n))|>
-  ggplot(aes(x = milk, y = n, fill = country)) +
-  geom_col(position = "dodge") +
-  geom_text(aes(label = n), 
-            position = position_dodge(width = 0.9), 
-            vjust = -0.5, size = 3) +
-  labs(
-    title = "Cheese Production by Milk Type and Country",
-    subtitle = "Grouped bars with exact counts labeled",
-    x = "Milk Type",
-    y = "Number of Cheeses",
-    fill = "Country"
-  ) +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-```
-
-###
-
-**ggplot2** supports adding annotations directly to plots. As a rule of thumb, geometry layers are generally useful for highlighting a subset of the data while annotations are useful for adding one or a few fixed elements to a plot.
-
-### Exercise 8
-
-Make another plot by asking AI how to add a faceting layer to our pipe that splits the plot into panels showing the number of cheeses by milk type, using the columns `milk` and `n`, and mapping the fill color to `milk`.
-
-Add this code as a replacement to your current code chunk in the same QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r cheese-8}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-Our code:
-
-```{r cheese-8-test, echo = TRUE}
-read_excel("data/cheeses.xlsx") |>
-  filter(!is.na(country)) |>
-  add_count(country, name = "country_total") |>
-  filter(country_total >= sort(unique(country_total), decreasing = TRUE)[3]) |>
-  filter(!is.na(milk)) |>
-  count(country, milk) |>
-  group_by(country) |>
-  arrange(country, desc(n))|>
-  ggplot(aes(x = milk, y = n, fill = country)) +
-  geom_col(position = "dodge") +
-  geom_text(aes(label = n), 
-            position = position_dodge(width = 0.9), 
-            vjust = -0.5, size = 3) +
-  labs(
-    title = "Cheese Production by Milk Type and Country",
-    subtitle = "Grouped bars with exact counts labeled",
-    x = "Milk Type",
-    y = "Number of Cheeses",
-    fill = "Country"
-  ) +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
-  facet_wrap(~ country)
-```
-
-###
-
-**Faceting** splits a plot into panels, one per level of a variable. The variable used for faceting should be categorical (character or factor), since each level becomes its own panel.
-
-### Exercise 9
-Ask AI to delete the faceting layer and continue the pipe by flipping the axes and hiding the legend. Add this code as a continuation of your pipe to the same chunk in your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r cheese-9}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-Our code:
-
-```{r cheese-9-test, echo = TRUE}
-read_excel("data/cheeses.xlsx") |>
-  filter(!is.na(country)) |>
-  add_count(country, name = "country_total") |>
-  filter(country_total >= sort(unique(country_total), decreasing = TRUE)[3]) |>
-  filter(!is.na(milk)) |>
-  count(country, milk) |>
-  group_by(country) |>
-  arrange(country, desc(n))|>
-  ggplot(aes(x = milk, y = n, fill = country)) +
-  geom_col(position = "dodge") +
-  geom_text(aes(label = n), 
-            position = position_dodge(width = 0.9), 
-            vjust = -0.5, size = 3) +
-  labs(
-    title = "Cheese Production by Milk Type and Country",
-    subtitle = "Grouped bars with exact counts labeled",
-    x = "Milk Type",
-    y = "Number of Cheeses",
-    fill = "Country"
-  ) +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
-  coord_flip()
-```
-
-###
-
-**ggplot2** supports zooming into a plot without discarding data, which preserves things like smoothing lines that depend on the full dataset. It also supports setting hard axis limits that drop data outside the range entirely — a different behavior worth knowing.
-
-### Exercise 10
-
-This plot is good, but it's difficult to see the tiny slivers of data because of the stacking. 
-
-Ask AI to change the pipe so that the plot uses a polar/circular layout and does not display the count of each bar anymore. If using a chat AI, also share your current pipe for context. Add this code as a replacement of your current code in the same code chunk in your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r cheese-10}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 5)
-```
-
-###
-
-Our code: 
-
-```{r cheese-10-test, echo = TRUE}
-read_excel("data/cheeses.xlsx") |>
-  filter(!is.na(country)) |>
-  add_count(country, name = "country_total") |>
-  filter(country_total >= sort(unique(country_total), decreasing = TRUE)[3]) |>
-  filter(!is.na(milk)) |>
-  count(country, milk) |>
-  group_by(country) |>
-  arrange(country, desc(n))|>
-  ggplot(aes(x = milk, y = n, fill = country)) +
-  geom_col(position = "dodge") +
-  labs(
-    title = "Cheese Production by Milk Type and Country",
-    subtitle = "Grouped bars with exact counts labeled",
-    x = "Milk Type",
-    y = "Number of Cheeses",
-    fill = "Country"
-  ) +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  coord_polar()
-```
-
-###
-`coord_quickmap()` sets the aspect ratio correctly for geographic maps, which is important for spatial data. Polar plots should be used sparingly because the human eye is better at comparing lengths than angles or areas. Reserve polar plots for when the circular representation adds meaningful context to your data.
-
-### Exercise 11
-
-Ask AI to change the code so that the polar layout maps the angle to the y-axis instead, turning the pie chart into a donut chart. Add this code as a replacement of your current code in the same code chunk in your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r cheese-11}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 5)
-```
-
-###
-
-Our code:
-
-```{r cheese-11-test, echo = TRUE}
-read_excel("data/cheeses.xlsx") |>
-  filter(!is.na(country)) |>
-  add_count(country, name = "country_total") |>
-  filter(country_total >= sort(unique(country_total), decreasing = TRUE)[3]) |>
-  filter(!is.na(milk)) |>
-  count(country, milk) |>
-  group_by(country) |>
-  arrange(country, desc(n))|>
-  ggplot(aes(x = milk, y = n, fill = country)) +
-  geom_col(position = "dodge") +
-  labs(
-    title = "Cheese Production by Milk Type and Country",
-    subtitle = "Grouped bars with exact counts labeled",
-    x = "Milk Type",
-    y = "Number of Cheeses",
-    fill = "Country"
-  ) +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-    coord_polar(theta = "y")
-
-```
-
-###
-The `coord_polar()` function transforms your plot to polar coordinates, creating circular plots. The `theta` parameter determines which aesthetic wraps around the circle: `theta = "x"` wraps the x-axis around the circumference (traditional pie chart), while `theta = "y"` wraps y-values around the circle (donut-style plot).
-
-### Exercise 12
-
-Ask AI how to pipe your filtered data into a stacked bar chart using `geom_bar()` with the `position` argument set to `stacked` to explore the relationship between the `country` column and `milk` column. Set the `weight` to `n`. Ask AI to add a `title`, `subtitle`, and `axis` labels using the `labs()` function.  Add this code as a replacement of your current code in the same code chunk in your QMD. 
-
-In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r cheese-12}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-Our code:
-
-```{r cheese-12-test, echo = TRUE}
-read_excel("data/cheeses.xlsx") |>
-  filter(!is.na(country)) |>
-  add_count(country, name = "country_total") |>
-  filter(country_total >= sort(unique(country_total), decreasing = TRUE)[3]) |>
-  filter(!is.na(milk)) |>
-  count(country, milk) |>
-  group_by(country) |>
-  arrange(country, desc(n)) |>
-  ggplot(aes(x = country, weight = n, fill = milk)) +
-    geom_bar(position = "stack") +
-    labs(
-      title = "Milk Types Used in Cheeses from Top 3 Countries",
-      x = "Country",
-      y = "Number of Cheeses",
-      fill = "Milk Type"
-    ) +
-    theme_minimal()
-
-```
-
-###
-You can use labels the same way as breaks (a character vector), or set it to `NULL` to suppress labels altogether, which is useful for maps or when you don't want to share absolute numbers. The [**ggrepel**](https://ggrepel.slowkow.com) package automatically adjusts labels so they don't overlap, helping make plots easier to read.
-
-### Exercise 13
-
-Now that we have filtered our dataset through a pipe, we need to be on track with the same, correct, code. Replace your code with our code in your QMD.
-
-Delete everything after `arrange(country, desc(n))` within your recent code chunk so we end with just the filtered data. The chunk should look like this:
-
-```
-read_excel("data/cheeses.xlsx") |>
-  filter(!is.na(country)) |>
-  add_count(country, name = "country_total") |>
-  filter(country_total >= sort(unique(country_total), decreasing = TRUE)[3]) |>
-  filter(!is.na(milk)) |>
-  count(country, milk) |>
-  group_by(country) |>
-  arrange(country, desc(n))
-```
-
-In the R Terminal, run:
-
-```         
-show_file("analysis.qmd", chunk = "Last")
-```
-
-CP/CR.
-
-```{r cheese-13}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 6)
-```
-
-###
-
-Just like with `read_excel()`, we can read in a portion of a Google Sheet by defining a range in `read_sheet()` from the **googlesheets4** package.
-
-### Exercise 14
-
-Within the recent code chunk, add the option: `#| cache: true`. Assign the result of our pipe to `cheese_tibble`.
-
-In a Bash terminal, run `quarto render analysis.qmd`. This first render will take some time since the code is running for the first time — by including `#| cache: true`, Quarto saves the result to disk so the next render loads from cache instead of re-running. Check your Live Server tab.
-
-CP/CR.
-
-```{r cheese-14}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 6)
-```
-
-###
-
-Our code:
-
-```{r cheese-14-test, echo=TRUE}
-cheese_tibble <- read_excel("data/cheeses.xlsx") |>
-  filter(!is.na(country)) |>
-  add_count(country, name = "country_total") |>
-  filter(country_total >= sort(unique(country_total), decreasing = TRUE)[3]) |>
-  filter(!is.na(milk)) |>
-  count(country, milk) |>
-  group_by(country) |>
-  arrange(country, desc(n))
-
-```
-
-###
-
-`geom_bin2d()` and `geom_hex()` divide the coordinate plane into 2d bins and then use a fill color to display how many points fall into each bin. `geom_bin2d()` creates rectangular bins. `geom_hex()` creates hexagonal bins. You will need to install the **hexbin** package to use `geom_hex()`.
-
-### Exercise 15
-
-Within the R Terminal, type `cheese_tibble`, which we previously assigned to a pipe and ran in the R Terminal. Hit `Enter`.
-
-CP/CR.
-
-```{r cheese-15}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 8)
-```
-
-###
-
-Our code:
-
-```{r, echo=TRUE}
-cheese_tibble
-```
-
-###
-
-The function [`linear_reg()`](https://parsnip.tidymodels.org/reference/linear_reg.html) defines a model that can predict numeric values from predictors using a linear function. This function can fit regression models. There are different ways to fit this model, and the method of estimation is chosen by setting the model `engine`.
-
-### Exercise 16
-
-You add labels with the `labs()` function.
-
-Ask AI to use the `labs()` function and add a `title`, `subtitle`, `caption`, and labels for the `x` and `y` axes. Add this code as a continuation of your pipe to the same chunk in your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-In the R Terminal, run:
-
-```
-show_file("analysis.qmd", chunk = "Last")
-```
-
-CP/CR.
-
-```{r cheese-16}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-Our code:
-
-```{r cheese-16-test, echo = TRUE}
-cheese_tibble|>
-    ggplot(aes(x = milk, y = n, fill = milk))+
-    geom_col(show.legend = FALSE) +
-    facet_wrap(~ country, scales = "fixed") +
-    coord_flip() +
-    scale_y_sqrt() +
-    theme_gray() +
-    labs(
     title = "Milk Types Used in Cheeses by Country",
     subtitle = "Italy has the most variety of cheese",
     caption = "Source: cheese.com",
     x = "Type of Milk",
     y = "Number of Cheeses (sqrt scale)"
-  
   )
 ```
 
-###
-Scale functions follow the pattern `scale_aesthetic_scaletype`, where scaletype matches the variable: `continuous`, `discrete`, `datetime`, or `date`. Also, color scales are frequently customized, with ColorBrewer and Viridis being better alternatives as they work for people with color blindness.
+**Faceting** splits a plot into panels, one per level of a variable. `coord_flip()` swaps the x and y axes, making long category labels easier to read.
 
 ## Wine
 ###
 
-The `wine` dataset contains the results of a chemical analysis of wines grown in a specific area of Italy. Three types of wine are represented in the 178 samples, with the results of 13 chemical analyses recorded for each sample. This data is the UCI Machine Learning Repository.  Our spreadsheet `data/wine.xlsx` contains this data in a spreadsheet format. 
+The `wine` dataset contains the results of a chemical analysis of wines grown in a specific area of Italy. Three types of wine are represented in the 178 samples, with the results of 13 chemical analyses recorded for each sample. This data is from the UCI Machine Learning Repository. Our spreadsheet `data/wine.xlsx` contains this data in a spreadsheet format.
 
 ### Exercise 1
 
-We begin by downloading our spreadsheet `wine.xlsx` directly from GitHub to the `data` directory using `download.file()`. 
+We begin by downloading our spreadsheet `wine.xlsx` directly from GitHub to the `data` directory using `download.file()`.
 
 In the R Terminal, run:
-```         
+
+```
 download.file(
   "https://github.com/PPBDS/vscode.tutorials/raw/refs/heads/main/inst/tutorials/r4ds-2/data/wine.xlsx",
   destfile = "data/wine.xlsx",
@@ -885,7 +399,7 @@ You can write data back to disk as an Excel file using the `write_xlsx()` functi
 
 ### Exercise 2
 
-Ask AI how to read a `.xlsx` spreadsheet called `data/wine.xlsx` using `read_excel()`. Add this code to a new code chunk in your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab. Type `wine` in the R Terminal to retrieve the contents of `wine`.
+Ask AI how to read a `.xlsx` spreadsheet called `data/wine.xlsx` using `read_excel()`. Add this code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 CP/CR.
 
@@ -900,419 +414,91 @@ question_text(NULL,
 
 ###
 
-Our code:
+Our result:
 
-```{r wine-2-test, echo = TRUE}
+```{r wine-2-test}
 read_excel("data/wine.xlsx")
 ```
 
-###
-
-We use `scale_y_continuous()` when we want to modify the y-axis for continuous data. [This documentation here](https://ggplot2.tidyverse.org/reference/scale_continuous.html) will tell you more, and all the possible arguments you can use with `scale_y_continuous()`.
+`scale_y_continuous()` modifies the y-axis for continuous data — use it to set breaks, labels, limits, or apply a transformation like `trans = "log"`.
 
 ### Exercise 3
 
+Ask AI how to pipe `read_excel("data/wine.xlsx")` into `select()` to keep only the `Phenols`, `Color`, and `Flavanoids` columns. Add this code as a replacement of your current code in the same code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`.
+
 In the R Terminal, run:
 
-```         
-summary(read_excel("data/wine.xlsx"))
+```
+show_file("analysis.qmd", chunk = "Last")
 ```
 
-CP/CR. 
+CP/CR.
 
 ```{r wine-3}
 question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 6)
 ```
 
 ###
 
-Our code:
+Our result:
 
-```{r wine-3-test, echo = TRUE}
-summary(read_excel("data/wine.xlsx"))
+```{r wine-3-test}
+read_excel("data/wine.xlsx") |>
+  select(Phenols, Color, Flavanoids)
 ```
 
-###
-You can create a new Google sheet with `gs4_create()` or write to an existing sheet with `sheet_write()` using the **googlesheets4** package. If two variables covary, you can use one variable's values to make better predictions about the other, or control the second if the relationship is causal.
+If your result doesn't match ours, replace your chunk code with the following before moving on:
+
+<pre><code>```{r}
+read_excel("data/wine.xlsx") |>
+  select(Phenols, Color, Flavanoids)
+```</code></pre>
+
+`select()` from **dplyr** keeps only the named columns. You can also drop columns with a minus sign, e.g., `select(-unwanted_col)`.
 
 ### Exercise 4
 
-Ask AI to pipe `read_excel("data/wine.xlsx")` into a bar plot with `aes` only mapped to `x = Type` using `geom_bar()`. Add this code to a new code chunk in your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+Within the recent code chunk, add the option `#| cache: true` and assign the result to `wine_tibble`. In a bash terminal, run `quarto render analysis.qmd`.
 
+In the R Terminal, run:
+
+```
+show_file("analysis.qmd", chunk = "Last")
+```
 
 CP/CR.
 
 ```{r wine-4}
 question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 6)
 ```
 
 ###
 
-Our code:
-
-```{r wine-4-test, echo = TRUE}
-read_excel("data/wine.xlsx")|>
-  ggplot(aes(x = Type)) + 
-  geom_bar()
-```
-
-###
-
-`count` appears in the plot but is not a variable in `wine`. `count` is an example of a `stat`, short for statistical transformation, something calculated from the raw data for display in the graphic.
+Covariation is the tendency for the values of two or more variables to vary together in a related way. The best way to spot covariation is to visualize the relationship between variables using a scatter plot.
 
 ### Exercise 5
 
-Ask AI to start a pipe from `wine_tibble` to make a plot using `geom_point()` and the columns `Malic` and `Hue` and set `color = Color`. Add this code to a new code chunk in your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+Ask AI to create a scatter plot from `wine_tibble` with `Phenols` on the x-axis and `Flavanoids` on the y-axis, with color mapped to `Color`. Include jittered points, a LOESS smooth curve, and label the maximum `Flavanoids` value as "Outlier" in magenta. Use a blue-to-orange color gradient and a classic theme. Add this code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+
+In the R Terminal, run:
+
+```
+show_file("analysis.qmd", chunk = "Last")
+```
 
 CP/CR.
 
 ```{r wine-5}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 6)
-```
-
-###
-
-Our code:
-
-```{r wine-5-test, echo=TRUE}
-read_excel("data/wine.xlsx") |>
-  ggplot(aes(x = Malic, y = Hue, color = Color)) +
-  geom_point()
-```
-
-###
-Once you map an aesthetic, **ggplot2** selects a reasonable scale and constructs a legend explaining the mapping between levels and values. For x and y aesthetics, **ggplot2** creates an axis line with tick marks and labels instead of a legend.
-
-### Exercise 6
-
-Ask AI to continue this pipe and change the size of the points to 2 and set the transparancy to .5 using `alpha`. Add this code as a continuation of your pipe to the same chunk in your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r wine-6}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 6)
-```
-
-###
-
-Our code:
-
-```{r wine-6-test, echo=TRUE}
-read_excel("data/wine.xlsx") |>
-  ggplot(aes(x = Malic, y = Hue, color = Color)) +
-  geom_point(size = 2, alpha = 0.5)
-```
-
-###
-
-Using `alpha` helps, first, to highlight where the data is densest and, second, to lessen the business of the plot, the better to allow space for labels.
-
-### Exercise 7
-
-If you have a small dataset, it’s sometimes useful to use `geom_jitter()` to avoid overplotting to more easily see the relationship between two variables. The **ggbeeswarm** package provides a number of methods similar to `geom_jitter()`.
-
-Ask AI to  continue the pipe into the function `geom_jitter()` . Add this code as a continuation of your pipe to the same chunk in your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r wine-7}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 8)
-```
-
-###
-
-Our code:
-
-```{r wine-7-test, echo=TRUE}
-read_excel("data/wine.xlsx") |>
-  ggplot(aes(x = Malic, y = Hue, color = Color)) +
-  geom_point(size = 2, alpha = 0.5) +
-  geom_jitter() 
-```
-
-###
-
-Adding randomness seems like a strange way to improve your plot, but while it makes your graph less accurate at small scales, it makes your graph more revealing at large scales. Because this is such a useful operation, **ggplot2** comes with a shorthand for `geom_point(position = "jitter")`: `geom_jitter()`.
-
-### Exercise 8
-
-Ask AI to continue the plot by adding a linear trend line fitted to the data. Add this code as a continuation of your pipe to the same chunk in your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r wine-8}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-Our code:
-
-```{r wine-8-test, echo = TRUE}
-read_excel("data/wine.xlsx")|>
-  ggplot(aes(x = Malic, y = Hue, color = Color)) +
-  geom_point(size = 2, alpha = 0.5) +
-  geom_jitter() +
-  geom_smooth(method = "lm", se = TRUE, color = "black") 
-```
-
-###
-
-A **linear trend line** fits a straight regression line to the data, assuming a constant rate of change.
-
-A **LOESS curve** fits a smooth curve by locally weighting nearby points, capturing complex nonlinear patterns without assuming a specific form.
-
-### Exercise 9
-
-Ask AI to change the trend line from linear to a curved LOESS fit. Add this code as a replacement to the same chunk in your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r wine-9}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-Our code:
-
-```{r wine-9-test, echo = TRUE}
-read_excel("data/wine.xlsx") |>
-  ggplot(aes(x = Malic, y = Hue, color = Color)) +
-  geom_point(size = 2, alpha = 0.5) +
-  geom_jitter() +
-  geom_smooth(method = "loess", se = TRUE, color = "black") 
-```
-
-###
-
-The `se`, which stands for "standard error," determines whether or not error bars around the line are included. By default, the value of `se` is `TRUE`.
-
-### Exercise 10
-
-Ask AI to add a green-to-red color gradient scale to the points for higher contrast. Add this code as a continuation of your pipe to the same chunk in your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r wine-10}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-Our code:
-
-```{r wine-10-test, echo = TRUE}
-read_excel("data/wine.xlsx") |>
-  ggplot(aes(x = Malic, y = Hue, color = Color)) +
-  geom_point(size = 2, alpha = 0.5) +
-  geom_jitter() +
-  geom_smooth(method = "loess", se = TRUE, color = "black") +
-  scale_color_gradient(low = "red", high = "green") 
-```
-
-###
-
-Many geoms, like `geom_smooth()`, use a single geometric object to display multiple rows of data. For these geoms, you can set the `group` aesthetic to a categorical variable to draw multiple objects. 
-
-### Exercise 11
-
-Ask AI to add a `theme()` argument. Set this to `classic` Add this code as a continuation of your pipe to the same chunk in your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r wine-11}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-Our code:
-
-```{r wine-11-test, echo = TRUE}
-read_excel("data/wine.xlsx") |>
-  ggplot(aes(x = Malic, y = Hue, color = Color)) +
-  geom_point(size = 2, alpha = 0.5) +
-  geom_jitter() +
-  geom_smooth(method = "loess", se = TRUE, color = "black") +
-  scale_color_gradient(low = "red", high = "green") +
-  theme_classic() 
-```
-
-###
-
-`geom_boxplot()` helps to highlight the two outlier data points. **ggplot2** provides more than 40 geoms but these don’t cover all possible plots one could make. If you need a different geom, look at extension packages first to see if someone else has already implemented it (see https://exts.ggplot2.tidyverse.org/gallery/ for a sampling).
-
-### Exercise 12
-
-Ask AI how to select the `Phenols`, `Flavanoids`, and `Color` columns from `wine` using `select()`. Add this code as a replacement to your current code to the same chunk in your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r wine-12}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 6)
-```
-
-###
-
-Our code:
-
-```{r wine-12-test, echo=TRUE}
-read_excel("data/wine.xlsx") |>
-  select(Phenols, Color, Flavanoids)
-```
-
-###
-
-Just like we did with `read_excel()`, we can supply column names, NA strings, and column types to `read_sheet()` when working with Google sheets.
-
-### Exercise 13
-
-Now that we have filtered our dataset through a pipe, we need to be on track with the same, correct, code. Replace your code with our code in your QMD.
-
-In the R Terminal, run:
-
-```         
-show_file("analysis.qmd", chunk = "Last")
-```
-
-CP/CR.
-
-```{r wine-13}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 6)
-```
-
-###
-
-Just like with `read_excel()`, we can read in a portion of a Google Sheet by defining a range in `read_sheet()`.
-
-### Exercise 14
-
-Within the recent code chunk, add the option: `#| cache: true`. Assign the result of our pipe to `wine_tibble`.
-
-In a Bash terminal, run `quarto render analysis.qmd`. This first render will take some time since the code is running for the first time — by including `#| cache: true`, Quarto saves the result to disk so the next render loads from cache instead of re-running. Check your Live Server tab.
-
-CP/CR.
-
-```{r wine-14}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 6)
-```
-
-###
-
-Our code:
-
-```{r wine-14-test, echo=TRUE}
-wine_tibble <- read_excel("data/wine.xlsx")|>
-  select(Phenols, Color, Flavanoids)
-```
-
-Variation is the tendency of the values of a variable to change from measurement to measurement. You can see variation easily in real life; if you measure any continuous variable twice, you will get two different results.
-
-### Exercise 15
-
-Within the R Terminal, type `wine_tibble`, which we previously assigned to a pipe and ran in the R Terminal. Hit `Enter`.
-
-CP/CR.
-
-```{r wine-15}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 8)
-```
-
-###
-
-Our code:
-
-```{r wine-15-test, echo=TRUE}
-wine_tibble
-```
-
-Covariation is the tendency for the values of two or more variables to vary together in a related way. The best way to spot covariation is to visualize the relationship between two or more variables.
-
-### Exercise 16 
-
-Ask AI to write R code to create a scatter plot form `wine_tibble` to explore the relationship of `Phenols` and `Flavanoids`, two categorical variables with a loess smoothing curve that shows the outlier.
-
-Use this prompt:
-
-"Create a scatter plot from wine_tibble with Phenols vs Flavanoids, with color aesthetic mapped to Color. Include jittered points, a LOESS smooth curve, and label the maximum Flavanoids value as 'Outlier' in magenta. Use blue-to-orange color gradient and classic theme."
-
- Add this code into a new code chunk in your QMD. In a Bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-In the R Terminal, run:
-
-```         
-show_file("analysis.qmd", chunk = "Last")
-```
-
-CP/CR.
-
-```{r wine-16}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -1323,9 +509,9 @@ question_text(NULL,
 
 ###
 
-Our code:
+Our plot:
 
-```{r wine-16-test, echo = TRUE}
+```{r wine-5-test}
 wine_tibble |>
   ggplot(aes(x = Phenols, y = Flavanoids, color = Color)) +
   geom_point(size = 2, alpha = 0.5) +
@@ -1342,13 +528,12 @@ wine_tibble |>
   theme_classic() +
   labs(
     title = "Wine: Flavanoids vs Phenols",
-    x = "Phenols", 
+    x = "Phenols",
     y = "Flavanoids"
   )
 ```
 
-###
-**ggplot2** offers many annotation options beyond text labels, including horizontal and vertical reference lines. These are often made thick and white and drawn underneath the primary data layer to remain visible without distracting from the data.
+`geom_jitter()` is shorthand for `geom_point(position = "jitter")` — it adds a small amount of random noise to each point to avoid overplotting in dense regions.
 
 ## Summary
 ###
@@ -1359,7 +544,7 @@ You learned about working with categorical and continuous variables using differ
 
 ### Exercise 1
 
-In a Bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab — the resulting HTML page should be attractive, showing clean versions of your plots.
+In a bash terminal, run `quarto render analysis.qmd` to ensure that everything works. Check your Live Server tab — the resulting HTML page should be attractive, showing clean versions of your plots.
 
 In the R Terminal, run:
 
@@ -1384,13 +569,13 @@ Spreadsheet data in `.xlsx` format can be read into R using `read_excel()` from 
 
 ### Exercise 2
 
-Publish your rendered QMD to GitHub Pages. In a Bash terminal, run:
+Publish your rendered QMD to GitHub Pages. In a bash terminal, run:
 
 ````
 quarto publish gh-pages analysis.qmd
 ````
 
-If the Bash terminal is still running from rendering, stop it first using `Ctrl/Cmd + C`.
+If the bash terminal is still running from rendering, stop it first using `Ctrl/Cmd + C`.
 
 Copy/paste the resulting URL below.
 
