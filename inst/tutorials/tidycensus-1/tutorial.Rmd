@@ -289,6 +289,8 @@ The `geometry = TRUE` argument returns spatial polygons, useful for maps and spa
 
 ### Exercise 4
 
+<!-- AR: ask Ai to run glimpse() on the data in the qmd. Check that it did using show_file() -->
+
 Run `glimpse()` on `income_tx` in the R Terminal.
 
 CP/CR.
@@ -332,6 +334,8 @@ ACS data includes both an `estimate` column (the survey's best guess) and a `moe
 
 ### Exercise 6
 
+<!-- AR: Replace glimpse with summary in the last code chunk. Render. -->
+
 Now, type `income_tx` in the console.
 
 CP/CR the first few lines.
@@ -344,6 +348,8 @@ question_text(NULL,
 	incorrect = NULL,
 	rows = 3)
 ```
+
+<!-- AR: show image of correct html -->
 
 ###
 
