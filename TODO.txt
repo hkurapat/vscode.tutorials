@@ -24,6 +24,13 @@ Tutorials now are about concepts, not books.
 Baseball and stocks and Bitcoin.
 
 
+## Harshil
+
+Go through set up. Send PR with your name at bottom of TODO.txt.
+
+Add at least one comment/fix to Code tutorial.
+
+Complete 04-github and 05-github in VS Code tutorials. Do first as student. Email me your answers. Go through second time as author/critic. Send a PR (separate ones for the two tutorials) with typos fixed and with comments/questions.
 
 
 ### Fixing r4ds 1-5 and tidycensus-1. 
