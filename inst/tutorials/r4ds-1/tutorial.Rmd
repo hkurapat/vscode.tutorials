@@ -382,7 +382,7 @@ In the R Terminal, run:
 
 ```
 download.file(
-  "https://github.com/PPBDS/vscode.tutorials/raw/refs/heads/main/inst/tutorials/r4ds-1/data/music.csv",
+  "https://github.com/PPBDS/vscode.tutorials/raw/refs/heads/main/inst/extdata/r4ds-1/music.csv",
   destfile = "data/music.csv",
   mode = "wb"
 )
@@ -421,7 +421,7 @@ question_text(NULL,
 ###
 
 ```{r music-2-test}
-read_csv("data/music.csv")
+read_csv(system.file("extdata/r4ds-1/music.csv", package = "vscode.tutorials"))
 ```
 
 When you run `read_csv()`, it prints information about the rows, columns, and data types it detected. The **readr** package includes similar functions for other file formats like `read_tsv()` for tabs and `read_delim()` for custom separators.
