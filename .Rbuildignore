@@ -12,7 +12,7 @@
 ^CRAN-SUBMISSION$
 ^inst/tutorials/.*\.html$
 ^inst/tutorials/.*_files(/.*)?$
-
+^CLAUDE.md$
 
 # Uncomment this line when submitting to CRAN. We do so to remove
 # the data/ directories from the tutorials. These files are large.

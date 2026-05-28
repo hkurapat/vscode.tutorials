@@ -1,6 +1,6 @@
 ---
 title: First Tutorial for R4DS
-author: Luke Li and David Kane
+author: David Kane
 tutorial:
   id: r4ds-1
 output:
@@ -194,6 +194,8 @@ Your answer should look something like this, although your path will be differen
 ###
 
 The [`billboard`](https://tidyr.tidyverse.org/reference/billboard.html) tibble is a dataset in the [**tidyr**](https://tidyr.tidyverse.org/index.html) package. `billboard` contains data from 317 songs and their weekly rankings in the Billboard top 100 for 76 weeks after they were released.
+
+###
 
 ```{r billboard-data}
 billboard

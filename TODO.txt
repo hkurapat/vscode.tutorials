@@ -1,10 +1,5 @@
 ## Alec
 
-CLAUDE.md document. Placed where? Describes how to make tutorials. AR: Done.
-
-Can start it by showing it the ai.qmd document. AR: Done
-
-No more "Place your cursor in the QMD" after r4ds-* tutorials. We just render and look and talk. AR: Done.
 
 Don't want every render to download data or do anything that takes too much time. So, almost every tutorial tells the student to implement cache'ing. 
 --- AR: Wherever we download and process data, we use cache=TRUE in the code chunk and then render. Note to students that the first render will take a longer but that future ones will be faster because of caching.
@@ -16,8 +11,6 @@ We never (?) use an exercise code chunk. Students don't type code. They type ins
 Claude is responsible for creating the text within backticks which shows students what they should see at the bottom of their HTML, since we are almost always editing the last code chunk. 
 
 And Claude is responsible for keeping everything in sync. If we change the tibble up above, that means that what is displayed by summary() on that tibble in the QMD will change, which means that what we show students should change.
-
-tidycensus-1 -> Census. AR: DONE.
 
 Tutorials now are about concepts, not books.
 
