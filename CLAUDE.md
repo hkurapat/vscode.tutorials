@@ -71,6 +71,27 @@ Replace `XX` placeholders with actual repo names, titles, and knowledge drops.
 - Use several linked exercises to build an analysis path: inspect the data, notice a pattern or problem, refine the data, make a rough plot, improve the plot, add interpretation.
 - The final section should make the rendered page look good enough to publish.
 
+### Writing student prompts to AI
+
+Describe the **goal**, not the implementation. Students should tell AI what they want to see — a plot of X by Y, a table of the top 10, the distribution of Z — and let the AI choose the functions. This is how professionals actually work, and it gives students practice evaluating whether the AI's approach is correct.
+
+- **Do not** list functions for students to include in their AI prompt (e.g., "use `geom_histogram()` and `scale_x_log10()`").
+- **Do not** dictate the pipe steps or function arguments students should pass to AI.
+- **Exception**: it is fine to name one key function when it is the explicit concept being taught (e.g., "use `pivot_longer()` to reshape the data") — but only if that function is the point of the exercise, not just an implementation detail.
+- Knowledge drops are the right place to introduce function names after students have already seen the output. Students learn what `geom_smooth()` is by noticing it in AI-generated code, not by being told to ask for it.
+
+### Git commit exercises
+
+Each topic section should end with a dedicated commit exercise placed as the last exercise in that section, after the final plot or analysis output. Do not fold it into another exercise.
+
+The exercise asks students to commit `analysis.qmd` with a specific descriptive message. Students may use any of three methods — all are acceptable:
+
+- **AI agent**: "Ask AI to stage `analysis.qmd`, commit with the message `"Add X analysis"`, and push to GitHub."
+- **VS Code Source Control panel**: click the branch icon in the sidebar, stage the file, enter the message, and sync.
+- **Command line**: `git add analysis.qmd && git commit -m "Add X analysis" && git push` in a bash terminal.
+
+The Summary commit exercise (sequence step 3) should say "commit any remaining changes" — by that point the main content is already committed section by section.
+
 ### Exercise rhythm
 
 Most exercises should follow this rhythm:
@@ -90,7 +111,7 @@ The canonical loop is:
 Build topic sections from linked exercise units. A typical path:
 
 1. Download or load data and document the source.
-2. Inspect with `glimpse()`, `summary()`, `count()`, or a simple printed table.
+2. Inspect with a printed tibble, `summary()`, `count()`, or `glimpse()` (avoid `glimpse()` on wide datasets — it prints one line per column).
 3. Notice a problem or opportunity: too many categories, missing values, outliers, awkward variable names, an important subgroup, or an unclear plot.
 4. Ask AI to refine the analysis.
 5. Make a rough plot or table.
@@ -103,7 +124,7 @@ The final artifact should be a published page with a meaningful result about the
 
 1. Final `quarto render`, `show_file("analysis.qmd")`, CP/CR.
 2. `quarto publish gh-pages analysis.qmd` in bash Terminal; paste resulting URL.
-3. Commit and push; paste GitHub repo URL.
+3. Commit and push any remaining changes; paste GitHub repo URL.
 
 ## Question types
 
@@ -140,7 +161,7 @@ Use when providing the correct answer. Set `allow_retry = FALSE`.
 - Reference our example output when the test chunk displays a plot, tibble, or summary.
 - Tell students what to notice in their rendered output, explain why it matters, or identify the next natural data-science move.
 - Use knowledge drops to teach the data science ecosystem for the tutorial's area: gold-standard data sources, common measures, important packages, file formats, APIs, data-quality issues, and standard patterns analysts look for.
-- Focus on packages and functions students should know to mention to AI.
+- Name packages and functions students will encounter in AI-generated code — so they can recognize and evaluate them, not so they can dictate them in prompts.
 - No road signs ("In the next section..."). Teach something real.
 - No rhetorical questions.
 
@@ -152,6 +173,24 @@ Use when providing the correct answer. Set `allow_retry = FALSE`.
 - `echo = FALSE` everywhere (set globally in setup chunk via `knitr::opts_chunk$set(echo = FALSE)`).
 - Set `knitr::opts_chunk$set(out.width = '90%')` in setup for consistent image sizing.
 - Avoid exercise code chunks in post-infrastructure tutorials. Use question chunks for CP/CR and test chunks for our example output.
+
+## Test chunk output
+
+Test chunk output should be scannable in a few seconds. If it scrolls, it is too long. Apply these fixes before committing:
+
+**Wide tibbles (many columns)** — `glimpse()` prints one line per column; on a 79-column dataset that is 81 lines. Print the tibble directly instead (`billboard`, not `glimpse(billboard)`): tibbles auto-truncate to 10 rows and summarise extra columns on one line. Reserve `glimpse()` for narrow datasets (≤ ~15 columns) where the column-by-column view is genuinely useful.
+
+**CSV column-spec messages** — `read_csv()` prints a column-spec block (one line per column) before the tibble. Suppress it with `show_col_types = FALSE`:
+
+```r
+read_csv("../../extdata/r4ds-1/music.csv", show_col_types = FALSE)
+```
+
+**Long model or computation output** — wrap with `suppressMessages()` or redirect progress with `refresh = 0, silent = 2` (for **brms**). Only show the final object students need to check.
+
+**Plots** — always fine; they produce a single visual, not scrolling text.
+
+**The rule of thumb**: if the rendered test chunk output is taller than a laptop screen, shorten it.
 
 ## Setup chunk requirements
 
