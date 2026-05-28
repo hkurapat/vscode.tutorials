@@ -18,10 +18,10 @@ library(tutorial.helpers)
 
 library(tidyverse)
 library(readxl)
-library(dbplyr)
 
 knitr::opts_chunk$set(echo = FALSE)
-options(tutorial.exercise.timelimit = 600,
+knitr::opts_chunk$set(out.width = '90%')
+options(tutorial.exercise.timelimit = 60,
         tutorial.storage = "local")
 
 
@@ -46,7 +46,7 @@ wine_tibble <- read_excel("data/wine.xlsx")|>
 
 This section covers key concepts from [Chapter 9: Layers](https://r4ds.hadley.nz/layers.html), [Chapter 10: Exploratory Data Analysis](https://r4ds.hadley.nz/eda.html), [Chapter 11: Communication](https://r4ds.hadley.nz/communication.html), and [Chapter 20: Spreadsheets](https://r4ds.hadley.nz/spreadsheets.html) from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
-You will learn about working with categorical and continuous variables using different types of variation and exploratory data analysis using core packages such as **[readxl](https://readxl.tidyverse.org/)**, **[dbplyr](https://dbplyr.tidyverse.org/)**, and **[ggplot2](https://ggplot2.tidyverse.org/)**. Key **ggplot2** techniques include faceting plots into panels, flipping axes, and adding jitter to avoid overplotting.
+You will learn about working with categorical and continuous variables using different types of variation and exploratory data analysis using core packages such as **[readxl](https://readxl.tidyverse.org/)** and **[ggplot2](https://ggplot2.tidyverse.org/)**. Key **ggplot2** techniques include faceting plots into panels, flipping axes, and adding jitter to avoid overplotting.
 
 We recommend using an in-environment AI agent such as [Gemini CLI](https://github.com/google-gemini/gemini-cli) or [Claude Code](https://claude.ai/code), which can read and edit your files directly. Instructions are written with these tools in mind. You may also use a chat-based AI, but you will need to copy/paste code and data context manually.
 
@@ -67,7 +67,7 @@ quarto render analysis.qmd
 
 Open `analysis.html` in a browser by right-clicking it in the File Explorer and selecting **Open with Live Server**. Keep this tab open — it will refresh automatically whenever you re-render.
 
-Create a `.gitignore` file with `analysis_files` on the first line and then a blank line. Save and push.
+Create a `.gitignore` file with `analysis_files` on the first line, `analysis_cache` on the second line, and a blank line at the end. Save and push.
 
 In the R Terminal, run:
 
@@ -90,12 +90,11 @@ question_text(NULL,
 
 ###
 
-**googlesheets4** uses v4 of the [Google Sheets API v4](https://developers.google.com/sheets/api/) to provide an R interface to Google Sheets, hence the name.
-You can create a brand new sheet with [`gs4_create()`](https://googlesheets4.tidyverse.org/reference/gs4_create.html) or write to an existing sheet with [`sheet_write()`](https://googlesheets4.tidyverse.org/articles/write-sheets.html) and friends.
+The `.gitignore` file tells Git which files to skip. `analysis_files/` and `analysis_cache/` contain auto-generated files that Quarto creates during rendering — tracking them on GitHub wastes space and creates noisy diffs.
 
 ### Exercise 2
 
-In your QMD, put `library(tidyverse)`, `library(readxl)`, and `library(dbplyr)` in a new code chunk. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab — it should refresh automatically.
+In your QMD, put `library(tidyverse)` and `library(readxl)` in a new code chunk. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab — it should refresh automatically.
 
 Notice that the file does not look good because the code is visible and there are annoying messages. To take care of this, add `#| message: false` to remove all the messages in this code chunk. Also add the following to the YAML header to remove all code echoes from the HTML:
 
@@ -123,30 +122,9 @@ question_text(NULL,
 
 ###
 
-You can read a single worksheet from a spreadsheet with the `sheet` argument in `read_excel()` from the **readxl** package.
+Adding `execute: echo: false` to the YAML header hides all code output by default. `#| message: false` on the setup chunk suppresses the package-loading messages that **tidyverse** prints. Together they give you a clean rendered page with only your results visible.
 
 ### Exercise 3
-
-In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-Note that this causes `library(tidyverse)`, `library(readxl)`, and `library(dbplyr)` to be copied down to the R Terminal and then executed.
-
-CP/CR.
-
-```{r introduction-3}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 3)
-```
-
-###
-
-You can use `excel_sheets()` to get information on all worksheets in an Excel spreadsheet, and then read the one(s) you're interested in.
-
-### Exercise 4
 
 From the R Terminal, run these three commands:
 
@@ -158,7 +136,7 @@ This will create a `data` directory in your project. This is a good place to sto
 
 CP/CR.
 
-```{r introduction-4}
+```{r introduction-3}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -216,32 +194,7 @@ question_text(NULL,
 
 ### Exercise 2
 
-Read a `.xlsx` spreadsheet called `data/cheeses.xlsx` using `read_excel()`. Add this code to a new code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
-
-CP/CR.
-
-```{r cheese-2}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-###
-
-Our result:
-
-```{r cheese-2-test}
-read_excel("data/cheeses.xlsx")
-```
-
-`read_excel()` can read files with either `.xls` and `.xlsx` format. It guesses the file type based on the input.
-
-### Exercise 3
-
-Use the following prompt with your AI to filter and summarize the cheese data. Add the resulting code as a replacement of your current code in the same code chunk in your QMD. In a bash terminal, run `quarto render analysis.qmd`.
+Ask AI to add a code chunk to your QMD that reads `data/cheeses.xlsx` using `read_excel()` and passes the result to `glimpse()`. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
 
 In the R Terminal, run:
 
@@ -251,9 +204,36 @@ show_file("analysis.qmd", chunk = "Last")
 
 CP/CR.
 
-Here's the prompt we used:
+```{r cheese-2}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
 
-Write R code that starts with `read_excel("data/cheeses.xlsx")` and pipes it through several operations. First, filter out rows where country is NA using `filter(!is.na(country))`, then add a column showing the total count for each country using `add_count(country, name = "country_total")`. Next, keep only the top 3 countries by filtering where the `country_total` is greater than or equal to the 3rd highest value using `filter(country_total >= sort(unique(country_total), decreasing = TRUE)[3])`. After that, filter out any NA values in the `milk` column with `!is.na(milk)`, then count the combinations of `country` and `milk` type using `count(country, milk)`, group the results by `country`, and finally arrange them by country name and then by count in descending order.
+###
+
+Our result:
+
+```{r cheese-2-test}
+glimpse(read_excel("data/cheeses.xlsx"))
+```
+
+`read_excel()` can read both `.xls` and `.xlsx` formats — it guesses the file type from the extension. The `glimpse()` output shows column types and sample values, which helps you decide what to filter or transform before plotting.
+
+### Exercise 3
+
+Ask AI to replace the code in the previous chunk with a pipeline that reads `data/cheeses.xlsx`, filters to the three most common cheese-producing countries, removes rows with missing `milk` values, and returns a count of milk types per country sorted by country and descending count. In a bash terminal, run `quarto render analysis.qmd`.
+
+In the R Terminal, run:
+
+```
+show_file("analysis.qmd", chunk = "Last")
+```
+
+CP/CR.
 
 ```{r cheese-3}
 question_text(NULL,
@@ -317,7 +297,7 @@ question_text(NULL,
 
 ###
 
-Quarto's `#| cache: true` option saves a chunk's result to disk. Add `analysis_cache` to your `.gitignore` so the cache files don't end up on GitHub. `count()` outputs a tibble with variable values and their observation counts; the resulting `n` column can be mapped directly to aesthetics like `size`, `y`, or `fill` in **ggplot2**.
+Quarto's `#| cache: true` option saves a chunk's result to disk so subsequent renders load from cache instead of re-running. `count()` outputs a tibble with variable values and their observation counts; the resulting `n` column can be mapped directly to aesthetics like `size`, `y`, or `fill` in **ggplot2**.
 
 ### Exercise 5
 
@@ -361,7 +341,70 @@ cheese_tibble |>
   )
 ```
 
-**Faceting** splits a plot into panels, one per level of a variable. `coord_flip()` swaps the x and y axes, making long category labels easier to read.
+**Faceting** splits a plot into panels, one per level of a variable. `coord_flip()` swaps the x and y axes, making long category labels easier to read. Look at the France and USA panels — their bars are compressed because the scale is set by Italy's much larger counts.
+
+### Exercise 6
+
+Look at the France and USA panels in our example plot above. Ask AI to update the cheese plot so that each country's panel uses its own independent scale. In a bash terminal, run `quarto render analysis.qmd`. Check your Live Server tab.
+
+In the R Terminal, run:
+
+```
+show_file("analysis.qmd", chunk = "Last")
+```
+
+CP/CR.
+
+```{r cheese-6}
+question_text(NULL,
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 5)
+```
+
+###
+
+Our improved plot:
+
+```{r cheese-6-test}
+cheese_tibble |>
+  ggplot(aes(x = milk, y = n, fill = milk)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ country, scales = "free_y") +
+  coord_flip() +
+  scale_y_sqrt() +
+  theme_gray() +
+  labs(
+    title = "Milk Types Used in Cheeses by Country",
+    subtitle = "Cow milk dominates across all three countries",
+    caption = "Source: cheese.com",
+    x = "Type of Milk",
+    y = "Number of Cheeses (sqrt scale)"
+  )
+```
+
+`facet_wrap(scales = "free_y")` gives each panel its own y-axis range. With `coord_flip()`, this frees the count axis so each country's bars fill the available space. Use `"free_y"` when counts vary widely across groups and you care about relative patterns within each group rather than absolute comparisons across them.
+
+### Exercise 7
+
+Ask AI to stage `analysis.qmd`, commit with the message `"Add cheese analysis"`, and push to GitHub.
+
+CP/CR.
+
+```{r cheese-7}
+question_text(NULL,
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 5)
+```
+
+###
+
+Committing regularly keeps your work safe and creates a clear history of what changed and when.
 
 ## Wine
 ###
@@ -395,7 +438,7 @@ question_text(NULL,
 
 ###
 
-You can write data back to disk as an Excel file using the `write_xlsx()` function from the **writexl** package.
+The [UCI Machine Learning Repository](https://archive.ics.uci.edu/) hosts hundreds of benchmark datasets used in research and teaching. The wine dataset comes from a chemical analysis of wines from three cultivars grown in the same region of Italy — it is one of the most widely used classification datasets in machine learning.
 
 ### Exercise 2
 
@@ -420,7 +463,7 @@ Our result:
 read_excel("data/wine.xlsx")
 ```
 
-`scale_y_continuous()` modifies the y-axis for continuous data — use it to set breaks, labels, limits, or apply a transformation like `trans = "log"`.
+Notice that the column names in this dataset are capitalized (`Phenols`, `Flavanoids`, `Color`) — unusual for tidy data. When asking AI to work with this dataset, use these exact column names and AI will match them correctly.
 
 ### Exercise 3
 
@@ -514,8 +557,7 @@ Our plot:
 ```{r wine-5-test}
 wine_tibble |>
   ggplot(aes(x = Phenols, y = Flavanoids, color = Color)) +
-  geom_point(size = 2, alpha = 0.5) +
-  geom_jitter() +
+  geom_jitter(size = 2, alpha = 0.5) +
   geom_smooth(method = "loess", se = TRUE, color = "black") +
   geom_text(
     data = \(d) d |> filter(Flavanoids == max(Flavanoids)),
@@ -533,14 +575,58 @@ wine_tibble |>
   )
 ```
 
-`geom_jitter()` is shorthand for `geom_point(position = "jitter")` — it adds a small amount of random noise to each point to avoid overplotting in dense regions.
+`geom_jitter()` is shorthand for `geom_point(position = "jitter")` — it adds a small amount of random noise to each point to avoid overplotting in dense regions. Notice that our example uses only `geom_jitter()`, not both `geom_point()` and `geom_jitter()` stacked — combining them draws every point twice.
+
+### Exercise 6
+
+Look at your rendered wine plot and compare it to our example above. If your code stacks both `geom_point()` and `geom_jitter()`, every point is drawn twice — once at its true location and again with a random offset. Ask AI to fix the wine plot by combining them into a single `geom_jitter()` layer with appropriate `size` and `alpha`. Render and confirm your plot matches our example.
+
+In the R Terminal, run:
+
+```
+show_file("analysis.qmd", chunk = "Last")
+```
+
+CP/CR.
+
+```{r wine-6}
+question_text(NULL,
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 5)
+```
+
+###
+
+Stacking `geom_point()` and `geom_jitter()` draws every point twice — once at its exact location and once with a random offset. Use just `geom_jitter()` when you want jitter, passing `size` and `alpha` directly to it.
+
+### Exercise 7
+
+Ask AI to stage `analysis.qmd`, commit with the message `"Add wine analysis"`, and push to GitHub.
+
+CP/CR.
+
+```{r wine-7}
+question_text(NULL,
+    answer(NULL, correct = TRUE),
+    allow_retry = TRUE,
+    try_again_button = "Edit Answer",
+    incorrect = NULL,
+    rows = 5)
+```
+
+###
+
+Committing at natural section boundaries gives you checkpoints you can return to if something goes wrong later.
 
 ## Summary
 ###
 
 This section covered key concepts from [Chapter 9: Layers](https://r4ds.hadley.nz/layers.html), [Chapter 10: Exploratory Data Analysis](https://r4ds.hadley.nz/eda.html), [Chapter 11: Communication](https://r4ds.hadley.nz/communication.html), and [Chapter 20: Spreadsheets](https://r4ds.hadley.nz/spreadsheets.html) from [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.
 
-You learned about working with categorical and continuous variables using different types of variation and exploratory data analysis with core packages such as **[readxl](https://readxl.tidyverse.org/)**, **[dbplyr](https://dbplyr.tidyverse.org/)**, and **[ggplot2](https://ggplot2.tidyverse.org/)**. Key **ggplot2** techniques included faceting plots into panels, flipping axes, and adding jitter to avoid overplotting.
+You learned about working with categorical and continuous variables using different types of variation and exploratory data analysis with core packages such as **[readxl](https://readxl.tidyverse.org/)** and **[ggplot2](https://ggplot2.tidyverse.org/)**. Key **ggplot2** techniques included faceting plots into panels, flipping axes, and adding jitter to avoid overplotting.
 
 ### Exercise 1
 
@@ -594,7 +680,7 @@ Publishing the QMD creates a public URL anyone can use to view the rendered proj
 
 ### Exercise 3
 
-Commit and push all your files. Copy/paste the URL to your GitHub repo.
+Commit and push any remaining changes. Copy/paste the URL to your GitHub repo.
 
 ```{r summary-3}
 question_text(NULL,
