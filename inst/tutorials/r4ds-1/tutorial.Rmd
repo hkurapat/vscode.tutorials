@@ -201,7 +201,7 @@ billboard
 
 ### Exercise 1
 
-Before plotting, inspect the data. Ask AI to add a code chunk to your QMD that runs `glimpse(billboard)`. Render and check your Live Server tab.
+Before plotting, inspect the data. Ask AI to add a code chunk to your QMD that prints `billboard`. Render and check your Live Server tab.
 
 In the R Terminal, run:
 
@@ -223,7 +223,7 @@ question_text(NULL,
 ###
 
 ```{r billboard-1-test}
-glimpse(billboard)
+billboard
 ```
 
 `billboard` has 317 rows (one per song) and 79 columns: `artist`, `track`, `date.entered`, and 76 weekly ranking columns (`wk1`–`wk76`). Missing values mean the song dropped off the chart before that week. This "wide" format is convenient for data entry but awkward for analysis — you'll tidy it later with `pivot_longer()`.
@@ -421,7 +421,7 @@ question_text(NULL,
 ###
 
 ```{r music-2-test}
-read_csv(system.file("extdata/r4ds-1/music.csv", package = "vscode.tutorials"))
+read_csv("../../extdata/r4ds-1/music.csv", show_col_types = FALSE)
 ```
 
 When you run `read_csv()`, it prints information about the rows, columns, and data types it detected. The **readr** package includes similar functions for other file formats like `read_tsv()` for tabs and `read_delim()` for custom separators.
