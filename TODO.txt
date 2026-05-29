@@ -1,12 +1,6 @@
 ## Alec
 
-
-Don't want every render to download data or do anything that takes too much time. So, almost every tutorial tells the student to implement cache'ing. 
---- AR: Wherever we download and process data, we use cache=TRUE in the code chunk and then render. Note to students that the first render will take a longer but that future ones will be faster because of caching.
-
-There is no need for a data/ directory in most (all?) tutorials.
-
-We never (?) use an exercise code chunk. Students don't type code. They type instructions to the AI. AR: REMOVING...
+Cache after topic 1 in all r4ds tutorials, maybe in all tutorials.
 
 Claude is responsible for creating the text within backticks which shows students what they should see at the bottom of their HTML, since we are almost always editing the last code chunk. 
 

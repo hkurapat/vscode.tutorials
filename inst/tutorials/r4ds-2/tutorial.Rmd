@@ -128,9 +128,9 @@ Adding `execute: echo: false` to the YAML header hides all code output by defaul
 
 From the R Terminal, run these three commands:
 
-`getwd()`
-`dir.create("data")`
-`list.files()`
+`getwd()`. 
+`dir.create("data")`. 
+`list.files()`. 
 
 This will create a `data` directory in your project. This is a good place to store any data that you are working with.
 
