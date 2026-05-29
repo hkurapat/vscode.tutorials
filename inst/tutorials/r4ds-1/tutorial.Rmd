@@ -1,6 +1,6 @@
 ---
 title: First Tutorial for R4DS
-author: Luke Li and David Kane
+author: David Kane
 tutorial:
   id: r4ds-1
 output:
