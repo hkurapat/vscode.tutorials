@@ -20,6 +20,8 @@ library(quarto) # Total hack to shut up renv! Really need to put this in the pac
 
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(out.width = '90%')
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
 options(tutorial.exercise.timelimit = 60,
         tutorial.storage = "local")
 
@@ -146,18 +148,6 @@ music_placeholders <- music |>
     familiarity_zero = sum(artist.familiarity <= 0, na.rm = TRUE),
     hotttnesss_zero = sum(artist.hotttnesss <= 0, na.rm = TRUE)
   )
-
-music_plot_data <- music |>
-  filter(
-    artist.familiarity > 0,
-    artist.hotttnesss > 0
-  )
-
-music_genre_counts <- tibble(
-  genre = c("rock", "pop", "hip hop", "jazz", "blues", "country", "metal", "reggae")
-) |>
-  mutate(songs = map_int(genre, \(g) sum(str_detect(music$artist.terms, g), na.rm = TRUE))) |>
-  arrange(desc(songs))
 
 world <- map_data("world")
 
@@ -332,7 +322,7 @@ Your answer should look something like this, although your path will be differen
 
 ###
 
-The `data` directory is where your project stores downloaded data. In later exercises, you can ask AI to create directories and download files for you.
+The `data` directory is where your project stores downloaded data. Instead of manually writing these commands you can ask AI to create directories and manage your files.
 
 ## Billboard Hot 100
 ###
@@ -341,7 +331,7 @@ The [`billboard`](https://tidyr.tidyverse.org/reference/billboard.html) tibble i
 
 ### Exercise 1
 
-Before plotting, inspect the data. Ask AI to add a code chunk to your QMD that prints `billboard`. Render and check the rendered HTML.
+Before plotting, inspect the data. Ask AI to add a code chunk to your QMD that prints `billboard`. Render and check the HTML.
 
 Copy and paste the table from the HTML.
 
@@ -366,7 +356,7 @@ billboard
 
 ### Exercise 2
 
-Ask AI to add a chunk that prints a few identifying columns from `billboard`: artist, track, date entered, and the first four week columns. Render and copy and paste the table from the HTML.
+Ask AI to add a chunk that prints a few identifying columns from `billboard`: artist, track, date entered, and the first four week columns. Render it. Copy and paste the table from the HTML.
 
 ```{r billboard-2}
 question_text(NULL,
@@ -600,9 +590,30 @@ billboard_longer |>
 
 ###
 
-To draw one line per song, AI had to reshape the data under the hood. The original Billboard table is wide: each week is stored in a separate column like `wk1`, `wk2`, and `wk3`. The trajectory plot needs long data: one row per song-week, with one column for `week` and one column for `rank`. The plot also shows the main pattern more clearly than the histograms: many songs climb after entering the chart, but only some stay around long enough to keep climbing.
+Each line required AI to reshape the Billboard table from wide format — one column per week — to long format with one row per song-week. Many songs climb after entering the chart, but only a fraction stay long enough to keep rising.
 
 ### Exercise 10
+
+Look at your trajectory plot in the rendered HTML.
+
+###
+
+After approximately how many weeks do most song lines end? Write one sentence describing what you see.
+
+```{r billboard-10}
+question_text(NULL,
+  answer(NULL, correct = TRUE),
+  allow_retry = TRUE,
+  try_again_button = "Edit Answer",
+  incorrect = NULL,
+  rows = 3)
+```
+
+###
+
+Most lines end around week 20 — partly because songs fell off the chart, but also because this dataset covers songs that *entered* the Hot 100 in 2000, and data collection stopped in April 2001. A December 2000 debut could accumulate only a few weeks of data regardless of how long it actually charted. This is right-censoring: late arrivals appear short-lived because the observation window closed, not because the songs stopped charting.
+
+### Exercise 11
 
 The full trajectory plot is useful, but it is too dense to explain individual stories. Focus on songs that reached the top 10 and look for different kinds of hit trajectories.
 
@@ -610,7 +621,7 @@ The full trajectory plot is useful, but it is too dense to explain individual st
 
 Ask AI to create a song-level summary with each song's first rank, best rank, first week at its best rank, and total weeks on the chart. Then ask AI to identify three notable top-10 songs: the fastest song to reach number one, the slowest song to reach number one, and the top-10 song with the longest chart run. Render and copy and paste the table from the HTML.
 
-```{r billboard-10}
+```{r billboard-11}
 question_text(NULL,
   answer(NULL, correct = TRUE),
   allow_retry = TRUE,
@@ -621,7 +632,7 @@ question_text(NULL,
 
 ###
 
-```{r billboard-10-test}
+```{r billboard-11-test}
 billboard_top10_stories
 ```
 
@@ -629,9 +640,9 @@ billboard_top10_stories
 
 Filtering to top-10 songs keeps the focus on recognizable hits while still leaving different stories to compare. Some hits peak quickly, some climb for months, and some last a long time without ever reaching number one.
 
-### Exercise 11
+### Exercise 12
 
-Ask AI to plot only the songs that reached the top 10. Show all top-10 songs in gray, then highlight and label the three notable songs from the previous exercise. Render and inspect the plot in the rendered HTML.
+Ask AI to plot only the songs that reached the top 10. Show all top-10 songs in gray, then highlight the three notable songs from the previous exercise in color, with a legend showing their names. Render and inspect the plot in the rendered HTML.
 
 In the R Terminal, run:
 
@@ -641,7 +652,7 @@ show_file("analysis.qmd", chunk = "Last")
 
 CP/CR.
 
-```{r billboard-11}
+```{r billboard-12}
 question_text(NULL,
   answer(NULL, correct = TRUE),
   allow_retry = TRUE,
@@ -652,7 +663,7 @@ question_text(NULL,
 
 ###
 
-```{r billboard-11-test}
+```{r billboard-12-test}
 billboard_top10_longer |>
   filter(!is.na(rank)) |>
   ggplot(aes(x = week, y = rank, group = song)) +
@@ -683,12 +694,12 @@ billboard_top10_longer |>
     show.legend = FALSE
   ) +
   scale_y_reverse() +
-  guides(color = "none") +
   labs(
     title = "Top-10 hits follow different chart paths",
-    subtitle = "Madonna peaked quickly, Lonestar climbed slowly, and Creed stayed on the chart longest",
+    subtitle = "Each line is one song that reached the top 10 of the Billboard Hot 100",
     x = "Weeks since entering the chart",
     y = "Billboard rank",
+    color = "Song",
     caption = "Source: tidyr::billboard"
   )
 ```
@@ -697,11 +708,11 @@ billboard_top10_longer |>
 
 The gray lines show the broader top-10 population; the colored lines turn three rows of the summary table into stories readers can follow. This is a common analysis move: filter to a meaningful subset, then highlight examples that explain variation inside that subset.
 
-### Exercise 12
+### Exercise 13
 
 Add a short interpretation below the top-10 trajectory plot. In two or three sentences, explain the three highlighted paths and what they show about hit songs. Render and copy and paste your interpretation from the HTML.
 
-```{r billboard-12}
+```{r billboard-13}
 question_text(NULL,
   answer(NULL, correct = TRUE),
   allow_retry = TRUE,
@@ -718,7 +729,7 @@ Your interpretation should say something like: top-10 hits do not all follow the
 
 A good published analysis does more than show a chart. It tells readers what pattern to notice and describes the evidence without claiming more than the data can support.
 
-### Exercise 13
+### Exercise 14
 
 You are done iterating on the Billboard plot. Ask AI to add `#| cache: true` to the final Billboard plot chunk. Then render again.
 
@@ -731,7 +742,7 @@ show_file(".gitignore")
 
 CP/CR.
 
-```{r billboard-13}
+```{r billboard-14}
 question_text(NULL,
   answer(NULL, correct = TRUE),
   allow_retry = TRUE,
@@ -753,7 +764,7 @@ analysis_cache
 
 Cache finished expensive chunks, not rough exploratory work you are still changing. The cache is useful locally, but it is generated output and should not be pushed to GitHub.
 
-### Exercise 14
+### Exercise 15
 
 Commit and push the Billboard work. Use the commit message:
 
@@ -763,7 +774,7 @@ Add Billboard chart analysis
 
 CP/CR or write a short note describing how you committed and pushed.
 
-```{r billboard-14}
+```{r billboard-15}
 question_text(NULL,
   answer(NULL, correct = TRUE),
   allow_retry = TRUE,
@@ -778,7 +789,7 @@ A successful submission can be a terminal paste showing `git push`, or a short n
 
 ###
 
-Saving work after a completed topic makes your project easier to recover and easier to review.
+Ranks are ordinal, not interval — the gap between #1 and #2 isn't the same as the gap between #50 and #51. The trajectory plot shows each song's *position* over time but not the *magnitude* of its popularity: two songs sitting at rank 50 in the same week could have had very different actual sales or airplay numbers. When working with rank data, be careful about treating it as a continuous measure.
 
 ## Million Song Dataset
 ###
@@ -955,9 +966,42 @@ Notice the minimums. `song.year` has a minimum of 0, which is not a real release
 
 ### Exercise 7
 
-You have now seen the full column list, the artist column types, and the numeric ranges. Ask AI to print a smaller table with the most human-readable columns: artist name, location, coordinates, genre terms, familiarity, hotness, song title, and year. Render and copy and paste the table from the HTML.
+`summary()` didn't provide a clear picture of the distribution of song years. Ask AI to plot the distribution of `song.year`, filtering out rows where `song.year` is 0. Ask it to include the number of songs used in the subtitle. Render and copy and paste the plot from the HTML.
 
 ```{r music-7}
+question_text(NULL,
+  answer(NULL, correct = TRUE),
+  allow_retry = TRUE,
+  try_again_button = "Edit Answer",
+  incorrect = NULL,
+  rows = 3)
+```
+
+###
+
+```{r music-7-test}
+music |>
+  filter(song.year > 0) |>
+  ggplot(aes(x = song.year)) +
+  geom_histogram(binwidth = 5, fill = "steelblue", color = "white") +
+  labs(
+    title = "Distribution of songs by release year",
+    subtitle = "n = 4,680 songs with a recorded release year",
+    x = "Release year",
+    y = "Number of songs",
+    caption = "Source: Million Song Dataset (teaching sample)"
+  )
+```
+
+###
+
+The dataset skews heavily toward recent music: over half the songs are from the 2000s, with a long tail of older recordings going back to the 1920s. The n = 4,680 in the subtitle is notably smaller than the 10,000 rows in the full dataset — more than half the songs have a placeholder year of 0, which means any year-based analysis is working with a biased sample. The next exercise counts those placeholder values across several columns.
+
+### Exercise 8
+
+You have now seen the full column list, the artist column types, and the numeric ranges. Ask AI to print a smaller table with the most human-readable columns: artist name, location, coordinates, genre terms, familiarity, hotness, song title, and year. Render and copy and paste the table from the HTML.
+
+```{r music-8}
 question_text(NULL,
   answer(NULL, correct = TRUE),
   allow_retry = TRUE,
@@ -968,7 +1012,7 @@ question_text(NULL,
 
 ###
 
-```{r music-7-test}
+```{r music-8-test}
 music_sample
 ```
 
@@ -976,11 +1020,11 @@ music_sample
 
 These columns describe what matters most for a first look at artist data: who the artist is, where they're from, how they're categorized by genre, how well known and popular they are, and when the song was released. That is enough to ask meaningful questions and spot patterns.
 
-### Exercise 8
+### Exercise 9
 
-The numeric summary showed that `song.year` has a minimum of 0. Ask AI to count how many rows have placeholder values in `artist.location`, `release.name`, `song.title`, `song.year`, `artist.familiarity`, and `artist.hotttnesss`. For the numeric scores, treat any value of 0 as a placeholder. Render and copy and paste the table from the HTML.
+There were many missing song years, and we know from earlier that many of the other columns include placeholders. Ask AI to count how many rows have placeholder values in `artist.location`, `release.name`, `song.title`, `song.year`, `artist.familiarity`, and `artist.hotttnesss`. For the numeric scores, treat any value of 0 as a placeholder. Render and copy and paste the table from the HTML.
 
-```{r music-8}
+```{r music-9}
 question_text(NULL,
   answer(NULL, correct = TRUE),
   allow_retry = TRUE,
@@ -991,7 +1035,7 @@ question_text(NULL,
 
 ###
 
-```{r music-8-test}
+```{r music-9-test}
 music_placeholders
 ```
 
@@ -999,52 +1043,9 @@ music_placeholders
 
 This teaching file has multiple kinds of missingness. String columns use the literal value `"0"` as a placeholder; numeric columns use the number 0. Familiarity has only 24 zero values (less than 1%), but hotttnesss has 496 (nearly 5%) — a meaningful gap. Always count missing values before plotting so you know how many observations are actually going into your analysis.
 
-### Exercise 9
-
-Ask AI to make a scatter plot of artist familiarity versus artist hotness. Tell it to remove nonpositive values first and to add a clear title, subtitle, labels, and caption.
-
-In the R Terminal, run:
-
-```
-show_file("analysis.qmd", chunk = "Last")
-```
-
-CP/CR.
-
-```{r music-9}
-question_text(NULL,
-  answer(NULL, correct = TRUE),
-  allow_retry = TRUE,
-  try_again_button = "Edit Answer",
-  incorrect = NULL,
-  rows = 12)
-```
-
-###
-
-```{r music-9-test}
-music_plot_data |>
-  ggplot(aes(x = artist.familiarity, y = artist.hotttnesss)) +
-  geom_point(alpha = 0.25, color = "darkslateblue") +
-  geom_smooth(se = FALSE, color = "black") +
-  labs(
-    title = "Familiar artists tend to be hotter",
-    subtitle = "The relationship is positive, but the teaching file has substantial missing metadata",
-    x = "Artist familiarity",
-    y = "Artist hotness",
-    caption = "Source: Million Song Dataset teaching CSV"
-  )
-```
-
-###
-
-The plot supports a limited claim: in this teaching sample, familiarity and hotness tend to move together. AI often adds `geom_smooth()` to scatter plots; the resulting curve estimates the average trend using LOESS, a method that adapts to local patterns rather than fitting a single straight line. The wide spread of points around that curve shows that familiarity predicts hotness only loosely — genre may explain some of that variation.
-
 ### Exercise 10
 
-Before choosing genres to compare, count how many artists in `music` match each of these broad genre terms: `rock`, `pop`, `hip hop`, `jazz`, `blues`, `country`, `metal`, and `reggae`. Tell AI that genre terms are stored as a text string in `artist.terms` and it should count partial matches. Render and copy and paste the table from the HTML.
-
-Based on the counts, choose two genres with at least 100 artists each that you would like to compare in the next exercise.
+Artist locations are stored as latitude and longitude. Ask AI to count how many artists have usable coordinates versus placeholder coordinates, where placeholder means both latitude and longitude equal 0. Then ask AI to add one sentence to your QMD noting this limitation before the map. Render and copy and paste the count table from the HTML.
 
 ```{r music-10}
 question_text(NULL,
@@ -1052,22 +1053,27 @@ question_text(NULL,
   allow_retry = TRUE,
   try_again_button = "Edit Answer",
   incorrect = NULL,
-  rows = 10)
+  rows = 6)
 ```
 
 ###
 
 ```{r music-10-test}
-music_genre_counts
+music |>
+  summarise(
+    total = n(),
+    placeholder_coords = sum(artist.latitude == 0 & artist.longitude == 0),
+    usable_coords = sum(!(artist.latitude == 0 & artist.longitude == 0))
+  )
 ```
 
 ###
 
-`artist.terms` stores multiple genre tags as a single text string, so one artist can match several genres at once. AI will use `str_detect()` to check whether a term appears anywhere in the string — the standard approach for tag data. Pick two genres with enough artists to produce a meaningful comparison; thin groups make differences harder to interpret.
+Latitude 0, longitude 0 is a point in the Gulf of Guinea off the west coast of Africa — a common placeholder in datasets that store missing location as the number 0 rather than `NA`. About 63% of artists in this file have placeholder coordinates. The map you make next shows only the 37% with usable locations, and that sample is not geographically random.
 
 ### Exercise 11
 
-Ask AI to filter `music` to artists whose `artist.terms` matches your two chosen genres, and to remove artists with familiarity or hotness at or below 0. Then ask it to make a scatter plot of familiarity versus hotness, colored by genre. Add a title and subtitle that name the two genres and describe the pattern.
+Ask AI to make a world map showing the locations of artists with usable coordinates. Tell it to filter out artists where both latitude and longitude equal 0, use the **[maps](https://cran.r-project.org/package=maps)** package for the world background, and add a title and subtitle that note the coverage limitation. Also ask it to add `#| cache: true` to the chunk.
 
 In the R Terminal, run:
 
@@ -1089,102 +1095,6 @@ question_text(NULL,
 ###
 
 ```{r music-11-test}
-music |>
-  filter(artist.familiarity > 0, artist.hotttnesss > 0) |>
-  filter(str_detect(artist.terms, "hip hop") | str_detect(artist.terms, "jazz")) |>
-  mutate(genre = case_when(
-    str_detect(artist.terms, "hip hop") ~ "Hip hop",
-    str_detect(artist.terms, "jazz") ~ "Jazz"
-  )) |>
-  ggplot(aes(x = artist.familiarity, y = artist.hotttnesss, color = genre)) +
-  geom_point(alpha = 0.4) +
-  labs(
-    title = "Hip hop artists score higher on familiarity and hotness than jazz artists",
-    subtitle = "Both genres show a positive relationship, but hip hop clusters at higher values",
-    x = "Artist familiarity",
-    y = "Artist hotness",
-    color = "Genre",
-    caption = "Source: Million Song Dataset teaching CSV"
-  )
-```
-
-###
-
-Genre tags in the Echo Nest system are not mutually exclusive — an artist tagged `hip hop` may also carry tags like `r&b` or `soul`. When AI filters to two genres, it uses `case_when()` to assign a primary genre when an artist matches both terms. Check which genre takes priority in AI-generated code, and decide whether that assignment makes sense for your chosen pair.
-
-### Exercise 12
-
-Add one or two sentences below your genre scatter plot interpreting the comparison. Does one genre tend to score higher on familiarity, hotness, or both? Are the groups clearly separated or do they overlap? Render and copy and paste your interpretation from the HTML.
-
-```{r music-12}
-question_text(NULL,
-  answer(NULL, correct = TRUE),
-  allow_retry = TRUE,
-  try_again_button = "Edit Answer",
-  incorrect = NULL,
-  rows = 5)
-```
-
-###
-
-Your interpretation should name the direction of the difference, acknowledge the overlap, and note that these scores reflect a 2010 snapshot.
-
-###
-
-A genre scoring higher on hotness does not mean it is objectively more popular — it means those artists had more current buzz in the Echo Nest system at that moment. Scores like `artist.hotttnesss` are always relative to the time and system that produced them.
-
-### Exercise 13
-
-Artist locations are stored as latitude and longitude. Ask AI to count how many artists have usable coordinates versus placeholder coordinates, where placeholder means both latitude and longitude equal 0. Then ask AI to add one sentence to your QMD noting this limitation before the map. Render and copy and paste the count table from the HTML.
-
-```{r music-13}
-question_text(NULL,
-  answer(NULL, correct = TRUE),
-  allow_retry = TRUE,
-  try_again_button = "Edit Answer",
-  incorrect = NULL,
-  rows = 6)
-```
-
-###
-
-```{r music-13-test}
-music |>
-  summarise(
-    total = n(),
-    placeholder_coords = sum(artist.latitude == 0 & artist.longitude == 0),
-    usable_coords = sum(!(artist.latitude == 0 & artist.longitude == 0))
-  )
-```
-
-###
-
-Latitude 0, longitude 0 is a point in the Gulf of Guinea off the west coast of Africa — a common placeholder in datasets that store missing location as the number 0 rather than `NA`. About 63% of artists in this file have placeholder coordinates. The map you make next shows only the 37% with usable locations, and that sample is not geographically random.
-
-### Exercise 14
-
-Ask AI to make a world map showing the locations of artists with usable coordinates. Tell it to filter out artists where both latitude and longitude equal 0, use the **[maps](https://cran.r-project.org/package=maps)** package for the world background, and add a title and subtitle that note the coverage limitation.
-
-In the R Terminal, run:
-
-```
-show_file("analysis.qmd", chunk = "Last")
-```
-
-CP/CR.
-
-```{r music-14}
-question_text(NULL,
-  answer(NULL, correct = TRUE),
-  allow_retry = TRUE,
-  try_again_button = "Edit Answer",
-  incorrect = NULL,
-  rows = 14)
-```
-
-###
-
-```{r music-14-test}
 ggplot() +
   geom_map(
     data = world, map = world,
@@ -1210,11 +1120,11 @@ ggplot() +
 
 ###
 
-The map reveals a strong geographic bias: most artists with usable coordinates are from the United States and Western Europe. This reflects both where the Echo Nest had the strongest coverage in 2010 and the limitations of the teaching sample. Maps built on incomplete location data are still useful — they show where the data is and is not, which is itself an analytical finding.
+The map reveals a strong geographic bias: most artists with usable coordinates are from the United States and Western Europe. This reflects both where the dataset has the strongest coverage and the limitations of the teaching sample. Maps built on incomplete location data are still useful — they show where the data is and is not, which is itself an analytical finding.
 
-### Exercise 15
+### Exercise 12
 
-Iterate the map. Ask AI to color the artist points by `artist.familiarity`, filter out artists with familiarity at or below 0, and update the title and subtitle to reflect what the color now shows.
+Iterate the map. Ask AI to color the artist points by `artist.familiarity`, filter out artists with familiarity at or below 0, and update the title and subtitle to reflect what the color now shows. Also ask it to add `#| cache: true` to the new chunk.
 
 In the R Terminal, run:
 
@@ -1224,7 +1134,7 @@ show_file("analysis.qmd", chunk = "Last")
 
 CP/CR.
 
-```{r music-15}
+```{r music-12}
 question_text(NULL,
   answer(NULL, correct = TRUE),
   allow_retry = TRUE,
@@ -1235,7 +1145,7 @@ question_text(NULL,
 
 ###
 
-```{r music-15-test}
+```{r music-12-test}
 music_map_data |>
   filter(artist.familiarity > 0) |>
   ggplot() +
@@ -1263,11 +1173,177 @@ music_map_data |>
 
 ###
 
-The geographic pattern in familiarity is partly a coverage artifact — artists from regions well-represented in the Echo Nest database tend to have more complete metadata and higher familiarity scores. What looks like a geographic signal may partly reflect where the data was collected. `scale_color_viridis_c()` is the standard palette for mapping a continuous variable to color: it is perceptually uniform and readable in greyscale.
+The geographic pattern in familiarity is partly a coverage artifact — artists from regions well-represented in the dataset tend to have more complete metadata and higher familiarity scores. What looks like a geographic signal may partly reflect where the data was collected. `scale_color_viridis_c()` is the standard palette for mapping a continuous variable to color: it is perceptually uniform and readable in greyscale.
+
+### Exercise 13
+
+Iterate the map again. Ask AI to color the artist points by `artist.hotttnesss` instead of familiarity, filtering out artists with hotness at or below 0. Update the title and subtitle to reflect what the color now shows. Also ask it to add `#| cache: true` to the new chunk. Render and inspect the plot in the rendered HTML.
+
+In the R Terminal, run:
+
+```
+show_file("analysis.qmd", chunk = "Last")
+```
+
+CP/CR.
+
+```{r music-13}
+question_text(NULL,
+  answer(NULL, correct = TRUE),
+  allow_retry = TRUE,
+  try_again_button = "Edit Answer",
+  incorrect = NULL,
+  rows = 14)
+```
+
+###
+
+```{r music-13-test}
+music_map_data |>
+  filter(artist.hotttnesss > 0) |>
+  ggplot() +
+  geom_map(
+    data = world, map = world,
+    aes(map_id = region),
+    fill = "gray90", color = "gray70", linewidth = 0.2
+  ) +
+  geom_point(
+    aes(x = artist.longitude, y = artist.latitude, color = artist.hotttnesss),
+    alpha = 0.5, size = 0.7
+  ) +
+  expand_limits(x = world$long, y = world$lat) +
+  scale_color_viridis_c(option = "plasma", name = "Hotness") +
+  labs(
+    title = "Artist hotness by location",
+    subtitle = "Hotness clusters in the US and Western Europe, similar to familiarity",
+    x = NULL,
+    y = NULL,
+    caption = "Source: Million Song Dataset teaching CSV"
+  ) +
+  theme_minimal() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank())
+```
+
+###
+
+The hotness map closely mirrors familiarity — both cluster in the US and Western Europe. Hotness reflects more recent buzz at the time of data collection (around 2010), while familiarity reflects cumulative name recognition, but geographically the two tell a similar story in this dataset. When two variables produce nearly identical maps, it is worth asking whether they are measuring different things or largely the same thing.
+
+### Exercise 14
+
+Iterate the map again. Ask AI to assign each artist a genre using these five terms in order of priority: `rock`, `pop`, `blues`, `jazz`, `metal`. Artists that do not match any term should be excluded. Color the points by genre and add a title and subtitle describing the geographic pattern. Also ask it to add `#| cache: true` to the new chunk. Render and inspect the plot in the rendered HTML.
+
+In the R Terminal, run:
+
+```
+show_file("analysis.qmd", chunk = "Last")
+```
+
+CP/CR.
+
+```{r music-14}
+question_text(NULL,
+  answer(NULL, correct = TRUE),
+  allow_retry = TRUE,
+  try_again_button = "Edit Answer",
+  incorrect = NULL,
+  rows = 14)
+```
+
+###
+
+```{r music-14-test}
+music_map_data |>
+  mutate(genre = case_when(
+    str_detect(artist.terms, "rock")  ~ "Rock",
+    str_detect(artist.terms, "pop")   ~ "Pop",
+    str_detect(artist.terms, "blues") ~ "Blues",
+    str_detect(artist.terms, "jazz")  ~ "Jazz",
+    str_detect(artist.terms, "metal") ~ "Metal"
+  )) |>
+  filter(!is.na(genre)) |>
+  ggplot() +
+  geom_map(
+    data = world, map = world,
+    aes(map_id = region),
+    fill = "gray90", color = "gray70", linewidth = 0.2
+  ) +
+  geom_point(
+    aes(x = artist.longitude, y = artist.latitude, color = genre),
+    alpha = 0.5, size = 0.7
+  ) +
+  expand_limits(x = world$long, y = world$lat) +
+  labs(
+    title = "Geographic distribution of top 5 genres",
+    subtitle = "Blues concentrates in the US; metal shows strong European presence",
+    x = NULL,
+    y = NULL,
+    color = "Genre",
+    caption = "Source: Million Song Dataset teaching CSV"
+  ) +
+  theme_minimal() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank())
+```
+
+###
+
+Blues clusters heavily in the United States, metal shows notable presence in Northern Europe, and jazz sits between the US and Europe. Rock and pop are broadly distributed wherever coordinates are available. `case_when()` assigns the first matching genre in order, so an artist tagged as both "rock" and "pop" is classified as Rock — a simplification of the richer `artist.terms` tags.
+
+### Exercise 15
+
+Iterate the map one more time. Ask AI to color the artist points by `song.year`, filtering out rows where `song.year` is 0. Update the title and subtitle. Also ask it to add `#| cache: true` to the new chunk. Render and inspect the plot in the rendered HTML.
+
+In the R Terminal, run:
+
+```
+show_file("analysis.qmd", chunk = "Last")
+```
+
+CP/CR.
+
+```{r music-15}
+question_text(NULL,
+  answer(NULL, correct = TRUE),
+  allow_retry = TRUE,
+  try_again_button = "Edit Answer",
+  incorrect = NULL,
+  rows = 14)
+```
+
+###
+
+```{r music-15-test}
+music_map_data |>
+  filter(song.year > 0) |>
+  ggplot() +
+  geom_map(
+    data = world, map = world,
+    aes(map_id = region),
+    fill = "gray90", color = "gray70", linewidth = 0.2
+  ) +
+  geom_point(
+    aes(x = artist.longitude, y = artist.latitude, color = song.year),
+    alpha = 0.5, size = 0.7
+  ) +
+  expand_limits(x = world$long, y = world$lat) +
+  scale_color_viridis_c(option = "plasma", name = "Year") +
+  labs(
+    title = "Song release year by artist location",
+    subtitle = "Older recordings concentrate in the US and UK; newer recordings spread more globally",
+    x = NULL,
+    y = NULL,
+    caption = "Source: Million Song Dataset teaching CSV"
+  ) +
+  theme_minimal() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank())
+```
+
+###
+
+Older recordings (darker points) concentrate in the US and UK, reflecting where the recording industry was established earliest. Newer recordings (brighter points) spread more globally as recording technology and distribution became accessible worldwide. This connects the year histogram from earlier to geography: the dataset's recency bias is not uniform — it varies by region. The 54% of artists with `song.year` of 0 are excluded here, so this map is even sparser than the others.
 
 ### Exercise 16
 
-Add one or two sentences below the colored map interpreting the geographic pattern in familiarity. Where do high-familiarity artists cluster? What does that tell you about the data, and what should readers keep in mind when interpreting it? Render and copy and paste your interpretation from the HTML.
+Look across all four of your maps. Write two or three sentences describing the most striking geographic pattern you noticed. Which variable showed the clearest geographic signal, and what does that tell you about the data or the music industry? Render and copy and paste your interpretation from the HTML.
 
 ```{r music-16}
 question_text(NULL,
@@ -1280,7 +1356,7 @@ question_text(NULL,
 
 ###
 
-Your interpretation should name where high-familiarity artists cluster, note that this reflects data coverage as much as genuine popularity, and remind readers that the map only shows the 37% of artists with usable coordinates.
+A strong interpretation names a specific pattern (e.g., blues clustering in the US, metal in Northern Europe, older recordings concentrated in a few countries), explains what it reflects, and acknowledges what the map can't show — the 63% of artists with missing coordinates.
 
 ###
 
