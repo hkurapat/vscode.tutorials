@@ -19,9 +19,7 @@ baseball, text (like tidytext package), stocks and Bitcoin.
 
 ## Harshil
 
-Go through set up. Send PR with your name at bottom of TODO.txt.
-
-Add at least one comment/fix to Code tutorial.
+Complete and submit Getting Started and Introduction to R. Ask Var (nicely!) for help. Submit a PR with comments/questions/corrections.
 
 Complete 04-github and 05-github in VS Code tutorials. Do first as student. Email me your answers. Go through second time as author/critic. Send a PR (separate ones for the two tutorials) with typos fixed and with comments/questions.
 
