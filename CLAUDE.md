@@ -18,6 +18,8 @@ Current tutorials: `01-code` through `09-infrastructure`, `r4ds-1` through `r4ds
 
 The goal is not to teach coding — it is to teach students how to **use AI to create data science artifacts**. After the initial VS Code and infrastructure tutorials, students should mostly interact with an AI agent that edits their files, renders their Quarto document, and helps them debug. They should learn to steer analysis, inspect output, notice problems, and ask for refinements.
 
+- `01-code` through `09-infrastructure` are setup/infrastructure tutorials. They may repeat core lessons about terminals, GitHub, Codespaces, Quarto, files, and warnings.
+- Later tutorials are data science tutorials. They should follow an exploratory path through data toward a useful published artifact.
 - Show students **results** (plots, printed tibbles, summary statistics, rendered pages), not just the code that produced them.
 - Questions ask students to prompt AI for file edits, render, inspect output, and compare their output to ours.
 - Prefer many small exercises that form a data analysis path over one large prompt that solves the whole section.
@@ -33,7 +35,8 @@ Students view all QMD output via **render + Live Server**, not by running code i
 - They open `analysis.html` with Live Server once at the start (right-click in File Explorer → "Open with Live Server"); it auto-refreshes on every subsequent render.
 - **Never** instruct students to use `Cmd/Ctrl + Enter` to run QMD code or `Cmd/Ctrl + Shift + K` to render.
 - `#| cache: true` is a **render-time** feature — the cache is created during `quarto render`, not by running code interactively. The first render with caching takes noticeably longer; subsequent renders load from disk.
-- Add `analysis_cache` to `.gitignore`; cache files do not belong on GitHub.
+- Cache chunks when students are done with an expensive piece of code. Most tutorials should use caching at least once; tutorials with several expensive visualizations or data-preparation chunks may use it more often.
+- Add the generated cache directory (usually `analysis_cache`) to `.gitignore`; cache files do not belong on GitHub.
 
 ## Subject-area tutorials
 
@@ -62,6 +65,8 @@ Every tutorial follows this order:
 4. (Optional) Create `data/` directory via `dir.create("data")`, CP/CR.
 
 Replace `XX` placeholders with actual repo names, titles, and knowledge drops.
+
+Keep introductions short. Avoid repeating details that the exercises will teach. If students must read several paragraphs before the first exercise, split the prose with Continue buttons; better yet, cut the prose down.
 
 ### Topic exercises
 
@@ -98,25 +103,35 @@ Most exercises should follow this rhythm:
 
 1. **Prompt AI / edit `analysis.qmd`** — students ask their AI agent to add or change something concrete.
 2. **Render** — students run `quarto render analysis.qmd` in a bash terminal and inspect the Live Server tab.
-3. **Verify** — students CP/CR evidence that they completed the exercise. This might be output from the rendered HTML, a printed tibble, a plot description, a file listing, a URL, or `show_file("analysis.qmd", chunk = "Last")`.
-4. **Show our example when useful** — the test chunk may display our plot, tibble, summary, or other expected output after submission.
+3. **Verify** — students CP/CR evidence that they completed the exercise.
+4. **Show the expected output when useful** — after submission, the first thing students see should often be our expected output, answer, plot, tibble, or representative paste.
 5. **Knowledge drop** — after submission, provide a short paragraph that tells students what to notice, teaches domain knowledge, or foreshadows the next exercise.
 
 The canonical loop is:
 
-`prompt AI/edit analysis.qmd -> render -> inspect Live Server -> CP/CR evidence -> optional example output -> knowledge drop -> next exercise`
+`prompt AI/edit analysis.qmd -> render -> inspect Live Server -> CP/CR evidence -> expected output/answer -> knowledge drop -> next exercise`
+
+### CP/CR evidence
+
+Prefer CP/CR from rendered HTML when the rendered output is what students should inspect: printed tibbles, summaries, tables, and text output. This keeps attention on the published artifact.
+
+Use `show_file()` when checking file contents or code: `.gitignore`, the last chunk, a data-analysis pipeline, chart code, or the final QMD state. When checking chart code or a data pipeline, pair `show_file()` with our rendered plot, tibble, or other output so students can compare both the code and its result.
+
+Use terminal CP/CR for directory structure and command output, such as `list.files()`, `pwd`, `ls`, or render messages.
 
 ### Analysis path
 
 Build topic sections from linked exercise units. A typical path:
 
 1. Download or load data and document the source.
-2. Inspect with a printed tibble, `summary()`, `count()`, or `glimpse()` (avoid `glimpse()` on wide datasets — it prints one line per column).
-3. Notice a problem or opportunity: too many categories, missing values, outliers, awkward variable names, an important subgroup, or an unclear plot.
-4. Ask AI to refine the analysis.
-5. Make a rough plot or table.
-6. Improve labels, grouping, ordering, scale, caption, and visual polish.
-7. Add a short interpretation paragraph about what the plot or table shows.
+2. Inspect rows and individual variables before plotting relationships: printed tibbles, `summary()`, `count()`, histograms, missingness checks, top categories, random/sample rows, or `glimpse()` (avoid `glimpse()` on wide datasets — it prints one line per column).
+3. Make students discover the data structure. If a variable will matter later, have students ask AI or consult documentation to learn what it means before using it in a final plot.
+4. Notice a problem or opportunity: too many categories, missing values, outliers, awkward variable names, an important subgroup, unclear variable meaning, suspicious data structure, or an unclear plot.
+5. Treat incomplete, sampled, truncated, or otherwise suspicious data as a teachable discovery. Ask students to uncover the limitation with summaries or plots, then explain what conclusions are and are not supported.
+6. Ask AI to refine the analysis.
+7. Make a rough plot or table.
+8. Improve labels, grouping, ordering, scale, caption, and visual polish.
+9. Add a short interpretation paragraph about what the plot or table shows.
 
 The final artifact should be a published page with a meaningful result about the world, not just a completed worksheet.
 
@@ -160,6 +175,7 @@ Use when providing the correct answer. Set `allow_retry = FALSE`.
 - Place after students submit an exercise (after `###`). Place before the question only when context is needed to answer.
 - Reference our example output when the test chunk displays a plot, tibble, or summary.
 - Tell students what to notice in their rendered output, explain why it matters, or identify the next natural data-science move.
+- Do not use recycled/default knowledge drops in post-infrastructure tutorials. Save repeated infrastructure lessons for `01-code` through `09-infrastructure`; later tutorials need knowledge drops tied to the current exercise, current data, or current infrastructure issue.
 - Use knowledge drops to teach the data science ecosystem for the tutorial's area: gold-standard data sources, common measures, important packages, file formats, APIs, data-quality issues, and standard patterns analysts look for.
 - Name packages and functions students will encounter in AI-generated code — so they can recognize and evaluate them, not so they can dictate them in prompts.
 - No road signs ("In the next section..."). Teach something real.
@@ -212,9 +228,11 @@ Pre-compute only what the tutorial itself needs to show examples after submissio
 - Never depend on a fragile third-party URL at tutorial run time.
 - Keep stable source copies for student downloads under `inst/extdata/<tutorial>/` when practical, and document the original source.
 - Students usually create their own `data/` directory inside their project and download or copy data there.
+- In later tutorials, prefer asking AI to download a file from a stable URL and put it in `data/` over teaching students exact `download.file()` syntax, unless that syntax is the point of the exercise.
 - Avoid `inst/tutorials/<name>/data/` for new post-infrastructure tutorials unless there is a specific learnr runtime reason.
 - Do not download from the web during tutorial compile/run. If a test chunk needs data, load a small stable copy from the package.
 - For large data, create smaller teaching files and use CP/CR verification rather than heavy test computations.
+- If a teaching dataset is incomplete, sampled, capped, or otherwise artificial, do not hide that fact. Build an exercise path that lets students discover the limitation and reason about how it affects interpretation.
 
 ## Authoring with AI agents
 
@@ -242,6 +260,8 @@ Use `<pre><code>` wrappers (not four backticks) to display R code chunks verbati
 ```</code></pre>
 ```
 
+When showing multiple commands for students to copy/paste, make sure they render as separate lines. Do not let Markdown collapse separate commands into one paragraph.
+
 ## Checking a tutorial
 
 1. **Quick syntax check**: `rmarkdown::render("inst/tutorials/name/tutorial.Rmd")` — open resulting HTML in browser.
@@ -256,6 +276,7 @@ Use `<pre><code>` wrappers (not four backticks) to display R code chunks verbati
 - Package names: **bolded**
 - Function names always include parentheses: `read_csv()`, not `read_csv`
 - Section/topic titles: sentence case
+- Terminal names: `R Terminal` and `bash terminal`
 - Abbreviation: CP/CR = Copy/Paste the Command/Response
 
 ## DESCRIPTION
