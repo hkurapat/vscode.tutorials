@@ -14,7 +14,7 @@ And Claude is responsible for keeping everything in sync. If we change the tibbl
 
 Tutorials now are about concepts, not books.
 
-Baseball and stocks and Bitcoin.
+baseball, text (like tidytext package), stocks and Bitcoin.
 
 
 ## Harshil
