@@ -1173,7 +1173,7 @@ music_map_data |>
 
 ###
 
-The geographic pattern in familiarity is partly a coverage artifact — artists from regions well-represented in the dataset tend to have more complete metadata and higher familiarity scores. What looks like a geographic signal may partly reflect where the data was collected. `scale_color_viridis_c()` is the standard palette for mapping a continuous variable to color: it is perceptually uniform and readable in greyscale.
+The geographic pattern in familiarity is partly a coverage artifact — artists from regions well-represented in the dataset tend to have more complete metadata and higher familiarity scores. What looks like a geographic signal may partly reflect where the data was collected. The viridis color palette is the standard choice for mapping a continuous variable to color: it is perceptually uniform and readable in greyscale.
 
 ### Exercise 13
 
@@ -1286,7 +1286,7 @@ music_map_data |>
 
 ###
 
-Blues clusters heavily in the United States, metal shows notable presence in Northern Europe, and jazz sits between the US and Europe. Rock and pop are broadly distributed wherever coordinates are available. `case_when()` assigns the first matching genre in order, so an artist tagged as both "rock" and "pop" is classified as Rock — a simplification of the richer `artist.terms` tags.
+Blues clusters heavily in the United States, metal shows notable presence in Northern Europe, and jazz sits between the US and Europe. Rock and pop are broadly distributed wherever coordinates are available. AI assigns each artist the first genre that matches in the order given, so an artist tagged as both "rock" and "pop" is classified as Rock — a simplification of the richer `artist.terms` tags.
 
 ### Exercise 15
 
