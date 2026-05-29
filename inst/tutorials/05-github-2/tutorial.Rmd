@@ -395,6 +395,7 @@ We don't want our R code to be echoed in the HTML. Add `#| echo: false` to the t
 
 In the R Terminal, run `tutorial.helpers::show_file("quarto-1.qmd")`. CP/CR.
 
+<!-- HK: When I ran show_file() the output was simpler than the expected answer suggested. Students should be warned output may vary -->
 ```{r project-1-11}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
@@ -532,6 +533,7 @@ Our plot looks nice! Let's share it with the world!
 
 From the Terminal, run `quarto publish gh-pages quarto-1.qmd`. Respond with "Y" when prompted. CP/CR just the first 5 or so lines of what results.
 
+<!-- HK: The expected answer URL format may differ from what students see depending on whether they are updating an existing gh-pages or creating a new one -->
 ```{r project-1-13}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
@@ -880,6 +882,7 @@ tutorial.helpers::show_file("quarto-2.qmd", chunk = "Last")
 
 CP/CR.
 
+<!-- HK: The expected answer shows the command but the output shown is incomplete -->
 ```{r project-2-6}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
