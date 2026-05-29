@@ -173,7 +173,7 @@ include_graphics("images/create-analysis.png")
 
 Notice how there is a black dot in the `analysis-1.qmd` tab in the Editor. This indicates that the file is unsaved.
 
-Change the title to "First Analysis" and add your name as the author. Save the file with `Cmd/Ctrl + S` as `analysis-1.qmd`.
+Change the title to "Analysis 1" and add your name as the author. Save the file with `Cmd/Ctrl + S` as `analysis-1.qmd`.
 
 ```{r}
 include_graphics("images/save-analysis.png")
@@ -255,7 +255,7 @@ Browse at http://localhost:7383/
 The VS Code window has changed quite a bit. The Viewer tab has appeared, showing the HTML. The Source Control pane now includes many new files. The Terminal tab is not showing a prompt.
 
 
-We can stop the preview of `analysis-1.qmd` by typing `Ctrl + c` in the Terminal. Once we do, the Viewer tab is empty, so we can close the entire Secondary Activity Bar.
+We can stop the preview of `analysis-1.qmd` by pressing `Ctrl + c` on your keyboard in the Terminal. Once we do, the Viewer tab is empty, so we can close the entire Secondary Activity Bar.
 
 From the Terminal, run `ls`. CP/CR.
 
