@@ -37,6 +37,7 @@ Suggests:
     knitr,
     leaflet,
     learnr,
+    maps,
     nycflights13,
     palmerpenguins,
     pkgbuild,
