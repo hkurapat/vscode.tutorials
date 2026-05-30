@@ -13,9 +13,9 @@ baseball, text (like tidytext package), stocks and Bitcoin.
 
 ## Harshil
 
-Complete and submit Getting Started and Introduction to R. Ask Var (nicely!) for help. Submit a PR with comments/questions/corrections.
+Quarto Websites Introduction and Quarto Websites Advanced. Submit answers. Then submit PR with comments/questions.
 
-Complete 04-github and 05-github in VS Code tutorials. Do first as student. Email me your answers. Go through second time as author/critic. Send a PR (separate ones for the two tutorials) with typos fixed and with comments/questions.
+
 
 
 ### Fixing r4ds 1-5 and tidycensus-1. 
