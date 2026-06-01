@@ -306,6 +306,8 @@ Note that the `title` (`"A New Website"`) in `_quarto.yml` is independent of the
 
 If you skip the title prompt titles will be set to `.`.
 
+<!-- HK: Exercise 5 expected answer shows only one line in .gitignore: "/.quarto/" but when students actually run show_file(".gitignore") they get two lines: "/.quarto/" AND "**/*.quarto_ipynb". The second line is missing from the expected answer. This could confuse students into thinking their output is wrong when it is actually correct. The expected answer needs to be updated to include both lines. -->
+
 ### Exercise 5
 
 In the R Terminal, run:
@@ -714,6 +716,9 @@ knitr::include_graphics("images/pages.png")
 ```
 
 Sam Csik provides an [excellent overview](https://ucsb-meds.github.io/creating-quarto-websites/) of the entire process of creating Quarto websites. 
+
+<!-- HK: For exercise 2, we could also say something like 'You can also Type Y and click enter' -->
+
 
 ### Exercise 2
 
