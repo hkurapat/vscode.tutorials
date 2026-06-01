@@ -895,6 +895,8 @@ question_text(NULL,
 
 Your answer should look like this:
 
+<!-- VK: The expected answer I see is only the command, not the command and output. On my codespace, I saw "library(tidyverse)" printed after running show_file(). -->
+
 ````
 > tutorial.helpers::show_file("quarto-2.qmd", chunk = "Last")
 ```{r}
