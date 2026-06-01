@@ -2,4 +2,3 @@
 
 importFrom(tutorial.helpers,show_file)
 importFrom(usethis,use_git_config)
-importFrom(utils,download.file)

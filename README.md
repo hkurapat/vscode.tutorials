@@ -21,8 +21,7 @@ package.
 
 ## Installation
 
-Install the development version from [GitHub](https://github.com/)
-with:
+Install the development version from [GitHub](https://github.com/) with:
 
 ``` r
 remotes::install_github("PPBDS/vscode.tutorials")
@@ -69,58 +68,6 @@ development environment.
   websites, with a focus on splitting data analysis tasks into separate
   files.
 
-### R for Data Science
-
-These tutorials cover material from [*R for Data Science
-(2e)*](https://r4ds.hadley.nz/) (R4DS) by Hadley Wickham, Mine
-Çetinkaya-Rundel, and Garrett Grolemund. There are five related
-tutorials in the package: `r4ds-1`, `r4ds-2`, `r4ds-3`, `r4ds-4`, and
-`r4ds-5`. Different tutorials cover different chapters from the book as
-follows.
-
-#### r4ds-1
-
-Data import  
-Data visualization  
-Data transformations  
-Data tidying
-
-#### r4ds-2
-
-Spreadsheets  
-Layers  
-Exploratory data analysis  
-Communication
-
-#### r4ds-3
-
-Databases  
-Logical vectors  
-Numbers  
-Strings  
-Regular expressions
-
-#### r4ds-4
-
-Arrow  
-Factors  
-Dates and times  
-Missing values  
-Joins
-
-#### r4ds-5
-
-Hierarchical-data  
-Web scraping  
-Functions  
-Iterations
-
-The organization of the tutorials is not the same as the organization of
-R4DS. Instead, each tutorial begins by sourcing data from a different
-sort of storage technology and then working with that data.
-
-### Analyzing US Census Data
-
-We have one tutorial, `tidycensus-1`, covering material from [*Analyzing
-US Census Data: Methods, Maps, and Models in
-R*](https://walker-data.com/census-r/index.html) by Kyle Walker.
+The *R for Data Science* and *Analyzing US Census Data* tutorials now
+live in the separate
+**[misc.tutorials](https://github.com/PPBDS/misc.tutorials)** package.

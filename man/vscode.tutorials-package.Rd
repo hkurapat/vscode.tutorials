@@ -6,22 +6,18 @@
 \alias{vscode.tutorials-package}
 \title{VS Code Tutorials}
 \description{
-The vscode.tutorials package provides interactive tutorials in three main categories:
-VS Code and modern development tools, R for Data Science fundamentals, and
-US Census data analysis. The R for Data Science tutorials are based on
-\href{https://r4ds.hadley.nz/}{\emph{R for Data Science (2e)}} by Hadley Wickham,
-Mine Çetinkaya-Rundel, and Garrett Grolemund. The Census tutorial draws from
-\href{https://walker-data.com/census-r/}{\emph{Analyzing US Census Data: Methods, Maps, and Models in R}}
-by Kyle Walker.
+The vscode.tutorials package provides interactive tutorials focused on VS Code
+and modern development tools, covering scripts, Quarto documents, the terminal,
+Git, GitHub, and Quarto websites.
 }
 \details{
 A comprehensive collection of interactive tutorials covering VS Code and modern
-development workflows, R for Data Science essentials, and US Census data analysis.
-This package makes extensive use of the tools in the tutorial.helpers package.
+development workflows. This package makes extensive use of the tools in the
+tutorial.helpers package.
 }
 \section{VS Code and Development Tools Tutorials}{
 
-The package includes seven tutorials focused on VS Code and modern R development:
+The package includes tutorials focused on VS Code and modern R development:
 \itemize{
 \item \strong{VS Code and Scripts} (01-code): Introduction to VS Code and writing R code in simple scripts
 \item \strong{VS Code and Quarto} (02-quarto): Advanced R coding tricks in VS Code and Quarto document creation
@@ -33,32 +29,13 @@ The package includes seven tutorials focused on VS Code and modern R development
 }
 }
 
-\section{R for Data Science Tutorials}{
-
-The package includes five r4ds tutorials (r4ds-1 through r4ds-5) that cover:
-\itemize{
-\item Data import and visualization
-\item Data transformations and tidying
-\item Working with databases, strings, and regular expressions
-\item Factors, dates, times, and joins
-\item Web scraping, functions, and iterations
-}
-}
-
-\section{Census Data Tutorial}{
-
-The tidycensus-1 tutorial covers working with US Census data using the
-tidycensus package.
-}
-
 \section{Running Tutorials}{
 
 To run a tutorial, use:
 \code{learnr::run_tutorial(name = "short_tutorial_name", package = "vscode.tutorials")}
 
 Available tutorial names include: 01-code, 02-quarto, 03-terminal, 04-github-1,
-05-github-2, 06-websites-1, 07-websites-2, r4ds-1, r4ds-2, r4ds-3, r4ds-4,
-r4ds-5, and tidycensus-1.
+05-github-2, 06-websites-1, and 07-websites-2.
 }
 
 \seealso{

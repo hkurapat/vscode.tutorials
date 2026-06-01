@@ -25,26 +25,14 @@ Imports:
     tutorial.helpers,
     usethis
 Suggests:
-    arrow,
-    babynames,
-    DBI,
-    dbplyr,
-    duckdb,
     fs,
-    ggrepel,
     gitcreds,
     httr2,
     knitr,
-    leaflet,
     learnr,
-    maps,
-    nycflights13,
     palmerpenguins,
     pkgbuild,
-    plotly,
     quarto,
     rsconnect,
     testthat,
-    tidycensus,
-    tidyverse,
-    viridis
+    tidyverse
