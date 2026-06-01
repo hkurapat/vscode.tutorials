@@ -138,6 +138,8 @@ Note that a `.gitignore` file has already been created for you. Quarto knows tha
 
 From the Terminal, run `cat .gitignore`. CP/CR.
 
+<!-- HK: The expected answer only shows "/.quarto/" but when I ran this I also got "**/*.quarto_ipynb" as a second line. Might want to update the expected answer so students don't think their output is wrong! -->
+
 ```{r website-1-4}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
@@ -585,6 +587,8 @@ We are moving faster in the creation of Website 2 than we did when making Websit
 Add `_site` to the `.gitignore` files. Save it.
 
 In the Terminal, run `cat .gitignore`. CP/CR.
+
+<!-- HK: The expected answer only shows "/.quarto/" and "_site" but when I ran this I also got "**/*.quarto_ipynb" as a second line. Might want to update the expected answer so students don't think their output is wrong! -->
 
 ```{r website-2-3}
 question_text(NULL,
