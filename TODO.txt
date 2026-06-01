@@ -1,13 +1,3 @@
-## Alec
-
-Cache after topic 1 in all r4ds tutorials, maybe in all tutorials.
-
-Claude is responsible for creating the text within backticks which shows students what they should see at the bottom of their HTML, since we are almost always editing the last code chunk. 
-
-And Claude is responsible for keeping everything in sync. If we change the tibble up above, that means that what is displayed by summary() on that tibble in the QMD will change, which means that what we show students should change.
-
-Tutorials now are about concepts, not books.
-
 ## Harshil
 
 Quarto Websites Introduction and Quarto Websites Advanced. Submit answers. Then submit PR with comments/questions.
@@ -22,31 +12,9 @@ Need to end infrastructure tutorial (or add another tutorial) with a topic for c
 
 ## Priorities
 
-baseball, text (like tidytext package), stocks and Bitcoin.
-
-Add a tutorial about working with large, complex projects? Each topic would involve forking an already existing project and then making a bunch of changes, perhaps including getting the raw data.
-
 Maybe a different tutorial which walked through a bunch of different Quarto project types, not because we are especially interested in Dashboards, but because we want to give students more practice dealing with projects with lots of different files doing different things.
 
-* Errors when r4ds-4 is run as a tutorial:
-
-Output created: tutorial.html
-Warning: There were 7 warnings in `mutate()`.
-The first warning was:
-ℹ In argument: `value_numeric = case_when(...)`.
-Caused by warning:
-! NAs introduced by coercion
-ℹ Run `dplyr::last_dplyr_warnings()` to see the 6 remaining warnings.
-
-
 ### Other Stuff
-
-There is a NOTE on a couple of the CRAN checks. Seems like the .Rbuildignore is not being referenced in those checks, leaving the package as 48 MB. How can this be?
-
-r4ds-4 is probably too long. Maybe split it up into two tutorials?
-r4ds-5 takes too long to compile.
-
-* Would options(pillar.print_max = Inf, pillar.print_min = Inf)	 make the use of  df_print: default not necessary? Which is best? Again, goal is for printed out tibbles to look the same in the tutorial html as they look in the Console.
 
 Tutorial times from 2025
 
@@ -64,8 +32,6 @@ Tutorial times from 2025
 Update images in 01-code.
 
 Should longer tutorials like 1, 4 and 7 have one of their exercises removed?
-
-* Should we be using duckdplyr more and/or in place of other databases?
 
 * Finish skeleton in tutorial.helpers
 
@@ -105,9 +71,4 @@ find . -type f -name "*.png" -exec pngquant "{}" -o "{}" --force \;
 ## Other tutorials
 
 
-Cover material in book titled something like R Stuff that it is not in the manual: https://rstats.wtf/ Might cover things like the **here** package.
-
-
 We could do all the example repos in PPBDS and then leave them up forever, so they would be available to students doing the work.
-
-
