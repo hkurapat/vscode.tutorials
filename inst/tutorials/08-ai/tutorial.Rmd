@@ -90,7 +90,9 @@ There are three main ways to interact with AI: a *chat interface* (like gemini.g
 
 ### Exercise 3
 
-At the Terminal, run `pwd`, then `ls -a`. CP/CR.
+At the Terminal, run `pwd`. CP/CR.
+
+<!-- HK: Removed "then ls -a" from the instructions because Exercise 4 already asks for ls -a. Exercise 3 should just be pwd and Exercise 4 should just be ls -a. -->
 
 ```{r introduction-3}
 question_text(NULL,
@@ -207,6 +209,8 @@ You are now inside the Gemini CLI interactive session. The `>` prompt means Gemi
 
 CP/CR the output.
 
+<!-- HK: The actual /help output has dozens more commands than the expected answer shows. The output will vary depending on the Gemini CLI version. -->
+
 ```{r gemini-cli-3}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
@@ -238,6 +242,8 @@ Available commands:
 ###
 
 Slash commands control the program itself, not Gemini --- the command `/help` tells the *program* to print its options, while a plain sentence talks to *Gemini*. For factual session data like usage statistics, always use slash commands rather than asking Gemini, which will only guess.
+
+<!-- HK: /model actually opens a menu to pick a model, not just prints the current one. -->
 
 ### Exercise 4
 
@@ -280,8 +286,10 @@ Gemini will display a **tool authorization prompt** before running commands. It 
 include_graphics("images/gemini-CLI-git-permission.png")
 ```
 
+<!-- HK: This exercise and several others say to press 1 to allow but the actual Gemini CLI shows clickable buttons saying "Allow once", "Allow for this session", and "No, suggest changes" instead of a y/n text prompt. I made a minor update to the wording  -->
 
-Press `1` to allow the command to run. You could press `2` to allow Gemini to run the same command without asking again in this session. CP/CR the authorization prompt and Gemini's response.
+Press `1` or hit enter where it says allow once to allow the command to run. You could press `2` to allow Gemini to run the same command without asking again in this session. CP/CR the authorization prompt and Gemini's response.
+
 
 ```{r gemini-cli-5}
 question_text(NULL,
@@ -593,7 +601,9 @@ Ask Gemini to check the Git status and explain what the output means:
 Run git status and explain what each part of the output means.
 ```
 
-Press `y` to allow the shell command. CP/CR the full response including Gemini's explanation.
+<!-- HK: The expected answer shows analysis.html as untracked but it won't show up because the .gitignore Gemini creates ignores *.html files. Students might be confused why their output looks different. -->
+
+Press `y`, 1, or hit Enter on allow once to allow the shell command. CP/CR the full response including Gemini's explanation.
 
 ```{r git-with-gemini-1}
 question_text(NULL,
