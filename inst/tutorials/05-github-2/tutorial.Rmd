@@ -395,7 +395,6 @@ We don't want our R code to be echoed in the HTML. Add `#| echo: false` to the t
 
 In the R Terminal, run `tutorial.helpers::show_file("quarto-1.qmd")`. CP/CR.
 
-<!-- HK: When I ran show_file() the output was simpler than the expected answer suggested. Students should be warned output may vary -->
 
 ```{r project-1-11}
 question_text(NULL,
@@ -407,6 +406,18 @@ question_text(NULL,
 ```
 
 ###
+
+Because of limitations in our technology, we can't show you what the whole file looks like.
+
+<!-- 
+DK: When we use this, the code seems to run, trying to print out the penguins data set, but just giving us:
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["species"],"name":[1],"type":["fct"],"align":["left"]},{"l
+...
+
+Not sure about the cause.
 
 ````
 R 4.4.3> tutorial.helpers::show_file("quarto-1.qmd")
@@ -427,7 +438,7 @@ library(palmerpenguins)
 #| echo: false
 penguins
 ```
-````
+```` -->
 
 ###
 
@@ -895,12 +906,12 @@ question_text(NULL,
 
 Your answer should look like this:
 
-````
+<pre><code>
 > tutorial.helpers::show_file("quarto-2.qmd", chunk = "Last")
-```{r}
+<pre><code>```{r}
 library(tidyverse)
-```
-````
+```</code></pre>
+</code></pre>
 
 ### Exercise 7
 

@@ -1,6 +1,10 @@
-## Harshil
+## Harshil and Var
 
-Quarto Websites Introduction and Quarto Websites Advanced. Submit answers. Then submit PR with comments/questions.
+Fix in two GitHub tutorials.
+
+https://ppbds.github.io/tutorial.helpers/articles/ai.html#complex-text
+
+Do 08-ai and 09-infrastructure.
 
 
 ## Preceptor
