@@ -335,6 +335,7 @@ question_text(NULL,
 ```
 > show_file(".gitignore")
 /.quarto/
+**/*.quarto_ipynb
 >
 ```
 
@@ -489,6 +490,7 @@ question_text(NULL,
 ````
 > show_file(".gitignore")
 /.quarto/
+**/*.quarto_ipynb
 _site
 >
 ````
