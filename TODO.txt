@@ -1,6 +1,6 @@
 ## Harshil and Var
 
-Fix in two GitHub tutorials.
+Fix in two GitHub tutorials. Other places?
 
 https://ppbds.github.io/tutorial.helpers/articles/ai.html#complex-text
 
