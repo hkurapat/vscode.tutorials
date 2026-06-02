@@ -154,6 +154,7 @@ question_text(NULL,
 ````
 @ppbds-student ➜ /workspaces/website-1 $ cat .gitignore
 /.quarto/
+**/*.quarto_ipynb
 @ppbds-student ➜ /workspaces/website-1 $ 
 ````
 
@@ -604,6 +605,7 @@ question_text(NULL,
 ````
 @ppbds-student ➜ /workspaces/website-2 $ cat .gitignore
 /.quarto/
+**/*.quarto_ipynb
 _site
 @ppbds-student ➜ /workspaces/website-2 $ 
 ````
