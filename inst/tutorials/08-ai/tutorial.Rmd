@@ -476,8 +476,7 @@ When Gemini adds a plot and re-renders, two things happen automatically: Quarto 
 Ask Gemini to create a `.gitignore` file suitable for a Quarto R project. Type something like:
 
 ```
-Create a .gitignore file for a Quarto R project in VS Code. Include patterns for Quarto output directories.
-```
+Create a .gitignore file for a Quarto R project. Include patterns for Quarto cache and build directories, but do NOT ignore .html files.```
 
 This time, Gemini will ask permission to **write a file** rather than run a command. Press `y` to authorize it. CP/CR the tool authorization prompt and Gemini's summary of what it created.
 
