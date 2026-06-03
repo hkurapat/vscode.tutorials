@@ -306,10 +306,6 @@ Note that the `title` (`"A New Website"`) in `_quarto.yml` is independent of the
 
 If you skip the title prompt titles will be set to `.`.
 
-<!-- DK: Fix to show the correct answer. Note that, in other scenarios, the automatiocally generated .gitignore file might be different, only including /.quarto/, for example. -->
-
-<!-- HK: Exercise 5 expected answer shows only one line in .gitignore: "/.quarto/" but when students actually run show_file(".gitignore") they get two lines: "/.quarto/" AND "**/*.quarto_ipynb". The second line is missing from the expected answer. This could confuse students into thinking their output is wrong when it is actually correct. The expected answer needs to be updated to include both lines. -->
-
 ### Exercise 5
 
 In the R Terminal, run:

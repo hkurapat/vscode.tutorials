@@ -1,10 +1,8 @@
 ## Harshil and Var
 
-Fix in two GitHub tutorials. Other places?
+Add an explanation (where) about how sometimes we make a `.gitignore` by hand while, other times, we let some other program either create the file from scratch or modify a `.gitignore` we have already created. In a different knowledge drop, explain --- in one sentence --- what the jngb (whatever) file extension refers.
 
-https://ppbds.github.io/tutorial.helpers/articles/ai.html#complex-text
-
-Do 08-ai and 09-infrastructure.
+Do 09-infrastructure.
 
 
 ## Preceptor
@@ -61,18 +59,8 @@ In total, we make 5 websites. We need to make their construction more consistent
 
 ## Other items
 
-teach use()
-
-
-Any reason to explore the Visual editor?
-
 To shrink the size of all the PNG files, do:
 
 find . -type f -name "*.png" -exec pngquant "{}" -o "{}" --force \;
 
-
-
-## Other tutorials
-
-
-We could do all the example repos in PPBDS and then leave them up forever, so they would be available to students doing the work.
+We could do all the example repos in PPBDS and then leave them up forever, so they would be available to students doing the work. Or for a ppbds-student account.
