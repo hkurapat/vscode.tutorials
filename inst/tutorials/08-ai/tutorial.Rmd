@@ -266,6 +266,8 @@ Current model: gemini-2.5-pro
 >
 ````
 
+You may see something different here depending on your Gemini CLI version — that's fine, don't worry about it.
+
 ###
 
 The Gemini model family has several tiers: **Pro** for complex reasoning and coding tasks, **Flash** for speed and lower usage. You can switch mid-session with `/model model-name` if you want to save your daily limit for simpler work or use a more powerful model.
@@ -472,8 +474,7 @@ When Gemini adds a plot and re-renders, two things happen automatically: Quarto 
 Ask Gemini to create a `.gitignore` file suitable for a Quarto R project. Type something like:
 
 ```
-Create a .gitignore file for a Quarto R project in VS Code. Include patterns for Quarto output directories.
-```
+Create a .gitignore file for a Quarto R project. Include patterns for Quarto cache and build directories, but do NOT ignore .html files.```
 
 This time, Gemini will ask permission to **write a file** rather than run a command. Press `y` to authorize it. CP/CR the tool authorization prompt and Gemini's summary of what it created.
 
@@ -646,6 +647,8 @@ Here's what this means:
 ###
 
 `git status` shows your branch, **staged** changes (added to the next commit), and **untracked** files (noticed by Git but not yet included). Smart commit in `codespace-starter` handles staging automatically --- just press the "Commit" button.
+
+You may notice that `analysis.html` does not appear in your `git status` output. This can happen if the `.gitignore` Gemini created includes `*.html`, which tells Git to ignore all HTML files. If this happens, you can use `git add -f analysis.html` to force Git to track it anyway.
 
 ### Exercise 2
 

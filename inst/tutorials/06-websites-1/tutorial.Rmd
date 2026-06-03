@@ -339,6 +339,8 @@ The leading `/` in `/.quarto/` escapes the `.`. In other words, we need the lead
 
 In fact, the `.quarto` directory does not yet exist. But the `quarto create project` command wanted to ensure that, once it does, Git would ignore it and its contents.
 
+Sometimes we create a .gitignore by hand — like when we manually add _site to tell Git to ignore our rendered website files. Other times, a program creates or modifies the .gitignore for us. For example, when you run quarto create project website ., Quarto automatically adds /.quarto/ and **/*.quarto_ipynb to the file. The **/*.quarto_ipynb pattern refers to temporary Jupyter notebook files that Quarto creates internally — these never need to be tracked by Git.
+
 ### Exercise 6
 
 Commit all files with the message "initial version" and then sync.
