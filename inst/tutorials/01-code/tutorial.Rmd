@@ -287,7 +287,7 @@ In VS Code running in Codespaces, the Application Menu is a drop-down menu with 
 
 ###
 
-Type `5 + 5` into your R script file. Save the file. Name it `script-1.r`.
+Type `5 + 5` into your R script file. Save the file. Name it `script-1.R`.
 
 ```{r}
 knitr::include_graphics("images/save-script-1.png")
@@ -356,7 +356,7 @@ question_text(NULL,
 Your answer should look like this:
 
 ````
-R 4.5.3> source("/workspaces/codespace-starter/script-1.r", encoding = "UTF-8")
+R 4.5.3> source("/workspaces/codespace-starter/script-1.R", encoding = "UTF-8")
 ````
 
 ###
@@ -384,7 +384,7 @@ question_text(NULL,
 ###
 
 ```
-R 4.5.3> source("/workspaces/codespace-starter/script-1.r", encoding = "UTF-8", echo = TRUE)
+R 4.5.3> source("/workspaces/codespace-starter/script-1.R", encoding = "UTF-8", echo = TRUE)
 
 > 5 + 5
 [1] 10
@@ -415,7 +415,7 @@ question_text(NULL,
 The answer is what you might expect:
 
 ````
-R 4.5.3> source("/workspaces/codespace-starter/script-1.r", encoding = "UTF-8", echo = TRUE)
+R 4.5.3> source("/workspaces/codespace-starter/script-1.R", encoding = "UTF-8", echo = TRUE)
 
 > 5 + 5
 [1] 10
@@ -1030,9 +1030,9 @@ If the title text flows out of the image, you might want to modify the `scale` a
 
 Create a script that we will use to make our plot.
 
-In the Application Menu at the top left of the screen, select `File -> New File ...`, then select `R File` from the drop-down menu. Type `5 + 5` and a newline into the file, then press `Cmd/Ctrl + S` to save it. Save it as `script-3.r`.
+In the Application Menu at the top left of the screen, select `File -> New File ...`, then select `R File` from the drop-down menu. Type `5 + 5` and a newline into the file, then press `Cmd/Ctrl + S` to save it. Save it as `script-3.R`.
 
-In the console, run `list.files()`. CP/CR.
+In the R Terminal, run `list.files()`. CP/CR.
 
 ```{r script-3-1}
 question_text(NULL,
@@ -1047,13 +1047,13 @@ question_text(NULL,
 
 ````
 > list.files()
-[1] "script-1.r", "script-2.r", "script-3.r"
+[1] "diamonds.png" "script-1.R"   "script-2.R"   "script-3.R"
 >
 ````
 
 ### Exercise 2
 
-Go back to editing `script-3.r`. Remove `5 + 5`. Open the chat sidebar on the right and have it make a nice-looking plot using data from the **tidyverse** package. Tell it to write the code in `script-3.r`.
+Go back to editing `script-3.R`. Remove `5 + 5`. Open the chat sidebar on the right and have it make a nice-looking plot using data from the **tidyverse** package. Tell it to write the code in `script-3.R`.
 
 Run the script interactively, line by line, using `Cmd/Ctrl + Enter`. If there are problems, use the chat sidebar to debug. It will probably take several iterations to get something you like.
 
@@ -1073,7 +1073,7 @@ When you have something that looks nice, save it in `script-3.R`.
 
 ###
 
-Back in the R Terminal, run `tutorial.helpers::show_file('script-3.r')`. CP/CR.
+Back in the R Terminal, run `tutorial.helpers::show_file('script-3.R')`. CP/CR.
 
 ```{r script-3-2}
 question_text(NULL,

@@ -76,7 +76,7 @@ character(0)
 
 Since we have not saved the file yet, it does not appear in this listing.
 
-Quarto is a command line interface tool, not an R package. Therefore, its commands are largely run in a bash terminal. As you work through this tutorial, and use Quarto in the future, you should refer to the [Quarto documentation](https://quarto.org/). Of course, in the modern world, we can also ask an AI when we have a problem.
+Quarto is a command line interface tool, not an R package. Therefore, its commands are largely run in a bash Terminal. As you work through this tutorial, and use Quarto in the future, you should refer to the [Quarto documentation](https://quarto.org/). Of course, in the modern world, we can also ask an AI when we have a problem.
 
 ### Exercise 2
 
@@ -208,7 +208,7 @@ This command splits the Editor and opens a new tab titled "Quarto Preview" on th
 
 Professionals don't click buttons. They save time by using keyboard shortcuts!
 
-Under the hood, this shortcut opens a new bash terminal titled "Quarto Preview". There, it executes the `quarto preview` command. You don't need to worry about this now; just use `Cmd/Ctrl + Shift + K` to preview your Quarto documents.
+Under the hood, this shortcut opens a new bash Terminal titled "Quarto Preview". There, it executes the `quarto preview` command. You don't need to worry about this now; just use `Cmd/Ctrl + Shift + K` to preview your Quarto documents.
 
 ###
 

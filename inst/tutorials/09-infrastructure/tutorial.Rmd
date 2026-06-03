@@ -332,7 +332,7 @@ Since the rest of this Codespace still uses Python, let's revert any changes we'
 include_graphics("images/revert-devcontainer.png")
 ```
 
-Run `git status` in a bash terminal. CP/CR.
+Run `git status` in a bash Terminal. CP/CR.
 
 ```{r devcontainers-7}
 question_text(NULL,
@@ -999,7 +999,7 @@ Your answer should look like:
 
 ###
 
-`arf` is a fast R console that starts more quickly and handles pasted multi-line code more reliably than the default terminal. The path is written out directly here so VS Code always knows where to find it.
+`arf` is a fast replacement for the default R Terminal: it starts more quickly and handles pasted multi-line code more reliably. The path is written out directly here so VS Code always knows where to find it.
 
 ### Exercise 5
 

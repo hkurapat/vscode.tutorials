@@ -574,7 +574,7 @@ Notice the shift in URLs: your repo lives at `github.com/username/project-1`, bu
 
 ### Exercise 14
 
-Commit and sync `quarto-1.qmd` and `quarto-1.html` with the message "add AI graphic". Then from the Terminal, run `git log --oneline`. CP/CR.
+Commit and push `quarto-1.qmd` and `quarto-1.html` with the message "add AI graphic". Then from the Terminal, run `git log --oneline`. CP/CR.
 
 ```{r project-1-14}
 question_text(NULL,
@@ -707,7 +707,7 @@ authored
 
 ###
 
-The Codespace is gone, but every file you committed is still here. The Codespace was just a temporary workspace --- a computer GitHub lent you to do your work. GitHub itself was always the permanent home for your project. This is why we commit and sync so often: not to save our work *to* the Codespace, but to save it *through* the Codespace to GitHub.
+The Codespace is gone, but every file you committed is still here. The Codespace was just a temporary workspace --- a computer GitHub lent you to do your work. GitHub itself was always the permanent home for your project. This is why we commit and push so often: not to save our work *to* the Codespace, but to save it *through* the Codespace to GitHub.
 
 ## Project 2
 ###
@@ -838,7 +838,7 @@ Note that `*` is a "regular expression" which matches any characters. So, Git wi
 
 ### Exercise 5
 
-Commit and sync `.gitignore`, `quarto-2.qmd`, and `quarto-2.html`. Use a sensible commit message.
+Commit and push `.gitignore`, `quarto-2.qmd`, and `quarto-2.html`. Use a sensible commit message.
 
 From the Terminal, run `git log`. CP/CR.
 
@@ -877,11 +877,9 @@ There have been two commits in this repo. The first was generated automatically 
 
 Add a new code chunk to `quarto-2.qmd` that loads the **tidyverse**.
 
-````
-```{r}
+<pre><code>```{r}
 library(tidyverse)
-```
-````
+```</code></pre>
 
 The **tidyverse** includes **ggplot2**, which contains the `mpg` dataset --- fuel economy data for 234 car models from 1999 to 2008. We will use `mpg` to build our plot.
 
@@ -965,7 +963,7 @@ Each approach has its place --- YAML for document-wide defaults, chunk options f
 
 ### Exercise 8
 
-Before committing, run `git status` from the Terminal to see what has changed. CP/CR. Then commit and sync `quarto-2.qmd` and `quarto-2.html` with the message "load tidyverse, suppress echo".
+Before committing, run `git status` from the Terminal to see what has changed. CP/CR. Then commit and push `quarto-2.qmd` and `quarto-2.html` with the message "load tidyverse, suppress echo".
 
 ```{r project-2-8}
 question_text(NULL,
@@ -1087,7 +1085,7 @@ The return value from `search()` should now include all the **tidyverse** packag
 
 ### Exercise 12
 
-Commit and sync `quarto-2.qmd` and `quarto-2.html` with the message "add AI graphic". Then from the Terminal, run `git log --oneline`. CP/CR.
+Commit and push `quarto-2.qmd` and `quarto-2.html` with the message "add AI graphic". Then from the Terminal, run `git log --oneline`. CP/CR.
 
 ```{r project-2-12}
 question_text(NULL,

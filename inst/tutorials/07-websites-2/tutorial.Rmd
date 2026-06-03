@@ -443,7 +443,7 @@ question_text(NULL,
 ### 
 
 ````
-https://davidkane9.github.io/website-1/
+https://ppbds-student.github.io/website-1/
 ````
 
 ###
@@ -841,7 +841,7 @@ question_text(NULL,
 Your answer should look like this, but with your username instead of mine.
 
 ````
-https://davidkane9.github.io/website-2/
+https://ppbds-student.github.io/website-2/
 ````
 
 Keep track of the three versions of the website. The QMD files in the project directory are the source — always make changes here. The rendered HTML files in `_site` are what you preview locally; never edit them directly. The published website on GitHub is what the world sees.
@@ -1531,7 +1531,7 @@ question_text(NULL,
 ### 
 
 ````
-https://davidkane9.github.io/website-3/
+https://ppbds-student.github.io/website-3/
 ````
 
 With luck, you have done these steps enough times that, going forward, we can just tell you to set up a website, and you will know what to do without being told.
