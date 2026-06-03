@@ -241,8 +241,6 @@ Available commands:
 
 Slash commands control the program itself, not Gemini --- the command `/help` tells the *program* to print its options, while a plain sentence talks to *Gemini*. For factual session data like usage statistics, always use slash commands rather than asking Gemini, which will only guess.
 
-<!-- HK: /model actually opens a menu to pick a model, not just prints the current one. DK: Add some words about You may see something different. Don't worry about it if so. -->
-
 ### Exercise 4
 
 Type `/model` to see which Gemini model is currently active. CP/CR.
@@ -597,8 +595,6 @@ Ask Gemini to check the Git status and explain what the output means:
 ```
 Run git status and explain what each part of the output means.
 ```
-
-<!-- HK: The expected answer shows analysis.html as untracked but it won't show up because the .gitignore Gemini creates ignores *.html files. Students might be confused why their output looks different. DK: Good point! Please fix. -->
 
 Press `y`, 1, or hit Enter on allow once to allow the shell command. CP/CR the full response including Gemini's explanation.
 
