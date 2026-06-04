@@ -207,8 +207,6 @@ You are now inside the Gemini CLI interactive session. The `>` prompt means Gemi
 
 CP/CR.
 
-<!-- HK: The actual /help output has dozens more commands than the expected answer shows. The output will vary depending on the Gemini CLI version. -->
-
 ```{r gemini-cli-3}
 question_text(NULL,
 	answer(NULL, correct = TRUE),

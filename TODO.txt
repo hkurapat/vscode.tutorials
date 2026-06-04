@@ -1,10 +1,5 @@
 ## Harshil and Var
 
-Add an explanation (where) about how sometimes we make a `.gitignore` by hand while, other times, we let some other program either create the file from scratch or modify a `.gitignore` we have already created. In a different knowledge drop, explain --- in one sentence --- what the jngb (whatever) file extension refers.
-
-Do 09-infrastructure.
-
-
 ## Preceptor
 
 Need to ensure that, by the time we finish the core VS Code tutorials that students are very comfortable with repo, .gitginore, QMD and so on. That is, we want to guarantee that all later tutorials can start with one question that starts (and states) from the assumption that you are in a repo named `x` and which tells you to set up a QMD, .gitigore with *_files, commit/push. And then the rest of the tutorial just has the student telling AI what to do with the QMD.
