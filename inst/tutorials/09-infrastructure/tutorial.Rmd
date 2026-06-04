@@ -500,7 +500,7 @@ A `.ipynb` file is a Jupyter notebook --- like a Quarto document, it mixes text,
 
 Go to the Source Control side bar and press the "Publish Branch" button.
 
-You may be asked to sign into GitHub. If so, select "Yes" then your GitHub account. This happens because we created this Codespace directly from a template. We have a local Git repository in the Codespace, but do not yet have a Git Repository on GitHub. Press the "Publish Branch" button again.
+You may be asked to sign into GitHub. If so, select "Allow" then your GitHub account. This happens because we created this Codespace directly from a template. We have a local Git repository in the Codespace, but do not yet have a Git Repository on GitHub. Press the "Publish Branch" button again.
 
 Run `git log --oneline`. CP/CR.
 
@@ -731,8 +731,9 @@ question_text(NULL,
 Your output should begin with something like:
 
 ````
-R version 4.4.0 (2024-04-24) -- "Puppy Cup"
+R version 4.5.3 (2026-03-11) -- "Reassured Reassurer"
 ````
+Note that your R version may differ as R releases new versions regularly.
 
 ###
 
@@ -937,8 +938,10 @@ question_text(NULL,
 Your answer should look like:
 
 ```
-"image": "ghcr.io/ppbds/devcontainers/student:0.2.1",
+"image": "ghcr.io/ppbds/devcontainers/student:0.3.0",
 ```
+
+Note that the version number will change as the image is updated.
 
 ###
 
@@ -959,6 +962,8 @@ question_text(NULL,
 
 ###
 
+<!-- HK: Added mechatroner.rainbow-csv to extensions list which was missing from the expected answer. -->
+
 Your answer should look like:
 
 ```
@@ -968,13 +973,14 @@ Your answer should look like:
   "PPBDS.vscode-r-tutorials",
   "google.gemini-cli-vscode-ide-companion",
   "ritwickdey.LiveServer",
-  "tomoki1207.pdf"
+  "tomoki1207.pdf",
+  "mechatroner.rainbow-csv"
 ],
 ```
 
 ###
 
-Each extension serves a specific role: `reditorsupport.r` provides R language support, `quarto.quarto` enables Quarto document rendering, `PPBDS.vscode-r-tutorials` powers the tutorial panel you are using right now, `google.gemini-cli-vscode-ide-companion` is a sidebar companion for the Gemini CLI, `ritwickdey.LiveServer` lets you preview HTML files in the browser, and `tomoki1207.pdf` adds a PDF viewer directly inside VS Code.
+Each extension serves a specific role: `reditorsupport.r` provides R language support, `quarto.quarto` enables Quarto document rendering, `PPBDS.vscode-r-tutorials` powers the tutorial panel you are using right now, `google.gemini-cli-vscode-ide-companion` is a sidebar companion for the Gemini CLI, `ritwickdey.LiveServer` lets you preview HTML files in the browser, `tomoki1207.pdf` adds a PDF viewer directly inside VS Code, and `mechatroner.rainbow-csv` adds a CSV viewer with color-coded columns.
 
 ### Exercise 4
 

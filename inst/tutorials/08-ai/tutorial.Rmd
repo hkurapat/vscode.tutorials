@@ -237,6 +237,8 @@ Available commands:
 >
 ````
 
+Note that your output will likely be longer than what is shown here, as the Gemini CLI adds new commands regularly.
+
 ###
 
 Slash commands control the program itself, not Gemini --- the command `/help` tells the *program* to print its options, while a plain sentence talks to *Gemini*. For factual session data like usage statistics, always use slash commands rather than asking Gemini, which will only guess.
