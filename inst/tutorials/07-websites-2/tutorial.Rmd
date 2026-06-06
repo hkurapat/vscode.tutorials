@@ -264,7 +264,7 @@ question_text(NULL,
 @ppbds-student ➜ /workspaces/website-1 $ git log -n 1
 commit a84054404f314acd719a89005253fb004c95a540 (HEAD -> main, origin/main, origin/HEAD)
 Author: David Kane <dave.kane@gmail.com>
-Date:   Sun Mar 16 10:16:34 2025 -0400
+Date:   Mon May 4 16:57:08 2026 +0000
 
     initial version
 @ppbds-student ➜ /workspaces/website-1 $ 
@@ -475,7 +475,7 @@ question_text(NULL,
 @ppbds-student ➜ /workspaces/website-1 $ git log -n 1
 commit 766d1ad5d4838f2851fd372432c74e2bad8eb17a (HEAD -> main, origin/main, origin/HEAD)
 Author: David Kane <dave.kane@gmail.com>
-Date:   Sun Mar 16 11:59:04 2025 -0400
+Date:   Mon May 4 19:30:10 2026 +0000
 
     last commit
 @ppbds-student ➜ /workspaces/website-1 $ 
@@ -1394,7 +1394,7 @@ question_text(NULL,
 @ppbds-student ➜ /workspaces/website-2 $ git log -n 1
 commit f0973447485da8bb8e8e36f65e39b5640519dccc (HEAD -> main, origin/main, origin/HEAD)
 Author: David Kane <dave.kane@gmail.com>
-Date:   Mon Mar 17 18:03:23 2025 -0400
+Date:   Mon May 4 18:03:23 2026 +0000
 
     Added source pages
 @ppbds-student ➜ /workspaces/website-2 $ 
@@ -1503,7 +1503,7 @@ question_text(NULL,
 @ppbds-student ➜ /workspaces/website-3 $ git log -n 1
 commit 06a1895d5d8a3b1780a91777577026fdc76ef1fa (HEAD -> main, origin/main, origin/HEAD)
 Author: David Kane <dave.kane@gmail.com>
-Date:   Mon Mar 17 18:27:19 2025 -0400
+Date:   Mon May 4 18:27:19 2026 +0000
 
     initial version
 @ppbds-student ➜ /workspaces/website-3 $ 
@@ -1584,7 +1584,7 @@ question_text(NULL,
 @ppbds-student ➜ /workspaces/website-3 $ git log -n 1
 commit b83259042267be2d6b64b5ad4bb3115c2ade9c00 (HEAD -> main, origin/main, origin/HEAD)
 Author: David Kane <dave.kane@gmail.com>
-Date:   Mon Mar 17 18:36:03 2025 -0400
+Date:   Mon May 4 18:36:03 2026 +0000
 
     first plot
 @ppbds-student ➜ /workspaces/website-3 $ 
@@ -2291,7 +2291,7 @@ question_text(NULL,
 @ppbds-student ➜ /workspaces/website-3 $ git show --name-status HEAD
 commit 5ff52befc37ba1a3ac87dac781f48d6c6251c225 (HEAD -> main, origin/main, origin/HEAD)
 Author: David Kane <dave.kane@gmail.com>
-Date:   Mon Mar 17 20:08:52 2025 -0400
+Date:   Mon May 4 20:08:52 2026 +0000
 
     update main page
 
