@@ -83,3 +83,26 @@ namespace is" (salvaged from the retired Primer §12.6 Theme 2):
    names the function explicitly and avoids masking entirely. In reusable code
    (packages, sourced scripts), reach for the namespace prefix rather than relying on
    load order.
+
+## Authoring conventions
+
+This package is an exception to the *pedagogical* parts of the base tutorial guide,
+but it shares the project-wide *syntactic* conventions. In particular:
+
+- **Per-chunk options use Quarto's `#| key: value` syntax on lines inside the chunk,
+  not inline `, key = value` on the header.** So an answer chunk is
+
+  ```
+  ```{r section-name-N-test}
+  #| echo: true
+  # our code
+  ```
+  ```
+
+  not `{r section-name-N-test, echo = TRUE}`. This works in both `.Rmd` and `.qmd`
+  via modern knitr (≥ 1.35) and is the canonical style across every tutorial
+  package in the project (the Primer, `misc.tutorials`, and this one). Use it for
+  `echo`, `message`, `warning`, `cache`, `eval`, and every other chunk option. The
+  only inline options that remain on the header line are `include = FALSE` on the
+  setup chunk and the `child = ...` argument on info-section / download-answers
+  child chunks.
