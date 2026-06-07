@@ -8,7 +8,7 @@ output:
     progressive: yes
     'allow_skip:': yes
 runtime: shiny_prerendered
-description: 'A second tutorial about Quarto websites. Practices building three sites with About Me pages, customizing themes, and deploying styled output to GitHub Pages.'
+description: 'A second tutorial about Quarto websites. Practices building two sites with About Me pages and multi-page navigation, then refactoring analysis code into scripts that save results as RDS and PNG files.'
 ---
 
 ```{r setup, include = FALSE}
@@ -28,8 +28,6 @@ library(tidyverse)
 ```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
 ```
 
-<!-- Maybe have 4 websites to split things up a bit more. website-3 has too many questions. 3 should just do the data. 4 should be the plot, perhaps after forking the final version of 3. -->
-
 <!-- For later websites, show how to add a link to the website to the GitHub repo. -->
 
 ## Introduction
@@ -39,7 +37,7 @@ This tutorial practices the process of creating and organizing the [Quarto websi
 
 ### 
 
-We will create three websites each using a new GitHub repo and Codespace. Run this tutorial in a separate Codespace.
+We will create two websites, each using a new GitHub repo and Codespace. Run this tutorial in a separate Codespace.
 
 ## Website 1
 ### 
@@ -581,7 +579,7 @@ Creating project at /workspaces/website-2:
 @ppbds-student ➜ /workspaces/website-2 $ 
 ````
 
-We are moving faster in the creation of Website 2 than we did when making Website 1 because you should already be familiar with the steps. We will go even faster when we make Website 3.
+We are moving faster in the creation of Website 2 than we did when making Website 1 because you should already be familiar with the steps. Later in this website, we will also learn how to save analysis results to files so the site does not re-run all its code on every render.
 
 ### Exercise 3
 
@@ -1406,9 +1404,19 @@ Type `quarto publish` in the Terminal and hit "Enter." Note how you did not need
 
 Explore the use of the "Sources" menu on your website.
 
+###
+
+Your home page works, but there is a problem hiding in it. Every time you render the site, *all* of the billboard wrangling code in `index.qmd` runs again --- the date math, the loop, the pivot, the join. That is wasteful, especially for code that takes a while. Over the next few exercises we will move that work into scripts and save the results, so the website only has to display a finished image.
+
+The first tool we need is the RDS format, which lets us save any R object to a file. When we read from an RDS, we get the object back without re-running the code that created it.
+
 ### Exercise 23
 
-Navigate to your `website-2` GitHub repo. Copy and paste the repository file listing.
+Close your R Terminal and open a new one to start fresh. Use `File -> New File...` to create a new file. Save it as `process_data.R`.
+
+In this script, add `library(tidyverse)` and then, after a blank line, the billboard wrangling code from `index.qmd` --- everything *except* the final `ggplot()` pipe --- ending by assigning the result to an object named `top_songs`. Save the file.
+
+In the Terminal, run `cat process_data.R`. CP/CR.
 
 ```{r website-2-23}
 question_text(NULL,
@@ -1416,6 +1424,388 @@ question_text(NULL,
 	allow_retry = TRUE,
 	try_again_button = "Edit Answer",
 	incorrect = NULL,
+	rows = 10)
+```
+
+###
+
+````
+@ppbds-student ➜ /workspaces/website-2 $ cat process_data.R
+library(tidyverse)
+
+billboard <- billboard |>
+  mutate(date.entered = as.Date(date.entered),
+         week_offset = as.numeric(difftime(date.entered, as.Date("2000-01-01"), units = "weeks")))
+
+jul_week <- 26
+
+billboard_jul <- billboard |>
+  filter(date.entered <= as.Date("2000-07-01")) |>
+  mutate(wk_idx = jul_week - week_offset,
+         wk_idx = if_else(wk_idx >= 1 & wk_idx <= 76, wk_idx, NA_real_),
+         jul_rank = NA_real_)
+
+for (i in seq_len(nrow(billboard_jul))) {
+  wk_idx <- billboard_jul$wk_idx[i]
+  if (!is.na(wk_idx)) {
+    col_name <- paste0("wk", wk_idx)
+    billboard_jul$jul_rank[i] <- as.numeric(billboard_jul[[col_name]][i])
+  }
+}
+
+top_5_songs <- billboard_jul |>
+  filter(!is.na(jul_rank)) |>
+  arrange(jul_rank) |>
+  slice(1:5) |>
+  pull(track)
+
+billboard_filtered <- billboard |>
+  filter(track %in% top_5_songs)
+
+top_songs <- billboard_filtered |>
+  select(artist, track, wk1:wk76) |>
+  pivot_longer(cols = starts_with("wk"),
+               names_to = "week_num",
+               values_to = "rank") |>
+  mutate(week_num = as.numeric(gsub("wk", "", week_num))) |>
+  left_join(billboard_filtered |> select(track, week_offset), by = "track") |>
+  mutate(week_num = week_num + week_offset) |>
+  filter(week_num >= 0 & week_num <= 52) |>
+  filter(!is.na(rank)) |>
+  mutate(song_artist = paste0(track, " (", artist, ")"))
+@ppbds-student ➜ /workspaces/website-2 $
+````
+
+Because this is a script, not a Quarto document, there are no code chunks and you do not need `suppressPackageStartupMessages()`. We put `library(tidyverse)` at the top so the script runs correctly even in a freshly restarted R session.
+
+### Exercise 24
+
+"Source" the entire script with echo by clicking the dropdown arrow next to the Run button (▷) at the top right of the editor. This feeds every line of the script to the R Terminal. CP/CR.
+
+```{r website-2-24}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 10)
+```
+
+###
+
+Your answer should look something like:
+
+````
+> source("/workspaces/website-2/process_data.R", echo = TRUE)
+
+> library(tidyverse)
+── Attaching core tidyverse packages ──────────────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4
+── Conflicts ────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package to force all conflicts to become errors
+
+> billboard <- billboard |>
++   mutate(date.entered = as.Date(date.entered), .... [TRUNCATED]
+>
+````
+
+Notice that the final line of the script assigns its result to `top_songs` rather than printing it, so no tibble appears. Assignment does not produce output.
+
+### Exercise 25
+
+From the R Terminal, run `ls()`. CP/CR.
+
+```{r website-2-25}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+````
+> ls()
+[1] "billboard"          "billboard_filtered" "billboard_jul"
+[4] "col_name"           "i"                  "jul_week"
+[7] "top_5_songs"        "top_songs"          "wk_idx"
+````
+
+The script created several objects, including the one we care about, `top_songs`. The others are intermediate steps and loop variables --- real wrangling code often leaves a trail of them behind. Only `top_songs` is worth keeping.
+
+### Exercise 26
+
+Restart your R session by closing your R Terminal and opening a new one. From the R Terminal, run `ls()`. CP/CR.
+
+```{r website-2-26}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+````
+> ls()
+character(0)
+````
+
+Every object vanished when R restarted. And that is fine! We still have `process_data.R`, which can recreate `top_songs` whenever we want. The code is the source of truth; the objects in memory are disposable.
+
+### Exercise 27
+
+Source `process_data.R` again to recreate `top_songs` (click the Run button ▷). Then, from the R Terminal, run `write_rds(top_songs, file = "clean_data.rds")`. [`write_rds()`](https://readr.tidyverse.org/reference/read_rds.html) comes from the **readr** package and saves an R object to a file; it produces no output.
+
+In the Terminal, run `ls clean*`. CP/CR.
+
+```{r website-2-27}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+````
+@ppbds-student ➜ /workspaces/website-2 $ ls clean*
+clean_data.rds
+@ppbds-student ➜ /workspaces/website-2 $
+````
+
+`clean*` is a regular expression that matches any file beginning with `clean`. There are now three things associated with our data: the script `process_data.R` that creates it, the in-memory object `top_songs` that disappears when R restarts, and the file `clean_data.rds` that persists on disk.
+
+### Exercise 28
+
+So that the script itself saves its result, open `process_data.R` and, at the bottom after a blank line, add:
+
+````
+write_rds(top_songs, file = "clean_data.rds")
+````
+
+In the Terminal, run `tail -n 3 process_data.R`. CP/CR.
+
+```{r website-2-28}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+````
+@ppbds-student ➜ /workspaces/website-2 $ tail -n 3 process_data.R
+  mutate(song_artist = paste0(track, " (", artist, ")"))
+
+write_rds(top_songs, file = "clean_data.rds")
+@ppbds-student ➜ /workspaces/website-2 $
+````
+
+This is a common pattern in larger projects: each script ends by saving an object that later scripts read in. Run `process_data.R` once, and `clean_data.rds` is ready for everything downstream.
+
+### Exercise 29
+
+Close your R Terminal and open a new one. Run `library(tidyverse)`, then run `read_rds("clean_data.rds")`. CP/CR.
+
+```{r website-2-29}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 10)
+```
+
+###
+
+````
+> read_rds("clean_data.rds")
+# A tibble: 158 × 6
+   artist  track     week_num  rank week_offset song_artist
+   <chr>   <chr>        <dbl> <dbl>       <dbl> <chr>
+ 1 Aaliyah Try Again       12    59          11 Try Again (Aaliyah)
+ 2 Aaliyah Try Again       13    53          11 Try Again (Aaliyah)
+ 3 Aaliyah Try Again       14    38          11 Try Again (Aaliyah)
+ 4 Aaliyah Try Again       15    28          11 Try Again (Aaliyah)
+ 5 Aaliyah Try Again       16    21          11 Try Again (Aaliyah)
+ 6 Aaliyah Try Again       17    18          11 Try Again (Aaliyah)
+ 7 Aaliyah Try Again       18    16          11 Try Again (Aaliyah)
+ 8 Aaliyah Try Again       19    14          11 Try Again (Aaliyah)
+ 9 Aaliyah Try Again       20    12          11 Try Again (Aaliyah)
+10 Aaliyah Try Again       21    10          11 Try Again (Aaliyah)
+# ℹ 148 more rows
+````
+
+`read_rds()` returns whatever object was saved --- here, the `top_songs` tibble, ready to plot. We never had to re-run the wrangling.
+
+### Exercise 30
+
+Now we do the same thing for the plot. Use `File -> New File...` to create `make_plot.R`. Add `library(tidyverse)`, read the saved tibble, build the billboard plot (the `ggplot()` pipe from `index.qmd`) assigned to an object named `billboard_plot`, and save it with `ggsave()`. Save the file.
+
+In the Terminal, run `cat make_plot.R`. CP/CR.
+
+```{r website-2-30}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 10)
+```
+
+###
+
+````
+@ppbds-student ➜ /workspaces/website-2 $ cat make_plot.R
+library(tidyverse)
+
+x <- read_rds("clean_data.rds")
+
+month_breaks <- seq(0, 48, by = 4)
+month_labels <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan")
+
+billboard_plot <- x |>
+  ggplot(aes(x = week_num, y = rank, color = song_artist)) +
+  geom_line(linewidth = 1.2, alpha = 0.8) +
+  geom_point(size = 2) +
+  scale_y_reverse(limits = c(100, 1)) +
+  scale_x_continuous(breaks = month_breaks, labels = month_labels) +
+  scale_color_manual(values = c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEEAD")) +
+  labs(title = "Billboard Top 100: Top 5 Songs in Jul 2000",
+       subtitle = "Tracking rank changes from Jan to Dec 2000",
+       x = "Month",
+       y = "Chart Position",
+       color = "Song (Artist)") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+ggsave("billboard.png", billboard_plot)
+@ppbds-student ➜ /workspaces/website-2 $
+````
+
+The fact that the tibble was called `top_songs` in `process_data.R` is irrelevant. `write_rds()` saves the object, not its name, so we are free to call it `x` here.
+
+### Exercise 31
+
+Source `make_plot.R` (click the Run button ▷). In the Terminal, run `ls *.png`. CP/CR.
+
+```{r website-2-31}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+````
+@ppbds-student ➜ /workspaces/website-2 $ ls *.png
+billboard.png
+@ppbds-student ➜ /workspaces/website-2 $
+````
+
+Just like RDS saves a tibble, a PNG saves a graphic. `ggsave()` writes the most recent plot (or the one you name) to an image file, so we avoid re-drawing it every time the site renders.
+
+### Exercise 32
+
+Now make `index.qmd` simply display the finished image. In its setup code chunk, add `library(knitr)`. In the second code chunk, delete all of the billboard code and replace it with `include_graphics("billboard.png")`. Save the file.
+
+In the R Terminal, run `show_file("index.qmd")`. CP/CR.
+
+```{r website-2-32}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 10)
+```
+
+###
+
+<pre><code>---
+title: "Billboard Graphic"
+execute:
+  echo: false
+---
+
+
+<pre><code>```{r}
+suppressPackageStartupMessages(library(tidyverse))
+library(knitr)
+```</code></pre>
+
+<pre><code>```{r}
+include_graphics("billboard.png")
+```</code></pre>
+</code></pre>
+
+There was nothing wrong with keeping the plotting code in `index.qmd`. The trouble is that it re-runs on every render. By moving the work into scripts and displaying only the saved image, the site renders almost instantly --- no matter how slow the original analysis was.
+
+### Exercise 33
+
+From the Terminal, run `quarto publish gh-pages`. You will need to hit `Enter` at least once. Then commit and push all the files, with a message like `"Use saved plot on home page"`.
+
+From the Terminal, run `git show --name-status HEAD`. CP/CR.
+
+```{r website-2-33}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 8)
+```
+
+###
+
+````
+@ppbds-student ➜ /workspaces/website-2 $ git show --name-status HEAD
+commit 5ff52befc37ba1a3ac87dac781f48d6c6251c225 (HEAD -> main, origin/main, origin/HEAD)
+Author: David Kane <dave.kane@gmail.com>
+Date:   Mon Mar 17 20:08:52 2025 -0400
+
+    Use saved plot on home page
+
+A       billboard.png
+A       clean_data.rds
+M       index.qmd
+A       make_plot.R
+A       process_data.R
+@ppbds-student ➜ /workspaces/website-2 $
+````
+
+This is the workflow professionals use. First, get something working all in one place. Second, split the slow parts into scripts --- `process_data.R` cleans the data and saves `clean_data.rds`, `make_plot.R` reads that and saves `billboard.png` --- so that `index.qmd` only has to show the image. In a larger project, these files often live in dedicated `code/`, `data/`, and `images/` directories. Separating data cleaning, visualization, and reporting makes pipelines faster to iterate on and easier to debug.
+
+### Exercise 34
+
+Navigate to your `website-2` GitHub repo. Copy and paste the repository file listing.
+
+```{r website-2-34}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
 	rows = 8)
 ```
 
@@ -1424,13 +1814,17 @@ question_text(NULL,
 Your file listing should look something like:
 
 ````
-.gitignore      initial version         2 days ago
-_quarto.yml     Added source pages      2 hours ago
-about.qmd       Added plot to home page 3 hours ago
-index.qmd       Added plot to home page 3 hours ago
-source-1.qmd    Added source pages      2 hours ago
-source-2.qmd    Added source pages      2 hours ago
-styles.css      initial version         2 days ago
+.gitignore      initial version           2 days ago
+_quarto.yml     Added source pages        2 hours ago
+about.qmd       Added plot to home page   3 hours ago
+billboard.png   Use saved plot on home... 1 hour ago
+clean_data.rds  Use saved plot on home... 1 hour ago
+index.qmd       Use saved plot on home... 1 hour ago
+make_plot.R     Use saved plot on home... 1 hour ago
+process_data.R  Use saved plot on home... 1 hour ago
+source-1.qmd    Added source pages        2 hours ago
+source-2.qmd    Added source pages        2 hours ago
+styles.css      initial version           2 days ago
 ````
 
 Once you have confirmed your files are on GitHub, delete your Codespace. Click the green **Code** button on the repo page, go to the **Codespaces** tab, click **...** next to your Codespace, and select **Delete**.
@@ -1438,921 +1832,6 @@ Once you have confirmed your files are on GitHub, delete your Codespace. Click t
 ###
 
 When you ran `quarto publish gh-pages` for `website-1` and `website-2`, Quarto was doing something behind the scenes worth understanding. It created (or updated) a separate `gh-pages` branch in your repo containing only the rendered HTML files from `_site`. Your `main` branch stays clean with just the source files. This is exactly why you added `_site` to `.gitignore` — the rendered files do live on GitHub, but in a different branch that GitHub Pages serves automatically. If you visit your repo on GitHub and click the branch dropdown, you will see both `main` and `gh-pages`.
-
-## Website 3
-### 
-
-Let's make one more website using the same repo/quarto approach as above. We will also learn about storing R objects in RDS files.
-
-### Exercise 1
-
-Create a public GitHub repo called `website-3` and create a Codespace for it.
-
-In the Terminal, run `quarto create project website .`.  Use "Website 3" as the title.
-
-In the Terminal, run `ls -a`.
-
-CP/CR.
-
-```{r website-3-1}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 8)
-```
-
-### 
-
-````
-@ppbds-student ➜ /workspaces/website-3 $ quarto create project website .
-? Title (website) › Website 3
-Creating project at /workspaces/website-3:
-  - Created _quarto.yml
-  - Created .gitignore
-  - Created index.qmd
-  - Created about.qmd
-  - Created styles.css
-@ppbds-student ➜ /workspaces/website-3 $ ls -a
-.               .git            about.qmd       styles.css
-..              .gitignore      _quarto.yml     index.qmd
-@ppbds-student ➜ /workspaces/website-3 $
-````
-
-The `title` in `_quarto.yml` determines the title of the entire website. The `title` at the top of `index.qmd` specifies the title of just that page.
-
-### Exercise 2
-
-Add `_site` to the `.gitignore` files. 
-
-Delete everything in `index.qmd` except that YAML header with `title` set to `"My Home Page"`.
-
-Save all files. Commit and push everything. From the Terminal, run `git log -n 1`. CP/CR.
-
-```{r website-3-2}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 5)
-```
-
-### 
-
-````
-@ppbds-student ➜ /workspaces/website-3 $ git log -n 1
-commit 06a1895d5d8a3b1780a91777577026fdc76ef1fa (HEAD -> main, origin/main, origin/HEAD)
-Author: David Kane <dave.kane@gmail.com>
-Date:   Mon Mar 17 18:27:19 2025 -0400
-
-    initial version
-@ppbds-student ➜ /workspaces/website-3 $ 
-````
-
-There are some subtleties in whether we add `_site` or `/_site`. The former matches any directory named `_site` regardless of where in the repo it is located, even if it is nested several levels down.  `/_site`, on the other hand, is "anchored" to the same directory as the `.gitignore` in which it lives which, in this case, is at the top of the repo. 
-
-### Exercise 3
-
-From the Terminal, run `quarto preview` to examine the website. You should see the titles that you have specified. If you don't, fix things. Hit `Ctrl + c`.
-
-From the Terminal, run `quarto publish gh-pages` to publish the website.
-
-Copy/paste the URL for your website.
-
-```{r website-3-3}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-````
-https://ppbds-student.github.io/website-3/
-````
-
-With luck, you have done these steps enough times that, going forward, we can just tell you to set up a website, and you will know what to do without being told.
-
-### Exercise 4
-
-<!-- Should this be AI generated? -->
-
-Replace the contents of `index.qmd` with the below.
-<pre><code>
----
-title: "My Home Page"
-execute: 
-  echo: false
----
-
-
-<pre><code>```{r}
-suppressPackageStartupMessages(library(tidyverse))
-```</code></pre>
-<pre><code>```{r}
-diamonds |> 
-  filter(z != 0) |> 
-  filter(color == "D") |> 
-  ggplot(aes(x = carat, y = price, color = cut)) + 
-    geom_point() +
-    scale_y_continuous(labels = scales::dollar) +
-    labs(title = "Prices and Sizes for Diamonds of Color D",
-         subtitle = "'Round' carat values like 1, 1.5 and 2 are more common.",
-         x = "Carat",
-         y = "Price")
-```</code></pre>
-</code></pre>
-Publish the website and commit this change. Make sure everything looks OK.
-
-From the Terminal, run `git log -n 1`. CP/CR.
-
-```{r website-3-4}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 6)
-```
-
-### 
-
-````
-@ppbds-student ➜ /workspaces/website-3 $ git log -n 1
-commit b83259042267be2d6b64b5ad4bb3115c2ade9c00 (HEAD -> main, origin/main, origin/HEAD)
-Author: David Kane <dave.kane@gmail.com>
-Date:   Mon Mar 17 18:36:03 2025 -0400
-
-    first plot
-@ppbds-student ➜ /workspaces/website-3 $ 
-````
-
-### Exercise 5
-
-One problem with this approach is that all our code is run every time we rebuild the homepage. That is wasteful, especially if the code takes a while to run. 
-
-The RDS format allows us to save any R object in a file. When we read from an RDS, we avoid having to run the code which created the object again. Instead, we simply have access to the object. This is very convenient for any code which takes a long time to run, such as intensive data manipulation.
-
-Close your R Terminal and open a new one to start fresh.
-
-Use `File -> New File...` to create a new file. Save it as `process_data.R`.
-
-In the Terminal, run `ls`. CP/CR.
-
-```{r website-3-5}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 3)
-```
-
-### 
-
-````
-@ppbds-student ➜ /workspaces/website-3 $ ls
-_quarto.yml     _site           index.qmd       styles.css
-about.qmd       process_data.R
-@ppbds-student ➜ /workspaces/website-3 $ 
-````
-
-Make sure that `process_data.R` is one of these files. We often use scripts to record the exact steps we used in working with some data or in creating a graphic. We want our work to be reproducible. We will often need to perform the same work again, albeit with some changes. A script can make that much simpler.
-
-### Exercise 6
-
-Though an R script will use the libraries you already have loaded if executed interactively in the R Terminal, it is good practice to include these at the top of the script. Any script you create should run correctly, even if you have just re-started R.
-
-In `process_data.R`, load the **tidyverse** package using the `library()` command. 
-
-In the Terminal, run `cat process_data.R`. CP/CR.
-
-```{r website-3-6}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 3)
-```
-
-###
-
-````
-@ppbds-student ➜ /workspaces/website-3 $ cat process_data.R
-library(tidyverse)
-@ppbds-student ➜ /workspaces/website-3 $ 
-````
-
-Because this is a script, you don't need to create a code chunk. Scripts are most useful for work which simply creates an object, often a new data set or a graphic. You also don't need `suppressPackageStartupMessages()` since this is a script, not a Quarto document which will produce an HTML that people will see.
-
-### Exercise 7
-
-Skip a line after `library(tidyverse)`. Again, this is a script, so there are no code chunks, but skipping a line in between substantively different parts of the code is a good idea. Add this code:
-
-````
-diamonds |> 
-  filter(z != 0) |> 
-  filter(color == "D") 
-````
-
-In the Terminal, run `cat process_data.R`. CP/CR.
-
-```{r website-3-7}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 6)
-```
-
-### 
-
-````
-@ppbds-student ➜ /workspaces/website-3 $ cat process_data.R
-library(tidyverse)
-
-diamonds |> 
-  filter(z != 0) |> 
-  filter(color == "D") 
-@ppbds-student ➜ /workspaces/website-3 $ 
-````
-
-You should try to learn how to work in two ways. First is *interactively*, trying things at the R Terminal. Seeing what happens. Going line-by-line. Second is *writtenly* --- yes, I just made up this word --- adding code to your script/QMD and then executing all the code at once. 
-
-<!-- Could explain this better, maybe illustrate some step-by-step examples. -->
-
-Of course, the best approach is to use these two methods during your analysis, depending on which is best for the next step you need to take. 
-
-### Exercise 8
-
-Place your cursor in `process_data.R` at `filter(z != 0) |>`. Hit `Cmd/Ctrl + Enter`. This will cause the pipe to be pasted to the R Terminal and then executed there. (Note that this should generate an error.) CP/CR.
-
-```{r website-3-8}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-````
-> diamonds |> 
-+   filter(z != 0) |> 
-+   filter(color == "D")
-Error:
-! object 'diamonds' not found
-Show Traceback
->
-````
-
-The cause of the error is the distinction between the two worlds: the world of the R Terminal and the world of the Script (which is just like QMD world, as we have discussed before). The Script includes `library(tidyverse)`. So, when you source `process_data.R` in the next question, everything works fine. The R Terminal, however, knows nothing about the `diamonds` tibble or about commands like `select()` or `filter()`. Recall that we recently restarted R. So, the **tidyverse** library, which contains `diamonds` and those commands, has not been loaded in the R Terminal. 
-
-A line of code, like `library(tidyverse)`, might exist in a script, but unless/until that line is executed in the R Terminal, the R Terminal won't know anything about it.
-
-### Exercise 9
-
-"Source" the entire script with echo by clicking the dropdown arrow next to the Run button (▷) at the top right of the editor. This takes all the code from the script and feeds it, line-by-line, to the R Terminal. CP/CR.
-
-```{r website-3-9}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 10)
-```
-
-### 
-
-Your answer should look like this:
-
-````
-> source("/workspaces/website-3/process_data.R", echo = TRUE)
-
-> library(tidyverse)
-── Attaching core tidyverse packages ──────────────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.0.4     
-── Conflicts ────────────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package to force all conflicts to become errors
-
-> diamonds |> 
-+   filter(z != 0) |> 
-+   filter(color == "D") 
-# A tibble: 6,774 × 10
-   carat cut       color clarity depth table price     x     y     z
-   <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
- 1  0.23 Very Good D     VS2      60.5    61   357  3.96  3.97  2.4 
- 2  0.23 Very Good D     VS1      61.9    58   402  3.92  3.96  2.44
- 3  0.26 Very Good D     VS2      60.8    59   403  4.13  4.16  2.52
- 4  0.26 Good      D     VS2      65.2    56   403  3.99  4.02  2.61
- 5  0.26 Good      D     VS1      58.4    63   403  4.19  4.24  2.46
- 6  0.22 Premium   D     VS2      59.3    62   404  3.91  3.88  2.31
- 7  0.3  Premium   D     SI1      62.6    59   552  4.23  4.27  2.66
- 8  0.3  Ideal     D     SI1      62.5    57   552  4.29  4.32  2.69
- 9  0.3  Ideal     D     SI1      62.1    56   552  4.3   4.33  2.68
-10  0.24 Very Good D     VVS1     61.5    60   553  3.97  4     2.45
-# ℹ 6,764 more rows
-# ℹ Use `print(n = ...)` to see more rows
->
-````
-
-The output of the pipe is our new tibble with 6,764 rows.
-
-### Exercise 10
-
-Change the code so that the pipe, instead of just vomiting out its result for printing, assigns that result to a new object, named `D_diamonds`. Your script should look like:
-
-````
-library(tidyverse)
-
-D_diamonds <- diamonds |> 
-  filter(z != 0) |> 
-  filter(color == "D") 
-````
-
-Source (with echo) the new script. CP/CR.
-
-```{r website-3-10}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-````
-> library(tidyverse)
-
-> D_diamonds <- diamonds |> 
-+   filter(z != 0) |> 
-+   filter(color == "D") 
->
-````
-
-Notice how different this looks from the previous output. 
-
-First, none of the messages associated with the **tidyverse** package are displayed. R only shows these messages the first time you load the package in a given R session. 
-
-Second, the rows of the tibble are not shown because the pipe no longer just spits them out at the end. Instead, the results of the pipe are assigned to a new object: `D_diamonds`. Assignment does not result in printed output. 
-
-### Exercise 11
-
-From the R Terminal, run `ls()`. CP/CR.
-
-```{r website-3-11}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-````
-> ls()
-[1] "D_diamonds"
->
-````
-
-We have created a new object in the environment, called `D_diamonds`. The name `D_diamonds` is meant to remind us that all the diamonds in this tibble are of color "D."
-
-### Exercise 12
-
-Restart your R session by closing your R Terminal and opening a new one.
-
-From the R Terminal, run `ls()`. CP/CR.
-
-```{r website-3-12}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-````
-> ls()
-character(0)
->
-````
-
-`D_diamonds` has disappeared! Objects in the R environment vanish once R restarts. And that is OK! We have the script, `process_data.R`, which allows us to recreate the object whenever we want.
-
-### Exercise 13
-
-Source `process_data.R`. From the R Terminal, run `ls()`. CP/CR.
-
-```{r website-3-13}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-````
-> source("/workspaces/website-3/process_data.R")
-── Attaching core tidyverse packages ──────────────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.0.4     
-── Conflicts ────────────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package to force all conflicts to become errors
-> ls()
-[1] "D_diamonds"
->
-````
-
-I sourced without echo above, so the code is not repeated, but we do see the **tidyverse** warnings.
-
-`D_diamonds` is back! If you type `D_diamonds` at the R Terminal and hit "Enter," the contents of the tibble will appear.
-
-### Exercise 14
-
-It is often useful to save a permanent copy of an R object like a plot or a tibble. [`write_rds()`](https://readr.tidyverse.org/reference/read_rds.html) from the **readr** package is the most common approach for tibbles.
-
-From the R Terminal, run `write_rds(D_diamonds, file = "clean_data.rds")`. This function does not produce any output. The first argument is the R object(s) which you want to save. The second argument is the name of the file which will hold that object.
-
-From the Terminal, run `ls clean*`. CP/CR.
-
-```{r website-3-14}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-````
-@ppbds-student ➜ /workspaces/website-3 $ ls clean*
-clean_data.rds
-@ppbds-student ➜ /workspaces/website-3 $ 
-````
-
-There are now three objects associated with our tibble: 
-
-* The script, `process_data.R`, which we used to create it. 
-
-* The R object, `D_diamonds`, which only exists in the R session in which it was created. 
-
-* The RDS object, `clean_data.rds`, which contains the data and which continues to exist even after the R session ends. Indeed, the RDS object can be committed and pushed to GitHub. (But be careful not to push large objects (greater than 100 megabytes) to GitHub.)
-
-
-### Exercise 15
-
-Close your R Terminal and open a new one to restart R. At the R Terminal, run `library(tidyverse)`. We need to reload the **tidyverse** every time we restart R.
-
-At the R Terminal, run `read_rds("clean_data.rds")`. CP/CR.
-
-```{r website-3-15}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-Your answer should look like:
-
-````
-> read_rds("clean_data.rds")
-# A tibble: 6,774 × 10
-   carat cut       color clarity depth table price     x     y     z
-   <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
- 1  0.23 Very Good D     VS2      60.5    61   357  3.96  3.97  2.4 
- 2  0.23 Very Good D     VS1      61.9    58   402  3.92  3.96  2.44
- 3  0.26 Very Good D     VS2      60.8    59   403  4.13  4.16  2.52
- 4  0.26 Good      D     VS2      65.2    56   403  3.99  4.02  2.61
- 5  0.26 Good      D     VS1      58.4    63   403  4.19  4.24  2.46
- 6  0.22 Premium   D     VS2      59.3    62   404  3.91  3.88  2.31
- 7  0.3  Premium   D     SI1      62.6    59   552  4.23  4.27  2.66
- 8  0.3  Ideal     D     SI1      62.5    57   552  4.29  4.32  2.69
- 9  0.3  Ideal     D     SI1      62.1    56   552  4.3   4.33  2.68
-10  0.24 Very Good D     VVS1     61.5    60   553  3.97  4     2.45
-# ℹ 6,764 more rows
-# ℹ Use `print(n = ...)` to see more rows
->
-````
-
-The value returned by `read_rds()` is whatever is contained in the RDS object. In this case, that is a tibble. But, when the object at the R Terminal is a tibble, the contents of the tibble are just printed out, as here.
-
-### Exercise 16
-
-Open the `process_data.R` script. At the bottom, skip a line after the pipe and then add this line (the same one we just executed at the R Terminal):
-
-````
-write_rds(D_diamonds, file = "clean_data.rds")
-````
-
-It is separate from, and unconnected to, the pipe which creates the `D_diamonds` tibble. 
-
-In the Terminal, run `cat process_data.R`. CP/CR.
-
-```{r website-3-16}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 6)
-```
-
-### 
-
-````
-@ppbds-student ➜ /workspaces/website-3 $ cat process_data.R
-library(tidyverse)
-
-D_diamonds <- diamonds |> 
-  filter(z != 0) |> 
-  filter(color == "D") 
-
-write_rds(D_diamonds, file = "clean_data.rds")
-@ppbds-student ➜ /workspaces/website-3 $ 
-````
-
-This is a common approach in larger projects: each script finishes by saving an object that other scripts then use.
-
-### Exercise 17
-
-In the Terminal, run `rm clean_data.rds`. You are starting your workflow with nothing but the code.
-
-Source `process_data.R`. Open the file and click the Run button (▷) at the top right of the editor.
-
-In the Terminal, run `ls clean*`. CP/CR.
-
-```{r website-3-17}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-Your answer should look like:
-
-````
-@ppbds-student ➜ /workspaces/website-3 $ ls clean*
-clean_data.rds
-@ppbds-student ➜ /workspaces/website-3 $ 
-````
-
-`clean*` is a regular expression which matches any file which starts with the letters `clean`. 
-
-Think about the overall workflow.
-
-* First, we worked interactively, just playing around with plots in `index.qmd`, trying to figure out what works.
-
-* Second, once we had a good idea of what we were doing, we moved to a script, `process_data.R`. We don't want that code to be re-run every time we update `index.qmd`. So, we move some of the work to a script, to be run interactively whenever we need to change something.
-
-* Third, we changed the script so that its final output was a permanent object. Later parts of the process can just begin with `clean_data.rds`.
-
-### Exercise 18
-
-A PNG file allows us to save any R graphic in a file. When we use a PNG, we avoid having to re-run the code which created it. This is very convenient for graphics which take a long time to create.
-
-Use `File -> New File...` to create a new file. Save it as `make_plot.R`.
-
-In the Terminal, run `ls`. CP/CR.
-
-```{r website-3-18}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 3)
-```
-
-###
-
-````
-@ppbds-student ➜ /workspaces/website-3 $ ls
-_quarto.yml     _site           clean_data.rds  make_plot.R     styles.css
-about.qmd       index.qmd       process_data.R
-@ppbds-student ➜ /workspaces/website-3 $ 
-````
-
-Make sure that `make_plot.R` is one of these files. We often use scripts to record the exact steps we used in creating a graphic. We want our work to be reproducible. We will often need to perform the same work again, albeit with some small changes. A script can make that much simpler.
-
-### Exercise 19
-
-Though an R script will use the libraries you already have loaded if executed interactively in the R Terminal, it is good practice to include these at the top of the script. Any script you create should run correctly, even if you have just re-started R.
-
-In `make_plot.R`, load the **tidyverse** package using the `library()` command. 
-
-In the Terminal, run `cat make_plot.R`. CP/CR.
-
-```{r website-3-19}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 3)
-```
-
-### 
-
-````
-@ppbds-student ➜ /workspaces/website-3 $ cat make_plot.R
-library(tidyverse)
-@ppbds-student ➜ /workspaces/website-3 $ 
-````
-
-###
-
-Avoid dashes in script names that you'll run from the Terminal — the shell sometimes interprets a dash as a special character. (Code chunk labels are fine with dashes; it's only Terminal-facing filenames that can cause trouble.)
-
-### Exercise 20
-
-Copy this code into `make_plot.R`, after skipping a line after `library(tidyverse)`.  Save the file.
-
-````
-x <- read_rds("clean_data.rds")
-
-x |> 
-  ggplot(aes(x = carat, y = price, color = cut)) + 
-    geom_point() +
-    scale_y_continuous(labels = scales::dollar) +
-    labs(title = "Prices and Sizes for Diamonds of Color D",
-         subtitle = "'Round' carat values like 1, 1.5 and 2 are more common.",
-         x = "Carat",
-         y = "Price")
-````
-
-In the Terminal, run `cat make_plot.R`. CP/CR.
-
-```{r website-3-20}
-question_text(NULL,
-    answer(NULL, correct = TRUE),
-    allow_retry = TRUE,
-    try_again_button = "Edit Answer",
-    incorrect = NULL,
-    rows = 10)
-```
-
-### 
-
-````
-@ppbds-student ➜ /workspaces/website-3 $ cat make_plot.R
-library(tidyverse)
-
-x <- read_rds("clean_data.rds")
-
-x |> 
-  ggplot(aes(x = carat, y = price, color = cut)) + 
-    geom_point() +
-    scale_y_continuous(labels = scales::dollar) +
-    labs(title = "Prices and Sizes for Diamonds of Color D",
-         subtitle = "'Round' carat values like 1, 1.5 and 2 are more common.",
-         x = "Carat",
-         y = "Price")
-@ppbds-student ➜ /workspaces/website-3 $ 
-````
-
-The code does two things. 
-
-First, it reads the tibble from `clean_data.rds` and assigns that tibble to `x`. (The fact that, in our `process_data.R` script, this data was named `D_diamonds` is irrelevant. `write_rds()` just saves the tibble, not the *name* of the tibble.)
-
-Second, it starts a new pipe with `x` and creates the plot. Because the plot is not assigned to an object, it is printed directly and shows up in the Plots tab.
-
-### Exercise 21
-
-Source (with echo) the entire script. This takes all the code from the script and feeds it, line-by-line, to the R Terminal. CP/CR.
-
-```{r website-3-21}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-````
-> source("/workspaces/website-3/make_plot.R", echo = TRUE)
-
-> library(tidyverse)
-
-> x <- read_rds("clean_data.rds")
-
-> x |> 
-+   ggplot(aes(x = carat, y = price, color = cut)) + 
-+     geom_point() +
-+     scale_y_continuous(labels = scales::dollar) +
-+     labs(titl .... [TRUNCATED] 
->
-````
-
-At this point, we face the same problem as we faced when working on `process_data.R`. The script creates the object, in this case a graphic, which we want. But we need a way to save a permanent copy of that object.
-
-### Exercise 22
-
-Edit `make_plot.R` in two ways. First, assign the plot to an object named `D_plot`. Second, insert, after the graphic pipe, `ggsave("size_v_weight.png", D_plot)`. 
-
-In the Terminal, run `cat make_plot.R`. CP/CR.
-
-```{r website-3-22}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 8)
-```
-
-### 
-
-````
-library(tidyverse)
-x <- read_rds("clean_data.rds")
-
-D_plot <- x |> 
-  ggplot(aes(x = carat, y = price, color = cut)) + 
-    geom_point() +
-    scale_y_continuous(labels = scales::dollar) +
-    labs(title = "Prices and Sizes for Diamonds of Color D",
-         subtitle = "'Round' carat values like 1, 1.5 and 2 are more common.",
-         x = "Carat",
-         y = "Price")
-         
-ggsave("size_v_weight.png", D_plot)
-````
-
-As with `process_data.R`, we have created a script which encapsulates, from start-to-finish, a discrete part of our analysis. In this case, we start from the tibble saved in `clean_data.rds` and finish by saving a graphic in `size_v_weight.png`.
-
-### Exercise 23
-
-Source `make_plot.R`. From the Terminal, run `ls`. CP/CR.
-
-```{r website-3-23}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-````
-@ppbds-student ➜ /workspaces/website-3 $ ls
-_quarto.yml             make_plot.R
-_site                   process_data.R
-about.qmd               size_v_weight.png
-clean_data.rds          styles.css
-index.qmd
-@ppbds-student ➜ /workspaces/website-3 $ 
-````
-
-There are a lot of files! Note the new script `make_plot.R`, the object with which it starts, `clean_data.rds`, and the object which it creates, `size_v_weight.png`. 
-
-### Exercise 24
-
-Open the `index.qmd` file. In the `setup` code chunk, add `library(knitr)`. In the second code chunk, delete all the plotting code. Replace it all with `knitr::include_graphics("size_v_weight.png")`. Save the file.
-
-In the Terminal, run `cat index.qmd`. CP/CR.
-
-```{r website-3-24}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 10)
-```
-
-### 
-
-<!-- Show the answer. -->
-
-There was nothing wrong, *per se*, with having the plotting code in `index.qmd` rather than `make_plot.R`. The problem arises when that plotting code takes a long time to run, as it often will. We don't want to re-run all the code each time we make a small change to the website. It is much better to separate out the plotting code and only run it when we need to.
-
-### Exercise 25
-
-From the Terminal, run `quarto publish gh-pages`. You will need to hit `Enter` at least once.  Commit and push all the files. 
-
-From the Terminal, run `git show --name-status HEAD`. CP/CR.
-
-```{r website-3-25}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
-
-### 
-
-````
-@ppbds-student ➜ /workspaces/website-3 $ git show --name-status HEAD
-commit 5ff52befc37ba1a3ac87dac781f48d6c6251c225 (HEAD -> main, origin/main, origin/HEAD)
-Author: David Kane <dave.kane@gmail.com>
-Date:   Mon Mar 17 20:08:52 2025 -0400
-
-    update main page
-
-A       clean_data.rds
-M       index.qmd
-A       make_plot.R
-A       process_data.R
-A       size_v_weight.png
-@ppbds-student ➜ /workspaces/website-3 $ 
-````
-
-Note the workflow. At the start, we created a pipe in `index.qmd` which does everything and then, later, we moved the code into separate scripts so that we don't need to run all the analysis each time we render the website. This is a very common approach. First, get something working. Second, organize and clean it all up. 
-
-In a complex project, we will often create directories --- like `code`, `data`, and `images` --- into which we will place files like `process_data.R`, `clean_data.rds`, and `size_v_weight.png`, respectively.
-
-Graphics on the web often appear differently than graphics on your computer, so [many people find it useful](https://rfortherestofus.com/2019/08/themes-to-improve-your-ggplot-figures) to increase the size of the text in their graphics. [A simple way](https://minimaxir.com/2017/08/ggplot2-web/) to do that is to add `theme_minimal(base_size = 18)` to your plot creation code. Fortunately, doing so is as simple as editing and then re-running `make_plot.R`.
-
-When saving graphics for web display, it is often useful to specify their exact size with a command like `ggsave("your-file.png", your-plot, width = 4, height = 3)`. An earlier edition of [*ggplot2: Elegant Graphics for Data Analysis*](https://ggplot2-book.org/) also [notes](https://bookdown.dongzhuoer.com/hadley/ggplot2-book/saving) that:
-
-> For raster graphics (i.e. .png, .jpg), the dpi argument controls the resolution of the plot. It defaults to 300, which is appropriate for most printers, but you may want to use 600 for particularly high-resolution output, or 96 for on-screen (e.g., web) display.
-
-### Exercise 26
-
-Navigate to your `website-3` GitHub repo. Copy and paste the repository file listing.
-
-```{r website-3-26}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 10)
-```
-
-###
-
-Your file listing should look something like:
-
-````
-.gitignore          initial version     2 days ago
-_quarto.yml         initial version     2 days ago
-about.qmd           initial version     2 days ago
-clean_data.rds      update main page    1 hour ago
-index.qmd           update main page    1 hour ago
-make_plot.R         update main page    1 hour ago
-process_data.R      update main page    1 hour ago
-size_v_weight.png   update main page    1 hour ago
-styles.css          initial version     2 days ago
-````
-
-Once you have confirmed your files are on GitHub, delete your Codespace. Click the green **Code** button on the repo page, go to the **Codespaces** tab, click **...** next to your Codespace, and select **Delete**.
-
-###
-
-In `website-1` and `website-2`, all R code lived inside `index.qmd` and re-ran every time you rendered the site. `website-3` introduced a more scalable pattern: `process_data.R` runs once and saves its result to `clean_data.rds`, then `make_plot.R` reads that file and saves `size_v_weight.png`, and `index.qmd` simply displays the image. 
-
-Notice that the `gh-pages` branch you learned about in `website-2` still handles publishing — what changed is only the structure of `main`.
-
-In professional data science projects, this separation of data cleaning, modeling, visualization, and reporting into distinct scripts makes pipelines faster to iterate on, easier for collaborators to understand, and simpler to debug when something goes wrong.
 
 ## Summary
 ### 
