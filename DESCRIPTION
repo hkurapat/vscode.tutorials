@@ -1,6 +1,6 @@
 Package: vscode.tutorials
 Title: Tutorials for Learning 'VS Code' in GitHub Codespaces
-Version: 0.0.2.9002
+Version: 0.0.2.9003
 Authors@R:
     c(
     person(given = "David",

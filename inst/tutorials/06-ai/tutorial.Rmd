@@ -2,7 +2,7 @@
 title: "AI"
 author: David Kane
 tutorial:
-  id: "08-ai"
+  id: "06-ai"
 output:
   learnr::tutorial:
     df_print: default
@@ -33,13 +33,13 @@ This tutorial introduces the [Gemini CLI](https://github.com/google-gemini/gemin
 
 ### Exercise 1
 
-You must do this tutorial in a Codespace created from a GitHub repo named `08-ai`. If you haven't already done this, follow these steps:
+You must do this tutorial in a Codespace created from a GitHub repo named `06-ai`. If you haven't already done this, follow these steps:
 
-1. Create a GitHub Repo: go to the [codespace-starter repo](https://github.com/ppbds-student/codespace-starter). Click the green "Use this Template" drop-down button and select "Create a new repository". Name the repo `08-ai`. Then click "Create repository".
+1. Create a GitHub Repo: go to the [codespace-starter repo](https://github.com/ppbds-student/codespace-starter). Click the green "Use this Template" drop-down button and select "Create a new repository". Name the repo `06-ai`. Then click "Create repository".
 
-2. Create a Codespace from `08-ai`: from this repo's page, click the green "Code" drop down button, select the "Codespaces" tab, and click "Create Codespace on main".
+2. Create a Codespace from `06-ai`: from this repo's page, click the green "Code" drop down button, select the "Codespaces" tab, and click "Create Codespace on main".
 
-Copy and paste the URL for your `08-ai` repository.
+Copy and paste the URL for your `06-ai` repository.
 
 ```{r introduction-1}
 question_text(NULL,
@@ -55,7 +55,7 @@ question_text(NULL,
 Your answer should look something like:
 
 ````
-https://github.com/ppbds-student/08-ai
+https://github.com/ppbds-student/06-ai
 ````
 
 ###
@@ -106,12 +106,12 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-@ppbds-student ➜ /workspaces/08-ai (main) $ pwd
-/workspaces/08-ai
-@ppbds-student ➜ /workspaces/08-ai (main) $
+@ppbds-student ➜ /workspaces/06-ai (main) $ pwd
+/workspaces/06-ai
+@ppbds-student ➜ /workspaces/06-ai (main) $
 ````
 
-Gemini CLI can see exactly what you can see. Because it runs in the same directory (`/workspaces/08-ai`), any files here are directly accessible to it --- a key difference from a chat interface, where you'd have to manually paste file contents for the AI to read them.
+Gemini CLI can see exactly what you can see. Because it runs in the same directory (`/workspaces/06-ai`), any files here are directly accessible to it --- a key difference from a chat interface, where you'd have to manually paste file contents for the AI to read them.
 
 ### Exercise 4
 
@@ -131,9 +131,9 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-@ppbds-student ➜ /workspaces/08-ai (main) $ ls -a
+@ppbds-student ➜ /workspaces/06-ai (main) $ ls -a
 .  ..  .devcontainer  .git
-@ppbds-student ➜ /workspaces/08-ai (main) $
+@ppbds-student ➜ /workspaces/06-ai (main) $
 ````
 
 ###
@@ -704,10 +704,10 @@ question_text(NULL,
 Your answer should look something like:
 
 ````
-@ppbds-student ➜ /workspaces/08-ai (main) $ git log --oneline
+@ppbds-student ➜ /workspaces/06-ai (main) $ git log --oneline
 a3b8c21 (HEAD -> main) initial version with analysis and gitignore
 e3b01ee Initial commit
-@ppbds-student ➜ /workspaces/08-ai (main) $
+@ppbds-student ➜ /workspaces/06-ai (main) $
 ````
 
 The `(HEAD -> main)` indicator confirms your local branch is current, but the missing `origin/main` means this commit hasn't been pushed to GitHub yet. Pushing is what sends it there and makes it visible to others.
@@ -864,7 +864,7 @@ question_text(NULL,
 Your URL should look something like:
 
 ```
-https://ppbds-student.github.io/08-ai/
+https://ppbds-student.github.io/06-ai/
 ```
 
 GitHub Pages takes a minute or two to deploy after `quarto publish` runs. If the link doesn't load immediately, wait and refresh.

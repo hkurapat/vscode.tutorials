@@ -2,7 +2,7 @@
 title: Quarto Websites Introduction
 author: David Kane
 tutorial:
-  id: 06-websites-1
+  id: 07-websites-1
 output:
   learnr::tutorial:
     progressive: yes
@@ -34,7 +34,7 @@ This tutorial introduces the process of creating and organizing [Quarto websites
 
 ### 
 
-If you haven't already, start a new Github repository named `06-websites-1` and create a new Codespace where you will run this tutorial and complete all your work.
+If you haven't already, start a new Github repository named `07-websites-1` and create a new Codespace where you will run this tutorial and complete all your work.
 
 ## Creating files
 ### 
@@ -43,7 +43,7 @@ Let's make a [Quarto website](https://quarto.org/docs/websites/).
 
 ### Exercise 1
 
-Verify that you have created a new public Github repo (called `06-websites-1`). Copy/paste the URL for the repo.
+Verify that you have created a new public Github repo (called `07-websites-1`). Copy/paste the URL for the repo.
 
 ```{r creating-files-1}
 question_text(NULL,
@@ -59,7 +59,7 @@ question_text(NULL,
 Your answer should look something like:
 
 ```
-https://github.com/ppbds-student/06-websites-1
+https://github.com/ppbds-student/07-websites-1
 ```
 
 Always start a new data science project with a new Github repo.
@@ -94,15 +94,15 @@ question_text(NULL,
 Your answer should look like this:
 
 ````
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $ quarto create project website .
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $ quarto create project website .
 ? Title (website) › A New Website
-Creating project at /workspaces/06-websites-1:
+Creating project at /workspaces/07-websites-1:
   - Created _quarto.yml
   - Created .gitignore
   - Created index.qmd
   - Created about.qmd
   - Created styles.css
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $
 ````
 
 Quarto created 5 new files in the current directory. On the command line, `.` always refers to the current directory.
@@ -123,9 +123,9 @@ question_text(NULL,
 ### 
 
 ````
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $ ls
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $ ls
 _quarto.yml     about.qmd       index.qmd       styles.css
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $
 ````
 
 These are the basic files needed to build a Quarto website. Note that `ls` does not show "hidden" files — those beginning with a `.`.
@@ -146,10 +146,10 @@ question_text(NULL,
 ### 
 
 ````
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $ ls -a
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $ ls -a
 .               .git            about.qmd       styles.css
 ..              .gitignore      _quarto.yml     index.qmd
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $
 ````
 
 In general, do not touch or modify "dot" directories — those whose names begin with a period. They are managed by the operating system or other programs. For example, Git uses `.git` to track all changes in the project. Also note that `quarto create` added a `.gitignore` file, which was hidden from the plain `ls` output.
@@ -359,13 +359,13 @@ question_text(NULL,
 ### 
 
 ````
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $ git log -n 1
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $ git log -n 1
 commit 658eedd63f2c3e2734484a2397935e854f5008f7 (HEAD -> main, origin/main, origin/HEAD)
 Author: ppbds-student <ppbds-student@users.noreply.github.com>
 Date:   Sat Mar 15 22:41:22 2025 -0400
 
     initial version
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $
 ````
 
 To learn more about Git, GitHub, and R, see [Happy Git with R](https://happygitwithr.com/existing-github-last.html).
@@ -392,13 +392,13 @@ question_text(NULL,
 ### 
 
 ````
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $ quarto render
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $ quarto render
 [1/2] index.qmd
 [2/2] about.qmd
 
 Output created: _site/index.html
 
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $
 ````
 
 Quarto tells us what it did: it processed both QMD files and created a `_site` directory containing `index.html`.
@@ -423,10 +423,10 @@ question_text(NULL,
 ###
 
 ````
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $ ls
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $ ls
 _site           index.qmd
 _quarto.yml     about.qmd       styles.css
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $
 ````
 
 Note the addition of a `_site` directory. This is where the HTML files that make up the website are stored. Website output files are often placed in a directory named `_site` or `docs`, depending on your web hosting service.
@@ -449,9 +449,9 @@ question_text(NULL,
 Your answer will probably look something like:
 
 ````
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $ ls _site
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $ ls _site
 about.html      index.html      search.json     site_libs       styles.css
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $
 ````
 
 The `about.html` and `index.html` files are the rendered versions of `about.qmd` and `index.qmd`. They go into `_site` because the convention is to separate outputs (HTML files) from inputs (QMD files).
@@ -511,7 +511,7 @@ question_text(NULL,
 ### 
 
 ````
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $ quarto preview
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $ quarto preview
 Preparing to preview
 
 Watching files for changes
@@ -543,7 +543,7 @@ question_text(NULL,
 ### 
 
 ````
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $ quarto preview
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $ quarto preview
 Preparing to preview
 
 Watching files for changes
@@ -686,7 +686,7 @@ To make your website publicly visible, you need to "publish" it to the web. The 
 
 ### Exercise 1
 
-Go to your `06-websites-1` Github repository.
+Go to your `07-websites-1` Github repository.
 
 Click "Settings" on the right side of the top menu.
 
@@ -708,7 +708,7 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-https://github.com/ppbds-student/06-websites-1/settings/pages
+https://github.com/ppbds-student/07-websites-1/settings/pages
 ````
 
 This page shows the settings that control GitHub Pages. It should look something like this:
@@ -741,16 +741,16 @@ question_text(NULL,
 ### 
 
 ````
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $ quarto publish gh-pages
-? Publish site to https://ppbds-student.github.io/06-websites-1/ using gh-pages? (Y/n) › Yes
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $ quarto publish gh-pages
+? Publish site to https://ppbds-student.github.io/07-websites-1/ using gh-pages? (Y/n) › Yes
 Saved working directory and index state WIP on main: 658eedd initial version
 Switched to a new branch 'gh-pages'
 [gh-pages (root-commit) c05d288] Initializing gh-pages branch
 remote:
 remote: Create a pull request for 'gh-pages' on GitHub by visiting:
-remote:      https://github.com/ppbds-student/06-websites-1/pull/new/gh-pages
+remote:      https://github.com/ppbds-student/07-websites-1/pull/new/gh-pages
 remote:
-To https://github.com/ppbds-student/06-websites-1.git
+To https://github.com/ppbds-student/07-websites-1.git
  * [new branch]      HEAD -> gh-pages
  ...
 ````
@@ -803,13 +803,13 @@ question_text(NULL,
 ###
 
 ````
-To https://github.com/ppbds-student/06-websites-1.git
+To https://github.com/ppbds-student/07-websites-1.git
    c05d288..0396c20  HEAD -> gh-pages
 
 [✓] Deploying gh-pages branch to website (this may take a few minutes)
-[✓] Published to https://ppbds-student.github.io/06-websites-1/
+[✓] Published to https://ppbds-student.github.io/07-websites-1/
 
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $
 ````
 
 The publishing process may take a minute or two to complete. The URL for your website is provided at the end.
@@ -830,7 +830,7 @@ question_text(NULL,
 ### 
 
 ````
-https://ppbds-student.github.io/06-websites-1/
+https://ppbds-student.github.io/07-websites-1/
 ````
 
 When using GitHub Pages, the URL always follows the same pattern: your GitHub username followed by `github.io`, then the repo name. Use descriptive names for your repos.
@@ -853,9 +853,9 @@ question_text(NULL,
 ### 
 
 ````
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $ ls .quarto
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $ ls .quarto
 idx     preview xref
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $
 ````
 
 The `.quarto` directory is like `.git`. Never look at or edit the files inside either — they are managed by Quarto and Git respectively.
@@ -939,9 +939,9 @@ question_text(NULL,
 ### 
 
 ````
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $ quarto publish
-? Publish update to: › https://ppbds-student.github.io/06-websites-1/ (GitHub Pages)
-From https://github.com/ppbds-student/06-websites-1
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $ quarto publish
+? Publish update to: › https://ppbds-student.github.io/07-websites-1/ (GitHub Pages)
+From https://github.com/ppbds-student/07-websites-1
  * branch            gh-pages   -> FETCH_HEAD
 Rendering for publish:
 
@@ -953,18 +953,18 @@ branch 'gh-pages' set up to track 'origin/gh-pages'.
 HEAD is now at 2576ffd Built site for gh-pages
 [gh-pages f262006] Built site for gh-pages
  3 files changed, 5 insertions(+), 5 deletions(-)
-origin  https://github.com/ppbds-student/06-websites-1 (fetch)
-origin  https://github.com/ppbds-student/06-websites-1 (push)
-To https://github.com/ppbds-student/06-websites-1
+origin  https://github.com/ppbds-student/07-websites-1 (fetch)
+origin  https://github.com/ppbds-student/07-websites-1 (push)
+To https://github.com/ppbds-student/07-websites-1
    2576ffd..f262006  HEAD -> gh-pages
 
 NOTE: GitHub Pages sites use caching so you might need to click the refresh
 button within your web browser to see changes after deployment.
 
 [✓] Deploying gh-pages branch to website (this may take a few minutes)
-[✓] Published to https://ppbds-student.github.io/06-websites-1/
+[✓] Published to https://ppbds-student.github.io/07-websites-1/
 
-@ppbds-student ➜ /workspaces/06-websites-1 (main) $
+@ppbds-student ➜ /workspaces/07-websites-1 (main) $
 ````
 
 This output is shorter because Quarto already created the `gh-pages` branch when you first published.

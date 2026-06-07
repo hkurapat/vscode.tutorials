@@ -24,8 +24,10 @@ The package includes tutorials focused on VS Code and modern R development:
 \item \strong{Terminal} (03-terminal): Command line fundamentals
 \item \strong{VS Code and GitHub Introduction} (04-github-1): Git and GitHub basics within VS Code
 \item \strong{VS Code and GitHub Advanced} (05-github-2): Advanced Git/GitHub workflows and GitHub Pages
-\item \strong{Quarto Websites Introduction} (06-websites-1): Basic website construction using Quarto projects
-\item \strong{Quarto Websites Advanced} (07-websites-2): Advanced Quarto websites with modular data analysis
+\item \strong{AI} (06-ai): Using the Gemini CLI for AI-assisted data science work in GitHub Codespaces
+\item \strong{Quarto Websites Introduction} (07-websites-1): Basic website construction using Quarto projects
+\item \strong{Quarto Websites Advanced} (08-websites-2): Advanced Quarto websites with modular data analysis
+\item \strong{Infrastructure} (09-infrastructure): A tour of devcontainers and how they keep Codespaces consistent
 }
 }
 
@@ -35,7 +37,7 @@ To run a tutorial, use:
 \code{learnr::run_tutorial(name = "short_tutorial_name", package = "vscode.tutorials")}
 
 Available tutorial names include: 01-code, 02-quarto, 03-terminal, 04-github-1,
-05-github-2, 06-websites-1, and 07-websites-2.
+05-github-2, 06-ai, 07-websites-1, 08-websites-2, and 09-infrastructure.
 }
 
 \seealso{
