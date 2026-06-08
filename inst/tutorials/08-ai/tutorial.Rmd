@@ -442,6 +442,12 @@ After Gemini finishes, check your Live Server tab --- it should have refreshed a
 
 <!-- AR: show image of creating the new R Terminal -->
 
+<!-- HK: Added new-r-terminal.png to images folder showing how to create a new R Terminal from the dropdown menu. -->
+
+```{r}
+knitr::include_graphics("images/new-r-terminal.png")
+```
+
 Then, in the new R Terminal, run:
 
 ```
