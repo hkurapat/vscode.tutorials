@@ -1,15 +1,15 @@
 ---
-title: "AI"
+title: "AI Introduction"
 author: David Kane
 tutorial:
-  id: "06-ai"
+  id: "04-ai-1"
 output:
   learnr::tutorial:
     df_print: default
     progressive: true
     allow_skip: true
 runtime: shiny_prerendered
-description: "Introduction to using the Gemini CLI for AI-assisted data science work in GitHub Codespaces. Shows how to authenticate, create and render files, and use Gemini to handle a full Git workflow."
+description: "A first look at the Gemini CLI for AI-assisted data science work in GitHub Codespaces. Shows how to authenticate, let Gemini explore your files, and use it to create and render a Quarto analysis. A companion tutorial later returns to Gemini for the Git workflow."
 ---
 
 ```{r setup, include = FALSE}
@@ -29,17 +29,17 @@ options(tutorial.exercise.timelimit = 60,
 ## Introduction
 ###
 
-This tutorial introduces the [Gemini CLI](https://github.com/google-gemini/gemini-cli) for doing AI-assisted data science work in GitHub Codespaces. You will set up and use the Gemini CLI --- a terminal-based AI assistant that can read your files, run commands in the terminal, and write new files --- to create and render project files and handle Git operations.
+This is your first look at an AI *agent*. You have already used AI as a chat window --- asking a question and copy/pasting the answer back by hand. The [Gemini CLI](https://github.com/google-gemini/gemini-cli) is different: it is a terminal-based assistant that can read your files, run commands in the terminal, and write new files directly, asking your permission at each step. In this tutorial you will set it up and use it to explore a project and to create and render a Quarto analysis. A later tutorial, after you have learned Git, returns to Gemini to handle the Git workflow.
 
 ### Exercise 1
 
-You must do this tutorial in a Codespace created from a GitHub repo named `06-ai`. If you haven't already done this, follow these steps:
+You must do this tutorial in a Codespace created from a GitHub repo named `04-ai-1`. If you haven't already done this, follow these steps:
 
-1. Create a GitHub Repo: go to the [codespace-starter repo](https://github.com/ppbds-student/codespace-starter). Click the green "Use this Template" drop-down button and select "Create a new repository". Name the repo `06-ai`. Then click "Create repository".
+1. Create a GitHub Repo: go to the [codespace-starter repo](https://github.com/ppbds-student/codespace-starter). Click the green "Use this Template" drop-down button and select "Create a new repository". Name the repo `04-ai-1`. Then click "Create repository".
 
-2. Create a Codespace from `06-ai`: from this repo's page, click the green "Code" drop down button, select the "Codespaces" tab, and click "Create Codespace on main".
+2. Create a Codespace from `04-ai-1`: from this repo's page, click the green "Code" drop down button, select the "Codespaces" tab, and click "Create Codespace on main".
 
-Copy and paste the URL for your `06-ai` repository.
+Copy and paste the URL for your `04-ai-1` repository.
 
 ```{r introduction-1}
 question_text(NULL,
@@ -55,7 +55,7 @@ question_text(NULL,
 Your answer should look something like:
 
 ````
-https://github.com/ppbds-student/06-ai
+https://github.com/ppbds-student/04-ai-1
 ````
 
 ###
@@ -106,12 +106,12 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-@ppbds-student ➜ /workspaces/06-ai (main) $ pwd
-/workspaces/06-ai
-@ppbds-student ➜ /workspaces/06-ai (main) $
+@ppbds-student ➜ /workspaces/04-ai-1 (main) $ pwd
+/workspaces/04-ai-1
+@ppbds-student ➜ /workspaces/04-ai-1 (main) $
 ````
 
-Gemini CLI can see exactly what you can see. Because it runs in the same directory (`/workspaces/06-ai`), any files here are directly accessible to it --- a key difference from a chat interface, where you'd have to manually paste file contents for the AI to read them.
+Gemini CLI can see exactly what you can see. Because it runs in the same directory (`/workspaces/04-ai-1`), any files here are directly accessible to it --- a key difference from a chat interface, where you'd have to manually paste file contents for the AI to read them.
 
 ### Exercise 4
 
@@ -131,9 +131,9 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-@ppbds-student ➜ /workspaces/06-ai (main) $ ls -a
+@ppbds-student ➜ /workspaces/04-ai-1 (main) $ ls -a
 .  ..  .devcontainer  .git
-@ppbds-student ➜ /workspaces/06-ai (main) $
+@ppbds-student ➜ /workspaces/04-ai-1 (main) $
 ````
 
 ###
@@ -583,239 +583,10 @@ question_text(NULL,
 
 Gemini's **conversation history** is gone the moment you type `/quit`, but the **files on disk** are permanent --- this is why it can pick up where you left off after a restart just by reading the files. The `/chat save <name>` command lets you preserve a conversation so you can resume it later with `/chat resume <name>`.
 
-## Git with Gemini
-###
-
-Now that the project has real files, let's save the work with Git. Rather than just telling you the commands, we'll use Gemini to explain the Git workflow. Using AI to understand what you are doing --- not just to do it --- is a powerful learning strategy.
-
-### Exercise 1
-
-Ask Gemini to check the Git status and explain what the output means:
-
-```
-Run git status and explain what each part of the output means.
-```
-
-Press `y`, 1, or hit Enter on allow once to allow the shell command. CP/CR the full response including Gemini's explanation.
-
-```{r git-with-gemini-1}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 18)
-```
-
-###
-
-Your answer should look something like:
-
-````
-> Run git status and explain what each part of the output means.
-
-╔ Tool Use: run_shell ══════════════════╗
-║  Command: git status                  ║
-╚═══════════════════════════════════════╝
-
-Allow this tool call? [y/n/a]: y
-
-Output:
-On branch main
-Your branch is up to date with 'origin/main'.
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-        .gitignore
-        analysis.html
-        analysis.qmd
-
-nothing added to commit but untracked files present
-
-Here's what this means:
-- "On branch main" — you are working on the main branch.
-- "Your branch is up to date" — your local branch matches the GitHub copy.
-- "Untracked files" — Git has noticed these files but is not monitoring them yet. They will not be included in any commit until you explicitly add them with `git add`.
-
->
-````
-
-###
-
-`git status` shows your branch, **staged** changes (added to the next commit), and **untracked** files (noticed by Git but not yet included). Smart commit in `codespace-starter` handles staging automatically --- just press the "Commit" button.
-
-You may notice that `analysis.html` does not appear in your `git status` output. This can happen if the `.gitignore` Gemini created includes `*.html`, which tells Git to ignore all HTML files. If this happens, you can use `git add -f analysis.html` to force Git to track it anyway.
-
-### Exercise 2
-
-Ask Gemini to explain the difference between `git add` and `git commit`, and to provide the exact command to commit all three files with a good message:
-
-```
-Explain the difference between git add and git commit. Then give me the exact command to commit .gitignore, analysis.qmd, and analysis.html with a descriptive message.
-```
-
-CP/CR Gemini's full response.
-
-```{r git-with-gemini-2}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 20)
-```
-
-###
-
-Gemini should explain that `git add` moves files into the **staging area**, a holding zone where you prepare which changes to include before committing. `git commit` then takes everything in the staging area and permanently records it in the project's history. A typical response will include commands like:
-
-```
-git add .gitignore analysis.qmd analysis.html
-git commit -m "initial version with analysis and gitignore"
-```
-
-###
-
-The two-step design lets you choose exactly which files go into each commit --- useful when you want to record related changes separately with different messages. In `codespace-starter`, the Source Control sidebar handles both steps at once, but knowing they are separate matters when collaborating on larger projects.
-
-### Exercise 3
-
-Open the Source Control sidebar (the branch icon in the Activity Bar). You should see `.gitignore`, `analysis.qmd`, and `analysis.html` listed as changes. Type a commit message in the message box at the top, then click the **Commit** button. Because smart commit is enabled in the devcontainer, clicking Commit will stage and commit all changes in one step --- no `git add` required.
-
-Then, in a separate bash Terminal, run:
-
-```
-git log --oneline
-```
-
-CP/CR.
-
-```{r git-with-gemini-3}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 6)
-```
-
-###
-
-Your answer should look something like:
-
-````
-@ppbds-student ➜ /workspaces/06-ai (main) $ git log --oneline
-a3b8c21 (HEAD -> main) initial version with analysis and gitignore
-e3b01ee Initial commit
-@ppbds-student ➜ /workspaces/06-ai (main) $
-````
-
-The `(HEAD -> main)` indicator confirms your local branch is current, but the missing `origin/main` means this commit hasn't been pushed to GitHub yet. Pushing is what sends it there and makes it visible to others.
-
-### Exercise 4
-
-Ask Gemini to improve the storms-per-year chart. Type something like:
-
-```
-Update the storms-per-year chart in analysis.qmd to be a stacked area chart showing the count of each storm type per year. Filter to just tropical depressions, tropical storms, and hurricanes. Use a color scale that goes from light blue for tropical depressions through orange for tropical storms to dark red for hurricanes. Re-render the file when done.
-```
-
-Press `y` to authorize each tool call. Once the Live Server tab has refreshed and you are happy with the result, ask Gemini to handle the entire Git workflow:
-
-```
-Please commit analysis.qmd and analysis.html with a good message, and push to GitHub.
-```
-
-Press `y` to authorize each tool call as Gemini works through the steps. CP/CR the complete output.
-
-```{r git-with-gemini-4}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 20)
-```
-
-###
-
-Your output should look something like:
-
-````
-> Please commit analysis.qmd and analysis.html with a good message, and push to GitHub.
-
-╔ Tool Use: run_shell ═══════════════════════════════════════╗
-║  Command: git add analysis.qmd analysis.html               ║
-╚════════════════════════════════════════════════════════════╝
-Allow this tool call? [y/n/a]: y
-
-╔ Tool Use: run_shell ══════════════════════════════════════════════╗
-║  Command: git commit -m "convert to stacked area chart by storm type" ║
-╚══════════════════════════════════════════════════════════════════╝
-Allow this tool call? [y/n/a]: y
-
-╔ Tool Use: run_shell ════════════════════════╗
-║  Command: git push origin main              ║
-╚═════════════════════════════════════════════╝
-Allow this tool call? [y/n/a]: y
-
-✔ Done! Your changes have been committed and pushed to GitHub.
-
->
-````
-
-###
-
-Gemini issued three separate tool calls --- `git add`, `git commit`, and `git push` --- mapping directly to the three stages of staging, recording, and sharing. In Exercise 3 you ran these yourself using the Source Control sidebar; here you delegated them to gemini.
-
-### Exercise 5
-
-Still in Gemini, type `/stats session` and then `/stats model`. CP/CR both outputs.
-
-```{r git-with-gemini-5}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 18)
-```
-
-###
-
-Your output should look something like:
-
-````
-> /stats session
-
-Session Statistics:
-  Messages:           14
-  Tool calls made:    10
-  Tool calls allowed: 10
-  Input tokens:       ~18,400
-  Output tokens:      ~5,100
-  Total tokens:       ~23,500
-
-> /stats model
-
-Model: gemini-2.5-pro
-  Context window:    1,000,000 tokens
-  Free tier limit:   1,000,000 tokens/day
-  Used today:        ~23,500 tokens
-  Remaining:         ~976,500 tokens
-
->
-````
-
-###
-
-AI models have **context windows** --- a limit on how much text they can process in one session. Gemini's are very large (up to 1 million tokens), but `/stats` lets you track usage in real time; on the free tier, your daily limit resets every day.
-
-
 ## Summary
 ###
 
-This tutorial introduced the [Gemini CLI](https://github.com/google-gemini/gemini-cli) as a tool for AI-assisted data science in GitHub Codespaces. You authenticated with your Google account, used Gemini to create and render a Quarto analysis file, and delegated a complete Git workflow --- staging, committing, and pushing --- to the CLI.
+This tutorial introduced the [Gemini CLI](https://github.com/google-gemini/gemini-cli) as an AI *agent* --- a terminal-based assistant that reads your files, runs commands, and writes files on your behalf, asking permission at each step. You authenticated with your Google account, let Gemini explore the repository, and used it to create and render a Quarto analysis.
 
 ### Exercise 1
 
@@ -833,54 +604,16 @@ question_text(NULL,
 	allow_retry = TRUE,
 	try_again_button = "Edit Answer",
 	incorrect = NULL,
-	rows = 30)
+	rows = 20)
 ```
 
 ###
 
-Your answer should show the full contents of `analysis.qmd`, including a YAML header with `execute: echo: false`, a setup chunk using `suppressPackageStartupMessages(library(tidyverse))`, and at least two ggplot2 code chunks creating plots.
-
-### Exercise 2
-
-Publish your rendered QMD to GitHub Pages. In the bash Terminal, run:
-
-```
-quarto publish gh-pages analysis.qmd
-```
-
-Respond with `Y` when prompted. Copy/paste the resulting URL below.
-
-```{r summary-2}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
+Your answer should show the full contents of `analysis.qmd`: a YAML header with `execute: echo: false`, a setup chunk using `suppressPackageStartupMessages(library(tidyverse))`, and a ggplot2 code chunk creating a plot.
 
 ###
 
-Your URL should look something like:
-
-```
-https://ppbds-student.github.io/06-ai/
-```
-
-GitHub Pages takes a minute or two to deploy after `quarto publish` runs. If the link doesn't load immediately, wait and refresh.
-
-### Exercise 3
-
-Commit and push any remaining uncommitted files. Copy/paste the URL to your GitHub repo.
-
-```{r summary-3}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 3)
-```
+You have not saved this work to GitHub yet --- that takes Git, which you have not learned at this point in the curriculum. For now the analysis lives only in this Codespace. Once you have worked through the Git tutorials, the **AI and Git** tutorial returns to Gemini and has it stage, commit, and push a project for you, so you can compare doing Git by hand with delegating it to the agent.
 
 ###
 
@@ -888,3 +621,4 @@ Other AI coding tools include [Claude Code](https://claude.ai/claude-code) (Anth
 
 ```{r download-answers, child = system.file("child_documents/download_answers.Rmd", package = "tutorial.helpers")}
 ```
+

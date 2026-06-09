@@ -2,7 +2,7 @@
 title: Quarto Websites Advanced
 author: David Kane
 tutorial:
-  id: 08-websites-2
+  id: 09-websites-2
 output:
   learnr::tutorial:
     progressive: yes
@@ -703,7 +703,7 @@ Note how changing `index.qmd` causes the `index.html` to be re-rendered, leading
 
 Create another code chunk. Create a cool-looking plot using the `billboard` tibble from the **tidyr** package and `ggplot()`. Make sure you understand what the plot is showing. Work with AI to solve any errors, improve the code, make the graphic better and so on.
 
-You now know two reasonable ways to work with AI, and either is fine here. You can ask an AI in a chat window --- Grok, ChatGPT, Claude, and so on --- and copy/paste the code it gives you into your chunk by hand, the way we did in the earlier tutorials. Or you can let the Gemini CLI read and edit `index.qmd` for you directly, the way you learned in the `06-ai` tutorial. Use whichever you prefer.
+You now know two reasonable ways to work with AI, and either is fine here. You can ask an AI in a chat window --- Grok, ChatGPT, Claude, and so on --- and copy/paste the code it gives you into your chunk by hand, the way we did in the earlier tutorials. Or you can let the Gemini CLI read and edit `index.qmd` for you directly, the way you learned in the `04-ai-1` tutorial. Use whichever you prefer.
 
 `Cmd/Ctrl + Shift + K` to ensure that the plot looks good. If it looks bad, or there are some weird messages/warnings, use the AI to fix things.
 

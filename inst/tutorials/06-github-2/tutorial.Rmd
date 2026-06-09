@@ -2,7 +2,7 @@
 title: VS Code and GitHub Advanced
 author: David Kane
 tutorial:
-  id: 05-github-2
+  id: 06-github-2
 output:
   learnr::tutorial:
     progressive: yes
@@ -446,7 +446,7 @@ penguins
 
 ### Exercise 12
 
-Use AI to create a beautiful graphic using the `penguins` data. Phrase the question however you like. I asked [chatGPT](https://chatgpt.com/):
+Use AI to create a beautiful graphic using the `penguins` data. Phrase the question however you like. Either AI approach is fine: ask a chat window (like ChatGPT or Grok) and copy/paste the code by hand, or let the Gemini CLI agent from the **AI Introduction** tutorial write it into your file directly. I asked [chatGPT](https://chatgpt.com/):
 
 > Using R and the tidyverse package, create a beautiful graphic using the penguins data from the palmerpenguins package.
 
@@ -642,7 +642,7 @@ Retrieving…
 
 Active
 ppbds-student
-ppbds-student/05-github-2
+ppbds-student/06-github-2
 automatic funicular
 main
 

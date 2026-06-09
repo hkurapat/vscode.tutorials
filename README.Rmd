@@ -55,12 +55,18 @@ The core tutorials introduce students to the VS Code integrated development envi
 
 - *Terminal* ("03-terminal"). Teach the command line.
 
-- *VS Code and GitHub Introduction* ("04-github-1").  Explain the basics of Git and GitHub, mostly in the context of VS Code.
+- *AI Introduction* ("04-ai-1"). Meet the Gemini CLI agent and use it to create and render a Quarto analysis.
 
-- *VS Code and GitHub Advanced* ("05-github-2"). Provide more practice in working with Git/GitHub, including more details on the use of GitHub Pages.
+- *VS Code and GitHub Introduction* ("05-github-1").  Explain the basics of Git and GitHub, mostly in the context of VS Code.
 
-- *Quarto Websites Introduction* ("06-websites-1"). Demonstrate the basics of website construction using Quarto projects.
+- *VS Code and GitHub Advanced* ("06-github-2"). Provide more practice in working with Git/GitHub, including more details on the use of GitHub Pages.
 
-- *Quarto Websites Advanced* ("07-websites-2"). Practice Quarto websites, with a focus on splitting data analysis tasks into separate files.
+- *AI and Git* ("07-ai-2"). Return to the Gemini CLI, now using it to run and explain a full Git workflow.
+
+- *Quarto Websites Introduction* ("08-websites-1"). Demonstrate the basics of website construction using Quarto projects.
+
+- *Quarto Websites Advanced* ("09-websites-2"). Practice Quarto websites, building two sites and refactoring analysis code into scripts that save results as RDS and PNG files.
+
+- *Infrastructure* ("10-infrastructure"). Tour devcontainers and how they keep Codespaces consistent.
 
 The *R for Data Science* and *Analyzing US Census Data* tutorials now live in the separate **[misc.tutorials](https://github.com/PPBDS/misc.tutorials)** package.

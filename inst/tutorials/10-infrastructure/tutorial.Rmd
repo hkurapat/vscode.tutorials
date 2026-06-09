@@ -2,7 +2,7 @@
 title: "Infrastructure"
 author: David Kane
 tutorial:
-  id: "09-infrastructure"
+  id: "10-infrastructure"
 output:
   learnr::tutorial:
     df_print: default
@@ -33,13 +33,13 @@ This tutorial explores devcontainers --- configuration files that define how a G
 
 ### Exercise 1
 
-You must do this tutorial in a Codespace created from a GitHub repo named `09-infrastructure`. If you haven't already done this, follow these steps:
+You must do this tutorial in a Codespace created from a GitHub repo named `10-infrastructure`. If you haven't already done this, follow these steps:
 
-1. Create a GitHub Repo: go to the [codespace-starter repo](https://github.com/ppbds-student/codespace-starter). Click the green "Use this Template" drop-down button and select "Create a new repository". Name the repo `09-infrastructure`. Then click "Create repository".
+1. Create a GitHub Repo: go to the [codespace-starter repo](https://github.com/ppbds-student/codespace-starter). Click the green "Use this Template" drop-down button and select "Create a new repository". Name the repo `10-infrastructure`. Then click "Create repository".
 
-2. Create a Codespace from `09-infrastructure`: from this repo's page, click the green "Code" drop down button, select the "Codespaces" tab, and click "Create Codespace on main".
+2. Create a Codespace from `10-infrastructure`: from this repo's page, click the green "Code" drop down button, select the "Codespaces" tab, and click "Create Codespace on main".
 
-Copy and paste the URL for your `09-infrastructure` repository.
+Copy and paste the URL for your `10-infrastructure` repository.
 
 ```{r introduction-1}
 question_text(NULL,
@@ -55,7 +55,7 @@ question_text(NULL,
 Your answer should look something like:
 
 ````
-https://github.com/ppbds-student/09-infrastructure
+https://github.com/ppbds-student/10-infrastructure
 ````
 
 ###
@@ -105,11 +105,11 @@ question_text(NULL,
 Your answer should look like:
 
 ````
-@ppbds-student ➜ /workspaces/09-infrastructure (main) $ pwd
-/workspaces/09-infrastructure
-@ppbds-student ➜ /workspaces/09-infrastructure (main) $ ls -a
+@ppbds-student ➜ /workspaces/10-infrastructure (main) $ pwd
+/workspaces/10-infrastructure
+@ppbds-student ➜ /workspaces/10-infrastructure (main) $ ls -a
 .  ..  .devcontainer  .git
-@ppbds-student ➜ /workspaces/09-infrastructure (main) $
+@ppbds-student ➜ /workspaces/10-infrastructure (main) $
 ````
 
 ###
@@ -1163,7 +1163,7 @@ Stopping Codespaces when you are done with them conserves your free monthly comp
 
 ### Exercise 2
 
-Commit and push any remaining uncommitted files in your `09-infrastructure` Codespace. Copy/paste the URL to your `09-infrastructure` GitHub repo.
+Commit and push any remaining uncommitted files in your `10-infrastructure` Codespace. Copy/paste the URL to your `10-infrastructure` GitHub repo.
 
 ```{r summary-2}
 question_text(NULL,
