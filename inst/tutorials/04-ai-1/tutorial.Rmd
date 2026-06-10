@@ -149,7 +149,7 @@ The [Gemini CLI](https://github.com/google-gemini/gemini-cli) is a free, open AI
 
 ### Exercise 1
 
-Start the Gemini CLI by running `gemini` in the bash Terminal. First it will ask you if you wish to connect your Codespace to Gemini. Press `y` to allow it. Next, it will ask whether you trust the current working directory --- again, press `y`. 
+Start the Gemini CLI by running `gemini` in the bash Terminal. It will ask whether you want to connect and whether you trust the current working directory --- answer yes to both.
 
 CP/CR the first several lines of terminal output --- enough to show the authentication prompt and the `>` prompt that appears after you successfully log in.
 
@@ -313,22 +313,18 @@ question_text(NULL,
 include_graphics("images/gemini-explore-repo.png")
 ```
 
-<!-- AR: Update KD to explain that it's difficult to predict the exact tool calls the AI will make for any prompt. 
-
-Future KD content: 3 levels of authorization: one-time, always in project, always across projects (need to configure in global settings) -->
-
-The tool authorization prompt is a deliberate safety feature --- an AI that could silently run commands in your terminal without asking would be a significant security risk.
+Gemini decomposes your prompt into tool calls dynamically --- the exact commands it runs depend on how it interprets your request, so what you see may differ from the example. The authorization step keeps you in control regardless of which commands it chooses.
 
 ### Exercise 6
 
 Ask Gemini to create an `analysis.qmd` file. Tell it you want:
 
-- A YAML header with the title `"Exploring Storms"` and your name as author
+- A YAML header with the title `"Exploring Storms and Flights"` and your name as author
 - `execute: echo: false` in the YAML
 - A setup chunk loading `library(tidyverse)` wrapped in `suppressPackageStartupMessages()`
 - A plot using the `storms` dataset from **dplyr** --- for example, a line chart showing the number of named storms per year
 
-Press `y` when Gemini asks to write the file. CP/CR the tool authorization and Gemini's explanation of what it created.
+Allow the file write when Gemini asks for permission. CP/CR the tool authorization and Gemini's explanation of what it created.
 
 ```{r gemini-cli-6}
 question_text(NULL,
@@ -355,7 +351,7 @@ Allow this tool call? (1=once, 2=always, n=no): 1
 ✔ Created analysis.qmd
 
 I've created `analysis.qmd` with:
-- YAML header titled "Exploring Storms" and `execute: echo: false`
+- YAML header titled "Exploring Storms and Flights" and `execute: echo: false`
 - Setup chunk using `suppressPackageStartupMessages(library(tidyverse))`
 - A line chart showing the number of named storms per year using the `storms` dataset
 
@@ -467,9 +463,9 @@ question_text(NULL,
 
 ```{r gemini-cli-9-test}
 #| echo: true
-storms %>%
-  filter(!is.na(category)) %>%
-  mutate(category = as.factor(category)) %>%
+storms |>
+  filter(!is.na(category)) |>
+  mutate(category = as.factor(category)) |>
   ggplot(aes(x = category, y = wind, fill = category)) +
   geom_boxplot() +
   labs(
@@ -497,7 +493,7 @@ Ask Gemini to create a `.gitignore` file suitable for a Quarto R project. Type s
 Create a .gitignore file.
 ```
 
-<!-- AR: Need expected submission. Show_file(".gitignore") -->
+Run `show_file(".gitignore")` in the R Terminal. CP/CR.
 
 ```{r gemini-cli-10}
 question_text(NULL,
@@ -510,66 +506,15 @@ question_text(NULL,
 
 ###
 
-<!-- AR: hack to not include any cache directories -->
-
-```{r}
-include_graphics("images/gemini-git-ignore.png")
-```
+````
+*_files/
+````
 
 ###
 
 Git tracks changes to files in your repository, but there are certain files that we should not track. A `.gitignore` tells Git to ignore certain files entirely. The guiding principle: if a file can be *regenerated* from your source, it doesn't belong in the commit history.
 
 ### Exercise 11
-
-<!-- AR: Combine with ex. 10 -->
-
-Ask Gemini to show you the contents of the `.gitignore` it just created. Type something like:
-
-```
-Show me the contents of .gitignore.
-```
-
-Press `y` to authorize the shell command. CP/CR.
-
-```{r gemini-cli-11}
-question_text(NULL,
-	answer(NULL, correct = TRUE),
-	allow_retry = TRUE,
-	try_again_button = "Edit Answer",
-	incorrect = NULL,
-	rows = 12)
-```
-
-###
-
-Your output should look something like:
-
-````
-> Show me the contents of .gitignore                                                                                       
-
-  ✓  ReadFile  .gitignore
-
-✦ The contents of .gitignore are:
-
-    1 # Quarto
-    2 .quarto/
-    3 *_files/
-    4 *_cache/
-    5
-    6 # R
-    7 .Rhistory
-    8 .RData
-    9 .Ruserdata
-   10 .Rproj.user/
-````
-
-###
-
-Asking Gemini to read back a file it just created is a quick way to verify the contents without leaving Gemini. The underlying command is the same `cat` you would run yourself --- Gemini just runs it on your behalf and shows you the result.
-
-
-### Exercise 12
 
 Before moving on, let's deliberately quit and restart Gemini to see what happens to the conversation history. Type `/quit`.
 
@@ -579,11 +524,11 @@ Now run `gemini` to start a fresh session. Once you're at the `>` prompt, ask:
 What have we done in this project so far?
 ```
 
-Without reading any files, Gemini will have no memory of the previous session. Press `y` to let it read the repo and watch it reconstruct the context from the filesystem.
+Without reading any files, Gemini will have no memory of the previous session. Allow it to read the repo and watch it reconstruct the context from the filesystem.
 
 CP/CR Gemini's full response.
 
-```{r gemini-cli-12}
+```{r gemini-cli-11}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -636,28 +581,29 @@ question_text(NULL,
 
 ###
 
-<!-- AR: weird printing!! no code chunk delimeters -->
-
 <pre><code>---
-title: "Exploring Storms"
+title: "Exploring Storms and Flights"
 author: "PPBDS Student"
 format: html
 execute:
   echo: false
 ---
 
+&#96;&#96;&#96;{r}
 #| label: setup
 #| include: false
 suppressPackageStartupMessages(library(tidyverse))
+&#96;&#96;&#96;
 
 ## Named Storms per Year
 
 The following chart displays the number of unique named storms recorded each year in the `storms` dataset.
 
+&#96;&#96;&#96;{r}
 #| label: storms-plot
-storms %>%
-  distinct(year, name) %>%
-  count(year) %>%
+storms |>
+  distinct(year, name) |>
+  count(year) |>
   ggplot(aes(x = year, y = n)) +
   geom_line() +
   geom_point() +
@@ -667,15 +613,17 @@ storms %>%
     y = "Count of Storms"
   ) +
   theme_minimal()
+&#96;&#96;&#96;
 
 ## Wind Speed Distribution by Category
 
 This boxplot shows the distribution of maximum wind speeds for each category of storm. It highlights how intensity increases across the categories defined in the dataset.
 
+&#96;&#96;&#96;{r}
 #| label: wind-distribution-plot
-storms %>%
-  filter(!is.na(category)) %>%
-  mutate(category = as.factor(category)) %>%
+storms |>
+  filter(!is.na(category)) |>
+  mutate(category = as.factor(category)) |>
   ggplot(aes(x = category, y = wind, fill = category)) +
   geom_boxplot() +
   labs(
@@ -687,9 +635,10 @@ storms %>%
   ) +
   theme_minimal() +
   theme(legend.position = "none")
+&#96;&#96;&#96;
 </code></pre>
 
-Each blank line in the output marks a boundary between chunks --- the fence lines are stripped, so a blank line is all that remains between one chunk and the next.
+The `show_file()` output shows the full file contents including chunk delimiters --- ` ```{r} ` opens each chunk and ` ``` ` closes it.
 
 ###
 
@@ -713,25 +662,28 @@ question_text(NULL,
 ###
 
 <pre><code>---
-title: "Exploring Storms"
+title: "Exploring Storms and Flights"
 author: "PPBDS Student"
 format: html
 execute:
   echo: false
 ---
 
+&#96;&#96;&#96;{r}
 #| label: setup
 #| include: false
 suppressPackageStartupMessages(library(tidyverse))
+&#96;&#96;&#96;
 
 ## Named Storms per Year
 
 The following chart displays the number of unique named storms recorded each year in the `storms` dataset.
 
+&#96;&#96;&#96;{r}
 #| label: storms-plot
-storms %>%
-  distinct(year, name) %>%
-  count(year) %>%
+storms |>
+  distinct(year, name) |>
+  count(year) |>
   ggplot(aes(x = year, y = n)) +
   geom_line() +
   geom_point() +
@@ -741,11 +693,12 @@ storms %>%
     y = "Count of Storms"
   ) +
   theme_minimal()
+&#96;&#96;&#96;
 </code></pre>
 
 ###
 
-Each code chunk should produce **one** final artifact --- either cleaned data or a plot. A chunk that mixes exploratory steps with its final output needs to be cleaned up. In tutorials, the goal usually one working chunk per topic, updated cleanly along the way.
+Each code chunk should produce **one** final artifact --- either cleaned data or a plot. A chunk that mixes exploratory steps with its final output needs to be cleaned up.
 
 ###
 
@@ -816,8 +769,6 @@ question_text(NULL,
 ```
 
 ###
-
-<!-- AR: include the library call here? -->
 
 ```{r gemini-in-tutorials-5-test}
 #| echo: true
@@ -935,9 +886,7 @@ Calling a variable by name on the last line of a chunk is all it takes to print 
 
 ### Exercise 10
 
-<!-- AR: Create a new chunk for the plot. First chunk creates and prints flights_jfk. -->
-
-Ask Gemini to replace the `flights_jfk` print line with a ggplot2 scatter plot of `dep_delay` vs. `arr_delay`, colored by `carrier`. Render. In the R Terminal, run `show_file("analysis.qmd", chunk = "Last")`. CP/CR.
+Ask Gemini to add a new code chunk with a ggplot2 scatter plot of `dep_delay` vs. `arr_delay`, colored by `carrier`. Render. In the R Terminal, run `show_file("analysis.qmd", chunk = "Last")`. CP/CR.
 
 ```{r gemini-in-tutorials-10}
 question_text(NULL,
@@ -952,10 +901,6 @@ question_text(NULL,
 
 ```{r gemini-in-tutorials-10-test}
 #| echo: true
-flights_jfk <- flights |>
-  filter(origin == "JFK") |>
-  select(dep_delay, arr_delay, carrier)
-
 ggplot(flights_jfk, aes(x = dep_delay, y = arr_delay, color = carrier)) +
   geom_point(alpha = 0.1) +
   labs(title = "Departure vs. Arrival Delay for JFK Flights",
@@ -964,7 +909,7 @@ ggplot(flights_jfk, aes(x = dep_delay, y = arr_delay, color = carrier)) +
 
 ###
 
-The chunk now has two parts: the silent assignment and the plot call. Only the plot renders as output --- the assignment runs but produces nothing visible.
+Chunks in the same document share an R session --- `flights_jfk` is created in the first chunk and available to the second without redefining it. The two-chunk pattern here --- one to prepare data, one to plot it --- is a common pattern.
 
 ### Exercise 11
 
@@ -984,31 +929,41 @@ question_text(NULL,
 Your answer should look something like:
 
 <pre><code>---
-title: "Exploring Storms"
+title: "Exploring Storms and Flights"
 author: Your Name
 execute:
   echo: false
 ---
 
+&#96;&#96;&#96;{r}
 #| message: false
 suppressPackageStartupMessages(library(tidyverse))
 library(nycflights13)
+&#96;&#96;&#96;
 
+&#96;&#96;&#96;{r}
 #| cache: true
 storms |>
   count(year) |>
   ggplot(aes(x = year, y = n)) +
   geom_line() +
   labs(title = "Named Storms per Year", x = "Year", y = "Number of Storms")
+&#96;&#96;&#96;
 
+&#96;&#96;&#96;{r}
 flights_jfk <- flights |>
   filter(origin == "JFK") |>
   select(dep_delay, arr_delay, carrier)
 
+flights_jfk
+&#96;&#96;&#96;
+
+&#96;&#96;&#96;{r}
 ggplot(flights_jfk, aes(x = dep_delay, y = arr_delay, color = carrier)) +
   geom_point(alpha = 0.1) +
   labs(title = "Departure vs. Arrival Delay for JFK Flights",
        x = "Departure Delay (min)", y = "Arrival Delay (min)")
+&#96;&#96;&#96;
 </code></pre>
 
 ###
