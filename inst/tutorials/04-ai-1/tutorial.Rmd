@@ -88,7 +88,7 @@ https://congenial-chainsaw-wv757pv4pp67cpw.github.dev/
 
 ###
 
-There are three main ways to interact with AI: a *chat interface* (like gemini.google.com), a *command-line tool* running in your terminal, and *an AI built into your editor* (like GitHub Copilot). This tutorial uses the command-line approach --- you'll run Gemini directly in the VS Code terminal, where it can read your files and take actions on your behalf. Feel free to close the Copilot sidebar.
+There are three main ways to interact with AI: a *chat interface* (like chatgpt.com), a *command-line tool* running in your terminal, and *an AI built into your editor* (like GitHub Copilot). This tutorial uses the command-line approach --- you'll run Gemini directly in the VS Code terminal, where it can read your files and take actions on your behalf. Feel free to close the Copilot sidebar.
 
 ### Exercise 3
 
@@ -140,7 +140,7 @@ Your answer should look like:
 
 ###
 
-The `.git` directory tells both you and Gemini that this is a Git repository. When Gemini sees it, Gemini knows it can run `git` commands --- like adding files to Git, reading the commit history, and pushing to GitHub.
+The `.git` directory tells both you and Gemini that this is a Git repository. When Gemini sees this, it knows it can run `git` commands --- like adding files to Git, reading the commit history, and pushing to GitHub.
 
 ## Gemini CLI
 ###
@@ -196,7 +196,7 @@ It will then ask you to authenticate with your Google account. You will see a UR
 include_graphics("images/gemini-CLI-auth-link.png")
 ```
 
-Open that URL in your browser, sign in with your Google account, and copy the authorization code that appears on the page. Paste it back into the terminal and press `Enter`. Then, Copy and Paste the four tips to get started which will appear once Gemini is done authenticating.
+Open that URL in your browser, sign in with your Google account, and copy the authorization code that appears on the page. Paste it back into the terminal and press `Enter`. Then, Copy and Paste the tips to get started which will appear once Gemini is done authenticating.
 
 
 ```{r gemini-cli-2}
@@ -209,8 +209,6 @@ question_text(NULL,
 ```
 
 ###
-
-Your terminal should look something like this:
 
 ```{r}
 include_graphics("images/gemini-CLI-auth-done.png")
@@ -314,6 +312,10 @@ question_text(NULL,
 ```{r}
 include_graphics("images/gemini-explore-repo.png")
 ```
+
+<!-- AR: Update KD to explain that it's difficult to predict the exact tool calls the AI will make for any prompt. 
+
+Future KD content: 3 levels of authorization: one-time, always in project, always across projects (need to configure in global settings) -->
 
 The tool authorization prompt is a deliberate safety feature --- an AI that could silently run commands in your terminal without asking would be a significant security risk.
 
@@ -492,8 +494,10 @@ When Gemini adds a plot and re-renders, two things happen automatically: Quarto 
 Ask Gemini to create a `.gitignore` file suitable for a Quarto R project. Type something like:
 
 ```
-Create a .gitignore file for a Quarto R project. Include a pattern for build directories, but do NOT ignore .html files.
+Create a .gitignore file.
 ```
+
+<!-- AR: Need expected submission. Show_file(".gitignore") -->
 
 ```{r gemini-cli-10}
 question_text(NULL,
@@ -506,6 +510,8 @@ question_text(NULL,
 
 ###
 
+<!-- AR: hack to not include any cache directories -->
+
 ```{r}
 include_graphics("images/gemini-git-ignore.png")
 ```
@@ -515,6 +521,8 @@ include_graphics("images/gemini-git-ignore.png")
 Git tracks changes to files in your repository, but there are certain files that we should not track. A `.gitignore` tells Git to ignore certain files entirely. The guiding principle: if a file can be *regenerated* from your source, it doesn't belong in the commit history.
 
 ### Exercise 11
+
+<!-- AR: Combine with ex. 10 -->
 
 Ask Gemini to show you the contents of the `.gitignore` it just created. Type something like:
 
@@ -628,6 +636,8 @@ question_text(NULL,
 
 ###
 
+<!-- AR: weird printing!! no code chunk delimeters -->
+
 <pre><code>---
 title: "Exploring Storms"
 author: "PPBDS Student"
@@ -683,13 +693,13 @@ Each blank line in the output marks a boundary between chunks --- the fence line
 
 ###
 
-Keep chunks clean as you work. In these tutorials we iteratively rewrite a single working chunk rather than creating new ones --- a finished `analysis.qmd` is always short.
+Keep chunks clean as you work. Code chunks should contain clean code that we'd like to keep or should be the working chunk in which we are iteratively rewriting as we do our work.
 
 ### Exercise 2
 
 Ask Gemini to consolidate `analysis.qmd` so it contains only the setup chunk and the named-storms-per-year line chart. Delete any other chunks. Render. In the R Terminal, run `show_file("analysis.qmd")`. CP/CR.
 
-Throughout this tutorial we will often say "ask Gemini to" when we want you to use AI. In future tutorials, using AI to write your analysis code is always assumed --- we will not say so explicitly, but AI is how the work gets done.
+Throughout this tutorial we will often say "ask Gemini to" when we want you to use AI.
 
 ```{r gemini-in-tutorials-2}
 question_text(NULL,
@@ -739,7 +749,7 @@ Each code chunk should produce **one** final artifact --- either cleaned data or
 
 ###
 
-Before caching a chunk, it should hold only the definition of the artifact to be cached --- no exploratory or intermediate steps.
+Sometimes a code chunk takes a long time to run. We can **cache** a code chunk to save its results and avoid re-running it on subsequent renders.
 
 ### Exercise 3
 
@@ -784,9 +794,7 @@ question_text(NULL,
 ###
 
 ````
-# Quarto
 *_files/
-*_cache/
 analysis_cache
 ````
 
@@ -808,6 +816,8 @@ question_text(NULL,
 ```
 
 ###
+
+<!-- AR: include the library call here? -->
 
 ```{r gemini-in-tutorials-5-test}
 #| echo: true
@@ -835,7 +845,8 @@ question_text(NULL,
 
 ```{r gemini-in-tutorials-6-test}
 #| echo: true
-flights |> glimpse()
+flights |> 
+glimpse()
 ```
 
 ###
@@ -844,7 +855,7 @@ flights |> glimpse()
 
 ### Exercise 7
 
-Ask Gemini to update the chunk to filter `flights` to `origin == "JFK"` and select `dep_delay`, `arr_delay`, and `carrier`. Leave the result as the final expression so it prints. Render. In the R Terminal, run `show_file("analysis.qmd", chunk = "Last")`. CP/CR.
+Ask Gemini to update the working chunk to filter `flights` to `origin == "JFK"` and select `dep_delay`, `arr_delay`, and `carrier`. Leave the result as the final expression so it prints. Render. In the R Terminal, run `show_file("analysis.qmd", chunk = "Last")`. CP/CR.
 
 ```{r gemini-in-tutorials-7}
 question_text(NULL,
@@ -892,7 +903,7 @@ flights_jfk <- flights |>
 
 ###
 
-Assignment captures the result silently --- a chunk that only uses `<-` to assign a value to an objectproduces no output in the render. A blank section in the HTML is not an error; it means the chunk built an object without displaying it.
+Assignment captures the result silently --- a chunk that only uses `<-` to assign a value to an object produces no output in the render. A blank section in the HTML is not an error; it means the chunk built an object without displaying it.
 
 ### Exercise 9
 
@@ -920,9 +931,11 @@ flights_jfk
 
 ###
 
-Calling a variable by name on the last line of a chunk is all it takes to print it. In `misc.tutorials`, ending a data-preparation chunk with the variable name is a standard way to confirm its shape before building a plot.
+Calling a variable by name on the last line of a chunk is all it takes to print it. Ending a data-preparation chunk with the variable name is a standard way to confirm its shape before building a plot.
 
 ### Exercise 10
+
+<!-- AR: Create a new chunk for the plot. First chunk creates and prints flights_jfk. -->
 
 Ask Gemini to replace the `flights_jfk` print line with a ggplot2 scatter plot of `dep_delay` vs. `arr_delay`, colored by `carrier`. Render. In the R Terminal, run `show_file("analysis.qmd", chunk = "Last")`. CP/CR.
 
@@ -1000,11 +1013,7 @@ ggplot(flights_jfk, aes(x = dep_delay, y = arr_delay, color = carrier)) +
 
 ###
 
-Every `analysis.qmd` follows a similar pattern to this: a setup chunk, and at least one chunk per topic that builds a final artifact. At least one of the topic chunks will be cached.
-
-###
-
-From here on, using AI to write your analysis code is always the assumed approach --- you will describe a goal, let the agent write the code, render, and inspect the result.
+From here on, using AI to write your analysis code is always the assumed approach --- you will describe a goal, let the agent write the code (generally in a working code chunk), render, and inspect the result.
 
 ## Summary
 ###
@@ -1054,11 +1063,9 @@ metadata
 Output created: analysis.html
 ```
 
-This confirms the full file --- YAML header, setup chunk, cached storms chunk, and JFK flights plot --- renders cleanly without Gemini running.
-
 ###
 
-You have not saved this work to GitHub yet --- that takes Git, which you have not learned at this point in the curriculum. For now the analysis lives only in this Codespace. Once you have worked through the Git tutorials, the **AI and Git** tutorial returns to Gemini and has it stage, commit, and push a project for you, so you can compare doing Git by hand with delegating it to the agent.
+You have not saved this work to GitHub yet --- that takes Git, which you have not learned at this point in the curriculum.
 
 ###
 
