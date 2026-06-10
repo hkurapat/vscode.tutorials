@@ -9,13 +9,15 @@ output:
     progressive: true
     allow_skip: true
 runtime: shiny_prerendered
-description: "A first look at the Gemini CLI for AI-assisted data science work in GitHub Codespaces. Shows how to authenticate, let Gemini explore your files, and use it to create and render a Quarto analysis. A companion tutorial later returns to Gemini for the Git workflow."
+description: "This introduces the Gemini CLI for AI-assisted data science work in GitHub Codespaces. Covers authentication and using it to create and render a Quarto analysis. A second section teaches the core analysis.qmd workflow: one working chunk per artifact, iterative rewrites, and caching."
 ---
 
 ```{r setup, include = FALSE}
 library(learnr)
 library(tutorial.helpers)
 library(knitr)
+library(tidyverse)
+library(nycflights13)
 
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(out.width = '90%')
@@ -29,7 +31,7 @@ options(tutorial.exercise.timelimit = 60,
 ## Introduction
 ###
 
-This is your first look at an AI *agent*. You have already used AI as a chat window --- asking a question and copy/pasting the answer back by hand. The [Gemini CLI](https://github.com/google-gemini/gemini-cli) is different: it is a terminal-based assistant that can read your files, run commands in the terminal, and write new files directly, asking your permission at each step. In this tutorial you will set it up and use it to explore a project and to create and render a Quarto analysis. A later tutorial, after you have learned Git, returns to Gemini to handle the Git workflow.
+This is your first look at an AI *agent*. You have already used AI as a chat window --- asking a question and copy/pasting the answer back by hand. The [Gemini CLI](https://github.com/google-gemini/gemini-cli) is different: it is a terminal-based assistant that can read your files, run commands in the terminal, and write new files directly, asking your permission at each step. In this tutorial you will set it up and use it to explore a project and to create and render a Quarto analysis. A second section then teaches the core `analysis.qmd` workflow: one working chunk per artifact, iterative rewrites, and caching.
 
 ### Exercise 1
 
@@ -162,8 +164,6 @@ question_text(NULL,
 
 ###
 
-Your output should look something like:
-
 ````
 @ppbds-student ➜ /workspaces/04-ai-1 (main) $ gemini
 ? Do you want to connect to Gemini? Yes
@@ -237,8 +237,6 @@ question_text(NULL,
 
 ###
 
-You should see something like:
-
 ````
 > /help
 
@@ -275,13 +273,9 @@ question_text(NULL,
 
 ###
 
-Your output should look something like:
-
-````
-> /model
-Current model: gemini-2.5-pro
->
-````
+```{r}
+include_graphics("images/gemini-model.png")
+```
 
 You may see something different here depending on your Gemini CLI version — that's fine, don't worry about it.
 
@@ -317,7 +311,9 @@ question_text(NULL,
 
 ###
 
-<!-- AR: Need example output here. -->
+```{r}
+include_graphics("images/gemini-explore-repo.png")
+```
 
 The tool authorization prompt is a deliberate safety feature --- an AI that could silently run commands in your terminal without asking would be a significant security risk.
 
@@ -352,7 +348,7 @@ Your output should look something like:
 ║  Path: analysis.qmd                      ║
 ╚══════════════════════════════════════════╝
 
-Allow this tool call? [y/n/a]: y
+Allow this tool call? (1=once, 2=always, n=no): 1
 
 ✔ Created analysis.qmd
 
@@ -389,32 +385,9 @@ question_text(NULL,
 
 ###
 
-Your output should look something like:
-
-````
-> Render analysis.qmd using quarto render and tell me what files were created afterward.
-
-╔ Tool Use: run_shell ═══════════════════════════════╗
-║  Command: quarto render analysis.qmd               ║
-╚════════════════════════════════════════════════════╝
-
-Allow this tool call? [y/n/a]: y
-
-[Quarto rendering output...]
-Output created: analysis.html
-
-╔ Tool Use: run_shell ════════════╗
-║  Command: ls                    ║
-╚════════════════════════════════╝
-
-Allow this tool call? [y/n/a]: y
-
-Output: .gitignore  analysis.html  analysis.qmd
-
-Quarto rendered `analysis.qmd` successfully. New files: `analysis.html` (the rendered output) and `analysis_files/` (supporting assets, which your `.gitignore` will exclude from Git).
-
->
-````
+```{r}
+include_graphics("images/gemini-render.png")
+```
 
 ###
 
@@ -443,8 +416,6 @@ question_text(NULL,
 
 ###
 
-Your URL should look something like:
-
 ````
 https://congenial-chainsaw-wv757pv4pp67cpw-5500.app.github.dev/analysis.html
 ````
@@ -453,15 +424,25 @@ Keep this tab open. Every time `analysis.html` is updated in your Codespace --- 
 
 ###
 
+Your rendered file should look something like this:
+
+```{r}
+include_graphics("images/first-render.png")
+```
+
+###
+
 Live Server is a VS Code extension that hosts HTML files so they can be viewed in a browser and reloads the page whenever a file changes. This is necessary in a Codespace because the files live on a remote computer and cannot be opened directly in a browser.
 
 ### Exercise 9
 
-Ask Gemini to add a plot to `analysis.qmd` using the `storms` dataset. Tell it to visualize something like a boxplot showing the distribution of wind speeds by storm category. Ask it to include a meaningful title and subtitle, and then to render the file.
+Ask Gemini: Add a plot to a new code chunk in `analysis.qmd` using the `storms` dataset. Visualize something like a boxplot showing the distribution of wind speeds by storm category. Include a meaningful title and subtitle, and then to render the file.
 
 After Gemini finishes, check your Live Server tab --- it should have refreshed automatically to show the plot. Open a new R Terminal. 
 
-<!-- AR: show image of creating the new R Terminal -->
+```{r}
+include_graphics("images/new-R-term.png")
+```
 
 Then, in the new R Terminal, run:
 
@@ -482,7 +463,23 @@ question_text(NULL,
 
 ###
 
-<!-- AR: show plot + code for a boxplot -->
+```{r gemini-cli-9-test}
+#| echo: true
+storms %>%
+  filter(!is.na(category)) %>%
+  mutate(category = as.factor(category)) %>%
+  ggplot(aes(x = category, y = wind, fill = category)) +
+  geom_boxplot() +
+  labs(
+    title = "Distribution of Wind Speeds by Storm Category",
+    subtitle = "Higher categories correspond to significantly higher median wind speeds",
+    x = "Storm Category",
+    y = "Wind Speed (knots)",
+    fill = "Category"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
 
 Your answer will vary, but it should show **ggplot2** code using the `storms` dataset --- something like a boxplot of wind speed by storm category. The chunk should not have `#| echo: true` --- since you set `execute: echo: false` in the YAML header, all chunks use that setting by default.
 
@@ -492,17 +489,11 @@ When Gemini adds a plot and re-renders, two things happen automatically: Quarto 
 
 ### Exercise 10
 
-<!-- AR: There already is a .gitignore file. Instead ask Gemini to update? We show its contents in the next exercise. Is there actually a need to update this when we test the tutorial? -->
-
 Ask Gemini to create a `.gitignore` file suitable for a Quarto R project. Type something like:
 
 ```
-Create a .gitignore file for a Quarto R project. Include patterns for Quarto cache and build directories, but do NOT ignore .html files.
+Create a .gitignore file for a Quarto R project. Include a pattern for build directories, but do NOT ignore .html files.
 ```
-
-<!-- AR: Suspect below. Hasn't Gemini already written analysis.qmd? Thus it's already asked for write permission before. -->
-
-This time, Gemini will ask permission to **write a file** rather than run a command. Press `y` to authorize it. CP/CR the tool authorization prompt and Gemini's summary of what it created.
 
 ```{r gemini-cli-10}
 question_text(NULL,
@@ -515,30 +506,13 @@ question_text(NULL,
 
 ###
 
-Your output should look something like:
-
-````
-> Create a .gitignore file for a Quarto R project.
-
-╔ Tool Use: write_file ════════════════════╗
-║  Path: .gitignore                        ║
-╚══════════════════════════════════════════╝
-
-Allow this tool call? [y/n/a]: y
-
-✔ Created .gitignore
-
-I've created a `.gitignore` that covers:
-- `*_files/` — Quarto's output asset directories
-- `*_cache/` — cached computation results
-- `/.quarto/` — Quarto's internal build directory
-
->
-````
+```{r}
+include_graphics("images/gemini-git-ignore.png")
+```
 
 ###
 
-Git tracks changes to files in your repository but there are certain files that we should not track. A `.gitignore` tells Git to ignore certain files entirely. The guiding principle: if a file can be *regenerated* from your source, it doesn't belong in the commit history.
+Git tracks changes to files in your repository, but there are certain files that we should not track. A `.gitignore` tells Git to ignore certain files entirely. The guiding principle: if a file can be *regenerated* from your source, it doesn't belong in the commit history.
 
 ### Exercise 11
 
@@ -564,19 +538,22 @@ question_text(NULL,
 Your output should look something like:
 
 ````
-> Show me the contents of .gitignore.
+> Show me the contents of .gitignore                                                                                       
 
-╔ Tool Use: run_shell ══════════════════════╗
-║  Command: cat .gitignore                  ║
-╚═══════════════════════════════════════════╝
+  ✓  ReadFile  .gitignore
 
-Allow this tool call? [y/n/a]: y
+✦ The contents of .gitignore are:
 
-# Quarto
-*_files/
-*_cache/
-
->
+    1 # Quarto
+    2 .quarto/
+    3 *_files/
+    4 *_cache/
+    5
+    6 # R
+    7 .Rhistory
+    8 .RData
+    9 .Ruserdata
+   10 .Rproj.user/
 ````
 
 ###
@@ -609,26 +586,112 @@ question_text(NULL,
 
 ###
 
-<!-- AR: Need example output. -->
+````
+Based on the current state of the repository, the project is in its early stages. Here is a summary of what has been done:
+
+   1. Initial Setup: The project has been initialized with a basic Quarto structure, including a .devcontainer for development and a .gitignore file.
+   2. Storms Analysis: You have created analysis.qmd, which uses R and the tidyverse to explore the storms dataset. It currently includes:
+       * Named Storms per Year: A line and point plot showing the count of unique named storms from year to year.
+       * Wind Speed Distribution: A boxplot visualizing how wind speeds vary across different storm categories.
+   3. Output Generation: The analysis has been rendered into analysis.html.
+
+  There are no other project-specific instructions (GEMINI.md) or memory records yet. Would you like to continue the analysis or add new features to this report?
+````
+
+###
 
 Gemini's **conversation history** is gone the moment you type `/quit`, but the **files on disk** are permanent --- this is why it can pick up where you left off after a restart just by reading the files. The `/chat save <name>` command lets you preserve a conversation so you can resume it later with `/chat resume <name>`.
 
-## Summary
+## Gemini in tutorials
 ###
 
-This tutorial introduced the [Gemini CLI](https://github.com/google-gemini/gemini-cli) as an AI *agent* --- a terminal-based assistant that reads your files, runs commands, and writes files on your behalf, asking permission at each step. You authenticated with your Google account, let Gemini explore the repository, and used it to create and render a Quarto analysis.
+In future tutorials you will spend most of your time prompting an AI agent to edit `analysis.qmd`, as well as rendering, and inspecting the resulting HTML. This section introduces key aspects of creating analysis.qmd files including: maintaining one working chunk per final artifact, iteratively rewriting that chunk to keep only necessary code, managing code chunk outputs in your rendered file, and caching results. Throughout this section we will explicitly tell you to use AI; in future tutorials that is always assumed.
 
 ### Exercise 1
 
-Quit Gemini with `/quit` if you haven't already. From the bash Terminal, run `quarto render analysis.qmd` to regenerate the HTML. Then, in the R Terminal, run:
+In the R Terminal, run:
 
 ```
-tutorial.helpers::show_file("analysis.qmd")
+show_file("analysis.qmd")
 ```
 
 CP/CR.
 
-```{r summary-1}
+```{r gemini-in-tutorials-1}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 25)
+```
+
+###
+
+<pre><code>---
+title: "Exploring Storms"
+author: "PPBDS Student"
+format: html
+execute:
+  echo: false
+---
+
+#| label: setup
+#| include: false
+suppressPackageStartupMessages(library(tidyverse))
+
+## Named Storms per Year
+
+The following chart displays the number of unique named storms recorded each year in the `storms` dataset.
+
+#| label: storms-plot
+storms %>%
+  distinct(year, name) %>%
+  count(year) %>%
+  ggplot(aes(x = year, y = n)) +
+  geom_line() +
+  geom_point() +
+  labs(
+    title = "Number of Named Storms per Year",
+    x = "Year",
+    y = "Count of Storms"
+  ) +
+  theme_minimal()
+
+## Wind Speed Distribution by Category
+
+This boxplot shows the distribution of maximum wind speeds for each category of storm. It highlights how intensity increases across the categories defined in the dataset.
+
+#| label: wind-distribution-plot
+storms %>%
+  filter(!is.na(category)) %>%
+  mutate(category = as.factor(category)) %>%
+  ggplot(aes(x = category, y = wind, fill = category)) +
+  geom_boxplot() +
+  labs(
+    title = "Distribution of Wind Speeds by Storm Category",
+    subtitle = "Higher categories correspond to significantly higher median wind speeds",
+    x = "Storm Category",
+    y = "Wind Speed (knots)",
+    fill = "Category"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+</code></pre>
+
+Each blank line in the output marks a boundary between chunks --- the fence lines are stripped, so a blank line is all that remains between one chunk and the next.
+
+###
+
+Keep chunks clean as you work. In these tutorials we iteratively rewrite a single working chunk rather than creating new ones --- a finished `analysis.qmd` is always short.
+
+### Exercise 2
+
+Ask Gemini to consolidate `analysis.qmd` so it contains only the setup chunk and the named-storms-per-year line chart. Delete any other chunks. Render. In the R Terminal, run `show_file("analysis.qmd")`. CP/CR.
+
+Throughout this tutorial we will often say "ask Gemini to" when we want you to use AI. In future tutorials, using AI to write your analysis code is always assumed --- we will not say so explicitly, but AI is how the work gets done.
+
+```{r gemini-in-tutorials-2}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -639,9 +702,359 @@ question_text(NULL,
 
 ###
 
-<!-- AR: Need example output. -->
+<pre><code>---
+title: "Exploring Storms"
+author: "PPBDS Student"
+format: html
+execute:
+  echo: false
+---
 
-Your answer should show the full contents of `analysis.qmd`: a YAML header with `execute: echo: false`, a setup chunk using `suppressPackageStartupMessages(library(tidyverse))`, and a ggplot2 code chunk creating a plot.
+#| label: setup
+#| include: false
+suppressPackageStartupMessages(library(tidyverse))
+
+## Named Storms per Year
+
+The following chart displays the number of unique named storms recorded each year in the `storms` dataset.
+
+#| label: storms-plot
+storms %>%
+  distinct(year, name) %>%
+  count(year) %>%
+  ggplot(aes(x = year, y = n)) +
+  geom_line() +
+  geom_point() +
+  labs(
+    title = "Number of Named Storms per Year",
+    x = "Year",
+    y = "Count of Storms"
+  ) +
+  theme_minimal()
+</code></pre>
+
+###
+
+Each code chunk should produce **one** final artifact --- either cleaned data or a plot. A chunk that mixes exploratory steps with its final output needs to be cleaned up. In tutorials, the goal usually one working chunk per topic, updated cleanly along the way.
+
+###
+
+Before caching a chunk, it should hold only the definition of the artifact to be cached --- no exploratory or intermediate steps.
+
+### Exercise 3
+
+Add `#| cache: true` to the storms chunk. Render. In the bash Terminal, run `ls`. CP/CR.
+
+```{r gemini-in-tutorials-3}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+Your answer should look something like:
+
+````
+@ppbds-student ➜ /workspaces/04-ai-1 (main) $ ls
+analysis.html  analysis_cache  analysis_files  analysis.qmd
+@ppbds-student ➜ /workspaces/04-ai-1 (main) $
+````
+
+###
+
+Caching is a render-time feature. The first render writes the chunk's result to disk; later renders skip re-running the chunk and load from disk instead. `analysis_cache/` appearing in `ls` confirms it is wired up.
+
+### Exercise 4
+
+Ask Gemini to add `analysis_cache` to `.gitignore`. Note that the Source Control badge count in VS Code has increased because the cache directory is now visible to git --- adding this line makes it drop back. In the R Terminal, run `show_file(".gitignore")`. CP/CR.
+
+```{r gemini-in-tutorials-4}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 6)
+```
+
+###
+
+````
+# Quarto
+*_files/
+*_cache/
+analysis_cache
+````
+
+###
+
+Cache files are regenerated from source and do not belong in git. The rule is simple: if a file can be rebuilt, do not commit it.
+
+### Exercise 5
+
+Ask Gemini to add a **new chunk** at the bottom of `analysis.qmd` that prints the `flights` dataset. Render. In the R Terminal, run `show_file("analysis.qmd", chunk = "Last")`. CP/CR.
+
+```{r gemini-in-tutorials-5}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 4)
+```
+
+###
+
+```{r gemini-in-tutorials-5-test}
+#| echo: true
+flights
+```
+
+###
+
+`flights` is a dataset from the **nycflights13** package with 336,776 rows --- every flight that departed from one of New York City's three airports (JFK, LGA, EWR) in 2013, with departure and arrival times, delays, carrier, destination, and more.
+
+### Exercise 6
+
+Ask Gemini to update the last chunk to pipe `flights` through `glimpse()`. Render and inspect the output. In the R Terminal, run `show_file("analysis.qmd", chunk = "Last")`. CP/CR.
+
+```{r gemini-in-tutorials-6}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 5)
+```
+
+###
+
+```{r gemini-in-tutorials-6-test}
+#| echo: true
+flights |> glimpse()
+```
+
+###
+
+`glimpse()` gives a column-level overview of a dataset --- every variable name, its type, and a few example values on one screen. Use this and/or other similar functions like `summary()` to initially explore any unfamiliar dataset.
+
+### Exercise 7
+
+Ask Gemini to update the chunk to filter `flights` to `origin == "JFK"` and select `dep_delay`, `arr_delay`, and `carrier`. Leave the result as the final expression so it prints. Render. In the R Terminal, run `show_file("analysis.qmd", chunk = "Last")`. CP/CR.
+
+```{r gemini-in-tutorials-7}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 6)
+```
+
+###
+
+```{r gemini-in-tutorials-7-test}
+#| echo: true
+flights |>
+  filter(origin == "JFK") |>
+  select(dep_delay, arr_delay, carrier)
+```
+
+###
+
+The pipe `|>` passes the left side's result directly to the next function. Reading it as "and then" helps: take `flights`, **and then** keep only JFK departures, **and then** keep these three columns. The result prints because the final expression is a value, not an assignment.
+
+### Exercise 8
+
+Ask Gemini to save the filtered tibble to a variable called `flights_jfk` instead of printing it directly. Render and notice the table disappears from the HTML. In the R Terminal, run `show_file("analysis.qmd", chunk = "Last")`. CP/CR.
+
+```{r gemini-in-tutorials-8}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 6)
+```
+
+###
+
+```{r gemini-in-tutorials-8-test}
+#| echo: true
+flights_jfk <- flights |>
+  filter(origin == "JFK") |>
+  select(dep_delay, arr_delay, carrier)
+```
+
+###
+
+Assignment captures the result silently --- a chunk that only uses `<-` to assign a value to an objectproduces no output in the render. A blank section in the HTML is not an error; it means the chunk built an object without displaying it.
+
+### Exercise 9
+
+Ask Gemini to add a line to the chunk that prints `flights_jfk`. Render and confirm the table reappears. In the R Terminal, run `show_file("analysis.qmd", chunk = "Last")`. CP/CR.
+
+```{r gemini-in-tutorials-9}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 8)
+```
+
+###
+
+```{r gemini-in-tutorials-9-test}
+#| echo: true
+flights_jfk <- flights |>
+  filter(origin == "JFK") |>
+  select(dep_delay, arr_delay, carrier)
+
+flights_jfk
+```
+
+###
+
+Calling a variable by name on the last line of a chunk is all it takes to print it. In `misc.tutorials`, ending a data-preparation chunk with the variable name is a standard way to confirm its shape before building a plot.
+
+### Exercise 10
+
+Ask Gemini to replace the `flights_jfk` print line with a ggplot2 scatter plot of `dep_delay` vs. `arr_delay`, colored by `carrier`. Render. In the R Terminal, run `show_file("analysis.qmd", chunk = "Last")`. CP/CR.
+
+```{r gemini-in-tutorials-10}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 10)
+```
+
+###
+
+```{r gemini-in-tutorials-10-test}
+#| echo: true
+flights_jfk <- flights |>
+  filter(origin == "JFK") |>
+  select(dep_delay, arr_delay, carrier)
+
+ggplot(flights_jfk, aes(x = dep_delay, y = arr_delay, color = carrier)) +
+  geom_point(alpha = 0.1) +
+  labs(title = "Departure vs. Arrival Delay for JFK Flights",
+       x = "Departure Delay (min)", y = "Arrival Delay (min)")
+```
+
+###
+
+The chunk now has two parts: the silent assignment and the plot call. Only the plot renders as output --- the assignment runs but produces nothing visible.
+
+### Exercise 11
+
+In the R Terminal, run `show_file("analysis.qmd")`. CP/CR.
+
+```{r gemini-in-tutorials-11}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 30)
+```
+
+###
+
+Your answer should look something like:
+
+<pre><code>---
+title: "Exploring Storms"
+author: Your Name
+execute:
+  echo: false
+---
+
+#| message: false
+suppressPackageStartupMessages(library(tidyverse))
+library(nycflights13)
+
+#| cache: true
+storms |>
+  count(year) |>
+  ggplot(aes(x = year, y = n)) +
+  geom_line() +
+  labs(title = "Named Storms per Year", x = "Year", y = "Number of Storms")
+
+flights_jfk <- flights |>
+  filter(origin == "JFK") |>
+  select(dep_delay, arr_delay, carrier)
+
+ggplot(flights_jfk, aes(x = dep_delay, y = arr_delay, color = carrier)) +
+  geom_point(alpha = 0.1) +
+  labs(title = "Departure vs. Arrival Delay for JFK Flights",
+       x = "Departure Delay (min)", y = "Arrival Delay (min)")
+</code></pre>
+
+###
+
+Every `analysis.qmd` follows a similar pattern to this: a setup chunk, and at least one chunk per topic that builds a final artifact. At least one of the topic chunks will be cached.
+
+###
+
+From here on, using AI to write your analysis code is always the assumed approach --- you will describe a goal, let the agent write the code, render, and inspect the result.
+
+## Summary
+###
+
+This tutorial introduced the [Gemini CLI](https://github.com/google-gemini/gemini-cli) as an AI *agent* --- a terminal-based assistant that reads your files, runs commands, and writes files on your behalf, asking permission at each step. You authenticated with your Google account, let Gemini explore the repository, and used it to create and render a Quarto analysis. You then practiced the core `analysis.qmd` workflow: maintaining one working chunk per artifact, iteratively rewriting it, suppressing output, and caching results.
+
+### Exercise 1
+
+Quit Gemini with `/quit` if you haven't already. From the bash Terminal, run:
+
+```
+quarto render analysis.qmd
+```
+
+CP/CR.
+
+```{r summary-1}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 10)
+```
+
+###
+
+Your output should look something like:
+
+```
+(/) Rendering analysis.qmd
+pandoc
+  to: html
+  output-file: analysis.html
+  standalone: true
+  section-divs: true
+  html-math-method: mathjax
+  wrap: none
+  default-image-extension: png
+
+metadata
+  document-css: false
+  link-citations: true
+  date-format: long
+  lang: en
+
+Output created: analysis.html
+```
+
+This confirms the full file --- YAML header, setup chunk, cached storms chunk, and JFK flights plot --- renders cleanly without Gemini running.
 
 ###
 
