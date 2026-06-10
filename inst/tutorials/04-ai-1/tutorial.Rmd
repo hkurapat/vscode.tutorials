@@ -590,7 +590,6 @@ execute:
 ---
 
 &#96;&#96;&#96;{r}
-#| label: setup
 #| include: false
 suppressPackageStartupMessages(library(tidyverse))
 &#96;&#96;&#96;
@@ -600,7 +599,6 @@ suppressPackageStartupMessages(library(tidyverse))
 The following chart displays the number of unique named storms recorded each year in the `storms` dataset.
 
 &#96;&#96;&#96;{r}
-#| label: storms-plot
 storms |>
   distinct(year, name) |>
   count(year) |>
@@ -620,7 +618,6 @@ storms |>
 This boxplot shows the distribution of maximum wind speeds for each category of storm. It highlights how intensity increases across the categories defined in the dataset.
 
 &#96;&#96;&#96;{r}
-#| label: wind-distribution-plot
 storms |>
   filter(!is.na(category)) |>
   mutate(category = as.factor(category)) |>
@@ -637,8 +634,6 @@ storms |>
   theme(legend.position = "none")
 &#96;&#96;&#96;
 </code></pre>
-
-The `show_file()` output shows the full file contents including chunk delimiters --- ` ```{r} ` opens each chunk and ` ``` ` closes it.
 
 ###
 
@@ -670,7 +665,6 @@ execute:
 ---
 
 &#96;&#96;&#96;{r}
-#| label: setup
 #| include: false
 suppressPackageStartupMessages(library(tidyverse))
 &#96;&#96;&#96;
@@ -680,7 +674,6 @@ suppressPackageStartupMessages(library(tidyverse))
 The following chart displays the number of unique named storms recorded each year in the `storms` dataset.
 
 &#96;&#96;&#96;{r}
-#| label: storms-plot
 storms |>
   distinct(year, name) |>
   count(year) |>
