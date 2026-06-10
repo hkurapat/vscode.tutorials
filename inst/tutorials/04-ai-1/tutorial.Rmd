@@ -90,7 +90,7 @@ There are three main ways to interact with AI: a *chat interface* (like gemini.g
 
 ### Exercise 3
 
-At the Terminal, run `pwd`. CP/CR.
+At the bash Terminal, run `pwd`. CP/CR.
 
 ```{r introduction-3}
 question_text(NULL,
@@ -162,6 +162,26 @@ question_text(NULL,
 
 ###
 
+Your output should look something like:
+
+````
+@ppbds-student ➜ /workspaces/04-ai-1 (main) $ gemini
+? Do you want to connect to Gemini? Yes
+? Do you trust the files in this folder? Yes
+
+╭─────────────────────────────────────────────────────╮
+│  Welcome to Gemini CLI                              │
+│  Your AI-powered terminal assistant                 │
+╰─────────────────────────────────────────────────────╯
+
+To get started, authenticate with your Google account.
+Visit the URL below, sign in, and paste the code here.
+
+https://accounts.google.com/o/oauth2/auth?...
+
+>
+````
+
 You may notice that VS Code renames the terminal tab from "bash" to "node" once Gemini starts. This is because the Gemini CLI is built on [Node.js](https://nodejs.org/en/about), and VS Code detects this and updates the tab name.
 
 
@@ -171,13 +191,12 @@ include_graphics("images/node-terminal.png")
 
 ### Exercise 2
 
-It will then ask you to authenticate with your Google account.
-
-You will see a URL printed in the terminal. Open that URL in your browser, sign in with your Google account, and copy the authorization code that appears on the page. Paste it back into the terminal and press `Enter`.
-
+It will then ask you to authenticate with your Google account. You will see a URL printed in the terminal. 
 ```{r}
 include_graphics("images/gemini-CLI-auth-link.png")
 ```
+
+Open that URL in your browser, sign in with your Google account, and copy the authorization code that appears on the page. Paste it back into the terminal and press `Enter`. Then, Copy and Paste the four tips to get started which will appear once Gemini is done authenticating.
 
 
 ```{r gemini-cli-2}
@@ -298,6 +317,8 @@ question_text(NULL,
 
 ###
 
+<!-- AR: Need example output here. -->
+
 The tool authorization prompt is a deliberate safety feature --- an AI that could silently run commands in your terminal without asking would be a significant security risk.
 
 ### Exercise 6
@@ -401,7 +422,7 @@ Gemini ran two commands to answer one question, using the result of each step to
 
 ### Exercise 8
 
-Let's view the rendered file in a browser. In the File Explorer (the file tree on the left side of VS Code), find `analysis.html`. Right-click it and select **"Open with Live Server"**.
+Let's view the rendered file in a browser. In the Explorer (the file tree on the left side of VS Code), find `analysis.html`. Right-click it and select **"Open with Live Server"**.
 
 ```{r}
 include_graphics("images/live-server.png")
@@ -428,7 +449,7 @@ Your URL should look something like:
 https://congenial-chainsaw-wv757pv4pp67cpw-5500.app.github.dev/analysis.html
 ````
 
-Keep this tab open. Every time `analysis.html` is updated on disk --- whether by Gemini or by running `quarto render` yourself --- the tab will automatically refresh.
+Keep this tab open. Every time `analysis.html` is updated in your Codespace --- whether by Gemini or by running `quarto render` yourself --- the tab will automatically refresh.
 
 ###
 
@@ -436,9 +457,9 @@ Live Server is a VS Code extension that hosts HTML files so they can be viewed i
 
 ### Exercise 9
 
-Ask Gemini to add a second plot to `analysis.qmd` using the `storms` dataset. Tell it to visualize something different from the first plot --- for example, a boxplot showing the distribution of wind speeds by storm category. Ask it to include a meaningful title and subtitle, then re-render the file.
+Ask Gemini to add a plot to `analysis.qmd` using the `storms` dataset. Tell it to visualize something like a boxplot showing the distribution of wind speeds by storm category. Ask it to include a meaningful title and subtitle, and then to render the file.
 
-After Gemini finishes, check your Live Server tab --- it should have refreshed automatically to show both plots. Open a new R Terminal. 
+After Gemini finishes, check your Live Server tab --- it should have refreshed automatically to show the plot. Open a new R Terminal. 
 
 <!-- AR: show image of creating the new R Terminal -->
 
@@ -461,6 +482,8 @@ question_text(NULL,
 
 ###
 
+<!-- AR: show plot + code for a boxplot -->
+
 Your answer will vary, but it should show **ggplot2** code using the `storms` dataset --- something like a boxplot of wind speed by storm category. The chunk should not have `#| echo: true` --- since you set `execute: echo: false` in the YAML header, all chunks use that setting by default.
 
 ###
@@ -469,10 +492,15 @@ When Gemini adds a plot and re-renders, two things happen automatically: Quarto 
 
 ### Exercise 10
 
+<!-- AR: There already is a .gitignore file. Instead ask Gemini to update? We show its contents in the next exercise. Is there actually a need to update this when we test the tutorial? -->
+
 Ask Gemini to create a `.gitignore` file suitable for a Quarto R project. Type something like:
 
 ```
-Create a .gitignore file for a Quarto R project. Include patterns for Quarto cache and build directories, but do NOT ignore .html files.```
+Create a .gitignore file for a Quarto R project. Include patterns for Quarto cache and build directories, but do NOT ignore .html files.
+```
+
+<!-- AR: Suspect below. Hasn't Gemini already written analysis.qmd? Thus it's already asked for write permission before. -->
 
 This time, Gemini will ask permission to **write a file** rather than run a command. Press `y` to authorize it. CP/CR the tool authorization prompt and Gemini's summary of what it created.
 
@@ -510,7 +538,7 @@ I've created a `.gitignore` that covers:
 
 ###
 
-A `.gitignore` tells Git to ignore certain files entirely --- they won't appear in `git status` and can never be accidentally committed. The guiding principle: if a file can be *regenerated* from your source, it doesn't belong in the commit history.
+Git tracks changes to files in your repository but there are certain files that we should not track. A `.gitignore` tells Git to ignore certain files entirely. The guiding principle: if a file can be *regenerated* from your source, it doesn't belong in the commit history.
 
 ### Exercise 11
 
@@ -581,6 +609,8 @@ question_text(NULL,
 
 ###
 
+<!-- AR: Need example output. -->
+
 Gemini's **conversation history** is gone the moment you type `/quit`, but the **files on disk** are permanent --- this is why it can pick up where you left off after a restart just by reading the files. The `/chat save <name>` command lets you preserve a conversation so you can resume it later with `/chat resume <name>`.
 
 ## Summary
@@ -608,6 +638,8 @@ question_text(NULL,
 ```
 
 ###
+
+<!-- AR: Need example output. -->
 
 Your answer should show the full contents of `analysis.qmd`: a YAML header with `execute: echo: false`, a setup chunk using `suppressPackageStartupMessages(library(tidyverse))`, and a ggplot2 code chunk creating a plot.
 
