@@ -412,12 +412,16 @@ Because of limitations in our technology, we can't show you what the whole file 
 <!-- 
 DK: When we use this, the code seems to run, trying to print out the penguins data set, but just giving us:
 
+
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["species"],"name":[1],"type":["fct"],"align":["left"]},{"l
 ...
 
 Not sure about the cause.
+-->
+
+<!-- HK: Confirmed this bug. When show_file() is called on a chunk that prints a tibble, it renders raw pagedtable HTML instead of showing the file contents. The fix likely needs to go in the show_file() function in the tutorial.helpers package, not in this tutorial file. -->
 
 ````
 R 4.4.3> tutorial.helpers::show_file("quarto-1.qmd")
